@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Review
 {
     /**
-     * @var int The id of this review.
+     * @var int the id of this review
      *
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -33,7 +33,7 @@ class Review
     private $id;
 
     /**
-     * @var int The rating of this review (between 0 and 5).
+     * @var int the rating of this review (between 0 and 5)
      *
      * @ORM\Column(type="smallint")
      * @Assert\Range(min=0, max=5)
@@ -42,7 +42,7 @@ class Review
     public $rating;
 
     /**
-     * @var string the body of the review.
+     * @var string the body of the review
      *
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"book:read", "review:read"})
@@ -51,7 +51,7 @@ class Review
     public $body;
 
     /**
-     * @var string The author of the review.
+     * @var string the author of the review
      *
      * @ORM\Column
      * @Assert\NotBlank
@@ -61,7 +61,7 @@ class Review
     public $author;
 
     /**
-     * @var \DateTimeInterface The date of publication of this review.
+     * @var \DateTimeInterface the date of publication of this review
      *
      * @ORM\Column(type="datetime")
      * @Assert\NotNull
@@ -71,7 +71,7 @@ class Review
     public $publicationDate;
 
     /**
-     * @var Book The book this review is about.
+     * @var Book the book this review is about
      *
      * @ORM\ManyToOne(targetEntity="Book", inversedBy="reviews")
      * @Assert\NotNull

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="508c24df-7e00-462d-89bc-976f756c801e" name="Default Changelist" comment="" />
+    <list default="true" id="508c24df-7e00-462d-89bc-976f756c801e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/ide-helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/ide-helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../symfony-api/src/Entity/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/../symfony-api/src/Entity/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../symfony-api/src/Entity/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/../symfony-api/src/Entity/Review.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../symfony-api/src/Migrations/Version20200118162418.php" beforeDir="false" afterPath="$PROJECT_DIR$/../symfony-api/src/Migrations/Version20200118162418.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +24,9 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -113,9 +128,16 @@
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/php-cs-fixer/diff" />
     </include_path>
   </component>
   <component name="ProjectId" id="1WthHFGLQERY4Umm8D1ZYzWVYaI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -123,6 +145,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../symfony-api" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -143,7 +166,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1579974708126</updated>
-      <workItem from="1579974710274" duration="448000" />
+      <workItem from="1579974710274" duration="1161000" />
     </task>
     <servers />
   </component>
@@ -151,6 +174,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="720" y="97" key="CommitChangelistDialog2" timestamp="1579977009944">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="720" y="97" key="CommitChangelistDialog2/0.0.2194.1194@0.0.2194.1194" timestamp="1579977009944" />
+    <state x="213" y="107" key="DiffContextDialog" timestamp="1579977009598">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="213" y="107" key="DiffContextDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1579977009598" />
     <state x="878" y="353" key="FileChooserDialogImpl" timestamp="1579974715968">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>

@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Book
 {
     /**
-     * @var int The id of this book.
+     * @var int the id of this book
      *
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -38,7 +38,7 @@ class Book
     private $id;
 
     /**
-     * @var string|null The ISBN of this book (or null if doesn't have one).
+     * @var string|null the ISBN of this book (or null if doesn't have one)
      *
      * @ORM\Column(nullable=true)
      * @Assert\Isbn
@@ -48,7 +48,7 @@ class Book
     public $isbn;
 
     /**
-     * @var string The title of this book.
+     * @var string the title of this book
      *
      * @ORM\Column
      * @Assert\NotBlank
@@ -59,7 +59,7 @@ class Book
     public $title;
 
     /**
-     * @var string The description of this book.
+     * @var string the description of this book
      *
      * @ORM\Column(type="text")
      * @Assert\NotBlank
@@ -69,7 +69,7 @@ class Book
     public $description;
 
     /**
-     * @var string The author of this book.
+     * @var string the author of this book
      *
      * @ORM\Column
      * @Assert\NotBlank
@@ -80,7 +80,7 @@ class Book
     public $author;
 
     /**
-     * @var \DateTimeInterface The publication date of this book.
+     * @var \DateTimeInterface the publication date of this book
      *
      * @ORM\Column(type="date")
      * @Assert\NotNull
@@ -90,7 +90,7 @@ class Book
     public $publicationDate;
 
     /**
-     * @var Review[] Available reviews for this book.
+     * @var Review[] available reviews for this book
      *
      * @ORM\OneToMany(targetEntity="Review", mappedBy="book", orphanRemoval=true, cascade={"persist", "remove"})
      * @Groups("book:read")
