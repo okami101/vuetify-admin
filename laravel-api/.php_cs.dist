@@ -6,6 +6,8 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('resources/')
     ->exclude('storage/')
     ->in(__DIR__)
+    ->notName('.phpstorm.meta.php')
+    ->notName('_ide_*.php')
 ;
 
 return PhpCsFixer\Config::create()
