@@ -1,17 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Book;
-use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 
 final class ReviewsTest extends ApiTestCase
 {
-    use RefreshDatabaseTrait;
-
     public function testFilterReviewsByBook(): void
     {
         $client = static::createClient();

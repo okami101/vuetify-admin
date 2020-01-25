@@ -63,7 +63,7 @@ class BooksTest extends ApiTestCase
             'publicationDate' => '1985-07-31T00:00:00+00:00',
             'reviews' => [],
         ]);
-        $this->assertRegExp('~^/books/[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$~', $response->toArray()['@id']);
+        $this->assertRegExp('~^/books/\d+$~', $response->toArray()['@id']);
         $this->assertMatchesResourceItemJsonSchema(Book::class);
     }
 
@@ -117,23 +117,6 @@ publicationDate: This value should not be null.',
         $this->assertNull(
             // Through the container, you can access all your services from the tests, including the ORM, the mailer, remote API clients...
             static::$container->get('doctrine')->getRepository(Book::class)->findOneBy(['isbn' => '9786644879585'])
-        );
-    }
-
-    public function testGenerateCover(): void
-    {
-        $client = static::createClient();
-        $book = static::$container->get('doctrine')->getRepository(Book::class)->findOneBy(['isbn' => '9786644879585']);
-        $client->request('PUT', static::$container->get('api_platform.router')->generate('api_books_generate_cover_item', ['id' => $book->getId()]), [
-            'json' => [],
-        ]);
-
-        $this->assertResponseIsSuccessful();
-
-        $this->assertEquals(
-            1,
-            static::$container->get('messenger.receiver_locator')->get('doctrine')->getMessageCount(),
-            'No message has been sent.'
         );
     }
 
