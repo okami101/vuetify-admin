@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Http\Resources\Review as ReviewResource;
+use App\Http\Resources\ReviewCollection;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -10,11 +12,11 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ReviewCollection
      */
     public function index()
     {
-        //
+        return new ReviewCollection(Review::query()->paginate());
     }
 
     /**
@@ -32,11 +34,11 @@ class ReviewController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
+     * @return ReviewResource
      */
     public function show(Review $review)
     {
-        //
+        return new ReviewResource($review);
     }
 
     /**

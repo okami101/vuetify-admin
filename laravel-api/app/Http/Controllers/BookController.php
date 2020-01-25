@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Http\Resources\Book as BookResource;
+use App\Http\Resources\BookCollection;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -10,11 +12,11 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return BookCollection
      */
     public function index()
     {
-        //
+        return new BookCollection(Book::query()->paginate());
     }
 
     /**
@@ -32,11 +34,11 @@ class BookController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
+     * @return BookResource
      */
     public function show(Book $book)
     {
-        //
+        return new BookResource($book);
     }
 
     /**

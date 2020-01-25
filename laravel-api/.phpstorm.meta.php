@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-01-25 18:12:50.
+    * Generated on 2020-01-25 23:33:16.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -41,6 +41,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -196,6 +197,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -351,6 +353,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -506,6 +509,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -661,6 +665,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -816,6 +821,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -971,6 +977,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -1126,6 +1133,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Spatie\QueryBuilder\QueryBuilderRequest' => \Spatie\QueryBuilder\QueryBuilderRequest::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -1253,6 +1261,8 @@ namespace PHPSTORM_META {
 
 	override(\factory(0), map([
         '' => '@FactoryBuilder',
+        'App\Book' => \App\BookFactoryBuilder::class,
+        'App\Review' => \App\ReviewFactoryBuilder::class,
         'App\User' => \App\UserFactoryBuilder::class,
 	]));
 

@@ -21,7 +21,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ApiResource(
  *     iri="http://schema.org/Book",
- *     normalizationContext={"groups"={"book:read"}}
+ *     normalizationContext={"groups"={"book:read"}},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')"}
+ *     }
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(OrderFilter::class, properties={"id", "title", "author", "isbn", "publicationDate"})
