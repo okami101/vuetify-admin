@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Review
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $rating
  * @property string|null $body
  * @property string $author
- * @property string $publication_date
+ * @property Carbon $publication_date
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review query()
@@ -22,6 +23,14 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     public $timestamps = false;
+
+    protected $casts = [
+        'rating' => 'integer',
+    ];
+
+    protected $dates = [
+        'publication_date'
+    ];
 
     public function book()
     {

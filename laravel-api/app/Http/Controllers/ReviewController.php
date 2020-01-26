@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReview;
+use App\Http\Requests\UpdateReview;
 use App\Review;
 use App\Http\Resources\Review as ReviewResource;
 use App\Http\Resources\ReviewCollection;
-use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Review::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,18 +23,23 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return new ReviewCollection(Review::query()->paginate());
+        return new ReviewCollection(
+            QueryBuilder::for(Review::class)
+                ->allowedFilters('author', 'book_id')
+                ->allowedSorts('id', 'title', 'author', 'isbn', 'publication_date')
+                ->paginate()
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreReview $request
+     * @return ReviewResource
      */
-    public function store(Request $request)
+    public function store(StoreReview $request)
     {
-        //
+        return new ReviewResource(Review::create($request->all()));
     }
 
     /**
@@ -44,23 +56,26 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
+     * @param UpdateReview $request
+     * @param \App\Review $review
+     * @return ReviewResource
      */
-    public function update(Request $request, Review $review)
+    public function update(UpdateReview $request, Review $review)
     {
-        //
+        $review->update($request->all());
+        return new ReviewResource($review);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
+     * @param \App\Review $review
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Review $review)
     {
-        //
+        $review->delete();
+        return response()->noContent();
     }
 }

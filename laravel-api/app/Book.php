@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Book
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $description
  * @property string $author
- * @property string $publication_date
+ * @property Carbon $publication_date
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book query()
@@ -23,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     public $timestamps = false;
+
+    protected $dates = [
+        'publication_date'
+    ];
 
     public function reviews()
     {
