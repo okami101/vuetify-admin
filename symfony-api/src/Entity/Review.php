@@ -54,7 +54,7 @@ class Review
      * @var string the body of the review
      *
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"book:read", "review:read"})
+     * @Groups("review:read")
      * @ApiProperty(iri="http://schema.org/reviewBody")
      */
     public $body;
@@ -64,7 +64,7 @@ class Review
      *
      * @ORM\Column
      * @Assert\NotBlank
-     * @Groups("review:read")
+     * @Groups({"book:read", "review:read"})
      * @ApiProperty(iri="http://schema.org/author")
      */
     public $author;

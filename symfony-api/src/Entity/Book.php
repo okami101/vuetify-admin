@@ -108,13 +108,6 @@ class Book
      */
     public $reviews;
 
-    /**
-     * @var string|null The book's cover base64 encoded
-     *
-     * @Groups("book:cover")
-     */
-    public $cover;
-
     public function __construct()
     {
         $this->reviews = new ArrayCollection();

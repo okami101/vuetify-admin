@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Book extends JsonResource
 {
+    public static $wrap = false;
+
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +16,15 @@ class Book extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $attributes = parent::toArray($request);
+
+        $attributes += [
+            'reviews' => ReviewEmbedded::collection($this->reviews),
+            'links' => [
+                'self' => route('books.show', $this->id),
+            ],
+        ];
+
+        return $attributes;
     }
 }
