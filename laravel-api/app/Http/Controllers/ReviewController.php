@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
-use App\Review;
 use App\Http\Resources\Review as ReviewResource;
 use App\Http\Resources\ReviewCollection;
+use App\Review;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class ReviewController extends Controller
