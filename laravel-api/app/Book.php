@@ -25,6 +25,14 @@ class Book extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = [
+        'isbn',
+        'title',
+        'description',
+        'author',
+        'publication_date',
+    ];
+
     protected $dates = [
         'publication_date'
     ];

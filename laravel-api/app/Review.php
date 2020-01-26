@@ -24,6 +24,14 @@ class Review extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = [
+        'book_id',
+        'rating',
+        'body',
+        'author',
+        'publication_date',
+    ];
+
     protected $casts = [
         'rating' => 'integer',
     ];
