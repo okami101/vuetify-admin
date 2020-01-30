@@ -1,5 +1,5 @@
 <template>
-  <Admin></Admin>
+  <Admin title="Bookstore Admin"> </Admin>
 </template>
 
 <script>

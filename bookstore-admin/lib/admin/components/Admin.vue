@@ -71,16 +71,20 @@
         /></v-avatar>
       </v-btn>
     </v-app-bar>
-    <v-content></v-content>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
   </v-app>
 </template>
 
 <script>
 export default {
   name: "Admin",
+  props: {
+    title: String
+  },
   data: () => ({
     drawer: null,
-    title: "Google Contacts",
     items: [
       { heading: "Contacts" },
       { icon: "mdi-contacts", text: "Contacts" },

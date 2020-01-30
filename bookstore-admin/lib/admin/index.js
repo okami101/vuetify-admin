@@ -16,13 +16,16 @@ components.forEach(component => {
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
-const router = new VueRouter({});
-const store = new Vuex.Store({});
+export default (App, routes = []) => {
+  const router = new VueRouter({
+    routes
+  });
+  const store = new Vuex.Store({});
 
-export default App =>
-  new Vue({
+  return new Vue({
     router,
     store,
     vuetify,
     render: h => h(App)
   });
+};
