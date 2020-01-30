@@ -3,12 +3,7 @@
 </template>
 
 <script>
-import { Admin } from "vuetify-admin";
-
 export default {
-  name: "App",
-  components: {
-    Admin
-  }
+  name: "App"
 };
 </script>
