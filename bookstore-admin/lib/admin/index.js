@@ -5,12 +5,11 @@ import vuetify from "./plugins/vuetify";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
 
-import Admin from "./components/admin";
+import Admin from "./components/Admin";
 
 const components = [Admin];
 
 components.forEach(component => {
-  console.log(component.name);
   Vue.component(component.name, component);
 });
 
