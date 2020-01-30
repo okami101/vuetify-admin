@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Vuex from "vuex";
 import vuetify from "./plugins/vuetify";
+import "roboto-fontface/css/roboto/roboto-fontface.css";
+import "@mdi/font/css/materialdesignicons.css";
 
 import Admin from "./components/admin";
 

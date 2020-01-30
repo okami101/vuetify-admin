@@ -8,13 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@mdi/font": "^4.8.95",
     "core-js": "^3.4.4",
+    "roboto-fontface": "^0.10.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.8",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
+    "@vue/babel-preset-jsx": "^1.1.2",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
