@@ -15,10 +15,8 @@
             v-else-if="item.children"
             :key="index"
             v-model="item.expanded"
-            :prepend-icon="
-              item.expanded ? 'mdi-chevron-up' : 'mdi-chevron-down'
-            "
-            append-icon=""
+            :prepend-icon="item.icon"
+            append-icon="mdi-chevron-up"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -27,7 +25,13 @@
                 </v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" link>
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              link
+              exact
+              :to="child.link"
+            >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-item-action>
@@ -38,7 +42,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item v-else :key="index" link>
+          <v-list-item v-else :key="index" link exact :to="item.link">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -81,40 +85,20 @@
 export default {
   name: "Admin",
   props: {
-    title: String
+    title: String,
+    menu: Array
   },
   data: () => ({
     drawer: null,
-    items: [
-      { heading: "Contacts" },
-      { icon: "mdi-contacts", text: "Contacts" },
-      { icon: "mdi-history", text: "Frequently contacted" },
-      { divider: true },
-      { icon: "mdi-content-copy", text: "Duplicates" },
-      {
-        text: "Labels",
-        expanded: true,
-        children: [{ icon: "mdi-plus", text: "Create label" }]
+    items: []
+  }),
+  watch: {
+    menu: {
+      handler(newVal) {
+        this.items = newVal;
       },
-      {
-        text: "More",
-        expanded: false,
-        children: [
-          { text: "Import" },
-          { text: "Export" },
-          { text: "Print" },
-          { text: "Undo changes" },
-          { text: "Other contacts" }
-        ]
-      },
-      { divider: true },
-      { heading: "Other" },
-      { icon: "mdi-settings", text: "Settings" },
-      { icon: "mdi-message", text: "Send feedback" },
-      { icon: "mdi-help-circle", text: "Help" },
-      { icon: "mdi-cellphone-link", text: "App downloads" },
-      { icon: "mdi-keyboard", text: "Go to the old version" }
-    ]
-  })
+      immediate: true
+    }
+  }
 };
 </script>
