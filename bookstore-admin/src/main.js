@@ -1,8 +1,19 @@
 import Vue from "vue";
-import { routes } from "./router";
+import router from "./router";
+import store from "./store";
+import vuetify from "./plugins/vuetify";
+import VuetifyAdmin from "vuetify-admin";
 import App from "./App.vue";
-import AdminVue from "vuetify-admin";
+import "roboto-fontface/css/roboto/roboto-fontface.css";
+import "@mdi/font/css/materialdesignicons.css";
 
 Vue.config.productionTip = false;
 
-AdminVue(App, routes).$mount("#app");
+Vue.use(VuetifyAdmin);
+
+new Vue({
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
+}).$mount("#app");

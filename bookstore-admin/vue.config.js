@@ -5,7 +5,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        "vuetify-admin": path.resolve(__dirname, "lib/admin")
+        "vuetify-admin": path.resolve(__dirname, "lib/vuetify-admin")
       }
     }
   }
