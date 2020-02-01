@@ -93,7 +93,9 @@ export default {
   name: "Admin",
   props: {
     title: String,
-    menu: Array
+    menu: Array,
+    authProvider: Object,
+    dataProvider: Object
   },
   data: () => ({
     mini: false,

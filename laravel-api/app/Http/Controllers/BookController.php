@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
 use App\Http\Resources\BookCollection;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class BookController extends Controller
@@ -26,7 +27,11 @@ class BookController extends Controller
     {
         return new BookCollection(
             QueryBuilder::for(Book::class)
-                ->allowedFilters('title', 'author')
+                ->allowedFilters([
+                    AllowedFilter::exact('id'),
+                    'title',
+                    'author'
+                ])
                 ->allowedSorts('id', 'publication_date')
                 ->paginate()
         );
