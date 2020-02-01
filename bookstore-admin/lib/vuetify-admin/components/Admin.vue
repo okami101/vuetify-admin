@@ -1,13 +1,33 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
+    <v-app-bar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      app
+      color="blue darken-3"
+      dark
+    >
+      <v-app-bar-nav-icon @click.stop="mini = !mini" />
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+        <span class="hidden-sm-and-down">{{ title }}</span>
+      </v-toolbar-title>
+      <v-spacer />
+      <v-btn icon large>
+        <v-avatar size="32px" item>
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+            alt="Vuetify"
+        /></v-avatar>
+      </v-btn>
+    </v-app-bar>
+
     <v-navigation-drawer
-      v-model="drawer"
+      :mini-variant="mini"
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
       <v-list dense>
         <template v-for="(item, index) in items">
-          <v-subheader v-if="item.heading" :key="index">
+          <v-subheader v-if="item.heading && !mini" :key="index">
             {{ item.heading }}
           </v-subheader>
           <v-divider v-else-if="item.divider" :key="index"></v-divider>
@@ -42,7 +62,13 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item v-else :key="index" link exact :to="item.link">
+          <v-list-item
+            v-else-if="item.text"
+            :key="index"
+            link
+            exact
+            :to="item.link"
+          >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -56,25 +82,6 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      app
-      color="blue darken-3"
-      dark
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-        <span class="hidden-sm-and-down">{{ title }}</span>
-      </v-toolbar-title>
-      <v-spacer />
-      <v-btn icon large>
-        <v-avatar size="32px" item>
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-        /></v-avatar>
-      </v-btn>
-    </v-app-bar>
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -89,7 +96,7 @@ export default {
     menu: Array
   },
   data: () => ({
-    drawer: null,
+    mini: false,
     items: []
   }),
   watch: {
