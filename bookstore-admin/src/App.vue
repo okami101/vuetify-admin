@@ -6,6 +6,10 @@
 export default {
   name: "App",
   data: () => ({
+    apiUrls: {
+      symfony: console.log(process.env.VUE_APP_SYMFONY_API_URL),
+      laravel: console.log(process.env.VUE_APP_LARAVEL_API_URL)
+    },
     menu: [
       { icon: "mdi-view-dashboard", text: "Dashboard", link: "/" },
       { divider: true },
