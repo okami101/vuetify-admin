@@ -23,7 +23,7 @@ class BookController extends Controller
      *
      * @return BookCollection
      */
-    public function index()
+    public function index(Request $request)
     {
         return new BookCollection(
             QueryBuilder::for(Book::class)
@@ -33,7 +33,9 @@ class BookController extends Controller
                     'author'
                 ])
                 ->allowedSorts('id', 'publication_date')
-                ->paginate()
+                ->with('reviews')
+                ->paginate(min($request->get('perPage'), 100))
+                ->appends($request->query())
         );
     }
 

@@ -1,3 +1,5 @@
+import objectToFormData from "../utils/objectToFormData";
+
 const GET_LIST = "GET_LIST";
 const GET_MANY = "GET_MANY";
 const GET_MANY_REFERENCE = "GET_MANY_REFERENCE";
@@ -8,105 +10,81 @@ const DELETE = "GET_LIST";
 
 export default entrypoint => {
   const fetchApi = (type, resource, params) => {
-    const entrypointUrl = new URL(entrypoint, window.location.href);
-    const collectionUrl = new URL(`${entrypoint}/${resource}`, entrypointUrl);
-    const itemUrl = new URL(params.id, entrypointUrl);
+    const resourceUrl = new URL(`${entrypoint}/${resource}`);
+    const itemUrl = new URL(params.id, resourceUrl);
 
     switch (type) {
-      case CREATE:
-        return transformReactAdminDataToRequestBody(resource, params.data).then(
-          body => ({
-            options: {
-              body,
-              method: "POST"
-            },
-            url: collectionUrl
-          })
-        );
-
-      case DELETE:
-        return Promise.resolve({
-          options: {
-            method: "DELETE"
-          },
-          url: itemUrl
-        });
-
       case GET_LIST:
       case GET_MANY_REFERENCE: {
         const {
           pagination: { page, perPage },
-          sort: { field, order }
+          sort,
+          filter
         } = params;
 
-        if (order) collectionUrl.searchParams.set(`order[${field}]`, order);
-        if (page) collectionUrl.searchParams.set("page", page);
-        if (perPage) collectionUrl.searchParams.set("perPage", perPage);
-        if (params.filter) {
-          const buildFilterParams = (key, nestedFilter, rootKey) => {
-            const filterValue = nestedFilter[key];
+        if (page) {
+          resourceUrl.searchParams.set("page", page);
+        }
+        if (perPage) {
+          resourceUrl.searchParams.set("perPage", perPage);
+        }
+        if (sort) {
+          resourceUrl.searchParams.set(
+            "sort",
+            sort
+              .map(item => {
+                let { by, desc } = item;
 
-            if (Array.isArray(filterValue)) {
-              filterValue.forEach((arrayFilterValue, index) => {
-                collectionUrl.searchParams.set(
-                  `${rootKey}[${index}]`,
-                  arrayFilterValue
-                );
-              });
-              return;
-            }
+                if (desc) {
+                  return `-${by}`;
+                }
+                return by;
+              })
+              .join(",")
+          );
+        }
 
-            if (!isPlainObject(filterValue)) {
-              collectionUrl.searchParams.set(rootKey, filterValue);
-              return;
-            }
-
-            Object.keys(filterValue).forEach(subKey => {
-              buildFilterParams(subKey, filterValue, `${rootKey}.${subKey}`);
-            });
-          };
-
+        if (filter) {
           Object.keys(params.filter).forEach(key => {
-            buildFilterParams(key, params.filter, key);
+            resourceUrl.searchParams.set(`filter[${key}]`, params.filter[key]);
           });
         }
 
         if (type === GET_MANY_REFERENCE && params.target) {
-          collectionUrl.searchParams.set(params.target, params.id);
+          resourceUrl.searchParams.set(`filter[${params.target}]`, params.id);
         }
 
-        return Promise.resolve({
-          options: {},
-          url: collectionUrl
-        });
+        return fetch(resourceUrl);
       }
 
       case GET_ONE:
-        return Promise.resolve({
-          options: {},
-          url: itemUrl
+        return fetch(itemUrl);
+
+      case GET_MANY:
+        resourceUrl.searchParams.set("filter[id]", params.ids.join(","));
+
+        return fetch(resourceUrl);
+
+      case CREATE:
+        return fetch(resourceUrl, {
+          method: "POST",
+          body: objectToFormData(params.data)
         });
 
       case UPDATE:
-        return transformReactAdminDataToRequestBody(resource, params.data).then(
-          body => ({
-            options: {
-              body,
-              method: "PUT"
-            },
-            url: itemUrl
-          })
-        );
+        return fetch(itemUrl, {
+          method: "PUT",
+          body: objectToFormData(params.data)
+        });
+
+      case DELETE:
+        return fetch(itemUrl, {
+          method: "DELETE"
+        });
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
     }
-
-    convertReactAdminRequestToHydraRequest(type, resource, params)
-      .then(({ url, options }) => httpClient(url, options))
-      .then(response =>
-        convertHydraResponseToReactAdminResponse(type, resource, response)
-      );
   };
 
   return {

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
 use App\Http\Resources\ReviewCollection;
 use App\Review;
+use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -22,7 +23,7 @@ class ReviewController extends Controller
      *
      * @return ReviewCollection
      */
-    public function index()
+    public function index(Request $request)
     {
         return new ReviewCollection(
             QueryBuilder::for(Review::class)
@@ -32,7 +33,9 @@ class ReviewController extends Controller
                     AllowedFilter::exact('book_id')
                 ])
                 ->allowedSorts('id', 'title', 'author', 'isbn', 'publication_date')
-                ->paginate()
+                ->with('book')
+                ->paginate(min($request->get('perPage'), 100))
+                ->appends($request->query())
         );
     }
 

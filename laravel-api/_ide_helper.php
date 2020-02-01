@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.13.1 on 2020-01-29 20:19:45.
+ * Generated for Laravel 6.13.1 on 2020-02-01 15:31:40.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15053,6 +15053,403 @@ namespace Facade\Ignition\Facades {
  
 }
 
+namespace Clockwork\Support\Laravel { 
+
+    /**
+     * 
+     *
+     */ 
+    class Facade {
+        
+        /**
+         * Add a new data source
+         *
+         * @static 
+         */ 
+        public static function addDataSource($dataSource)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addDataSource($dataSource);
+        }
+        
+        /**
+         * Return array of all added data sources
+         *
+         * @static 
+         */ 
+        public static function getDataSources()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getDataSources();
+        }
+        
+        /**
+         * Return the request object
+         *
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getRequest();
+        }
+        
+        /**
+         * Set a custom request object
+         *
+         * @static 
+         */ 
+        public static function setRequest($request)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setRequest($request);
+        }
+        
+        /**
+         * Add data from all data sources to request
+         *
+         * @static 
+         */ 
+        public static function resolveRequest()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->resolveRequest();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function extendRequest($request = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->extendRequest($request);
+        }
+        
+        /**
+         * Store request via storage object
+         *
+         * @static 
+         */ 
+        public static function storeRequest()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->storeRequest();
+        }
+        
+        /**
+         * Return the storage object
+         *
+         * @static 
+         */ 
+        public static function getStorage()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getStorage();
+        }
+        
+        /**
+         * Set a custom storage object
+         *
+         * @static 
+         */ 
+        public static function setStorage($storage)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setStorage($storage);
+        }
+        
+        /**
+         * Return the authenticator object
+         *
+         * @static 
+         */ 
+        public static function getAuthenticator()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getAuthenticator();
+        }
+        
+        /**
+         * Set a custom authenticator object
+         *
+         * @static 
+         */ 
+        public static function setAuthenticator($authenticator)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setAuthenticator($authenticator);
+        }
+        
+        /**
+         * Return the log instance
+         *
+         * @static 
+         */ 
+        public static function getLog()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getLog();
+        }
+        
+        /**
+         * Set a custom log instance
+         *
+         * @static 
+         */ 
+        public static function setLog($log)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setLog($log);
+        }
+        
+        /**
+         * Return the timeline instance
+         *
+         * @static 
+         */ 
+        public static function getTimeline()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getTimeline();
+        }
+        
+        /**
+         * Set a custom timeline instance
+         *
+         * @static 
+         */ 
+        public static function setTimeline($timeline)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setTimeline($timeline);
+        }
+        
+        /**
+         * Shortcut methods for the current log instance
+         *
+         * @static 
+         */ 
+        public static function log($level, $message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->log($level, $message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function emergency($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->emergency($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function alert($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->alert($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function critical($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->critical($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function error($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->error($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function warning($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->warning($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function notice($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->notice($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function info($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->info($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function debug($message, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->debug($message, $context);
+        }
+        
+        /**
+         * Shortcut methods for the current timeline instance
+         *
+         * @static 
+         */ 
+        public static function startEvent($name, $description, $time = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->startEvent($name, $description, $time);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function endEvent($name)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->endEvent($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addDatabaseQuery($query, $bindings = [], $duration = null, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addDatabaseQuery($query, $bindings, $duration, $data);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addCacheQuery($type, $key, $value = null, $duration = null, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addCacheQuery($type, $key, $value, $duration, $data);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addEvent($event, $eventData = null, $time = null, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addEvent($event, $eventData, $time, $data);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addRoute($method, $uri, $action, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addRoute($method, $uri, $action, $data);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addEmail($subject, $to, $from = null, $headers = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addEmail($subject, $to, $from, $headers);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addView($name, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addView($name, $data);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addSubrequest($url, $id, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addSubrequest($url, $id, $data);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subrequest($url, $id, $path = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->subrequest($url, $id, $path);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function userData($key = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->userData($key);
+        }
+         
+    }
+ 
+}
+
 namespace Tymon\JWTAuth\Facades { 
 
     /**
@@ -18495,6 +18892,8 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Clockwork extends \Clockwork\Support\Laravel\Facade {}
 
     class JWTAuth extends \Tymon\JWTAuth\Facades\JWTAuth {}
 
