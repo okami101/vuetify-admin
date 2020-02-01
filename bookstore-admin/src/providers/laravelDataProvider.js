@@ -3,30 +3,29 @@ import objectToFormData from "../utils/objectToFormData";
 const GET_LIST = "GET_LIST";
 const GET_MANY = "GET_MANY";
 const GET_MANY_REFERENCE = "GET_MANY_REFERENCE";
-const CREATE = "GET_LIST";
-const GET_ONE = "GET_LIST";
-const UPDATE = "GET_LIST";
-const DELETE = "GET_LIST";
+const CREATE = "CREATE";
+const GET_ONE = "GET_ONE";
+const UPDATE = "UPDATE";
+const DELETE = "DELETE";
 
 export default entrypoint => {
-  const fetchApi = (type, resource, params) => {
+  const getRequest = (type, resource, params = {}) => {
     const resourceUrl = new URL(`${entrypoint}/${resource}`);
-    const itemUrl = new URL(params.id, resourceUrl);
+    const itemUrl = new URL(`${entrypoint}/${resource}/${params.id}`);
 
     switch (type) {
       case GET_LIST:
-      case GET_MANY_REFERENCE: {
-        const {
-          pagination: { page, perPage },
-          sort,
-          filter
-        } = params;
+      case GET_MANY_REFERENCE:
+        const { pagination, sort, filter } = params;
 
-        if (page) {
-          resourceUrl.searchParams.set("page", page);
-        }
-        if (perPage) {
-          resourceUrl.searchParams.set("perPage", perPage);
+        if (pagination) {
+          let { page, perPage } = pagination;
+          if (page) {
+            resourceUrl.searchParams.set("page", page);
+          }
+          if (perPage) {
+            resourceUrl.searchParams.set("perPage", perPage);
+          }
         }
         if (sort) {
           resourceUrl.searchParams.set(
@@ -54,36 +53,70 @@ export default entrypoint => {
           resourceUrl.searchParams.set(`filter[${params.target}]`, params.id);
         }
 
-        return fetch(resourceUrl);
-      }
+        return { url: resourceUrl };
 
       case GET_ONE:
-        return fetch(itemUrl);
+        return { url: itemUrl };
 
       case GET_MANY:
         resourceUrl.searchParams.set("filter[id]", params.ids.join(","));
 
-        return fetch(resourceUrl);
+        return { url: resourceUrl };
 
       case CREATE:
-        return fetch(resourceUrl, {
-          method: "POST",
-          body: objectToFormData(params.data)
-        });
+        return {
+          url: resourceUrl,
+          options: {
+            method: "POST",
+            body: objectToFormData(params.data)
+          }
+        };
 
       case UPDATE:
-        return fetch(itemUrl, {
-          method: "PUT",
-          body: objectToFormData(params.data)
-        });
+        return {
+          url: itemUrl,
+          options: {
+            method: "PUT",
+            body: objectToFormData(params.data)
+          }
+        };
 
       case DELETE:
-        return fetch(itemUrl, {
-          method: "DELETE"
-        });
+        return {
+          url: itemUrl,
+          options: {
+            method: "DELETE"
+          }
+        };
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
+    }
+  };
+
+  const fetchApi = async (type, resource, params) => {
+    let { url, options } = getRequest(type, resource, params);
+
+    let response = await fetch(url, {
+      headers: {
+        Accept: "application/json"
+      },
+      ...options
+    });
+
+    /**
+     * Get compatible response for Vuetify Admin
+     */
+    switch (type) {
+      case GET_LIST:
+      case GET_MANY:
+      case GET_MANY_REFERENCE:
+        let { data, meta } = await response.json();
+        return { data, total: meta.total };
+      case DELETE:
+        return Promise.resolve({ data: { id: null } });
+      default:
+        return await response.json();
     }
   };
 

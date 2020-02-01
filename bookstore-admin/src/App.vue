@@ -2,7 +2,7 @@
   <Admin
     title="Bookstore Admin"
     :menu="menu"
-    :auth-provider="authProvider"
+    :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   ></Admin>
 </template>
@@ -16,7 +16,10 @@ export default {
   name: "App",
   data: () => ({
     defaultProvider: process.env.VUE_APP_DATA_PROVIDER,
-    authProvider: jwtAuthProvider,
+    authProviders: {
+      symfony: jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL),
+      laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL)
+    },
     dataProviders: {
       symfony: symfonyDataProvider(process.env.VUE_APP_SYMFONY_API_URL),
       laravel: laravelDataProvider(process.env.VUE_APP_LARAVEL_API_URL)

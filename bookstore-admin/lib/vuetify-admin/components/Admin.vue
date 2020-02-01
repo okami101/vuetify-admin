@@ -101,6 +101,23 @@ export default {
     mini: false,
     items: []
   }),
+  async mounted() {
+    let { data, total } = await this.dataProvider.getList("books", {
+      pagination: {
+        page: 1,
+        perPage: 20
+      }
+    });
+    console.table(data);
+    console.table(total);
+    let response = await this.dataProvider.update("books", {
+      id: 10,
+      data: {
+        title: "sdfsdf"
+      }
+    });
+    console.log(response);
+  },
   watch: {
     menu: {
       handler(newVal) {
