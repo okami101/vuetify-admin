@@ -4,6 +4,7 @@
     <v-content v-else-if="authChecked">
       <router-view></router-view>
     </v-content>
+    <slot></slot>
   </v-app>
 </template>
 

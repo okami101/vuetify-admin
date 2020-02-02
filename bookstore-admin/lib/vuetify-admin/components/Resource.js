@@ -1,6 +1,5 @@
 export default {
   name: "Resource",
-  functional: true,
   props: {
     id: {
       type: String,
@@ -28,34 +27,69 @@ export default {
     }
   },
   created() {
-    console.log("ok");
     /**
      * Register crud routes for this resource
      */
+    let id = this.id;
     let children = [];
 
     if (this.list) {
       children.push({
         path: "/",
-        name: `${this.id.toLowerCase()}_list`,
+        name: `${id.toLowerCase()}_list`,
         component: {
           render(c) {
-            return c(`${this.id}List`);
+            return c(`${id}List`);
           }
         }
       });
     }
-    this.$router.addRoutes({
-      path: this.name,
-      redirect: this.name,
-      name: this.id.toLowerCase(),
-      component: {
-        render(c) {
-          return c("router-view");
+    if (this.create) {
+      children.push({
+        path: "create",
+        name: `${id.toLowerCase()}_create`,
+        component: {
+          render(c) {
+            return c(`${id}Create`);
+          }
         }
-      },
-      children
-    });
+      });
+    }
+    if (this.edit) {
+      children.push({
+        path: ":id/edit",
+        name: `${id.toLowerCase()}_edit`,
+        component: {
+          render(c) {
+            return c(`${id}Edit`);
+          }
+        },
+        props: true
+      });
+    }
+    if (this.show) {
+      children.push({
+        path: ":id",
+        name: `${id.toLowerCase()}_show`,
+        component: {
+          render(c) {
+            return c(`${id}Show`);
+          }
+        },
+        props: true
+      });
+    }
+    this.$router.addRoutes([
+      {
+        path: `/${this.name}`,
+        component: {
+          render(c) {
+            return c("router-view");
+          }
+        },
+        children
+      }
+    ]);
   },
   render() {
     return null;
