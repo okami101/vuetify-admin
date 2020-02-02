@@ -15,6 +15,7 @@
                 v-model="username"
                 required
                 ref="usernameInput"
+                :error-messages="error"
               ></v-text-field>
 
               <v-text-field
@@ -27,7 +28,14 @@
               ></v-text-field>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary" block x-large type="submit">Login</v-btn>
+              <v-btn
+                :loading="loading"
+                color="primary"
+                block
+                x-large
+                type="submit"
+                >Login</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-form>
@@ -42,6 +50,8 @@ export default {
     return {
       username: null,
       password: null,
+      error: null,
+      loading: false,
       usernameRules: [v => !!v || "Email is required"],
       passwordRules: [v => !!v || "Password is required"]
     };
@@ -50,9 +60,18 @@ export default {
     this.$refs.usernameInput.focus();
   },
   methods: {
-    validate() {
+    async validate() {
       if (this.$refs.form.validate()) {
-        console.log("ok");
+        this.loading = true;
+        try {
+          await this.$store.dispatch("auth/login", {
+            username: this.username,
+            password: this.password
+          });
+        } catch (e) {
+          this.error = e.toString();
+        }
+        this.loading = false;
       }
     }
   }

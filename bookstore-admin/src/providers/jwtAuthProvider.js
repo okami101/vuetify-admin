@@ -33,7 +33,10 @@ export default (entrypoint, options = {}) => {
       let response = await fetch(`${entrypoint}/${routes.login}`, {
         method: "POST",
         body: JSON.stringify(credentials({ username, password })),
-        headers: new Headers({ "Content-Type": "application/json" })
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        })
       });
 
       if (response.status < 200 || response.status >= 300) {

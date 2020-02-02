@@ -8,13 +8,13 @@ export default (provider, router) => {
       }
     },
     getters: {
-      getUsername(state) {
+      name(state) {
         return provider.getUsername(state.user);
       },
-      getUserEmail(state) {
+      email(state) {
         return provider.getUserEmail(state.user);
       },
-      getPermissions(state) {
+      permissions(state) {
         return provider.getPermissions(state.user);
       }
     },
@@ -23,22 +23,35 @@ export default (provider, router) => {
         await provider.login(credentials);
         await dispatch("loadUser");
       },
-      logout: () => {
-        provider.logout();
+      logout: async ({ commit }) => {
+        await provider.logout();
+        commit("setUser", null);
+        router.push("/login");
       },
       refresh: () => {
         provider.refresh();
       },
       loadUser: async ({ commit }) => {
+        let isLoginPage = router.currentRoute.name === "login";
         try {
           let user = await provider.getUser();
           commit("setUser", user);
+
+          /**
+           * If login page redirect to home
+           */
+          if (isLoginPage) {
+            router.push("/");
+          }
         } catch (e) {
           /**
            * Redirect to login
            */
           commit("setUser", null);
-          router.push({ name: "login" });
+
+          if (!isLoginPage) {
+            router.push("/login");
+          }
         }
       }
     }
