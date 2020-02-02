@@ -41,4 +41,10 @@ class Book extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function syncReviews($ids)
+    {
+        $this->reviews()->whereNotIn('id', $ids)->delete();
+        Review::query()->whereIn('id', $ids)->update(['book_id' => $this->id]);
+    }
 }
