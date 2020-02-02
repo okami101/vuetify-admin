@@ -17,8 +17,20 @@ export default {
   data: () => ({
     defaultProvider: process.env.VUE_APP_DATA_PROVIDER,
     authProviders: {
-      symfony: jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL),
-      laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL)
+      symfony: jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL, {
+        routes: {
+          login: "authentication_token",
+          user: "authentication_user"
+        },
+        credentials: ({ username, password }) => {
+          email: username, password;
+        }
+      }),
+      laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+        credentials: ({ username, password }) => {
+          email: username, password;
+        }
+      })
     },
     dataProviders: {
       symfony: symfonyDataProvider(process.env.VUE_APP_SYMFONY_API_URL),

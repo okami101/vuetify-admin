@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class User.
@@ -20,6 +21,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Groups("user:read")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -31,6 +33,7 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Groups("user:read")
      * @ORM\Column(type="json")
      */
     private $roles = [];

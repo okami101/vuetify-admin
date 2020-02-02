@@ -1,9 +1,23 @@
-export default entrypoint => {
+export default (entrypoint, options = {}) => {
+  options = {
+    routes: {
+      login: "auth/login",
+      logout: "auth/logout",
+      refresh: "auth/refresh",
+      user: "auth/me"
+    },
+    tokenProp: "access_token",
+    credentials: ({ username, password }) => {
+      username, password;
+    },
+    ...options
+  };
+
   return {
     login: async ({ username, password }) => {
-      let response = await fetch(`${entrypoint}/auth/login`, {
+      let response = await fetch(`${entrypoint}/${options.routes.login}`, {
         method: "POST",
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(credentials({ username, password })),
         headers: new Headers({ "Content-Type": "application/json" })
       });
 
@@ -12,7 +26,7 @@ export default entrypoint => {
       }
 
       response = await response.json();
-      localStorage.setItem("token", response.access_token);
+      localStorage.setItem("token", response[options.tokenProp]);
     },
     logout: () => {
       localStorage.removeItem("token");
