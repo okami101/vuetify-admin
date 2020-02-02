@@ -110,6 +110,16 @@ export default {
     });
     console.table(data);
     console.table(total);
+
+    /*await this.authProvider.login({
+      username: "admin@example.com",
+      password: "password"
+    });*/
+
+    //await this.authProvider.logout();
+
+    let user = await this.authProvider.getUser();
+
     let response = await this.dataProvider.update("books", {
       id: 10,
       data: {

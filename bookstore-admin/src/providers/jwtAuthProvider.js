@@ -8,14 +8,30 @@ export default (entrypoint, options = {}) => {
     },
     tokenProp: "access_token",
     credentials: ({ username, password }) => {
-      username, password;
+      return {
+        username,
+        password
+      };
     },
     ...options
   };
 
+  let { routes, credentials } = options;
+
+  const doAuthenticatedAction = route => {
+    return fetch(`${entrypoint}/${route}`, {
+      method: "POST",
+      headers: new Headers({
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      })
+    });
+  };
+
   return {
     login: async ({ username, password }) => {
-      let response = await fetch(`${entrypoint}/${options.routes.login}`, {
+      console.log(credentials({ username, password }));
+      let response = await fetch(`${entrypoint}/${routes.login}`, {
         method: "POST",
         body: JSON.stringify(credentials({ username, password })),
         headers: new Headers({ "Content-Type": "application/json" })
@@ -28,26 +44,27 @@ export default (entrypoint, options = {}) => {
       response = await response.json();
       localStorage.setItem("token", response[options.tokenProp]);
     },
-    logout: () => {
+    logout: async () => {
+      if (routes.logout) {
+        await doAuthenticatedAction(routes.logout);
+      }
+
       localStorage.removeItem("token");
       return Promise.resolve();
     },
-    checkError: error => {
-      const status = error.status;
-      if (status === 401 || status === 403) {
-        localStorage.removeItem("token");
-        return Promise.reject();
+    refresh: async () => {
+      if (routes.refresh) {
+        await doAuthenticatedAction(routes.refresh);
       }
       return Promise.resolve();
     },
-    checkAuth: () => {
-      return localStorage.getItem("token")
-        ? Promise.resolve()
-        : Promise.reject();
+    getUser: async () => {
+      let response = await doAuthenticatedAction(routes.user);
+
+      return await response.json();
     },
-    getPermissions: () => {
-      const role = localStorage.getItem("permissions");
-      return role ? Promise.resolve(role) : Promise.reject();
+    getPermissions: user => {
+      return Promise.resolve(user.roles);
     }
   };
 };

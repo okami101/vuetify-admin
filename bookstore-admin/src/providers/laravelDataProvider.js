@@ -97,10 +97,20 @@ export default entrypoint => {
   const fetchApi = async (type, resource, params) => {
     let { url, options } = getRequest(type, resource, params);
 
+    let token = localStorage.getItem("token");
+    let headers = new Headers({
+      Accept: "application/json"
+    });
+
+    if (token) {
+      headers.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+    }
+
     let response = await fetch(url, {
-      headers: {
-        Accept: "application/json"
-      },
+      headers,
       ...options
     });
 

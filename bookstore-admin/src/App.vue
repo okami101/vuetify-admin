@@ -22,13 +22,20 @@ export default {
           login: "authentication_token",
           user: "authentication_user"
         },
+        tokenProp: "token",
         credentials: ({ username, password }) => {
-          email: username, password;
+          return {
+            email: username,
+            password
+          };
         }
       }),
       laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
         credentials: ({ username, password }) => {
-          email: username, password;
+          return {
+            email: username,
+            password
+          };
         }
       })
     },
