@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\User as UserResource;
+
 class AuthController extends Controller
 {
     /**
@@ -33,11 +35,11 @@ class AuthController extends Controller
     /**
      * Get the authenticated User.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return UserResource
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return new UserResource(auth()->user());
     }
 
     /**

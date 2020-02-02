@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home";
-import Login from "../../lib/vuetify-admin/views/Login";
 
 Vue.use(VueRouter);
 
@@ -10,11 +9,6 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: Login
   },
   {
     path: "/contacts",

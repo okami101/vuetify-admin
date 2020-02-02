@@ -22,9 +22,15 @@ class User implements UserInterface
 
     /**
      * @Groups("user:read")
+     * @ORM\Column(type="string")
+     */
+    public $name;
+
+    /**
+     * @Groups("user:read")
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    public $email;
 
     /**
      * @var string The hashed password
@@ -43,18 +49,6 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -62,7 +56,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->name;
     }
 
     /**

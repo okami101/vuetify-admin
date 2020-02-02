@@ -5,7 +5,7 @@
       app
       color="blue darken-3"
       dark
-      v-if="false"
+      v-if="user"
     >
       <v-app-bar-nav-icon @click.stop="mini = !mini" />
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
@@ -25,7 +25,7 @@
       :mini-variant="mini"
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
-      v-if="false"
+      v-if="user"
     >
       <v-list dense>
         <template v-for="(item, index) in items">
@@ -91,6 +91,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import auth from "../store/auth";
+import loginPage from "../views/Login";
+
 export default {
   name: "Admin",
   props: {
@@ -103,15 +107,43 @@ export default {
     mini: false,
     items: []
   }),
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
+  },
   async created() {
-    let { data, total } = await this.dataProvider.getList("books", {
+    /**
+     * Auth store module injection
+     */
+    this.$store.registerModule("auth", auth(this.authProvider));
+
+    /**
+     * Route login injection
+     */
+    this.$router.addRoutes([
+      {
+        path: "/login",
+        name: "login",
+        component: loginPage
+      }
+    ]);
+
+    await this.$store.dispatch("auth/login", {
+      username: "admin@example.com",
+      password: "password"
+    });
+    let roles = this.$store.getters["auth/getPermissions"];
+    console.log(roles);
+
+    /*let { data, total } = await this.dataProvider.getList("books", {
       pagination: {
         page: 1,
         perPage: 20
       }
     });
     console.table(data);
-    console.table(total);
+    console.table(total);*/
 
     /*await this.authProvider.login({
       username: "admin@example.com",

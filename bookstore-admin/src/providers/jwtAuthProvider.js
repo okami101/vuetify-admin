@@ -30,7 +30,6 @@ export default (entrypoint, options = {}) => {
 
   return {
     login: async ({ username, password }) => {
-      console.log(credentials({ username, password }));
       let response = await fetch(`${entrypoint}/${routes.login}`, {
         method: "POST",
         body: JSON.stringify(credentials({ username, password })),
@@ -41,8 +40,8 @@ export default (entrypoint, options = {}) => {
         throw new Error(response.statusText);
       }
 
-      response = await response.json();
-      localStorage.setItem("token", response[options.tokenProp]);
+      let json = await response.json();
+      localStorage.setItem("token", json[options.tokenProp]);
     },
     logout: async () => {
       if (routes.logout) {
@@ -54,7 +53,9 @@ export default (entrypoint, options = {}) => {
     },
     refresh: async () => {
       if (routes.refresh) {
-        await doAuthenticatedAction(routes.refresh);
+        let response = await doAuthenticatedAction(routes.refresh);
+        let json = await response.json();
+        localStorage.setItem("token", json[options.tokenProp]);
       }
       return Promise.resolve();
     },
@@ -63,8 +64,14 @@ export default (entrypoint, options = {}) => {
 
       return await response.json();
     },
-    getPermissions: user => {
-      return Promise.resolve(user.roles);
+    getUsername: ({ name }) => {
+      return name;
+    },
+    getUserEmail: ({ email }) => {
+      return email;
+    },
+    getPermissions: ({ roles }) => {
+      return roles;
     }
   };
 };
