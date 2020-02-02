@@ -1,4 +1,4 @@
-export default provider => {
+export default (provider, router) => {
   return {
     namespaced: true,
     state: { user: null },
@@ -30,8 +30,16 @@ export default provider => {
         provider.refresh();
       },
       loadUser: async ({ commit }) => {
-        let user = await provider.getUser();
-        commit("setUser", user);
+        try {
+          let user = await provider.getUser();
+          commit("setUser", user);
+        } catch (e) {
+          /**
+           * Redirect to login
+           */
+          commit("setUser", null);
+          router.push({ name: "login" });
+        }
       }
     }
   };

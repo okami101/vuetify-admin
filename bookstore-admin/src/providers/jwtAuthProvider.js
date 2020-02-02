@@ -62,6 +62,10 @@ export default (entrypoint, options = {}) => {
     getUser: async () => {
       let response = await doAuthenticatedAction(routes.user);
 
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error(response.statusText);
+      }
+
       return await response.json();
     },
     getUsername: ({ name }) => {

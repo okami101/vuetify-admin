@@ -117,7 +117,7 @@ export default {
     /**
      * Auth & data store modules injection
      */
-    this.$store.registerModule("auth", auth(this.authProvider));
+    this.$store.registerModule("auth", auth(this.authProvider, this.$router));
     this.$store.registerModule("api", api(this.dataProvider));
 
     /**
@@ -131,35 +131,10 @@ export default {
       }
     ]);
 
-    await this.$store.dispatch("auth/login", {
-      username: "admin@example.com",
-      password: "password"
-    });
-    let roles = this.$store.getters["auth/getPermissions"];
-    console.log(roles);
-
-    let { data, total } = await this.$store.dispatch("api/getList", {
-      resource: "books",
-      params: {
-        pagination: {
-          page: 1,
-          perPage: 20
-        }
-      }
-    });
-    console.table(data);
-    console.table(total);
-
-    let response = await this.$store.dispatch("api/update", {
-      resource: "books",
-      params: {
-        id: 10,
-        data: {
-          title: "sdfsdf"
-        }
-      }
-    });
-    console.log(response);
+    /**
+     * Load authenticated user
+     */
+    await this.$store.dispatch("auth/loadUser");
   },
   watch: {
     menu: {
