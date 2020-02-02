@@ -93,6 +93,7 @@
 <script>
 import { mapState } from "vuex";
 import auth from "../store/auth";
+import api from "../store/api";
 import loginPage from "../views/Login";
 
 export default {
@@ -114,9 +115,10 @@ export default {
   },
   async created() {
     /**
-     * Auth store module injection
+     * Auth & data store modules injection
      */
     this.$store.registerModule("auth", auth(this.authProvider));
+    this.$store.registerModule("api", api(this.dataProvider));
 
     /**
      * Route login injection
@@ -136,29 +138,28 @@ export default {
     let roles = this.$store.getters["auth/getPermissions"];
     console.log(roles);
 
-    /*let { data, total } = await this.dataProvider.getList("books", {
-      pagination: {
-        page: 1,
-        perPage: 20
+    let { data, total } = await this.$store.dispatch("api/getList", {
+      resource: "books",
+      params: {
+        pagination: {
+          page: 1,
+          perPage: 20
+        }
       }
     });
     console.table(data);
-    console.table(total);*/
+    console.table(total);
 
-    /*await this.authProvider.login({
-      username: "admin@example.com",
-      password: "password"
-    });*/
-    //await this.authProvider.logout();
-    /*let user = await this.authProvider.getUser();
-
-    let response = await this.dataProvider.update("books", {
-      id: 10,
-      data: {
-        title: "sdfsdf"
+    let response = await this.$store.dispatch("api/update", {
+      resource: "books",
+      params: {
+        id: 10,
+        data: {
+          title: "sdfsdf"
+        }
       }
     });
-    console.log(response);*/
+    console.log(response);
   },
   watch: {
     menu: {
