@@ -4,7 +4,22 @@
     :menu="menu"
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
-  ></Admin>
+  >
+    <Resource
+      name="books"
+      :list="BookList"
+      :show="BookShow"
+      :create="BookCreate"
+      :edit="BookEdit"
+    ></Resource>
+    <Resource
+      name="reviews"
+      :list="ReviewList"
+      :show="ReviewShow"
+      :create="ReviewCreate"
+      :edit="ReviewEdit"
+    ></Resource>
+  </Admin>
 </template>
 
 <script>
@@ -12,8 +27,26 @@ import symfonyDataProvider from "./providers/symfonyDataProvider";
 import laravelDataProvider from "./providers/laravelDataProvider";
 import jwtAuthProvider from "./providers/jwtAuthProvider";
 
+import { BookList, BookShow, BookCreate, BookEdit } from "./views/books";
+import {
+  ReviewList,
+  ReviewShow,
+  ReviewCreate,
+  ReviewEdit
+} from "./views/reviews";
+
 export default {
   name: "App",
+  components: {
+    BookList,
+    BookShow,
+    BookCreate,
+    BookEdit,
+    ReviewList,
+    ReviewShow,
+    ReviewCreate,
+    ReviewEdit
+  },
   data: () => ({
     defaultProvider: process.env.VUE_APP_DATA_PROVIDER,
     authProviders: {

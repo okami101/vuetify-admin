@@ -47,10 +47,7 @@ class BookController extends Controller
      */
     public function store(StoreBook $request)
     {
-        $book = Book::create($request->all());
-        $book->syncReviews($request->input('reviews'));
-
-        return new BookResource($book);
+        return new BookResource(Book::create($request->all()));
     }
 
     /**
@@ -74,8 +71,6 @@ class BookController extends Controller
     public function update(UpdateBook $request, Book $book)
     {
         $book->update($request->all());
-        $book->syncReviews($request->input('reviews'));
-
         return new BookResource($book);
     }
 
