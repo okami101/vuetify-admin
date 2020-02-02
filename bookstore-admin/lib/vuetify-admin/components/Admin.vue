@@ -5,6 +5,7 @@
       app
       color="blue darken-3"
       dark
+      v-if="false"
     >
       <v-app-bar-nav-icon @click.stop="mini = !mini" />
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
@@ -24,6 +25,7 @@
       :mini-variant="mini"
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
+      v-if="false"
     >
       <v-list dense>
         <template v-for="(item, index) in items">
@@ -101,7 +103,7 @@ export default {
     mini: false,
     items: []
   }),
-  async mounted() {
+  async created() {
     let { data, total } = await this.dataProvider.getList("books", {
       pagination: {
         page: 1,
@@ -115,10 +117,8 @@ export default {
       username: "admin@example.com",
       password: "password"
     });*/
-
     //await this.authProvider.logout();
-
-    let user = await this.authProvider.getUser();
+    /*let user = await this.authProvider.getUser();
 
     let response = await this.dataProvider.update("books", {
       id: 10,
@@ -126,7 +126,7 @@ export default {
         title: "sdfsdf"
       }
     });
-    console.log(response);
+    console.log(response);*/
   },
   watch: {
     menu: {
