@@ -11,7 +11,6 @@
 <script>
 import { mapState } from "vuex";
 import auth from "../store/auth";
-import api from "../store/api";
 import AppLayout from "./Layouts/AppLayout";
 import loginPage from "../views/Login";
 
@@ -38,10 +37,9 @@ export default {
   },
   created() {
     /**
-     * Auth & data store modules injection
+     * Auth store module injection
      */
     this.$store.registerModule("auth", auth(this.authProvider, this.$router));
-    this.$store.registerModule("api", api(this.dataProvider));
 
     /**
      * Route login injection

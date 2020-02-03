@@ -1,27 +1,27 @@
-const supportedActions = [
-  "getList",
-  "getMany",
-  "getManyReference",
-  "getOne",
-  "create",
-  "update",
-  "delete",
-  "updateMany",
-  "deleteMany"
-];
+const supportedActions = {
+  list: ["getList", "getMany", "getManyReference"],
+  show: ["getOne"],
+  create: ["create"],
+  edit: ["update", "updateMany"],
+  delete: ["delete", "deleteMany"]
+};
 
-export default provider => {
-  let actions = {};
+export default (provider, resource, actions) => {
+  let storeActions = {};
 
-  supportedActions.forEach(method => {
-    actions[method] = ({}, { resource, params }) => {
-      return provider[method](resource, params);
-    };
+  actions.forEach(action => {
+    let methods = supportedActions[action];
+
+    methods.forEach(method => {
+      storeActions[method] = ({}, params) => {
+        return provider[method](resource, params);
+      };
+    });
   });
 
   return {
     namespaced: true,
     state: { errors: {} },
-    actions
+    actions: storeActions
   };
 };

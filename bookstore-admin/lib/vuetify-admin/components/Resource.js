@@ -1,3 +1,5 @@
+import api from "../store/api";
+
 export default {
   name: "Resource",
   props: {
@@ -9,31 +11,27 @@ export default {
       type: String,
       required: true
     },
-    list: {
-      type: Boolean,
-      default: true
-    },
-    show: {
-      type: Boolean,
-      default: true
-    },
-    create: {
-      type: Boolean,
-      default: true
-    },
-    edit: {
-      type: Boolean,
-      default: true
+    actions: {
+      type: Array,
+      default: () => ["list", "show", "create", "edit", "delete"]
     }
   },
-  created() {
+  async created() {
+    /**
+     * Register data api module for this resource
+     */
+    this.$store.registerModule(
+      this.name,
+      api(this.$parent.$parent.$props.dataProvider, this.name, this.actions)
+    );
+
     /**
      * Register crud routes for this resource
      */
     let id = this.id;
     let children = [];
 
-    if (this.list) {
+    if (this.hasAction("list")) {
       children.push({
         path: "/",
         name: `${id.toLowerCase()}_list`,
@@ -44,7 +42,7 @@ export default {
         }
       });
     }
-    if (this.create) {
+    if (this.hasAction("create")) {
       children.push({
         path: "create",
         name: `${id.toLowerCase()}_create`,
@@ -55,7 +53,7 @@ export default {
         }
       });
     }
-    if (this.edit) {
+    if (this.hasAction("edit")) {
       children.push({
         path: ":id/edit",
         name: `${id.toLowerCase()}_edit`,
@@ -67,7 +65,7 @@ export default {
         props: true
       });
     }
-    if (this.show) {
+    if (this.hasAction("show")) {
       children.push({
         path: ":id",
         name: `${id.toLowerCase()}_show`,
@@ -90,6 +88,11 @@ export default {
         children
       }
     ]);
+  },
+  methods: {
+    hasAction(name) {
+      return this.actions.includes(name);
+    }
   },
   render() {
     return null;
