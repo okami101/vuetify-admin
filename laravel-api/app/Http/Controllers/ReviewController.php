@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
@@ -28,13 +29,16 @@ class ReviewController extends Controller
         return new ReviewCollection(
             QueryBuilder::for(Review::class)
                 ->allowedFilters([
+                    AllowedFilter::custom('search', new SearchFilter(['author', 'description'])),
                     AllowedFilter::exact('id'),
                     'author',
-                    AllowedFilter::exact('book_id')
+                    AllowedFilter::exact('book_id'),
+                    AllowedFilter::scope('published_before'),
+                    AllowedFilter::scope('published_after'),
                 ])
-                ->allowedSorts('id', 'title', 'author', 'isbn', 'publication_date')
+                ->allowedSorts('id', 'author', 'publication_date')
                 ->with('book')
-                ->paginate(min($request->get('perPage'), 100))
+                ->paginate($request->get('perPage'))
                 ->appends($request->query())
         );
     }

@@ -14,18 +14,13 @@ Vue.use(VuetifyAdmin);
 /**
  * Register resource crud pages
  */
-const resources = {
-  books: "Book",
-  reviews: "Review"
-};
-
 const files = require.context("./resources", true, /\.vue$/i);
 files.keys().map(key => {
   const segments = key.split("/");
   const name = segments.pop();
   const dir = segments.pop();
 
-  Vue.component(`${resources[dir]}${name.split(".")[0]}`, files(key).default);
+  Vue.component(`${dir}${name.split(".")[0]}`, files(key).default);
 });
 
 new Vue({

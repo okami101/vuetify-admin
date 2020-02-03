@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -40,5 +41,15 @@ class Book extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function scopePublishedBefore(Builder $query, $date): Builder
+    {
+        return $query->where('publication_date', '<=', Carbon::parse($date));
+    }
+
+    public function scopePublishedAfter(Builder $query, $date): Builder
+    {
+        return $query->where('publication_date', '>=', Carbon::parse($date));
     }
 }

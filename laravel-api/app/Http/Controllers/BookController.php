@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
@@ -28,13 +29,16 @@ class BookController extends Controller
         return new BookCollection(
             QueryBuilder::for(Book::class)
                 ->allowedFilters([
+                    AllowedFilter::custom('search', new SearchFilter(['isbn', 'title', 'author', 'description'])),
                     AllowedFilter::exact('id'),
                     'title',
-                    'author'
+                    'author',
+                    AllowedFilter::scope('published_before'),
+                    AllowedFilter::scope('published_after'),
                 ])
-                ->allowedSorts('id', 'publication_date')
+                ->allowedSorts('id', 'isbn', 'title', 'author', 'publication_date')
                 ->with('reviews')
-                ->paginate(min($request->get('perPage'), 100))
+                ->paginate($request->get('perPage'))
                 ->appends($request->query())
         );
     }
