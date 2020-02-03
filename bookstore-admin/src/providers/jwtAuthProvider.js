@@ -9,7 +9,7 @@ export default (entrypoint, options = {}) => {
     tokenProp: "access_token",
     credentials: ({ username, password }) => {
       return {
-        username,
+        email: username,
         password
       };
     },

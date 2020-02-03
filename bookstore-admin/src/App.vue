@@ -25,22 +25,9 @@ export default {
           login: "authentication_token",
           user: "authentication_user"
         },
-        tokenProp: "token",
-        credentials: ({ username, password }) => {
-          return {
-            email: username,
-            password
-          };
-        }
+        tokenProp: "token"
       }),
-      laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
-        credentials: ({ username, password }) => {
-          return {
-            email: username,
-            password
-          };
-        }
-      })
+      laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL)
     },
     dataProviders: {
       symfony: symfonyDataProvider(process.env.VUE_APP_SYMFONY_API_URL),
