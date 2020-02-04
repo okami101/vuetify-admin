@@ -1,13 +1,13 @@
 <template>
-  <Admin
+  <admin
     title="Bookstore Admin"
     :menu="menu"
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <Resource name="books"></Resource>
-    <Resource name="reviews"></Resource>
-  </Admin>
+    <resource name="books"></resource>
+    <resource name="reviews"></resource>
+  </admin>
 </template>
 
 <script>

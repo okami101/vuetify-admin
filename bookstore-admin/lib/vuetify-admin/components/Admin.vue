@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <AppLayout v-if="user" :title="title" :menu="menu"></AppLayout>
+    <app-layout v-if="user" :title="title" :menu="menu"></app-layout>
     <v-content v-else-if="authChecked">
       <router-view></router-view>
     </v-content>
