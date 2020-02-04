@@ -3,10 +3,6 @@ import api from "../store/api";
 export default {
   name: "Resource",
   props: {
-    id: {
-      type: String,
-      required: true
-    },
     name: {
       type: String,
       required: true
@@ -28,16 +24,16 @@ export default {
     /**
      * Register crud routes for this resource
      */
-    let id = this.id;
+    let name = this.name;
     let children = [];
 
     if (this.hasAction("list")) {
       children.push({
         path: "/",
-        name: `${id.toLowerCase()}_list`,
+        name: `${name}_list`,
         component: {
           render(c) {
-            return c(`${id}List`);
+            return c(`${name}-list`);
           }
         }
       });
@@ -45,10 +41,10 @@ export default {
     if (this.hasAction("create")) {
       children.push({
         path: "create",
-        name: `${id.toLowerCase()}_create`,
+        name: `${name}_create`,
         component: {
           render(c) {
-            return c(`${id}Create`);
+            return c(`${name}-create`);
           }
         }
       });
@@ -56,10 +52,10 @@ export default {
     if (this.hasAction("edit")) {
       children.push({
         path: ":id/edit",
-        name: `${id.toLowerCase()}_edit`,
+        name: `${name}_edit`,
         component: {
           render(c) {
-            return c(`${id}Edit`);
+            return c(`${name}-edit`);
           }
         },
         props: true
@@ -68,10 +64,10 @@ export default {
     if (this.hasAction("show")) {
       children.push({
         path: ":id",
-        name: `${id.toLowerCase()}_show`,
+        name: `${name}_show`,
         component: {
           render(c) {
-            return c(`${id}Show`);
+            return c(`${name}-show`);
           }
         },
         props: true

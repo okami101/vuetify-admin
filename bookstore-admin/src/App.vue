@@ -5,8 +5,8 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <Resource id="Book" name="books"></Resource>
-    <Resource id="Review" name="reviews"></Resource>
+    <Resource name="books"></Resource>
+    <Resource name="reviews"></Resource>
   </Admin>
 </template>
 
