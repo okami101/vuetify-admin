@@ -108,16 +108,23 @@
     </v-navigation-drawer>
 
     <v-content>
-      <router-view></router-view>
+      <breadcrumbs :items="items"></breadcrumbs>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-content>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default {
   name: "AppLayout",
+  components: {
+    Breadcrumbs
+  },
   props: {
     title: String,
     menu: Array
@@ -146,3 +153,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-content {
+  background-color: #eceff1;
+  height: 100vh;
+}
+</style>

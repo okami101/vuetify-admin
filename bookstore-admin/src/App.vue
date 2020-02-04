@@ -1,13 +1,13 @@
 <template>
-  <admin
+  <va-admin
     title="Bookstore Admin"
     :menu="menu"
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <resource name="books"></resource>
-    <resource name="reviews"></resource>
-  </admin>
+    <va-resource name="books"></va-resource>
+    <va-resource name="reviews"></va-resource>
+  </va-admin>
 </template>
 
 <script>

@@ -1,3 +1,3 @@
 <template>
-  <div>Review Create</div>
+  <va-create>Review Create</va-create>
 </template>

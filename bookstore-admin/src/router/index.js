@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home";
+import Dashboard from "../views/Dashboard";
 
 Vue.use(VueRouter);
 
@@ -8,27 +8,47 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    redirect: "/dashboard"
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: Dashboard,
+    meta: {
+      label: "Dashboard"
+    }
   },
   {
     path: "/contacts",
     name: "contacts",
-    component: () => import("../views/Contacts")
+    component: () => import("../views/Contacts"),
+    meta: {
+      label: "Contacts"
+    }
   },
   {
     path: "/help",
     name: "help",
-    component: () => import("../views/Help")
+    component: () => import("../views/Help"),
+    meta: {
+      label: "Help"
+    }
   },
   {
     path: "/settings",
     name: "settings",
-    component: () => import("../views/Settings")
+    component: () => import("../views/Settings"),
+    meta: {
+      label: "Settings"
+    }
   },
   {
     path: "/feedback",
     name: "feedback",
-    component: () => import("../views/Feedback")
+    component: () => import("../views/Feedback"),
+    meta: {
+      label: "Feedback"
+    }
   }
 ];
 

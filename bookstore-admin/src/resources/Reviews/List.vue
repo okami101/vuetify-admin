@@ -1,3 +1,3 @@
 <template>
-  <div>Reviews List</div>
+  <va-list>Reviews List</va-list>
 </template>

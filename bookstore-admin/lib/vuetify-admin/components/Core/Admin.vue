@@ -10,9 +10,9 @@
 
 <script>
 import { mapState } from "vuex";
-import auth from "../store/auth";
-import AppLayout from "./Layouts/AppLayout";
-import loginPage from "../views/Login";
+import auth from "../../store/auth";
+import AppLayout from "../Layouts/AppLayout";
+import LoginPage from "../../views/Login";
 
 export default {
   name: "Admin",
@@ -48,7 +48,7 @@ export default {
       {
         path: "/login",
         name: "login",
-        component: loginPage
+        component: LoginPage
       }
     ]);
   },

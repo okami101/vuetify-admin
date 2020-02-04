@@ -1,3 +1,3 @@
 <template>
-  <div>Book Create</div>
+  <va-create>Book Create</va-create>
 </template>

@@ -1,3 +1,3 @@
 <template>
-  <div>Book Edit</div>
+  <va-edit>Books Edit</va-edit>
 </template>

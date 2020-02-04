@@ -1,4 +1,4 @@
-import api from "../store/api";
+import api from "../../store/api";
 
 export default {
   name: "Resource",
@@ -35,6 +35,11 @@ export default {
           render(c) {
             return c(`${name}-list`);
           }
+        },
+        meta: {
+          resource: name,
+          action: "list",
+          label: "Books list"
         }
       });
     }
@@ -46,6 +51,11 @@ export default {
           render(c) {
             return c(`${name}-create`);
           }
+        },
+        meta: {
+          resource: name,
+          action: "create",
+          label: "Book create"
         }
       });
     }
@@ -58,7 +68,12 @@ export default {
             return c(`${name}-edit`);
           }
         },
-        props: true
+        props: true,
+        meta: {
+          resource: name,
+          action: "edit",
+          label: "Book edit"
+        }
       });
     }
     if (this.hasAction("show")) {
@@ -70,7 +85,12 @@ export default {
             return c(`${name}-show`);
           }
         },
-        props: true
+        props: true,
+        meta: {
+          resource: name,
+          action: "show",
+          label: "Book show"
+        }
       });
     }
     this.$router.addRoutes([
@@ -80,6 +100,9 @@ export default {
           render(c) {
             return c("router-view");
           }
+        },
+        meta: {
+          label: "Books"
         },
         children
       }
