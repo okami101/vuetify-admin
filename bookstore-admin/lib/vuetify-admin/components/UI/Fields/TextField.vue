@@ -4,6 +4,15 @@
 
 <script>
 export default {
-  name: "TextField"
+  name: "TextField",
+  props: {
+    source: String,
+    label: String,
+    sortable: Boolean,
+    textAlign: {
+      type: String,
+      validator: val => ["left", "center", "right"].includes(val)
+    }
+  }
 };
 </script>
