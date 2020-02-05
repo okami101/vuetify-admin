@@ -12,7 +12,6 @@
 import { mapState } from "vuex";
 import auth from "../../store/auth";
 import AppLayout from "../Layouts/AppLayout";
-import LoginPage from "../../views/Login";
 
 export default {
   name: "Admin",
@@ -40,17 +39,6 @@ export default {
      * Auth store module injection
      */
     this.$store.registerModule("auth", auth(this.authProvider, this.$router));
-
-    /**
-     * Route login injection
-     */
-    this.$router.addRoutes([
-      {
-        path: "/login",
-        name: "login",
-        component: LoginPage
-      }
-    ]);
   },
   async mounted() {
     /**
