@@ -1,5 +1,5 @@
 <template>
-  <div class="feedback">
-    <h1>This is feedback page</h1>
-  </div>
+  <va-page>
+    <p>This is feedback page</p>
+  </va-page>
 </template>

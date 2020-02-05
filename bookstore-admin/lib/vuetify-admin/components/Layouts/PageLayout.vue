@@ -12,7 +12,7 @@
 import Breadcrumbs from "./Breadcrumbs";
 
 export default {
-  name: "PageLayout",
+  name: "Page",
   components: {
     Breadcrumbs
   }

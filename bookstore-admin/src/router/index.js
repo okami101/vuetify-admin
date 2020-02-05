@@ -19,14 +19,6 @@ const routes = [
     }
   },
   {
-    path: "/contacts",
-    name: "contacts",
-    component: () => import("../views/Contacts"),
-    meta: {
-      label: "Contacts"
-    }
-  },
-  {
     path: "/help",
     name: "help",
     component: () => import("../views/Help"),

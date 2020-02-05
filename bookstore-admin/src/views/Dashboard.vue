@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <va-page>
     <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  </va-page>
 </template>
 
 <script>
