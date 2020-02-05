@@ -1,14 +1,14 @@
 <template>
-  <page-layout>
+  <va-page :title="title">
     <slot></slot>
-  </page-layout>
+  </va-page>
 </template>
 
 <script>
-import Page from "../../mixins/Page";
-
 export default {
   name: "Edit",
-  mixins: [Page]
+  props: {
+    title: [String, Function]
+  }
 };
 </script>
