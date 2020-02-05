@@ -122,11 +122,11 @@ export default entrypoint => {
       case GET_MANY:
       case GET_MANY_REFERENCE:
         let { data, meta } = await response.json();
-        return { data, total: meta.total };
+        return Promise.resolve({ data, total: meta.total });
       case DELETE:
         return Promise.resolve({ data: { id: null } });
       default:
-        return await response.json();
+        return Promise.resolve(response);
     }
   };
 

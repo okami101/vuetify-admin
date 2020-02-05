@@ -9,15 +9,15 @@
       name="books"
       list-label="Books list"
       create-label="Create new book"
-      :show-label="title => `Show book ${title}`"
-      :edit-label="title => `Edit book ${title}`"
+      :show-label="({ title }) => `Detail of '${title}' book`"
+      :edit-label="({ title }) => `Edit '${title}' book`"
     ></va-resource>
     <va-resource
       name="reviews"
       list-label="Reviews list"
       create-label="Create new review"
-      :show-label="title => `Show review ${title}`"
-      :edit-label="title => `Edit review ${title}`"
+      :show-label="({ id }) => `Show review #${id}`"
+      :edit-label="({ id }) => `Edit review #${id}`"
     ></va-resource>
   </va-admin>
 </template>

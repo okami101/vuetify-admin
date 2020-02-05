@@ -8,9 +8,9 @@ export default {
       required: true
     },
     listLabel: String,
-    showLabel: [String, Function],
+    showLabel: Function,
     createLabel: String,
-    editLabel: [String, Function],
+    editLabel: Function,
     actions: {
       type: Array,
       default: () => ["list", "show", "create", "edit", "delete"]
@@ -31,6 +31,28 @@ export default {
     let name = this.name;
     let children = [];
 
+    let beforeEnter = async (to, from, next) => {
+      document.title = to.meta.label;
+
+      next();
+    };
+
+    let getResourceBeforeEnter = async (to, from, next) => {
+      let response = await this.$store.dispatch(`${name}/getOne`, {
+        id: to.params.id
+      });
+
+      if (response.status !== 200) {
+        return Promise.reject(response.statusText);
+      }
+
+      to.meta.resource = await response.json();
+      to.meta.label = to.meta.resourceLabel(to.meta.resource);
+      document.title = to.meta.label;
+
+      next();
+    };
+
     if (this.hasAction("list")) {
       children.push({
         path: "/",
@@ -44,7 +66,8 @@ export default {
           resource: name,
           action: "list",
           label: this.listLabel || `${name} list`
-        }
+        },
+        beforeEnter
       });
     }
     if (this.hasAction("create")) {
@@ -60,7 +83,8 @@ export default {
           resource: name,
           action: "create",
           label: this.createLabel || `${name} create`
-        }
+        },
+        beforeEnter
       });
     }
     if (this.hasAction("edit")) {
@@ -76,8 +100,10 @@ export default {
         meta: {
           resource: name,
           action: "edit",
-          label: this.editLabel || `${name} edit`
-        }
+          label: `${name} edit`,
+          resourceLabel: this.editLabel
+        },
+        beforeEnter: getResourceBeforeEnter
       });
     }
     if (this.hasAction("show")) {
@@ -93,8 +119,10 @@ export default {
         meta: {
           resource: name,
           action: "show",
-          label: this.showLabel || `${name} show`
-        }
+          label: `${name} show`,
+          resourceLabel: this.showLabel
+        },
+        beforeEnter: getResourceBeforeEnter
       });
     }
     this.$router.addRoutes([
