@@ -5,8 +5,8 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <va-resource name="books"></va-resource>
-    <va-resource name="reviews"></va-resource>
+    <va-resource name="books" title="Books"></va-resource>
+    <va-resource name="reviews" title="Reviews"></va-resource>
   </va-admin>
 </template>
 

@@ -7,6 +7,10 @@ export default {
       type: String,
       required: true
     },
+    title: {
+      type: String,
+      required: true
+    },
     actions: {
       type: Array,
       default: () => ["list", "show", "create", "edit", "delete"]
@@ -52,8 +56,7 @@ export default {
         },
         meta: {
           resource: name,
-          action: "list",
-          label: `${name} list`
+          action: "list"
         }
       });
     }
@@ -68,8 +71,7 @@ export default {
         },
         meta: {
           resource: name,
-          action: "create",
-          label: `${name} create`
+          action: "create"
         }
       });
     }
@@ -85,8 +87,7 @@ export default {
         props: true,
         meta: {
           resource: name,
-          action: "edit",
-          label: `${name} edit`
+          action: "edit"
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -103,8 +104,7 @@ export default {
         props: true,
         meta: {
           resource: name,
-          action: "show",
-          label: `${name} show`
+          action: "show"
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -118,7 +118,7 @@ export default {
           }
         },
         meta: {
-          label: "Books"
+          label: this.title
         },
         children
       }
