@@ -7,6 +7,10 @@ export default {
       type: String,
       required: true
     },
+    listLabel: String,
+    showLabel: [String, Function],
+    createLabel: String,
+    editLabel: [String, Function],
     actions: {
       type: Array,
       default: () => ["list", "show", "create", "edit", "delete"]
@@ -39,7 +43,7 @@ export default {
         meta: {
           resource: name,
           action: "list",
-          label: "Books list"
+          label: this.listLabel || `${name} list`
         }
       });
     }
@@ -55,7 +59,7 @@ export default {
         meta: {
           resource: name,
           action: "create",
-          label: "Book create"
+          label: this.createLabel || `${name} create`
         }
       });
     }
@@ -72,7 +76,7 @@ export default {
         meta: {
           resource: name,
           action: "edit",
-          label: "Book edit"
+          label: this.editLabel || `${name} edit`
         }
       });
     }
@@ -89,7 +93,7 @@ export default {
         meta: {
           resource: name,
           action: "show",
-          label: "Book show"
+          label: this.showLabel || `${name} show`
         }
       });
     }

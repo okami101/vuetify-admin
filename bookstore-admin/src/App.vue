@@ -5,8 +5,20 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <va-resource name="books"></va-resource>
-    <va-resource name="reviews"></va-resource>
+    <va-resource
+      name="books"
+      list-label="Books list"
+      create-label="Create new book"
+      :show-label="title => `Show book ${title}`"
+      :edit-label="title => `Edit book ${title}`"
+    ></va-resource>
+    <va-resource
+      name="reviews"
+      list-label="Reviews list"
+      create-label="Create new review"
+      :show-label="title => `Show review ${title}`"
+      :edit-label="title => `Edit review ${title}`"
+    ></va-resource>
   </va-admin>
 </template>
 
