@@ -6,7 +6,10 @@
 </template>
 
 <script>
+import Page from "../../mixins/Page";
+
 export default {
-  name: "Create"
+  name: "Create",
+  mixins: [Page]
 };
 </script>

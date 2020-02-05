@@ -1,3 +1,3 @@
 <template>
-  <va-show>Review Show</va-show>
+  <va-show :title="({ id }) => `Show review #${id}`"></va-show>
 </template>

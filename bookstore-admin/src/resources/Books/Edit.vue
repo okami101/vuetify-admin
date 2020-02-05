@@ -1,3 +1,3 @@
 <template>
-  <va-edit>Books Edit</va-edit>
+  <va-edit :title="({ title }) => `Edit '${title}' book`"></va-edit>
 </template>

@@ -7,10 +7,6 @@ export default {
       type: String,
       required: true
     },
-    listLabel: String,
-    showLabel: Function,
-    createLabel: String,
-    editLabel: Function,
     actions: {
       type: Array,
       default: () => ["list", "show", "create", "edit", "delete"]
@@ -31,12 +27,6 @@ export default {
     let name = this.name;
     let children = [];
 
-    let beforeEnter = async (to, from, next) => {
-      document.title = to.meta.label;
-
-      next();
-    };
-
     let getResourceBeforeEnter = async (to, from, next) => {
       let response = await this.$store.dispatch(`${name}/getOne`, {
         id: to.params.id
@@ -46,9 +36,7 @@ export default {
         return Promise.reject(response.statusText);
       }
 
-      to.meta.resource = await response.json();
-      to.meta.label = to.meta.resourceLabel(to.meta.resource);
-      document.title = to.meta.label;
+      to.meta.model = await response.json();
 
       next();
     };
@@ -65,9 +53,8 @@ export default {
         meta: {
           resource: name,
           action: "list",
-          label: this.listLabel || `${name} list`
-        },
-        beforeEnter
+          label: `${name} list`
+        }
       });
     }
     if (this.hasAction("create")) {
@@ -82,9 +69,8 @@ export default {
         meta: {
           resource: name,
           action: "create",
-          label: this.createLabel || `${name} create`
-        },
-        beforeEnter
+          label: `${name} create`
+        }
       });
     }
     if (this.hasAction("edit")) {
@@ -100,8 +86,7 @@ export default {
         meta: {
           resource: name,
           action: "edit",
-          label: `${name} edit`,
-          resourceLabel: this.editLabel
+          label: `${name} edit`
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -119,8 +104,7 @@ export default {
         meta: {
           resource: name,
           action: "show",
-          label: `${name} show`,
-          resourceLabel: this.showLabel
+          label: `${name} show`
         },
         beforeEnter: getResourceBeforeEnter
       });

@@ -1,5 +1,5 @@
 <template>
-  <va-list>
+  <va-list title="Books list">
     <va-datagrid>
       <va-text-field
         source="id"
