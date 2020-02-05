@@ -108,23 +108,16 @@
     </v-navigation-drawer>
 
     <v-content>
-      <breadcrumbs :items="items"></breadcrumbs>
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-content>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Breadcrumbs from "./Breadcrumbs";
 
 export default {
   name: "AppLayout",
-  components: {
-    Breadcrumbs
-  },
   props: {
     title: String,
     menu: Array

@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <h1 class="mb-5 display-1">{{ $route.meta.label }}</h1>
+  <page-layout>
     <slot></slot>
-  </div>
+  </page-layout>
 </template>
 
 <script>

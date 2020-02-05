@@ -1,4 +1,9 @@
+import PageLayout from "../components/Layouts/PageLayout";
+
 export default {
+  components: {
+    PageLayout
+  },
   props: {
     title: [String, Function]
   },
