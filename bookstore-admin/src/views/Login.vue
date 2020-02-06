@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -60,11 +62,14 @@ export default {
     this.$refs.usernameInput.focus();
   },
   methods: {
+    ...mapActions({
+      login: "auth/login"
+    }),
     async validate() {
       if (this.$refs.form.validate()) {
         this.loading = true;
         try {
-          await this.$store.dispatch("auth/login", {
+          await this.login({
             username: this.username,
             password: this.password
           });

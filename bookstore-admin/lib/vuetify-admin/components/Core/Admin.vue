@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import auth from "../../store/auth";
 import AppLayout from "../Layouts/AppLayout";
 
@@ -44,8 +44,22 @@ export default {
     /**
      * Load authenticated user
      */
-    await this.$store.dispatch("auth/loadUser");
+    await this.loadUser();
     this.authChecked = true;
+  },
+  methods: {
+    ...mapActions({
+      loadUser: "auth/loadUser"
+    })
+  },
+  watch: {
+    async $route(to, from) {
+      /**
+       * Check and reload authenticated user with permissions
+       * after each navigation
+       */
+      await this.loadUser();
+    }
   }
 };
 </script>
