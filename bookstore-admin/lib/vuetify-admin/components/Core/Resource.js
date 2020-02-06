@@ -40,7 +40,7 @@ export default {
         return Promise.reject(response.statusText);
       }
 
-      to.meta.model = await response.json();
+      to.meta.resource = await response.json();
 
       next();
     };
@@ -55,7 +55,7 @@ export default {
           }
         },
         meta: {
-          resource: name,
+          resourceName: name,
           action: "list"
         }
       });
@@ -70,7 +70,7 @@ export default {
           }
         },
         meta: {
-          resource: name,
+          resourceName: name,
           action: "create"
         }
       });
@@ -86,7 +86,7 @@ export default {
         },
         props: true,
         meta: {
-          resource: name,
+          resourceName: name,
           action: "edit"
         },
         beforeEnter: getResourceBeforeEnter
@@ -103,7 +103,7 @@ export default {
         },
         props: true,
         meta: {
-          resource: name,
+          resourceName: name,
           action: "show"
         },
         beforeEnter: getResourceBeforeEnter

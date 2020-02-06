@@ -21,12 +21,12 @@ export default {
   },
   data() {
     return {
-      model: this.$route.meta.model
+      resource: this.$route.meta.resource
     };
   },
   computed: {
     getTitle() {
-      return this.model ? this.title(this.model) : this.title;
+      return this.resource ? this.title(this.resource) : this.title;
     }
   },
   created() {

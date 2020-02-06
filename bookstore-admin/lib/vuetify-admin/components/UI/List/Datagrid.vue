@@ -1,5 +1,6 @@
 <template>
   <div>
+    <export></export>
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -10,8 +11,13 @@
 </template>
 
 <script>
+import Export from "./Export";
+
 export default {
   name: "Datagrid",
+  components: {
+    Export
+  },
   data() {
     return {
       headers: [
