@@ -4,13 +4,13 @@
       <va-text-field
         source="id"
         label="ID"
-        text-align="right"
+        align="right"
         sortable
       ></va-text-field>
       <va-text-field
         source="isbn"
         label="ISBN"
-        text-align="right"
+        align="right"
         sortable
       ></va-text-field>
       <va-text-field source="title" label="Title" sortable></va-text-field>
@@ -19,7 +19,7 @@
       <va-text-field
         source="publication_date"
         label="Publication date"
-        text-align="center"
+        align="center"
         sortable
       ></va-text-field>
     </va-datagrid>

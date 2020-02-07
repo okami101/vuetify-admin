@@ -150,6 +150,6 @@ export default {
 <style>
 .v-content {
   background-color: #eceff1;
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>

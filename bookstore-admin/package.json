@@ -10,6 +10,7 @@
   "dependencies": {
     "@mdi/font": "^4.8.95",
     "core-js": "^3.4.4",
+    "lodash": "^4.17.15",
     "papaparse": "^5.1.1",
     "roboto-fontface": "^0.10.0",
     "vue": "^2.6.10",

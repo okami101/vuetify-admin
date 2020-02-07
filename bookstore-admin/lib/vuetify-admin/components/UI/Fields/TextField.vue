@@ -8,8 +8,10 @@ export default {
   props: {
     source: String,
     label: String,
-    sortable: Boolean,
-    textAlign: {
+    sortable: {
+      type: Boolean
+    },
+    align: {
       type: String,
       validator: val => ["left", "center", "right"].includes(val)
     }
