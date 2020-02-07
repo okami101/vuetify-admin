@@ -11,6 +11,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import auth from "../../store/auth";
+import api from "../../store/api";
 import AppLayout from "../Layouts/AppLayout";
 
 export default {
@@ -36,9 +37,10 @@ export default {
   },
   created() {
     /**
-     * Auth store module injection
+     * Auth store & api dispatcher module injection
      */
     this.$store.registerModule("auth", auth(this.authProvider, this.$router));
+    this.$store.registerModule("api", api(this.$router));
   },
   async mounted() {
     /**

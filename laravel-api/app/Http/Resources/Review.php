@@ -18,8 +18,11 @@ class Review extends JsonResource
     {
         $attributes = parent::toArray($request);
 
+        if (isset($attributes['book'])) {
+            $attributes['book'] = new BookEmbedded($this->book);
+        }
+
         $attributes += [
-            'book' => new BookEmbedded($this->book),
             'links' => [
                 'self' => route('reviews.show', $this->id),
             ],

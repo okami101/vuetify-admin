@@ -18,7 +18,7 @@ class BookEmbedded extends JsonResource
     {
         return [
             'id' => $this->id,
-            'author' => $this->title,
+            'title' => $this->title,
             'links' => [
                 'self' => route('books.show', $this->id),
             ],

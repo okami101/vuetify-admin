@@ -19,9 +19,9 @@ export default (provider, router) => {
       }
     },
     actions: {
-      login: async ({ dispatch }, credentials) => {
+      login: async ({}, credentials) => {
         await provider.login(credentials);
-        await dispatch("loadUser");
+        router.push("/");
       },
       logout: async ({ commit }) => {
         await provider.logout();

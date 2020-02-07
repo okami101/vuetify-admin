@@ -1,4 +1,4 @@
-import api from "../../store/api";
+import resource from "../../store/resource";
 
 export default {
   name: "Resource",
@@ -22,7 +22,11 @@ export default {
      */
     this.$store.registerModule(
       this.name,
-      api(this.$parent.$parent.$props.dataProvider, this.name, this.actions)
+      resource(
+        this.$parent.$parent.$props.dataProvider,
+        this.name,
+        this.actions
+      )
     );
 
     /**

@@ -24,10 +24,11 @@ class BookController extends Controller
      *
      * @return BookCollection
      */
-    public function index(Request $request)
+    public function index()
     {
         return new BookCollection(
             QueryBuilder::for(Book::class)
+                ->allowedFields('id', 'isbn', 'title', 'description', 'author', 'publication_date')
                 ->allowedFilters([
                     AllowedFilter::custom('search', new SearchFilter(['isbn', 'title', 'author', 'description'])),
                     AllowedFilter::exact('id'),
@@ -37,9 +38,8 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts('id', 'isbn', 'title', 'author', 'publication_date')
-                ->with('reviews')
-                ->paginate($request->get('perPage'))
-                ->appends($request->query())
+                ->allowedIncludes('reviews')
+                ->exportOrPaginate()
         );
     }
 

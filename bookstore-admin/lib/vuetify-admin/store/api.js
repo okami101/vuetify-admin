@@ -1,27 +1,30 @@
-const supportedActions = {
-  list: ["getList", "getMany", "getManyReference"],
-  show: ["getOne"],
-  create: ["create"],
-  edit: ["update", "updateMany"],
-  delete: ["delete", "deleteMany"]
-};
+const actions = [
+  "getList",
+  "getMany",
+  "getManyReference",
+  "getOne",
+  "create",
+  "update",
+  "updateMany",
+  "delete",
+  "deleteMany"
+];
 
-export default (provider, resource, actions) => {
+export default router => {
   let storeActions = {};
 
   actions.forEach(action => {
-    let methods = supportedActions[action];
-
-    methods.forEach(method => {
-      storeActions[method] = ({}, params) => {
-        return provider[method](resource, params);
-      };
-    });
+    storeActions[action] = ({ dispatch }, params) => {
+      return dispatch(
+        `${router.currentRoute.meta.resourceName}/${action}`,
+        params,
+        { root: true }
+      );
+    };
   });
 
   return {
     namespaced: true,
-    state: { errors: {} },
     actions: storeActions
   };
 };

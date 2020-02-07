@@ -1,21 +1,37 @@
 <template>
-  <v-btn @click="onExport">Export</v-btn>
+  <v-btn text @click="onExport" color="primary">
+    <v-icon>mdi-download</v-icon>
+    Export
+  </v-btn>
 </template>
 
 <script>
 import Papa from "papaparse";
+import { mapActions } from "vuex";
 
 export default {
   name: "Export",
   methods: {
+    ...mapActions({
+      getList: "api/getList"
+    }),
     async onExport() {
       /**
        * Generate CSV string from JSON api
        */
-      const resourceName = this.$route.meta.resourceName;
-
+      let { data } = await this.getList();
       const csv = Papa.unparse(
-        await this.$store.dispatch(`${resourceName}/getList`),
+        data.map(item => {
+          /**
+           * Remove nested object which is not supported on Papa
+           */
+          for (let prop in item) {
+            if (typeof item[prop] === "object") {
+              delete item[prop];
+            }
+          }
+          return item;
+        }),
         {
           quotes: false, //or array of booleans
           quoteChar: '"',
@@ -31,11 +47,12 @@ export default {
       /**
        * Magic download
        */
+      const fileName = this.$route.meta.resourceName;
       const blob = new Blob([csv], { type: "text/csv" });
 
       if (window.navigator && window.navigator.msSaveOrOpenBlob) {
         // Manage IE11+ & Edge
-        window.navigator.msSaveOrOpenBlob(blob, `${resourceName}.csv`);
+        window.navigator.msSaveOrOpenBlob(blob, `${fileName}.csv`);
         return;
       }
 
@@ -44,7 +61,7 @@ export default {
       document.body.appendChild(fakeLink);
 
       fakeLink.setAttribute("href", URL.createObjectURL(blob));
-      fakeLink.setAttribute("download", `${resourceName}.csv`);
+      fakeLink.setAttribute("download", `${fileName}.csv`);
       fakeLink.click();
     }
   }

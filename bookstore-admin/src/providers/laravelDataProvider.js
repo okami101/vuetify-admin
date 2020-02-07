@@ -16,7 +16,15 @@ export default entrypoint => {
     switch (type) {
       case GET_LIST:
       case GET_MANY_REFERENCE:
-        const { pagination, sort, filter } = params;
+        const { fields, include, pagination, sort, filter } = params;
+
+        if (fields) {
+          resourceUrl.searchParams.set(`fields[${resource}]`, fields.join(","));
+        }
+
+        if (include) {
+          resourceUrl.searchParams.set("include", include.join(","));
+        }
 
         if (pagination) {
           let { page, perPage } = pagination;
@@ -44,8 +52,8 @@ export default entrypoint => {
         }
 
         if (filter) {
-          Object.keys(params.filter).forEach(key => {
-            resourceUrl.searchParams.set(`filter[${key}]`, params.filter[key]);
+          Object.keys(filter).forEach(key => {
+            resourceUrl.searchParams.set(`filter[${key}]`, filter[key]);
           });
         }
 
@@ -122,7 +130,10 @@ export default entrypoint => {
       case GET_MANY:
       case GET_MANY_REFERENCE:
         let { data, meta } = await response.json();
-        return Promise.resolve({ data, total: meta.total });
+        return Promise.resolve({
+          data,
+          total: meta ? meta.total : data.length
+        });
       case DELETE:
         return Promise.resolve({ data: { id: null } });
       default:

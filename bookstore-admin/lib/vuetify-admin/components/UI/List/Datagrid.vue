@@ -1,13 +1,41 @@
 <template>
-  <div>
-    <export></export>
+  <v-card>
+    <v-card-title>
+      <v-row>
+        <v-col lg="2">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+            dense
+            v-if="canSearch"
+          ></v-text-field>
+        </v-col>
+        <v-spacer></v-spacer>
+        <v-col class="d-flex">
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            :to="`/${$route.meta.resourceName}/create`"
+            color="primary"
+            v-if="canCreate"
+          >
+            <v-icon>mdi-plus</v-icon>
+            Create
+          </v-btn>
+          <export text v-if="canExport"></export>
+        </v-col>
+      </v-row>
+    </v-card-title>
     <v-data-table
       :headers="headers"
       :items="desserts"
       :items-per-page="5"
       class="elevation-1"
     ></v-data-table>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -18,8 +46,23 @@ export default {
   components: {
     Export
   },
+  props: {
+    canSearch: {
+      type: Boolean,
+      default: true
+    },
+    canCreate: {
+      type: Boolean,
+      default: true
+    },
+    canExport: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
+      search: null,
       headers: [
         {
           text: "Dessert (100g serving)",

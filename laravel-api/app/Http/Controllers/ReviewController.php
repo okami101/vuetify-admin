@@ -24,10 +24,11 @@ class ReviewController extends Controller
      *
      * @return ReviewCollection
      */
-    public function index(Request $request)
+    public function index()
     {
         return new ReviewCollection(
             QueryBuilder::for(Review::class)
+                ->allowedFields(['id', 'description', 'author', 'publication_date'])
                 ->allowedFilters([
                     AllowedFilter::custom('search', new SearchFilter(['author', 'description'])),
                     AllowedFilter::exact('id'),
@@ -37,9 +38,8 @@ class ReviewController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts('id', 'author', 'publication_date')
-                ->with('book')
-                ->paginate($request->get('perPage'))
-                ->appends($request->query())
+                ->allowedIncludes('book')
+                ->exportOrPaginate()
         );
     }
 
