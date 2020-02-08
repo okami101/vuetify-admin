@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import symfonyDataProvider from "./providers/symfonyDataProvider";
-import laravelDataProvider from "./providers/laravelDataProvider";
-import jwtAuthProvider from "./providers/jwtAuthProvider";
+import symfonyDataProvider from "vuetify-admin/providers/symfonyDataProvider";
+import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
+import jwtAuthProvider from "vuetify-admin/providers/jwtAuthProvider";
 
 export default {
   name: "App",

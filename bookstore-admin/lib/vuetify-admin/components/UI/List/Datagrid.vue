@@ -95,11 +95,14 @@ export default {
           value: source
         };
       });
+    },
+    fields() {
+      return this.headers.filter(item => item.value).map(item => item.value);
     }
   },
   async mounted() {
     let { data } = await this.getList({
-      fields: this.headers.filter(item => item.value).map(item => item.value)
+      fields: this.fields
     });
     this.items = data;
   },
