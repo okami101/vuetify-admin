@@ -7,7 +7,13 @@ import Show from "./components/Actions/Show";
 import Create from "./components/Actions/Create";
 import Edit from "./components/Actions/Edit";
 
-import { Datagrid, TextField } from "./components/UI";
+import {
+  Datagrid,
+  TextField,
+  ShowButton,
+  EditButton,
+  DeleteButton
+} from "./components/UI";
 
 const components = [
   Admin,
@@ -18,7 +24,10 @@ const components = [
   Create,
   Edit,
   Datagrid,
-  TextField
+  TextField,
+  ShowButton,
+  EditButton,
+  DeleteButton
 ];
 
 export default {

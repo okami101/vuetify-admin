@@ -1,19 +1,19 @@
 <template>
   <va-list title="Reviews list">
-    <va-datagrid>
-      <va-text-field
-        source="id"
-        label="ID"
-        align="right"
-        sortable
-      ></va-text-field>
-      <va-text-field source="rating" label="Rating" sortable></va-text-field>
-      <va-text-field source="author" label="Author" sortable></va-text-field>
-      <va-text-field
-        source="publication_date"
-        label="Publication date"
-        sortable
-      ></va-text-field>
-    </va-datagrid>
+    <va-datagrid :headers="headers"></va-datagrid>
   </va-list>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      headers: [
+        { value: "rating", text: "Rating", sortable: true },
+        { value: "author", text: "Author", sortable: true },
+        { value: "publication_date", text: "Publication date", sortable: true }
+      ]
+    };
+  }
+};
+</script>

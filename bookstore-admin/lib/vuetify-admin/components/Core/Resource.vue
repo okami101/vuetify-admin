@@ -1,3 +1,4 @@
+<script>
 import resource from "../../store/resource";
 
 export default {
@@ -137,3 +138,4 @@ export default {
     return null;
   }
 };
+</script>

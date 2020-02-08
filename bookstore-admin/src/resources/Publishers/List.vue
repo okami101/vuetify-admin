@@ -1,24 +1,20 @@
 <template>
   <va-list title="Publishers list">
-    <va-datagrid>
-      <va-text-field
-        source="id"
-        label="ID"
-        align="right"
-        sortable
-      ></va-text-field>
-      <va-text-field source="name" label="Name" sortable></va-text-field>
-      <va-text-field source="founder" label="Founder" sortable></va-text-field>
-      <va-text-field
-        source="headquarter"
-        label="Headquarter"
-        sortable
-      ></va-text-field>
-      <va-text-field
-        source="opening_date"
-        label="Opening date"
-        sortable
-      ></va-text-field>
-    </va-datagrid>
+    <va-datagrid :headers="headers"></va-datagrid>
   </va-list>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      headers: [
+        { value: "name", text: "Name", sortable: true },
+        { value: "founder", text: "Founder", sortable: true },
+        { value: "headquarter", text: "Headquarter", sortable: true },
+        { value: "opening_date", text: "Opening date", sortable: true }
+      ]
+    };
+  }
+};
+</script>

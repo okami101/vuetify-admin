@@ -1,6 +1,6 @@
 <template>
   <v-data-table
-    :headers="headers"
+    :headers="allHeaders"
     :items="items"
     :items-per-page="itemsPerPage"
     :footer-props="{
@@ -49,30 +49,18 @@
         </v-row>
       </v-toolbar>
     </template>
+    <template v-slot:item.calories="{ item }">
+      <v-chip :color="getColor(item.calories)" dark>{{ item.calories }}</v-chip>
+    </template>
+    <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
+      <slot :name="slot" v-bind="scope"></slot>
+    </template>
     <template v-slot:item.action="{ item }">
-      <v-btn
-        text
-        :to="`/${$route.meta.resource}/${item.id}`"
-        @click="showItem(item)"
-        color="primary"
-      >
-        <v-icon small class="mr-2">
-          mdi-eye
-        </v-icon>
-        Show
-      </v-btn>
-      <v-btn text :to="`/${$route.meta.resource}/${item.id}/edit`" color="blue">
-        <v-icon small class="mr-2">
-          mdi-pencil
-        </v-icon>
-        Edit
-      </v-btn>
-      <v-btn text @click="deleteItem(item)" color="red">
-        <v-icon small>
-          mdi-trash-can
-        </v-icon>
-        Delete
-      </v-btn>
+      <slot :id="item.id" name="action">
+        <va-show-button :id="item.id"></va-show-button>
+        <va-edit-button :id="item.id"></va-edit-button>
+        <va-delete-button :id="item.id"></va-delete-button>
+      </slot>
     </template>
   </v-data-table>
 </template>
@@ -88,6 +76,10 @@ export default {
     Export
   },
   props: {
+    headers: {
+      type: Array,
+      default: () => []
+    },
     canSearch: {
       type: Boolean,
       default: true
@@ -115,10 +107,6 @@ export default {
     showSelect: {
       type: Boolean,
       default: true
-    },
-    hasRowActions: {
-      type: Boolean,
-      default: true
     }
   },
   data() {
@@ -131,31 +119,15 @@ export default {
     };
   },
   computed: {
-    headers() {
-      let headers = this.$slots.default.map(item => {
-        let {
-          source,
-          label,
-          sortable,
-          align
-        } = item.componentOptions.propsData;
-
-        return {
-          text: label,
-          align,
-          sortable: sortable || sortable === "",
-          value: source,
-          source
-        };
-      });
-
-      if (this.hasRowActions) {
-        headers.push({ value: "action", sortable: false });
-      }
-      return headers;
+    allHeaders() {
+      return [
+        { value: "id", text: "ID", align: "right", sortable: true },
+        ...this.headers,
+        { value: "action", sortable: false }
+      ];
     },
     fields() {
-      return this.headers.filter(item => item.source).map(item => item.source);
+      return ["id", ...this.headers.map(item => item.value)];
     },
     filter() {
       let filter = {};
@@ -204,8 +176,6 @@ export default {
     onSearch: debounce(function() {
       this.loadData();
     }, 200),
-    showItem(item) {},
-    editItem(item) {},
     deleteItem(item) {}
   }
 };
