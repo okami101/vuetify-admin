@@ -58,12 +58,13 @@
       </template>
       <template v-slot:item.action="{ item }">
         <slot :id="item.id" name="action">
-          <va-show-button :id="item.id"></va-show-button>
-          <va-edit-button :id="item.id"></va-edit-button>
-          <va-delete-button
-            :id="item.id"
-            @delete="onDelete(item)"
-          ></va-delete-button>
+          <va-show-button
+            :to="`/${$route.meta.resource}/${item.id}`"
+          ></va-show-button>
+          <va-edit-button
+            :to="`/${$route.meta.resource}/${item.id}/edit`"
+          ></va-edit-button>
+          <va-delete-button @delete="onDelete(item)"></va-delete-button>
         </slot>
       </template>
     </v-data-table>

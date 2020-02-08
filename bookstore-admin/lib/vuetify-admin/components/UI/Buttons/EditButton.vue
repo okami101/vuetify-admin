@@ -1,5 +1,5 @@
 <template>
-  <v-btn text :to="`/${$route.meta.resource}/${id}/edit`" color="blue">
+  <v-btn text :to="to" @click="$emit('edit')" :color="color">
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
@@ -11,7 +11,6 @@
 export default {
   name: "EditButton",
   props: {
-    id: [Number, String],
     icon: {
       type: String,
       default: "mdi-pencil"
@@ -19,6 +18,14 @@ export default {
     label: {
       type: String,
       default: "Edit"
+    },
+    color: {
+      type: String,
+      default: "blue"
+    },
+    to: {
+      type: [String, Object],
+      default: null
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-btn text :to="`/${$route.meta.resource}/${id}`" color="primary">
+  <v-btn text :to="to" @click="$emit('show')" :color="color">
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
@@ -11,7 +11,6 @@
 export default {
   name: "ShowButton",
   props: {
-    id: [Number, String],
     icon: {
       type: String,
       default: "mdi-eye"
@@ -19,6 +18,14 @@ export default {
     label: {
       type: String,
       default: "Show"
+    },
+    color: {
+      type: String,
+      default: "primary"
+    },
+    to: {
+      type: [String, Object],
+      default: null
     }
   }
 };

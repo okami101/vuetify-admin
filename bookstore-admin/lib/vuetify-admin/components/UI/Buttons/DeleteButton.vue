@@ -1,5 +1,5 @@
 <template>
-  <v-btn text @click="$emit('delete', id)" color="red">
+  <v-btn text @click="$emit('delete')" :color="color">
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
@@ -11,7 +11,6 @@
 export default {
   name: "DeleteButton",
   props: {
-    id: [Number, String],
     icon: {
       type: String,
       default: "mdi-trash-can"
@@ -19,6 +18,10 @@ export default {
     label: {
       type: String,
       default: "Delete"
+    },
+    color: {
+      type: String,
+      default: "red"
     }
   }
 };
