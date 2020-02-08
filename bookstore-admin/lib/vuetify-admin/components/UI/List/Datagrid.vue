@@ -36,6 +36,10 @@
       :footer-props="{
         'items-per-page-options': rowsPerPage
       }"
+      :server-items-length="total"
+      :loading="loading"
+      :options.sync="options"
+      :multi-sort="multiSort"
     ></v-data-table>
   </v-card>
 </template>
@@ -70,12 +74,19 @@ export default {
     rowsPerPage: {
       type: Array,
       default: () => [5, 10, 25, 50, 100, 200]
+    },
+    multiSort: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
       search: null,
-      items: []
+      loading: false,
+      items: [],
+      total: 0,
+      options: {}
     };
   },
   computed: {
@@ -100,18 +111,48 @@ export default {
       return this.headers.filter(item => item.value).map(item => item.value);
     }
   },
+  watch: {
+    options: {
+      async handler() {
+        this.loadData();
+      },
+      deep: true
+    }
+  },
   async mounted() {
-    let { data } = await this.getList({
-      fields: this.fields
-    });
-    this.items = data;
+    this.loadData();
   },
   methods: {
     ...mapActions({
       getList: "api/getList"
     }),
+    async loadData() {
+      this.loading = true;
+      const { sortBy, sortDesc, page, itemsPerPage } = this.options;
+      let filter = {};
+
+      if (this.search) {
+        filter.search = this.search;
+      }
+
+      let { data, total } = await this.getList({
+        fields: this.fields,
+        pagination: {
+          page,
+          perPage: itemsPerPage
+        },
+        sort: sortBy.map((by, index) => {
+          return { by, desc: sortDesc[index] };
+        }),
+        filter
+      });
+
+      this.loading = false;
+      this.items = data;
+      this.total = total;
+    },
     onSearch: debounce(function() {
-      console.log(this.search);
+      this.loadData();
     }, 200)
   }
 };
