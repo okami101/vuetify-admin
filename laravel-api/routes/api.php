@@ -27,4 +27,8 @@ Route::group([
     Route::post('me', 'AuthController@me');
 });
 
-Route::apiResources(['books' => 'BookController', 'reviews' => 'ReviewController']);
+Route::apiResources([
+    'books' => 'BookController',
+    'reviews' => 'ReviewController',
+    'publishers' => 'PublisherController'
+]);

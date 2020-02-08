@@ -14,7 +14,6 @@
         sortable
       ></va-text-field>
       <va-text-field source="title" label="Title" sortable></va-text-field>
-      <va-text-field source="description" label="Description"></va-text-field>
       <va-text-field source="author" label="Author" sortable></va-text-field>
       <va-text-field
         source="publication_date"

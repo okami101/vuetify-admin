@@ -21,6 +21,10 @@ use Illuminate\Support\Carbon;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
  * @property-read int|null $reviews_count
+ * @property int $publisher_id
+ * @property-read \App\Publisher $publisher
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Book publishedAfter($date)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Book publishedBefore($date)
  */
 class Book extends Model
 {
@@ -37,6 +41,11 @@ class Book extends Model
     protected $dates = [
         'publication_date'
     ];
+
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class);
+    }
 
     public function reviews()
     {

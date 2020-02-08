@@ -18,9 +18,8 @@ class Book extends JsonResource
     {
         $attributes = parent::toArray($request);
 
-        if (isset($attributes['reviews'])) {
-            $attributes['reviews'] = ReviewEmbedded::collection($this->reviews);
-        }
+        $attributes['publisher'] = new PublisherEmbedded($this->whenLoaded('publisher'));
+        $attributes['reviews'] = ReviewEmbedded::collection($this->whenLoaded('reviews'));
 
         $attributes += [
             'links' => [

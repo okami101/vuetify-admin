@@ -5,6 +5,7 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
+    <va-resource name="publishers" title="Publishers"></va-resource>
     <va-resource name="books" title="Books"></va-resource>
     <va-resource name="reviews" title="Reviews"></va-resource>
   </va-admin>
@@ -37,6 +38,7 @@ export default {
       { icon: "mdi-view-dashboard", text: "Dashboard", link: "/" },
       { divider: true },
       { heading: "Bookstore" },
+      { icon: "mdi-account-badge", text: "Publishers", link: "/publishers" },
       {
         icon: "mdi-book",
         text: "Books",

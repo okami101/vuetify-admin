@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Review extends JsonResource
+class Publisher extends JsonResource
 {
     public static $wrap = false;
 
@@ -18,11 +18,9 @@ class Review extends JsonResource
     {
         $attributes = parent::toArray($request);
 
-        $attributes['book'] = new BookEmbedded($this->whenLoaded('book'));
-
         $attributes += [
             'links' => [
-                'self' => route('reviews.show', $this->id),
+                'self' => route('publishers.show', $this->id),
             ],
         ];
 

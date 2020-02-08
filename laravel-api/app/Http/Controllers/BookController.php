@@ -28,7 +28,7 @@ class BookController extends Controller
     {
         return new BookCollection(
             QueryBuilder::for(Book::class)
-                ->allowedFields('id', 'isbn', 'title', 'description', 'author', 'publication_date')
+                ->allowedFields('id', 'publisher_id', 'isbn', 'title', 'description', 'author', 'publication_date')
                 ->allowedFilters([
                     AllowedFilter::custom('search', new SearchFilter(['isbn', 'title', 'author', 'description'])),
                     AllowedFilter::exact('id'),
@@ -38,7 +38,7 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts('id', 'isbn', 'title', 'author', 'publication_date')
-                ->allowedIncludes('reviews')
+                ->allowedIncludes('publisher', 'reviews')
                 ->exportOrPaginate()
         );
     }
@@ -62,7 +62,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return new BookResource($book);
+        return new BookResource($book->load(['publisher', 'reviews']));
     }
 
     /**

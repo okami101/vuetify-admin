@@ -28,16 +28,17 @@ class ReviewController extends Controller
     {
         return new ReviewCollection(
             QueryBuilder::for(Review::class)
-                ->allowedFields(['id', 'description', 'author', 'publication_date'])
+                ->allowedFields(['id', 'book_id', 'body', 'author', 'publication_date'])
                 ->allowedFilters([
-                    AllowedFilter::custom('search', new SearchFilter(['author', 'description'])),
+                    AllowedFilter::custom('search', new SearchFilter(['author', 'body'])),
                     AllowedFilter::exact('id'),
+                    AllowedFilter::exact('rating'),
                     'author',
                     AllowedFilter::exact('book_id'),
                     AllowedFilter::scope('published_before'),
                     AllowedFilter::scope('published_after'),
                 ])
-                ->allowedSorts('id', 'author', 'publication_date')
+                ->allowedSorts('id', 'rating', 'author', 'publication_date')
                 ->allowedIncludes('book')
                 ->exportOrPaginate()
         );
@@ -62,7 +63,7 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        return new ReviewResource($review);
+        return new ReviewResource($review->load('book'));
     }
 
     /**
