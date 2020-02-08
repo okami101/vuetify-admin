@@ -25,7 +25,12 @@
             <v-icon>mdi-plus</v-icon>
             Create
           </v-btn>
-          <export text v-if="canExport"></export>
+          <export
+            text
+            v-if="canExport"
+            :options="options"
+            :filter="filter"
+          ></export>
         </v-col>
       </v-row>
     </v-card-title>
@@ -110,6 +115,14 @@ export default {
     },
     fields() {
       return this.headers.filter(item => item.value).map(item => item.value);
+    },
+    filter() {
+      let filter = {};
+
+      if (this.search) {
+        filter.search = this.search;
+      }
+      return filter;
     }
   },
   watch: {
@@ -130,11 +143,6 @@ export default {
     async loadData() {
       this.loading = true;
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
-      let filter = {};
-
-      if (this.search) {
-        filter.search = this.search;
-      }
 
       let { data, total } = await this.getList({
         fields: this.fields,
@@ -145,7 +153,7 @@ export default {
         sort: sortBy.map((by, index) => {
           return { by, desc: sortDesc[index] };
         }),
-        filter
+        filter: this.filter
       });
 
       this.loading = false;

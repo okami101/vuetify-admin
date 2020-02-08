@@ -11,6 +11,16 @@ import { mapActions } from "vuex";
 
 export default {
   name: "Export",
+  props: {
+    options: {
+      type: Object,
+      default: () => {}
+    },
+    filter: {
+      type: Object,
+      default: () => {}
+    }
+  },
   methods: {
     ...mapActions({
       getList: "api/getList"
@@ -19,7 +29,15 @@ export default {
       /**
        * Generate CSV string from JSON api
        */
-      let { data } = await this.getList();
+      const { sortBy, sortDesc } = this.options;
+
+      let { data } = await this.getList({
+        sort: sortBy.map((by, index) => {
+          return { by, desc: sortDesc[index] };
+        }),
+        filter: this.filter
+      });
+
       const csv = Papa.unparse(
         data.map(item => {
           /**
