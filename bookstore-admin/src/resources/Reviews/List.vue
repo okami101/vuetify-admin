@@ -1,11 +1,20 @@
 <template>
   <va-list title="Reviews list">
-    <va-datagrid :headers="headers"></va-datagrid>
+    <va-datagrid :headers="headers">
+      <template v-slot:rating="{ value }">
+        <star-rating-field :rating="value"></star-rating-field>
+      </template>
+    </va-datagrid>
   </va-list>
 </template>
 
 <script>
+import StarRatingField from "../../components/fields/StarRatingField";
+
 export default {
+  components: {
+    StarRatingField
+  },
   data() {
     return {
       headers: [

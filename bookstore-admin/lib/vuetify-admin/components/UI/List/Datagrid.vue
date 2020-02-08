@@ -49,10 +49,10 @@
         </v-row>
       </v-toolbar>
     </template>
-    <template v-slot:item.calories="{ item }">
-      <v-chip :color="getColor(item.calories)" dark>{{ item.calories }}</v-chip>
-    </template>
-    <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope">
+    <template
+      v-for="slot in Object.keys($scopedSlots)"
+      v-slot:[`item.${slot}`]="scope"
+    >
       <slot :name="slot" v-bind="scope"></slot>
     </template>
     <template v-slot:item.action="{ item }">

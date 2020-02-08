@@ -24,7 +24,7 @@ class StoreReview extends FormRequest
     public function rules()
     {
         return [
-            'rating' => 'between:0,5',
+            'rating' => 'between:1,5',
             'author' => 'required',
             'publication_date' => 'date',
             'book_id' => 'required',
