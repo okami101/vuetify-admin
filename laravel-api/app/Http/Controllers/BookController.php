@@ -32,6 +32,7 @@ class BookController extends Controller
                 ->allowedFilters([
                     AllowedFilter::custom('search', new SearchFilter(['isbn', 'title', 'author', 'description'])),
                     AllowedFilter::exact('id'),
+                    AllowedFilter::exact('publisher_id'),
                     'title',
                     'author',
                     AllowedFilter::scope('published_before'),
