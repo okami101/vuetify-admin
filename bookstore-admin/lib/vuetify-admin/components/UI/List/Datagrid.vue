@@ -13,9 +13,22 @@
       :options.sync="options"
       :multi-sort="multiSort"
       :show-select="showSelect"
+      v-model="selected"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar v-if="selected.length" flat color="blue lighten-5">
+          <v-row class="align-center">
+            <v-col>
+              {{ selected.length }} item{{ selected.length > 1 ? "s" : "" }}
+              selected
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col sm="auto">
+              <va-delete-button @delete="onBlukDelete"></va-delete-button>
+            </v-col>
+          </v-row>
+        </v-toolbar>
+        <v-toolbar v-else flat>
           <v-row>
             <v-col sm="auto">
               <v-text-field
@@ -122,7 +135,8 @@ export default {
       loading: false,
       items: [],
       total: 0,
-      options: {}
+      options: {},
+      selected: []
     };
   },
   computed: {
@@ -159,7 +173,8 @@ export default {
   methods: {
     ...mapActions({
       getList: "api/getList",
-      delete: "api/delete"
+      delete: "api/delete",
+      deleteMany: "api/deleteMany"
     }),
     async loadData() {
       this.loading = true;
@@ -194,7 +209,19 @@ export default {
           )}". This operation is irreversible !`
         )
       ) {
-        this.delete({ id: item.id });
+        await this.delete({ id: item.id });
+        this.loadData();
+      }
+    },
+    async onBlukDelete() {
+      if (
+        await this.$refs.confirm.open(
+          `Delete ${this.selected.length} items ?`,
+          `You are about deleting ${this.selected.length} items. This operation is irreversible !`
+        )
+      ) {
+        await this.deleteMany({ ids: this.selected.map(({ id }) => id) });
+        this.selected = [];
         this.loadData();
       }
     }
