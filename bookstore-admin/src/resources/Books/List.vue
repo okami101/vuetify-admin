@@ -7,18 +7,12 @@
         align="right"
         sortable
       ></va-text-field>
-      <va-text-field
-        source="isbn"
-        label="ISBN"
-        align="right"
-        sortable
-      ></va-text-field>
+      <va-text-field source="isbn" label="ISBN" sortable></va-text-field>
       <va-text-field source="title" label="Title" sortable></va-text-field>
       <va-text-field source="author" label="Author" sortable></va-text-field>
       <va-text-field
         source="publication_date"
         label="Publication date"
-        align="center"
         sortable
       ></va-text-field>
     </va-datagrid>

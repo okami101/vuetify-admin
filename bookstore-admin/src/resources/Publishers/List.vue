@@ -17,7 +17,6 @@
       <va-text-field
         source="opening_date"
         label="Opening date"
-        align="center"
         sortable
       ></va-text-field>
     </va-datagrid>

@@ -12,7 +12,6 @@
       <va-text-field
         source="publication_date"
         label="Publication date"
-        align="center"
         sortable
       ></va-text-field>
     </va-datagrid>

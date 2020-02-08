@@ -34,7 +34,8 @@
       :items="items"
       :items-per-page="itemsPerPage"
       :footer-props="{
-        'items-per-page-options': rowsPerPage
+        'items-per-page-options': rowsPerPage,
+        showFirstLastPage: true
       }"
       :server-items-length="total"
       :loading="loading"
