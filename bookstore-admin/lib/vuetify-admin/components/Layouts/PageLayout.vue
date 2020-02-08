@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      resource: this.$route.meta.resource
+      resource: this.$route.meta.model
     };
   },
   computed: {

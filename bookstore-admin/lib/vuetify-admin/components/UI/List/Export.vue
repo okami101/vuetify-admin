@@ -47,7 +47,7 @@ export default {
       /**
        * Magic download
        */
-      const fileName = this.$route.meta.resourceName;
+      const fileName = this.$route.meta.resource;
       const blob = new Blob([csv], { type: "text/csv" });
 
       if (window.navigator && window.navigator.msSaveOrOpenBlob) {

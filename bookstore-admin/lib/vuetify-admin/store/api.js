@@ -16,7 +16,7 @@ export default router => {
   actions.forEach(action => {
     storeActions[action] = ({ dispatch }, params) => {
       return dispatch(
-        `${router.currentRoute.meta.resourceName}/${action}`,
+        `${router.currentRoute.meta.resource}/${action}`,
         params,
         { root: true }
       );

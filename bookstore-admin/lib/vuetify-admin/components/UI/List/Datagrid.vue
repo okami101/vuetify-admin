@@ -18,7 +18,7 @@
           <v-spacer></v-spacer>
           <v-btn
             text
-            :to="`/${$route.meta.resourceName}/create`"
+            :to="`/${$route.meta.resource}/create`"
             color="primary"
             v-if="canCreate"
           >
