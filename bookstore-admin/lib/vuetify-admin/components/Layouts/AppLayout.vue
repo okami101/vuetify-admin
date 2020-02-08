@@ -110,11 +110,18 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+
+    <v-snackbar v-model="snackbar">
+      {{ text }}
+      <v-btn color="pink" text @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "AppLayout",
@@ -125,7 +132,9 @@ export default {
   data() {
     return {
       mini: false,
-      items: []
+      items: [],
+      snackbar: false,
+      text: null
     };
   },
   watch: {
@@ -134,12 +143,30 @@ export default {
         this.items = newVal;
       },
       immediate: true
+    },
+    showSnackbar(val) {
+      this.snackbar = val;
+    },
+    snackbarText(val) {
+      this.text = val;
+    },
+    snackbar(val) {
+      if (!val) {
+        this.closeSnackbar();
+      }
     }
   },
   computed: {
+    ...mapState({
+      showSnackbar: state => state.api.showSnackbar,
+      snackbarText: state => state.api.snackbarText
+    }),
     ...mapGetters({ name: "auth/name", email: "auth/email" })
   },
   methods: {
+    ...mapMutations({
+      closeSnackbar: "api/closeSnackbar"
+    }),
     ...mapActions({
       logout: "auth/logout"
     }),

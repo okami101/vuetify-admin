@@ -203,8 +203,8 @@ export default {
       let { label } = this.$route.meta;
       if (
         await this.$refs.confirm.open(
-          `Delete ${label} #${item.id} ?`,
-          `You are about deleting ${label} "${this.$route.meta.toString(
+          `Delete ${label.toLowerCase()} #${item.id} ?`,
+          `You are about deleting ${label.toLowerCase()} "${this.$route.meta.toString(
             item
           )}". This operation is irreversible !`
         )

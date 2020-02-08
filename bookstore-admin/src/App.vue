@@ -8,19 +8,19 @@
     <va-resource
       name="publishers"
       title="Publishers"
-      label="publisher"
+      label="Publisher"
       label-prop="name"
     ></va-resource>
     <va-resource
       name="books"
       title="Books"
-      label="book"
+      label="Book"
       label-prop="title"
     ></va-resource>
     <va-resource
       name="reviews"
       title="Reviews"
-      label="review"
+      label="Review"
       label-prop="author"
     ></va-resource>
   </va-admin>
