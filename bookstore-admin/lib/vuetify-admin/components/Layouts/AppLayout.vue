@@ -31,7 +31,7 @@
 
           <v-divider></v-divider>
           <v-list nav dense>
-            <v-list-item @click="logout">
+            <v-list-item @click="doLogout">
               <v-list-item-icon>
                 <v-icon>mdi-logout</v-icon>
               </v-list-item-icon>
@@ -142,7 +142,11 @@ export default {
   methods: {
     ...mapActions({
       logout: "auth/logout"
-    })
+    }),
+    async doLogout() {
+      await this.logout();
+      this.$router.push("/login");
+    }
   }
 };
 </script>

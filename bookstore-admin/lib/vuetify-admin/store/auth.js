@@ -1,4 +1,4 @@
-export default (provider, router) => {
+export default provider => {
   return {
     namespaced: true,
     state: { user: null },
@@ -19,39 +19,23 @@ export default (provider, router) => {
       }
     },
     actions: {
-      login: async ({}, credentials) => {
-        await provider.login(credentials);
-        router.push("/");
+      login: ({}, credentials) => {
+        return provider.login(credentials);
       },
       logout: async ({ commit }) => {
         await provider.logout();
         commit("setUser", null);
-        router.push("/login");
       },
       refresh: () => {
-        provider.refresh();
+        return provider.refresh();
       },
       loadUser: async ({ commit }) => {
-        let isLoginPage = router.currentRoute.name === "login";
         try {
           let user = await provider.getUser();
           commit("setUser", user);
-
-          /**
-           * If login page redirect to home
-           */
-          if (isLoginPage) {
-            router.push("/");
-          }
         } catch (e) {
-          /**
-           * Redirect to login
-           */
           commit("setUser", null);
-
-          if (!isLoginPage) {
-            router.push("/login");
-          }
+          throw e;
         }
       }
     }

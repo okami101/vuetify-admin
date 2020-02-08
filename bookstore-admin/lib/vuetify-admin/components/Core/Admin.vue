@@ -1,10 +1,19 @@
 <template>
   <v-app>
-    <app-layout v-if="user" :title="title" :menu="menu"></app-layout>
-    <v-content v-else-if="authChecked">
-      <router-view></router-view>
-    </v-content>
-    <slot></slot>
+    <div v-if="loaded">
+      <app-layout
+        v-if="user && !unauthenticatedRoute"
+        :title="title"
+        :menu="menu"
+      ></app-layout>
+      <v-content v-else>
+        <router-view></router-view>
+      </v-content>
+      <slot></slot>
+    </div>
+    <v-overlay v-else>
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
   </v-app>
 </template>
 
@@ -27,41 +36,61 @@ export default {
   },
   data() {
     return {
-      authChecked: false
+      loaded: false
     };
   },
   computed: {
     ...mapState({
       user: state => state.auth.user
-    })
+    }),
+    unauthenticatedRoute() {
+      return this.$route.name === "login";
+    }
   },
   created() {
     /**
      * Auth store & api dispatcher module injection
      */
-    this.$store.registerModule("auth", auth(this.authProvider, this.$router));
+    this.$store.registerModule("auth", auth(this.authProvider));
     this.$store.registerModule("api", api(this.$router));
   },
   async mounted() {
+    this.$router.beforeEach(async (to, from, next) => {
+      /**
+       * Check and reload authenticated user with permissions
+       * after each navigation
+       */
+      if (to.name !== "login") {
+        try {
+          await this.loadUser();
+        } catch (e) {
+          return next("/login");
+        }
+      }
+      next();
+    });
+
     /**
      * Load authenticated user
      */
-    await this.loadUser();
-    this.authChecked = true;
+    if (this.unauthenticatedRoute) {
+      try {
+        await this.loadUser();
+        await this.$router.push("/");
+      } catch (e) {}
+    } else {
+      try {
+        await this.loadUser();
+      } catch (e) {
+        await this.$router.push("/login");
+      }
+    }
+    this.loaded = true;
   },
   methods: {
     ...mapActions({
       loadUser: "auth/loadUser"
     })
-  },
-  watch: {
-    async $route(to, from) {
-      /**
-       * Check and reload authenticated user with permissions
-       * after each navigation
-       */
-      await this.loadUser();
-    }
   }
 };
 </script>
