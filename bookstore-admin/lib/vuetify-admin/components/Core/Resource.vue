@@ -12,6 +12,14 @@ export default {
       type: String,
       required: true
     },
+    label: {
+      type: String,
+      required: true
+    },
+    labelProp: {
+      type: String,
+      required: true
+    },
     actions: {
       type: Array,
       default: () => ["list", "show", "create", "edit", "delete"]
@@ -61,7 +69,9 @@ export default {
         },
         meta: {
           resource: name,
-          action: "list"
+          action: "list",
+          label: this.label,
+          toString: resource => resource[this.labelProp]
         }
       });
     }
@@ -76,7 +86,9 @@ export default {
         },
         meta: {
           resource: name,
-          action: "create"
+          action: "create",
+          label: this.label,
+          toString: resource => resource[this.labelProp]
         }
       });
     }
@@ -92,7 +104,9 @@ export default {
         props: true,
         meta: {
           resource: name,
-          action: "edit"
+          action: "edit",
+          label: this.label,
+          toString: resource => resource[this.labelProp]
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -109,7 +123,9 @@ export default {
         props: true,
         meta: {
           resource: name,
-          action: "show"
+          action: "show",
+          label: this.label,
+          toString: resource => resource[this.labelProp]
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -123,7 +139,7 @@ export default {
           }
         },
         meta: {
-          label: this.title
+          title: this.title
         },
         children
       }

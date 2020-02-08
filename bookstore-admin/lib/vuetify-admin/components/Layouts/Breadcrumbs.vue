@@ -15,7 +15,7 @@ export default {
         },
         ...this.$route.matched.map(route => {
           return {
-            text: route.meta ? route.meta.label : route.name,
+            text: route.meta ? route.meta.title : route.name,
             exact: true,
             to: route
           };

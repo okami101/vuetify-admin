@@ -12,7 +12,8 @@ import {
   TextField,
   ShowButton,
   EditButton,
-  DeleteButton
+  DeleteButton,
+  Confirm
 } from "./components/UI";
 
 const components = [
@@ -27,7 +28,8 @@ const components = [
   TextField,
   ShowButton,
   EditButton,
-  DeleteButton
+  DeleteButton,
+  Confirm
 ];
 
 export default {

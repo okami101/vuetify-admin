@@ -5,9 +5,24 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <va-resource name="publishers" title="Publishers"></va-resource>
-    <va-resource name="books" title="Books"></va-resource>
-    <va-resource name="reviews" title="Reviews"></va-resource>
+    <va-resource
+      name="publishers"
+      title="Publishers"
+      label="publisher"
+      label-prop="name"
+    ></va-resource>
+    <va-resource
+      name="books"
+      title="Books"
+      label="book"
+      label-prop="title"
+    ></va-resource>
+    <va-resource
+      name="reviews"
+      title="Reviews"
+      label="review"
+      label-prop="author"
+    ></va-resource>
   </va-admin>
 </template>
 

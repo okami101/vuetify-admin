@@ -1,5 +1,5 @@
 <template>
-  <v-btn text @click="$emit('on-delete', id)" color="red">
+  <v-btn text @click="$emit('delete', id)" color="red">
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>

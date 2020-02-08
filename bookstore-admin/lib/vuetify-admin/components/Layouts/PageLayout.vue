@@ -30,7 +30,7 @@ export default {
     }
   },
   created() {
-    this.$route.meta.label = this.getTitle;
+    this.$route.meta.title = this.getTitle;
     document.title = this.getTitle;
   }
 };
