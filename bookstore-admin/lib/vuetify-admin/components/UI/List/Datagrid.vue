@@ -98,7 +98,9 @@ export default {
     }
   },
   async mounted() {
-    let { data } = await this.getList();
+    let { data } = await this.getList({
+      fields: this.headers.filter(item => item.value).map(item => item.value)
+    });
     this.items = data;
   },
   methods: {
