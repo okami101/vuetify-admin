@@ -1,14 +1,10 @@
 <template>
   <v-app>
     <div v-if="loaded">
-      <app-layout
-        v-if="user && !unauthenticatedRoute"
-        :title="title"
-        :menu="menu"
-      ></app-layout>
-      <v-content v-else>
+      <v-content v-if="unauthenticatedRoute">
         <router-view></router-view>
       </v-content>
+      <app-layout v-else-if="user" :title="title" :menu="menu"></app-layout>
       <slot></slot>
     </div>
     <v-overlay v-else>
