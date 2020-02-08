@@ -1,53 +1,80 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <v-row>
-        <v-col sm="auto">
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-            dense
-            v-if="canSearch"
-            @input="onSearch"
-          ></v-text-field>
-        </v-col>
-        <v-col class="d-flex">
-          <v-spacer></v-spacer>
-          <v-btn
-            text
-            :to="`/${$route.meta.resource}/create`"
-            color="primary"
-            v-if="canCreate"
-          >
-            <v-icon>mdi-plus</v-icon>
-            Create
-          </v-btn>
-          <export
-            text
-            v-if="canExport"
-            :options="options"
-            :filter="filter"
-          ></export>
-        </v-col>
-      </v-row>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="items"
-      :items-per-page="itemsPerPage"
-      :footer-props="{
-        'items-per-page-options': rowsPerPage,
-        showFirstLastPage: true
-      }"
-      :server-items-length="total"
-      :loading="loading"
-      :options.sync="options"
-      :multi-sort="multiSort"
-    ></v-data-table>
-  </v-card>
+  <v-data-table
+    :headers="headers"
+    :items="items"
+    :items-per-page="itemsPerPage"
+    :footer-props="{
+      'items-per-page-options': rowsPerPage,
+      showFirstLastPage: true
+    }"
+    :server-items-length="total"
+    :loading="loading"
+    :options.sync="options"
+    :multi-sort="multiSort"
+    :show-select="showSelect"
+  >
+    <template v-slot:top>
+      <v-toolbar flat>
+        <v-row>
+          <v-col sm="auto">
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+              dense
+              v-if="canSearch"
+              @input="onSearch"
+            ></v-text-field>
+          </v-col>
+          <v-col class="d-flex">
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              :to="`/${$route.meta.resource}/create`"
+              color="primary"
+              v-if="canCreate"
+            >
+              <v-icon>mdi-plus</v-icon>
+              Create
+            </v-btn>
+            <export
+              text
+              v-if="canExport"
+              :options="options"
+              :filter="filter"
+            ></export>
+          </v-col>
+        </v-row>
+      </v-toolbar>
+    </template>
+    <template v-slot:item.action="{ item }">
+      <v-btn
+        text
+        :to="`/${$route.meta.resource}/${item.id}`"
+        @click="showItem(item)"
+        color="primary"
+      >
+        <v-icon small class="mr-2">
+          mdi-eye
+        </v-icon>
+        Show
+      </v-btn>
+      <v-btn text :to="`/${$route.meta.resource}/${item.id}/edit`" color="blue">
+        <v-icon small class="mr-2">
+          mdi-pencil
+        </v-icon>
+        Edit
+      </v-btn>
+      <v-btn text @click="deleteItem(item)" color="red">
+        <v-icon small>
+          mdi-trash-can
+        </v-icon>
+        Delete
+      </v-btn>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
@@ -84,6 +111,14 @@ export default {
     multiSort: {
       type: Boolean,
       default: true
+    },
+    showSelect: {
+      type: Boolean,
+      default: true
+    },
+    hasRowActions: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -97,7 +132,7 @@ export default {
   },
   computed: {
     headers() {
-      return this.$slots.default.map(item => {
+      let headers = this.$slots.default.map(item => {
         let {
           source,
           label,
@@ -109,12 +144,18 @@ export default {
           text: label,
           align,
           sortable: sortable || sortable === "",
-          value: source
+          value: source,
+          source
         };
       });
+
+      if (this.hasRowActions) {
+        headers.push({ value: "action", sortable: false });
+      }
+      return headers;
     },
     fields() {
-      return this.headers.filter(item => item.value).map(item => item.value);
+      return this.headers.filter(item => item.source).map(item => item.source);
     },
     filter() {
       let filter = {};
@@ -162,7 +203,10 @@ export default {
     },
     onSearch: debounce(function() {
       this.loadData();
-    }, 200)
+    }, 200),
+    showItem(item) {},
+    editItem(item) {},
+    deleteItem(item) {}
   }
 };
 </script>
