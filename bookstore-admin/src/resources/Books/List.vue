@@ -1,5 +1,5 @@
 <template>
-  <va-list title="Books list">
+  <va-list>
     <va-datagrid :fields="fields"></va-datagrid>
   </va-list>
 </template>

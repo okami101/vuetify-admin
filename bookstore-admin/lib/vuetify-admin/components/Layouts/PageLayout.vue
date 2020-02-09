@@ -46,7 +46,9 @@ export default {
   },
   computed: {
     getTitle() {
-      return this.resource ? this.title(this.resource) : this.title;
+      return typeof this.title === "function"
+        ? this.title(this.resource)
+        : this.title;
     }
   },
   created() {

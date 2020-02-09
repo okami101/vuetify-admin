@@ -46,7 +46,7 @@ export default {
       if (
         await this.$confirm(
           `Delete ${label.toLowerCase()} #${this.currentResource.id} ?`,
-          `You are about deleting ${label.toLowerCase()} "${this.$route.meta.toString(
+          `You are about deleting ${label.toLowerCase()} "${this.$route.meta.stringify(
             this.currentResource
           )}". This operation is irreversible !`
         )

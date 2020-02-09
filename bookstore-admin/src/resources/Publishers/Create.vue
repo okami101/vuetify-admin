@@ -1,3 +1,3 @@
 <template>
-  <va-create title="Create new publisher"></va-create>
+  <va-create></va-create>
 </template>

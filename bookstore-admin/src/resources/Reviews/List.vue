@@ -1,5 +1,5 @@
 <template>
-  <va-list title="Reviews list">
+  <va-list>
     <va-datagrid :fields="fields">
       <template v-slot:rating="{ value }">
         <star-rating-field :rating="value"></star-rating-field>

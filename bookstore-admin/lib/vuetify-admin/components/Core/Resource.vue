@@ -8,16 +8,16 @@ export default {
       type: String,
       required: true
     },
-    title: {
-      type: String,
-      required: true
-    },
     label: {
       type: String,
       required: true
     },
-    labelProp: {
+    singular: {
       type: String,
+      required: true
+    },
+    stringify: {
+      type: [String, Function],
       required: true
     },
     actions: {
@@ -43,6 +43,11 @@ export default {
      */
     let name = this.name;
     let children = [];
+    let meta = {
+      resource: name,
+      label: this.singular,
+      stringify: this.stringify
+    };
 
     let getResourceBeforeEnter = async (to, from, next) => {
       let response = await this.$store.dispatch(`${name}/getOne`, {
@@ -68,10 +73,9 @@ export default {
           }
         },
         meta: {
-          resource: name,
-          action: "list",
+          ...meta,
           label: this.label,
-          toString: resource => resource[this.labelProp]
+          action: "list"
         }
       });
     }
@@ -85,10 +89,8 @@ export default {
           }
         },
         meta: {
-          resource: name,
-          action: "create",
-          label: this.label,
-          toString: resource => resource[this.labelProp]
+          ...meta,
+          action: "create"
         }
       });
     }
@@ -103,10 +105,8 @@ export default {
         },
         props: true,
         meta: {
-          resource: name,
-          action: "edit",
-          label: this.label,
-          toString: resource => resource[this.labelProp]
+          ...meta,
+          action: "edit"
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -122,10 +122,8 @@ export default {
         },
         props: true,
         meta: {
-          resource: name,
-          action: "show",
-          label: this.label,
-          toString: resource => resource[this.labelProp]
+          ...meta,
+          action: "show"
         },
         beforeEnter: getResourceBeforeEnter
       });
@@ -139,7 +137,7 @@ export default {
           }
         },
         meta: {
-          title: this.title
+          title: this.label
         },
         children
       }

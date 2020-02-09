@@ -1,5 +1,5 @@
 <template>
-  <va-page :title="title">
+  <va-page :title="getTitle">
     <slot name="action" slot="actions-header">
       <va-list-button></va-list-button>
       <va-show-button></va-show-button>
@@ -14,6 +14,15 @@ export default {
   name: "Edit",
   props: {
     title: [String, Function]
+  },
+  computed: {
+    getTitle() {
+      let { model, label, stringify } = this.$route.meta;
+      return (
+        this.title ||
+        `Edit ${label.toLowerCase()} "${stringify(model)}" (#${model.id})`
+      );
+    }
   }
 };
 </script>

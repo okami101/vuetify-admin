@@ -7,21 +7,21 @@
   >
     <va-resource
       name="publishers"
-      title="Publishers"
-      label="Publisher"
-      label-prop="name"
+      label="Publishers"
+      singular="Publisher"
+      :stringify="({ name }) => name"
     ></va-resource>
     <va-resource
       name="books"
-      title="Books"
-      label="Book"
-      label-prop="title"
+      label="Books"
+      singular="Book"
+      :stringify="({ title }) => title"
     ></va-resource>
     <va-resource
       name="reviews"
-      title="Reviews"
-      label="Review"
-      label-prop="author"
+      label="Reviews"
+      singular="Review"
+      :stringify="({ author }) => author"
     ></va-resource>
   </va-admin>
 </template>

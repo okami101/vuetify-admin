@@ -1,3 +1,3 @@
 <template>
-  <va-create title="Create new book"></va-create>
+  <va-create></va-create>
 </template>

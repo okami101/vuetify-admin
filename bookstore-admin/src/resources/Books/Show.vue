@@ -1,5 +1,5 @@
 <template>
-  <va-show :title="({ title }) => `Detail of book '${title}'`">
+  <va-show>
     <va-tabbed-show :tabs="tabs">
       <template v-slot:attributes>
         <va-simple-show :fields="fields"></va-simple-show>

@@ -1,3 +1,3 @@
 <template>
-  <va-create title="Create new review"></va-create>
+  <va-create></va-create>
 </template>
