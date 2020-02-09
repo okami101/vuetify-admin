@@ -2,8 +2,26 @@
   <div>
     <breadcrumbs></breadcrumbs>
     <v-container fluid>
-      <va-title class="mb-5" :title="title" v-if="title"></va-title>
-      <slot></slot>
+      <v-card>
+        <v-card-title>
+          <v-row class="align-center">
+            <v-col sm="auto">
+              <va-title :title="title"></va-title>
+            </v-col>
+            <v-col class="d-flex">
+              <v-spacer></v-spacer>
+              <slot name="actions-header"></slot>
+            </v-col>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <slot></slot>
+        </v-card-text>
+        <v-card-actions>
+          <slot name="actions-footer"></slot>
+        </v-card-actions>
+      </v-card>
+      <slot name="footer"></slot>
     </v-container>
   </div>
 </template>

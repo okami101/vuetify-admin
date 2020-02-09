@@ -1,3 +1,21 @@
 <template>
-  <va-show :title="({ name }) => `Detail of publisher '${name}'`"></va-show>
+  <va-show :title="({ name }) => `Detail of publisher '${name}'`">
+    <va-simple-show-layout :fields="fields"></va-simple-show-layout>
+  </va-show>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      fields: [
+        { value: "name", text: "Name" },
+        { value: "founder", text: "Founder" },
+        { value: "description", text: "Description" },
+        { value: "headquarter", text: "Headquarter" },
+        { value: "opening_date", text: "Opening date" }
+      ]
+    };
+  }
+};
+</script>

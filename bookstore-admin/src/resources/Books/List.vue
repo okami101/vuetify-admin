@@ -1,6 +1,6 @@
 <template>
   <va-list title="Books list">
-    <va-datagrid :headers="headers"></va-datagrid>
+    <va-datagrid :fields="fields"></va-datagrid>
   </va-list>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      headers: [
+      fields: [
         { value: "isbn", text: "ISBN", sortable: true },
         { value: "title", text: "Title", sortable: true },
         { value: "author", text: "Author", sortable: true },

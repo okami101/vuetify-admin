@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-data-table
-      :headers="allHeaders"
+      :headers="headers"
       :items="items"
       :items-per-page="itemsPerPage"
       :footer-props="{
@@ -94,7 +94,7 @@ export default {
     Export
   },
   props: {
-    headers: {
+    fields: {
       type: Array,
       default: () => []
     },
@@ -138,15 +138,12 @@ export default {
     };
   },
   computed: {
-    allHeaders() {
+    headers() {
       return [
         { value: "id", text: "ID", align: "right", sortable: true },
-        ...this.headers,
+        ...this.fields,
         { value: "action", sortable: false }
       ];
-    },
-    fields() {
-      return ["id", ...this.headers.map(item => item.value)];
     },
     filter() {
       let filter = {};
@@ -178,7 +175,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        fields: this.fields,
+        fields: ["id", ...this.fields.map(item => item.value)],
         pagination: {
           page,
           perPage: itemsPerPage

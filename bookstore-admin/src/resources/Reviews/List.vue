@@ -1,6 +1,6 @@
 <template>
   <va-list title="Reviews list">
-    <va-datagrid :headers="headers">
+    <va-datagrid :fields="fields">
       <template v-slot:rating="{ value }">
         <star-rating-field :rating="value"></star-rating-field>
       </template>
@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      headers: [
+      fields: [
         { value: "rating", text: "Rating", sortable: true },
         { value: "author", text: "Author", sortable: true },
         { value: "publication_date", text: "Publication date", sortable: true }

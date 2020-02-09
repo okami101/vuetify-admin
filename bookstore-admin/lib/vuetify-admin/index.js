@@ -9,6 +9,7 @@ import Edit from "./components/Actions/Edit";
 
 import {
   Datagrid,
+  SimpleShowLayout,
   TextField,
   ListButton,
   ShowButton,
@@ -28,6 +29,7 @@ const components = [
   Edit,
   Title,
   Datagrid,
+  SimpleShowLayout,
   TextField,
   ListButton,
   ShowButton,
