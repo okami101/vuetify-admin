@@ -1,14 +1,17 @@
 <template>
-  <span>{{ value }}</span>
+  <div v-html="resource[value]"></div>
 </template>
 
 <script>
 export default {
   name: "TextField",
   props: {
-    source: String,
-    label: String,
     value: String
+  },
+  data() {
+    return {
+      resource: this.$route.meta.model
+    };
   }
 };
 </script>

@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $isbn
  * @property string $title
  * @property string $description
+ * @property string $summary
  * @property string $author
  * @property Carbon $publication_date
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newModelQuery()
@@ -34,6 +35,7 @@ class Book extends Model
         'isbn',
         'title',
         'description',
+        'summary',
         'author',
         'publication_date',
     ];

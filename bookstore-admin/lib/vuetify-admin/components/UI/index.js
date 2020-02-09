@@ -1,7 +1,6 @@
-import Title from "./Global/Title";
-
 import Datagrid from "./List/Datagrid";
 import SimpleShowLayout from "./Layouts/SimpleShowLayout";
+import TabbedShowLayout from "./Layouts/TabbedShowLayout";
 
 import TextField from "./Fields/TextField";
 
@@ -13,9 +12,9 @@ import DeleteButton from "./Buttons/DeleteButton";
 import Confirm from "./Dialogs/Confirm";
 
 export {
-  Title,
   Datagrid,
   SimpleShowLayout,
+  TabbedShowLayout,
   TextField,
   ListButton,
   ShowButton,

@@ -53,7 +53,7 @@ export default {
       { icon: "mdi-view-dashboard", text: "Dashboard", link: "/" },
       { divider: true },
       { heading: "Bookstore" },
-      { icon: "mdi-account-badge", text: "Publishers", link: "/publishers" },
+      { icon: "mdi-globe-model", text: "Publishers", link: "/publishers" },
       {
         icon: "mdi-book",
         text: "Books",

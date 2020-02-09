@@ -10,13 +10,13 @@ import Edit from "./components/Actions/Edit";
 import {
   Datagrid,
   SimpleShowLayout,
+  TabbedShowLayout,
   TextField,
   ListButton,
   ShowButton,
   EditButton,
   DeleteButton,
-  Confirm,
-  Title
+  Confirm
 } from "./components/UI";
 
 const components = [
@@ -27,9 +27,9 @@ const components = [
   Show,
   Create,
   Edit,
-  Title,
   Datagrid,
   SimpleShowLayout,
+  TabbedShowLayout,
   TextField,
   ListButton,
   ShowButton,

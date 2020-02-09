@@ -7,8 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Review::class, function (Faker $faker) {
     return [
-        'body' => $faker->paragraph,
         'rating' => $faker->numberBetween(1, 5),
+        'body' => $faker->paragraph(10),
         'author' => $faker->name,
         'publication_date' => $faker->dateTime,
     ];
