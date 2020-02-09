@@ -117,10 +117,12 @@
         Close
       </v-btn>
     </v-snackbar>
+    <va-confirm ref="confirm"></va-confirm>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
@@ -136,6 +138,10 @@ export default {
       snackbar: false,
       text: null
     };
+  },
+  created() {
+    Vue.prototype.$confirm = (title, message) =>
+      this.$refs.confirm.open(title, message);
   },
   watch: {
     menu: {

@@ -71,17 +71,15 @@
       </template>
       <template v-slot:item.action="{ item }">
         <slot :id="item.id" name="action">
-          <va-show-button
-            :to="`/${$route.meta.resource}/${item.id}`"
-          ></va-show-button>
-          <va-edit-button
-            :to="`/${$route.meta.resource}/${item.id}/edit`"
-          ></va-edit-button>
-          <va-delete-button @delete="onDelete(item)"></va-delete-button>
+          <va-show-button :resource="item"></va-show-button>
+          <va-edit-button :resource="item"></va-edit-button>
+          <va-delete-button
+            :resource="item"
+            @deleted="loadData()"
+          ></va-delete-button>
         </slot>
       </template>
     </v-data-table>
-    <va-confirm ref="confirm"></va-confirm>
   </div>
 </template>
 
@@ -173,7 +171,6 @@ export default {
   methods: {
     ...mapActions({
       getList: "api/getList",
-      delete: "api/delete",
       deleteMany: "api/deleteMany"
     }),
     async loadData() {
@@ -200,22 +197,11 @@ export default {
       this.loadData();
     }, 200),
     async onDelete(item) {
-      let { label } = this.$route.meta;
-      if (
-        await this.$refs.confirm.open(
-          `Delete ${label.toLowerCase()} #${item.id} ?`,
-          `You are about deleting ${label.toLowerCase()} "${this.$route.meta.toString(
-            item
-          )}". This operation is irreversible !`
-        )
-      ) {
-        await this.delete({ id: item.id });
-        this.loadData();
-      }
+      this.loadData();
     },
     async onBlukDelete() {
       if (
-        await this.$refs.confirm.open(
+        await this.$confirm(
           `Delete ${this.selected.length} items ?`,
           `You are about deleting ${this.selected.length} items. This operation is irreversible !`
         )

@@ -1,3 +1,5 @@
 <template>
-  <va-show :title="({ title }) => `Detail of book '${title}'`"></va-show>
+  <va-show :title="({ title }) => `Detail of book '${title}'`">
+    qsmlkdlmqskdlmqksdlmkq
+  </va-show>
 </template>
