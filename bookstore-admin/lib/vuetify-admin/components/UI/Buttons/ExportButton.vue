@@ -1,6 +1,6 @@
 <template>
   <v-btn text @click="onExport" color="primary">
-    <v-icon>mdi-download</v-icon>
+    <v-icon small class="mr-2">mdi-download</v-icon>
     Export
   </v-btn>
 </template>
@@ -10,7 +10,7 @@ import Papa from "papaparse";
 import { mapActions } from "vuex";
 
 export default {
-  name: "Export",
+  name: "ExportButton",
   props: {
     options: {
       type: Object,

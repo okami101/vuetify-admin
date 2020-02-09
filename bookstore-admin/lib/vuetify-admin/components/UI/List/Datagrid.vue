@@ -44,21 +44,13 @@
             </v-col>
             <v-col class="d-flex">
               <v-spacer></v-spacer>
-              <v-btn
-                text
-                :to="`/${$route.meta.resource}/create`"
-                color="primary"
-                v-if="canCreate"
-              >
-                <v-icon>mdi-plus</v-icon>
-                Create
-              </v-btn>
-              <export
+              <va-create-button v-if="canCreate"></va-create-button>
+              <va-export-button
                 text
                 v-if="canExport"
                 :options="options"
                 :filter="filter"
-              ></export>
+              ></va-export-button>
             </v-col>
           </v-row>
         </v-toolbar>
@@ -70,7 +62,7 @@
         <slot :name="slot" v-bind="scope"></slot>
       </template>
       <template v-slot:item.action="{ item }">
-        <slot :id="item.id" name="action">
+        <slot name="action">
           <va-show-button :resource="item"></va-show-button>
           <va-edit-button :resource="item"></va-edit-button>
           <va-delete-button
@@ -84,15 +76,11 @@
 </template>
 
 <script>
-import Export from "./Export";
 import debounce from "lodash/debounce";
 import { mapActions } from "vuex";
 
 export default {
   name: "Datagrid",
-  components: {
-    Export
-  },
   props: {
     fields: {
       type: Array,

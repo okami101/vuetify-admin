@@ -1,5 +1,5 @@
 <template>
-  <v-btn text exact :to="`/${$route.meta.resource}`" :color="color">
+  <v-btn text exact :to="`/${$route.meta.resource}/create`" :color="color">
     <v-icon small class="mr-2">{{ icon }}</v-icon>
     {{ label }}
   </v-btn>
@@ -7,19 +7,19 @@
 
 <script>
 export default {
-  name: "ListButton",
+  name: "CreateButton",
   props: {
     icon: {
       type: String,
-      default: "mdi-view-list"
+      default: "mdi-plus"
     },
     label: {
       type: String,
-      default: "List"
+      default: "Create"
     },
     color: {
       type: String,
-      default: "blue"
+      default: "primary"
     }
   }
 };

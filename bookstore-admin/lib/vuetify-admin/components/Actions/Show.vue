@@ -1,12 +1,9 @@
 <template>
   <va-page :title="title">
-    <slot :id="item.id" name="action" slot="actions-header">
+    <slot name="action" slot="actions-header">
       <va-list-button></va-list-button>
-      <va-edit-button :resource="item"></va-edit-button>
-      <va-delete-button
-        :resource="item"
-        @deleted="$router.push(`/${$route.meta.resource}`)"
-      ></va-delete-button>
+      <va-edit-button :resource="resource"></va-edit-button>
+      <va-delete-button :resource="resource"></va-delete-button>
     </slot>
     <slot></slot>
   </va-page>
@@ -20,7 +17,7 @@ export default {
   },
   data() {
     return {
-      item: this.$route.meta.model
+      resource: this.$route.meta.model
     };
   }
 };

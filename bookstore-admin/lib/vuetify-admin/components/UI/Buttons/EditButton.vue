@@ -1,13 +1,12 @@
 <template>
   <v-btn
     text
+    exact
     :to="`/${$route.meta.resource}/${resource.id}/edit`"
     @click="$emit('edit', resource)"
     :color="color"
   >
-    <v-icon small class="mr-2">
-      {{ icon }}
-    </v-icon>
+    <v-icon small class="mr-2">{{ icon }}</v-icon>
     {{ label }}
   </v-btn>
 </template>
@@ -30,7 +29,7 @@ export default {
     },
     color: {
       type: String,
-      default: "blue"
+      default: "orange"
     }
   }
 };

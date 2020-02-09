@@ -35,7 +35,7 @@ export default {
       delete: "api/delete"
     }),
     async onDelete() {
-      if (!this.resource.id) {
+      if (!this.resource) {
         this.$emit("delete");
         return;
       }
@@ -50,7 +50,14 @@ export default {
         )
       ) {
         await this.delete({ id: this.resource.id });
-        this.$emit("deleted", this.resource);
+        this.$emit("deleted");
+
+        /**
+         * Redirect to list if deleting on current ressource
+         */
+        if (["show", "edit"].includes(this.$route.meta.action)) {
+          this.$router.push(`/${this.$route.meta.resource}`);
+        }
       }
     }
   }

@@ -13,9 +13,11 @@ import {
   TabbedShowLayout,
   TextField,
   ListButton,
+  CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
+  ExportButton,
   Confirm
 } from "./components/UI";
 
@@ -32,9 +34,11 @@ const components = [
   TabbedShowLayout,
   TextField,
   ListButton,
+  CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
+  ExportButton,
   Confirm
 ];
 
