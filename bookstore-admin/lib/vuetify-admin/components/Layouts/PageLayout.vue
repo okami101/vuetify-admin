@@ -4,24 +4,19 @@
     <v-container fluid>
       <v-card>
         <v-card-title>
-          <v-toolbar flat>
-            <v-row class="align-center">
-              <v-col sm="auto">
-                <h1 class="display-1">{{ getTitle }}</h1>
-              </v-col>
-              <v-col class="d-flex">
-                <v-spacer></v-spacer>
-                <slot name="actions-header"></slot>
-              </v-col>
-            </v-row>
-          </v-toolbar>
+          <v-row class="align-center">
+            <v-col sm="auto">
+              <h1 class="display-1">{{ getTitle }}</h1>
+            </v-col>
+            <v-col class="d-flex">
+              <v-spacer></v-spacer>
+              <slot name="actions"></slot>
+            </v-col>
+          </v-row>
         </v-card-title>
         <v-card-text>
           <slot></slot>
         </v-card-text>
-        <v-card-actions>
-          <slot name="actions-footer"></slot>
-        </v-card-actions>
       </v-card>
       <slot name="footer"></slot>
     </v-container>

@@ -1,78 +1,72 @@
 <template>
-  <div>
-    <v-data-table
-      :headers="headers"
-      :items="items"
-      :items-per-page="itemsPerPage"
-      :footer-props="{
-        'items-per-page-options': rowsPerPage,
-        showFirstLastPage: true
-      }"
-      :server-items-length="total"
-      :loading="loading"
-      :options.sync="options"
-      :multi-sort="multiSort"
-      :show-select="showSelect"
-      v-model="selected"
+  <v-data-table
+    :headers="headers"
+    :items="items"
+    :items-per-page="itemsPerPage"
+    :footer-props="{
+      'items-per-page-options': rowsPerPage,
+      showFirstLastPage: true
+    }"
+    :server-items-length="total"
+    :loading="loading"
+    :options.sync="options"
+    :multi-sort="multiSort"
+    :show-select="showSelect"
+    v-model="selected"
+  >
+    <template v-slot:top>
+      <v-row class="align-center" v-if="selected.length" color="blue lighten-5">
+        <v-col>
+          {{ selected.length }} item{{ selected.length > 1 ? "s" : "" }}
+          selected
+        </v-col>
+        <v-spacer></v-spacer>
+        <v-col sm="auto">
+          <va-delete-button @delete="onBlukDelete"></va-delete-button>
+        </v-col>
+      </v-row>
+      <v-row v-else>
+        <v-col sm="auto">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+            dense
+            v-if="canSearch"
+            @input="onSearch"
+          ></v-text-field>
+        </v-col>
+        <v-col class="d-flex">
+          <v-spacer></v-spacer>
+          <va-create-button v-if="canCreate"></va-create-button>
+          <va-export-button
+            text
+            v-if="canExport"
+            :options="options"
+            :filter="filter"
+          ></va-export-button>
+        </v-col>
+      </v-row>
+    </template>
+    <template
+      v-for="slot in Object.keys($scopedSlots)"
+      v-slot:[`item.${slot}`]="scope"
     >
-      <template v-slot:top>
-        <v-toolbar v-if="selected.length" flat color="blue lighten-5">
-          <v-row class="align-center">
-            <v-col>
-              {{ selected.length }} item{{ selected.length > 1 ? "s" : "" }}
-              selected
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-col sm="auto">
-              <va-delete-button @delete="onBlukDelete"></va-delete-button>
-            </v-col>
-          </v-row>
-        </v-toolbar>
-        <v-toolbar v-else flat>
-          <v-row>
-            <v-col sm="auto">
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-                dense
-                v-if="canSearch"
-                @input="onSearch"
-              ></v-text-field>
-            </v-col>
-            <v-col class="d-flex">
-              <v-spacer></v-spacer>
-              <va-create-button v-if="canCreate"></va-create-button>
-              <va-export-button
-                text
-                v-if="canExport"
-                :options="options"
-                :filter="filter"
-              ></va-export-button>
-            </v-col>
-          </v-row>
-        </v-toolbar>
-      </template>
-      <template
-        v-for="slot in Object.keys($scopedSlots)"
-        v-slot:[`item.${slot}`]="scope"
-      >
-        <slot :name="slot" v-bind="scope"></slot>
-      </template>
-      <template v-slot:item.action="{ item }">
-        <slot name="action">
-          <va-show-button :resource="item"></va-show-button>
-          <va-edit-button :resource="item"></va-edit-button>
-          <va-delete-button
-            :resource="item"
-            @deleted="loadData()"
-          ></va-delete-button>
-        </slot>
-      </template>
-    </v-data-table>
-  </div>
+      <slot :name="slot" v-bind="scope"></slot>
+    </template>
+    <template v-slot:item.action="{ item }">
+      <slot name="action">
+        <va-show-button :resource="item"></va-show-button>
+        <va-edit-button :resource="item"></va-edit-button>
+        <va-delete-button
+          :resource="item"
+          @deleted="loadData()"
+        ></va-delete-button>
+      </slot>
+    </template>
+  </v-data-table>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 import Datagrid from "./List/Datagrid";
 import SimpleShow from "./Layouts/SimpleShow";
 import TabbedShow from "./Layouts/TabbedShow";
+import SimpleForm from "./Layouts/SimpleForm";
 
 import TextField from "./Fields/TextField";
 
@@ -15,6 +16,7 @@ export {
   Datagrid,
   SimpleShow,
   TabbedShow,
+  SimpleForm,
   TextField,
   ListButton,
   CreateButton,

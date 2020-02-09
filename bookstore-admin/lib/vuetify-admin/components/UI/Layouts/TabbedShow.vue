@@ -9,6 +9,7 @@
       v-for="tab in tabs"
       :key="tab.value"
       :value="`tab-${tab.value}`"
+      class="pt-6"
     >
       <slot :name="tab.value"></slot>
     </v-tab-item>

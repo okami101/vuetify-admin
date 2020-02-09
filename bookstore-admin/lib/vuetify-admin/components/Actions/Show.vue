@@ -1,6 +1,6 @@
 <template>
   <va-page :title="getTitle">
-    <slot name="action" slot="actions-header">
+    <slot name="action" slot="actions">
       <va-list-button></va-list-button>
       <va-edit-button></va-edit-button>
       <va-delete-button></va-delete-button>

@@ -5,11 +5,7 @@
         <va-simple-show :fields="fields"></va-simple-show>
       </template>
       <template v-slot:summary>
-        <v-card flat>
-          <v-card-text>
-            <va-text-field value="summary"></va-text-field>
-          </v-card-text>
-        </v-card>
+        <va-text-field value="summary"></va-text-field>
       </template>
     </va-tabbed-show>
   </va-show>

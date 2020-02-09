@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <v-list-item v-for="field in fields" :key="field.value">
+    <v-list-item v-for="field in fields" :key="field.value" class="px-0">
       <v-list-item-content>
         <v-list-item-title>
           {{ field.text }}
