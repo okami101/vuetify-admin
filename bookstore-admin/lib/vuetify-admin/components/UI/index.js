@@ -5,6 +5,8 @@ import SimpleForm from "./Layouts/SimpleForm";
 
 import TextField from "./Fields/TextField";
 
+import DatePickerInput from "./Inputs/DatePickerInput";
+
 import ListButton from "./Buttons/ListButton";
 import CreateButton from "./Buttons/CreateButton";
 import ShowButton from "./Buttons/ShowButton";
@@ -18,6 +20,7 @@ export {
   TabbedShow,
   SimpleForm,
   TextField,
+  DatePickerInput,
   ListButton,
   CreateButton,
   ShowButton,

@@ -14,8 +14,8 @@
                 :rules="usernameRules"
                 v-model="username"
                 required
-                ref="usernameInput"
                 :error-messages="error"
+                autofocus
               ></v-text-field>
 
               <v-text-field
@@ -57,9 +57,6 @@ export default {
       usernameRules: [v => !!v || "Email is required"],
       passwordRules: [v => !!v || "Password is required"]
     };
-  },
-  mounted() {
-    this.$refs.usernameInput.focus();
   },
   methods: {
     ...mapActions({
