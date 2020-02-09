@@ -1,6 +1,6 @@
 import Datagrid from "./List/Datagrid";
-import SimpleShowLayout from "./Layouts/SimpleShowLayout";
-import TabbedShowLayout from "./Layouts/TabbedShowLayout";
+import SimpleShow from "./Layouts/SimpleShow";
+import TabbedShow from "./Layouts/TabbedShow";
 
 import TextField from "./Fields/TextField";
 
@@ -11,18 +11,15 @@ import EditButton from "./Buttons/EditButton";
 import DeleteButton from "./Buttons/DeleteButton";
 import ExportButton from "./Buttons/ExportButton";
 
-import Confirm from "./Dialogs/Confirm";
-
 export {
   Datagrid,
-  SimpleShowLayout,
-  TabbedShowLayout,
+  SimpleShow,
+  TabbedShow,
   TextField,
   ListButton,
   CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
-  ExportButton,
-  Confirm
+  ExportButton
 };

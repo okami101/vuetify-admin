@@ -1,10 +1,10 @@
 <template>
   <va-show :title="({ author }) => `Show review of ${author}`">
-    <va-simple-show-layout :fields="fields">
+    <va-simple-show :fields="fields">
       <template v-slot:rating="{ value }">
         <star-rating-field :rating="value"></star-rating-field>
       </template>
-    </va-simple-show-layout>
+    </va-simple-show>
   </va-show>
 </template>
 

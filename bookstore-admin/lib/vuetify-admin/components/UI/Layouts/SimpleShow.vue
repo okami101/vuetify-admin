@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "SimpleShowLayout",
+  name: "SimpleShow",
   props: {
     fields: {
       type: Array,

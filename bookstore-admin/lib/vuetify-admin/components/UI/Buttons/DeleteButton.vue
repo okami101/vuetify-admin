@@ -13,10 +13,7 @@ import { mapActions } from "vuex";
 export default {
   name: "DeleteButton",
   props: {
-    resource: {
-      type: Object,
-      default: () => {}
-    },
+    resource: Object,
     icon: {
       type: String,
       default: "mdi-trash-can"
@@ -30,12 +27,17 @@ export default {
       default: "red"
     }
   },
+  computed: {
+    currentResource() {
+      return this.resource || this.$route.meta.model;
+    }
+  },
   methods: {
     ...mapActions({
       delete: "api/delete"
     }),
     async onDelete() {
-      if (!this.resource) {
+      if (!this.currentResource) {
         this.$emit("delete");
         return;
       }
@@ -43,13 +45,13 @@ export default {
       let { label } = this.$route.meta;
       if (
         await this.$confirm(
-          `Delete ${label.toLowerCase()} #${this.resource.id} ?`,
+          `Delete ${label.toLowerCase()} #${this.currentResource.id} ?`,
           `You are about deleting ${label.toLowerCase()} "${this.$route.meta.toString(
-            this.resource
+            this.currentResource
           )}". This operation is irreversible !`
         )
       ) {
-        await this.delete({ id: this.resource.id });
+        await this.delete({ id: this.currentResource.id });
         this.$emit("deleted");
 
         /**

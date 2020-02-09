@@ -9,16 +9,15 @@ import Edit from "./components/Actions/Edit";
 
 import {
   Datagrid,
-  SimpleShowLayout,
-  TabbedShowLayout,
+  SimpleShow,
+  TabbedShow,
   TextField,
   ListButton,
   CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
-  ExportButton,
-  Confirm
+  ExportButton
 } from "./components/UI";
 
 const components = [
@@ -30,16 +29,15 @@ const components = [
   Create,
   Edit,
   Datagrid,
-  SimpleShowLayout,
-  TabbedShowLayout,
+  SimpleShow,
+  TabbedShow,
   TextField,
   ListButton,
   CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
-  ExportButton,
-  Confirm
+  ExportButton
 ];
 
 export default {

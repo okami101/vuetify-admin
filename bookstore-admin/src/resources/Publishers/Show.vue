@@ -1,6 +1,6 @@
 <template>
   <va-show :title="({ name }) => `Detail of publisher '${name}'`">
-    <va-simple-show-layout :fields="fields"></va-simple-show-layout>
+    <va-simple-show :fields="fields"></va-simple-show>
   </va-show>
 </template>
 

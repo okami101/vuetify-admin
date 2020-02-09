@@ -2,8 +2,8 @@
   <v-btn
     text
     exact
-    :to="`/${$route.meta.resource}/${resource.id}`"
-    @click="$emit('show', resource)"
+    :to="`/${$route.meta.resource}/${currentResource.id}`"
+    @click="$emit('show', currentResource)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
@@ -15,10 +15,7 @@
 export default {
   name: "ShowButton",
   props: {
-    resource: {
-      type: Object,
-      default: () => {}
-    },
+    resource: Object,
     icon: {
       type: String,
       default: "mdi-eye"
@@ -30,6 +27,11 @@ export default {
     color: {
       type: String,
       default: "green"
+    }
+  },
+  computed: {
+    currentResource() {
+      return this.resource || this.$route.meta.model;
     }
   }
 };

@@ -117,16 +117,20 @@
         Close
       </v-btn>
     </v-snackbar>
-    <va-confirm ref="confirm"></va-confirm>
+    <confirm ref="confirm"></confirm>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
+import Confirm from "./Confirm";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "AppLayout",
+  components: {
+    Confirm
+  },
   props: {
     title: String,
     menu: Array

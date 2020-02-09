@@ -1,7 +1,7 @@
 <template>
   <v-tabs v-model="currentTab" grow>
     <v-tab v-for="tab in tabs" :key="tab.value" :href="`#tab-${tab.value}`">
-      <v-icon class="mr-2">{{ tab.icon }}</v-icon>
+      <v-icon v-if="tab.icon" small class="mr-2">{{ tab.icon }}</v-icon>
       {{ tab.text }}
     </v-tab>
 
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "TabbedShowLayout",
+  name: "TabbedShow",
   props: {
     tabs: Array
   },

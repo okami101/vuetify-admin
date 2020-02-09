@@ -1,8 +1,8 @@
 <template>
   <va-show :title="({ title }) => `Detail of book '${title}'`">
-    <va-tabbed-show-layout :tabs="tabs">
+    <va-tabbed-show :tabs="tabs">
       <template v-slot:attributes>
-        <va-simple-show-layout :fields="fields"></va-simple-show-layout>
+        <va-simple-show :fields="fields"></va-simple-show>
       </template>
       <template v-slot:summary>
         <v-card flat>
@@ -11,7 +11,7 @@
           </v-card-text>
         </v-card>
       </template>
-    </va-tabbed-show-layout>
+    </va-tabbed-show>
   </va-show>
 </template>
 
