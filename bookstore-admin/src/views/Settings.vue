@@ -1,5 +1,5 @@
 <template>
-  <va-page title="Settings">
+  <div>
     <p>This is settings page</p>
-  </va-page>
+  </div>
 </template>

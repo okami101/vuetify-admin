@@ -63,6 +63,8 @@ export default {
           return next("/login");
         }
       }
+
+      document.title = to.meta.title;
       next();
     });
 
@@ -81,6 +83,8 @@ export default {
         await this.$router.push("/login");
       }
     }
+
+    document.title = this.$route.meta.title;
     this.loaded = true;
   },
   methods: {

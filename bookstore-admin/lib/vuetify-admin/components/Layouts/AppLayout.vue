@@ -108,7 +108,10 @@
     </v-navigation-drawer>
 
     <v-content>
-      <router-view></router-view>
+      <breadcrumbs></breadcrumbs>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-content>
 
     <v-snackbar v-model="snackbar">
@@ -123,12 +126,14 @@
 
 <script>
 import Vue from "vue";
+import Breadcrumbs from "./Breadcrumbs";
 import Confirm from "./Confirm";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "AppLayout",
   components: {
+    Breadcrumbs,
     Confirm
   },
   props: {

@@ -14,14 +14,17 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: Login,
+    meta: {
+      title: "Login"
+    }
   },
   {
     path: "/dashboard",
     name: "dashboard",
     component: Dashboard,
     meta: {
-      label: "Dashboard"
+      title: "Dashboard"
     }
   },
   {
@@ -29,7 +32,7 @@ const routes = [
     name: "help",
     component: () => import("../views/Help"),
     meta: {
-      label: "Help"
+      title: "Help"
     }
   },
   {
@@ -37,7 +40,7 @@ const routes = [
     name: "settings",
     component: () => import("../views/Settings"),
     meta: {
-      label: "Settings"
+      title: "Settings"
     }
   },
   {
@@ -45,7 +48,7 @@ const routes = [
     name: "feedback",
     component: () => import("../views/Feedback"),
     meta: {
-      label: "Feedback"
+      title: "Feedback"
     }
   }
 ];

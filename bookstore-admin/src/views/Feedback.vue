@@ -1,5 +1,5 @@
 <template>
-  <va-page title="Feedback">
+  <div>
     <p>This is feedback page</p>
-  </va-page>
+  </div>
 </template>

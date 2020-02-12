@@ -1,5 +1,6 @@
 <script>
 import resource from "../../store/resource";
+import capitalize from "lodash/capitalize";
 
 export default {
   name: "Resource",
@@ -49,17 +50,39 @@ export default {
       stringify: this.stringify
     };
 
-    let getResourceBeforeEnter = async (to, from, next) => {
-      let response = await this.$store.dispatch(`${name}/getOne`, {
-        id: to.params.id
-      });
+    let beforeEnter = async (to, from, next) => {
+      let { model, label, stringify } = to.meta;
 
-      if (response.status !== 200) {
-        return Promise.reject(response.statusText);
+      switch (to.meta.action) {
+        case "list":
+          to.meta.title = `List of ${label.toLowerCase()}`;
+          break;
+        case "create":
+          to.meta.title = `Create new ${label.toLowerCase()}`;
+          break;
+        case "show":
+        case "edit":
+          /**
+           * Load model route and check validity before enter
+           */
+          let response = await this.$store.dispatch(`${name}/getOne`, {
+            id: to.params.id
+          });
+
+          if (response.status !== 200) {
+            return Promise.reject(response.statusText);
+          }
+
+          to.meta.model = await response.json();
+          to.meta.title = `${capitalize(
+            to.meta.action
+          )} ${label.toLowerCase()} "${stringify(to.meta.model)}" (#${
+            to.meta.model.id
+          })`;
+          break;
       }
 
-      to.meta.model = await response.json();
-
+      document.title = to.meta.title;
       next();
     };
 
@@ -76,7 +99,8 @@ export default {
           ...meta,
           label: this.label,
           action: "list"
-        }
+        },
+        beforeEnter
       });
     }
     if (this.hasAction("create")) {
@@ -91,7 +115,8 @@ export default {
         meta: {
           ...meta,
           action: "create"
-        }
+        },
+        beforeEnter
       });
     }
     if (this.hasAction("edit")) {
@@ -108,7 +133,7 @@ export default {
           ...meta,
           action: "edit"
         },
-        beforeEnter: getResourceBeforeEnter
+        beforeEnter
       });
     }
     if (this.hasAction("show")) {
@@ -125,7 +150,7 @@ export default {
           ...meta,
           action: "show"
         },
-        beforeEnter: getResourceBeforeEnter
+        beforeEnter
       });
     }
     this.$router.addRoutes([

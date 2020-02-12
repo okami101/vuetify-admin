@@ -1,23 +1,22 @@
 <template>
-  <va-page :title="getTitle">
+  <action-page :title="title">
     <slot name="action" slot="actions">
       <va-list-button></va-list-button>
     </slot>
     <slot></slot>
-  </va-page>
+  </action-page>
 </template>
 
 <script>
+import ActionPage from "../Layouts/ActionPage";
+
 export default {
   name: "Create",
+  components: {
+    ActionPage
+  },
   props: {
     title: [String, Function]
-  },
-  computed: {
-    getTitle() {
-      let { label } = this.$route.meta;
-      return this.title || `Create new ${label.toLowerCase()}`;
-    }
   }
 };
 </script>

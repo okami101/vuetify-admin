@@ -1,28 +1,24 @@
 <template>
-  <va-page :title="getTitle">
+  <action-page :title="title">
     <slot name="action" slot="actions">
       <va-list-button></va-list-button>
       <va-show-button></va-show-button>
       <va-delete-button></va-delete-button>
     </slot>
     <slot></slot>
-  </va-page>
+  </action-page>
 </template>
 
 <script>
+import ActionPage from "../Layouts/ActionPage";
+
 export default {
   name: "Edit",
+  components: {
+    ActionPage
+  },
   props: {
     title: [String, Function]
-  },
-  computed: {
-    getTitle() {
-      let { model, label, stringify } = this.$route.meta;
-      return (
-        this.title ||
-        `Edit ${label.toLowerCase()} "${stringify(model)}" (#${model.id})`
-      );
-    }
   }
 };
 </script>
