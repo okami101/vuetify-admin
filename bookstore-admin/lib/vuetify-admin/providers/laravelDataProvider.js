@@ -138,9 +138,22 @@ export default entrypoint => {
           total: meta ? meta.total : data.length
         });
       case DELETE:
-        return Promise.resolve({ data: { id: null } });
+        if (response.status >= 200 && response.status < 400) {
+          return Promise.resolve({ data: { id: null } });
+        }
+        return Promise.reject({
+          status: response.status,
+          ...json
+        });
       default:
-        return Promise.resolve(response);
+        let json = await response.json();
+        if (response.status >= 200 && response.status < 400) {
+          return Promise.resolve(json);
+        }
+        return Promise.reject({
+          status: response.status,
+          ...json
+        });
     }
   };
 

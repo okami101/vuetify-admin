@@ -3,8 +3,6 @@
     ref="form"
     :style="{ 'max-width': `${width}px` }"
     @submit.prevent="onSave"
-    v-model="valid"
-    lazy-validation
   >
     <template v-for="field in fields">
       <v-textarea
@@ -13,6 +11,7 @@
         v-model="form[field.value]"
         :label="field.text"
         :rules="rules[field.value]"
+        :error-messages="errors[field.value]"
         auto-grow
         filled
       ></v-textarea>
@@ -22,6 +21,7 @@
         v-model="form[field.value]"
         :label="field.text"
         :rules="rules[field.value]"
+        :error-messages="errors[field.value]"
         filled
       ></va-date-picker-input>
       <v-text-field
@@ -30,11 +30,12 @@
         v-model="form[field.value]"
         :label="field.text"
         :rules="rules[field.value]"
+        :error-messages="errors[field.value]"
         filled
       ></v-text-field>
     </template>
 
-    <v-btn :loading="saving" :disabled="!valid" color="primary" type="submit">
+    <v-btn :loading="saving" color="primary" type="submit">
       <v-icon class="mr-2">mdi-floppy</v-icon>
       Save
     </v-btn>
@@ -59,9 +60,9 @@ export default {
   data() {
     return {
       saving: false,
-      valid: true,
       form: {},
       rules: {},
+      errors: {},
       resource: this.$route.meta.model
     };
   },
@@ -103,20 +104,26 @@ export default {
 
       this.saving = true;
 
-      if (this.resource) {
-        await this.update({
-          id: this.resource.id,
-          data: this.form
-        });
-      } else {
-        await this.create({
-          data: this.form
-        });
+      try {
+        if (this.resource) {
+          await this.update({
+            id: this.resource.id,
+            data: this.form
+          });
+        } else {
+          await this.create({
+            data: this.form
+          });
+        }
+
+        this.$router.push(`/${this.$route.meta.resource}`);
+      } catch ({ status, errors }) {
+        if (status === 422) {
+          this.errors = errors;
+        }
       }
 
       this.saving = false;
-
-      this.$router.push(`/${this.$route.meta.resource}`);
     }
   }
 };

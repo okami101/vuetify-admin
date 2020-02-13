@@ -114,9 +114,9 @@
       </v-container>
     </v-content>
 
-    <v-snackbar v-model="snackbar">
-      {{ text }}
-      <v-btn color="pink" text @click="snackbar = false">
+    <v-snackbar v-model="snackbar" :color="snackbarColor">
+      {{ snackbarText }}
+      <v-btn text @click="snackbar = false">
         Close
       </v-btn>
     </v-snackbar>
@@ -144,8 +144,7 @@ export default {
     return {
       mini: false,
       items: [],
-      snackbar: false,
-      text: null
+      snackbar: false
     };
   },
   created() {
@@ -174,7 +173,8 @@ export default {
   computed: {
     ...mapState({
       showSnackbar: state => state.api.showSnackbar,
-      snackbarText: state => state.api.snackbarText
+      snackbarText: state => state.api.snackbarText,
+      snackbarColor: state => state.api.snackbarColor
     }),
     ...mapGetters({ name: "auth/name", email: "auth/email" })
   },

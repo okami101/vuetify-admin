@@ -70,11 +70,7 @@ export default {
             id: to.params.id
           });
 
-          if (response.status !== 200) {
-            return Promise.reject(response.statusText);
-          }
-
-          to.meta.model = await response.json();
+          to.meta.model = response;
           to.meta.title = `${capitalize(
             to.meta.action
           )} ${singular.toLowerCase()} "${stringify(to.meta.model)}" (#${

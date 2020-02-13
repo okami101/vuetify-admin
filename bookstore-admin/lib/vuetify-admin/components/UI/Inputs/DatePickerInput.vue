@@ -12,6 +12,7 @@
         :value="dateFormatted"
         :label="label"
         :rules="rules"
+        :error-messages="errorMessages"
         :filled="filled"
         readonly
         append-icon="mdi-calendar"
@@ -39,6 +40,10 @@ export default {
       required: true
     },
     rules: {
+      type: Array,
+      default: () => []
+    },
+    errorMessages: {
       type: Array,
       default: () => []
     },
