@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "Breadcrumbs",
+  name: "AppBreadcrumbs",
   computed: {
     items() {
       return [

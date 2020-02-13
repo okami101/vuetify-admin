@@ -51,6 +51,7 @@ export default router => {
   return {
     namespaced: true,
     state: {
+      loading: false,
       showSnackbar: false,
       snackbarText: null,
       snackbarColor: null
