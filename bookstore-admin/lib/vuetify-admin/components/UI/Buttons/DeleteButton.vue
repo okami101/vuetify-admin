@@ -42,11 +42,11 @@ export default {
         return;
       }
 
-      let { label } = this.$route.meta;
+      let { singular } = this.$route.meta;
       if (
         await this.$confirm(
-          `Delete ${label.toLowerCase()} #${this.currentResource.id} ?`,
-          `You are about deleting ${label.toLowerCase()} "${this.$route.meta.stringify(
+          `Delete ${singular.toLowerCase()} #${this.currentResource.id} ?`,
+          `You are about deleting ${singular.toLowerCase()} "${this.$route.meta.stringify(
             this.currentResource
           )}". This operation is irreversible !`
         )

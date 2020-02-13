@@ -81,11 +81,14 @@ export default entrypoint => {
         };
 
       case UPDATE:
+        let form = objectToFormData(params.data);
+        form.set("_method", "PUT");
+
         return {
           url: itemUrl,
           options: {
-            method: "PUT",
-            body: objectToFormData(params.data)
+            method: "POST",
+            body: form
           }
         };
 

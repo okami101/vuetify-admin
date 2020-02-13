@@ -3,6 +3,8 @@
     ref="form"
     :style="{ 'max-width': `${width}px` }"
     @submit.prevent="onSave"
+    v-model="valid"
+    lazy-validation
   >
     <template v-for="field in fields">
       <v-textarea
@@ -10,6 +12,7 @@
         :key="field.value"
         v-model="form[field.value]"
         :label="field.text"
+        :rules="rules[field.value]"
         auto-grow
         filled
       ></v-textarea>
@@ -18,6 +21,7 @@
         :key="field.value"
         v-model="form[field.value]"
         :label="field.text"
+        :rules="rules[field.value]"
         filled
       ></va-date-picker-input>
       <v-text-field
@@ -25,11 +29,12 @@
         :key="field.value"
         v-model="form[field.value]"
         :label="field.text"
+        :rules="rules[field.value]"
         filled
       ></v-text-field>
     </template>
 
-    <v-btn :disabled="saving" color="primary" type="submit">
+    <v-btn :loading="saving" :disabled="!valid" color="primary" type="submit">
       <v-icon class="mr-2">mdi-floppy</v-icon>
       Save
     </v-btn>
@@ -37,6 +42,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "SimpleForm",
   props: {
@@ -52,25 +59,64 @@ export default {
   data() {
     return {
       saving: false,
+      valid: true,
       form: {},
+      rules: {},
       resource: this.$route.meta.model
     };
   },
-  created() {
-    /**
-     * Init form model
-     */
-    this.fields.forEach(({ value }) => {
-      if (this.resource) {
-        this.form[value] = this.resource[value];
-        return;
-      }
-      this.form[value] = null;
-    });
+  watch: {
+    fields: {
+      handler(val) {
+        /**
+         * Init form model
+         */
+        val.forEach(field => {
+          let { value, text } = field;
+          let rules = [];
+
+          if (field.required) {
+            rules.push(v => !!v || `${text} is required`);
+          }
+
+          this.rules[value] = rules;
+
+          if (this.resource) {
+            this.form[value] = this.resource[value];
+            return;
+          }
+          this.form[value] = null;
+        });
+      },
+      immediate: true
+    }
   },
   methods: {
-    onSave() {
-      console.log("ok");
+    ...mapActions({
+      create: "api/create",
+      update: "api/update"
+    }),
+    async onSave() {
+      if (!this.$refs.form.validate()) {
+        return;
+      }
+
+      this.saving = true;
+
+      if (this.resource) {
+        await this.update({
+          id: this.resource.id,
+          data: this.form
+        });
+      } else {
+        await this.create({
+          data: this.form
+        });
+      }
+
+      this.saving = false;
+
+      this.$router.push(`/${this.$route.meta.resource}`);
     }
   }
 };

@@ -46,19 +46,20 @@ export default {
     let children = [];
     let meta = {
       resource: name,
-      label: this.singular,
+      label: this.label,
+      singular: this.singular,
       stringify: this.stringify
     };
 
     let beforeEnter = async (to, from, next) => {
-      let { model, label, stringify } = to.meta;
+      let { model, label, singular, stringify } = to.meta;
 
       switch (to.meta.action) {
         case "list":
           to.meta.title = `List of ${label.toLowerCase()}`;
           break;
         case "create":
-          to.meta.title = `Create new ${label.toLowerCase()}`;
+          to.meta.title = `Create new ${singular.toLowerCase()}`;
           break;
         case "show":
         case "edit":
@@ -76,7 +77,7 @@ export default {
           to.meta.model = await response.json();
           to.meta.title = `${capitalize(
             to.meta.action
-          )} ${label.toLowerCase()} "${stringify(to.meta.model)}" (#${
+          )} ${singular.toLowerCase()} "${stringify(to.meta.model)}" (#${
             to.meta.model.id
           })`;
           break;
@@ -97,7 +98,6 @@ export default {
         },
         meta: {
           ...meta,
-          label: this.label,
           action: "list"
         },
         beforeEnter

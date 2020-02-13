@@ -11,10 +11,13 @@
       <v-text-field
         :value="dateFormatted"
         :label="label"
+        :rules="rules"
         :filled="filled"
         readonly
         append-icon="mdi-calendar"
         v-on="on"
+        clearable
+        @click:clear="date = null"
       ></v-text-field>
     </template>
     <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
@@ -35,6 +38,10 @@ export default {
       type: String,
       required: true
     },
+    rules: {
+      type: Array,
+      default: () => []
+    },
     filled: {
       type: Boolean,
       default: false
@@ -54,7 +61,9 @@ export default {
   watch: {
     value: {
       handler(val) {
-        this.date = new Date(val).toISOString().substr(0, 10);
+        if (val) {
+          this.date = format(new Date(val), "yyyy-MM-dd");
+        }
       },
       immediate: true
     },
