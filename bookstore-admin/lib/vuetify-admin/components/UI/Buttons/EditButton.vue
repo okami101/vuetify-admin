@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "EditButton",
   props: {
@@ -30,8 +32,11 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      apiResource: state => state.api.resource
+    }),
     currentResource() {
-      return this.resource || this.$route.meta.model;
+      return this.resource || this.apiResource;
     }
   }
 };

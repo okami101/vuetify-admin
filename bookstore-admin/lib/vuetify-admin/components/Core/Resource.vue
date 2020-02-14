@@ -1,6 +1,7 @@
 <script>
 import resource from "../../store/resource";
 import capitalize from "lodash/capitalize";
+import { mapMutations, mapActions } from "vuex";
 
 export default {
   name: "Resource",
@@ -53,6 +54,8 @@ export default {
 
     let beforeEnter = async (to, from, next) => {
       let { model, label, singular, stringify } = to.meta;
+      this.setResourceName(name);
+      this.setResourceLabel(label);
 
       switch (to.meta.action) {
         case "list":
@@ -66,16 +69,13 @@ export default {
           /**
            * Load model route and check validity before enter
            */
-          let response = await this.$store.dispatch("api/getOne", {
+          let model = await this.getOne({
             id: to.params.id
           });
 
-          to.meta.model = response;
           to.meta.title = `${capitalize(
             to.meta.action
-          )} ${singular.toLowerCase()} "${stringify(to.meta.model)}" (#${
-            to.meta.model.id
-          })`;
+          )} ${singular.toLowerCase()} "${stringify(model)}" (#${model.id})`;
           break;
       }
 
@@ -165,6 +165,13 @@ export default {
     ]);
   },
   methods: {
+    ...mapMutations({
+      setResourceName: "api/setResourceName",
+      setResourceLabel: "api/setResourceLabel"
+    }),
+    ...mapActions({
+      getOne: "api/getOne"
+    }),
     hasAction(name) {
       return this.actions.includes(name);
     }

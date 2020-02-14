@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "SimpleShow",
   props: {
@@ -25,10 +27,10 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {
-      resource: this.$route.meta.model
-    };
+  computed: {
+    ...mapState({
+      resource: state => state.api.resource
+    })
   }
 };
 </script>

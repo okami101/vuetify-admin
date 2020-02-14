@@ -11,7 +11,7 @@
       <span class="hidden-sm-and-down">{{ title }}</span>
     </v-toolbar-title>
     <v-spacer />
-    <v-btn icon small class="mr-4" :loading="loading">
+    <v-btn icon small class="mr-4" :loading="loading" @click="refresh">
       <v-icon>mdi-refresh</v-icon>
     </v-btn>
     <v-menu offset-y>
@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      refresh: "api/refresh",
       logout: "auth/logout"
     }),
     async doLogout() {

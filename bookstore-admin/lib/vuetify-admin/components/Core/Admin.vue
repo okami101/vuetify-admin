@@ -48,7 +48,7 @@ export default {
      * Auth store & api dispatcher module injection
      */
     this.$store.registerModule("auth", auth(this.authProvider));
-    this.$store.registerModule("api", api(this.$router));
+    this.$store.registerModule("api", api);
   },
   async mounted() {
     this.$router.beforeEach(async (to, from, next) => {

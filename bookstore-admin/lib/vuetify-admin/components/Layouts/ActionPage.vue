@@ -21,17 +21,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "ActionPage",
   props: {
     title: [String, Function]
   },
-  data() {
-    return {
-      resource: this.$route.meta.model
-    };
-  },
   computed: {
+    ...mapState({
+      resource: state => state.api.resource
+    }),
     getTitle() {
       return typeof this.title === "function"
         ? this.title(this.resource)

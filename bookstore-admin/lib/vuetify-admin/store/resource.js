@@ -21,7 +21,6 @@ export default (provider, resource, actions) => {
 
   return {
     namespaced: true,
-    state: { errors: {} },
     actions: storeActions
   };
 };

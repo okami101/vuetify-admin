@@ -3,15 +3,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "TextField",
   props: {
     value: String
   },
-  data() {
-    return {
-      resource: this.$route.meta.model
-    };
+  computed: {
+    ...mapState({
+      resource: state => state.api.resource
+    })
   }
 };
 </script>

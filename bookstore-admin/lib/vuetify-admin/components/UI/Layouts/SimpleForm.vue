@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "SimpleForm",
@@ -62,37 +62,51 @@ export default {
       saving: false,
       form: {},
       rules: {},
-      errors: {},
-      resource: this.$route.meta.model
+      errors: {}
     };
   },
+  computed: {
+    ...mapState({
+      resource: state => state.api.resource
+    })
+  },
   watch: {
+    resource(val) {
+      this.init();
+    },
     fields: {
       handler(val) {
-        /**
-         * Init form model
-         */
-        val.forEach(field => {
-          let { value, text } = field;
-          let rules = [];
-
-          if (field.required) {
-            rules.push(v => !!v || `${text} is required`);
-          }
-
-          this.rules[value] = rules;
-
-          if (this.resource) {
-            this.form[value] = this.resource[value];
-            return;
-          }
-          this.form[value] = null;
-        });
+        this.init();
       },
       immediate: true
     }
   },
   methods: {
+    init() {
+      /**
+       * Init form model
+       */
+      let form = {};
+
+      this.fields.forEach(field => {
+        let { value, text } = field;
+        let rules = [];
+
+        if (field.required) {
+          rules.push(v => !!v || `${text} is required`);
+        }
+
+        this.rules[value] = rules;
+
+        if (this.resource) {
+          form[value] = this.resource[value];
+          return;
+        }
+        form[value] = null;
+      });
+
+      this.form = form;
+    },
     ...mapActions({
       create: "api/create",
       update: "api/update"
