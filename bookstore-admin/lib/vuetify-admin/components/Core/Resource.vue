@@ -66,7 +66,7 @@ export default {
           /**
            * Load model route and check validity before enter
            */
-          let response = await this.$store.dispatch(`${name}/getOne`, {
+          let response = await this.$store.dispatch("api/getOne", {
             id: to.params.id
           });
 

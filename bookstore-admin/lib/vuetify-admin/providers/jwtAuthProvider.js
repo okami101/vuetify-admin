@@ -54,14 +54,6 @@ export default (entrypoint, options = {}) => {
       localStorage.removeItem("token");
       return Promise.resolve();
     },
-    refresh: async () => {
-      if (routes.refresh) {
-        let response = await doAuthenticatedAction(routes.refresh);
-        let json = await response.json();
-        localStorage.setItem("token", json[options.tokenProp]);
-      }
-      return Promise.resolve();
-    },
     getUser: async () => {
       let response = await doAuthenticatedAction(routes.user);
 
@@ -69,7 +61,16 @@ export default (entrypoint, options = {}) => {
         throw new Error(response.statusText);
       }
 
-      return await response.json();
+      /**
+       * Refresh token
+       */
+      if (routes.refresh) {
+        let response = await doAuthenticatedAction(routes.refresh);
+        let json = await response.json();
+        localStorage.setItem("token", json[options.tokenProp]);
+      }
+
+      return response.json();
     },
     getUsername: ({ name }) => {
       return name;

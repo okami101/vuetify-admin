@@ -26,9 +26,6 @@ export default provider => {
         await provider.logout();
         commit("setUser", null);
       },
-      refresh: () => {
-        return provider.refresh();
-      },
       loadUser: async ({ commit }) => {
         try {
           let user = await provider.getUser();

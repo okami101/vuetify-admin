@@ -144,9 +144,6 @@ export default {
       deep: true
     }
   },
-  async mounted() {
-    this.loadData();
-  },
   methods: {
     ...mapActions({
       getList: "api/getList",

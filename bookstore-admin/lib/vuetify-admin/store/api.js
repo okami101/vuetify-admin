@@ -15,12 +15,15 @@ export default router => {
 
   actions.forEach(action => {
     storeActions[action] = async ({ commit, dispatch }, params) => {
+      commit("setLoading", { action, loading: true });
       let { resource, label } = router.currentRoute.meta;
 
       try {
         let response = await dispatch(`${resource}/${action}`, params, {
           root: true
         });
+
+        commit("setLoading", { action, loading: false });
 
         switch (action) {
           case "create":
@@ -42,6 +45,7 @@ export default router => {
 
         return Promise.resolve(response);
       } catch (e) {
+        commit("setLoading", { action, loading: false });
         commit("showError", e.message);
         return Promise.reject(e);
       }
@@ -57,6 +61,14 @@ export default router => {
       snackbarColor: null
     },
     mutations: {
+      setLoading(state, { action, loading }) {
+        /**
+         * Global loading indicator only for main load operations
+         */
+        if (["getList", "getOne"].includes(action)) {
+          state.loading = loading;
+        }
+      },
       showSuccess(state, text) {
         state.snackbarText = text;
         state.snackbarColor = "success";
