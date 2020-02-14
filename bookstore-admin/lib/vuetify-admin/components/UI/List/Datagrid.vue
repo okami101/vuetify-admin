@@ -72,6 +72,7 @@
 <script>
 import debounce from "lodash/debounce";
 import { mapActions } from "vuex";
+import EventBus from "../../../utils/eventBus";
 
 export default {
   name: "Datagrid",
@@ -118,6 +119,14 @@ export default {
       options: {},
       selected: []
     };
+  },
+  mounted() {
+    EventBus.$on("refresh", () => {
+      this.loadData();
+    });
+  },
+  beforeDestroy() {
+    EventBus.$off("refresh");
   },
   computed: {
     headers() {

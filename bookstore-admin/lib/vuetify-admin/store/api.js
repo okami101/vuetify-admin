@@ -1,3 +1,5 @@
+import EventBus from "../utils/eventBus";
+
 const actions = [
   "getList",
   "getMany",
@@ -71,8 +73,7 @@ export default {
     snackbarColor: null,
     resourceName: null,
     resourceLabel: null,
-    resource: null,
-    list: []
+    resource: null
   },
   mutations: {
     setLoading(state, { action, loading }) {
@@ -91,6 +92,11 @@ export default {
     },
     setResourceLabel(state, label) {
       state.resourceLabel = label;
+    },
+    removeCurrentResource(state) {
+      state.resource = null;
+      state.resourceName = null;
+      state.resourceLabel = null;
     },
     showSuccess(state, text) {
       state.snackbarText = text;
@@ -121,6 +127,7 @@ export default {
           id: state.resource.id
         });
       }
+      EventBus.$emit("refresh");
     }
   }
 };

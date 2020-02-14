@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import auth from "../../store/auth";
 import api from "../../store/api";
 import AppLayout from "../Layouts/AppLayout";
@@ -64,6 +64,7 @@ export default {
         }
       }
 
+      this.removeCurrentResource();
       document.title = to.meta.title;
       next();
     });
@@ -88,6 +89,9 @@ export default {
     this.loaded = true;
   },
   methods: {
+    ...mapMutations({
+      removeCurrentResource: "api/removeCurrentResource"
+    }),
     ...mapActions({
       loadUser: "auth/loadUser"
     })
