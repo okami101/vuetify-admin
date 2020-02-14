@@ -15,40 +15,38 @@
     v-model="selected"
   >
     <template v-slot:top>
-      <v-row class="align-center" v-if="selected.length" color="blue lighten-5">
-        <v-col>
-          {{ selected.length }} item{{ selected.length > 1 ? "s" : "" }}
-          selected
-        </v-col>
+      <v-toolbar flat color="blue lighten-5" v-if="selected.length">
+        {{ selected.length }} item{{ selected.length > 1 ? "s" : "" }}
+        selected
         <v-spacer></v-spacer>
-        <v-col sm="auto">
+        <div>
           <va-delete-button @delete="onBlukDelete"></va-delete-button>
-        </v-col>
-      </v-row>
-      <v-row v-else>
-        <v-col sm="auto">
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-            dense
-            v-if="canSearch"
-            @input="onSearch"
-          ></v-text-field>
-        </v-col>
-        <v-col class="d-flex">
-          <v-spacer></v-spacer>
-          <va-create-button v-if="canCreate"></va-create-button>
-          <va-export-button
-            text
-            v-if="canExport"
-            :options="options"
-            :filter="filter"
-          ></va-export-button>
-        </v-col>
-      </v-row>
+        </div>
+      </v-toolbar>
+      <v-toolbar flat v-else>
+        <v-row>
+          <v-col sm="auto">
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+              dense
+              v-if="canSearch"
+              @input="onSearch"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-spacer></v-spacer>
+        <va-create-button v-if="canCreate"></va-create-button>
+        <va-export-button
+          text
+          v-if="canExport"
+          :options="options"
+          :filter="filter"
+        ></va-export-button>
+      </v-toolbar>
     </template>
     <template
       v-for="slot in Object.keys($scopedSlots)"
