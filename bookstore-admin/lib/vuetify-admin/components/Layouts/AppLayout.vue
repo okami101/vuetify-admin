@@ -18,6 +18,7 @@ import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
 import AppMessages from "./AppMessages";
 import AppBreadcrumbs from "./AppBreadcrumbs";
+import { mapState } from "vuex";
 
 export default {
   name: "AppLayout",
@@ -28,13 +29,17 @@ export default {
     AppBreadcrumbs
   },
   props: {
-    title: String,
     menu: Array
   },
   data() {
     return {
       mini: false
     };
+  },
+  computed: {
+    ...mapState({
+      title: state => state.api.title
+    })
   }
 };
 </script>

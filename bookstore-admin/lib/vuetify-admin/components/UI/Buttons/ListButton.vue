@@ -1,7 +1,7 @@
 <template>
-  <v-btn text exact :to="`/${$route.meta.resource}`" :color="color">
+  <v-btn text exact :to="`/${$store.state.api.resourceName}`" :color="color">
     <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ label }}
+    {{ $t("va.actions.list") }}
   </v-btn>
 </template>
 
@@ -12,10 +12,6 @@ export default {
     icon: {
       type: String,
       default: "mdi-view-list"
-    },
-    label: {
-      type: String,
-      default: "List"
     },
     color: {
       type: String,

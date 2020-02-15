@@ -1,7 +1,12 @@
 <template>
-  <v-btn text exact :to="`/${$route.meta.resource}/create`" :color="color">
+  <v-btn
+    text
+    exact
+    :to="`/${$store.state.api.resourceName}/create`"
+    :color="color"
+  >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ label }}
+    {{ $t("va.actions.create") }}
   </v-btn>
 </template>
 
@@ -12,10 +17,6 @@ export default {
     icon: {
       type: String,
       default: "mdi-plus"
-    },
-    label: {
-      type: String,
-      default: "Create"
     },
     color: {
       type: String,

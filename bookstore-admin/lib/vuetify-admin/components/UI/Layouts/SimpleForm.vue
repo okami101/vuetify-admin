@@ -68,7 +68,8 @@ export default {
   },
   computed: {
     ...mapState({
-      resource: state => state.api.resource
+      resource: state => state.api.resource,
+      resourceName: state => state.api.resourceName
     })
   },
   watch: {
@@ -141,7 +142,7 @@ export default {
           });
         }
 
-        this.$router.push(`/${this.$route.meta.resource}`);
+        this.$router.push(`/${this.resourceName}`);
       } catch ({ status, errors }) {
         if (status === 422) {
           this.errors = errors;

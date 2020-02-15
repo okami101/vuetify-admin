@@ -1,3 +1,37 @@
 {
-  "message": "hello va-admin !!"
+  "home": "Home",
+  "logout": "Logout",
+  "datagrid": {
+    "search": "Search",
+    "selected_items": "1 item selected | {count} items selected"
+  },
+  "actions": {
+    "list": "List",
+    "create": "Create",
+    "show": "Show",
+    "edit": "Edit",
+    "delete": "Delete",
+    "export": "Export"
+  },
+  "titles": {
+    "list": "List of {resource}",
+    "create": "Create new {resource}",
+    "show": "Show {resource} \"{title}\" (#{id})",
+    "edit": "Edit {resource} \"{title}\" (#{id})"
+  },
+  "messages": {
+    "created": "New {resource} successfully created !",
+    "updated": "{resource} #{id} successfully updated !",
+    "deleted": "{resource} #{id} successfully deleted !",
+    "updated_many": "{count} {resource} successfully updated !",
+    "deleted_many": "{count} {resource} successfully deleted !"
+  },
+  "confirm": {
+    "yes": "Yes",
+    "no": "No",
+    "delete_title": "Delete {resource} #{id} ?",
+    "delete_message": "You are about deleting {resource} \"{title}\". This operation is irreversible !",
+    "delete_many_title": "Delete {count} {resource} ?",
+    "delete_many_message": "You are about deleting {count} {resource}. This operation is irreversible !"
+  }
 }

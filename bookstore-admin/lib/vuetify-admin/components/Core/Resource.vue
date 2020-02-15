@@ -1,6 +1,5 @@
 <script>
 import resource from "../../store/resource";
-import capitalize from "lodash/capitalize";
 import { mapMutations, mapActions } from "vuex";
 
 export default {
@@ -10,15 +9,7 @@ export default {
       type: String,
       required: true
     },
-    label: {
-      type: String,
-      required: true
-    },
-    singular: {
-      type: String,
-      required: true
-    },
-    stringify: {
+    humanize: {
       type: [String, Function],
       required: true
     },
@@ -46,40 +37,38 @@ export default {
     let name = this.name;
     let children = [];
     let meta = {
-      resource: name,
-      label: this.label,
-      singular: this.singular,
-      stringify: this.stringify
+      humanize: this.humanize
     };
 
     let beforeEnter = async (to, from, next) => {
-      let { model, label, singular, stringify } = to.meta;
       this.setResourceName(name);
-      this.setResourceLabel(label);
 
       switch (to.meta.action) {
         case "list":
-          to.meta.title = `List of ${label.toLowerCase()}`;
+          to.meta.title = this.$t("va.titles.list", {
+            resource: this.$tc(`resources.${name}`, 10).toLowerCase()
+          });
           break;
         case "create":
-          to.meta.title = `Create new ${singular.toLowerCase()}`;
+          to.meta.title = this.$t("va.titles.create", {
+            resource: this.$tc(`resources.${name}`, 1).toLowerCase()
+          });
           break;
         case "show":
         case "edit":
           /**
-           * Load model route and check validity before enter
+           * Load linked resource route
            */
-          let model = await this.getOne({
+          let resource = await this.getOne({
             id: to.params.id
           });
 
-          to.meta.title = `${capitalize(
-            to.meta.action
-          )} ${singular.toLowerCase()} "${stringify(model)}" (#${model.id})`;
+          to.meta.title = this.$t(`va.titles.${to.meta.action}`, {
+            resource: this.$tc(`resources.${name}`, 1).toLowerCase(),
+            id: resource.id
+          });
           break;
       }
-
-      document.title = to.meta.title;
       next();
     };
 
@@ -158,7 +147,7 @@ export default {
           }
         },
         meta: {
-          title: this.label
+          title: this.$tc(`resources.${name}`, 10)
         },
         children
       }

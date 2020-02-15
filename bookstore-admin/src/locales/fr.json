@@ -27,12 +27,9 @@
     "reviews": "Commentaires"
   },
   "resources": {
-    "publishers": "Editeurs",
-    "publisher": "Editeur",
-    "books": "Livres",
-    "book": "Livre",
-    "reviews": "Commentaires",
-    "review": "Commentaire"
+    "publishers": "Editeur | Editeurs",
+    "books": "Livre | Livres",
+    "reviews": "Commentaire | Commentaires"
   },
   "attributes": {
     "isbn": "ISBN",

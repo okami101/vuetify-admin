@@ -9,7 +9,7 @@ export default {
     items() {
       return [
         {
-          text: "Home",
+          text: this.$t("va.home"),
           exact: true,
           to: "/"
         },

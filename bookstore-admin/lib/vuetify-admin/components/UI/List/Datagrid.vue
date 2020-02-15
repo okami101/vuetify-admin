@@ -16,8 +16,7 @@
   >
     <template v-slot:top>
       <v-toolbar flat color="blue lighten-5" v-if="selected.length">
-        {{ selected.length }} item{{ selected.length > 1 ? "s" : "" }}
-        selected
+        {{ $tc("va.datagrid.selected_items", selected.length) }}
         <v-spacer></v-spacer>
         <div>
           <va-delete-button @delete="onBlukDelete"></va-delete-button>
@@ -29,7 +28,7 @@
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Search"
+              :label="$t('va.datagrid.search')"
               single-line
               hide-details
               dense
@@ -69,7 +68,7 @@
 
 <script>
 import debounce from "lodash/debounce";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import EventBus from "../../../utils/eventBus";
 
 export default {
@@ -127,6 +126,9 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
+    ...mapState({
+      resourceName: state => state.api.resourceName
+    }),
     headers() {
       return [
         { value: "id", text: "ID", align: "right", sortable: true },
@@ -190,8 +192,20 @@ export default {
     async onBlukDelete() {
       if (
         await this.$confirm(
-          `Delete ${this.selected.length} items ?`,
-          `You are about deleting ${this.selected.length} items. This operation is irreversible !`
+          this.$t("va.confirm.delete_many_title", {
+            resource: this.$tc(
+              `resources.${this.resourceName}`,
+              this.selected.length
+            ).toLowerCase(),
+            count: this.selected.length
+          }),
+          this.$t("va.confirm.delete_many_message", {
+            resource: this.$tc(
+              `resources.${this.resourceName}`,
+              this.selected.length
+            ).toLowerCase(),
+            count: this.selected.length
+          })
         )
       ) {
         await this.deleteMany({ ids: this.selected.map(({ id }) => id) });

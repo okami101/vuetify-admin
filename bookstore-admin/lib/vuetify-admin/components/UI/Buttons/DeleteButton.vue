@@ -3,7 +3,7 @@
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
-    {{ label }}
+    {{ $t("va.actions.delete") }}
   </v-btn>
 </template>
 
@@ -19,10 +19,6 @@ export default {
       type: String,
       default: "mdi-trash-can"
     },
-    label: {
-      type: String,
-      default: "Delete"
-    },
     color: {
       type: String,
       default: "red"
@@ -30,6 +26,7 @@ export default {
   },
   computed: {
     ...mapState({
+      resourceName: state => state.api.resourceName,
       apiResource: state => state.api.resource
     }),
     currentResource() {
@@ -46,13 +43,22 @@ export default {
         return;
       }
 
-      let { singular } = this.$route.meta;
       if (
         await this.$confirm(
-          `Delete ${singular.toLowerCase()} #${this.currentResource.id} ?`,
-          `You are about deleting ${singular.toLowerCase()} "${this.$route.meta.stringify(
-            this.currentResource
-          )}". This operation is irreversible !`
+          this.$t("va.confirm.delete_title", {
+            resource: this.$tc(
+              `resources.${this.resourceName}`,
+              1
+            ).toLowerCase(),
+            id: this.currentResource.id
+          }),
+          this.$t("va.confirm.delete_message", {
+            resource: this.$tc(
+              `resources.${this.resourceName}`,
+              1
+            ).toLowerCase(),
+            title: this.$route.meta.humanize(this.currentResource)
+          })
         )
       ) {
         await this.delete({ id: this.currentResource.id });
@@ -62,7 +68,7 @@ export default {
          * Redirect to list if deleting on current ressource
          */
         if (["show", "edit"].includes(this.$route.meta.action)) {
-          this.$router.push(`/${this.$route.meta.resource}`);
+          this.$router.push(`/${$store.state.api.resourceName}`);
         }
       }
     }

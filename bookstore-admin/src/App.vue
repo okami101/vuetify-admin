@@ -5,23 +5,11 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <va-resource
-      name="publishers"
-      :label="$t('resources.publishers')"
-      :singular="$t('resources.publisher')"
-      :stringify="({ name }) => name"
-    ></va-resource>
-    <va-resource
-      name="books"
-      :label="$t('resources.books')"
-      :singular="$t('resources.book')"
-      :stringify="({ title }) => title"
-    ></va-resource>
+    <va-resource name="publishers" :humanize="({ name }) => name"></va-resource>
+    <va-resource name="books" :humanize="({ title }) => title"></va-resource>
     <va-resource
       name="reviews"
-      :label="$t('resources.reviews')"
-      :singular="$t('resources.review')"
-      :stringify="({ author }) => author"
+      :humanize="({ author }) => author"
     ></va-resource>
   </va-admin>
 </template>

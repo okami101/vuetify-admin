@@ -4,7 +4,7 @@
       <v-content v-if="unauthenticatedRoute">
         <router-view></router-view>
       </v-content>
-      <app-layout v-else-if="user" :title="title" :menu="menu"></app-layout>
+      <app-layout v-else-if="user" :menu="menu"></app-layout>
       <slot></slot>
     </div>
     <v-overlay v-else>
@@ -57,7 +57,7 @@ export default {
      * Auth store & api dispatcher module injection
      */
     this.$store.registerModule("auth", auth(this.authProvider));
-    this.$store.registerModule("api", api);
+    this.$store.registerModule("api", api(this.$i18n));
   },
   async mounted() {
     this.$router.beforeEach(async (to, from, next) => {
@@ -73,8 +73,8 @@ export default {
         }
       }
 
+      this.setTitle(this.title);
       this.removeCurrentResource();
-      document.title = `${to.meta.title} | ${this.title}`;
       next();
     });
 
@@ -94,11 +94,11 @@ export default {
       }
     }
 
-    document.title = `${this.$route.meta.title} | ${this.title}`;
     this.loaded = true;
   },
   methods: {
     ...mapMutations({
+      setTitle: "api/setTitle",
       removeCurrentResource: "api/removeCurrentResource"
     }),
     ...mapActions({

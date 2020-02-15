@@ -1,7 +1,7 @@
 <template>
   <v-btn text @click="onExport" color="primary">
     <v-icon small class="mr-2">mdi-download</v-icon>
-    Export
+    {{ $t("va.actions.export") }}
   </v-btn>
 </template>
 
@@ -65,7 +65,7 @@ export default {
       /**
        * Magic download
        */
-      const fileName = this.$route.meta.resource;
+      const fileName = this.$store.state.api.resourceName;
       const blob = new Blob([csv], { type: "text/csv" });
 
       if (window.navigator && window.navigator.msSaveOrOpenBlob) {

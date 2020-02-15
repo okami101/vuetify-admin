@@ -27,12 +27,9 @@
     "reviews": "Reviews"
   },
   "resources": {
-    "publishers": "Publishers",
-    "publisher": "Publisher",
-    "books": "Books",
-    "book": "Book",
-    "reviews": "Reviews",
-    "review": "Review"
+    "publishers": "Publisher | Publishers",
+    "books": "Book | Books",
+    "reviews": "Review | Reviews"
   },
   "attributes": {
     "isbn": "ISBN",

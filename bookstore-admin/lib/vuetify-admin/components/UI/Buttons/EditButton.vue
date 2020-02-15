@@ -3,12 +3,12 @@
     v-if="currentResource"
     text
     exact
-    :to="`/${$route.meta.resource}/${currentResource.id}/edit`"
+    :to="`/${$store.state.api.resourceName}/${currentResource.id}/edit`"
     @click="$emit('edit', currentResource)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ label }}
+    {{ $t("va.actions.edit") }}
   </v-btn>
 </template>
 
@@ -22,10 +22,6 @@ export default {
     icon: {
       type: String,
       default: "mdi-pencil"
-    },
-    label: {
-      type: String,
-      default: "Edit"
     },
     color: {
       type: String,

@@ -3,12 +3,12 @@
     v-if="currentResource"
     text
     exact
-    :to="`/${$route.meta.resource}/${currentResource.id}`"
+    :to="`/${$store.state.api.resourceName}/${currentResource.id}`"
     @click="$emit('show', currentResource)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ label }}
+    {{ $t("va.actions.show") }}
   </v-btn>
 </template>
 
@@ -22,10 +22,6 @@ export default {
     icon: {
       type: String,
       default: "mdi-eye"
-    },
-    label: {
-      type: String,
-      default: "Show"
     },
     color: {
       type: String,

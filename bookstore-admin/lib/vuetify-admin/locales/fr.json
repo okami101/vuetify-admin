@@ -1,3 +1,37 @@
 {
-  "message": "bonjour va-admin !!"
+  "home": "Accueil",
+  "logout": "Se déconnecter",
+  "datagrid": {
+    "search": "Rechercher",
+    "selected_items": "1 élément sélectionné | {count} éléments sélectionnés"
+  },
+  "actions": {
+    "list": "Liste",
+    "create": "Créer",
+    "show": "Voir",
+    "edit": "Editer",
+    "delete": "Supprimer",
+    "export": "Exporter"
+  },
+  "titles": {
+    "list": "Liste des {resource}",
+    "create": "Créer nouveau '{resource}'",
+    "show": "Voir {resource} \"{title}\" (#{id})",
+    "edit": "Editer {resource} \"{title}\" (#{id})"
+  },
+  "messages": {
+    "created": "Nouveau {resource} créé avec succès !",
+    "updated": "{resource} #{id} mis à jour avec succès !",
+    "deleted": "{resource} #{id} supprimé avec succès !",
+    "updated_many": "{count} {resource} mis à jour avec succès !",
+    "deleted_many": "{count} {resource} supprimé avec succès !"
+  },
+  "confirm": {
+    "yes": "Oui",
+    "no": "Non",
+    "delete_title": "Supprimer {resource} #{id} ?",
+    "delete_message": "Vous êtes sur le point de supprimer {resource} \"{title}\". Cette opération est irréversible !",
+    "delete_many_title": "Supprimer {count} {resource} ?",
+    "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !"
+  }
 }
