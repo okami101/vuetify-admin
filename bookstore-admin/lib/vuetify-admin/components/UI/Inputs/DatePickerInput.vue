@@ -31,14 +31,8 @@ import format from "date-fns/format";
 export default {
   name: "DatePickerInput",
   props: {
-    value: {
-      type: String,
-      default: null
-    },
-    label: {
-      type: String,
-      required: true
-    },
+    value: String,
+    label: String,
     rules: {
       type: Array,
       default: () => []

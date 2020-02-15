@@ -19,6 +19,9 @@ import auth from "../../store/auth";
 import api from "../../store/api";
 import AppLayout from "../Layouts/AppLayout";
 
+import en from "../../locales/en.json";
+import fr from "../../locales/fr.json";
+
 export default {
   name: "Admin",
   components: {
@@ -45,6 +48,12 @@ export default {
   },
   created() {
     /**
+     * Load locales
+     */
+    this.$i18n.setLocaleMessage("en", { va: en });
+    this.$i18n.setLocaleMessage("fr", { va: fr });
+
+    /**
      * Auth store & api dispatcher module injection
      */
     this.$store.registerModule("auth", auth(this.authProvider));
@@ -65,7 +74,7 @@ export default {
       }
 
       this.removeCurrentResource();
-      document.title = to.meta.title;
+      document.title = `${to.meta.title} | ${this.title}`;
       next();
     });
 
@@ -85,7 +94,7 @@ export default {
       }
     }
 
-    document.title = this.$route.meta.title;
+    document.title = `${this.$route.meta.title} | ${this.title}`;
     this.loaded = true;
   },
   methods: {

@@ -9,10 +9,10 @@ export default {
   data() {
     return {
       fields: [
-        { value: "isbn", text: "ISBN", sortable: true },
-        { value: "title", text: "Title", sortable: true },
-        { value: "author", text: "Author", sortable: true },
-        { value: "publication_date", text: "Publication date", sortable: true }
+        { value: "isbn", sortable: true },
+        { value: "title", sortable: true },
+        { value: "author", sortable: true },
+        { value: "publication_date", sortable: true }
       ]
     };
   }

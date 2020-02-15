@@ -18,9 +18,9 @@ export default {
   data() {
     return {
       fields: [
-        { value: "rating", text: "Rating", sortable: true },
-        { value: "author", text: "Author", sortable: true },
-        { value: "publication_date", text: "Publication date", sortable: true }
+        { value: "rating", sortable: true },
+        { value: "author", sortable: true },
+        { value: "publication_date", sortable: true }
       ]
     };
   }

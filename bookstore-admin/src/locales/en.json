@@ -1,0 +1,54 @@
+{
+  "routes": {
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "help": "Help",
+    "settings": "Settings",
+    "feedback": "Feedback"
+  },
+  "login": {
+    "title": "Bookstore Admin",
+    "username": "Username",
+    "password": "Password",
+    "sign_in": "sign_in"
+  },
+  "menu": {
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "help": "Help",
+    "settings": "Settings",
+    "feedback": "Feedback",
+    "other": "Other",
+    "bookstore": "Bookstore",
+    "list": "List",
+    "create": "Create",
+    "publishers": "Publishers",
+    "books": "Books",
+    "reviews": "Reviews"
+  },
+  "resources": {
+    "publishers": "Publishers",
+    "publisher": "Publisher",
+    "books": "Books",
+    "book": "Book",
+    "reviews": "Reviews",
+    "review": "Review"
+  },
+  "attributes": {
+    "isbn": "ISBN",
+    "name": "Name",
+    "title": "Title",
+    "description": "Description",
+    "body": "Body",
+    "publication_date": "Publication date",
+    "founder": "Founder",
+    "headquarter": "Headquarter",
+    "opening_date": "Opening date",
+    "rating": "Rating",
+    "publisher": "Publisher",
+    "book": "Book",
+    "reviews": "Reviews",
+    "attributes": "Attributes",
+    "summary": "Summary"
+  }
+}

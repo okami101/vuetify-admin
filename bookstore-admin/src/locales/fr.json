@@ -1,0 +1,54 @@
+{
+  "routes": {
+    "login": "Login",
+    "dashboard": "Tableau de bord",
+    "help": "Aide",
+    "settings": "Paramètres",
+    "feedback": "Feedback"
+  },
+  "login": {
+    "title": "Bookstore Admin",
+    "username": "Utilisateur",
+    "password": "Mot de passe",
+    "sign_in": "Se connecter"
+  },
+  "menu": {
+    "login": "Login",
+    "dashboard": "Tableau de bord",
+    "help": "Aide",
+    "settings": "Paramètres",
+    "feedback": "Feedback",
+    "other": "Autre",
+    "bookstore": "Bookstore",
+    "list": "Liste",
+    "create": "Créer",
+    "publishers": "Editeurs",
+    "books": "Livres",
+    "reviews": "Commentaires"
+  },
+  "resources": {
+    "publishers": "Editeurs",
+    "publisher": "Editeur",
+    "books": "Livres",
+    "book": "Livre",
+    "reviews": "Commentaires",
+    "review": "Commentaire"
+  },
+  "attributes": {
+    "isbn": "ISBN",
+    "name": "Nom",
+    "title": "Titre",
+    "description": "Description",
+    "body": "Corps",
+    "publication_date": "Date de publication",
+    "founder": "Fondateur",
+    "headquarter": "Siège",
+    "opening_date": "Date d'ouverture",
+    "rating": "Note",
+    "publisher": "Editeur",
+    "book": "Livre",
+    "reviews": "Commentaires",
+    "attributes": "Attributs",
+    "summary": "Résumé"
+  }
+}

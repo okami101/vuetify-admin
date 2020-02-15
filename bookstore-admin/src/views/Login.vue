@@ -5,11 +5,11 @@
         <v-form ref="form" @submit.prevent="validate">
           <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>Login form</v-toolbar-title>
+              <v-toolbar-title>{{ $t("login.title") }}</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <v-text-field
-                label="Login"
+                :label="$t('login.username')"
                 prepend-icon="mdi-account"
                 :rules="usernameRules"
                 v-model="username"
@@ -19,7 +19,7 @@
               ></v-text-field>
 
               <v-text-field
-                label="Password"
+                :label="$t('login.password')"
                 prepend-icon="mdi-lock"
                 type="password"
                 :rules="passwordRules"
@@ -34,7 +34,7 @@
                 block
                 x-large
                 type="submit"
-                >Login</v-btn
+                >{{ $t("login.sign_in") }}</v-btn
               >
             </v-card-actions>
           </v-card>

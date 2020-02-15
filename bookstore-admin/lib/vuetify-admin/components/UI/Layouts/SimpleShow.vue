@@ -1,5 +1,5 @@
 <template>
-  <v-list dense>
+  <v-list dense v-if="resource">
     <v-list-item v-for="field in fields" :key="field.value" class="px-0">
       <v-list-item-content>
         <v-list-item-title>

@@ -18,10 +18,10 @@ export default {
   data() {
     return {
       fields: [
-        { value: "rating", text: "Rating" },
-        { value: "body", text: "Body" },
-        { value: "author", text: "Author" },
-        { value: "publication_date", text: "Publication date" }
+        { value: "rating" },
+        { value: "body" },
+        { value: "author" },
+        { value: "publication_date" }
       ]
     };
   }

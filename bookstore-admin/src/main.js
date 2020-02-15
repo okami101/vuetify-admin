@@ -6,6 +6,7 @@ import VuetifyAdmin from "vuetify-admin";
 import App from "./App.vue";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
+import i18n from "./i18n";
 
 Vue.config.productionTip = false;
 
@@ -24,8 +25,9 @@ files.keys().map(key => {
 });
 
 new Vue({
-  router,
+  router: router(i18n),
   store,
   vuetify,
+  i18n,
   render: h => h(App)
 }).$mount("#app");

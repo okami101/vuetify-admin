@@ -9,10 +9,10 @@ export default {
   data() {
     return {
       fields: [
-        { value: "name", text: "Name", sortable: true },
-        { value: "founder", text: "Founder", sortable: true },
-        { value: "headquarter", text: "Headquarter", sortable: true },
-        { value: "opening_date", text: "Opening date", sortable: true }
+        { value: "name", sortable: true },
+        { value: "founder", sortable: true },
+        { value: "headquarter", sortable: true },
+        { value: "opening_date", sortable: true }
       ]
     };
   }

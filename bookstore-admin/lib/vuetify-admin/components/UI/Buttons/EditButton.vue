@@ -1,5 +1,6 @@
 <template>
   <v-btn
+    v-if="currentResource"
     text
     exact
     :to="`/${$route.meta.resource}/${currentResource.id}/edit`"
