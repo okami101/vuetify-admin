@@ -130,7 +130,12 @@ export default {
     headers() {
       return [
         { value: "id", text: "ID", align: "right", sortable: true },
-        ...this.fields,
+        ...this.fields.map(field => {
+          return {
+            text: this.$t(`attributes.${field.value}`),
+            ...field
+          };
+        }),
         { value: "action", sortable: false }
       ];
     },

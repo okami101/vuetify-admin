@@ -50,8 +50,8 @@ export default {
     /**
      * Load locales
      */
-    this.$i18n.setLocaleMessage("en", { va: en });
-    this.$i18n.setLocaleMessage("fr", { va: fr });
+    this.$i18n.mergeLocaleMessage("en", { va: en });
+    this.$i18n.mergeLocaleMessage("fr", { va: fr });
 
     /**
      * Auth store & api dispatcher module injection

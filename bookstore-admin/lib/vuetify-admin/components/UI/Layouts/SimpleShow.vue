@@ -3,7 +3,7 @@
     <v-list-item v-for="field in fields" :key="field.value" class="px-0">
       <v-list-item-content>
         <v-list-item-title>
-          {{ field.text }}
+          {{ field.text || $t(`attributes.${field.value}`) }}
         </v-list-item-title>
         <slot
           :name="field.value"

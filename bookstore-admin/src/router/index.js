@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login";
 import Dashboard from "../views/Dashboard";
-import i18n from "../i18n";
 
 Vue.use(VueRouter);
 

@@ -1,5 +1,6 @@
 <template>
   <v-form
+    v-if="resource"
     ref="form"
     :style="{ 'max-width': `${width}px` }"
     @submit.prevent="onSave"
@@ -9,7 +10,7 @@
         v-if="field.type === 'text'"
         :key="field.value"
         v-model="form[field.value]"
-        :label="field.text"
+        :label="getLabel(field)"
         :rules="rules[field.value]"
         :error-messages="errors[field.value]"
         auto-grow
@@ -19,7 +20,7 @@
         v-else-if="field.type === 'date'"
         :key="field.value"
         v-model="form[field.value]"
-        :label="field.text"
+        :label="getLabel(field)"
         :rules="rules[field.value]"
         :error-messages="errors[field.value]"
         filled
@@ -28,7 +29,7 @@
         v-else
         :key="field.value"
         v-model="form[field.value]"
-        :label="field.text"
+        :label="getLabel(field)"
         :rules="rules[field.value]"
         :error-messages="errors[field.value]"
         filled
@@ -71,39 +72,49 @@ export default {
     })
   },
   watch: {
-    resource(val) {
+    resource() {
       this.init();
     },
     fields: {
-      handler(val) {
+      handler() {
         this.init();
       },
       immediate: true
     }
   },
   methods: {
+    getLabel(field) {
+      return field.text || this.$t(`attributes.${field.value}`);
+    },
     init() {
       /**
        * Init form model
        */
       let form = {};
 
-      this.fields.forEach(field => {
-        let { value, text } = field;
-        let rules = [];
+      this.fields
+        .map(field => {
+          return {
+            text: this.$t(`attributes.${field.value}`),
+            ...field
+          };
+        })
+        .forEach(field => {
+          let { value, text } = field;
+          let rules = [];
 
-        if (field.required) {
-          rules.push(v => !!v || `${text} is required`);
-        }
+          if (field.required) {
+            rules.push(v => !!v || `${text} is required`);
+          }
 
-        this.rules[value] = rules;
+          this.rules[value] = rules;
 
-        if (this.resource) {
-          form[value] = this.resource[value];
-          return;
-        }
-        form[value] = null;
-      });
+          if (this.resource) {
+            form[value] = this.resource[value];
+            return;
+          }
+          form[value] = null;
+        });
 
       this.form = form;
     },
