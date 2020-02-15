@@ -22,7 +22,11 @@ export default {
         { value: "author", sortable: true },
         { value: "publication_date", sortable: true }
       ],
-      filters: [{ value: "rating", type: "integer" }, { value: "author" }]
+      filters: [
+        { value: "q", icon: "mdi-magnify", alwaysOn: true },
+        { value: "rating" },
+        { value: "author" }
+      ]
     };
   }
 };

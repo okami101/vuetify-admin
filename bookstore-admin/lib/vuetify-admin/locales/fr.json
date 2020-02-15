@@ -4,7 +4,6 @@
   "close": "Fermer",
   "save": "Enregistrer",
   "datagrid": {
-    "search": "Rechercher",
     "add_filter": "Ajouter un filtre",
     "export": "Exporter",
     "selected_items": "1 élément sélectionné | {count} éléments sélectionnés"

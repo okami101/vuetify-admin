@@ -47,6 +47,7 @@
     "book": "Book",
     "reviews": "Reviews",
     "attributes": "Attributes",
-    "summary": "Summary"
+    "summary": "Summary",
+    "search": "Search"
   }
 }

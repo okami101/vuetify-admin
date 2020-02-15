@@ -30,7 +30,7 @@ class ReviewController extends Controller
             QueryBuilder::for(Review::class)
                 ->allowedFields(['id', 'book_id', 'rating', 'body', 'author', 'publication_date'])
                 ->allowedFilters([
-                    AllowedFilter::custom('search', new SearchFilter(['author', 'body'])),
+                    AllowedFilter::custom('q', new SearchFilter(['author', 'body'])),
                     AllowedFilter::exact('id'),
                     AllowedFilter::exact('book_id'),
                     AllowedFilter::exact('rating'),

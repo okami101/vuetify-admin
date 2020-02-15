@@ -27,34 +27,24 @@
         </div>
       </v-toolbar>
       <v-toolbar flat v-else>
-        <v-row>
-          <v-col sm="auto">
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              :label="$t('va.datagrid.search')"
-              single-line
-              hide-details
-              dense
-              filled
-              v-if="canSearch"
-              @input="onSearch"
-            ></v-text-field>
-          </v-col>
-        </v-row>
+        <form-filter
+          :filters="enabledFilters"
+          @remove="disableFilter"
+          v-model="currentFilter"
+        ></form-filter>
         <v-spacer></v-spacer>
-        <v-menu offset-y>
+        <v-menu offset-y v-if="disabledFilters.length">
           <template v-slot:activator="{ on }">
-            <v-btn v-if="filters.length" text color="primary" v-on="on">
+            <v-btn text color="primary" v-on="on">
               <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
               {{ $t("va.datagrid.add_filter") }}
             </v-btn>
           </template>
           <v-list>
             <v-list-item
-              v-for="(filter, index) in filters"
+              v-for="(filter, index) in disabledFilters"
               :key="index"
-              @click="addFilter"
+              @click="enableFilter(filter)"
             >
               <v-list-item-title>{{
                 filter.text || $t(`attributes.${filter.value}`)
@@ -67,7 +57,7 @@
           text
           v-if="canExport"
           :options="options"
-          :filter="filter"
+          :filter="{ ...filter, ...currentFilter }"
         ></va-export-button>
       </v-toolbar>
     </template>
@@ -91,24 +81,27 @@
 </template>
 
 <script>
-import debounce from "lodash/debounce";
+import FormFilter from "./FormFilter";
 import { mapState, mapActions } from "vuex";
 import EventBus from "../../../utils/eventBus";
 
 export default {
   name: "Datagrid",
+  components: {
+    FormFilter
+  },
   props: {
     fields: {
       type: Array,
       default: () => []
     },
+    filter: {
+      type: Object,
+      default: () => {}
+    },
     filters: {
       type: Array,
       default: () => []
-    },
-    canSearch: {
-      type: Boolean,
-      default: true
     },
     canCreate: {
       type: Boolean,
@@ -137,8 +130,9 @@ export default {
   },
   data() {
     return {
-      search: null,
       loading: false,
+      currentFilter: {},
+      currentFilters: false,
       items: [],
       total: 0,
       options: {},
@@ -146,18 +140,7 @@ export default {
     };
   },
   mounted() {
-    /**
-     * Apply current route query into datagrid filter
-     */
-    const { search, perPage, page, sortBy, sortDesc } = this.$route.query;
-    this.search = search;
-    this.options = {
-      ...this.options,
-      perPage: perPage ? parseInt(perPage, 10) : 1,
-      page: page ? parseInt(page, 10) : 1,
-      sortBy: sortBy ? sortBy.split(",") : [],
-      sortDesc: sortDesc ? sortDesc.split(",").map(bool => bool === "true") : []
-    };
+    this.initFiltersFromQuery();
 
     EventBus.$on("refresh", () => {
       this.loadData();
@@ -170,6 +153,16 @@ export default {
     ...mapState({
       resourceName: state => state.api.resourceName
     }),
+    enabledFilters() {
+      return this.currentFilters.filter(f => {
+        return f.alwaysOn || f.active;
+      });
+    },
+    disabledFilters() {
+      return this.currentFilters.filter(f => {
+        return !f.alwaysOn && !f.active;
+      });
+    },
     headers() {
       return [
         { value: "id", text: "ID", align: "right", sortable: true },
@@ -181,20 +174,26 @@ export default {
         }),
         { value: "action", sortable: false }
       ];
-    },
-    filter() {
-      let filter = {};
-
-      if (this.search) {
-        filter.search = this.search;
-      }
-      return filter;
     }
   },
   watch: {
     options: {
-      async handler() {
+      handler() {
         this.loadData();
+      },
+      deep: true
+    },
+    filters: {
+      handler(val) {
+        this.currentFilters = val;
+      },
+      deep: true,
+      immediate: true
+    },
+    currentFilter: {
+      handler() {
+        this.loadData();
+        this.updateQuery();
       },
       deep: true
     }
@@ -204,7 +203,43 @@ export default {
       getList: "api/getList",
       deleteMany: "api/deleteMany"
     }),
-    addFilter() {},
+    initFiltersFromQuery() {
+      /**
+       * Apply current route query into datagrid filter
+       */
+      const { perPage, page, sortBy, sortDesc, filter } = this.$route.query;
+
+      this.options = {
+        ...this.options,
+        perPage: perPage ? parseInt(perPage, 10) : 1,
+        page: page ? parseInt(page, 10) : 1,
+        sortBy: sortBy ? sortBy.split(",") : [],
+        sortDesc: sortDesc
+          ? sortDesc.split(",").map(bool => bool === "true")
+          : []
+      };
+
+      if (filter) {
+        this.currentFilter = JSON.parse(filter);
+
+        for (let prop in this.currentFilter) {
+          let filter = this.currentFilters.find(f => f.value === prop);
+
+          if (filter) {
+            filter.active = true;
+          }
+        }
+        this.currentFilters = [...this.currentFilters];
+      }
+    },
+    enableFilter(filter) {
+      filter.active = true;
+      this.currentFilters = [...this.currentFilters];
+    },
+    disableFilter(filter) {
+      filter.active = false;
+      this.currentFilters = [...this.currentFilters];
+    },
     updateQuery() {
       /**
        * Update query router
@@ -216,7 +251,7 @@ export default {
             page: this.options.page,
             sortBy: this.options.sortBy.join(","),
             sortDesc: this.options.sortDesc.join(","),
-            search: this.search
+            filter: JSON.stringify(this.currentFilter)
           }
         })
         .catch(e => {});
@@ -234,17 +269,16 @@ export default {
         sort: sortBy.map((by, index) => {
           return { by, desc: sortDesc[index] };
         }),
-        filter: this.filter
+        filter: {
+          ...this.filter,
+          ...this.currentFilter
+        }
       });
 
       this.loading = false;
       this.items = data;
       this.total = total;
     },
-    onSearch: debounce(function() {
-      this.loadData();
-      this.updateQuery();
-    }, 200),
     async onDelete(item) {
       this.loadData();
     },

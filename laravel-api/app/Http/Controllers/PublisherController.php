@@ -30,7 +30,7 @@ class PublisherController extends Controller
             QueryBuilder::for(Publisher::class)
                 ->allowedFields('id', 'name', 'description', 'founder', 'headquarter', 'opening_date')
                 ->allowedFilters([
-                    AllowedFilter::custom('search', new SearchFilter(['name', 'founder', 'headquarter', 'description'])),
+                    AllowedFilter::custom('q', new SearchFilter(['name', 'founder', 'headquarter', 'description'])),
                     AllowedFilter::exact('id'),
                     'name',
                     'founder',
