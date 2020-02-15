@@ -70,7 +70,7 @@ export default i18n => {
               i18n.t("va.messages.deleted", {
                 resource: i18n.tc(`resources.${state.resourceName}`, 1),
                 id: params.id
-              })`${state.resourceLabel} #${params.id} deleted !`
+              })
             );
             break;
           case "deleteMany":
@@ -88,8 +88,13 @@ export default i18n => {
 
         return Promise.resolve(response);
       } catch (e) {
+        let message = e.message;
         commit("setLoading", { action, loading: false });
-        commit("showError", e.message);
+
+        if (e.status === 422) {
+          message = i18n.t("va.forms.validation_error");
+        }
+        commit("showError", message);
         return Promise.reject(e);
       }
     };

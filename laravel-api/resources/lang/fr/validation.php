@@ -175,5 +175,18 @@ return [
         'time'                  => 'heure',
         'available'             => 'disponible',
         'size'                  => 'taille',
+
+        # APP
+        'isbn' => 'isbn',
+        'body' => 'corps',
+        'publication_date' => 'date de publication',
+        'founder' => 'fondateur',
+        'author' => 'auteur',
+        'headquarter' => 'siège',
+        'opening_date' => 'date d\'ouverture',
+        'rating' => 'note',
+        'publisher' => 'éditeur',
+        'book' => 'livre',
+        'reviews' => 'commentaires',
     ],
 ];

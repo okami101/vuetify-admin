@@ -35,5 +35,9 @@
     "delete_message": "Vous êtes sur le point de supprimer {resource} \"{title}\". Cette opération est irréversible !",
     "delete_many_title": "Supprimer {count} {resource} ?",
     "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !"
+  },
+  "forms": {
+    "required": "Le champ {field} est requis",
+    "validation_error": "Les données envoyées sont invalides. Veuillez vérifier les champs en erreur."
   }
 }

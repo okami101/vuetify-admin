@@ -1,6 +1,5 @@
 <template>
   <v-form
-    v-if="resource"
     ref="form"
     :style="{ 'max-width': `${width}px` }"
     @submit.prevent="onSave"
@@ -105,7 +104,9 @@ export default {
           let rules = [];
 
           if (field.required) {
-            rules.push(v => !!v || `${text} is required`);
+            rules.push(
+              v => !!v || this.$t("va.forms.required_field", { field: text })
+            );
           }
 
           this.rules[value] = rules;

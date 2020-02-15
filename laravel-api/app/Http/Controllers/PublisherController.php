@@ -36,7 +36,7 @@ class PublisherController extends Controller
                     'founder',
                     'headquarter',
                 ])
-                ->allowedSorts('id', 'name', 'founder', 'headquerter', 'opening_date')
+                ->allowedSorts('id', 'name', 'founder', 'headquarter', 'opening_date')
                 ->exportOrPaginate()
         );
     }

@@ -54,8 +54,12 @@ export default {
       password: null,
       error: null,
       loading: false,
-      usernameRules: [v => !!v || "Email is required"],
-      passwordRules: [v => !!v || "Password is required"]
+      usernameRules: [
+        v => !!v || this.$t("va.forms.required_field", { field: "Email" })
+      ],
+      passwordRules: [
+        v => !!v || this.$t("va.forms.required_field", { field: "Password" })
+      ]
     };
   },
   methods: {

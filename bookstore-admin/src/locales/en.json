@@ -48,6 +48,6 @@
     "reviews": "Reviews",
     "attributes": "Attributes",
     "summary": "Summary",
-    "search": "Search"
+    "q": "Search"
   }
 }
