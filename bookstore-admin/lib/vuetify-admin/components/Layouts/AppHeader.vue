@@ -54,11 +54,11 @@ import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "AppHeader",
-  props: {
-    title: String
-  },
   computed: {
-    ...mapState({ loading: state => state.api.loading }),
+    ...mapState({
+      title: state => state.api.title,
+      loading: state => state.api.loading
+    }),
     ...mapGetters({ name: "auth/name", email: "auth/email" })
   },
   methods: {

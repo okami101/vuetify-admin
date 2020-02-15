@@ -37,7 +37,7 @@ export default i18n => {
           case "create":
             commit(
               "showSuccess",
-              i18n.$t("va.messages.create", {
+              i18n.t("va.messages.created", {
                 resource: i18n
                   .tc(`resources.${state.resourceName}`, 1)
                   .toLowerCase()
@@ -47,10 +47,8 @@ export default i18n => {
           case "update":
             commit(
               "showSuccess",
-              i18n.$t("va.messages.update", {
-                resource: i18n
-                  .tc(`resources.${state.resourceName}`, 1)
-                  .toLowerCase(),
+              i18n.t("va.messages.updated", {
+                resource: i18n.tc(`resources.${state.resourceName}`, 1),
                 id: params.id
               })
             );
@@ -58,7 +56,7 @@ export default i18n => {
           case "updateMany":
             commit(
               "showSuccess",
-              i18n.$t("va.messages.update_many", {
+              i18n.t("va.messages.updated_many", {
                 resource: i18n
                   .tc(`resources.${state.resourceName}`, params.ids.length)
                   .toLowerCase(),
@@ -69,10 +67,8 @@ export default i18n => {
           case "delete":
             commit(
               "showSuccess",
-              i18n.$t("va.messages.delete", {
-                resource: i18n
-                  .tc(`resources.${state.resourceName}`, 1)
-                  .toLowerCase(),
+              i18n.t("va.messages.deleted", {
+                resource: i18n.tc(`resources.${state.resourceName}`, 1),
                 id: params.id
               })`${state.resourceLabel} #${params.id} deleted !`
             );
@@ -80,7 +76,7 @@ export default i18n => {
           case "deleteMany":
             commit(
               "showSuccess",
-              i18n.$t("va.messages.delete_many", {
+              i18n.t("va.messages.deleted_many", {
                 resource: i18n
                   .tc(`resources.${state.resourceName}`, params.ids.length)
                   .toLowerCase(),

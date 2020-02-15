@@ -1,9 +1,14 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
+import fr from "vuetify/es5/locale/fr";
 
 Vue.use(Vuetify);
 
 export default new Vuetify({
+  lang: {
+    locales: { fr },
+    current: process.env.VUE_APP_I18N_LOCALE
+  },
   theme: {
     options: {
       customProperties: true

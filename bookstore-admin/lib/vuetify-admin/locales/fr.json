@@ -1,6 +1,8 @@
 {
   "home": "Accueil",
   "logout": "Se déconnecter",
+  "close": "Fermer",
+  "save": "Enregistrer",
   "datagrid": {
     "search": "Rechercher",
     "selected_items": "1 élément sélectionné | {count} éléments sélectionnés"

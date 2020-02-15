@@ -65,6 +65,7 @@ export default {
 
           to.meta.title = this.$t(`va.titles.${to.meta.action}`, {
             resource: this.$tc(`resources.${name}`, 1).toLowerCase(),
+            title: to.meta.humanize(resource),
             id: resource.id
           });
           break;

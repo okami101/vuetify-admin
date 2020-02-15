@@ -96,6 +96,16 @@ export default {
 
     this.loaded = true;
   },
+  watch: {
+    $route: {
+      handler(val) {
+        document.title = val.meta.title
+          ? `${val.meta.title} | ${this.title}`
+          : this.title;
+      },
+      immediate: true
+    }
+  },
   methods: {
     ...mapMutations({
       setTitle: "api/setTitle",

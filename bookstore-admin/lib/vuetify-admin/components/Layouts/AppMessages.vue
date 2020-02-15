@@ -3,7 +3,7 @@
     <v-snackbar v-model="snackbar" :color="snackbarColor">
       {{ snackbarText }}
       <v-btn text @click="snackbar = false">
-        Close
+        {{ $t("va.close") }}
       </v-btn>
     </v-snackbar>
     <confirm ref="confirm"></confirm>

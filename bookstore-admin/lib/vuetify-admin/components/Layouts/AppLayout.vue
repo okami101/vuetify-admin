@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header :title="title" @mini="mini = !mini"></app-header>
+    <app-header @mini="mini = !mini"></app-header>
     <app-sidebar :menu="menu" :mini="mini"></app-sidebar>
 
     <v-content>
@@ -18,7 +18,6 @@ import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
 import AppMessages from "./AppMessages";
 import AppBreadcrumbs from "./AppBreadcrumbs";
-import { mapState } from "vuex";
 
 export default {
   name: "AppLayout",
@@ -35,11 +34,6 @@ export default {
     return {
       mini: false
     };
-  },
-  computed: {
-    ...mapState({
-      title: state => state.api.title
-    })
   }
 };
 </script>

@@ -1,6 +1,8 @@
 {
   "home": "Home",
   "logout": "Logout",
+  "close": "Close",
+  "save": "Save",
   "datagrid": {
     "search": "Search",
     "selected_items": "1 item selected | {count} items selected"
