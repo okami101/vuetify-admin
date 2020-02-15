@@ -36,12 +36,32 @@
               single-line
               hide-details
               dense
+              filled
               v-if="canSearch"
               @input="onSearch"
             ></v-text-field>
           </v-col>
         </v-row>
         <v-spacer></v-spacer>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn v-if="filters.length" text color="primary" v-on="on">
+              <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
+              {{ $t("va.datagrid.add_filter") }}
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(filter, index) in filters"
+              :key="index"
+              @click="addFilter"
+            >
+              <v-list-item-title>{{
+                filter.text || $t(`attributes.${filter.value}`)
+              }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
         <va-create-button v-if="canCreate"></va-create-button>
         <va-export-button
           text
@@ -79,6 +99,10 @@ export default {
   name: "Datagrid",
   props: {
     fields: {
+      type: Array,
+      default: () => []
+    },
+    filters: {
       type: Array,
       default: () => []
     },
@@ -180,6 +204,7 @@ export default {
       getList: "api/getList",
       deleteMany: "api/deleteMany"
     }),
+    addFilter() {},
     updateQuery() {
       /**
        * Update query router

@@ -5,6 +5,8 @@
   "save": "Enregistrer",
   "datagrid": {
     "search": "Rechercher",
+    "add_filter": "Ajouter un filtre",
+    "export": "Exporter",
     "selected_items": "1 élément sélectionné | {count} éléments sélectionnés"
   },
   "actions": {
@@ -12,8 +14,7 @@
     "create": "Créer",
     "show": "Voir",
     "edit": "Editer",
-    "delete": "Supprimer",
-    "export": "Exporter"
+    "delete": "Supprimer"
   },
   "titles": {
     "list": "Liste des {resource}",
