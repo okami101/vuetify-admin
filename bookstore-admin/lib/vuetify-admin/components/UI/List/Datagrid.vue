@@ -13,6 +13,10 @@
     :multi-sort="multiSort"
     :show-select="showSelect"
     v-model="selected"
+    @update:items-per-page="updateQuery"
+    @update:page="updateQuery"
+    @update:sort-by="updateQuery"
+    @update:sort-desc="updateQuery"
   >
     <template v-slot:top>
       <v-toolbar flat color="blue lighten-5" v-if="selected.length">
@@ -158,11 +162,41 @@ export default {
       deep: true
     }
   },
+  mounted() {
+    /**
+     * Apply current route query into datagrid filter
+     */
+    const { search, perPage, page, sortBy, sortDesc } = this.$route.query;
+    this.search = search;
+    this.options = {
+      ...this.options,
+      perPage,
+      page,
+      sortBy: sortBy.split(","),
+      sortDesc: sortDesc.split(",").map(bool => bool === "true")
+    };
+  },
   methods: {
     ...mapActions({
       getList: "api/getList",
       deleteMany: "api/deleteMany"
     }),
+    updateQuery() {
+      /**
+       * Update query router
+       */
+      this.$router
+        .push({
+          query: {
+            perPage: this.options.itemsPerPage,
+            page: this.options.page,
+            sortBy: this.options.sortBy.join(","),
+            sortDesc: this.options.sortDesc.join(","),
+            search: this.search
+          }
+        })
+        .catch(e => {});
+    },
     async loadData() {
       this.loading = true;
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
@@ -185,6 +219,7 @@ export default {
     },
     onSearch: debounce(function() {
       this.loadData();
+      this.updateQuery();
     }, 200),
     async onDelete(item) {
       this.loadData();
