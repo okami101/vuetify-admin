@@ -1,5 +1,5 @@
 <template>
-  <div v-html="resource[value]"></div>
+  <div v-if="resource" v-html="resource[value]"></div>
 </template>
 
 <script>

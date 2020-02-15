@@ -60,21 +60,24 @@ export default {
     this.$store.registerModule("api", api(this.$i18n));
   },
   async mounted() {
-    this.$router.beforeEach(async (to, from, next) => {
-      /**
-       * Check and reload authenticated user with permissions
-       * after each navigation
-       */
-      if (to.name !== "login") {
-        try {
-          await this.loadUser();
-        } catch (e) {
-          return next("/login");
-        }
-      }
+    this.setTitle(this.title);
 
-      this.setTitle(this.title);
-      this.removeCurrentResource();
+    this.$router.beforeEach(async (to, from, next) => {
+      if (to.path !== from.path) {
+        /**
+         * Check and reload authenticated user with permissions
+         * after each navigation
+         */
+        if (to.name !== "login") {
+          try {
+            await this.loadUser();
+          } catch (e) {
+            return next("/login");
+          }
+        }
+
+        this.removeCurrentResource();
+      }
       next();
     });
 
