@@ -122,6 +122,19 @@ export default {
     };
   },
   mounted() {
+    /**
+     * Apply current route query into datagrid filter
+     */
+    const { search, perPage, page, sortBy, sortDesc } = this.$route.query;
+    this.search = search;
+    this.options = {
+      ...this.options,
+      perPage: perPage ? parseInt(perPage, 10) : 1,
+      page: page ? parseInt(page, 10) : 1,
+      sortBy: sortBy ? sortBy.split(",") : [],
+      sortDesc: sortDesc ? sortDesc.split(",").map(bool => bool === "true") : []
+    };
+
     EventBus.$on("refresh", () => {
       this.loadData();
     });
@@ -161,20 +174,6 @@ export default {
       },
       deep: true
     }
-  },
-  mounted() {
-    /**
-     * Apply current route query into datagrid filter
-     */
-    const { search, perPage, page, sortBy, sortDesc } = this.$route.query;
-    this.search = search;
-    this.options = {
-      ...this.options,
-      perPage,
-      page,
-      sortBy: sortBy.split(","),
-      sortDesc: sortDesc.split(",").map(bool => bool === "true")
-    };
   },
   methods: {
     ...mapActions({
