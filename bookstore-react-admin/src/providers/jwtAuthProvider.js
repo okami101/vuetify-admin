@@ -1,0 +1,78 @@
+export default (entrypoint, options = {}) => {
+  options = {
+    routes: {
+      login: "auth/login",
+      logout: "auth/logout",
+      refresh: "auth/refresh",
+      user: "auth/me"
+    },
+    tokenProp: "access_token",
+    credentials: ({username, password}) => {
+      return {
+        email: username,
+        password
+      };
+    },
+    ...options
+  };
+
+  let {routes, credentials} = options;
+
+  const doAuthenticatedAction = route => {
+    return fetch(`${entrypoint}/${route}`, {
+      method: "POST",
+      headers: new Headers({
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      })
+    });
+  };
+
+  return {
+    login: async ({username, password}) => {
+      let response = await fetch(`${entrypoint}/${routes.login}`, {
+        method: "POST",
+        body: JSON.stringify(credentials({username, password})),
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        })
+      });
+
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error(response.statusText);
+      }
+
+      let json = await response.json();
+      localStorage.setItem("token", json[options.tokenProp]);
+    },
+    logout: async () => {
+      if (routes.logout) {
+        await doAuthenticatedAction(routes.logout);
+      }
+
+      localStorage.removeItem("token");
+      return Promise.resolve();
+    },
+    checkAuth: async () => {
+      let response = await doAuthenticatedAction(routes.user);
+
+      if (response.status < 200 || response.status >= 300) {
+        return Promise.reject();
+      }
+
+      /**
+       * Refresh token
+       */
+      if (routes.refresh) {
+        let response = await doAuthenticatedAction(routes.refresh);
+        let json = await response.json();
+        localStorage.setItem("token", json[options.tokenProp]);
+      }
+
+      return Promise.resolve();
+    },
+    checkError: error => Promise.resolve(),
+    getPermissions: params => Promise.resolve()
+  };
+};

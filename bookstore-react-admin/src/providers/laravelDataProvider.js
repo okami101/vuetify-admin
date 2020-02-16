@@ -16,18 +16,10 @@ export default entrypoint => {
     switch (type) {
       case GET_LIST:
       case GET_MANY_REFERENCE:
-        const { fields, include, pagination, sort, filter } = params;
-
-        if (fields) {
-          resourceUrl.searchParams.set(`fields[${resource}]`, fields.join(","));
-        }
-
-        if (include) {
-          resourceUrl.searchParams.set("include", include.join(","));
-        }
+        const {pagination, sort, filter} = params;
 
         if (pagination) {
-          let { page, perPage } = pagination;
+          let {page, perPage} = pagination;
           if (page) {
             resourceUrl.searchParams.set("page", page);
           }
@@ -38,16 +30,7 @@ export default entrypoint => {
         if (sort) {
           resourceUrl.searchParams.set(
             "sort",
-            sort
-              .map(item => {
-                let { by, desc } = item;
-
-                if (desc) {
-                  return `-${by}`;
-                }
-                return by;
-              })
-              .join(",")
+            sort.order === "ASC" ? sort.field : `-${sort.field}`
           );
         }
 
@@ -61,15 +44,15 @@ export default entrypoint => {
           resourceUrl.searchParams.set(`filter[${params.target}]`, params.id);
         }
 
-        return { url: resourceUrl };
+        return {url: resourceUrl};
 
       case GET_ONE:
-        return { url: itemUrl };
+        return {url: itemUrl};
 
       case GET_MANY:
         resourceUrl.searchParams.set("filter[id]", params.ids.join(","));
 
-        return { url: resourceUrl };
+        return {url: resourceUrl};
 
       case CREATE:
         return {
@@ -106,7 +89,7 @@ export default entrypoint => {
   };
 
   const fetchApi = async (type, resource, params) => {
-    let { url, options } = getRequest(type, resource, params);
+    let {url, options} = getRequest(type, resource, params);
 
     let token = localStorage.getItem("token");
     let headers = new Headers({
@@ -114,10 +97,7 @@ export default entrypoint => {
     });
 
     if (token) {
-      headers.append(
-        "Authorization",
-        `Bearer ${localStorage.getItem("token")}`
-      );
+      headers.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
     }
 
     let response = await fetch(url, {
@@ -132,14 +112,14 @@ export default entrypoint => {
       case GET_LIST:
       case GET_MANY:
       case GET_MANY_REFERENCE:
-        let { data, meta } = await response.json();
+        let {data, meta} = await response.json();
         return Promise.resolve({
           data,
           total: meta ? meta.total : data.length
         });
       case DELETE:
         if (response.status >= 200 && response.status < 400) {
-          return Promise.resolve({ data: { id: null } });
+          return Promise.resolve({data: {id: null}});
         }
         return Promise.reject({
           status: response.status
@@ -165,13 +145,13 @@ export default entrypoint => {
     create: (resource, params) => fetchApi(CREATE, resource, params),
     update: (resource, params) => fetchApi(UPDATE, resource, params),
     updateMany: (resource, params) =>
-      Promise.all(
-        params.ids.map(id => fetchApi(UPDATE, resource, { id }))
-      ).then(() => Promise.resolve({ data: { id: null } })),
+      Promise.all(params.ids.map(id => fetchApi(UPDATE, resource, {id}))).then(() =>
+        Promise.resolve({data: {id: null}})
+      ),
     delete: (resource, params) => fetchApi(DELETE, resource, params),
     deleteMany: (resource, params) =>
-      Promise.all(
-        params.ids.map(id => fetchApi(DELETE, resource, { id }))
-      ).then(() => Promise.resolve({ data: { id: null } }))
+      Promise.all(params.ids.map(id => fetchApi(DELETE, resource, {id}))).then(() =>
+        Promise.resolve({data: {id: null}})
+      )
   };
 };

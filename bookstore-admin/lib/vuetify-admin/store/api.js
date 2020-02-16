@@ -32,7 +32,7 @@ export default i18n => {
 
         switch (action) {
           case "getOne":
-            commit("setResource", response);
+            commit("setResource", response.data);
             break;
           case "create":
             commit(
