@@ -4,6 +4,7 @@ import TabbedShow from "./Layouts/TabbedShow";
 import SimpleForm from "./Layouts/SimpleForm";
 
 import TextField from "./Fields/TextField";
+import RichTextField from "./Fields/RichTextField";
 
 import DateInput from "./Inputs/DateInput";
 
@@ -20,6 +21,7 @@ export {
   TabbedShow,
   SimpleForm,
   TextField,
+  RichTextField,
   DateInput,
   ListButton,
   CreateButton,

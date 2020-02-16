@@ -5,7 +5,7 @@
         <va-simple-show :fields="fields"></va-simple-show>
       </template>
       <template v-slot:summary>
-        <va-text-field source="summary"></va-text-field>
+        <va-rich-text-field source="summary"></va-rich-text-field>
       </template>
     </va-tabbed-show>
   </va-show>
@@ -16,8 +16,8 @@ export default {
   data() {
     return {
       tabs: [
-        { source: "attributes", icon: "mdi-eye" },
-        { source: "summary", icon: "mdi-text" }
+        { id: "attributes", icon: "mdi-eye" },
+        { id: "summary", icon: "mdi-text" }
       ],
       fields: ["isbn", "title", "description", "author", "publication_date"]
     };

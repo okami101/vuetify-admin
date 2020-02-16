@@ -1,12 +1,12 @@
 <template>
-  <span>{{ record[source] }}</span>
+  <span v-html="record[source]"></span>
 </template>
 
 <script>
 import Field from "../../../mixins/field";
 
 export default {
-  name: "TextField",
+  name: "RichTextField",
   mixins: [Field]
 };
 </script>
