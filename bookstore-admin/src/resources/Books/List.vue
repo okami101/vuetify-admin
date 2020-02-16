@@ -9,10 +9,10 @@ export default {
   data() {
     return {
       fields: [
-        { source: "isbn", sortable: true },
-        { source: "title", sortable: true },
-        { source: "author", sortable: true },
-        { source: "publication_date", sortable: true }
+        { source: "isbn" },
+        { source: "title" },
+        { source: "author" },
+        { source: "publication_date" }
       ],
       filters: [
         { source: "q", icon: "mdi-magnify", alwaysOn: true },

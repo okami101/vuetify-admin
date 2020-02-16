@@ -18,9 +18,9 @@ export default {
   data() {
     return {
       fields: [
-        { source: "rating", sortable: true },
-        { source: "author", sortable: true },
-        { source: "publication_date", sortable: true }
+        { source: "rating" },
+        { source: "author" },
+        { source: "publication_date" }
       ],
       filters: [
         { source: "q", icon: "mdi-magnify", alwaysOn: true },

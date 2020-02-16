@@ -9,10 +9,10 @@ export default {
   data() {
     return {
       fields: [
-        { source: "name", sortable: true },
-        { source: "founder", sortable: true },
-        { source: "headquarter", sortable: true },
-        { source: "opening_date", sortable: true }
+        { source: "name" },
+        { source: "founder" },
+        { source: "headquarter" },
+        { source: "opening_date" }
       ],
       filters: [
         { source: "q", icon: "mdi-magnify", alwaysOn: true },

@@ -165,7 +165,7 @@ export default {
     },
     headers() {
       return [
-        { value: "id", text: "ID", align: "right", sortable: true },
+        { value: "id", text: "ID", align: "right" },
         ...this.fields.map(field => {
           return {
             ...field,
