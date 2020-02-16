@@ -11,41 +11,39 @@
       <span class="hidden-sm-and-down">{{ title }}</span>
     </v-toolbar-title>
     <v-spacer />
-    <v-btn icon small class="mr-4" :loading="loading" @click="refresh">
-      <v-icon>mdi-refresh</v-icon>
-    </v-btn>
-    <v-menu offset-y>
-      <template v-slot:activator="{ on }">
-        <v-btn icon large v-on="on">
-          <v-avatar size="32px" item>
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-              alt="Vuetify"
-          /></v-avatar>
-        </v-btn>
-      </template>
-      <v-card class="mx-auto" width="256" tile>
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title class="title">{{ name }}</v-list-item-title>
-            <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-        <v-list nav dense>
-          <v-list-item @click="doLogout">
-            <v-list-item-icon>
-              <v-icon>mdi-logout</v-icon>
-            </v-list-item-icon>
-
+    <div>
+      <v-btn icon small class="mr-5" :loading="loading" @click="refresh">
+        <v-icon>mdi-refresh</v-icon>
+      </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon small v-on="on">
+            <v-icon>mdi-account-circle</v-icon>
+          </v-btn>
+        </template>
+        <v-card class="mx-auto" width="256" tile>
+          <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>{{ $t("va.logout") }}</v-list-item-title>
+              <v-list-item-title class="title">{{ name }}</v-list-item-title>
+              <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-        </v-list>
-      </v-card>
-    </v-menu>
+
+          <v-divider></v-divider>
+          <v-list nav dense>
+            <v-list-item @click="doLogout">
+              <v-list-item-icon>
+                <v-icon>mdi-logout</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ $t("va.logout") }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-menu>
+    </div>
   </v-app-bar>
 </template>
 
