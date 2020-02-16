@@ -9,11 +9,11 @@ export default {
   data() {
     return {
       fields: [
-        { value: "name" },
-        { value: "founder" },
-        { value: "description" },
-        { value: "headquarter" },
-        { value: "opening_date" }
+        { source: "name" },
+        { source: "founder" },
+        { source: "description" },
+        { source: "headquarter" },
+        { source: "opening_date" }
       ]
     };
   }

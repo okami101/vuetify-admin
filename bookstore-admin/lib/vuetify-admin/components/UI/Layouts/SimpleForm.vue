@@ -7,30 +7,30 @@
     <template v-for="field in fields">
       <v-textarea
         v-if="field.type === 'text'"
-        :key="field.value"
-        v-model="form[field.value]"
+        :key="field.source"
+        v-model="form[field.source]"
         :label="getLabel(field)"
-        :rules="rules[field.value]"
-        :error-messages="errors[field.value]"
+        :rules="rules[field.source]"
+        :error-messages="errors[field.source]"
         auto-grow
         filled
       ></v-textarea>
       <va-date-picker-input
         v-else-if="field.type === 'date'"
-        :key="field.value"
-        v-model="form[field.value]"
+        :key="field.source"
+        v-model="form[field.source]"
         :label="getLabel(field)"
-        :rules="rules[field.value]"
-        :error-messages="errors[field.value]"
+        :rules="rules[field.source]"
+        :error-messages="errors[field.source]"
         filled
       ></va-date-picker-input>
       <v-text-field
         v-else
-        :key="field.value"
-        v-model="form[field.value]"
+        :key="field.source"
+        v-model="form[field.source]"
         :label="getLabel(field)"
-        :rules="rules[field.value]"
-        :error-messages="errors[field.value]"
+        :rules="rules[field.source]"
+        :error-messages="errors[field.source]"
         filled
       ></v-text-field>
     </template>
@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     getLabel(field) {
-      return field.text || this.$t(`attributes.${field.value}`);
+      return field.text || this.$t(`attributes.${field.source}`);
     },
     init() {
       /**
@@ -95,27 +95,27 @@ export default {
       this.fields
         .map(field => {
           return {
-            text: this.$t(`attributes.${field.value}`),
+            label: this.$t(`attributes.${field.source}`),
             ...field
           };
         })
         .forEach(field => {
-          let { value, text } = field;
+          let { source, label } = field;
           let rules = [];
 
           if (field.required) {
             rules.push(
-              v => !!v || this.$t("va.forms.required_field", { field: text })
+              v => !!v || this.$t("va.forms.required_field", { field: label })
             );
           }
 
-          this.rules[value] = rules;
+          this.rules[source] = rules;
 
           if (this.resource) {
-            form[value] = this.resource[value];
+            form[source] = this.resource[source];
             return;
           }
-          form[value] = null;
+          form[source] = null;
         });
 
       this.form = form;

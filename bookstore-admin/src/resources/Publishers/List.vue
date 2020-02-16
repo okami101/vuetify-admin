@@ -9,16 +9,16 @@ export default {
   data() {
     return {
       fields: [
-        { value: "name", sortable: true },
-        { value: "founder", sortable: true },
-        { value: "headquarter", sortable: true },
-        { value: "opening_date", sortable: true }
+        { source: "name", sortable: true },
+        { source: "founder", sortable: true },
+        { source: "headquarter", sortable: true },
+        { source: "opening_date", sortable: true }
       ],
       filters: [
-        { value: "q", icon: "mdi-magnify", alwaysOn: true },
-        { value: "name" },
-        { value: "founder" },
-        { value: "headquarter" }
+        { source: "q", icon: "mdi-magnify", alwaysOn: true },
+        { source: "name" },
+        { source: "founder" },
+        { source: "headquarter" }
       ]
     };
   }

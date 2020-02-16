@@ -1,15 +1,15 @@
 <template>
   <v-list dense v-if="resource">
-    <v-list-item v-for="field in fields" :key="field.value" class="px-0">
+    <v-list-item v-for="field in fields" :key="field.source" class="px-0">
       <v-list-item-content>
         <v-list-item-title>
-          {{ field.text || $t(`attributes.${field.value}`) }}
+          {{ field.text || $t(`attributes.${field.source}`) }}
         </v-list-item-title>
         <slot
-          :name="field.value"
-          v-bind="{ item: resource, value: resource[field.value] }"
+          :name="field.source"
+          v-bind="{ item: resource, value: resource[field.source] }"
         >
-          {{ resource[field.value] }}
+          {{ resource[field.source] }}
         </slot>
       </v-list-item-content>
     </v-list-item>

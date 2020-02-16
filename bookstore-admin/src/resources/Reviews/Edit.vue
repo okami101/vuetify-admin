@@ -9,11 +9,11 @@ export default {
   data() {
     return {
       fields: [
-        { value: "book_id", type: "reference" },
-        { value: "rating" },
-        { value: "body", type: "text" },
-        { value: "author" },
-        { value: "publication_date", type: "date" }
+        { source: "book_id", type: "reference" },
+        { source: "rating" },
+        { source: "body", type: "text" },
+        { source: "author" },
+        { source: "publication_date", type: "date" }
       ]
     };
   }

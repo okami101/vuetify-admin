@@ -1,17 +1,17 @@
 <template>
   <v-tabs v-model="currentTab" grow>
-    <v-tab v-for="tab in tabs" :key="tab.value" :href="`#tab-${tab.value}`">
+    <v-tab v-for="tab in tabs" :key="tab.source" :href="`#tab-${tab.source}`">
       <v-icon v-if="tab.icon" small class="mr-2">{{ tab.icon }}</v-icon>
-      {{ tab.text || $t(`attributes.${tab.value}`) }}
+      {{ tab.text || $t(`attributes.${tab.source}`) }}
     </v-tab>
 
     <v-tab-item
       v-for="tab in tabs"
-      :key="tab.value"
-      :value="`tab-${tab.value}`"
+      :key="tab.source"
+      :value="`tab-${tab.source}`"
       class="pt-6"
     >
-      <slot :name="tab.value"></slot>
+      <slot :name="tab.source"></slot>
     </v-tab-item>
   </v-tabs>
 </template>

@@ -13,8 +13,8 @@
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
         <v-text-field
-          v-model="filter[item.value]"
-          :label="item.text || $t(`attributes.${item.value}`)"
+          v-model="filter[item.source]"
+          :label="item.text || $t(`attributes.${item.source}`)"
           :append-icon="item.icon"
           single-line
           hide-details
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     remove(filter) {
-      delete this.filter[filter.value];
+      delete this.filter[filter.source];
       this.$emit("remove", filter);
       this.$emit("input", { ...this.filter });
     },

@@ -16,15 +16,15 @@ export default {
   data() {
     return {
       tabs: [
-        { value: "attributes", icon: "mdi-eye" },
-        { value: "summary", icon: "mdi-text" }
+        { source: "attributes", icon: "mdi-eye" },
+        { source: "summary", icon: "mdi-text" }
       ],
       fields: [
-        { value: "isbn" },
-        { value: "title" },
-        { value: "description" },
-        { value: "author" },
-        { value: "publication_date" }
+        { source: "isbn" },
+        { source: "title" },
+        { source: "description" },
+        { source: "author" },
+        { source: "publication_date" }
       ]
     };
   }

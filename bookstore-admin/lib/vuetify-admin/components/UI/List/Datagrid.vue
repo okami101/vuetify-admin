@@ -47,7 +47,7 @@
               @click="enableFilter(filter)"
             >
               <v-list-item-title>{{
-                filter.text || $t(`attributes.${filter.value}`)
+                filter.text || $t(`attributes.${filter.source}`)
               }}</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -168,8 +168,9 @@ export default {
         { value: "id", text: "ID", align: "right", sortable: true },
         ...this.fields.map(field => {
           return {
-            text: this.$t(`attributes.${field.value}`),
-            ...field
+            ...field,
+            text: field.label || this.$t(`attributes.${field.source}`),
+            value: field.source
           };
         }),
         { value: "action", sortable: false }
@@ -223,7 +224,7 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.currentFilters.find(f => f.value === prop);
+          let filter = this.currentFilters.find(f => f.source === prop);
 
           if (filter) {
             filter.active = true;
@@ -261,7 +262,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        fields: ["id", ...this.fields.map(item => item.value)],
+        fields: ["id", ...this.fields.map(item => item.source)],
         pagination: {
           page,
           perPage: itemsPerPage

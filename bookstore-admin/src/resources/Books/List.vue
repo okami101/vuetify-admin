@@ -9,15 +9,15 @@ export default {
   data() {
     return {
       fields: [
-        { value: "isbn", sortable: true },
-        { value: "title", sortable: true },
-        { value: "author", sortable: true },
-        { value: "publication_date", sortable: true }
+        { source: "isbn", sortable: true },
+        { source: "title", sortable: true },
+        { source: "author", sortable: true },
+        { source: "publication_date", sortable: true }
       ],
       filters: [
-        { value: "q", icon: "mdi-magnify", alwaysOn: true },
-        { value: "title" },
-        { value: "author" }
+        { source: "q", icon: "mdi-magnify", alwaysOn: true },
+        { source: "title" },
+        { source: "author" }
       ]
     };
   }

@@ -18,14 +18,14 @@ export default {
   data() {
     return {
       fields: [
-        { value: "rating", sortable: true },
-        { value: "author", sortable: true },
-        { value: "publication_date", sortable: true }
+        { source: "rating", sortable: true },
+        { source: "author", sortable: true },
+        { source: "publication_date", sortable: true }
       ],
       filters: [
-        { value: "q", icon: "mdi-magnify", alwaysOn: true },
-        { value: "rating" },
-        { value: "author" }
+        { source: "q", icon: "mdi-magnify", alwaysOn: true },
+        { source: "rating" },
+        { source: "author" }
       ]
     };
   }
