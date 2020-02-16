@@ -1,8 +1,8 @@
 <template>
   <va-show>
     <va-simple-show :fields="fields">
-      <template v-slot:rating="{ value }">
-        <star-rating-field :rating="value"></star-rating-field>
+      <template v-slot:rating>
+        <star-rating-field source="rating"></star-rating-field>
       </template>
     </va-simple-show>
   </va-show>

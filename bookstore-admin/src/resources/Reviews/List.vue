@@ -1,8 +1,8 @@
 <template>
   <va-list>
     <va-datagrid :fields="fields" :filters="filters">
-      <template v-slot:rating="{ value }">
-        <star-rating-field :rating="value"></star-rating-field>
+      <template v-slot:rating="{ item }">
+        <star-rating-field :item="item" source="rating"></star-rating-field>
       </template>
     </va-datagrid>
   </va-list>

@@ -1,17 +1,14 @@
 <template>
   <span>
-    <v-icon small v-for="i in rating" :key="i">mdi-star-circle</v-icon>
+    <v-icon small v-for="i in record[source]" :key="i">mdi-star-circle</v-icon>
   </span>
 </template>
 
 <script>
+import Field from "vuetify-admin/mixins/field";
+
 export default {
   name: "StarRatingField",
-  props: {
-    rating: {
-      type: Number,
-      required: true
-    }
-  }
+  mixins: [Field]
 };
 </script>

@@ -1,19 +1,12 @@
 <template>
-  <div v-if="resource" v-html="resource[source]"></div>
+  <span v-html="getValue"></span>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import Field from "../../../mixins/field";
 
 export default {
   name: "TextField",
-  props: {
-    source: String
-  },
-  computed: {
-    ...mapState({
-      resource: state => state.api.resource
-    })
-  }
+  mixins: [Field]
 };
 </script>
