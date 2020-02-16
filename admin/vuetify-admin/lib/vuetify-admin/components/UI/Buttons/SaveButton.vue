@@ -1,7 +1,7 @@
 <template>
   <v-btn :loading="saving" color="primary" type="submit">
     <v-icon class="mr-2">mdi-floppy</v-icon>
-    {{ $t("va.save") }}
+    {{ $t("va.actions.save") }}
   </v-btn>
 </template>
 

@@ -9,10 +9,6 @@ export default {
       type: String,
       required: true
     },
-    humanize: {
-      type: [String, Function],
-      required: true
-    },
     actions: {
       type: Array,
       default: () => ["list", "show", "create", "edit", "delete"]
@@ -36,38 +32,17 @@ export default {
      */
     let name = this.name;
     let children = [];
-    let meta = {
-      humanize: this.humanize
-    };
 
     let beforeEnter = async (to, from, next) => {
       this.setResourceName(name);
 
       switch (to.meta.action) {
-        case "list":
-          to.meta.title = this.$t("va.titles.list", {
-            resource: this.$tc(`resources.${name}`, 10).toLowerCase()
-          });
-          break;
-        case "create":
-          to.meta.title = this.$t("va.titles.create", {
-            resource: this.$tc(`resources.${name}`, 1).toLowerCase()
-          });
-          break;
         case "show":
         case "edit":
           /**
            * Load linked resource route
            */
-          let { data } = await this.getOne({
-            id: to.params.id
-          });
-
-          to.meta.title = this.$t(`va.titles.${to.meta.action}`, {
-            resource: this.$tc(`resources.${name}`, 1).toLowerCase(),
-            title: to.meta.humanize(data),
-            id: data.id
-          });
+          await this.getOne({ id: to.params.id });
           break;
       }
       next();
@@ -83,8 +58,8 @@ export default {
           }
         },
         meta: {
-          ...meta,
-          action: "list"
+          action: "list",
+          title: this.$t("va.pages.list")
         },
         beforeEnter
       });
@@ -99,8 +74,8 @@ export default {
           }
         },
         meta: {
-          ...meta,
-          action: "create"
+          action: "create",
+          title: this.$t("va.pages.create")
         },
         beforeEnter
       });
@@ -116,8 +91,8 @@ export default {
         },
         props: true,
         meta: {
-          ...meta,
-          action: "edit"
+          action: "edit",
+          title: this.$t("va.pages.edit")
         },
         beforeEnter
       });
@@ -133,8 +108,8 @@ export default {
         },
         props: true,
         meta: {
-          ...meta,
-          action: "show"
+          action: "show",
+          title: this.$t("va.pages.show")
         },
         beforeEnter
       });

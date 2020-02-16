@@ -5,12 +5,9 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <va-resource name="publishers" :humanize="({ name }) => name"></va-resource>
-    <va-resource name="books" :humanize="({ title }) => title"></va-resource>
-    <va-resource
-      name="reviews"
-      :humanize="({ author }) => author"
-    ></va-resource>
+    <va-resource name="publishers"></va-resource>
+    <va-resource name="books"></va-resource>
+    <va-resource name="reviews"></va-resource>
   </va-admin>
 </template>
 

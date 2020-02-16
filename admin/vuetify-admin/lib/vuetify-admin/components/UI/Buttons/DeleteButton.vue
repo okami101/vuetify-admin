@@ -57,7 +57,7 @@ export default {
               `resources.${this.resourceName}`,
               1
             ).toLowerCase(),
-            title: this.$route.meta.humanize(this.currentResource)
+            id: this.currentResource.id
           })
         )
       ) {

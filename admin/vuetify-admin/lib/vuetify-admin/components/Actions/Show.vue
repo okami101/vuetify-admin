@@ -1,5 +1,5 @@
 <template>
-  <action-page :title="title">
+  <action-page :title="title || defaultTitle">
     <slot name="action" slot="actions">
       <va-list-button></va-list-button>
       <va-edit-button></va-edit-button>
@@ -10,15 +10,20 @@
 </template>
 
 <script>
-import ActionPage from "../Layouts/ActionPage";
+import Page from "../../mixins/page";
 
 export default {
   name: "Show",
-  components: {
-    ActionPage
-  },
-  props: {
-    title: [String, Function]
+  mixins: [Page],
+  computed: {
+    defaultTitle() {
+      if (!this.resource) {
+        return;
+      }
+      return `${this.$tc(`resources.${this.resourceName}`, 1)} #${
+        this.resource.id
+      }`;
+    }
   }
 };
 </script>

@@ -1,19 +1,19 @@
 <template>
-  <action-page :title="title">
+  <action-page :title="title || defaultTitle">
     <slot></slot>
   </action-page>
 </template>
 
 <script>
-import ActionPage from "../Layouts/ActionPage";
+import Page from "../../mixins/page";
 
 export default {
   name: "List",
-  components: {
-    ActionPage
-  },
-  props: {
-    title: [String, Function]
+  mixins: [Page],
+  computed: {
+    defaultTitle() {
+      return this.$tc(`resources.${this.resourceName}`, 10);
+    }
   }
 };
 </script>

@@ -2,15 +2,8 @@
   <div>
     <v-card>
       <v-card-title>
-        <v-row class="align-center">
-          <v-col sm="auto">
-            <h1 class="display-1">{{ getTitle }}</h1>
-          </v-col>
-          <v-col class="d-flex">
-            <v-spacer></v-spacer>
-            <slot name="actions"></slot>
-          </v-col>
-        </v-row>
+        <v-spacer></v-spacer>
+        <slot name="actions"></slot>
       </v-card-title>
       <v-card-text>
         <slot></slot>
@@ -21,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "ActionPage",
@@ -35,8 +28,21 @@ export default {
     getTitle() {
       return typeof this.title === "function"
         ? this.title(this.resource)
-        : this.title || this.$route.meta.title;
+        : this.title;
     }
+  },
+  watch: {
+    title: {
+      handler() {
+        this.setTitle(this.getTitle);
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setTitle: "api/setTitle"
+    })
   }
 };
 </script>

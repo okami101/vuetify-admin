@@ -1,7 +1,7 @@
 <template>
   <v-btn text @click="onExport" color="primary">
     <v-icon small class="mr-2">mdi-download</v-icon>
-    {{ $t("va.datagrid.export") }}
+    {{ $t("va.actions.export") }}
   </v-btn>
 </template>
 

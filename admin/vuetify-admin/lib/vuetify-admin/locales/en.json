@@ -2,24 +2,24 @@
   "home": "Home",
   "logout": "Logout",
   "close": "Close",
-  "save": "Save",
   "datagrid": {
     "add_filter": "Add filter",
-    "export": "Export",
     "selected_items": "1 item selected | {count} items selected"
+  },
+  "pages": {
+    "list": "List",
+    "create": "Creation",
+    "show": "Detail",
+    "edit": "Modification"
   },
   "actions": {
     "list": "List",
     "create": "Create",
     "show": "Show",
     "edit": "Edit",
-    "delete": "Delete"
-  },
-  "titles": {
-    "list": "List of {resource}",
-    "create": "Create new {resource}",
-    "show": "Show {resource} \"{title}\" (#{id})",
-    "edit": "Edit {resource} \"{title}\" (#{id})"
+    "delete": "Delete",
+    "save": "Save",
+    "export": "Export"
   },
   "messages": {
     "created": "New {resource} successfully created !",
@@ -32,7 +32,7 @@
     "yes": "Yes",
     "no": "No",
     "delete_title": "Delete {resource} #{id} ?",
-    "delete_message": "You are about deleting {resource} \"{title}\". This operation is irreversible !",
+    "delete_message": "You are about deleting {resource} #{id}. This operation is irreversible !",
     "delete_many_title": "Delete {count} {resource} ?",
     "delete_many_message": "You are about deleting {count} {resource}. This operation is irreversible !"
   },

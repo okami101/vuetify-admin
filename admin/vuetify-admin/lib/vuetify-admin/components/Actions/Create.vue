@@ -1,5 +1,5 @@
 <template>
-  <action-page :title="title">
+  <action-page :title="title || defaultTitle">
     <slot name="action" slot="actions">
       <va-list-button></va-list-button>
     </slot>
@@ -8,15 +8,18 @@
 </template>
 
 <script>
-import ActionPage from "../Layouts/ActionPage";
+import Page from "../../mixins/page";
 
 export default {
   name: "Create",
-  components: {
-    ActionPage
-  },
-  props: {
-    title: [String, Function]
+  mixins: [Page],
+  computed: {
+    defaultTitle() {
+      return `${this.$t("va.actions.create")} ${this.$tc(
+        `resources.${this.resourceName}`,
+        1
+      ).toLowerCase()}`;
+    }
   }
 };
 </script>
