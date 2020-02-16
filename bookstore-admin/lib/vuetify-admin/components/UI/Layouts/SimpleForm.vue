@@ -34,8 +34,10 @@ export default {
         return;
       }
 
-      await this.save();
-      this.$router.push(`/${this.resourceName}`);
+      try {
+        await this.save();
+        this.$router.push(`/${this.resourceName}`);
+      } catch (e) {}
     }
   }
 };

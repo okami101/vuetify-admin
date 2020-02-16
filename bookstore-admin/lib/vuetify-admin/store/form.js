@@ -7,7 +7,7 @@ export default {
   },
   mutations: {
     update(state, { source, value }) {
-      state.model[source] = value;
+      state.model[source] = value || "";
     },
     setErrors(state, errors) {
       state.errors = errors;
@@ -24,13 +24,17 @@ export default {
         await dispatch("api/save", state.model, {
           root: true
         });
-      } catch ({ status, errors }) {
-        if (status === 422) {
-          this.errors = errors;
-        }
-      }
 
-      commit("setSaving", false);
+        commit("setSaving", false);
+      } catch (e) {
+        const { status, errors } = e;
+        commit("setSaving", false);
+
+        if (status === 422) {
+          commit("setErrors", errors);
+        }
+        return Promise.reject(e);
+      }
     }
   }
 };
