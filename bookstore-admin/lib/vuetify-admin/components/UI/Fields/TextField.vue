@@ -1,5 +1,5 @@
 <template>
-  <div v-if="resource" v-html="resource[value]"></div>
+  <div v-if="resource" v-html="resource[source]"></div>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import { mapState } from "vuex";
 export default {
   name: "TextField",
   props: {
-    value: String
+    source: String
   },
   computed: {
     ...mapState({
