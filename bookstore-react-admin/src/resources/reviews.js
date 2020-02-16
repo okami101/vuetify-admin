@@ -33,7 +33,6 @@ export const ReviewList = props => (
 export const ReviewShow = props => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField source="id" />
       <TextField source="rating" />
       <TextField source="author" />
       <TextField source="publication_date" />
@@ -42,7 +41,7 @@ export const ReviewShow = props => (
 );
 
 export const ReviewEdit = props => (
-  <Edit {...props}>
+  <Edit {...props} undoable={false}>
     <SimpleForm>
       <NumberInput source="rating" />
       <TextInput source="author" />
@@ -52,7 +51,7 @@ export const ReviewEdit = props => (
 );
 
 export const ReviewCreate = props => (
-  <Create {...props}>
+  <Create {...props} undoable={false}>
     <SimpleForm>
       <NumberInput source="rating" />
       <TextInput source="author" />

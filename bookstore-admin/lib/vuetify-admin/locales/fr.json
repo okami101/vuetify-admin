@@ -11,14 +11,14 @@
   "actions": {
     "list": "Liste",
     "create": "Créer",
-    "show": "Voir",
+    "show": "Afficher",
     "edit": "Editer",
     "delete": "Supprimer"
   },
   "titles": {
     "list": "Liste des {resource}",
     "create": "Créer nouveau '{resource}'",
-    "show": "Voir {resource} \"{title}\" (#{id})",
+    "show": "Détail {resource} \"{title}\" (#{id})",
     "edit": "Editer {resource} \"{title}\" (#{id})"
   },
   "messages": {

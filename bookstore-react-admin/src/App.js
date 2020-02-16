@@ -5,11 +5,14 @@ import laravelDataProvider from "./providers/laravelDataProvider";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import frenchMessages from "./locales/fr";
 
-import {PublisherList} from "./resources/publishers";
-import {BookList} from "./resources/books";
-import {ReviewList, ReviewCreate, ReviewShow, ReviewEdit} from "./resources/reviews";
-
-console.log(frenchMessages);
+import {
+  PublisherList,
+  PublisherCreate,
+  PublisherEdit,
+  PublisherShow
+} from "./resources/publishers";
+import {BookList, BookCreate, BookEdit, BookShow} from "./resources/books";
+import {ReviewList, ReviewCreate, ReviewEdit, ReviewShow} from "./resources/reviews";
 
 const authProvider = jwtAuthProvider(process.env.REACT_APP_API_ENTRYPOINT);
 const dataProvider = laravelDataProvider(process.env.REACT_APP_API_ENTRYPOINT);
@@ -21,8 +24,20 @@ const App = () => (
     authProvider={authProvider}
     dataProvider={dataProvider}
   >
-    <Resource name="publishers" list={PublisherList} />
-    <Resource name="books" list={BookList} />
+    <Resource
+      name="publishers"
+      list={PublisherList}
+      create={PublisherCreate}
+      show={PublisherShow}
+      edit={PublisherEdit}
+    />
+    <Resource
+      name="books"
+      list={BookList}
+      create={BookCreate}
+      show={BookShow}
+      edit={BookEdit}
+    />
     <Resource
       name="reviews"
       list={ReviewList}
