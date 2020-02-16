@@ -15,7 +15,7 @@
         auto-grow
         filled
       ></v-textarea>
-      <va-date-picker-input
+      <va-date-input
         v-else-if="field.type === 'date'"
         :key="field.source"
         v-model="form[field.source]"
@@ -23,7 +23,7 @@
         :rules="rules[field.source]"
         :error-messages="errors[field.source]"
         filled
-      ></va-date-picker-input>
+      ></va-date-input>
       <v-text-field
         v-else
         :key="field.source"

@@ -29,7 +29,7 @@
 import format from "date-fns/format";
 
 export default {
-  name: "DatePickerInput",
+  name: "DateInput",
   props: {
     value: String,
     label: String,
