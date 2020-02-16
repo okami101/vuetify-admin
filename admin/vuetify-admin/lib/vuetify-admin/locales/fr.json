@@ -10,13 +10,13 @@
     "list": "Liste",
     "create": "Création",
     "show": "Détail",
-    "edit": "Edition"
+    "edit": "Édition"
   },
   "actions": {
     "list": "Liste",
     "create": "Créer",
     "show": "Afficher",
-    "edit": "Editer",
+    "edit": "Éditer",
     "delete": "Supprimer",
     "save": "Enregistrer",
     "export": "Exporter"
