@@ -19,13 +19,7 @@ export default {
         { source: "attributes", icon: "mdi-eye" },
         { source: "summary", icon: "mdi-text" }
       ],
-      fields: [
-        { source: "isbn" },
-        { source: "title" },
-        { source: "description" },
-        { source: "author" },
-        { source: "publication_date" }
-      ]
+      fields: ["isbn", "title", "description", "author", "publication_date"]
     };
   }
 };

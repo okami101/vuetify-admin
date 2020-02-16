@@ -132,7 +132,8 @@ export default {
     return {
       loading: false,
       currentFilter: {},
-      currentFilters: false,
+      currentFields: [],
+      currentFilters: [],
       items: [],
       total: 0,
       options: {},
@@ -166,7 +167,7 @@ export default {
     headers() {
       return [
         { value: "id", text: "ID", align: "right" },
-        ...this.fields.map(field => {
+        ...this.currentFields.map(field => {
           return {
             ...field,
             text: field.label || this.$t(`attributes.${field.source}`),
@@ -184,9 +185,28 @@ export default {
       },
       deep: true
     },
+    fields: {
+      handler(val) {
+        this.currentFields = val.map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        });
+      },
+      deep: true,
+      immediate: true
+    },
     filters: {
       handler(val) {
-        this.currentFilters = val;
+        this.currentFilters = val.map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        });
       },
       deep: true,
       immediate: true
@@ -262,7 +282,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        fields: ["id", ...this.fields.map(item => item.source)],
+        fields: ["id", ...this.currentFields.map(item => item.source)],
         pagination: {
           page,
           perPage: itemsPerPage

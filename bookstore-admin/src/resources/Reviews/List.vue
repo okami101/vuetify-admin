@@ -17,15 +17,11 @@ export default {
   },
   data() {
     return {
-      fields: [
-        { source: "rating" },
-        { source: "author" },
-        { source: "publication_date" }
-      ],
+      fields: ["rating", "author", "publication_date"],
       filters: [
         { source: "q", icon: "mdi-magnify", alwaysOn: true },
-        { source: "rating" },
-        { source: "author" }
+        "rating",
+        "author"
       ]
     };
   }

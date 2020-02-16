@@ -1,6 +1,10 @@
 <template>
   <v-list dense v-if="resource">
-    <v-list-item v-for="field in fields" :key="field.source" class="px-0">
+    <v-list-item
+      v-for="field in currentFields"
+      :key="field.source"
+      class="px-0"
+    >
       <v-list-item-content>
         <v-list-item-title>
           {{ field.text || $t(`attributes.${field.source}`) }}
@@ -25,6 +29,26 @@ export default {
     fields: {
       type: Array,
       default: () => []
+    }
+  },
+  data() {
+    return {
+      currentFields: []
+    };
+  },
+  watch: {
+    fields: {
+      handler(val) {
+        this.currentFields = val.map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        });
+      },
+      deep: true,
+      immediate: true
     }
   },
   computed: {

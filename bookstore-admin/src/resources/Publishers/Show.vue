@@ -8,13 +8,7 @@
 export default {
   data() {
     return {
-      fields: [
-        { source: "name" },
-        { source: "founder" },
-        { source: "description" },
-        { source: "headquarter" },
-        { source: "opening_date" }
-      ]
+      fields: ["name", "founder", "description", "headquarter", "opening_date"]
     };
   }
 };

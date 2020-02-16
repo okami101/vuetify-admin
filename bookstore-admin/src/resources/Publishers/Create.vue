@@ -9,18 +9,16 @@ export default {
   data() {
     return {
       fields: [
-        { source: "name", required: true },
-        { source: "founder", required: true },
+        "name",
+        "founder",
         {
           source: "description",
-          type: "text",
-          required: true
+          type: "text"
         },
-        { source: "headquarter", required: true },
+        "headquarter",
         {
           source: "opening_date",
-          type: "date",
-          required: true
+          type: "date"
         }
       ]
     };

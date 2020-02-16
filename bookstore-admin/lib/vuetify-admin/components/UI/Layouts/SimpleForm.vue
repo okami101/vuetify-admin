@@ -4,7 +4,7 @@
     :style="{ 'max-width': `${width}px` }"
     @submit.prevent="onSave"
   >
-    <template v-for="field in fields">
+    <template v-for="field in currentFields">
       <v-textarea
         v-if="field.type === 'text'"
         :key="field.source"
@@ -59,6 +59,7 @@ export default {
   },
   data() {
     return {
+      currentFields: [],
       saving: false,
       form: {},
       rules: {},
@@ -76,9 +77,17 @@ export default {
       this.init();
     },
     fields: {
-      handler() {
+      handler(val) {
+        this.currentFields = val.map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        });
         this.init();
       },
+      deep: true,
       immediate: true
     }
   },
@@ -92,7 +101,7 @@ export default {
        */
       let form = {};
 
-      this.fields
+      this.currentFields
         .map(field => {
           return {
             label: this.$t(`attributes.${field.source}`),

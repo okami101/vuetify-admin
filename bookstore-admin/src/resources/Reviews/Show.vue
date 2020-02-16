@@ -17,12 +17,7 @@ export default {
   },
   data() {
     return {
-      fields: [
-        { source: "rating" },
-        { source: "body" },
-        { source: "author" },
-        { source: "publication_date" }
-      ]
+      fields: ["rating", "body", "author", "publication_date"]
     };
   }
 };

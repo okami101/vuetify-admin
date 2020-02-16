@@ -10,9 +10,9 @@ export default {
     return {
       fields: [
         { source: "book_id", type: "reference" },
-        { source: "rating" },
+        "rating",
         { source: "body", type: "text" },
-        { source: "author" },
+        "author",
         { source: "publication_date", type: "date" }
       ]
     };
