@@ -2,7 +2,7 @@
   <v-tabs v-model="currentTab" grow>
     <v-tab v-for="tab in tabs" :key="tab.id" :href="`#tab-${tab.id}`">
       <v-icon v-if="tab.icon" small class="mr-2">{{ tab.icon }}</v-icon>
-      {{ tab.text || $t(`attributes.${tab.id}`) }}
+      {{ tab.label || $t(`attributes.${tab.id}`) }}
     </v-tab>
 
     <v-tab-item

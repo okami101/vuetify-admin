@@ -10,66 +10,46 @@
     <template v-slot:activator="{ on }">
       <v-text-field
         :value="dateFormatted"
-        :label="label"
-        :rules="rules"
+        :label="getLabel"
+        :rules="getRules"
         :error-messages="errorMessages"
-        :filled="filled"
         readonly
         append-icon="mdi-calendar"
         v-on="on"
         clearable
-        @click:clear="date = null"
+        filled
+        @click:clear="input = null"
       ></v-text-field>
     </template>
-    <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
+    <v-date-picker v-model="input" @input="menu = false"></v-date-picker>
   </v-menu>
 </template>
 
 <script>
+import Input from "../../../mixins/input";
 import format from "date-fns/format";
 
 export default {
   name: "DateInput",
-  props: {
-    value: String,
-    label: String,
-    rules: {
-      type: Array,
-      default: () => []
-    },
-    errorMessages: {
-      type: Array,
-      default: () => []
-    },
-    filled: {
-      type: Boolean,
-      default: false
-    }
-  },
+  mixins: [Input],
   data() {
     return {
-      menu: false,
-      date: null
+      menu: false
     };
   },
   computed: {
     dateFormatted() {
-      return this.date ? format(new Date(this.date), "dd/MM/yyyy") : "";
+      return this.input ? format(new Date(this.input), "dd/MM/yyyy") : "";
     }
   },
   watch: {
-    value: {
+    input: {
       handler(val) {
         if (val) {
-          this.date = format(new Date(val), "yyyy-MM-dd");
+          this.input = format(new Date(val), "yyyy-MM-dd");
         }
       },
       immediate: true
-    },
-    date: {
-      handler(val) {
-        this.$emit("input", val);
-      }
     }
   }
 };

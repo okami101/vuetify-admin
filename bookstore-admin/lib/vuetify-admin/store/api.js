@@ -163,6 +163,18 @@ export default i18n => {
           });
         }
         EventBus.$emit("refresh");
+      },
+      save({ state, dispatch }, data) {
+        if (state.resource) {
+          return dispatch("update", {
+            id: state.resource.id,
+            data
+          });
+        }
+
+        return dispatch("create", {
+          data
+        });
       }
     }
   };

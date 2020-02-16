@@ -13,12 +13,14 @@ import {
   SimpleForm,
   TextField,
   RichTextField,
+  TextInput,
   DateInput,
   ListButton,
   CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
+  SaveButton,
   ExportButton
 } from "./components/UI";
 
@@ -35,12 +37,14 @@ const components = [
   SimpleForm,
   TextField,
   RichTextField,
+  TextInput,
   DateInput,
   ListButton,
   CreateButton,
   ShowButton,
   EditButton,
   DeleteButton,
+  SaveButton,
   ExportButton
 ];
 

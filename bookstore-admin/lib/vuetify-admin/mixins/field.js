@@ -21,6 +21,9 @@ export default {
   watch: {
     resource: {
       handler(val) {
+        if (this.item) {
+          return;
+        }
         if (val) {
           this.record = val;
           return;

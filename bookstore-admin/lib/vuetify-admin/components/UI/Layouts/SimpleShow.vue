@@ -7,7 +7,7 @@
     >
       <v-list-item-content>
         <v-list-item-title>
-          {{ field.text || $t(`attributes.${field.source}`) }}
+          {{ field.label || $t(`attributes.${field.source}`) }}
         </v-list-item-title>
         <slot
           :name="field.source"

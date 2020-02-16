@@ -17,6 +17,7 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import auth from "../../store/auth";
 import api from "../../store/api";
+import form from "../../store/form";
 import AppLayout from "../Layouts/AppLayout";
 
 import en from "../../locales/en.json";
@@ -58,6 +59,7 @@ export default {
      */
     this.$store.registerModule("auth", auth(this.authProvider));
     this.$store.registerModule("api", api(this.$i18n));
+    this.$store.registerModule("form", form);
   },
   async mounted() {
     this.setTitle(this.title);

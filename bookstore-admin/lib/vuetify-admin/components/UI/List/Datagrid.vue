@@ -47,7 +47,7 @@
               @click="enableFilter(filter)"
             >
               <v-list-item-title>{{
-                filter.text || $t(`attributes.${filter.source}`)
+                filter.label || $t(`attributes.${filter.source}`)
               }}</v-list-item-title>
             </v-list-item>
           </v-list>

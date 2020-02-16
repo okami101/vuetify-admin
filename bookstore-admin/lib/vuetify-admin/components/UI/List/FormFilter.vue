@@ -14,7 +14,7 @@
         </v-btn>
         <v-text-field
           v-model="filter[item.source]"
-          :label="item.text || $t(`attributes.${item.source}`)"
+          :label="item.label || $t(`attributes.${item.source}`)"
           :append-icon="item.icon"
           single-line
           hide-details
