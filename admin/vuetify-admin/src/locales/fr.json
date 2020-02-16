@@ -22,12 +22,12 @@
     "bookstore": "Bookstore",
     "list": "Liste",
     "create": "Créer",
-    "publishers": "Editeurs",
+    "publishers": "Éditeurs",
     "books": "Livres",
     "reviews": "Commentaires"
   },
   "resources": {
-    "publishers": "Editeur | Editeurs",
+    "publishers": "Éditeur | Éditeurs",
     "books": "Livre | Livres",
     "reviews": "Commentaire | Commentaires"
   },

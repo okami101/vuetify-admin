@@ -1,10 +1,10 @@
 <template>
-  <action-page :title="title || defaultTitle">
+  <div>
     <slot name="action" slot="actions">
       <va-list-button></va-list-button>
     </slot>
     <slot></slot>
-  </action-page>
+  </div>
 </template>
 
 <script>

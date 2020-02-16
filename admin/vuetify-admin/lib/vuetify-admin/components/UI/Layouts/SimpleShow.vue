@@ -1,10 +1,6 @@
 <template>
   <v-list dense v-if="resource">
-    <v-list-item
-      v-for="field in currentFields"
-      :key="field.source"
-      class="px-0"
-    >
+    <v-list-item v-for="field in currentFields" :key="field.source">
       <v-list-item-content>
         <v-list-item-title>
           {{ field.label || $t(`attributes.${field.source}`) }}

@@ -1,7 +1,7 @@
 <template>
-  <action-page :title="title || defaultTitle">
+  <div>
     <slot></slot>
-  </action-page>
+  </div>
 </template>
 
 <script>

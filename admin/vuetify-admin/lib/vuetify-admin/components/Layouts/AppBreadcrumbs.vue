@@ -1,5 +1,5 @@
 <template>
-  <v-breadcrumbs :items="items" class="mb-5"></v-breadcrumbs>
+  <v-breadcrumbs :items="items"></v-breadcrumbs>
 </template>
 
 <script>

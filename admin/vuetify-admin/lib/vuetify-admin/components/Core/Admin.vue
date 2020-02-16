@@ -62,8 +62,6 @@ export default {
     this.$store.registerModule("form", form);
   },
   async mounted() {
-    this.setTitle(this.title);
-
     this.$router.beforeEach(async (to, from, next) => {
       if (to.path !== from.path) {
         /**
@@ -104,6 +102,7 @@ export default {
   watch: {
     $route: {
       handler(val) {
+        this.setTitle(val.meta.title || this.title);
         document.title = val.meta.title
           ? `${val.meta.title} | ${this.title}`
           : this.title;

@@ -1,12 +1,11 @@
 <template>
-  <action-page :title="title || defaultTitle">
-    <slot name="action" slot="actions">
-      <va-list-button></va-list-button>
+  <div>
+    <div class="d-flex mb-2">
+      <v-spacer></v-spacer>
       <va-show-button></va-show-button>
-      <va-delete-button></va-delete-button>
-    </slot>
+    </div>
     <slot></slot>
-  </action-page>
+  </div>
 </template>
 
 <script>

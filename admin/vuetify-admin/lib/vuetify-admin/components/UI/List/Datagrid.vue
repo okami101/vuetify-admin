@@ -113,11 +113,11 @@ export default {
     },
     itemsPerPage: {
       type: Number,
-      default: 10
+      default: 15
     },
     rowsPerPage: {
       type: Array,
-      default: () => [5, 10, 25, 50, 100, 200]
+      default: () => [5, 10, 15, 25, 50, 100, 200]
     },
     multiSort: {
       type: Boolean,

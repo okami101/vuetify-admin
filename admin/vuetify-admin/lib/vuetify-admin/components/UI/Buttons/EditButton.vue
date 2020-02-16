@@ -25,7 +25,7 @@ export default {
     },
     color: {
       type: String,
-      default: "orange"
+      default: "green"
     }
   },
   computed: {

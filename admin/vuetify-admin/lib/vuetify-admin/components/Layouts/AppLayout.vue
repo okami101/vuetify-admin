@@ -40,7 +40,7 @@ export default {
 
 <style>
 .v-content {
-  background-color: #eceff1;
+  background-color: #fafafa;
   min-height: 100vh;
 }
 </style>
