@@ -59,14 +59,14 @@ export default {
           /**
            * Load linked resource route
            */
-          let resource = await this.getOne({
+          let { data } = await this.getOne({
             id: to.params.id
           });
 
           to.meta.title = this.$t(`va.titles.${to.meta.action}`, {
             resource: this.$tc(`resources.${name}`, 1).toLowerCase(),
-            title: to.meta.humanize(resource),
-            id: resource.id
+            title: to.meta.humanize(data),
+            id: data.id
           });
           break;
       }
