@@ -26,6 +26,10 @@
     "books": "Books",
     "reviews": "Reviews"
   },
+  "tabs": {
+    "attributes": "Attributes",
+    "summary": "Summary"
+  },
   "resources": {
     "publishers": "Publisher | Publishers",
     "books": "Book | Books",
@@ -46,8 +50,6 @@
     "publisher": "Publisher",
     "book": "Book",
     "reviews": "Reviews",
-    "attributes": "Attributes",
-    "summary": "Summary",
     "q": "Search"
   }
 }

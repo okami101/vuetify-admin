@@ -26,6 +26,10 @@
     "books": "Livres",
     "reviews": "Commentaires"
   },
+  "tabs": {
+    "attributes": "Attributs",
+    "summary": "Résumé"
+  },
   "resources": {
     "publishers": "Éditeur | Éditeurs",
     "books": "Livre | Livres",
@@ -46,8 +50,6 @@
     "publisher": "Editeur",
     "book": "Livre",
     "reviews": "Commentaires",
-    "attributes": "Attributs",
-    "summary": "Résumé",
     "q": "Rechercher"
   }
 }
