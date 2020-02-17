@@ -62,10 +62,14 @@
       </v-toolbar>
     </template>
     <template
-      v-for="slot in Object.keys($scopedSlots)"
-      v-slot:[`item.${slot}`]="scope"
+      v-for="(field, index) in fields"
+      v-slot:[`item.${field.source}`]="{ item }"
     >
-      <slot :name="slot" v-bind="scope"></slot>
+      <data-cell
+        :item="item"
+        :key="index"
+        :component="$slots.default[index]"
+      ></data-cell>
     </template>
     <template v-slot:item.action="{ item }">
       <slot name="action">
@@ -81,6 +85,7 @@
 </template>
 
 <script>
+import DataCell from "./DataCell";
 import FormFilter from "./FormFilter";
 import { mapState, mapActions } from "vuex";
 import EventBus from "../../../utils/eventBus";
@@ -88,20 +93,13 @@ import EventBus from "../../../utils/eventBus";
 export default {
   name: "Datagrid",
   components: {
+    DataCell,
     FormFilter
   },
   props: {
-    fields: {
-      type: Array,
-      default: () => []
-    },
     filter: {
       type: Object,
       default: () => {}
-    },
-    filters: {
-      type: Array,
-      default: () => []
     },
     canCreate: {
       type: Boolean,
@@ -132,8 +130,8 @@ export default {
     return {
       loading: false,
       currentFilter: {},
-      currentFields: [],
-      currentFilters: [],
+      filters: [],
+      fields: [],
       items: [],
       total: 0,
       options: {},
@@ -141,6 +139,28 @@ export default {
     };
   },
   mounted() {
+    this.fields = this.$slots.default.map(s => {
+      return {
+        source: s.componentOptions.propsData.source,
+        label: s.componentOptions.propsData.label || "",
+        sortable:
+          s.componentOptions.propsData.sortable === undefined
+            ? true
+            : s.componentOptions.propsData.sortable,
+        textAlign: s.componentOptions.propsData.textAlign || "left"
+      };
+    });
+
+    this.filters = this.$slots.filters.map(s => {
+      return {
+        source: s.componentOptions.propsData.source,
+        label: s.componentOptions.propsData.label || "",
+        icon: s.componentOptions.propsData.icon || "",
+        alwaysOn: s.componentOptions.propsData.alwaysOn === true,
+        active: false
+      };
+    });
+
     this.initFiltersFromQuery();
 
     EventBus.$on("refresh", () => {
@@ -154,20 +174,21 @@ export default {
     ...mapState({
       resourceName: state => state.api.resourceName
     }),
+
     enabledFilters() {
-      return this.currentFilters.filter(f => {
+      return this.filters.filter(f => {
         return f.alwaysOn || f.active;
       });
     },
     disabledFilters() {
-      return this.currentFilters.filter(f => {
+      return this.filters.filter(f => {
         return !f.alwaysOn && !f.active;
       });
     },
     headers() {
       return [
         { value: "id", text: "ID", align: "right" },
-        ...this.currentFields.map(field => {
+        ...this.fields.map(field => {
           return {
             ...field,
             text: field.label || this.$t(`attributes.${field.source}`),
@@ -184,32 +205,6 @@ export default {
         this.loadData();
       },
       deep: true
-    },
-    fields: {
-      handler(val) {
-        this.currentFields = val.map(f => {
-          return typeof f === "string"
-            ? {
-                source: f
-              }
-            : f;
-        });
-      },
-      deep: true,
-      immediate: true
-    },
-    filters: {
-      handler(val) {
-        this.currentFilters = val.map(f => {
-          return typeof f === "string"
-            ? {
-                source: f
-              }
-            : f;
-        });
-      },
-      deep: true,
-      immediate: true
     },
     currentFilter: {
       handler() {
@@ -244,22 +239,22 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.currentFilters.find(f => f.source === prop);
+          let filter = this.filters.find(f => f.source === prop);
 
           if (filter) {
             filter.active = true;
           }
         }
-        this.currentFilters = [...this.currentFilters];
+        this.filters = [...this.filters];
       }
     },
     enableFilter(filter) {
       filter.active = true;
-      this.currentFilters = [...this.currentFilters];
+      this.filters = [...this.filters];
     },
     disableFilter(filter) {
       filter.active = false;
-      this.currentFilters = [...this.currentFilters];
+      this.filters = [...this.filters];
     },
     updateQuery() {
       /**
@@ -282,7 +277,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        fields: ["id", ...this.currentFields.map(item => item.source)],
+        fields: ["id", ...this.fields.map(item => item.source)],
         pagination: {
           page,
           perPage: itemsPerPage

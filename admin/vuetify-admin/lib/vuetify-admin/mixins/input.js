@@ -4,6 +4,8 @@ export default {
   props: {
     source: String,
     label: String,
+    icon: String,
+    alwaysOn: Boolean,
     hint: String,
     required: Boolean,
     rules: {
