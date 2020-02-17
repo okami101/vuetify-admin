@@ -43,7 +43,7 @@ export const PublisherList = props => (
 export const PublisherShow = props => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField source="name" addLabel={false} />
+      <TextField source="name" />
       <TextField source="founder" />
       <TextField source="headquarter" />
       <TextField source="opening_date" />

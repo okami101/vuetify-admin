@@ -1,5 +1,7 @@
 <template>
-  <span v-html="record[source]"></span>
+  <va-field v-slot="record" v-bind="$props">
+    <span v-html="record[source]"></span>
+  </va-field>
 </template>
 
 <script>

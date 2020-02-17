@@ -11,7 +11,11 @@
       :value="`tab-${tab.id}`"
       class="pt-6"
     >
-      <slot :name="tab.id"></slot>
+      <v-card flat>
+        <v-card-text>
+          <slot :name="tab.id"></slot>
+        </v-card-text>
+      </v-card>
     </v-tab-item>
   </v-tabs>
 </template>

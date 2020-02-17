@@ -1,5 +1,6 @@
 import Admin from "./components/Core/Admin";
 import Resource from "./components/Core/Resource";
+import Field from "./components/Core/Field";
 
 import List from "./components/Actions/List";
 import Show from "./components/Actions/Show";
@@ -27,6 +28,7 @@ import {
 const components = [
   Admin,
   Resource,
+  Field,
   List,
   Show,
   Create,
