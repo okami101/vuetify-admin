@@ -6,6 +6,10 @@ export default {
     item: {
       type: Object,
       default: () => {}
+    },
+    addLabel: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

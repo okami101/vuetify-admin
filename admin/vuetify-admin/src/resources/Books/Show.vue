@@ -2,14 +2,17 @@
   <va-show>
     <va-tabbed-show :tabs="tabs">
       <template v-slot:attributes>
-        <va-simple-show :fields="fields"></va-simple-show>
+        <va-text-field source="isbn"></va-text-field>
+        <va-text-field source="title"></va-text-field>
+        <va-text-field source="description"></va-text-field>
+        <va-text-field source="author"></va-text-field>
+        <va-text-field source="publication_date"></va-text-field>
       </template>
       <template v-slot:summary>
-        <v-card flat>
-          <v-card-text>
-            <va-rich-text-field source="summary"></va-rich-text-field>
-          </v-card-text>
-        </v-card>
+        <va-rich-text-field
+          source="summary"
+          :add-label="false"
+        ></va-rich-text-field>
       </template>
     </va-tabbed-show>
   </va-show>
@@ -22,8 +25,7 @@ export default {
       tabs: [
         { id: "attributes", icon: "mdi-eye" },
         { id: "summary", icon: "mdi-text" }
-      ],
-      fields: ["isbn", "title", "description", "author", "publication_date"]
+      ]
     };
   }
 };

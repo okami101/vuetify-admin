@@ -106,8 +106,7 @@ export default {
         document.title = val.meta.title
           ? `${val.meta.title} | ${this.title}`
           : this.title;
-      },
-      immediate: true
+      }
     }
   },
   methods: {
