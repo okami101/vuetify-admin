@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      input: null,
+      input: this.value,
       errorMessages: []
     };
   },
@@ -46,14 +46,16 @@ export default {
   watch: {
     record: {
       handler(val) {
-        this.input = val[this.source] || this.value;
+        if (!this.filter) {
+          this.input = val[this.source];
+        }
       },
       immediate: true
     },
     input: {
-      handler(value) {
+      handler(val) {
         this.updateValue();
-        this.$emit("input", value);
+        this.$emit("input", val);
       }
     },
     errors(val) {
