@@ -71,15 +71,15 @@
         :component="$slots.default[index]"
       ></data-cell>
     </template>
-    <template v-slot:item.action="{ item }">
-      <slot name="action">
-        <va-show-button :resource="item"></va-show-button>
-        <va-edit-button :resource="item"></va-edit-button>
-        <va-delete-button
-          :resource="item"
+    <template v-slot:item.actions="{ item }">
+      <template v-for="(slot, index) in $slots['row-actions']">
+        <row-action-button
+          :item="item"
+          :component="slot"
+          :key="index"
           @deleted="loadData()"
-        ></va-delete-button>
-      </slot>
+        ></row-action-button>
+      </template>
     </template>
   </v-data-table>
 </template>
@@ -87,6 +87,7 @@
 <script>
 import DataCell from "./DataCell";
 import FormFilter from "./FormFilter";
+import RowActionButton from "./RowActionButton";
 import { mapState, mapActions } from "vuex";
 import EventBus from "../../../utils/eventBus";
 
@@ -94,7 +95,8 @@ export default {
   name: "Datagrid",
   components: {
     DataCell,
-    FormFilter
+    FormFilter,
+    RowActionButton
   },
   props: {
     filter: {
@@ -163,16 +165,21 @@ export default {
       });
     },
     headers() {
-      return [
-        ...this.fields.map(field => {
-          return {
-            ...field,
-            text: field.label || this.$t(`attributes.${field.source}`),
-            value: field.source
-          };
-        }),
-        { value: "action", sortable: false }
-      ];
+      let fields = this.fields.map(field => {
+        return {
+          ...field,
+          text: field.label || this.$t(`attributes.${field.source}`),
+          value: field.source
+        };
+      });
+
+      if (this.$slots["row-actions"]) {
+        fields.push({
+          value: "actions",
+          sortable: false
+        });
+      }
+      return fields;
     }
   },
   watch: {
