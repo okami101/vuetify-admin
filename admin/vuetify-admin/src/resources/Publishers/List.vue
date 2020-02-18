@@ -11,6 +11,7 @@
         <va-text-input source="founder"></va-text-input>
         <va-text-input source="headquarter"></va-text-input>
       </template>
+      <va-text-field source="id"></va-text-field>
       <va-text-field source="name"></va-text-field>
       <va-text-field source="founder"></va-text-field>
       <va-text-field source="headquarter"></va-text-field>

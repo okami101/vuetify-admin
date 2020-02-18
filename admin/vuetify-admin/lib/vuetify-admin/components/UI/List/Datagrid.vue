@@ -138,30 +138,8 @@ export default {
       selected: []
     };
   },
-  mounted() {
-    this.fields = this.$slots.default.map(s => {
-      return {
-        source: s.componentOptions.propsData.source,
-        label: s.componentOptions.propsData.label || "",
-        sortable:
-          s.componentOptions.propsData.sortable === undefined
-            ? true
-            : s.componentOptions.propsData.sortable,
-        textAlign: s.componentOptions.propsData.textAlign || "left"
-      };
-    });
-
-    this.filters = this.$slots.filters.map(s => {
-      return {
-        source: s.componentOptions.propsData.source,
-        label: s.componentOptions.propsData.label || "",
-        icon: s.componentOptions.propsData.icon || "",
-        alwaysOn: s.componentOptions.propsData.alwaysOn === true,
-        active: false
-      };
-    });
-
-    this.initFiltersFromQuery();
+  created() {
+    this.loadFields(), this.loadFilters(), this.initFiltersFromQuery();
 
     EventBus.$on("refresh", () => {
       this.loadData();
@@ -174,7 +152,6 @@ export default {
     ...mapState({
       resourceName: state => state.api.resourceName
     }),
-
     enabledFilters() {
       return this.filters.filter(f => {
         return f.alwaysOn || f.active;
@@ -187,7 +164,6 @@ export default {
     },
     headers() {
       return [
-        { value: "id", text: "ID", align: "right" },
         ...this.fields.map(field => {
           return {
             ...field,
@@ -219,6 +195,36 @@ export default {
       getList: "api/getList",
       deleteMany: "api/deleteMany"
     }),
+    loadFields() {
+      this.fields = this.$slots.default.map(s => {
+        let {
+          source,
+          label,
+          sortable,
+          textAlign
+        } = s.componentOptions.propsData;
+        return {
+          source,
+          label: label || "",
+          sortable: sortable === undefined ? true : sortable,
+          textAlign: textAlign || "left"
+        };
+      });
+    },
+    loadFilters() {
+      this.filters = this.$slots.filters.map(s => {
+        let { source, label, icon, alwaysOn } = s.componentOptions.propsData;
+
+        return {
+          source,
+          label: label || "",
+          icon: icon || "",
+          alwaysOn: alwaysOn === true,
+          active: false,
+          input: s
+        };
+      });
+    },
     initFiltersFromQuery() {
       /**
        * Apply current route query into datagrid filter

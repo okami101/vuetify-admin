@@ -8,6 +8,10 @@
     :error-messages="errorMessages"
     auto-grow
     filled
+    :append-icon="icon"
+    :single-line="singleLine"
+    :hide-details="hideDetails"
+    :dense="dense"
   ></v-textarea>
   <v-text-field
     v-else
@@ -17,6 +21,10 @@
     :rules="getRules"
     :error-messages="errorMessages"
     filled
+    :append-icon="icon"
+    :single-line="singleLine"
+    :hide-details="hideDetails"
+    :dense="dense"
   ></v-text-field>
 </template>
 
@@ -27,7 +35,11 @@ export default {
   name: "TextInput",
   mixins: [Input],
   props: {
-    multiline: Boolean
+    multiline: Boolean,
+    icon: String,
+    singleLine: Boolean,
+    hideDetails: Boolean,
+    dense: Boolean
   }
 };
 </script>

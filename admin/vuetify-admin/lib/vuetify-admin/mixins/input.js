@@ -4,10 +4,11 @@ export default {
   props: {
     source: String,
     label: String,
-    icon: String,
     alwaysOn: Boolean,
     hint: String,
     required: Boolean,
+    filter: Boolean,
+    value: [String, Number, Object, Array, Boolean],
     rules: {
       type: Array,
       default: () => []
@@ -39,18 +40,21 @@ export default {
       return rules;
     }
   },
+  created() {
+    this.updateValue();
+  },
   watch: {
     record: {
       handler(val) {
-        this.input = val[this.source];
+        this.input = val[this.source] || this.value;
       },
       immediate: true
     },
     input: {
       handler(value) {
-        this.update({ source: this.source, value });
-      },
-      immediate: true
+        this.updateValue();
+        this.$emit("input", value);
+      }
     },
     errors(val) {
       this.errorMessages = val[this.source] || [];
@@ -59,6 +63,11 @@ export default {
   methods: {
     ...mapMutations({
       update: "form/update"
-    })
+    }),
+    updateValue() {
+      if (!this.filter) {
+        this.update({ source: this.source, value: this.input });
+      }
+    }
   }
 };

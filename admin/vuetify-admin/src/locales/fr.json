@@ -36,6 +36,7 @@
     "reviews": "Commentaire | Commentaires"
   },
   "attributes": {
+    "id": "ID",
     "isbn": "ISBN",
     "name": "Nom",
     "title": "Titre",

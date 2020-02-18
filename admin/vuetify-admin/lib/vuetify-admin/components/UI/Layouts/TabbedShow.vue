@@ -27,10 +27,11 @@ export default {
   },
   render(c) {
     let tabs = this.$slots.default.map(s => {
+      let { id, icon, label } = s.componentOptions.propsData;
       return {
-        id: s.componentOptions.propsData.id,
-        icon: s.componentOptions.propsData.icon,
-        label: s.componentOptions.propsData.label
+        id,
+        icon,
+        label
       };
     });
 
