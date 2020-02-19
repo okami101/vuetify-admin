@@ -49,7 +49,7 @@ export default {
   watch: {
     value: {
       handler(val) {
-        this.filter = val;
+        this.filter = val || {};
       },
       immediate: true
     }

@@ -15,11 +15,11 @@
     "lodash": "^4.17.15",
     "papaparse": "^5.1.1",
     "roboto-fontface": "^0.10.0",
-    "tiptap-vuetify": "^2.12.1",
+    "tiptap-vuetify": "^2.13.2",
     "vue": "^2.6.10",
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.1.5",
-    "vuetify": "^2.2.12",
+    "vuetify": "^2.2.13",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^6.1.2",
+    "eslint-plugin-vue": "^6.2.1",
     "prettier": "^1.19.1",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",

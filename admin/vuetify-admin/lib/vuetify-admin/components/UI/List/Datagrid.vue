@@ -2,63 +2,17 @@
   <v-data-table
     :headers="headers"
     :items="items"
-    :items-per-page="itemsPerPage"
-    :footer-props="{
-      'items-per-page-options': rowsPerPage,
-      showFirstLastPage: true
-    }"
-    :server-items-length="total"
-    :loading="loading"
-    :options.sync="options"
-    :multi-sort="multiSort"
     :show-select="showSelect"
-    v-model="selected"
-    @update:items-per-page="updateQuery"
-    @update:page="updateQuery"
-    @update:sort-by="updateQuery"
-    @update:sort-desc="updateQuery"
+    :value="value"
+    hide-default-footer
+    :options="options"
+    :loading="loading"
+    :items-per-page="itemsPerPage"
+    :multi-sort="multiSort"
+    :server-items-length="serverItemsLength"
+    @update:options="updateOptions"
+    @input="updateSelected"
   >
-    <template v-slot:top>
-      <v-toolbar flat color="blue lighten-5" v-if="selected.length">
-        {{ $tc("va.datagrid.selected_items", selected.length) }}
-        <v-spacer></v-spacer>
-        <div>
-          <va-delete-button @delete="onBlukDelete"></va-delete-button>
-        </div>
-      </v-toolbar>
-      <v-toolbar flat v-else>
-        <form-filter
-          :filters="getEnabledFilters"
-          @remove="disableFilter"
-          v-model="currentFilter"
-        ></form-filter>
-        <v-spacer></v-spacer>
-        <v-menu offset-y v-if="getDisabledFilters.length">
-          <template v-slot:activator="{ on }">
-            <v-btn text color="primary" v-on="on">
-              <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
-              {{ $t("va.datagrid.add_filter") }}
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item
-              v-for="(filter, index) in getDisabledFilters"
-              :key="index"
-              @click="enableFilter(filter)"
-            >
-              <v-list-item-title>{{ filter.label }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <va-create-button v-if="canCreate"></va-create-button>
-        <va-export-button
-          text
-          v-if="canExport"
-          :options="options"
-          :filter="{ ...filter, ...currentFilter }"
-        ></va-export-button>
-      </v-toolbar>
-    </template>
     <template
       v-for="slot in Object.keys($scopedSlots)"
       v-slot:[`item.${slot}`]="scope"
@@ -72,21 +26,14 @@
 </template>
 
 <script>
-import FormFilter from "./FormFilter";
-import { mapState, mapActions } from "vuex";
-import EventBus from "../../../utils/eventBus";
-
 export default {
   name: "Datagrid",
-  components: {
-    FormFilter
-  },
   props: {
-    filter: {
-      type: Object,
-      default: () => {}
+    value: {
+      type: Array,
+      default: () => []
     },
-    filters: {
+    items: {
       type: Array,
       default: () => []
     },
@@ -94,71 +41,30 @@ export default {
       type: Array,
       default: () => []
     },
-    canCreate: {
+    showSelect: {
       type: Boolean,
       default: true
     },
-    canExport: {
-      type: Boolean,
-      default: true
-    },
-    itemsPerPage: {
-      type: Number,
-      default: 15
-    },
-    rowsPerPage: {
-      type: Array,
-      default: () => [5, 10, 15, 25, 50, 100, 200]
-    },
+    loading: Boolean,
+    itemsPerPage: Number,
     multiSort: {
       type: Boolean,
       default: true
     },
-    showSelect: {
-      type: Boolean,
-      default: true
-    }
+    options: {
+      type: Object,
+      default: () => {}
+    },
+    serverItemsLength: Number
   },
   data() {
     return {
-      loading: false,
-      currentFilter: {},
-      enabledFilters: [],
-      items: [],
-      total: 0,
-      options: {},
-      selected: []
+      loaded: false
     };
   },
-  created() {
-    this.initFiltersFromQuery();
-
-    EventBus.$on("refresh", () => {
-      this.loadData();
-    });
-  },
-  beforeDestroy() {
-    EventBus.$off("refresh");
-  },
   computed: {
-    ...mapState({
-      resourceName: state => state.api.resourceName
-    }),
     getFields() {
       return this.getFormattedFields(this.fields);
-    },
-    getFilters() {
-      return this.getFormattedFields(this.filters);
-    },
-    getEnabledFilters() {
-      return this.getFilters.filter(f => {
-        return this.enabledFilters.includes(f.source);
-      });
-    },
-    getDisabledFilters() {
-      return this.getFilters.filter(f => {
-        return !this.enabledFilters.includes(f.source);
-      });
     },
     headers() {
       let fields = this.getFields.map(field => {
@@ -178,39 +84,16 @@ export default {
       return fields;
     }
   },
-  watch: {
-    filters: {
-      handler() {
-        /**
-         * Pre-enable "alwaysOn" filters
-         * This filters cannot be removed
-         */
-        this.enabledFilters = this.getFilters
-          .filter(f => f.alwaysOn)
-          .map(f => f.source);
-      },
-      deep: true,
-      immediate: true
-    },
-    options: {
-      handler() {
-        this.loadData();
-      },
-      deep: true
-    },
-    currentFilter: {
-      handler() {
-        this.loadData();
-        this.updateQuery();
-      },
-      deep: true
-    }
-  },
   methods: {
-    ...mapActions({
-      getList: "api/getList",
-      deleteMany: "api/deleteMany"
-    }),
+    updateOptions(options) {
+      if (this.loaded) {
+        this.$parent.$parent.$emit("update:options", options);
+      }
+      this.loaded = true;
+    },
+    updateSelected(selected) {
+      this.$parent.$parent.$emit("input", selected);
+    },
     getFormattedFields(fields) {
       return fields
         .map(f => {
@@ -226,106 +109,6 @@ export default {
             label: f.label || this.$t(`attributes.${f.source}`)
           };
         });
-    },
-    initFiltersFromQuery() {
-      /**
-       * Apply current route query into datagrid filter
-       */
-      const { perPage, page, sortBy, sortDesc, filter } = this.$route.query;
-
-      this.options = {
-        ...this.options,
-        perPage: perPage ? parseInt(perPage, 10) : 1,
-        page: page ? parseInt(page, 10) : 1,
-        sortBy: sortBy ? sortBy.split(",") : [],
-        sortDesc: sortDesc
-          ? sortDesc.split(",").map(bool => bool === "true")
-          : []
-      };
-
-      if (filter) {
-        this.currentFilter = JSON.parse(filter);
-
-        for (let prop in this.currentFilter) {
-          let filter = this.getFilters.find(f => f.source === prop);
-
-          if (filter) {
-            this.enableFilter(filter);
-          }
-        }
-      }
-    },
-    enableFilter(filter) {
-      this.enabledFilters.push(filter.source);
-    },
-    disableFilter(filter) {
-      this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
-    },
-    updateQuery() {
-      /**
-       * Update query router
-       */
-      this.$router
-        .push({
-          query: {
-            perPage: this.options.itemsPerPage,
-            page: this.options.page,
-            sortBy: this.options.sortBy.join(","),
-            sortDesc: this.options.sortDesc.join(","),
-            filter: JSON.stringify(this.currentFilter)
-          }
-        })
-        .catch(e => {});
-    },
-    async loadData() {
-      this.loading = true;
-      const { sortBy, sortDesc, page, itemsPerPage } = this.options;
-
-      let { data, total } = await this.getList({
-        fields: this.getFields.map(item => item.source),
-        pagination: {
-          page,
-          perPage: itemsPerPage
-        },
-        sort: sortBy.map((by, index) => {
-          return { by, desc: sortDesc[index] };
-        }),
-        filter: {
-          ...this.filter,
-          ...this.currentFilter
-        }
-      });
-
-      this.loading = false;
-      this.items = data;
-      this.total = total;
-    },
-    async onDelete(item) {
-      this.loadData();
-    },
-    async onBlukDelete() {
-      if (
-        await this.$confirm(
-          this.$t("va.confirm.delete_many_title", {
-            resource: this.$tc(
-              `resources.${this.resourceName}`,
-              this.selected.length
-            ).toLowerCase(),
-            count: this.selected.length
-          }),
-          this.$t("va.confirm.delete_many_message", {
-            resource: this.$tc(
-              `resources.${this.resourceName}`,
-              this.selected.length
-            ).toLowerCase(),
-            count: this.selected.length
-          })
-        )
-      ) {
-        await this.deleteMany({ ids: this.selected.map(({ id }) => id) });
-        this.selected = [];
-        this.loadData();
-      }
     }
   }
 };
