@@ -1,15 +1,13 @@
 <template>
   <va-list>
-    <va-datagrid :fields="['id', 'rating', 'author', 'publication_date']">
-      <template v-slot:filters>
-        <va-text-input
-          source="q"
-          icon="mdi-magnify"
-          :always-on="true"
-        ></va-text-input>
-        <va-text-input source="rating"></va-text-input>
-        <va-text-input source="author"></va-text-input>
-      </template>
+    <va-datagrid
+      :fields="['id', 'rating', 'author', 'publication_date']"
+      :filters="[
+        { source: 'q', icon: 'mdi-magnify', alwaysOn: true },
+        'rating',
+        'author'
+      ]"
+    >
       <template v-slot:rating="{ item }">
         <star-rating-field :item="item" source="rating"></star-rating-field>
       </template>

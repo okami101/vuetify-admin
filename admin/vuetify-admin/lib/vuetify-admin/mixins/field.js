@@ -9,14 +9,6 @@ export default {
     addLabel: {
       type: Boolean,
       default: true
-    },
-    sortable: {
-      type: Boolean,
-      default: true
-    },
-    textAlign: {
-      type: String,
-      default: "left"
     }
   }
 };

@@ -28,12 +28,12 @@
       </v-toolbar>
       <v-toolbar flat v-else>
         <form-filter
-          :filters="enabledFilters"
+          :filters="getEnabledFilters"
           @remove="disableFilter"
           v-model="currentFilter"
         ></form-filter>
         <v-spacer></v-spacer>
-        <v-menu offset-y v-if="disabledFilters.length">
+        <v-menu offset-y v-if="getDisabledFilters.length">
           <template v-slot:activator="{ on }">
             <v-btn text color="primary" v-on="on">
               <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
@@ -42,13 +42,11 @@
           </template>
           <v-list>
             <v-list-item
-              v-for="(filter, index) in disabledFilters"
+              v-for="(filter, index) in getDisabledFilters"
               :key="index"
               @click="enableFilter(filter)"
             >
-              <v-list-item-title>{{
-                filter.label || $t(`attributes.${filter.source}`)
-              }}</v-list-item-title>
+              <v-list-item-title>{{ filter.label }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -88,6 +86,10 @@ export default {
       type: Object,
       default: () => {}
     },
+    filters: {
+      type: Array,
+      default: () => []
+    },
     fields: {
       type: Array,
       default: () => []
@@ -121,15 +123,15 @@ export default {
     return {
       loading: false,
       currentFilter: {},
-      filters: [],
+      enabledFilters: [],
       items: [],
       total: 0,
       options: {},
       selected: []
     };
   },
-  mounted() {
-    this.loadFilters(), this.initFiltersFromQuery();
+  created() {
+    this.initFiltersFromQuery();
 
     EventBus.$on("refresh", () => {
       this.loadData();
@@ -143,22 +145,19 @@ export default {
       resourceName: state => state.api.resourceName
     }),
     getFields() {
-      return this.fields.map(f => {
-        return typeof f === "string"
-          ? {
-              source: f
-            }
-          : f;
+      return this.getFormattedFields(this.fields);
+    },
+    getFilters() {
+      return this.getFormattedFields(this.filters);
+    },
+    getEnabledFilters() {
+      return this.getFilters.filter(f => {
+        return this.enabledFilters.includes(f.source);
       });
     },
-    enabledFilters() {
-      return this.filters.filter(f => {
-        return f.alwaysOn || f.active;
-      });
-    },
-    disabledFilters() {
-      return this.filters.filter(f => {
-        return !f.alwaysOn && !f.active;
+    getDisabledFilters() {
+      return this.getFilters.filter(f => {
+        return !this.enabledFilters.includes(f.source);
       });
     },
     headers() {
@@ -180,6 +179,19 @@ export default {
     }
   },
   watch: {
+    filters: {
+      handler() {
+        /**
+         * Pre-enable "alwaysOn" filters
+         * This filters cannot be removed
+         */
+        this.enabledFilters = this.getFilters
+          .filter(f => f.alwaysOn)
+          .map(f => f.source);
+      },
+      deep: true,
+      immediate: true
+    },
     options: {
       handler() {
         this.loadData();
@@ -199,19 +211,21 @@ export default {
       getList: "api/getList",
       deleteMany: "api/deleteMany"
     }),
-    loadFilters() {
-      this.filters = this.$slots.filters.map(s => {
-        let { source, label, icon, alwaysOn } = s.componentOptions.propsData;
-
-        return {
-          source,
-          label: label || "",
-          icon: icon || "",
-          alwaysOn: alwaysOn === true,
-          active: false,
-          input: s
-        };
-      });
+    getFormattedFields(fields) {
+      return fields
+        .map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        })
+        .map(f => {
+          return {
+            ...f,
+            label: f.label || this.$t(`attributes.${f.source}`)
+          };
+        });
     },
     initFiltersFromQuery() {
       /**
@@ -233,22 +247,19 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.filters.find(f => f.source === prop);
+          let filter = this.getFilters.find(f => f.source === prop);
 
           if (filter) {
-            filter.active = true;
+            this.enableFilter(filter);
           }
         }
-        this.filters = [...this.filters];
       }
     },
     enableFilter(filter) {
-      filter.active = true;
-      this.filters = [...this.filters];
+      this.enabledFilters.push(filter.source);
     },
     disableFilter(filter) {
-      filter.active = false;
-      this.filters = [...this.filters];
+      this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
       /**

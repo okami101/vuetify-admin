@@ -12,11 +12,15 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
-        <filter-input
-          :value="filter[item.source]"
-          :component="item.input"
-          @input="val => onSearch(item.source, val)"
-        ></filter-input>
+        <va-text-input
+          v-model="filter[item.source]"
+          :label="item.label"
+          :icon="item.icon"
+          single-line
+          hide-details
+          dense
+          @input="onSearch"
+        ></va-text-input>
       </div>
     </v-col>
   </v-row>
@@ -24,13 +28,9 @@
 
 <script>
 import debounce from "lodash/debounce";
-import FilterInput from "./FilterInput";
 
 export default {
   name: "FormFilter",
-  components: {
-    FilterInput
-  },
   props: {
     value: {
       type: Object,
@@ -60,11 +60,7 @@ export default {
       this.$emit("remove", filter);
       this.$emit("input", { ...this.filter });
     },
-    onSearch(source, value) {
-      this.filter[source] = value;
-      this.doSearch();
-    },
-    doSearch: debounce(function() {
+    onSearch: debounce(function() {
       this.$emit("input", { ...this.filter });
     }, 200)
   }

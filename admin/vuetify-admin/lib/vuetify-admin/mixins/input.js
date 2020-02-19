@@ -7,7 +7,6 @@ export default {
     alwaysOn: Boolean,
     hint: String,
     required: Boolean,
-    filter: Boolean,
     value: [String, Number, Object, Array, Boolean],
     rules: {
       type: Array,
@@ -16,7 +15,7 @@ export default {
   },
   data() {
     return {
-      input: this.value,
+      input: null,
       errorMessages: []
     };
   },
@@ -46,8 +45,16 @@ export default {
   watch: {
     record: {
       handler(val) {
-        if (!this.filter) {
+        if (this.source) {
           this.input = val[this.source];
+        }
+      },
+      immediate: true
+    },
+    value: {
+      handler(val) {
+        if (!this.source) {
+          this.input = val;
         }
       },
       immediate: true
@@ -67,7 +74,7 @@ export default {
       update: "form/update"
     }),
     updateValue() {
-      if (!this.filter) {
+      if (this.source) {
         this.update({ source: this.source, value: this.input });
       }
     }

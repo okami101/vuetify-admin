@@ -69,9 +69,10 @@ export default {
          */
         if (["show", "edit"].includes(this.$route.meta.action)) {
           this.$router.push(`/${$store.state.api.resourceName}`);
-        } else {
-          this.refresh();
+          return;
         }
+
+        this.refresh();
       }
     }
   }
