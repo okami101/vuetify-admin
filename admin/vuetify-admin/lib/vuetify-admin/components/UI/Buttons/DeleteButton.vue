@@ -14,7 +14,7 @@ import { mapState } from "vuex";
 export default {
   name: "DeleteButton",
   props: {
-    resource: Object,
+    item: Object,
     icon: {
       type: String,
       default: "mdi-trash-can"
@@ -30,12 +30,13 @@ export default {
       apiResource: state => state.api.resource
     }),
     currentResource() {
-      return this.resource || this.apiResource;
+      return this.item || this.apiResource;
     }
   },
   methods: {
     ...mapActions({
-      delete: "api/delete"
+      delete: "api/delete",
+      refresh: "api/refresh"
     }),
     async onDelete() {
       if (!this.currentResource) {
@@ -62,13 +63,14 @@ export default {
         )
       ) {
         await this.delete({ id: this.currentResource.id });
-        this.$emit("deleted");
 
         /**
          * Redirect to list if deleting on current ressource
          */
         if (["show", "edit"].includes(this.$route.meta.action)) {
           this.$router.push(`/${$store.state.api.resourceName}`);
+        } else {
+          this.refresh();
         }
       }
     }

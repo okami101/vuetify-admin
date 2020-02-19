@@ -18,7 +18,7 @@ import { mapState } from "vuex";
 export default {
   name: "EditButton",
   props: {
-    resource: Object,
+    item: Object,
     icon: {
       type: String,
       default: "mdi-pencil"
@@ -33,7 +33,7 @@ export default {
       apiResource: state => state.api.resource
     }),
     currentResource() {
-      return this.resource || this.apiResource;
+      return this.item || this.apiResource;
     }
   }
 };

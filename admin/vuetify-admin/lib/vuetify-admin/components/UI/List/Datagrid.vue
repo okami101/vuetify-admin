@@ -62,46 +62,35 @@
       </v-toolbar>
     </template>
     <template
-      v-for="(field, index) in fields"
-      v-slot:[`item.${field.source}`]="{ item }"
+      v-for="slot in Object.keys($scopedSlots)"
+      v-slot:[`item.${slot}`]="scope"
     >
-      <data-cell
-        :item="item"
-        :key="index"
-        :component="$slots.default[index]"
-      ></data-cell>
+      <slot :name="slot" v-bind="scope"></slot>
     </template>
-    <template v-slot:item.actions="{ item }">
-      <template v-for="(slot, index) in $slots['row-actions']">
-        <row-action-button
-          :item="item"
-          :component="slot"
-          :key="index"
-          @deleted="loadData()"
-        ></row-action-button>
-      </template>
+    <template v-slot:item.actions="scope">
+      <slot name="row-actions" v-bind="scope"></slot>
     </template>
   </v-data-table>
 </template>
 
 <script>
-import DataCell from "./DataCell";
 import FormFilter from "./FormFilter";
-import RowActionButton from "./RowActionButton";
 import { mapState, mapActions } from "vuex";
 import EventBus from "../../../utils/eventBus";
 
 export default {
   name: "Datagrid",
   components: {
-    DataCell,
-    FormFilter,
-    RowActionButton
+    FormFilter
   },
   props: {
     filter: {
       type: Object,
       default: () => {}
+    },
+    fields: {
+      type: Array,
+      default: () => []
     },
     canCreate: {
       type: Boolean,
@@ -133,15 +122,14 @@ export default {
       loading: false,
       currentFilter: {},
       filters: [],
-      fields: [],
       items: [],
       total: 0,
       options: {},
       selected: []
     };
   },
-  created() {
-    this.loadFields(), this.loadFilters(), this.initFiltersFromQuery();
+  mounted() {
+    this.loadFilters(), this.initFiltersFromQuery();
 
     EventBus.$on("refresh", () => {
       this.loadData();
@@ -154,6 +142,15 @@ export default {
     ...mapState({
       resourceName: state => state.api.resourceName
     }),
+    getFields() {
+      return this.fields.map(f => {
+        return typeof f === "string"
+          ? {
+              source: f
+            }
+          : f;
+      });
+    },
     enabledFilters() {
       return this.filters.filter(f => {
         return f.alwaysOn || f.active;
@@ -165,7 +162,7 @@ export default {
       });
     },
     headers() {
-      let fields = this.fields.map(field => {
+      let fields = this.getFields.map(field => {
         return {
           ...field,
           text: field.label || this.$t(`attributes.${field.source}`),
@@ -173,7 +170,7 @@ export default {
         };
       });
 
-      if (this.$slots["row-actions"]) {
+      if (this.$scopedSlots["row-actions"]) {
         fields.push({
           value: "actions",
           sortable: false
@@ -202,22 +199,6 @@ export default {
       getList: "api/getList",
       deleteMany: "api/deleteMany"
     }),
-    loadFields() {
-      this.fields = this.$slots.default.map(s => {
-        let {
-          source,
-          label,
-          sortable,
-          textAlign
-        } = s.componentOptions.propsData;
-        return {
-          source,
-          label: label || "",
-          sortable: sortable === undefined ? true : sortable,
-          textAlign: textAlign || "left"
-        };
-      });
-    },
     loadFilters() {
       this.filters = this.$slots.filters.map(s => {
         let { source, label, icon, alwaysOn } = s.componentOptions.propsData;
@@ -290,7 +271,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        fields: ["id", ...this.fields.map(item => item.source)],
+        fields: this.getFields.map(item => item.source),
         pagination: {
           page,
           perPage: itemsPerPage
