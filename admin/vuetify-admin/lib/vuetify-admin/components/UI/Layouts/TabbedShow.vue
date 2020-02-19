@@ -1,13 +1,25 @@
-<script>
-import { VTabs, VTab, VTabItem, VIcon } from "vuetify/lib";
+<template>
+  <v-tabs v-model="currentTab" grow>
+    <v-tab v-for="tab in tabs" :key="tab.id" :href="`#tab-${tab.id}`">
+      <v-icon v-if="tab.icon" small class="mr-2">{{ tab.icon }}</v-icon>
+      {{ tab.label || $t(`tabs.${tab.id}`) }}
+    </v-tab>
 
+    <v-tab-item v-for="tab in tabs" :key="tab.id" :value="`tab-${tab.id}`">
+      <v-card flat :rounded="false">
+        <v-card-text>
+          <slot :name="tab.id"></slot>
+        </v-card-text>
+      </v-card>
+    </v-tab-item>
+  </v-tabs>
+</template>
+
+<script>
 export default {
   name: "TabbedShow",
-  components: {
-    VTabs,
-    VTab,
-    VIcon,
-    VTabItem
+  props: {
+    tabs: Array
   },
   data() {
     return {
@@ -24,72 +36,6 @@ export default {
         }
       }
     }
-  },
-  render(c) {
-    let tabs = this.$slots.default.map(s => {
-      let { id, icon, label } = s.componentOptions.propsData;
-      return {
-        id,
-        icon,
-        label
-      };
-    });
-
-    return c(
-      "v-tabs",
-      {
-        props: {
-          value: this.currentTab
-        },
-        attrs: {
-          grow: true
-        },
-        on: {
-          change: number => {
-            this.currentTab = number;
-          }
-        }
-      },
-      [
-        [
-          ...tabs.map(t =>
-            c(
-              "v-tab",
-              {
-                attrs: {
-                  href: `#tab-${t.id}`
-                }
-              },
-              [
-                c(
-                  "v-icon",
-                  {
-                    attrs: {
-                      small: true
-                    },
-                    class: "mr-2"
-                  },
-                  t.icon
-                ),
-                t.label
-              ]
-            )
-          ),
-          ...tabs.map((t, i) =>
-            c(
-              "v-tab-item",
-              {
-                attrs: {
-                  value: `tab-${t.id}`
-                },
-                class: "pt-6"
-              },
-              [this.$slots.default[i]]
-            )
-          )
-        ]
-      ]
-    );
   }
 };
 </script>

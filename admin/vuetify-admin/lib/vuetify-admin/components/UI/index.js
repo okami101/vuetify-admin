@@ -1,7 +1,6 @@
 import Datagrid from "./List/Datagrid";
 import SimpleShow from "./Layouts/SimpleShow";
 import TabbedShow from "./Layouts/TabbedShow";
-import Tab from "./Layouts/Tab";
 import SimpleForm from "./Layouts/SimpleForm";
 
 import TextField from "./Fields/TextField";
@@ -22,7 +21,6 @@ export {
   Datagrid,
   SimpleShow,
   TabbedShow,
-  Tab,
   SimpleForm,
   TextField,
   RichTextField,
