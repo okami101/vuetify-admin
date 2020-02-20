@@ -1,11 +1,5 @@
 <template>
-  <va-list
-    :filters="[
-      { source: 'q', icon: 'mdi-magnify', alwaysOn: true },
-      'title',
-      'author'
-    ]"
-  >
+  <va-list :filters="['q', 'title', 'author']">
     <template v-slot="props">
       <va-datagrid
         v-bind="props"

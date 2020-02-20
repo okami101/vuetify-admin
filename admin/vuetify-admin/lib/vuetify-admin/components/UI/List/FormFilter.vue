@@ -12,7 +12,8 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
-        <va-text-input
+        <component
+          :is="`va-${item.type || 'text'}-input`"
           v-model="filter[item.source]"
           :label="item.label"
           :icon="item.icon"
@@ -20,7 +21,7 @@
           hide-details
           dense
           @input="onSearch"
-        ></va-text-input>
+        ></component>
       </div>
     </v-col>
   </v-row>

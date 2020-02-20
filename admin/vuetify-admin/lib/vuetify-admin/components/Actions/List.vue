@@ -138,7 +138,14 @@ export default {
       return this.$tc(`resources.${this.resourceName}`, 10);
     },
     getFilters() {
-      return this.getFormattedFields(this.filters);
+      return this.getFormattedFields(
+        this.filters.map(f => {
+          if (f === "q") {
+            return { source: "q", icon: "mdi-magnify", alwaysOn: true };
+          }
+          return f;
+        })
+      );
     },
     getEnabledFilters() {
       return this.getFilters.filter(f => {

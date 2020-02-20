@@ -18,6 +18,9 @@
         v-on="on"
         clearable
         filled
+        :single-line="singleLine"
+        :hide-details="hideDetails"
+        :dense="dense"
         @click:clear="input = null"
       ></v-text-field>
     </template>
@@ -32,6 +35,11 @@ import format from "date-fns/format";
 export default {
   name: "DateInput",
   mixins: [Input],
+  props: {
+    singleLine: Boolean,
+    hideDetails: Boolean,
+    dense: Boolean
+  },
   data() {
     return {
       menu: false
