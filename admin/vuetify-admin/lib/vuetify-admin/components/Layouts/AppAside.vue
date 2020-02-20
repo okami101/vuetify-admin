@@ -1,17 +1,17 @@
 <template>
   <v-navigation-drawer
-    :value="aside"
+    :value="opened"
     :clipped="$vuetify.breakpoint.lgAndUp"
     right
     app
     :width="400"
   >
     <div class="pa-4">
-      <div class="d-flex align-center justify-space-between">
-        <h3 class="display-1">Test</h3>
-        <v-btn icon @click="closeAside()">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+      <v-btn class="close" icon @click="close()">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <div class="content">
+        <slot></slot>
       </div>
     </div>
   </v-navigation-drawer>
@@ -24,13 +24,23 @@ export default {
   name: "AppAside",
   computed: {
     ...mapState({
-      aside: state => state.layout.aside
+      opened: state => state.aside.opened
     })
   },
   methods: {
     ...mapMutations({
-      closeAside: "layout/closeAside"
+      close: "aside/close"
     })
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.close {
+  position: absolute;
+  right: 1rem;
+}
+.content {
+  margin-top: 3rem;
+}
+</style>

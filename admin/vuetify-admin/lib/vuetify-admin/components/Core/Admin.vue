@@ -15,7 +15,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
-import layout from "../../store/layout";
+import aside from "../../store/aside";
 import auth from "../../store/auth";
 import api from "../../store/api";
 import form from "../../store/form";
@@ -58,7 +58,7 @@ export default {
     /**
      * Auth store & api dispatcher module injection
      */
-    this.$store.registerModule("layout", layout);
+    this.$store.registerModule("aside", aside);
     this.$store.registerModule("auth", auth(this.authProvider));
     this.$store.registerModule("api", api(this.$i18n));
     this.$store.registerModule("form", form);
