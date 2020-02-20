@@ -1,3 +1,5 @@
 <template>
-  <va-create></va-create>
+  <va-create>
+    <reviews-form></reviews-form>
+  </va-create>
 </template>

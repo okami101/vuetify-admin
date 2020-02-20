@@ -1,4 +1,6 @@
 import Datagrid from "./List/Datagrid";
+import Form from "./Layouts/Form";
+import FormSave from "./Layouts/FormSave";
 import SimpleShow from "./Layouts/SimpleShow";
 import TabbedShow from "./Layouts/TabbedShow";
 import SimpleForm from "./Layouts/SimpleForm";
@@ -21,6 +23,8 @@ import ExportButton from "./Buttons/ExportButton";
 
 export {
   Datagrid,
+  Form,
+  FormSave,
   SimpleShow,
   TabbedShow,
   SimpleForm,
