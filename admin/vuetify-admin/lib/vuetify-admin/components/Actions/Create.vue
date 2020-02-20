@@ -3,9 +3,6 @@
     <va-aside-content>
       <slot name="aside"></slot>
     </va-aside-content>
-    <slot name="action" slot="actions">
-      <va-list-button></va-list-button>
-    </slot>
     <slot></slot>
   </div>
 </template>

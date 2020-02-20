@@ -1,5 +1,5 @@
 <template>
-  <v-btn text @click.stop="onDelete" :color="color">
+  <v-btn v-if="currentResource" text @click.stop="onDelete" :color="color">
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
