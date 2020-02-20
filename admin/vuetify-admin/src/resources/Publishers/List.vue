@@ -1,5 +1,5 @@
 <template>
-  <va-list :filters="['q', 'name', 'founder', 'headquarter']">
+  <va-list :filters="['q', 'name', 'founder', 'headquarter']" :exporter="false">
     <template v-slot="props">
       <va-datagrid
         v-bind="props"

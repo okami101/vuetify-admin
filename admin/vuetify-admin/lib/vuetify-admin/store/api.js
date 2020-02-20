@@ -150,6 +150,11 @@ export default i18n => {
         state.snackbarColor = null;
       }
     },
+    getters: {
+      can: (state, getters, rootState, rootGetters) => action => {
+        return rootGetters[`${state.resourceName}/can`](action);
+      }
+    },
     actions: {
       ...storeActions,
       async refresh({ state, dispatch }) {

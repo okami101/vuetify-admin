@@ -52,7 +52,7 @@ export const ReviewShow = props => (
 );
 
 export const ReviewEdit = props => (
-  <Edit {...props} undoable="false">
+  <Edit {...props} undoable={false}>
     <SimpleForm>
       <NumberInput source="rating" />
       <TextInput source="author" />

@@ -2,6 +2,8 @@
 import resource from "../../store/resource";
 import { mapMutations, mapActions } from "vuex";
 
+let actions = ["list", "show", "create", "edit", "delete"];
+
 export default {
   name: "Resource",
   props: {
@@ -9,9 +11,13 @@ export default {
       type: String,
       required: true
     },
-    actions: {
+    only: {
       type: Array,
-      default: () => ["list", "show", "create", "edit", "delete"]
+      default: () => []
+    },
+    except: {
+      type: Array,
+      default: () => []
     }
   },
   async created() {
@@ -23,7 +29,7 @@ export default {
       resource(
         this.$parent.$parent.$props.dataProvider,
         this.name,
-        this.actions
+        this.getActions
       )
     );
 
@@ -129,6 +135,19 @@ export default {
       }
     ]);
   },
+  computed: {
+    getActions() {
+      if (this.only.length) {
+        return this.only;
+      }
+
+      if (this.except.length) {
+        return actions.filter(a => !this.except.includes(a));
+      }
+
+      return actions;
+    }
+  },
   methods: {
     ...mapMutations({
       setResourceName: "api/setResourceName",
@@ -138,7 +157,7 @@ export default {
       getOne: "api/getOne"
     }),
     hasAction(name) {
-      return this.actions.includes(name);
+      return this.getActions.includes(name);
     }
   },
   render() {

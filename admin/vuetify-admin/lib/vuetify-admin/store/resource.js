@@ -21,6 +21,14 @@ export default (provider, resource, actions) => {
 
   return {
     namespaced: true,
+    state: {
+      actions
+    },
+    getters: {
+      can: state => action => {
+        return state.actions.includes(action);
+      }
+    },
     actions: storeActions
   };
 };

@@ -142,6 +142,7 @@ export default entrypoint => {
         case DELETE:
           return Promise.resolve({ data: { id: null } });
 
+        case GET_ONE:
         case CREATE:
         case UPDATE:
           let json = await response.json();

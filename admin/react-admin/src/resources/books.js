@@ -53,7 +53,7 @@ export const BookShow = props => (
 );
 
 export const BookEdit = props => (
-  <Edit {...props} undoable="false">
+  <Edit {...props} undoable={false}>
     <SimpleForm>
       <TextInput source="isbn" />
       <TextInput source="title" />

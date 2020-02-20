@@ -53,7 +53,7 @@ export const PublisherShow = props => (
 );
 
 export const PublisherEdit = props => (
-  <Edit {...props} undoable="false">
+  <Edit {...props} undoable={false}>
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="founder" />

@@ -5,7 +5,7 @@
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
   >
-    <va-resource name="publishers"></va-resource>
+    <va-resource name="publishers" :except="['create']"></va-resource>
     <va-resource name="books"></va-resource>
     <va-resource name="reviews"></va-resource>
   </va-admin>

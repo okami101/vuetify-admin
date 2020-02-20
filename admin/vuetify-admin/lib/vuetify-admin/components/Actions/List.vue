@@ -48,8 +48,9 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <va-create-button></va-create-button>
+          <va-create-button v-if="canCreate"></va-create-button>
           <va-export-button
+            v-if="exporter"
             text
             :options="options"
             :filter="{ ...filter, ...currentFilter }"
@@ -81,7 +82,7 @@
 <script>
 import debounce from "lodash/debounce";
 import FormFilter from "../UI/List/FormFilter";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Page from "../../mixins/page";
 import EventBus from "../../utils/eventBus";
 
@@ -107,6 +108,10 @@ export default {
     rowsPerPage: {
       type: Array,
       default: () => [5, 10, 15, 25, 50, 100]
+    },
+    exporter: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -134,6 +139,12 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
+    ...mapGetters({
+      can: "api/can"
+    }),
+    canCreate() {
+      return this.can("create");
+    },
     defaultTitle() {
       return this.$tc(`resources.${this.resourceName}`, 10);
     },

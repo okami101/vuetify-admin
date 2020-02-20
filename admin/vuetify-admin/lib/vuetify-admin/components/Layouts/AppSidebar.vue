@@ -28,7 +28,6 @@
             v-for="(child, i) in item.children"
             :key="i"
             link
-            exact
             :to="child.link"
           >
             <v-list-item-action v-if="child.icon">
@@ -41,13 +40,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-        <v-list-item
-          v-else-if="item.text"
-          :key="index"
-          link
-          exact
-          :to="item.link"
-        >
+        <v-list-item v-else-if="item.text" :key="index" link :to="item.link">
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
