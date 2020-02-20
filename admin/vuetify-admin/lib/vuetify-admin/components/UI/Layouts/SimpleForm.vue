@@ -9,14 +9,14 @@
       <v-toolbar flat color="grey lighten-4">
         <va-save-button></va-save-button>
         <v-spacer></v-spacer>
-        <va-delete-button v-if="resource"></va-delete-button>
+        <va-delete-button v-if="can('delete')"></va-delete-button>
       </v-toolbar>
     </v-card>
   </v-form>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   name: "SimpleForm",
@@ -30,6 +30,9 @@ export default {
     ...mapState({
       resource: state => state.api.resource,
       resourceName: state => state.api.resourceName
+    }),
+    ...mapGetters({
+      can: "api/can"
     })
   },
   methods: {
