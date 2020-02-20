@@ -2,9 +2,7 @@
   <v-form ref="form" @submit.prevent="onSave">
     <v-card>
       <v-card-text>
-        <div>
-          <slot></slot>
-        </div>
+        <slot></slot>
       </v-card-text>
       <v-toolbar flat color="grey lighten-4">
         <va-save-button></va-save-button>
@@ -16,33 +14,10 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import Form from "../../../mixins/form";
 
 export default {
   name: "SimpleForm",
-  computed: {
-    ...mapState({
-      resource: state => state.api.resource,
-      resourceName: state => state.api.resourceName
-    }),
-    ...mapGetters({
-      can: "api/can"
-    })
-  },
-  methods: {
-    ...mapActions({
-      save: "form/save"
-    }),
-    async onSave() {
-      if (!this.$refs.form.validate()) {
-        return;
-      }
-
-      try {
-        await this.save();
-        this.$router.push(`/${this.resourceName}`);
-      } catch (e) {}
-    }
-  }
+  mixins: [Form]
 };
 </script>

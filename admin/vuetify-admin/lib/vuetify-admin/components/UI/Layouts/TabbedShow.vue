@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-tabs v-model="currentTab" grow>
+    <v-tabs v-model="currentTab">
       <v-tab v-for="tab in tabs" :key="tab.id" :href="`#tab-${tab.id}`">
         <v-icon v-if="tab.icon" small class="mr-2">{{ tab.icon }}</v-icon>
         {{ tab.label || $t(`tabs.${tab.id}`) }}
@@ -16,6 +16,8 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items>
+
+    <slot name="footer"></slot>
   </v-card>
 </template>
 
