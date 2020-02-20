@@ -1,4 +1,4 @@
-import EventBus from "../utils/eventBus";
+import EventBus from "vuetify-admin/utils/eventBus";
 
 const methods = [
   "getList",

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Input from "../../../mixins/input";
+import Input from "vuetify-admin/mixins/input";
 import format from "date-fns/format";
 
 export default {

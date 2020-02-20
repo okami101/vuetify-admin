@@ -1,17 +1,11 @@
-import Datagrid from "./List/Datagrid";
-import Form from "./Layouts/Form";
-import FormSave from "./Layouts/FormSave";
-import SimpleShow from "./Layouts/SimpleShow";
-import TabbedShow from "./Layouts/TabbedShow";
-import SimpleForm from "./Layouts/SimpleForm";
-import TabbedForm from "./Layouts/TabbedForm";
-import AsideContent from "./Layouts/AsideContent";
-
-import TextField from "./Fields/TextField";
-import RichTextField from "./Fields/RichTextField";
-
-import TextInput from "./Inputs/TextInput";
-import DateInput from "./Inputs/DateInput";
+import Datagrid from "./Layout/Datagrid";
+import Form from "./Layout/Form";
+import FormSave from "./Layout/FormSave";
+import SimpleShow from "./Layout/SimpleShow";
+import TabbedShow from "./Layout/TabbedShow";
+import SimpleForm from "./Layout/SimpleForm";
+import TabbedForm from "./Layout/TabbedForm";
+import AsideContent from "./Layout/AsideContent";
 
 import ListButton from "./Buttons/ListButton";
 import CreateButton from "./Buttons/CreateButton";
@@ -20,6 +14,12 @@ import EditButton from "./Buttons/EditButton";
 import DeleteButton from "./Buttons/DeleteButton";
 import SaveButton from "./Buttons/SaveButton";
 import ExportButton from "./Buttons/ExportButton";
+
+import TextField from "./Fields/TextField";
+import RichTextField from "./Fields/RichTextField";
+
+import TextInput from "./Inputs/TextInput";
+import DateInput from "./Inputs/DateInput";
 
 export {
   Datagrid,

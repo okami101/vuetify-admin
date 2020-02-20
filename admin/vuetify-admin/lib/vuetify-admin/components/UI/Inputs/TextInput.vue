@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Input from "../../../mixins/input";
+import Input from "vuetify-admin/mixins/input";
 
 export default {
   name: "TextInput",

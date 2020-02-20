@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import StarRatingField from "../../components/fields/StarRatingField";
+import StarRatingField from "@/components/fields/StarRatingField";
 
 export default {
   components: {

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Page from "../../mixins/page";
+import Page from "vuetify-admin/mixins/page";
 import { mapGetters } from "vuex";
 
 export default {

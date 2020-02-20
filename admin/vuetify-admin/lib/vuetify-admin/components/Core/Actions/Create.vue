@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Page from "../../mixins/page";
+import Page from "vuetify-admin/mixins/page";
 
 export default {
   name: "Create",

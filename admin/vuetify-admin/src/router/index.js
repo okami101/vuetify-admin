@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from "../views/Login";
-import Dashboard from "../views/Dashboard";
+import Login from "@/views/Login";
+import Dashboard from "@/views/Dashboard";
 
 Vue.use(VueRouter);
 
@@ -31,7 +31,7 @@ const router = i18n => {
     {
       path: "/help",
       name: "help",
-      component: () => import("../views/Help"),
+      component: () => import("@/views/Help"),
       meta: {
         title: i18n.t("routes.help")
       }
@@ -39,7 +39,7 @@ const router = i18n => {
     {
       path: "/settings",
       name: "settings",
-      component: () => import("../views/Settings"),
+      component: () => import("@/views/Settings"),
       meta: {
         title: i18n.t("routes.settings")
       }
@@ -47,7 +47,7 @@ const router = i18n => {
     {
       path: "/feedback",
       name: "feedback",
-      component: () => import("../views/Feedback"),
+      component: () => import("@/views/Feedback"),
       meta: {
         title: i18n.t("routes.feedback")
       }

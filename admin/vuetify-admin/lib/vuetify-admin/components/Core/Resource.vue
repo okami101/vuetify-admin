@@ -1,5 +1,5 @@
 <script>
-import resource from "../../store/resource";
+import resource from "vuetify-admin/store/resource";
 import { mapMutations, mapActions } from "vuex";
 
 let actions = ["list", "show", "create", "edit", "delete"];

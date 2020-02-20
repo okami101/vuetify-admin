@@ -15,14 +15,14 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
-import aside from "../../store/aside";
-import auth from "../../store/auth";
-import api from "../../store/api";
-import form from "../../store/form";
-import AppLayout from "../Layouts/AppLayout";
+import aside from "vuetify-admin/store/aside";
+import auth from "vuetify-admin/store/auth";
+import api from "vuetify-admin/store/api";
+import form from "vuetify-admin/store/form";
+import AppLayout from "vuetify-admin/components/Layout/AppLayout";
 
-import en from "../../locales/en.json";
-import fr from "../../locales/fr.json";
+import en from "vuetify-admin/locales/en.json";
+import fr from "vuetify-admin/locales/fr.json";
 
 export default {
   name: "Admin",

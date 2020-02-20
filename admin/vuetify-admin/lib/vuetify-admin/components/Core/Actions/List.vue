@@ -84,10 +84,10 @@
 
 <script>
 import debounce from "lodash/debounce";
-import FormFilter from "../UI/List/FormFilter";
+import FormFilter from "../List/FormFilter";
 import { mapActions, mapGetters } from "vuex";
-import Page from "../../mixins/page";
-import EventBus from "../../utils/eventBus";
+import Page from "vuetify-admin/mixins/page";
+import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "List",

@@ -1,4 +1,4 @@
-import objectToFormData from "../utils/objectToFormData";
+import objectToFormData from "vuetify-admin/utils/objectToFormData";
 
 const GET_LIST = "GET_LIST";
 const GET_MANY = "GET_MANY";

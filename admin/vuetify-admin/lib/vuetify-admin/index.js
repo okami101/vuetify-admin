@@ -1,12 +1,13 @@
-import Admin from "./components/Core/Admin";
-import Resource from "./components/Core/Resource";
-import Field from "./components/Core/Field";
-import Input from "./components/Core/Input";
-
-import List from "./components/Actions/List";
-import Show from "./components/Actions/Show";
-import Create from "./components/Actions/Create";
-import Edit from "./components/Actions/Edit";
+import {
+  Admin,
+  Resource,
+  Field,
+  Input,
+  List,
+  Show,
+  Create,
+  Edit
+} from "./components/Core";
 
 import {
   Datagrid,

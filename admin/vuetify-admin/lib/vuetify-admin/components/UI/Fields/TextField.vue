@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Field from "../../../mixins/field";
+import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "TextField",
