@@ -6,12 +6,12 @@ export default {
   },
   computed: {
     ...mapState({
-      resource: state => state.api.resource,
+      item: state => state.api.resource,
       resourceName: state => state.api.resourceName
     }),
     getTitle() {
       return typeof this.title === "function"
-        ? this.title(this.resource)
+        ? this.title(this.item)
         : this.title;
     }
   },

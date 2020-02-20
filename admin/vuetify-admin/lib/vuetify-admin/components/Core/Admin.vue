@@ -79,6 +79,7 @@ export default {
         }
 
         this.removeCurrentResource();
+        this.closeAside();
       }
       next();
     });
@@ -114,6 +115,7 @@ export default {
   methods: {
     ...mapMutations({
       setTitle: "api/setTitle",
+      closeAside: "aside/close",
       removeCurrentResource: "api/removeCurrentResource"
     }),
     ...mapActions({

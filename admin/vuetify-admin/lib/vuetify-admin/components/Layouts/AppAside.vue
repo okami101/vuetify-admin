@@ -11,7 +11,7 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <div class="content">
-        <slot></slot>
+        <portal-target name="aside"></portal-target>
       </div>
     </div>
   </v-navigation-drawer>

@@ -14,6 +14,7 @@
     "date-fns": "^2.9.0",
     "lodash": "^4.17.15",
     "papaparse": "^5.1.1",
+    "portal-vue": "^2.1.7",
     "roboto-fontface": "^0.10.0",
     "tiptap-vuetify": "^2.13.2",
     "vue": "^2.6.10",

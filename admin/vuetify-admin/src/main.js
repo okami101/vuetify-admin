@@ -7,10 +7,12 @@ import App from "./App.vue";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
 import i18n from "./i18n";
+import PortalVue from "portal-vue";
 
 Vue.config.productionTip = false;
 
 Vue.use(VuetifyAdmin);
+Vue.use(PortalVue);
 
 /**
  * Register resource crud pages

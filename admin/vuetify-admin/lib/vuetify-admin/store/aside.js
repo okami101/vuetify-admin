@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    opened: true
+    opened: false
   },
   mutations: {
     open(state) {

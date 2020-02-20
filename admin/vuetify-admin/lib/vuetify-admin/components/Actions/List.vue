@@ -1,5 +1,8 @@
 <template>
   <v-card>
+    <va-aside-content>
+      <slot name="aside" v-bind="{ items, total, selected }"></slot>
+    </va-aside-content>
     <v-data-iterator
       :items="items"
       :server-items-length="total"

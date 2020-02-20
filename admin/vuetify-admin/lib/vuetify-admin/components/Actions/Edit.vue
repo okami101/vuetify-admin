@@ -1,5 +1,8 @@
 <template>
   <div>
+    <va-aside-content>
+      <slot name="aside" v-bind="{ item }"></slot>
+    </va-aside-content>
     <div class="d-flex mb-2">
       <v-spacer></v-spacer>
       <va-show-button></va-show-button>
