@@ -37,7 +37,6 @@
     "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !"
   },
   "forms": {
-    "required_field": "Le champ {field} est requis",
-    "validation_error": "Les données envoyées sont invalides. Veuillez vérifier les champs en erreur."
+    "required_field": "Le champ {field} est requis"
   }
 }

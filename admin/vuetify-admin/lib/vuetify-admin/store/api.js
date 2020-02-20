@@ -88,13 +88,9 @@ export default i18n => {
 
         return Promise.resolve(response);
       } catch (e) {
-        let message = e.message;
         commit("setLoading", { action, loading: false });
 
-        if (e.status === 422) {
-          message = i18n.t("va.forms.validation_error");
-        }
-        commit("showError", message);
+        commit("showError", e.message);
         return Promise.reject(e);
       }
     };

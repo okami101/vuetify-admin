@@ -105,35 +105,36 @@ export default entrypoint => {
       ...options
     });
 
-    /**
-     * Get compatible response for Vuetify Admin
-     */
-    switch (type) {
-      case GET_LIST:
-      case GET_MANY:
-      case GET_MANY_REFERENCE:
-        let {data, meta} = await response.json();
-        return Promise.resolve({
-          data,
-          total: meta ? meta.total : data.length
-        });
-      case DELETE:
-        if (response.status >= 200 && response.status < 400) {
+    if (response.status >= 200 && response.status < 400) {
+      /**
+       * Get compatible response for Admin
+       */
+      switch (type) {
+        case GET_LIST:
+        case GET_MANY:
+        case GET_MANY_REFERENCE:
+          let {data, meta} = await response.json();
+
+          return Promise.resolve({
+            data,
+            total: meta ? meta.total : data.length
+          });
+        case DELETE:
           return Promise.resolve({data: {id: null}});
-        }
-        return Promise.reject({
-          status: response.status
-        });
-      default:
-        let json = await response.json();
-        if (response.status >= 200 && response.status < 400) {
+
+        case CREATE:
+        case UPDATE:
+          let json = await response.json();
           return Promise.resolve(json);
-        }
-        return Promise.reject({
-          status: response.status,
-          ...json
-        });
+
+        default:
+          return Promise.reject({
+            message: "Invalid action"
+          });
+      }
     }
+
+    return Promise.reject(await response.json());
   };
 
   return {

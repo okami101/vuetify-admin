@@ -1,5 +1,13 @@
 <template>
-  <va-list :filters="['q', 'rating', 'author']">
+  <va-list
+    :filters="[
+      'q',
+      'rating',
+      'author',
+      { source: 'published_before', type: 'date' },
+      { source: 'published_after', type: 'date' }
+    ]"
+  >
     <template v-slot="props">
       <va-datagrid
         v-bind="props"

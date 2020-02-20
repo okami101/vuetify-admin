@@ -51,6 +51,8 @@
     "publisher": "Publisher",
     "book": "Book",
     "reviews": "Reviews",
-    "q": "Search"
+    "q": "Search",
+    "published_before": "Published before",
+    "published_after": "Published after"
   }
 }

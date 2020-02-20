@@ -19,7 +19,9 @@ export default {
         description: "Description",
         summary: "Résumé",
         author: "Auteur",
-        publication_date: "Date de publication"
+        publication_date: "Date de publication",
+        published_before: "Publié avant",
+        published_after: "Publié après"
       }
     },
     reviews: {
@@ -28,7 +30,9 @@ export default {
         rating: "Note",
         body: "Corps",
         author: "Auteur",
-        publication_date: "Date de publication"
+        publication_date: "Date de publication",
+        published_before: "Publié avant",
+        published_after: "Publié après"
       }
     }
   },

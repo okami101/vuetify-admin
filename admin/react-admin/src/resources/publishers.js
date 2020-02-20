@@ -22,6 +22,7 @@ const PublisherFilter = props => (
     <TextInput source="name" />
     <TextInput source="founder" />
     <TextInput source="headquarter" />
+    <DateInput source="opening_date" />
   </Filter>
 );
 
@@ -52,7 +53,7 @@ export const PublisherShow = props => (
 );
 
 export const PublisherEdit = props => (
-  <Edit {...props} undoable={false}>
+  <Edit {...props} undoable="false">
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="founder" />
@@ -63,7 +64,7 @@ export const PublisherEdit = props => (
 );
 
 export const PublisherCreate = props => (
-  <Create {...props} undoable={false}>
+  <Create {...props} undoable="false">
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="founder" />

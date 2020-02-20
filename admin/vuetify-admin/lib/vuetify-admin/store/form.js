@@ -30,7 +30,7 @@ export default {
         const { status, errors } = e;
         commit("setSaving", false);
 
-        if (status === 422) {
+        if (errors) {
           commit("setErrors", errors);
         }
         return Promise.reject(e);

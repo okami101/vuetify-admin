@@ -13,11 +13,22 @@ import {
   SimpleForm,
   TextInput,
   DateInput,
-  NumberInput
+  NumberInput,
+  Filter
 } from "react-admin";
 
+const ReviewFilter = props => (
+  <Filter {...props}>
+    <TextInput label="Rechercher" source="q" alwaysOn />
+    <NumberInput source="rating" />
+    <TextInput source="author" />
+    <DateInput source="published_before" />
+    <DateInput source="published_after" />
+  </Filter>
+);
+
 export const ReviewList = props => (
-  <List {...props}>
+  <List {...props} filters={<ReviewFilter />}>
     <Datagrid>
       <TextField source="id" />
       <TextField source="rating" />
@@ -41,7 +52,7 @@ export const ReviewShow = props => (
 );
 
 export const ReviewEdit = props => (
-  <Edit {...props} undoable={false}>
+  <Edit {...props} undoable="false">
     <SimpleForm>
       <NumberInput source="rating" />
       <TextInput source="author" />
@@ -51,7 +62,7 @@ export const ReviewEdit = props => (
 );
 
 export const ReviewCreate = props => (
-  <Create {...props} undoable={false}>
+  <Create {...props} undoable="false">
     <SimpleForm>
       <NumberInput source="rating" />
       <TextInput source="author" />

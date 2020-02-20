@@ -12,11 +12,22 @@ import {
   Edit,
   SimpleForm,
   TextInput,
-  DateInput
+  DateInput,
+  Filter
 } from "react-admin";
 
+const BookFilter = props => (
+  <Filter {...props}>
+    <TextInput label="Rechercher" source="q" alwaysOn />
+    <TextInput source="title" />
+    <TextInput source="author" />
+    <DateInput source="published_before" />
+    <DateInput source="published_after" />
+  </Filter>
+);
+
 export const BookList = props => (
-  <List {...props}>
+  <List {...props} filters={<BookFilter />}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="isbn" />
@@ -42,7 +53,7 @@ export const BookShow = props => (
 );
 
 export const BookEdit = props => (
-  <Edit {...props} undoable={false}>
+  <Edit {...props} undoable="false">
     <SimpleForm>
       <TextInput source="isbn" />
       <TextInput source="title" />
@@ -53,7 +64,7 @@ export const BookEdit = props => (
 );
 
 export const BookCreate = props => (
-  <Create {...props} undoable={false}>
+  <Create {...props} undoable="false">
     <SimpleForm>
       <TextInput source="isbn" />
       <TextInput source="title" />

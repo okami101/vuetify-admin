@@ -37,7 +37,6 @@
     "delete_many_message": "You are about deleting {count} {resource}. This operation is irreversible !"
   },
   "forms": {
-    "required_field": "{field] is required",
-    "validation_error": "The given data is invalid. Please check fields with errors."
+    "required_field": "{field] is required"
   }
 }

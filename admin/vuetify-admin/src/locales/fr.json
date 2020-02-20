@@ -51,6 +51,8 @@
     "publisher": "Editeur",
     "book": "Livre",
     "reviews": "Commentaires",
-    "q": "Rechercher"
+    "q": "Rechercher",
+    "published_before": "Publié avant",
+    "published_after": "Publié après"
   }
 }
