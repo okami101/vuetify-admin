@@ -1,5 +1,5 @@
 <template>
-  <v-btn text @click="onDelete" :color="color">
+  <v-btn text @click.stop="onDelete" :color="color">
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
@@ -27,10 +27,10 @@ export default {
   computed: {
     ...mapState({
       resourceName: state => state.api.resourceName,
-      apiResource: state => state.api.resource
+      resource: state => state.api.resource
     }),
     currentResource() {
-      return this.item || this.apiResource;
+      return this.item || this.resource;
     }
   },
   methods: {
@@ -68,7 +68,7 @@ export default {
          * Redirect to list if deleting on current ressource
          */
         if (["show", "edit"].includes(this.$route.meta.action)) {
-          this.$router.push(`/${$store.state.api.resourceName}`);
+          this.$router.push(`/${this.resourceName}`);
           return;
         }
 

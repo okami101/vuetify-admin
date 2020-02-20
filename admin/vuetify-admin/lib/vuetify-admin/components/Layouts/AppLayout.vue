@@ -10,12 +10,15 @@
         <router-view></router-view>
       </v-container>
     </v-content>
+
+    <app-aside></app-aside>
   </div>
 </template>
 
 <script>
 import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
+import AppAside from "./AppAside";
 import AppMessages from "./AppMessages";
 import AppBreadcrumbs from "./AppBreadcrumbs";
 
@@ -24,6 +27,7 @@ export default {
   components: {
     AppHeader,
     AppSidebar,
+    AppAside,
     AppMessages,
     AppBreadcrumbs
   },

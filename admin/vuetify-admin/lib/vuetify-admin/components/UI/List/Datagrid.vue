@@ -10,8 +10,12 @@
     :items-per-page="itemsPerPage"
     :multi-sort="multiSort"
     :server-items-length="serverItemsLength"
+    :single-expand="singleExpand"
+    :show-expand="showExpand"
+    @click:row="onRowClick"
     @update:options="updateOptions"
     @input="updateSelected"
+    :class="{ 'clickable-rows': rowClick }"
   >
     <template
       v-for="slot in Object.keys($scopedSlots)"
@@ -22,13 +26,25 @@
     <template v-slot:item.actions="scope">
       <slot name="row-actions" v-bind="scope"></slot>
     </template>
+    <template v-slot:expanded-item="{ headers, item }">
+      <td :colspan="headers.length">
+        <slot name="expanded-item" v-bind="{ item }"></slot>
+      </td>
+    </template>
   </v-data-table>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Datagrid",
   props: {
+    rowClick: {
+      type: String,
+      default: null,
+      validator: v => ["show", "edit"].includes(v)
+    },
     value: {
       type: Array,
       default: () => []
@@ -51,6 +67,11 @@ export default {
       type: Boolean,
       default: true
     },
+    singleExpand: {
+      type: Boolean,
+      default: true
+    },
+    showExpand: Boolean,
     options: {
       type: Object,
       default: () => {}
@@ -63,6 +84,9 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      resourceName: state => state.api.resourceName
+    }),
     getFields() {
       return this.getFormattedFields(this.fields);
     },
@@ -85,6 +109,16 @@ export default {
     }
   },
   methods: {
+    onRowClick(item) {
+      switch (this.rowClick) {
+        case "show":
+          this.$router.push(`/${this.resourceName}/${item.id}`);
+          break;
+        case "edit":
+          this.$router.push(`/${this.resourceName}/${item.id}/edit`);
+          break;
+      }
+    },
     updateOptions(options) {
       if (this.loaded) {
         this.$parent.$parent.$emit("update:options", options);
@@ -113,3 +147,17 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.v-data-table tbody tr.v-data-table__expanded__content {
+  box-shadow: none;
+
+  td {
+    padding: 1.5rem;
+  }
+}
+
+.v-data-table.clickable-rows tr {
+  cursor: pointer;
+}
+</style>

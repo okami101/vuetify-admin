@@ -11,9 +11,9 @@
       <va-datagrid
         v-bind="props"
         :fields="['id', 'name', 'founder', 'headquarter', 'opening_date']"
+        row-click="show"
       >
         <template v-slot:row-actions="{ item }">
-          <va-show-button :item="item"></va-show-button>
           <va-edit-button :item="item"></va-edit-button>
           <va-delete-button :item="item"></va-delete-button>
         </template>

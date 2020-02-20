@@ -3,8 +3,8 @@
     v-if="currentResource"
     text
     exact
-    :to="`/${$store.state.api.resourceName}/${currentResource.id}`"
-    @click="$emit('show', currentResource)"
+    :to="`/${resourceName}/${currentResource.id}`"
+    @click.stop="$emit('show', currentResource)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
@@ -25,15 +25,16 @@ export default {
     },
     color: {
       type: String,
-      default: "blue"
+      default: "green"
     }
   },
   computed: {
     ...mapState({
-      apiResource: state => state.api.resource
+      resourceName: state => state.api.resourceName,
+      resource: state => state.api.resource
     }),
     currentResource() {
-      return this.item || this.apiResource;
+      return this.item || this.resource;
     }
   }
 };

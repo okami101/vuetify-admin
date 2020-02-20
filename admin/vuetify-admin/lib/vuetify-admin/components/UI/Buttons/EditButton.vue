@@ -4,7 +4,7 @@
     text
     exact
     :to="`/${$store.state.api.resourceName}/${currentResource.id}/edit`"
-    @click="$emit('edit', currentResource)"
+    @click.stop="$emit('edit', currentResource)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
@@ -25,15 +25,16 @@ export default {
     },
     color: {
       type: String,
-      default: "green"
+      default: "blue"
     }
   },
   computed: {
     ...mapState({
-      apiResource: state => state.api.resource
+      resourceName: state => state.api.resourceName,
+      resource: state => state.api.resource
     }),
     currentResource() {
-      return this.item || this.apiResource;
+      return this.item || this.resource;
     }
   }
 };
