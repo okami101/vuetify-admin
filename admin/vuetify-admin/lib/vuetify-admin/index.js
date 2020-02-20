@@ -1,6 +1,7 @@
 import Admin from "./components/Core/Admin";
 import Resource from "./components/Core/Resource";
 import Field from "./components/Core/Field";
+import Input from "./components/Core/Input";
 
 import List from "./components/Actions/List";
 import Show from "./components/Actions/Show";
@@ -12,6 +13,7 @@ import {
   SimpleShow,
   TabbedShow,
   SimpleForm,
+  TabbedForm,
   AsideContent,
   TextField,
   RichTextField,
@@ -30,6 +32,7 @@ const components = [
   Admin,
   Resource,
   Field,
+  Input,
   List,
   Show,
   Create,
@@ -38,6 +41,7 @@ const components = [
   SimpleShow,
   TabbedShow,
   SimpleForm,
+  TabbedForm,
   AsideContent,
   TextField,
   RichTextField,

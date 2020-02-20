@@ -52,7 +52,7 @@ export default {
       return c(
         "div",
         {
-          class: "mb-4"
+          class: "va-field mb-4"
         },
         this.$scopedSlots.default(this.record)
       );
@@ -61,7 +61,7 @@ export default {
     return c(
       "div",
       {
-        class: "mb-4"
+        class: "va-field mb-4"
       },
       [
         c(

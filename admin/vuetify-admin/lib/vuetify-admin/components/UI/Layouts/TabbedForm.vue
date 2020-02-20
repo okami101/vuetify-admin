@@ -1,11 +1,11 @@
 <template>
   <v-form ref="form" @submit.prevent="onSave">
     <v-card>
-      <v-card-text>
-        <div>
-          <slot></slot>
-        </div>
-      </v-card-text>
+      <va-tabbed-show :tabs="tabs">
+        <template v-slot:[tab.id] v-for="tab in tabs">
+          <slot :name="tab.id"></slot>
+        </template>
+      </va-tabbed-show>
       <v-toolbar flat color="grey lighten-4">
         <va-save-button></va-save-button>
         <v-spacer></v-spacer>
@@ -19,7 +19,14 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "SimpleForm",
+  name: "TabbedForm",
+  props: {
+    tabs: Array,
+    width: {
+      type: Number,
+      default: 600
+    }
+  },
   computed: {
     ...mapState({
       resource: state => state.api.resource,

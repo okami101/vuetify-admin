@@ -41,6 +41,7 @@
     "name": "Nom",
     "title": "Titre",
     "description": "Description",
+    "summary": "Résumé",
     "body": "Corps",
     "publication_date": "Date de publication",
     "founder": "Fondateur",

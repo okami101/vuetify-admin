@@ -1,31 +1,33 @@
 <template>
-  <v-menu
-    v-model="menu"
-    :close-on-content-click="false"
-    :nudge-right="40"
-    transition="scale-transition"
-    offset-y
-    min-width="290px"
-  >
-    <template v-slot:activator="{ on }">
-      <v-text-field
-        :value="dateFormatted"
-        :label="getLabel"
-        :rules="getRules"
-        :error-messages="errorMessages"
-        readonly
-        append-icon="mdi-calendar"
-        v-on="on"
-        clearable
-        filled
-        :single-line="singleLine"
-        :hide-details="hideDetails"
-        :dense="dense"
-        @click:clear="input = null"
-      ></v-text-field>
-    </template>
-    <v-date-picker v-model="input" @input="menu = false"></v-date-picker>
-  </v-menu>
+  <va-input v-bind="$props">
+    <v-menu
+      v-model="menu"
+      :close-on-content-click="false"
+      :nudge-right="40"
+      transition="scale-transition"
+      offset-y
+      min-width="290px"
+    >
+      <template v-slot:activator="{ on }">
+        <v-text-field
+          :value="dateFormatted"
+          :label="getLabel"
+          :rules="getRules"
+          :error-messages="errorMessages"
+          readonly
+          append-icon="mdi-calendar"
+          v-on="on"
+          clearable
+          filled
+          :single-line="singleLine"
+          :hide-details="hideDetails"
+          :dense="dense"
+          @click:clear="input = null"
+        ></v-text-field>
+      </template>
+      <v-date-picker v-model="input" @input="menu = false"></v-date-picker>
+    </v-menu>
+  </va-input>
 </template>
 
 <script>

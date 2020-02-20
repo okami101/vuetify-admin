@@ -5,20 +5,17 @@
         <v-icon v-if="tab.icon" small class="mr-2">{{ tab.icon }}</v-icon>
         {{ tab.label || $t(`tabs.${tab.id}`) }}
       </v-tab>
+    </v-tabs>
 
-      <v-tab-item
-        v-for="tab in tabs"
-        :key="tab.id"
-        :value="`tab-${tab.id}`"
-        class="transparent"
-      >
-        <v-card flat :rounded="false">
+    <v-tabs-items v-model="currentTab">
+      <v-tab-item v-for="tab in tabs" :key="tab.id" :value="`tab-${tab.id}`">
+        <v-card flat>
           <v-card-text>
             <slot :name="tab.id"></slot>
           </v-card-text>
         </v-card>
       </v-tab-item>
-    </v-tabs>
+    </v-tabs-items>
   </v-card>
 </template>
 

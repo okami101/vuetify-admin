@@ -41,6 +41,7 @@
     "name": "Name",
     "title": "Title",
     "description": "Description",
+    "summary": "Summary",
     "body": "Body",
     "publication_date": "Publication date",
     "founder": "Founder",

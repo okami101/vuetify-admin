@@ -16,6 +16,9 @@ import {
   Filter
 } from "react-admin";
 
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
 const PublisherFilter = props => (
   <Filter {...props}>
     <TextInput label="Rechercher" source="q" alwaysOn />

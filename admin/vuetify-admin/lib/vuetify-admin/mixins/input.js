@@ -8,6 +8,7 @@ export default {
     hint: String,
     required: Boolean,
     value: [String, Number, Object, Array, Boolean],
+    fullWidth: Boolean,
     rules: {
       type: Array,
       default: () => []
