@@ -51,7 +51,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <va-create-button v-if="canCreate"></va-create-button>
+          <va-create-button v-if="can('create')"></va-create-button>
           <va-export-button
             v-if="exporter"
             text
@@ -145,9 +145,6 @@ export default {
     ...mapGetters({
       can: "api/can"
     }),
-    canCreate() {
-      return this.can("create");
-    },
     defaultTitle() {
       return this.$tc(`resources.${this.resourceName}`, 10);
     },

@@ -1,6 +1,6 @@
 import EventBus from "../utils/eventBus";
 
-const actions = [
+const methods = [
   "getList",
   "getMany",
   "getManyReference",
@@ -15,7 +15,7 @@ const actions = [
 let storeActions = {};
 
 export default i18n => {
-  actions.forEach(action => {
+  methods.forEach(action => {
     storeActions[action] = async ({ state, commit, dispatch }, params) => {
       commit("setLoading", { action, loading: true });
 

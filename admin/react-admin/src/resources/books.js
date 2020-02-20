@@ -16,17 +16,6 @@ import {
   Filter
 } from "react-admin";
 
-import {Typography} from "@material-ui/core";
-
-const Aside = () => (
-  <div style={{width: 200, margin: "1em"}}>
-    <Typography variant="h6">Post details</Typography>
-    <Typography variant="body2">
-      Posts will only be published one an editor approves them
-    </Typography>
-  </div>
-);
-
 const BookFilter = props => (
   <Filter {...props}>
     <TextInput label="Rechercher" source="q" alwaysOn />
@@ -38,7 +27,7 @@ const BookFilter = props => (
 );
 
 export const BookList = props => (
-  <List {...props} filters={<BookFilter />} aside={<Aside />}>
+  <List {...props} filters={<BookFilter />}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="isbn" />

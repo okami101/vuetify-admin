@@ -5,7 +5,7 @@
     </va-aside-content>
     <div class="d-flex mb-2">
       <v-spacer></v-spacer>
-      <va-edit-button></va-edit-button>
+      <va-edit-button v-if="can('edit')"></va-edit-button>
     </div>
     <slot></slot>
   </div>
@@ -13,11 +13,15 @@
 
 <script>
 import Page from "../../mixins/page";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Show",
   mixins: [Page],
   computed: {
+    ...mapGetters({
+      can: "api/can"
+    }),
     defaultTitle() {
       if (!this.resource) {
         return;
