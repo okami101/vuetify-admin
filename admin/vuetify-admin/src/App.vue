@@ -4,6 +4,15 @@
     :menu="menu"
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
+    :permissions="
+      r => {
+        return {
+          is_admin: r.includes('ROLE_ADMIN'),
+          is_editor: r.includes('ROLE_EDITOR'),
+          is_author: r.includes('ROLE_AUTHOR')
+        };
+      }
+    "
   >
     <va-resource name="publishers"></va-resource>
     <va-resource name="books"></va-resource>

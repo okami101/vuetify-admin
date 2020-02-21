@@ -38,6 +38,7 @@ export default {
      */
     let name = this.name;
     let children = [];
+    let permissions = this.$store.state.auth.permissions;
 
     let beforeEnter = async (to, from, next) => {
       this.setResourceName(name);
@@ -60,7 +61,11 @@ export default {
         name: `${name}_list`,
         component: {
           render(c) {
-            return c(`${name}-list`);
+            return c(`${name}-list`, {
+              props: {
+                permissions
+              }
+            });
           }
         },
         meta: {
@@ -74,6 +79,7 @@ export default {
       children.push({
         path: "create",
         name: `${name}_create`,
+        props: { permissions },
         component: {
           render(c) {
             return c(`${name}-create`);
@@ -90,6 +96,7 @@ export default {
       children.push({
         path: ":id/edit",
         name: `${name}_edit`,
+        props: { permissions },
         component: {
           render(c) {
             return c(`${name}-edit`);
@@ -107,6 +114,7 @@ export default {
       children.push({
         path: ":id",
         name: `${name}_show`,
+        props: { permissions },
         component: {
           render(c) {
             return c(`${name}-show`);

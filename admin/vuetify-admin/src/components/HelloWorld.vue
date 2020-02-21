@@ -20,6 +20,8 @@
           <a href="https://community.vuetifyjs.com" target="_blank"
             >Discord Community</a
           >
+          <br />
+          Permissions : {{ permissions }}
         </p>
       </v-flex>
 
@@ -75,6 +77,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "HelloWorld",
 
@@ -129,6 +133,11 @@ export default {
         href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
       }
     ]
-  })
+  }),
+  computed: {
+    ...mapState({
+      permissions: state => state.auth.permissions
+    })
+  }
 };
 </script>
