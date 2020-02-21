@@ -8,7 +8,6 @@ export default {
     hint: String,
     required: Boolean,
     value: [String, Number, Object, Array, Boolean],
-    fullWidth: Boolean,
     rules: {
       type: Array,
       default: () => []
@@ -76,8 +75,11 @@ export default {
       update: "form/update"
     }),
     initializeInput() {
-      let source = JSON.parse(this.$route.query.source || {});
-      this.input = source[this.source];
+      let { source } = this.$route.query;
+
+      if (source) {
+        this.input = JSON.parse(source)[this.source];
+      }
     },
     updateValue() {
       if (this.source) {

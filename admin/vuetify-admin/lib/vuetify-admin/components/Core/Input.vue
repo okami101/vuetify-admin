@@ -1,11 +1,45 @@
 <template>
-  <div class="va-input">
+  <v-input
+    :label="getLabel"
+    :hint="hint"
+    :rules="getRules"
+    :error-messages="errorMessages"
+    :append-icon="icon"
+    :hide-details="hideDetails"
+    :dense="dense"
+  >
     <slot></slot>
-  </div>
+  </v-input>
 </template>
 
 <script>
 export default {
-  name: "Input"
+  name: "Input",
+  props: {
+    source: String,
+    label: String,
+    hint: String,
+    icon: String,
+    hideDetails: Boolean,
+    dense: Boolean,
+    errorMessages: Array,
+    required: Boolean
+  },
+  computed: {
+    getLabel() {
+      return this.label || this.$t(`attributes.${this.source}`);
+    },
+    getRules() {
+      let rules = [];
+
+      if (this.required) {
+        rules.push(
+          v =>
+            !!v || this.$t("va.forms.required_field", { field: this.getLabel })
+        );
+      }
+      return rules;
+    }
+  }
 };
 </script>

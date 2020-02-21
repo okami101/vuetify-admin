@@ -1,33 +1,31 @@
 <template>
-  <va-input v-bind="$props">
-    <v-textarea
-      v-if="multiline"
-      v-model="input"
-      :label="getLabel"
-      :hint="hint"
-      :rules="getRules"
-      :error-messages="errorMessages"
-      auto-grow
-      filled
-      :append-icon="icon"
-      :single-line="singleLine"
-      :hide-details="hideDetails"
-      :dense="dense"
-    ></v-textarea>
-    <v-text-field
-      v-else
-      v-model="input"
-      :label="getLabel"
-      :hint="hint"
-      :rules="getRules"
-      :error-messages="errorMessages"
-      filled
-      :append-icon="icon"
-      :single-line="singleLine"
-      :hide-details="hideDetails"
-      :dense="dense"
-    ></v-text-field>
-  </va-input>
+  <v-textarea
+    v-if="multiline"
+    v-model="input"
+    :label="getLabel"
+    :hint="hint"
+    :rules="getRules"
+    :error-messages="errorMessages"
+    auto-grow
+    filled
+    :append-icon="icon"
+    :single-line="singleLine"
+    :hide-details="hideDetails"
+    :dense="dense"
+  ></v-textarea>
+  <v-text-field
+    v-else
+    v-model="input"
+    :label="getLabel"
+    :hint="hint"
+    :rules="getRules"
+    :error-messages="errorMessages"
+    filled
+    :append-icon="icon"
+    :single-line="singleLine"
+    :hide-details="hideDetails"
+    :dense="dense"
+  ></v-text-field>
 </template>
 
 <script>

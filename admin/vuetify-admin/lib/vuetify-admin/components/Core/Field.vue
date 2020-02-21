@@ -1,8 +1,12 @@
 <script>
+import { VInput } from "vuetify/lib";
 import { mapState } from "vuex";
 
 export default {
   name: "Field",
+  components: {
+    VInput
+  },
   props: {
     source: String,
     label: String,
@@ -49,31 +53,24 @@ export default {
     }
 
     if (!this.addLabel) {
-      return c(
-        "div",
-        {
-          class: "va-field mb-4"
-        },
-        this.$scopedSlots.default(this.record)
-      );
+      return c("v-input", this.$scopedSlots.default(this.record));
     }
 
     return c(
-      "div",
+      "v-input",
       {
-        class: "va-field mb-4"
+        props: {
+          label: this.getLabel
+        }
       },
-      [
-        c(
-          "label",
-          {
-            class: "font-weight-bold"
-          },
-          this.getLabel
-        ),
-        c("div", this.$scopedSlots.default(this.record))
-      ]
+      [c("div", { class: "va-field" }, this.$scopedSlots.default(this.record))]
     );
   }
 };
 </script>
+
+<style lang="scss" scoped>
+::v-deep .v-input__slot {
+  display: block;
+}
+</style>

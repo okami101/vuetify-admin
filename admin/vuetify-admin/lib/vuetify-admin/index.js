@@ -18,10 +18,6 @@ import {
   SimpleForm,
   TabbedForm,
   AsideContent,
-  TextField,
-  RichTextField,
-  TextInput,
-  DateInput,
   ListButton,
   CreateButton,
   ShowButton,
@@ -29,7 +25,13 @@ import {
   DeleteButton,
   SaveButton,
   ExportButton,
-  CloneButton
+  CloneButton,
+  TextField,
+  RatingField,
+  RichTextField,
+  TextInput,
+  DateInput,
+  RatingInput
 } from "./components/UI";
 
 const components = [
@@ -49,10 +51,6 @@ const components = [
   SimpleForm,
   TabbedForm,
   AsideContent,
-  TextField,
-  RichTextField,
-  TextInput,
-  DateInput,
   ListButton,
   CreateButton,
   ShowButton,
@@ -60,7 +58,13 @@ const components = [
   DeleteButton,
   SaveButton,
   ExportButton,
-  CloneButton
+  CloneButton,
+  TextField,
+  RatingField,
+  RichTextField,
+  TextInput,
+  DateInput,
+  RatingInput
 ];
 
 export default {

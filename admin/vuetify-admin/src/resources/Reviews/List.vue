@@ -16,7 +16,7 @@
         show-expand
       >
         <template v-slot:rating="{ item }">
-          <star-rating-field :item="item" source="rating"></star-rating-field>
+          <va-rating-field :item="item" source="rating"></va-rating-field>
         </template>
         <template v-slot:row-actions="{ item }">
           <va-edit-button :item="item"></va-edit-button>
@@ -29,13 +29,3 @@
     </template>
   </va-list>
 </template>
-
-<script>
-import StarRatingField from "@/components/fields/StarRatingField";
-
-export default {
-  components: {
-    StarRatingField
-  }
-};
-</script>

@@ -18,9 +18,11 @@ import CloneButton from "./Buttons/CloneButton";
 
 import TextField from "./Fields/TextField";
 import RichTextField from "./Fields/RichTextField";
+import RatingField from "./Fields/RatingField";
 
 import TextInput from "./Inputs/TextInput";
 import DateInput from "./Inputs/DateInput";
+import RatingInput from "./Inputs/RatingInput";
 
 export {
   Datagrid,
@@ -31,10 +33,6 @@ export {
   SimpleForm,
   TabbedForm,
   AsideContent,
-  TextField,
-  RichTextField,
-  TextInput,
-  DateInput,
   ListButton,
   CreateButton,
   ShowButton,
@@ -42,5 +40,11 @@ export {
   DeleteButton,
   SaveButton,
   ExportButton,
-  CloneButton
+  CloneButton,
+  TextField,
+  RichTextField,
+  RatingField,
+  TextInput,
+  DateInput,
+  RatingInput
 };
