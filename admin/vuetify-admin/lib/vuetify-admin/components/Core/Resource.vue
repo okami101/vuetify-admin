@@ -52,6 +52,11 @@ export default {
           await this.getOne({ id: to.params.id });
           break;
       }
+
+      to.meta.title = this.$t(`va.pages.${to.meta.action}`, {
+        resource: this.$tc(`resources.${name}`, 1).toLowerCase(),
+        id: to.params.id
+      });
       next();
     };
 
@@ -69,8 +74,7 @@ export default {
           }
         },
         meta: {
-          action: "list",
-          title: this.$t("va.pages.list")
+          action: "list"
         },
         beforeEnter
       });
@@ -86,8 +90,7 @@ export default {
           }
         },
         meta: {
-          action: "create",
-          title: this.$t("va.pages.create")
+          action: "create"
         },
         beforeEnter
       });
@@ -104,8 +107,7 @@ export default {
         },
         props: true,
         meta: {
-          action: "edit",
-          title: this.$t("va.pages.edit")
+          action: "edit"
         },
         beforeEnter
       });
@@ -122,8 +124,7 @@ export default {
         },
         props: true,
         meta: {
-          action: "show",
-          title: this.$t("va.pages.show")
+          action: "show"
         },
         beforeEnter
       });

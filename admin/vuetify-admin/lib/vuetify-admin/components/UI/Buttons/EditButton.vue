@@ -3,7 +3,7 @@
     v-if="currentResource && can('show')"
     text
     exact
-    :to="`/${$store.state.api.resourceName}/${currentResource.id}/edit`"
+    :to="`/${resourceName}/${currentResource.id}/edit`"
     @click.stop="$emit('edit', currentResource)"
     :color="color"
   >

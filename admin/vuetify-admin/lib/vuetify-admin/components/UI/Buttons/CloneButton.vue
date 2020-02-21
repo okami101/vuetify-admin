@@ -4,7 +4,7 @@
     text
     exact
     :to="{
-      name: `${$store.state.api.resourceName}_create`,
+      name: `${resourceName}_create`,
       query: { source: JSON.stringify(currentResource) }
     }"
     @click.stop="$emit('clone')"

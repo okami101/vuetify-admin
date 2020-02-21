@@ -7,10 +7,10 @@
     "selected_items": "1 item selected | {count} items selected"
   },
   "pages": {
-    "list": "List",
-    "create": "Creation",
-    "show": "Detail",
-    "edit": "Modification"
+    "list": "List of {resource}",
+    "create": "Creation of {resource}",
+    "show": "Detail of {resource} #{id}",
+    "edit": "Modification of {resource} #{id}"
   },
   "actions": {
     "list": "List",

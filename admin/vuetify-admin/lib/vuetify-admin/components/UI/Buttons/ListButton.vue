@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "ListButton",
   props: {
@@ -17,6 +19,12 @@ export default {
       type: String,
       default: "primary"
     }
+  },
+  computed: {
+    ...mapState({
+      resourceName: state => state.api.resourceName,
+      resource: state => state.api.resource
+    })
   }
 };
 </script>

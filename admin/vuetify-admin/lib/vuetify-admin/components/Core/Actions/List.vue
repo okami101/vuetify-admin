@@ -180,11 +180,8 @@ export default {
       deep: true,
       immediate: true
     },
-    currentFilter: {
-      handler() {
-        this.loadDataAndQuery();
-      },
-      deep: true
+    currentFilter() {
+      this.loadDataAndQuery();
     }
   },
   methods: {

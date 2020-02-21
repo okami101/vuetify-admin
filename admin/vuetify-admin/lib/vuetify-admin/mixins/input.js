@@ -8,7 +8,9 @@ export default {
     hint: String,
     required: Boolean,
     filter: Boolean,
-    value: [String, Number, Object, Array, Boolean],
+    value: {
+      default: null
+    },
     rules: {
       type: Array,
       default: () => []
@@ -22,7 +24,7 @@ export default {
   },
   computed: {
     ...mapState({
-      record: state => state.api.resource || {},
+      record: state => state.api.resource,
       errors: state => state.form.errors
     }),
     getLabel() {
@@ -45,17 +47,17 @@ export default {
     this.updateValue();
   },
   watch: {
-    record: {
-      handler(val) {
-        if (this.source) {
-          this.input = val[this.source];
-        }
-      },
-      immediate: true
-    },
     value: {
       handler(val) {
         this.input = val;
+      },
+      immediate: true
+    },
+    record: {
+      handler(val) {
+        if (val && this.source) {
+          this.input = val[this.source];
+        }
       },
       immediate: true
     },

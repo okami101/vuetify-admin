@@ -7,7 +7,7 @@
 
 <script>
 import Papa from "papaparse";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "ExportButton",
@@ -20,6 +20,11 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+  computed: {
+    ...mapState({
+      resourceName: state => state.api.resourceName
+    })
   },
   methods: {
     ...mapActions({
@@ -65,7 +70,7 @@ export default {
       /**
        * Magic download
        */
-      const fileName = this.$store.state.api.resourceName;
+      const fileName = this.resourceName;
       const blob = new Blob([csv], { type: "text/csv" });
 
       if (window.navigator && window.navigator.msSaveOrOpenBlob) {
