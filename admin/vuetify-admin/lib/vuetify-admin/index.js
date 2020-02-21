@@ -28,7 +28,8 @@ import {
   EditButton,
   DeleteButton,
   SaveButton,
-  ExportButton
+  ExportButton,
+  CloneButton
 } from "./components/UI";
 
 const components = [
@@ -58,7 +59,8 @@ const components = [
   EditButton,
   DeleteButton,
   SaveButton,
-  ExportButton
+  ExportButton,
+  CloneButton
 ];
 
 export default {

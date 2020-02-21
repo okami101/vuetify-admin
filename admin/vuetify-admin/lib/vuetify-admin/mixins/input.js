@@ -41,6 +41,7 @@ export default {
     }
   },
   created() {
+    this.initializeInput();
     this.updateValue();
   },
   watch: {
@@ -74,9 +75,16 @@ export default {
     ...mapMutations({
       update: "form/update"
     }),
+    initializeInput() {
+      let source = JSON.parse(this.$route.query.source || {});
+      this.input = source[this.source];
+    },
     updateValue() {
       if (this.source) {
-        this.update({ source: this.source, value: this.input });
+        this.update({
+          source: this.source,
+          value: this.input
+        });
       }
     }
   }

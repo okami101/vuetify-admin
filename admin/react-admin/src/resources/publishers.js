@@ -13,11 +13,9 @@ import {
   SimpleForm,
   TextInput,
   DateInput,
-  Filter
+  Filter,
+  CloneButton
 } from "react-admin";
-
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 
 const PublisherFilter = props => (
   <Filter {...props}>
@@ -40,6 +38,7 @@ export const PublisherList = props => (
       <ShowButton></ShowButton>
       <EditButton></EditButton>
       <DeleteButton></DeleteButton>
+      <CloneButton></CloneButton>
     </Datagrid>
   </List>
 );

@@ -19,7 +19,8 @@
     "edit": "Éditer",
     "delete": "Supprimer",
     "save": "Enregistrer",
-    "export": "Exporter"
+    "export": "Exporter",
+    "clone": "Dupliquer"
   },
   "messages": {
     "created": "{resource} créé avec succès !",

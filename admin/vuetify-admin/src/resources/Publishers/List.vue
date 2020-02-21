@@ -9,6 +9,7 @@
         <template v-slot:row-actions="{ item }">
           <va-edit-button :item="item"></va-edit-button>
           <va-delete-button :item="item"></va-delete-button>
+          <va-clone-button :item="item"></va-clone-button>
         </template>
       </va-datagrid>
     </template>

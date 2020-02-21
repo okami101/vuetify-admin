@@ -14,6 +14,7 @@ import EditButton from "./Buttons/EditButton";
 import DeleteButton from "./Buttons/DeleteButton";
 import SaveButton from "./Buttons/SaveButton";
 import ExportButton from "./Buttons/ExportButton";
+import CloneButton from "./Buttons/CloneButton";
 
 import TextField from "./Fields/TextField";
 import RichTextField from "./Fields/RichTextField";
@@ -40,5 +41,6 @@ export {
   EditButton,
   DeleteButton,
   SaveButton,
-  ExportButton
+  ExportButton,
+  CloneButton
 };

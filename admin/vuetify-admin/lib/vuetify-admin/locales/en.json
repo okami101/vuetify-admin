@@ -19,7 +19,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "save": "Save",
-    "export": "Export"
+    "export": "Export",
+    "clone": "Clone"
   },
   "messages": {
     "created": "New {resource} successfully created !",
