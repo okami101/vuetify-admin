@@ -6,7 +6,7 @@
         :fields="['id', 'name', 'founder', 'headquarter', 'opening_date']"
         row-click="show"
       >
-        <template v-slot:row-actions="{ item }">
+        <template v-slot:actions-item="{ item }">
           <va-edit-button :item="item"></va-edit-button>
           <va-delete-button :item="item"></va-delete-button>
           <va-clone-button :item="item"></va-clone-button>

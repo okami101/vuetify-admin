@@ -1,12 +1,18 @@
 <template>
-  <v-btn text exact :to="`/${resourceName}/create`" :color="color">
+  <v-btn
+    v-if="can('create')"
+    text
+    exact
+    :to="`/${resourceName}/create`"
+    :color="color"
+  >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
     {{ $t("va.actions.create") }}
   </v-btn>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "CreateButton",
@@ -21,6 +27,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      can: "api/can"
+    }),
     ...mapState({
       resourceName: state => state.api.resourceName
     })

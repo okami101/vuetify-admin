@@ -5,7 +5,9 @@
     </va-aside-content>
     <div class="d-flex mb-2">
       <v-spacer></v-spacer>
-      <va-show-button v-if="can('show')"></va-show-button>
+      <slot name="actions">
+        <va-show-button></va-show-button>
+      </slot>
     </div>
     <slot></slot>
   </div>
@@ -13,15 +15,11 @@
 
 <script>
 import Page from "vuetify-admin/mixins/page";
-import { mapGetters } from "vuex";
 
 export default {
   name: "Edit",
   mixins: [Page],
   computed: {
-    ...mapGetters({
-      can: "api/can"
-    }),
     defaultTitle() {
       if (!this.resource) {
         return;

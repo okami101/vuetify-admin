@@ -51,7 +51,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <va-create-button v-if="can('create')"></va-create-button>
+          <va-create-button></va-create-button>
           <va-export-button
             v-if="exporter"
             text
@@ -85,7 +85,7 @@
 <script>
 import debounce from "lodash/debounce";
 import FormFilter from "../List/FormFilter";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import Page from "vuetify-admin/mixins/page";
 import EventBus from "vuetify-admin/utils/eventBus";
 
@@ -142,9 +142,6 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
-    ...mapGetters({
-      can: "api/can"
-    }),
     defaultTitle() {
       return this.$tc(`resources.${this.resourceName}`, 10);
     },

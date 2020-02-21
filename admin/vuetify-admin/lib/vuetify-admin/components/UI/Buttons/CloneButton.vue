@@ -1,11 +1,11 @@
 <template>
   <v-btn
-    v-if="item"
+    v-if="currentResource && can('create')"
     text
     exact
     :to="{
       name: `${$store.state.api.resourceName}_create`,
-      query: { source: JSON.stringify(item) }
+      query: { source: JSON.stringify(currentResource) }
     }"
     @click.stop="$emit('clone')"
     :color="color"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "CloneButton",
@@ -32,9 +32,16 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      can: "api/can"
+    }),
     ...mapState({
-      resourceName: state => state.api.resourceName
-    })
+      resourceName: state => state.api.resourceName,
+      resource: state => state.api.resource
+    }),
+    currentResource() {
+      return this.item || this.resource;
+    }
   }
 };
 </script>

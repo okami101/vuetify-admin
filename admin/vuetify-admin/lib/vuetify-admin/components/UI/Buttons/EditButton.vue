@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    v-if="currentResource"
+    v-if="currentResource && can('show')"
     text
     exact
     :to="`/${$store.state.api.resourceName}/${currentResource.id}/edit`"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "EditButton",
@@ -29,6 +29,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      can: "api/can"
+    }),
     ...mapState({
       resourceName: state => state.api.resourceName,
       resource: state => state.api.resource

@@ -1,5 +1,10 @@
 <template>
-  <v-btn v-if="currentResource" text @click.stop="onDelete" :color="color">
+  <v-btn
+    v-if="currentResource && can('delete')"
+    text
+    @click.stop="onDelete"
+    :color="color"
+  >
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
@@ -9,7 +14,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "DeleteButton",
@@ -25,6 +30,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      can: "api/can"
+    }),
     ...mapState({
       resourceName: state => state.api.resourceName,
       resource: state => state.api.resource

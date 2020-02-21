@@ -14,7 +14,7 @@
         row-click="show"
         show-expand
       >
-        <template v-slot:row-actions="{ item }">
+        <template v-slot:actions-item="{ item }">
           <va-edit-button :item="item"></va-edit-button>
           <va-delete-button :item="item"></va-delete-button>
         </template>

@@ -24,7 +24,7 @@
       <slot :name="slot" v-bind="scope"></slot>
     </template>
     <template v-slot:item.actions="scope">
-      <slot name="row-actions" v-bind="scope"></slot>
+      <slot name="actions-item" v-bind="scope"></slot>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
@@ -99,7 +99,7 @@ export default {
         };
       });
 
-      if (this.$scopedSlots["row-actions"]) {
+      if (this.$scopedSlots["actions-item"]) {
         fields.push({
           value: "actions",
           sortable: false
