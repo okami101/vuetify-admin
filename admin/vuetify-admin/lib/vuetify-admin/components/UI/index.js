@@ -19,6 +19,7 @@ import CloneButton from "./Buttons/CloneButton";
 import TextField from "./Fields/TextField";
 import RichTextField from "./Fields/RichTextField";
 import RatingField from "./Fields/RatingField";
+import DateField from "./Fields/DateField";
 
 import TextInput from "./Inputs/TextInput";
 import DateInput from "./Inputs/DateInput";
@@ -42,6 +43,7 @@ export {
   ExportButton,
   CloneButton,
   TextField,
+  DateField,
   RichTextField,
   RatingField,
   TextInput,

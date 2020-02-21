@@ -3,7 +3,13 @@
     <template v-slot="props">
       <va-datagrid
         v-bind="props"
-        :fields="['id', 'name', 'founder', 'headquarter', 'opening_date']"
+        :fields="[
+          'id',
+          'name',
+          'founder',
+          'headquarter',
+          { source: 'opening_date', type: 'date' }
+        ]"
         row-click="show"
       >
         <template v-slot:actions-item="{ item }">

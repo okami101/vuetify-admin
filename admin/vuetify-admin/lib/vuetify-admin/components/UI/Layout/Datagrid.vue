@@ -18,10 +18,16 @@
     :class="{ 'clickable-rows': rowClick }"
   >
     <template
-      v-for="slot in Object.keys($scopedSlots)"
-      v-slot:[`item.${slot}`]="scope"
+      v-for="field in getFields"
+      v-slot:[`item.${field.source}`]="scope"
     >
-      <slot :name="slot" v-bind="scope"></slot>
+      <slot :name="field.source" v-bind="scope">
+        <component
+          :is="`va-${field.type || 'text'}-field`"
+          v-bind="scope"
+          :source="field.source"
+        ></component>
+      </slot>
     </template>
     <template v-slot:item.actions="scope">
       <slot name="actions-item" v-bind="scope"></slot>

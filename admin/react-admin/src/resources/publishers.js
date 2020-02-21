@@ -14,7 +14,8 @@ import {
   TextInput,
   DateInput,
   Filter,
-  CloneButton
+  CloneButton,
+  DateField
 } from "react-admin";
 
 const PublisherFilter = props => (
@@ -34,7 +35,7 @@ export const PublisherList = props => (
       <TextField source="name" />
       <TextField source="founder" />
       <TextField source="headquarter" />
-      <TextField source="opening_date" />
+      <DateField source="opening_date" />
       <ShowButton></ShowButton>
       <EditButton></EditButton>
       <DeleteButton></DeleteButton>
