@@ -30,7 +30,6 @@
 
 <script>
 import Input from "vuetify-admin/mixins/input";
-import format from "date-fns/format";
 
 export default {
   name: "DateInput",
@@ -38,7 +37,8 @@ export default {
   props: {
     singleLine: Boolean,
     hideDetails: Boolean,
-    dense: Boolean
+    dense: Boolean,
+    format: String
   },
   data() {
     return {
@@ -47,14 +47,14 @@ export default {
   },
   computed: {
     dateFormatted() {
-      return this.input ? format(new Date(this.input), "dd/MM/yyyy") : "";
+      return this.input ? this.$d(new Date(this.input), this.format) : "";
     }
   },
   watch: {
     input: {
       handler(val) {
         if (val) {
-          this.input = format(new Date(val), "yyyy-MM-dd");
+          this.input = val.substring(0, 10);
         }
       },
       immediate: true

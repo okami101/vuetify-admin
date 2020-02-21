@@ -19,18 +19,17 @@
   >
     <template
       v-for="field in getFields"
-      v-slot:[`item.${field.source}`]="scope"
+      v-slot:[`item.${field.source}`]="{ item }"
     >
-      <slot :name="field.source" v-bind="scope">
+      <slot :name="field.source" v-bind="{ item }">
         <component
           :is="`va-${field.type || 'text'}-field`"
-          v-bind="scope"
-          :source="field.source"
+          v-bind="{ item, ...field }"
         ></component>
       </slot>
     </template>
-    <template v-slot:item.actions="scope">
-      <slot name="actions-item" v-bind="scope"></slot>
+    <template v-slot:item.actions="{ item }">
+      <slot name="actions-item" v-bind="{ item }"></slot>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">

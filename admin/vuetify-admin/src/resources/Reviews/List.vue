@@ -4,14 +4,19 @@
       'q',
       'rating',
       'author',
-      { source: 'published_before', type: 'date' },
-      { source: 'published_after', type: 'date' }
+      { source: 'published_before', type: 'date', format: 'long' },
+      { source: 'published_after', type: 'date', format: 'long' }
     ]"
   >
     <template v-slot="props">
       <va-datagrid
         v-bind="props"
-        :fields="['id', 'rating', 'author', 'publication_date']"
+        :fields="[
+          'id',
+          'rating',
+          'author',
+          { source: 'publication_date', type: 'date', format: 'long' }
+        ]"
         row-click="show"
         show-expand
       >

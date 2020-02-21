@@ -7,6 +7,7 @@ export default {
     alwaysOn: Boolean,
     hint: String,
     required: Boolean,
+    filter: Boolean,
     value: [String, Number, Object, Array, Boolean],
     rules: {
       type: Array,
@@ -54,9 +55,7 @@ export default {
     },
     value: {
       handler(val) {
-        if (!this.source) {
-          this.input = val;
-        }
+        this.input = val;
       },
       immediate: true
     },
@@ -82,7 +81,7 @@ export default {
       }
     },
     updateValue() {
-      if (this.source) {
+      if (!this.filter) {
         this.update({
           source: this.source,
           value: this.input

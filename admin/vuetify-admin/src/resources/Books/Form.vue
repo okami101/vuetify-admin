@@ -12,7 +12,10 @@
           <va-text-input source="title"></va-text-input>
           <va-text-input source="description"></va-text-input>
           <va-text-input source="author"></va-text-input>
-          <va-text-input source="publication_date"></va-text-input>
+          <va-date-input
+            source="publication_date"
+            format="long"
+          ></va-date-input>
         </v-col>
       </v-row>
     </template>

@@ -11,7 +11,7 @@
         <va-text-field source="title"></va-text-field>
         <va-text-field source="description"></va-text-field>
         <va-text-field source="author"></va-text-field>
-        <va-date-field source="publication_date"></va-date-field>
+        <va-date-field source="publication_date" format="long"></va-date-field>
       </template>
       <template v-slot:summary>
         <va-rich-text-field

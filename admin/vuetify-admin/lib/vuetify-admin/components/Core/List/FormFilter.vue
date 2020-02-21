@@ -14,9 +14,9 @@
         </v-btn>
         <component
           :is="`va-${item.type || 'text'}-input`"
+          filter
+          v-bind="item"
           v-model="filter[item.source]"
-          :label="item.label"
-          :icon="item.icon"
           single-line
           hide-details
           dense

@@ -8,7 +8,7 @@
           'name',
           'founder',
           'headquarter',
-          { source: 'opening_date', type: 'date' }
+          { source: 'opening_date', type: 'date', format: 'long' }
         ]"
         row-click="show"
       >
