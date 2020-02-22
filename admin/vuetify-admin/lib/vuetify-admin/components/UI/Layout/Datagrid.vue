@@ -19,7 +19,7 @@
     :class="{ 'clickable-rows': rowClick }"
   >
     <template
-      v-for="field in getFields"
+      v-for="field in fields"
       v-slot:[`item.${field.source}`]="{ item }"
     >
       <slot :name="field.source" v-bind="{ item }">
@@ -94,11 +94,8 @@ export default {
     ...mapState({
       resourceName: state => state.api.resourceName
     }),
-    getFields() {
-      return this.getFormattedFields(this.fields);
-    },
     headers() {
-      let fields = this.getFields.map(field => {
+      let fields = this.fields.map(field => {
         return {
           ...field,
           text: field.label || this.$t(`attributes.${field.source}`),
@@ -134,22 +131,6 @@ export default {
     },
     updateSelected(selected) {
       this.$parent.$parent.$emit("input", selected);
-    },
-    getFormattedFields(fields) {
-      return fields
-        .map(f => {
-          return typeof f === "string"
-            ? {
-                source: f
-              }
-            : f;
-        })
-        .map(f => {
-          return {
-            ...f,
-            label: f.label || this.$t(`attributes.${f.source}`)
-          };
-        });
     }
   }
 };

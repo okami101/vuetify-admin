@@ -1,17 +1,16 @@
 <template>
-  <va-list :filters="['q', 'name', 'founder', 'headquarter']">
+  <va-list
+    :fields="[
+      'id',
+      'name',
+      'founder',
+      'headquarter',
+      { source: 'opening_date', type: 'date', format: 'long' }
+    ]"
+    :filters="['q', 'name', 'founder', 'headquarter']"
+  >
     <template v-slot="props">
-      <va-datagrid
-        v-bind="props"
-        :fields="[
-          'id',
-          'name',
-          'founder',
-          'headquarter',
-          { source: 'opening_date', type: 'date', format: 'long' }
-        ]"
-        row-click="show"
-      >
+      <va-datagrid v-bind="props" row-click="show">
         <template v-slot:actions-item="{ item }">
           <va-edit-button :item="item"></va-edit-button>
           <va-delete-button :item="item"></va-delete-button>

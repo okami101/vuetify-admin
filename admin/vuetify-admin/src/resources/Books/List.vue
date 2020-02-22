@@ -1,5 +1,14 @@
 <template>
   <va-list
+    :fields="[
+      'id',
+      'isbn',
+      'title',
+      'author',
+      'price',
+      { source: 'description', hidden: true },
+      { source: 'publication_date', type: 'date', format: 'long' }
+    ]"
     :filters="[
       'q',
       'title',
@@ -11,19 +20,7 @@
     ]"
   >
     <template v-slot="props">
-      <va-datagrid
-        v-bind="props"
-        :fields="[
-          'id',
-          'isbn',
-          'title',
-          'author',
-          'price',
-          { source: 'publication_date', type: 'date', format: 'long' }
-        ]"
-        row-click="show"
-        show-expand
-      >
+      <va-datagrid v-bind="props" row-click="show" show-expand>
         <template v-slot:actions-item="{ item }">
           <va-edit-button :item="item"></va-edit-button>
           <va-delete-button :item="item"></va-delete-button>
@@ -31,7 +28,7 @@
         <template v-slot:expanded-item="{ item }">
           <va-rich-text-field
             :item="item"
-            source="summary"
+            source="description"
           ></va-rich-text-field>
         </template>
       </va-datagrid>

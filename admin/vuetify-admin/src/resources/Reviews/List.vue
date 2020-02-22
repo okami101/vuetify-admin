@@ -1,5 +1,11 @@
 <template>
   <va-list
+    :fields="[
+      'id',
+      'rating',
+      'author',
+      { source: 'publication_date', type: 'date', format: 'long' }
+    ]"
     :filters="[
       'q',
       { source: 'rating', type: 'rating' },
@@ -9,17 +15,7 @@
     ]"
   >
     <template v-slot="props">
-      <va-datagrid
-        v-bind="props"
-        :fields="[
-          'id',
-          'rating',
-          'author',
-          { source: 'publication_date', type: 'date', format: 'long' }
-        ]"
-        row-click="show"
-        show-expand
-      >
+      <va-datagrid v-bind="props" row-click="show" show-expand>
         <template v-slot:rating="{ item }">
           <va-rating-field :item="item" source="rating"></va-rating-field>
         </template>

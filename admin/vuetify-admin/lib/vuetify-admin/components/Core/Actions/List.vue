@@ -60,9 +60,10 @@
           ></va-export-button>
         </v-toolbar>
       </template>
-      <template v-slot:default="props">
+      <template v-slot:default>
         <slot
-          v-bind="props"
+          :items="items"
+          :fields="getFields.filter(f => !f.hidden)"
           :value="selected"
           :server-items-length="total"
           :loading="loading"
@@ -101,6 +102,10 @@ export default {
       default: () => {}
     },
     filters: {
+      type: Array,
+      default: () => []
+    },
+    fields: {
       type: Array,
       default: () => []
     },
@@ -144,6 +149,9 @@ export default {
   computed: {
     defaultTitle() {
       return this.$tc(`resources.${this.resourceName}`, 10);
+    },
+    getFields() {
+      return this.getFormattedFields(this.fields);
     },
     getFilters() {
       return this.getFormattedFields(
@@ -265,6 +273,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
+        fields: this.getFields.map(f => f.source),
         pagination: {
           page,
           perPage: itemsPerPage
