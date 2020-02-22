@@ -8,7 +8,7 @@ import {
   GET_PERMISSIONS
 } from "vuetify-admin/utils/authActions";
 
-export default provider => {
+export default (provider, router) => {
   return {
     namespaced: true,
     state: { user: null },
@@ -39,8 +39,9 @@ export default provider => {
        * Server login with given credentials
        * checkAuth action will set fresh user infos on store automatically
        */
-      [LOGIN]: ({}, credentials) => {
-        return provider.login(credentials);
+      [LOGIN]: async ({}, credentials) => {
+        await provider.login(credentials);
+        router.push("/");
       },
       /**
        * Explicit logout action, remove user from storage
@@ -48,6 +49,7 @@ export default provider => {
       [LOGOUT]: async ({ commit }) => {
         await provider.logout();
         commit("setUser", null);
+        router.push("/login");
       },
       /**
        * Check valid auth on server by retrieving user infos
@@ -73,7 +75,6 @@ export default provider => {
           await provider.checkError(error);
         } catch (e) {
           dispatch("logout");
-          throw e;
         }
       }
     }

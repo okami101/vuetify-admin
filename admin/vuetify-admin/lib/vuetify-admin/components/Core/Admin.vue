@@ -59,7 +59,7 @@ export default {
      * Auth store & api dispatcher module injection
      */
     this.$store.registerModule("aside", aside);
-    this.$store.registerModule("auth", auth(this.authProvider));
+    this.$store.registerModule("auth", auth(this.authProvider, this.$router));
     this.$store.registerModule("api", api(this.$i18n));
     this.$store.registerModule("form", form);
   },

@@ -150,12 +150,16 @@ export default entrypoint => {
 
         default:
           return Promise.reject({
+            status: 400,
             message: "Invalid action"
           });
       }
     }
 
-    return Promise.reject(await response.json());
+    return Promise.reject({
+      status: response.status,
+      ...(await response.json())
+    });
   };
 
   return {
