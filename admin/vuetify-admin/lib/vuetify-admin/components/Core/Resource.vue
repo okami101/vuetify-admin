@@ -38,7 +38,7 @@ export default {
      */
     let name = this.name;
     let children = [];
-    let permissions = this.$store.getters["auth/permissions"];
+    let permissions = this.$store.getters["auth/getPermissions"];
 
     let beforeEnter = async (to, from, next) => {
       this.setResourceName(name);

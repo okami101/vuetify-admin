@@ -58,7 +58,7 @@ export default {
       title: state => state.api.title,
       loading: state => state.api.loading
     }),
-    ...mapGetters({ name: "auth/name", email: "auth/email" })
+    ...mapGetters({ name: "auth/getName", email: "auth/getEmail" })
   },
   methods: {
     ...mapActions({

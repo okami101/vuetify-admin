@@ -1,19 +1,9 @@
-const methods = [
-  "getList",
-  "getMany",
-  "getManyReference",
-  "getOne",
-  "create",
-  "update",
-  "updateMany",
-  "delete",
-  "deleteMany"
-];
+import { DATA_PROVIDER_ACTIONS } from "../utils/actions";
 
 export default (provider, resource, actions) => {
   let storeActions = {};
 
-  methods.forEach(
+  DATA_PROVIDER_ACTIONS.forEach(
     action =>
       (storeActions[action] = ({}, params) => {
         return provider[action](resource, params);

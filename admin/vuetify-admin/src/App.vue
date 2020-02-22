@@ -30,11 +30,13 @@ export default {
           tokenProp: "token"
         }),
         laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
-          permissions: r => {
+          getName: u => u.name,
+          getEmail: u => u.email,
+          getPermissions: ({ roles }) => {
             return {
-              is_admin: r.includes("ROLE_ADMIN"),
-              is_editor: r.includes("ROLE_EDITOR"),
-              is_author: r.includes("ROLE_AUTHOR")
+              is_admin: roles.includes("ROLE_ADMIN"),
+              is_editor: roles.includes("ROLE_EDITOR"),
+              is_author: roles.includes("ROLE_AUTHOR")
             };
           }
         })

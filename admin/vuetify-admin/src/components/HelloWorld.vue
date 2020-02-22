@@ -136,7 +136,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      permissions: "auth/permissions"
+      permissions: "auth/getPermissions"
     })
   }
 };

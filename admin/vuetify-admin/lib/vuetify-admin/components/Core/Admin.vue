@@ -72,7 +72,7 @@ export default {
          */
         if (to.name !== "login") {
           try {
-            await this.loadUser();
+            await this.checkAuth();
           } catch (e) {
             return next("/login");
           }
@@ -89,12 +89,12 @@ export default {
      */
     if (this.unauthenticatedRoute) {
       try {
-        await this.loadUser();
+        await this.checkAuth();
         await this.$router.push("/");
       } catch (e) {}
     } else {
       try {
-        await this.loadUser();
+        await this.checkAuth();
       } catch (e) {
         await this.$router.push("/login");
       }
@@ -119,7 +119,7 @@ export default {
       removeCurrentResource: "api/removeCurrentResource"
     }),
     ...mapActions({
-      loadUser: "auth/loadUser"
+      checkAuth: "auth/checkAuth"
     })
   }
 };

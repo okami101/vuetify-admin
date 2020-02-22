@@ -1,3 +1,13 @@
+import {
+  LOGIN,
+  LOGOUT,
+  CHECK_AUTH,
+  CHECK_ERROR,
+  GET_NAME,
+  GET_EMAIL,
+  GET_PERMISSIONS
+} from "../utils/actions";
+
 export default provider => {
   return {
     namespaced: true,
@@ -8,31 +18,55 @@ export default provider => {
       }
     },
     getters: {
-      name(state) {
-        return provider.getUsername(state.user);
+      [GET_NAME](state) {
+        return provider.getName(state.user);
       },
-      email(state) {
-        return provider.getUserEmail(state.user);
+      [GET_EMAIL](state) {
+        return provider.getEmail(state.user);
       },
-      permissions(state) {
+      [GET_PERMISSIONS](state) {
         return provider.getPermissions(state.user);
       }
     },
     actions: {
-      login: ({}, credentials) => {
+      /**
+       * Server login with given credentials
+       * checkAuth action will set fresh user infos on store automatically
+       */
+      [LOGIN]: ({}, credentials) => {
         return provider.login(credentials);
       },
-      logout: async ({ commit }) => {
+      /**
+       * Explicit logout action, remove user from storage
+       */
+      [LOGOUT]: async ({ commit }) => {
         await provider.logout();
         commit("setUser", null);
       },
-      loadUser: async ({ commit }, permissions = p => p) => {
+      /**
+       * Check valid auth on server by retrieving user infos
+       * Set fresh user infos on store
+       * Called after each URL navigation
+       */
+      [CHECK_AUTH]: async ({ commit }) => {
         try {
-          let user = await provider.getUser();
+          let user = await provider.checkAuth();
           commit("setUser", user);
         } catch (e) {
           commit("setUser", null);
-          commit("setPermissions", null);
+          throw e;
+        }
+      },
+      /**
+       * Check API error status
+       * Called after each API error (4xx, 5xx)
+       * Do automatic logout if reject promise returned
+       */
+      [CHECK_ERROR]: async ({ dispatch }, error) => {
+        try {
+          await provider.checkError(error);
+        } catch (e) {
+          dispatch("logout");
           throw e;
         }
       }

@@ -13,11 +13,20 @@ export default (entrypoint, options = {}) => {
         password
       };
     },
-    permissions: p => p,
+    getName: u => u.name,
+    getEmail: u => u.email,
+    getPermissions: u => u.roles,
     ...options
   };
 
-  let { routes, credentials, permissions, tokenProp } = options;
+  let {
+    routes,
+    credentials,
+    getName,
+    getEmail,
+    getPermissions,
+    tokenProp
+  } = options;
 
   const doAuthenticatedAction = route => {
     return fetch(`${entrypoint}/${route}`, {
@@ -55,7 +64,7 @@ export default (entrypoint, options = {}) => {
       localStorage.removeItem("token");
       return Promise.resolve();
     },
-    getUser: async () => {
+    checkAuth: async () => {
       let response = await doAuthenticatedAction(routes.user);
 
       if (response.status < 200 || response.status >= 300) {
@@ -73,14 +82,21 @@ export default (entrypoint, options = {}) => {
 
       return response.json();
     },
-    getUsername: ({ name }) => {
-      return name;
+    checkError: ({ status }) => {
+      if (status === 401 || status === 403) {
+        localStorage.removeItem("token");
+        return Promise.reject();
+      }
+      return Promise.resolve();
     },
-    getUserEmail: ({ email }) => {
-      return email;
+    getName: user => {
+      return getName(user);
     },
-    getPermissions: ({ roles }) => {
-      return permissions(roles);
+    getEmail: user => {
+      return getEmail(user);
+    },
+    getPermissions: user => {
+      return getPermissions(user);
     }
   };
 };

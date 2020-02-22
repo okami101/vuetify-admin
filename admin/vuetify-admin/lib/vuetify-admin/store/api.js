@@ -1,21 +1,10 @@
 import EventBus from "vuetify-admin/utils/eventBus";
-
-const methods = [
-  "getList",
-  "getMany",
-  "getManyReference",
-  "getOne",
-  "create",
-  "update",
-  "updateMany",
-  "delete",
-  "deleteMany"
-];
+import { DATA_PROVIDER_ACTIONS } from "../utils/actions";
 
 let storeActions = {};
 
 export default i18n => {
-  methods.forEach(action => {
+  DATA_PROVIDER_ACTIONS.forEach(action => {
     storeActions[action] = async ({ state, commit, dispatch }, params) => {
       commit("setLoading", { action, loading: true });
 
