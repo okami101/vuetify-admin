@@ -54,7 +54,10 @@ export default {
       }
 
       to.meta.title = this.$t(`va.pages.${to.meta.action}`, {
-        resource: this.$tc(`resources.${name}`, 1).toLowerCase(),
+        resource: this.$tc(
+          `resources.${name}`,
+          to.meta.action === "list" ? 10 : 1
+        ).toLowerCase(),
         id: to.params.id
       });
       next();
