@@ -119,58 +119,38 @@ export default i18n => {
       ...storeActions,
       showSuccess({ commit }, { action, resourceName, params }) {
         let messages = {
-          [CREATE]: () => {
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.created", {
-                resource: i18n.tc(`resources.${resourceName}`, 1).toLowerCase()
-              })
-            );
-          },
-          [UPDATE]: () => {
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.updated", {
-                resource: i18n.tc(`resources.${resourceName}`, 1),
-                id: params.id
-              })
-            );
-          },
-          [UPDATE_MANY]: () => {
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.updated_many", {
-                resource: i18n
-                  .tc(`resources.${resourceName}`, params.ids.length)
-                  .toLowerCase(),
-                count: params.ids.length
-              })
-            );
-          },
-          [DELETE]: () => {
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.deleted", {
-                resource: i18n.tc(`resources.${resourceName}`, 1),
-                id: params.id
-              })
-            );
-          },
-          [DELETE_MANY]: () => {
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.deleted_many", {
-                resource: i18n
-                  .tc(`resources.${resourceName}`, params.ids.length)
-                  .toLowerCase(),
-                count: params.ids.length
-              })
-            );
-          }
+          [CREATE]: () =>
+            i18n.t("va.messages.created", {
+              resource: i18n.tc(`resources.${resourceName}`, 1).toLowerCase()
+            }),
+          [UPDATE]: () =>
+            i18n.t("va.messages.updated", {
+              resource: i18n.tc(`resources.${resourceName}`, 1),
+              id: params.id
+            }),
+          [UPDATE_MANY]: () =>
+            i18n.t("va.messages.updated_many", {
+              resource: i18n
+                .tc(`resources.${resourceName}`, params.ids.length)
+                .toLowerCase(),
+              count: params.ids.length
+            }),
+          [DELETE]: () =>
+            i18n.t("va.messages.deleted", {
+              resource: i18n.tc(`resources.${resourceName}`, 1),
+              id: params.id
+            }),
+          [DELETE_MANY]: () =>
+            i18n.t("va.messages.deleted_many", {
+              resource: i18n
+                .tc(`resources.${resourceName}`, params.ids.length)
+                .toLowerCase(),
+              count: params.ids.length
+            })
         };
 
         if (messages[action]) {
-          messages[action]();
+          commit("showSuccess", messages[action]());
         }
       },
       async refresh({ state, dispatch }) {
