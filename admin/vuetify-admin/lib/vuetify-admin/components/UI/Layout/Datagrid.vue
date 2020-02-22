@@ -4,6 +4,7 @@
     :items="items"
     :show-select="showSelect"
     :value="value"
+    :dense="dense"
     hide-default-footer
     :options="options"
     :loading="loading"
@@ -66,6 +67,7 @@ export default {
       type: Boolean,
       default: true
     },
+    dense: Boolean,
     loading: Boolean,
     itemsPerPage: Number,
     multiSort: {
