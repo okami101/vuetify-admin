@@ -33,8 +33,7 @@ export default {
     title: String,
     menu: Array,
     authProvider: Object,
-    dataProvider: Object,
-    permissions: Function
+    dataProvider: Object
   },
   data() {
     return {
@@ -73,7 +72,7 @@ export default {
          */
         if (to.name !== "login") {
           try {
-            await this.loadUser(this.permissions);
+            await this.loadUser();
           } catch (e) {
             return next("/login");
           }
@@ -90,12 +89,12 @@ export default {
      */
     if (this.unauthenticatedRoute) {
       try {
-        await this.loadUser(this.permissions);
+        await this.loadUser();
         await this.$router.push("/");
       } catch (e) {}
     } else {
       try {
-        await this.loadUser(this.permissions);
+        await this.loadUser();
       } catch (e) {
         await this.$router.push("/login");
       }

@@ -1,13 +1,10 @@
 export default provider => {
   return {
     namespaced: true,
-    state: { user: null, permissions: null },
+    state: { user: null },
     mutations: {
       setUser(state, user) {
         state.user = user;
-      },
-      setPermissions(state, permissions) {
-        state.permissions = permissions;
       }
     },
     getters: {
@@ -16,6 +13,9 @@ export default provider => {
       },
       email(state) {
         return provider.getUserEmail(state.user);
+      },
+      permissions(state) {
+        return provider.getPermissions(state.user);
       }
     },
     actions: {
@@ -30,7 +30,6 @@ export default provider => {
         try {
           let user = await provider.getUser();
           commit("setUser", user);
-          commit("setPermissions", permissions(provider.getPermissions(user)));
         } catch (e) {
           commit("setUser", null);
           commit("setPermissions", null);

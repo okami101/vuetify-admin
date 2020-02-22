@@ -4,15 +4,6 @@
     :menu="menu"
     :auth-provider="authProviders[defaultProvider]"
     :data-provider="dataProviders[defaultProvider]"
-    :permissions="
-      r => {
-        return {
-          is_admin: r.includes('ROLE_ADMIN'),
-          is_editor: r.includes('ROLE_EDITOR'),
-          is_author: r.includes('ROLE_AUTHOR')
-        };
-      }
-    "
   >
     <va-resource name="publishers"></va-resource>
     <va-resource name="books"></va-resource>
@@ -38,7 +29,15 @@ export default {
           },
           tokenProp: "token"
         }),
-        laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL)
+        laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+          permissions: r => {
+            return {
+              is_admin: r.includes("ROLE_ADMIN"),
+              is_editor: r.includes("ROLE_EDITOR"),
+              is_author: r.includes("ROLE_AUTHOR")
+            };
+          }
+        })
       },
       dataProviders: {
         symfony: symfonyDataProvider(process.env.VUE_APP_SYMFONY_API_URL),

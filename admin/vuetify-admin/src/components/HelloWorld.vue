@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "HelloWorld",
@@ -135,8 +135,8 @@ export default {
     ]
   }),
   computed: {
-    ...mapState({
-      permissions: state => state.auth.permissions
+    ...mapGetters({
+      permissions: "auth/permissions"
     })
   }
 };

@@ -13,10 +13,11 @@ export default (entrypoint, options = {}) => {
         password
       };
     },
+    permissions: p => p,
     ...options
   };
 
-  let { routes, credentials } = options;
+  let { routes, credentials, permissions, tokenProp } = options;
 
   const doAuthenticatedAction = route => {
     return fetch(`${entrypoint}/${route}`, {
@@ -44,7 +45,7 @@ export default (entrypoint, options = {}) => {
       }
 
       let json = await response.json();
-      localStorage.setItem("token", json[options.tokenProp]);
+      localStorage.setItem("token", json[tokenProp]);
     },
     logout: async () => {
       if (routes.logout) {
@@ -67,7 +68,7 @@ export default (entrypoint, options = {}) => {
       if (routes.refresh) {
         let response = await doAuthenticatedAction(routes.refresh);
         let json = await response.json();
-        localStorage.setItem("token", json[options.tokenProp]);
+        localStorage.setItem("token", json[tokenProp]);
       }
 
       return response.json();
@@ -79,7 +80,7 @@ export default (entrypoint, options = {}) => {
       return email;
     },
     getPermissions: ({ roles }) => {
-      return roles;
+      return permissions(roles);
     }
   };
 };
