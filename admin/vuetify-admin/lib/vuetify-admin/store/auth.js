@@ -6,7 +6,7 @@ import {
   GET_NAME,
   GET_EMAIL,
   GET_PERMISSIONS
-} from "../utils/actions";
+} from "vuetify-admin/utils/authActions";
 
 export default provider => {
   return {
@@ -19,13 +19,19 @@ export default provider => {
     },
     getters: {
       [GET_NAME](state) {
-        return provider.getName(state.user);
+        if (state.user) {
+          return provider.getName(state.user);
+        }
       },
       [GET_EMAIL](state) {
-        return provider.getEmail(state.user);
+        if (state.user) {
+          return provider.getEmail(state.user);
+        }
       },
       [GET_PERMISSIONS](state) {
-        return provider.getPermissions(state.user);
+        if (state.user) {
+          return provider.getPermissions(state.user);
+        }
       }
     },
     actions: {

@@ -1,9 +1,9 @@
-import { DATA_PROVIDER_ACTIONS } from "../utils/actions";
+import * as methods from "../utils/dataActions";
 
 export default (provider, resource, actions) => {
   let storeActions = {};
 
-  DATA_PROVIDER_ACTIONS.forEach(
+  Object.values(methods).forEach(
     action =>
       (storeActions[action] = ({}, params) => {
         return provider[action](resource, params);

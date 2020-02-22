@@ -1,10 +1,19 @@
 import EventBus from "vuetify-admin/utils/eventBus";
-import { DATA_PROVIDER_ACTIONS } from "../utils/actions";
+import * as methods from "vuetify-admin/utils/dataActions";
 
 let storeActions = {};
+let {
+  GET_LIST,
+  GET_ONE,
+  CREATE,
+  UPDATE,
+  UPDATE_MANY,
+  DELETE,
+  DELETE_MANY
+} = methods;
 
 export default i18n => {
-  DATA_PROVIDER_ACTIONS.forEach(action => {
+  Object.values(methods).forEach(action => {
     storeActions[action] = async ({ state, commit, dispatch }, params) => {
       commit("setLoading", { action, loading: true });
 
@@ -19,67 +28,29 @@ export default i18n => {
 
         commit("setLoading", { action, loading: false });
 
-        switch (action) {
-          case "getOne":
-            commit("setResource", response.data);
-            break;
-          case "create":
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.created", {
-                resource: i18n
-                  .tc(`resources.${state.resourceName}`, 1)
-                  .toLowerCase()
-              })
-            );
-            break;
-          case "update":
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.updated", {
-                resource: i18n.tc(`resources.${state.resourceName}`, 1),
-                id: params.id
-              })
-            );
-            break;
-          case "updateMany":
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.updated_many", {
-                resource: i18n
-                  .tc(`resources.${state.resourceName}`, params.ids.length)
-                  .toLowerCase(),
-                count: params.ids.length
-              })
-            );
-            break;
-          case "delete":
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.deleted", {
-                resource: i18n.tc(`resources.${state.resourceName}`, 1),
-                id: params.id
-              })
-            );
-            break;
-          case "deleteMany":
-            commit(
-              "showSuccess",
-              i18n.t("va.messages.deleted_many", {
-                resource: i18n
-                  .tc(`resources.${state.resourceName}`, params.ids.length)
-                  .toLowerCase(),
-                count: params.ids.length
-              })
-            );
-            break;
+        if (action === GET_ONE) {
+          /**
+           * Set resource on store
+           */
+          commit("setResource", response.data);
         }
 
+        /**
+         * Apply success message on writes operations
+         */
+        dispatch("showSuccess", {
+          action,
+          resourceName: state.resourceName,
+          params
+        });
         return Promise.resolve(response);
       } catch (e) {
         commit("setLoading", { action, loading: false });
-
         commit("showError", e.message);
+
+        dispatch("auth/checkError", e, {
+          root: true
+        });
         return Promise.reject(e);
       }
     };
@@ -99,9 +70,9 @@ export default i18n => {
     mutations: {
       setLoading(state, { action, loading }) {
         /**
-         * Global loading indicator only for main load operations
+         * Global loading indicator only for read load operations
          */
-        if (["getList", "getOne"].includes(action)) {
+        if ([GET_LIST, GET_ONE].includes(action)) {
           state.loading = loading;
         }
       },
@@ -146,9 +117,65 @@ export default i18n => {
     },
     actions: {
       ...storeActions,
+      showSuccess({ commit }, { action, resourceName, params }) {
+        let messages = {
+          [CREATE]: () => {
+            commit(
+              "showSuccess",
+              i18n.t("va.messages.created", {
+                resource: i18n.tc(`resources.${resourceName}`, 1).toLowerCase()
+              })
+            );
+          },
+          [UPDATE]: () => {
+            commit(
+              "showSuccess",
+              i18n.t("va.messages.updated", {
+                resource: i18n.tc(`resources.${resourceName}`, 1),
+                id: params.id
+              })
+            );
+          },
+          [UPDATE_MANY]: () => {
+            commit(
+              "showSuccess",
+              i18n.t("va.messages.updated_many", {
+                resource: i18n
+                  .tc(`resources.${resourceName}`, params.ids.length)
+                  .toLowerCase(),
+                count: params.ids.length
+              })
+            );
+          },
+          [DELETE]: () => {
+            commit(
+              "showSuccess",
+              i18n.t("va.messages.deleted", {
+                resource: i18n.tc(`resources.${resourceName}`, 1),
+                id: params.id
+              })
+            );
+          },
+          [DELETE_MANY]: () => {
+            commit(
+              "showSuccess",
+              i18n.t("va.messages.deleted_many", {
+                resource: i18n
+                  .tc(`resources.${resourceName}`, params.ids.length)
+                  .toLowerCase(),
+                count: params.ids.length
+              })
+            );
+          }
+        };
+
+        if (messages[action]) {
+          messages[action]();
+        }
+      },
       async refresh({ state, dispatch }) {
         if (state.resource) {
-          await dispatch("getOne", {
+          await dispatch(GET_ONE, {
             id: state.resource.id
           });
         }
@@ -156,13 +183,13 @@ export default i18n => {
       },
       save({ state, dispatch }, data) {
         if (state.resource) {
-          return dispatch("update", {
+          return dispatch(UPDATE, {
             id: state.resource.id,
             data
           });
         }
 
-        return dispatch("create", {
+        return dispatch(CREATE, {
           data
         });
       }
