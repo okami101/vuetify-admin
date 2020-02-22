@@ -1,6 +1,12 @@
 <template>
   <va-field v-slot="record" v-bind="$props">
-    <v-rating :value="record[source]" readonly dense></v-rating>
+    <v-rating
+      :value="record[source]"
+      readonly
+      dense
+      :color="color"
+      :background-color="backgroundColor"
+    ></v-rating>
   </va-field>
 </template>
 
@@ -9,6 +15,16 @@ import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "RatingField",
-  mixins: [Field]
+  mixins: [Field],
+  props: {
+    color: {
+      type: String,
+      default: "yellow darken-2"
+    },
+    backgroundColor: {
+      type: String,
+      default: "yellow"
+    }
+  }
 };
 </script>
