@@ -52,8 +52,11 @@
     "publisher": "Publisher",
     "book": "Book",
     "reviews": "Reviews",
+    "price": "Price",
     "q": "Search",
     "published_before": "Published before",
-    "published_after": "Published after"
+    "published_after": "Published after",
+    "pricier_than": "Pricier than",
+    "cheaper_than": "Cheaper than"
   }
 }

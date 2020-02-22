@@ -28,6 +28,7 @@ class StoreBook extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'author' => 'required',
+            'price' => 'required|float',
             'publication_date' => 'required|date',
         ];
     }

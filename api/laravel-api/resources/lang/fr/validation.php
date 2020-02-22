@@ -187,5 +187,6 @@ return [
         'publisher'             => 'éditeur',
         'book'                  => 'livre',
         'reviews'               => 'commentaires',
+        'price'                 => 'prix',
     ],
 ];

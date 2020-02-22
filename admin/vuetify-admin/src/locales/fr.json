@@ -52,8 +52,11 @@
     "publisher": "Editeur",
     "book": "Livre",
     "reviews": "Commentaires",
+    "price": "Prix",
     "q": "Rechercher",
     "published_before": "Publié avant",
-    "published_after": "Publié après"
+    "published_after": "Publié après",
+    "pricier_than": "Plus cher que",
+    "cheaper_than": "Moins cher que"
   }
 }

@@ -4,6 +4,8 @@
       'q',
       'title',
       'author',
+      { source: 'pricier_than', type: 'text' },
+      { source: 'cheaper_than', type: 'text' },
       { source: 'published_before', type: 'date', format: 'long' },
       { source: 'published_after', type: 'date', format: 'long' }
     ]"
@@ -16,6 +18,7 @@
           'isbn',
           'title',
           'author',
+          'price',
           { source: 'publication_date', type: 'date', format: 'long' }
         ]"
         row-click="show"
