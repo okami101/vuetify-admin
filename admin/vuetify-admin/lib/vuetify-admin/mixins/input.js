@@ -4,16 +4,15 @@ export default {
   props: {
     source: String,
     label: String,
-    alwaysOn: Boolean,
     hint: String,
+    icon: String,
+    hideDetails: Boolean,
+    dense: Boolean,
     required: Boolean,
+    alwaysOn: Boolean,
     filter: Boolean,
     value: {
       default: null
-    },
-    rules: {
-      type: Array,
-      default: () => []
     }
   },
   data() {

@@ -17,9 +17,8 @@
           filter
           v-bind="item"
           v-model="filter[item.source]"
-          single-line
           hide-details
-          dense
+          :filled="false"
           @input="onSearch"
         ></component>
       </div>

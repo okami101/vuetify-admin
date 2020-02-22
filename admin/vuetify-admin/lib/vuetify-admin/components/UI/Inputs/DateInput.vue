@@ -17,7 +17,7 @@
         append-icon="mdi-calendar"
         v-on="on"
         clearable
-        filled
+        :filled="filled"
         :single-line="singleLine"
         :hide-details="hideDetails"
         :dense="dense"
@@ -38,6 +38,10 @@ export default {
     singleLine: Boolean,
     hideDetails: Boolean,
     dense: Boolean,
+    filled: {
+      type: Boolean,
+      default: true
+    },
     format: String
   },
   data() {

@@ -7,7 +7,7 @@
     :rules="getRules"
     :error-messages="errorMessages"
     auto-grow
-    filled
+    :filled="filled"
     :append-icon="icon"
     :single-line="singleLine"
     :hide-details="hideDetails"
@@ -20,7 +20,7 @@
     :hint="hint"
     :rules="getRules"
     :error-messages="errorMessages"
-    filled
+    :filled="filled"
     :append-icon="icon"
     :single-line="singleLine"
     :hide-details="hideDetails"
@@ -39,6 +39,10 @@ export default {
     icon: String,
     singleLine: Boolean,
     hideDetails: Boolean,
+    filled: {
+      type: Boolean,
+      default: true
+    },
     dense: Boolean
   }
 };
