@@ -32,7 +32,7 @@
                 :loading="loading"
                 color="primary"
                 block
-                x-large
+                large
                 type="submit"
                 >{{ $t("login.sign_in") }}</v-btn
               >
@@ -86,6 +86,6 @@ export default {
 
 <style scoped>
 #login-page {
-  background-color: var(--v-primary-lighten3);
+  background-color: var(--v-accent-lighten2);
 }
 </style>

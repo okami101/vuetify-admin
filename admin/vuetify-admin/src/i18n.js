@@ -67,5 +67,19 @@ export default new VueI18n({
         minute: "numeric"
       }
     }
+  },
+  numberFormats: {
+    en: {
+      currency: {
+        style: "currency",
+        currency: "USD"
+      }
+    },
+    fr: {
+      currency: {
+        style: "currency",
+        currency: "EUR"
+      }
+    }
   }
 });

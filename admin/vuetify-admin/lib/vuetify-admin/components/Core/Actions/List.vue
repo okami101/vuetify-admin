@@ -36,7 +36,7 @@
           <v-spacer></v-spacer>
           <v-menu offset-y v-if="getDisabledFilters.length">
             <template v-slot:activator="{ on }">
-              <v-btn text color="primary" v-on="on">
+              <v-btn text color="success" v-on="on">
                 <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
                 {{ $t("va.datagrid.add_filter") }}
               </v-btn>

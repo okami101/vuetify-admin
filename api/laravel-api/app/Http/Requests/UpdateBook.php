@@ -28,7 +28,7 @@ class UpdateBook extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'author' => 'required',
-            'price' => 'required|float',
+            'price' => 'required|numeric',
             'publication_date' => 'required|date',
         ];
     }

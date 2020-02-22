@@ -5,7 +5,7 @@
       'isbn',
       'title',
       'author',
-      'price',
+      { source: 'price', align: 'right', type: 'number', format: 'currency' },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', format: 'long' }
     ]"
@@ -13,8 +13,8 @@
       'q',
       'title',
       'author',
-      { source: 'pricier_than', type: 'text' },
-      { source: 'cheaper_than', type: 'text' },
+      { source: 'pricier_than', type: 'number' },
+      { source: 'cheaper_than', type: 'number' },
       { source: 'published_before', type: 'date', format: 'long' },
       { source: 'published_after', type: 'date', format: 'long' }
     ]"

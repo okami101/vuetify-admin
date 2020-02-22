@@ -1,6 +1,6 @@
 <template>
-  <v-btn text @click="onExport" color="primary">
-    <v-icon small class="mr-2">mdi-download</v-icon>
+  <v-btn text @click="onExport" :color="color">
+    <v-icon small class="mr-2">{{ icon }}</v-icon>
     {{ $t("va.actions.export") }}
   </v-btn>
 </template>
@@ -12,6 +12,14 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "ExportButton",
   props: {
+    icon: {
+      type: String,
+      default: "mdi-download"
+    },
+    color: {
+      type: String,
+      default: "success"
+    },
     options: {
       type: Object,
       default: () => {}

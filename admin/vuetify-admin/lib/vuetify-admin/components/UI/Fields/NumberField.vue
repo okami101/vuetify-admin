@@ -1,6 +1,6 @@
 <template>
   <va-field v-slot="record" v-bind="$props">
-    <span>{{ dateFormatted(record[source]) }}</span>
+    <span>{{ numberFormatted(record[source]) }}</span>
   </va-field>
 </template>
 
@@ -8,15 +8,15 @@
 import Field from "vuetify-admin/mixins/field";
 
 export default {
-  name: "DateField",
+  name: "NumberField",
   mixins: [Field],
   props: {
     format: String
   },
   methods: {
-    dateFormatted(val) {
+    numberFormatted(val) {
       if (val) {
-        return this.$d(new Date(val), this.format);
+        return this.$n(val, this.format);
       }
     }
   }

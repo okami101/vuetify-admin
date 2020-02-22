@@ -18,12 +18,15 @@ import CloneButton from "./Buttons/CloneButton";
 
 import TextField from "./Fields/TextField";
 import RichTextField from "./Fields/RichTextField";
-import RatingField from "./Fields/RatingField";
 import DateField from "./Fields/DateField";
+import NumberField from "./Fields/NumberField";
+import RatingField from "./Fields/RatingField";
 
 import TextInput from "./Inputs/TextInput";
 import DateInput from "./Inputs/DateInput";
+import NumberInput from "./Inputs/NumberInput";
 import RatingInput from "./Inputs/RatingInput";
+import PasswordInput from "./Inputs/PasswordInput";
 
 export {
   Datagrid,
@@ -44,9 +47,12 @@ export {
   CloneButton,
   TextField,
   DateField,
+  NumberField,
   RichTextField,
   RatingField,
   TextInput,
   DateInput,
+  NumberInput,
+  PasswordInput,
   RatingInput
 };

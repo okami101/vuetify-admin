@@ -28,10 +28,13 @@ import {
   CloneButton,
   TextField,
   DateField,
+  NumberField,
   RatingField,
   RichTextField,
   TextInput,
   DateInput,
+  NumberInput,
+  PasswordInput,
   RatingInput
 } from "./components/UI";
 
@@ -62,10 +65,13 @@ const components = [
   CloneButton,
   TextField,
   DateField,
+  NumberField,
   RatingField,
   RichTextField,
   TextInput,
   DateInput,
+  NumberInput,
+  PasswordInput,
   RatingInput
 ];
 

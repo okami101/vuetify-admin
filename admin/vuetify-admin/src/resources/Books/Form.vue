@@ -11,7 +11,8 @@
           <va-text-input source="isbn"></va-text-input>
           <va-text-input source="title"></va-text-input>
           <va-text-input source="description"></va-text-input>
-          <va-text-input source="author"></va-text-input>
+          <va-password-input source="author"></va-password-input>
+          <va-number-input source="price" format="currency"></va-number-input>
           <va-date-input
             source="publication_date"
             format="long"
