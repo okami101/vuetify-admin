@@ -29,6 +29,7 @@ import NumberInput from "./Inputs/NumberInput";
 import RatingInput from "./Inputs/RatingInput";
 import PasswordInput from "./Inputs/PasswordInput";
 import BooleanInput from "./Inputs/BooleanInput";
+import RichTextInput from "./Inputs/RichTextInput";
 
 export {
   Datagrid,
@@ -58,5 +59,6 @@ export {
   NumberInput,
   PasswordInput,
   RatingInput,
-  BooleanInput
+  BooleanInput,
+  RichTextInput
 };

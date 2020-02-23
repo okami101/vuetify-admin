@@ -24,7 +24,7 @@ class UpdateBook extends FormRequest
     public function rules()
     {
         return [
-            'isbn' => 'isbn',
+            'isbn' => 'required|isbn',
             'title' => 'required',
             'description' => 'required',
             'author' => 'required',

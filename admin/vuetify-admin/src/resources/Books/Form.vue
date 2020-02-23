@@ -22,7 +22,7 @@
       </v-row>
     </template>
     <template v-slot:summary>
-      <va-text-input multiline source="summary"></va-text-input>
+      <va-rich-text-input source="summary"></va-rich-text-input>
     </template>
   </va-tabbed-form>
 </template>
