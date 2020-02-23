@@ -1,7 +1,13 @@
 <template>
-  <va-input v-bind="$props">
-    <v-switch v-model="input"></v-switch>
-  </va-input>
+  <v-switch
+    v-model="input"
+    :label="getLabel"
+    :hint="hint"
+    :rules="getRules"
+    :error-messages="errorMessages"
+    :hide-details="hideDetails"
+    :dense="dense"
+  ></v-switch>
 </template>
 
 <script>

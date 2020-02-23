@@ -38,12 +38,10 @@ export default {
     multiline: Boolean,
     icon: String,
     singleLine: Boolean,
-    hideDetails: Boolean,
     filled: {
       type: Boolean,
       default: true
-    },
-    dense: Boolean
+    }
   }
 };
 </script>

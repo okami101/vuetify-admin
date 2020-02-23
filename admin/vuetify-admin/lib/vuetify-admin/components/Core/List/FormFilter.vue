@@ -6,7 +6,7 @@
           small
           text
           icon
-          class="mr-1"
+          class="mr-2"
           v-if="!item.alwaysOn"
           @click="remove(item)"
         >

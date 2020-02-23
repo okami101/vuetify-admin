@@ -36,8 +36,6 @@ export default {
   mixins: [Input],
   props: {
     singleLine: Boolean,
-    hideDetails: Boolean,
-    dense: Boolean,
     filled: {
       type: Boolean,
       default: true
