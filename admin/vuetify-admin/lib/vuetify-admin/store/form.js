@@ -7,7 +7,7 @@ export default {
   },
   mutations: {
     update(state, { source, value }) {
-      state.model[source] = value || "";
+      state.model[source] = value === undefined ? "" : value;
     },
     setErrors(state, errors) {
       state.errors = errors;
@@ -27,7 +27,7 @@ export default {
 
         commit("setSaving", false);
       } catch (e) {
-        const { status, errors } = e;
+        const { errors } = e;
         commit("setSaving", false);
 
         if (errors) {

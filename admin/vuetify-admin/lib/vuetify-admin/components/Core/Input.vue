@@ -43,3 +43,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+::v-deep .v-label {
+  margin-right: 1rem;
+}
+</style>
