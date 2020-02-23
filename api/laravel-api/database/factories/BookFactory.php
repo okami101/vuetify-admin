@@ -15,6 +15,7 @@ $factory->define(Book::class, function (Faker $faker) {
         'summary' => $faker->htmlParagraphs(10, 10, 10),
         'author' => $faker->name,
         'price' => $faker->randomFloat(2, 10, 50),
+        'commentable' => $faker->boolean(80),
         'publication_date' => $faker->dateTime,
     ];
 });

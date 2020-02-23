@@ -31,11 +31,13 @@ import {
   NumberField,
   RatingField,
   RichTextField,
+  BooleanField,
   TextInput,
   DateInput,
   NumberInput,
   PasswordInput,
-  RatingInput
+  RatingInput,
+  BooleanInput
 } from "./components/UI";
 
 const components = [
@@ -68,11 +70,13 @@ const components = [
   NumberField,
   RatingField,
   RichTextField,
+  BooleanField,
   TextInput,
   DateInput,
   NumberInput,
   PasswordInput,
-  RatingInput
+  RatingInput,
+  BooleanInput
 ];
 
 export default {

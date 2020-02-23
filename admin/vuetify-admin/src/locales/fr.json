@@ -53,6 +53,7 @@
     "book": "Livre",
     "reviews": "Commentaires",
     "price": "Prix",
+    "commentable": "Commentable",
     "q": "Rechercher",
     "published_before": "Publié avant",
     "published_after": "Publié après",

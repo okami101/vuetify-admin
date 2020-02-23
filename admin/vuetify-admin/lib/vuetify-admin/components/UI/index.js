@@ -21,12 +21,14 @@ import RichTextField from "./Fields/RichTextField";
 import DateField from "./Fields/DateField";
 import NumberField from "./Fields/NumberField";
 import RatingField from "./Fields/RatingField";
+import BooleanField from "./Fields/BooleanField";
 
 import TextInput from "./Inputs/TextInput";
 import DateInput from "./Inputs/DateInput";
 import NumberInput from "./Inputs/NumberInput";
 import RatingInput from "./Inputs/RatingInput";
 import PasswordInput from "./Inputs/PasswordInput";
+import BooleanInput from "./Inputs/BooleanInput";
 
 export {
   Datagrid,
@@ -50,9 +52,11 @@ export {
   NumberField,
   RichTextField,
   RatingField,
+  BooleanField,
   TextInput,
   DateInput,
   NumberInput,
   PasswordInput,
-  RatingInput
+  RatingInput,
+  BooleanInput
 };

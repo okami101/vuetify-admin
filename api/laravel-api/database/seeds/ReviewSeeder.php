@@ -12,7 +12,7 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
-        $books = \App\Book::all();
+        $books = \App\Book::commentables()->get();
 
         factory(Review::class, 5000)->make()->each(function (Review $review) use ($books) {
             $review->book()->associate($books->random());

@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
  * @property string $summary
  * @property string $author
  * @property float $price
+ * @property bool $commentable
  * @property Carbon $publication_date
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
  * @property-read int|null $reviews_count
@@ -28,6 +29,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book publishedBefore($date)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book cheaperThan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book pricierThan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Book commentables()
  * @mixin \Eloquent
  */
 class Book extends Model
@@ -41,6 +43,7 @@ class Book extends Model
         'summary',
         'author',
         'price',
+        'commentable',
         'publication_date',
     ];
 
@@ -49,7 +52,8 @@ class Book extends Model
     ];
 
     protected $casts = [
-        'price' => 'float'
+        'price' => 'float',
+        'commentable' => 'boolean'
     ];
 
     public function publisher()
@@ -60,6 +64,11 @@ class Book extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function scopeCommentables(Builder $query): Builder
+    {
+        return $query->where('commentable', '=', true);
     }
 
     public function scopePricierThan(Builder $query, $value): Builder

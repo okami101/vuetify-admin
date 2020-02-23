@@ -53,6 +53,7 @@
     "book": "Book",
     "reviews": "Reviews",
     "price": "Price",
+    "commentable": "Commentable",
     "q": "Search",
     "published_before": "Published before",
     "published_after": "Published after",

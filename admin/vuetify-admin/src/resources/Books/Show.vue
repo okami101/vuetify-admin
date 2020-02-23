@@ -12,6 +12,7 @@
         <va-text-field source="description"></va-text-field>
         <va-text-field source="author"></va-text-field>
         <va-number-field source="price" format="currency"></va-number-field>
+        <va-boolean-field source="commentable"></va-boolean-field>
         <va-date-field source="publication_date" format="long"></va-date-field>
       </template>
       <template v-slot:summary>
