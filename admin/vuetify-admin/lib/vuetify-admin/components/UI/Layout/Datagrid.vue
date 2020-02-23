@@ -25,7 +25,9 @@
       <slot :name="field.source" v-bind="{ item }">
         <component
           :is="`va-${field.type || 'text'}-field`"
-          v-bind="{ item, ...field }"
+          :source="field.source"
+          :item="item"
+          v-bind="field.options"
         ></component>
       </slot>
     </template>

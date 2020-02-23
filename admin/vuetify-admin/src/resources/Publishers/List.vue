@@ -5,7 +5,7 @@
       'name',
       'founder',
       'headquarter',
-      { source: 'opening_date', type: 'date', format: 'long' }
+      { source: 'opening_date', type: 'date', options: { format: 'long' } }
     ]"
     :filters="['q', 'name', 'founder', 'headquarter']"
   >

@@ -5,10 +5,15 @@
       'isbn',
       'title',
       'author',
-      { source: 'price', align: 'right', type: 'number', format: 'currency' },
+      {
+        source: 'price',
+        align: 'right',
+        type: 'number',
+        options: { format: 'currency' }
+      },
       { source: 'commentable', type: 'boolean', sortable: false },
       { source: 'description', hidden: true },
-      { source: 'publication_date', type: 'date', format: 'long' }
+      { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"
     :filters="[
       'q',
@@ -17,8 +22,8 @@
       { source: 'pricier_than', type: 'number' },
       { source: 'cheaper_than', type: 'number' },
       { source: 'commentable', type: 'boolean' },
-      { source: 'published_before', type: 'date', format: 'long' },
-      { source: 'published_after', type: 'date', format: 'long' }
+      { source: 'published_before', type: 'date', options: { format: 'long' } },
+      { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
   >
     <template v-slot="props">

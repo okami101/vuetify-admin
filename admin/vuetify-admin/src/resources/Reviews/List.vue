@@ -4,14 +4,14 @@
       'id',
       { source: 'rating', type: 'rating' },
       'author',
-      { source: 'publication_date', type: 'date', format: 'long' }
+      { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"
     :filters="[
       'q',
       { source: 'rating', type: 'rating' },
       'author',
-      { source: 'published_before', type: 'date', format: 'long' },
-      { source: 'published_after', type: 'date', format: 'long' }
+      { source: 'published_before', type: 'date', options: { format: 'long' } },
+      { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
   >
     <template v-slot="props">

@@ -14,8 +14,9 @@
         </v-btn>
         <component
           :is="`va-${item.type || 'text'}-input`"
+          :source="item.source"
           filter
-          v-bind="item"
+          v-bind="item.options"
           v-model="filter[item.source]"
           hide-details
           :filled="false"

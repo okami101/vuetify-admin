@@ -157,7 +157,11 @@ export default {
       return this.getFormattedFields(
         this.filters.map(f => {
           if (f === "q") {
-            return { source: "q", icon: "mdi-magnify", alwaysOn: true };
+            return {
+              source: "q",
+              alwaysOn: true,
+              options: { icon: "mdi-magnify" }
+            };
           }
           return f;
         })
