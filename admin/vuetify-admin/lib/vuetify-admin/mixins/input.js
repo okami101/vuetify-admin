@@ -69,10 +69,10 @@ export default {
       },
       immediate: true
     },
-    item: {
-      handler() {
-        if (this.record && this.source) {
-          this.input = this.record[this.source];
+    record: {
+      handler(val) {
+        if (val && this.source) {
+          this.input = val[this.source];
         }
       },
       immediate: true

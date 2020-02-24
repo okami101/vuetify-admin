@@ -18,7 +18,7 @@ export default {
       routeItem: "api/item"
     }),
     record() {
-      return this.item || this.routeItem(this.$route.meta.resource);
+      return this.item || this.routeItem(this.$route.meta.resource) || {};
     }
   }
 };

@@ -200,7 +200,6 @@ export default {
           .filter(f => f.alwaysOn)
           .map(f => f.source);
       },
-      deep: true,
       immediate: true
     },
     currentFilter() {
