@@ -11,16 +11,7 @@
     :filters="['q', 'name', 'founder', 'headquarter']"
   >
     <template v-slot="props">
-      <va-datagrid v-bind="props" row-click="show">
-        <template v-slot:actions-item="{ resource, item }">
-          <va-edit-button :resource="resource" :item="item"></va-edit-button>
-          <va-delete-button
-            :resource="resource"
-            :item="item"
-          ></va-delete-button>
-          <va-clone-button :resource="resource" :item="item"></va-clone-button>
-        </template>
-      </va-datagrid>
+      <va-datagrid v-bind="props"></va-datagrid>
     </template>
   </va-list>
 </template>

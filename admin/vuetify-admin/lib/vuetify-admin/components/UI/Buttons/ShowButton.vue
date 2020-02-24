@@ -1,15 +1,24 @@
 <template>
-  <v-btn
-    v-if="item && can(this.resource, 'show')"
-    text
-    exact
-    :to="`/${resource}/${item.id}`"
-    @click.stop="$emit('show', item)"
-    :color="color"
-  >
-    <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ $t("va.actions.show") }}
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on }">
+      <v-btn
+        v-if="item && can(resource, 'show')"
+        :icon="icon"
+        text
+        exact
+        :to="`/${resource}/${item.id}`"
+        @click.stop="$emit('show', item)"
+        :color="color"
+        v-on="on"
+      >
+        <v-icon small>mdi-eye</v-icon>
+        <span v-if="!icon" class="ml-2">
+          {{ $t("va.actions.show") }}
+        </span>
+      </v-btn>
+    </template>
+    <span>{{ $t("va.actions.show") }}</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -23,10 +32,7 @@ export default {
       type: String,
       required: true
     },
-    icon: {
-      type: String,
-      default: "mdi-eye"
-    },
+    icon: Boolean,
     color: {
       type: String,
       default: "green"

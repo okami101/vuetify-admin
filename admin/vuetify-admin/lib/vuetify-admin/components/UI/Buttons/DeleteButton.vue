@@ -1,15 +1,22 @@
 <template>
-  <v-btn
-    v-if="can(this.resource, 'delete')"
-    text
-    @click.stop="onDelete"
-    :color="color"
-  >
-    <v-icon small class="mr-2">
-      {{ icon }}
-    </v-icon>
-    {{ $t("va.actions.delete") }}
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on }">
+      <v-btn
+        v-if="can(resource, 'delete')"
+        :icon="icon"
+        text
+        @click.stop="onDelete"
+        :color="color"
+        v-on="on"
+      >
+        <v-icon small>mdi-trash-can</v-icon>
+        <span v-if="!icon" class="ml-2">
+          {{ $t("va.actions.delete") }}
+        </span>
+      </v-btn>
+    </template>
+    <span>{{ $t("va.actions.delete") }}</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -23,11 +30,12 @@ export default {
       type: String,
       required: true
     },
-    redirect: Boolean,
-    icon: {
-      type: String,
-      default: "mdi-trash-can"
+    icon: Boolean,
+    label: {
+      type: Boolean,
+      default: true
     },
+    redirect: Boolean,
     color: {
       type: String,
       default: "red"

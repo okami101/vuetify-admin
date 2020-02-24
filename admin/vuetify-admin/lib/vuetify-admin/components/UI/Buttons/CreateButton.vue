@@ -6,8 +6,10 @@
     :to="`/${resource}/create`"
     :color="color"
   >
-    <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ $t("va.actions.create") }}
+    <v-icon small>mdi-plus</v-icon>
+    <span v-if="!icon" class="ml-2">
+      {{ $t("va.actions.create") }}
+    </span>
   </v-btn>
 </template>
 
@@ -21,10 +23,7 @@ export default {
       type: String,
       required: true
     },
-    icon: {
-      type: String,
-      default: "mdi-plus"
-    },
+    icon: Boolean,
     color: {
       type: String,
       default: "success"

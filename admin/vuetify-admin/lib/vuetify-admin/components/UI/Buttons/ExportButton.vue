@@ -1,13 +1,22 @@
 <template>
-  <v-btn
-    v-if="can(this.resource, 'list')"
-    text
-    @click="onExport"
-    :color="color"
-  >
-    <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ $t("va.actions.export") }}
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on }">
+      <v-btn
+        v-if="can(resource, 'list')"
+        :icon="icon"
+        text
+        @click="onExport"
+        :color="color"
+        v-on="on"
+      >
+        <v-icon small>mdi-download</v-icon>
+        <span v-if="!icon" class="ml-2">
+          {{ $t("va.actions.export") }}
+        </span>
+      </v-btn>
+    </template>
+    <span>{{ $t("va.actions.export") }}</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -21,10 +30,7 @@ export default {
       type: String,
       required: true
     },
-    icon: {
-      type: String,
-      default: "mdi-download"
-    },
+    icon: Boolean,
     color: {
       type: String,
       default: "success"

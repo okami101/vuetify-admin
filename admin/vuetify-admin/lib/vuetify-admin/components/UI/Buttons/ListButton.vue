@@ -1,14 +1,23 @@
 <template>
-  <v-btn
-    v-if="can(this.resource, 'list')"
-    text
-    exact
-    :to="`/${resource}`"
-    :color="color"
-  >
-    <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ $t("va.actions.list") }}
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on }">
+      <v-btn
+        v-if="can(resource, 'list')"
+        :icon="icon"
+        text
+        exact
+        :to="`/${resource}`"
+        :color="color"
+        v-on="on"
+      >
+        <v-icon small>mdi-view-list</v-icon>
+        <span v-if="!icon" class="ml-2">
+          {{ $t("va.actions.list") }}
+        </span>
+      </v-btn>
+    </template>
+    <span>{{ $t("va.actions.list") }}</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -21,10 +30,7 @@ export default {
       type: String,
       required: true
     },
-    icon: {
-      type: String,
-      default: "mdi-view-list"
-    },
+    icon: Boolean,
     color: {
       type: String,
       default: "warning"

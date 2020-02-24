@@ -46,7 +46,20 @@
       </slot>
     </template>
     <template v-slot:item.actions="{ item }">
-      <slot name="actions-item" v-bind="{ resource, item }"></slot>
+      <slot name="actions-item" v-bind="{ resource, item }">
+        <va-show-button :resource="resource" :item="item" icon></va-show-button>
+        <va-edit-button :resource="resource" :item="item" icon></va-edit-button>
+        <va-delete-button
+          :resource="resource"
+          :item="item"
+          icon
+        ></va-delete-button>
+        <va-clone-button
+          :resource="resource"
+          :item="item"
+          icon
+        ></va-clone-button>
+      </slot>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
@@ -103,6 +116,10 @@ export default {
       type: Object,
       default: () => {}
     },
+    rowActions: {
+      type: Boolean,
+      default: true
+    },
     serverItemsLength: Number
   },
   data() {
@@ -124,7 +141,7 @@ export default {
         };
       });
 
-      if (this.$scopedSlots["actions-item"]) {
+      if (this.rowActions) {
         fields.push({
           value: "actions",
           sortable: false

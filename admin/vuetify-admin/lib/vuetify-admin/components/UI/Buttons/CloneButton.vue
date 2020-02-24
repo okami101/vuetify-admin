@@ -1,18 +1,27 @@
 <template>
-  <v-btn
-    v-if="item && can(this.resource, 'create')"
-    text
-    exact
-    :to="{
-      name: `${resource}_create`,
-      query: { source: JSON.stringify(item) }
-    }"
-    @click.stop="$emit('clone', item)"
-    :color="color"
-  >
-    <v-icon small class="mr-2">{{ icon }}</v-icon>
-    {{ $t("va.actions.clone") }}
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on }">
+      <v-btn
+        v-if="item && can(resource, 'create')"
+        :icon="icon"
+        text
+        exact
+        :to="{
+          name: `${resource}_create`,
+          query: { source: JSON.stringify(item) }
+        }"
+        @click.stop="$emit('clone', item)"
+        :color="color"
+        v-on="on"
+      >
+        <v-icon small>mdi-content-duplicate</v-icon>
+        <span v-if="!icon" class="ml-2">
+          {{ $t("va.actions.clone") }}
+        </span>
+      </v-btn>
+    </template>
+    <span>{{ $t("va.actions.clone") }}</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -26,9 +35,10 @@ export default {
       type: String,
       required: true
     },
-    icon: {
-      type: String,
-      default: "mdi-content-duplicate"
+    icon: Boolean,
+    label: {
+      type: Boolean,
+      default: true
     },
     color: {
       type: String,

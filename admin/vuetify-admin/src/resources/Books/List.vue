@@ -27,19 +27,9 @@
     ]"
   >
     <template v-slot="props">
-      <va-datagrid v-bind="props" row-click="show" show-expand>
-        <template v-slot:actions-item="{ resource, item }">
-          <va-edit-button :resource="resource" :item="item"></va-edit-button>
-          <va-delete-button
-            :resource="resource"
-            :item="item"
-          ></va-delete-button>
-        </template>
+      <va-datagrid v-bind="props" show-expand>
         <template v-slot:expanded-item="{ item }">
-          <va-rich-text-field
-            :item="item"
-            source="description"
-          ></va-rich-text-field>
+          <va-text-field :item="item" source="description"></va-text-field>
         </template>
       </va-datagrid>
     </template>
