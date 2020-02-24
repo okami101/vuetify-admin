@@ -12,6 +12,7 @@
     :type="show ? 'text' : 'password'"
     @input="val => (input = val)"
     @click:append="show = !show"
+    @change="change"
   ></v-text-field>
 </template>
 

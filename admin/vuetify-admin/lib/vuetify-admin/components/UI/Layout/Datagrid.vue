@@ -32,7 +32,7 @@
             :label="false"
             :update="false"
             v-bind="field.options"
-            @input="val => updateItem({ item, source: field.source, val })"
+            @change="val => updateItem({ item, source: field.source, val })"
           ></component>
         </span>
         <component

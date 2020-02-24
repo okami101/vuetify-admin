@@ -1,6 +1,6 @@
 <template>
   <va-input v-bind="$props">
-    <tiptap-vuetify v-model="input" :extensions="extensions" />
+    <tiptap-vuetify v-model="input" :extensions="extensions" @change="change" />
   </va-input>
 </template>
 

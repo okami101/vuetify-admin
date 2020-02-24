@@ -7,6 +7,7 @@
     :error-messages="errorMessages"
     :hide-details="hideDetails"
     :dense="dense"
+    @change="change"
   ></v-switch>
 </template>
 

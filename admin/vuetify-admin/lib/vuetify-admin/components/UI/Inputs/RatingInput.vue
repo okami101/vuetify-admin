@@ -5,6 +5,7 @@
       dense
       :color="color"
       :background-color="backgroundColor"
+      @change="change"
     ></v-rating>
   </va-input>
 </template>

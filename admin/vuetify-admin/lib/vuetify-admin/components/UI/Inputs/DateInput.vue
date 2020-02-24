@@ -24,7 +24,11 @@
         @click:clear="input = null"
       ></v-text-field>
     </template>
-    <v-date-picker v-model="input" @input="menu = false"></v-date-picker>
+    <v-date-picker
+      v-model="input"
+      @input="menu = false"
+      @change="change"
+    ></v-date-picker>
   </v-menu>
 </template>
 

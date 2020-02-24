@@ -12,6 +12,7 @@
     :dense="dense"
     type="number"
     :step="step"
+    @change="change"
   ></v-text-field>
 </template>
 

@@ -99,6 +99,9 @@ export default {
           value: this.input
         });
       }
+    },
+    change(val) {
+      this.$emit("change", val);
     }
   }
 };
