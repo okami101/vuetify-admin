@@ -1,13 +1,13 @@
 <template>
   <v-btn
-    v-if="currentResource && can('create')"
+    v-if="item && can('create')"
     text
     exact
     :to="{
       name: `${resourceName}_create`,
-      query: { source: JSON.stringify(currentResource) }
+      query: { source: JSON.stringify(item) }
     }"
-    @click.stop="$emit('clone')"
+    @click.stop="$emit('clone', item)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
@@ -36,12 +36,8 @@ export default {
       can: "api/can"
     }),
     ...mapState({
-      resourceName: state => state.api.resourceName,
-      resource: state => state.api.resource
-    }),
-    currentResource() {
-      return this.item || this.resource;
-    }
+      resourceName: state => state.api.resourceName
+    })
   }
 };
 </script>

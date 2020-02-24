@@ -22,8 +22,7 @@ export default {
   },
   computed: {
     ...mapState({
-      resourceName: state => state.api.resourceName,
-      resource: state => state.api.resource
+      resourceName: state => state.api.resourceName
     })
   }
 };

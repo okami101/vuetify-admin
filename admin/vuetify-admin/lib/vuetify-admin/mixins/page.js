@@ -10,6 +10,9 @@ export default {
       resourceName: state => state.api.resourceName
     }),
     getTitle() {
+      if (!this.title) {
+        return this.$route.meta.title;
+      }
       return typeof this.title === "function"
         ? this.title(this.item)
         : this.title;
@@ -18,7 +21,7 @@ export default {
   watch: {
     title: {
       handler() {
-        this.setTitle(this.getTitle || this.defaultTitle);
+        this.setTitle(this.getTitle);
       },
       immediate: true
     }

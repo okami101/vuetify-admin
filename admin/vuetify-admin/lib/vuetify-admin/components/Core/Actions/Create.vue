@@ -18,14 +18,6 @@ import Page from "vuetify-admin/mixins/page";
 
 export default {
   name: "Create",
-  mixins: [Page],
-  computed: {
-    defaultTitle() {
-      return `${this.$t("va.actions.create")} ${this.$tc(
-        `resources.${this.resourceName}`,
-        1
-      ).toLowerCase()}`;
-    }
-  }
+  mixins: [Page]
 };
 </script>

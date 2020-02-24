@@ -29,12 +29,8 @@ export default {
       can: "api/can"
     }),
     ...mapState({
-      resourceName: state => state.api.resourceName,
-      resource: state => state.api.resource
-    }),
-    currentResource() {
-      return this.item || this.resource;
-    }
+      resourceName: state => state.api.resourceName
+    })
   },
   methods: {
     ...mapActions({
@@ -42,7 +38,7 @@ export default {
       refresh: "api/refresh"
     }),
     async onDelete() {
-      if (!this.currentResource) {
+      if (!this.item) {
         this.$emit("delete");
         return;
       }
@@ -54,18 +50,18 @@ export default {
               `resources.${this.resourceName}`,
               1
             ).toLowerCase(),
-            id: this.currentResource.id
+            id: this.item.id
           }),
           this.$t("va.confirm.delete_message", {
             resource: this.$tc(
               `resources.${this.resourceName}`,
               1
             ).toLowerCase(),
-            id: this.currentResource.id
+            id: this.item.id
           })
         )
       ) {
-        await this.delete({ id: this.currentResource.id });
+        await this.delete({ id: this.item.id });
 
         /**
          * Redirect to list if deleting on current ressource

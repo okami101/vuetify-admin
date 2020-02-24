@@ -1,10 +1,10 @@
 <template>
   <v-btn
-    v-if="currentResource && can('show')"
+    v-if="item && can('show')"
     text
     exact
-    :to="`/${resourceName}/${currentResource.id}`"
-    @click.stop="$emit('show', currentResource)"
+    :to="`/${resourceName}/${item.id}`"
+    @click.stop="$emit('show', item)"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
@@ -33,12 +33,8 @@ export default {
       can: "api/can"
     }),
     ...mapState({
-      resourceName: state => state.api.resourceName,
-      resource: state => state.api.resource
-    }),
-    currentResource() {
-      return this.item || this.resource;
-    }
+      resourceName: state => state.api.resourceName
+    })
   }
 };
 </script>
