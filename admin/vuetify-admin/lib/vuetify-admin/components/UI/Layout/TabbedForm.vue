@@ -1,21 +1,22 @@
 <template>
-  <va-form>
+  <va-form :resource="resource" @saved="onSaved">
     <va-tabbed-show :tabs="tabs">
       <template v-slot:[tab.id] v-for="tab in tabs">
         <slot :name="tab.id"></slot>
       </template>
       <template v-slot:footer>
-        <va-form-save></va-form-save>
+        <va-form-save :item="item" :resource="resource"></va-form-save>
       </template>
     </va-tabbed-show>
   </va-form>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import Form from "vuetify-admin/mixins/form";
 
 export default {
   name: "TabbedForm",
+  mixins: [Form],
   props: {
     tabs: Array
   }

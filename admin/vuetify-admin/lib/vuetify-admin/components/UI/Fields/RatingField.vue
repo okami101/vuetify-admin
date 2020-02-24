@@ -1,5 +1,5 @@
 <template>
-  <va-field v-slot="record" v-bind="$props">
+  <va-field v-bind="$props">
     <v-rating
       :value="record[source]"
       readonly

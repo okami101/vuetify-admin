@@ -1,6 +1,5 @@
 <script>
 import { VInput } from "vuetify/lib";
-import { mapState } from "vuex";
 
 export default {
   name: "Field",
@@ -19,41 +18,18 @@ export default {
       default: true
     }
   },
-  data() {
-    return {
-      record: this.item || {}
-    };
-  },
   computed: {
-    ...mapState({
-      resource: state => state.api.resource
-    }),
     getLabel() {
       return this.label || this.$t(`attributes.${this.source}`);
     }
   },
-  watch: {
-    resource: {
-      handler(val) {
-        if (this.item) {
-          return;
-        }
-        if (val) {
-          this.record = val;
-          return;
-        }
-        this.record = {};
-      },
-      immediate: true
-    }
-  },
   render(c) {
     if (this.item) {
-      return this.$scopedSlots.default(this.record);
+      return this.$slots.default;
     }
 
     if (!this.addLabel) {
-      return c("v-input", this.$scopedSlots.default(this.record));
+      return c("v-input", this.$slots.default);
     }
 
     return c(
@@ -63,7 +39,7 @@ export default {
           label: this.getLabel
         }
       },
-      [c("div", { class: "va-field" }, this.$scopedSlots.default(this.record))]
+      [c("div", { class: "va-field" }, this.$slots.default)]
     );
   }
 };

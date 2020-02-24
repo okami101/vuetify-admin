@@ -4,6 +4,8 @@
       { id: 'attributes', icon: 'mdi-eye' },
       { id: 'summary', icon: 'mdi-text' }
     ]"
+    :resource="resource"
+    :item="item"
   >
     <template v-slot:attributes>
       <v-row>
@@ -26,3 +28,9 @@
     </template>
   </va-tabbed-form>
 </template>
+
+<script>
+export default {
+  props: ["resource", "item"]
+};
+</script>

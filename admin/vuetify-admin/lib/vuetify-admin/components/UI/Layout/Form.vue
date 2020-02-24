@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "Form",
-  computed: {
-    ...mapState({
-      resource: state => state.api.resource,
-      resourceName: state => state.api.resourceName
-    })
+  props: {
+    resource: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     ...mapActions({
@@ -25,8 +25,8 @@ export default {
       }
 
       try {
-        await this.save();
-        this.$router.push(`/${this.resourceName}`);
+        await this.save(this.resource);
+        this.$emit("saved");
       } catch (e) {}
     }
   }

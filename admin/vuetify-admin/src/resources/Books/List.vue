@@ -1,5 +1,6 @@
 <template>
   <va-list
+    :resource="resource"
     :fields="[
       'id',
       'isbn',
@@ -27,9 +28,12 @@
   >
     <template v-slot="props">
       <va-datagrid v-bind="props" row-click="show" show-expand>
-        <template v-slot:actions-item="{ item }">
-          <va-edit-button :item="item"></va-edit-button>
-          <va-delete-button :item="item"></va-delete-button>
+        <template v-slot:actions-item="{ resource, item }">
+          <va-edit-button :resource="resource" :item="item"></va-edit-button>
+          <va-delete-button
+            :resource="resource"
+            :item="item"
+          ></va-delete-button>
         </template>
         <template v-slot:expanded-item="{ item }">
           <va-rich-text-field
@@ -41,3 +45,9 @@
     </template>
   </va-list>
 </template>
+
+<script>
+export default {
+  props: ["resource"]
+};
+</script>

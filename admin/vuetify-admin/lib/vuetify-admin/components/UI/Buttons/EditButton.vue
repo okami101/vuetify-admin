@@ -1,9 +1,9 @@
 <template>
   <v-btn
-    v-if="item && can('show')"
+    v-if="item && can(this.resource, 'show')"
     text
     exact
-    :to="`/${resourceName}/${item.id}/edit`"
+    :to="`/${resource}/${item.id}/edit`"
     @click.stop="$emit('edit', item)"
     :color="color"
   >
@@ -13,12 +13,16 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "EditButton",
   props: {
     item: Object,
+    resource: {
+      type: String,
+      required: true
+    },
     icon: {
       type: String,
       default: "mdi-pencil"
@@ -31,9 +35,6 @@ export default {
   computed: {
     ...mapGetters({
       can: "api/can"
-    }),
-    ...mapState({
-      resourceName: state => state.api.resourceName
     })
   }
 };

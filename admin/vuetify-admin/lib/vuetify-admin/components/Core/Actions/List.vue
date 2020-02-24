@@ -1,7 +1,11 @@
 <template>
   <v-card>
     <va-aside-content>
-      <slot name="aside" v-bind="{ items, total, selected }"></slot>
+      <slot
+        name="aside"
+        :resource="resource"
+        v-bind="{ items, total, selected }"
+      ></slot>
     </va-aside-content>
     <v-data-iterator
       :items="items"
@@ -25,7 +29,10 @@
           {{ $tc("va.datagrid.selected_items", selected.length) }}
           <v-spacer></v-spacer>
           <div>
-            <va-delete-button @delete="onBlukDelete"></va-delete-button>
+            <va-delete-button
+              :resource="resource"
+              @delete="onBlukDelete"
+            ></va-delete-button>
           </div>
         </v-toolbar>
         <v-toolbar flat color="transparent" v-else>
@@ -52,8 +59,9 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <va-create-button></va-create-button>
+          <va-create-button :resource="resource"></va-create-button>
           <va-export-button
+            :resource="resource"
             v-if="exporter"
             text
             :options="options"
@@ -63,6 +71,7 @@
       </template>
       <template v-slot:default>
         <slot
+          :resource="resource"
           :items="items"
           :fields="getFields.filter(f => !f.hidden)"
           :value="selected"
@@ -72,13 +81,13 @@
         ></slot>
       </template>
       <template v-slot:loading>
-        <slot :items-per-page="itemsPerPage"></slot>
+        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
       <template v-slot:no-data>
-        <slot :items-per-page="itemsPerPage"></slot>
+        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
       <template v-slot:no-results>
-        <slot :items-per-page="itemsPerPage"></slot>
+        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
     </v-data-iterator>
   </v-card>
@@ -98,6 +107,10 @@ export default {
   },
   mixins: [Page],
   props: {
+    resource: {
+      type: String,
+      required: true
+    },
     filter: {
       type: Object,
       default: () => {}
@@ -148,9 +161,6 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
-    defaultTitle() {
-      return this.$tc(`resources.${this.resourceName}`, 10);
-    },
     getFields() {
       return this.getFormattedFields(this.fields);
     },
@@ -281,17 +291,20 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        fields: this.getFields.map(f => f.source),
-        pagination: {
-          page,
-          perPage: itemsPerPage
-        },
-        sort: sortBy.map((by, index) => {
-          return { by, desc: sortDesc[index] };
-        }),
-        filter: {
-          ...this.filter,
-          ...this.currentFilter
+        resource: this.resource,
+        params: {
+          fields: this.getFields.map(f => f.source),
+          pagination: {
+            page,
+            perPage: itemsPerPage
+          },
+          sort: sortBy.map((by, index) => {
+            return { by, desc: sortDesc[index] };
+          }),
+          filter: {
+            ...this.filter,
+            ...this.currentFilter
+          }
         }
       });
 
@@ -307,30 +320,36 @@ export default {
         await this.$confirm(
           this.$t("va.confirm.delete_many_title", {
             resource: this.$tc(
-              `resources.${this.resourceName}`,
+              `resources.${this.resource}`,
               this.selected.length
             ).toLowerCase(),
             count: this.selected.length
           }),
           this.$t("va.confirm.delete_many_message", {
             resource: this.$tc(
-              `resources.${this.resourceName}`,
+              `resources.${this.resource}`,
               this.selected.length
             ).toLowerCase(),
             count: this.selected.length
           })
         )
       ) {
-        await this.deleteMany({ ids: this.selected.map(({ id }) => id) });
+        await this.deleteMany({
+          resource: this.resource,
+          params: { ids: this.selected.map(({ id }) => id) }
+        });
         this.selected = [];
         this.loadData();
       }
     },
     async onUpdateItem({ item, source, val }) {
       this.update({
-        id: item.id,
-        data: {
-          [source]: val
+        resource: this.resource,
+        params: {
+          id: item.id,
+          data: {
+            [source]: val
+          }
         }
       });
     }

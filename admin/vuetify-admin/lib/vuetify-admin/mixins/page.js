@@ -1,14 +1,14 @@
-import { mapState, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   props: {
-    title: [String, Function]
+    title: [String, Function],
+    resource: {
+      type: String,
+      required: true
+    }
   },
   computed: {
-    ...mapState({
-      item: state => state.api.resource,
-      resourceName: state => state.api.resourceName
-    }),
     getTitle() {
       if (!this.title) {
         return this.$route.meta.title;
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setTitle: "api/setTitle"
+      setTitle: "layout/setTitle"
     })
   }
 };

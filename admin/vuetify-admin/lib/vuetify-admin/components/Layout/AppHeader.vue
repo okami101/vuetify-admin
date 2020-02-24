@@ -13,7 +13,13 @@
     </v-toolbar-title>
     <v-spacer />
     <div>
-      <v-btn icon small class="mr-5" :loading="loading" @click="refresh">
+      <v-btn
+        icon
+        small
+        class="mr-5"
+        :loading="loading"
+        @click="refresh($route.meta.resource)"
+      >
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
       <v-menu offset-y>
@@ -55,8 +61,8 @@ export default {
   name: "AppHeader",
   computed: {
     ...mapState({
-      title: state => state.api.title,
-      loading: state => state.api.loading
+      title: state => state.layout.title,
+      loading: state => state.layout.loading
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" })
   },

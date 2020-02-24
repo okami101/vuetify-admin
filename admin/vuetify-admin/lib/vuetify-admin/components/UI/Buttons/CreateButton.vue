@@ -1,9 +1,9 @@
 <template>
   <v-btn
-    v-if="can('create')"
+    v-if="can(this.resource, 'create')"
     text
     exact
-    :to="`/${resourceName}/create`"
+    :to="`/${resource}/create`"
     :color="color"
   >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
@@ -12,11 +12,15 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "CreateButton",
   props: {
+    resource: {
+      type: String,
+      required: true
+    },
     icon: {
       type: String,
       default: "mdi-plus"
@@ -29,9 +33,6 @@ export default {
   computed: {
     ...mapGetters({
       can: "api/can"
-    }),
-    ...mapState({
-      resourceName: state => state.api.resourceName
     })
   }
 };

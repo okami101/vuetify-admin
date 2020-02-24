@@ -1,6 +1,6 @@
 <script>
 import resource from "vuetify-admin/store/resource";
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 let actions = ["list", "show", "create", "edit", "delete"];
 
@@ -41,15 +41,13 @@ export default {
     let permissions = this.$store.getters["auth/getPermissions"];
 
     let beforeEnter = async (to, from, next) => {
-      this.setResourceName(name);
-
       switch (to.meta.action) {
         case "show":
         case "edit":
           /**
            * Load linked resource route
            */
-          await this.getOne({ id: to.params.id });
+          await this.getOne({ resource: name, params: { id: to.params.id } });
           break;
       }
 
@@ -63,6 +61,11 @@ export default {
       next();
     };
 
+    let props = {
+      permissions,
+      resource: name
+    };
+
     if (this.hasAction("list")) {
       children.push({
         path: "/",
@@ -70,14 +73,13 @@ export default {
         component: {
           render(c) {
             return c(`${name}-list`, {
-              props: {
-                permissions
-              }
+              props
             });
           }
         },
         meta: {
-          action: "list"
+          action: "list",
+          resource: name
         },
         beforeEnter
       });
@@ -89,11 +91,14 @@ export default {
         props: { permissions },
         component: {
           render(c) {
-            return c(`${name}-create`);
+            return c(`${name}-create`, {
+              props
+            });
           }
         },
         meta: {
-          action: "create"
+          action: "create",
+          resource: name
         },
         beforeEnter
       });
@@ -105,12 +110,19 @@ export default {
         props: { permissions },
         component: {
           render(c) {
-            return c(`${name}-edit`);
+            return c(`${name}-edit`, {
+              props
+            });
+          },
+          beforeRouteLeave(to, from, next) {
+            this.$store.commit(`${name}/removeItem`);
+            next();
           }
         },
         props: true,
         meta: {
-          action: "edit"
+          action: "edit",
+          resource: name
         },
         beforeEnter
       });
@@ -122,12 +134,19 @@ export default {
         props: { permissions },
         component: {
           render(c) {
-            return c(`${name}-show`);
+            return c(`${name}-show`, {
+              props
+            });
+          },
+          beforeRouteLeave(to, from, next) {
+            this.$store.commit(`${name}/removeItem`);
+            next();
           }
         },
         props: true,
         meta: {
-          action: "show"
+          action: "show",
+          resource: name
         },
         beforeEnter
       });
@@ -161,10 +180,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      setResourceName: "api/setResourceName",
-      setResourceLabel: "api/setResourceLabel"
-    }),
     ...mapActions({
       getOne: "api/getOne"
     }),

@@ -1,4 +1,4 @@
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
   props: {
@@ -6,6 +6,10 @@ export default {
     label: {
       type: [Boolean, String],
       default: undefined
+    },
+    item: {
+      type: Object,
+      default: () => {}
     },
     hint: String,
     icon: String,
@@ -29,9 +33,14 @@ export default {
   },
   computed: {
     ...mapState({
-      record: state => state.api.resource,
       errors: state => state.form.errors
     }),
+    ...mapGetters({
+      routeItem: "api/item"
+    }),
+    record() {
+      return this.item || this.routeItem(this.$route.meta.resource);
+    },
     getLabel() {
       return this.label === undefined
         ? this.$t(`attributes.${this.source}`)
@@ -60,10 +69,10 @@ export default {
       },
       immediate: true
     },
-    record: {
-      handler(val) {
-        if (val && this.source) {
-          this.input = val[this.source];
+    item: {
+      handler() {
+        if (this.record && this.source) {
+          this.input = this.record[this.source];
         }
       },
       immediate: true

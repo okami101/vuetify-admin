@@ -1,5 +1,10 @@
 <template>
-  <v-btn text @click="onExport" :color="color">
+  <v-btn
+    v-if="can(this.resource, 'list')"
+    text
+    @click="onExport"
+    :color="color"
+  >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
     {{ $t("va.actions.export") }}
   </v-btn>
@@ -7,11 +12,15 @@
 
 <script>
 import Papa from "papaparse";
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "ExportButton",
   props: {
+    resource: {
+      type: String,
+      required: true
+    },
     icon: {
       type: String,
       default: "mdi-download"
@@ -30,8 +39,8 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      resourceName: state => state.api.resourceName
+    ...mapGetters({
+      can: "api/can"
     })
   },
   methods: {
@@ -45,10 +54,13 @@ export default {
       const { sortBy, sortDesc } = this.options;
 
       let { data } = await this.getList({
-        sort: sortBy.map((by, index) => {
-          return { by, desc: sortDesc[index] };
-        }),
-        filter: this.filter
+        resource: this.resource,
+        params: {
+          sort: sortBy.map((by, index) => {
+            return { by, desc: sortDesc[index] };
+          }),
+          filter: this.filter
+        }
       });
 
       const csv = Papa.unparse(
@@ -78,7 +90,7 @@ export default {
       /**
        * Magic download
        */
-      const fileName = this.resourceName;
+      const fileName = this.resource;
       const blob = new Blob([csv], { type: "text/csv" });
 
       if (window.navigator && window.navigator.msSaveOrOpenBlob) {

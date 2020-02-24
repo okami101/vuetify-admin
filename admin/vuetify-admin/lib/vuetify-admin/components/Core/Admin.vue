@@ -15,6 +15,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
+import layout from "vuetify-admin/store/layout";
 import aside from "vuetify-admin/store/aside";
 import auth from "vuetify-admin/store/auth";
 import api from "vuetify-admin/store/api";
@@ -58,9 +59,10 @@ export default {
     /**
      * Auth store & api dispatcher module injection
      */
+    this.$store.registerModule("layout", layout(this.$i18n));
     this.$store.registerModule("aside", aside);
+    this.$store.registerModule("api", api);
     this.$store.registerModule("auth", auth(this.authProvider, this.$router));
-    this.$store.registerModule("api", api(this.$i18n));
     this.$store.registerModule("form", form);
   },
   async mounted() {
@@ -78,7 +80,6 @@ export default {
           }
         }
 
-        this.removeCurrentResource();
         this.closeAside();
       }
       next();
@@ -114,9 +115,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setTitle: "api/setTitle",
-      closeAside: "aside/close",
-      removeCurrentResource: "api/removeCurrentResource"
+      setTitle: "layout/setTitle",
+      closeAside: "aside/close"
     }),
     ...mapActions({
       checkAuth: "auth/checkAuth"

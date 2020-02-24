@@ -1,10 +1,10 @@
 <template>
   <v-btn
-    v-if="item && can('create')"
+    v-if="item && can(this.resource, 'create')"
     text
     exact
     :to="{
-      name: `${resourceName}_create`,
+      name: `${resource}_create`,
       query: { source: JSON.stringify(item) }
     }"
     @click.stop="$emit('clone', item)"
@@ -16,12 +16,16 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "CloneButton",
   props: {
     item: Object,
+    resource: {
+      type: String,
+      required: true
+    },
     icon: {
       type: String,
       default: "mdi-content-duplicate"
@@ -34,9 +38,6 @@ export default {
   computed: {
     ...mapGetters({
       can: "api/can"
-    }),
-    ...mapState({
-      resourceName: state => state.api.resourceName
     })
   }
 };

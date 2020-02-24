@@ -27,6 +27,7 @@
           <component
             :is="`va-${field.type}-input`"
             :source="field.source"
+            :item="item"
             :value="item[field.source]"
             dense
             :label="false"
@@ -45,7 +46,7 @@
       </slot>
     </template>
     <template v-slot:item.actions="{ item }">
-      <slot name="actions-item" v-bind="{ item }"></slot>
+      <slot name="actions-item" v-bind="{ resource, item }"></slot>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
@@ -61,6 +62,10 @@ import { mapState } from "vuex";
 export default {
   name: "Datagrid",
   props: {
+    resource: {
+      type: String,
+      required: true
+    },
     rowClick: {
       type: String,
       default: null,
@@ -106,9 +111,6 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      resourceName: state => state.api.resourceName
-    }),
     headers() {
       let fields = this.fields.map(field => {
         return {
@@ -147,10 +149,10 @@ export default {
     onRowClick(item) {
       switch (this.rowClick) {
         case "show":
-          this.$router.push(`/${this.resourceName}/${item.id}`);
+          this.$router.push(`/${this.resource}/${item.id}`);
           break;
         case "edit":
-          this.$router.push(`/${this.resourceName}/${item.id}/edit`);
+          this.$router.push(`/${this.resource}/${item.id}/edit`);
           break;
       }
     },

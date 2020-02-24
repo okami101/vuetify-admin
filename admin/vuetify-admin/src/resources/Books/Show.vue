@@ -1,5 +1,5 @@
 <template>
-  <va-show>
+  <va-show :resource="resource">
     <va-tabbed-show
       :tabs="[
         { id: 'attributes', icon: 'mdi-eye' },
@@ -24,3 +24,9 @@
     </va-tabbed-show>
   </va-show>
 </template>
+
+<script>
+export default {
+  props: ["resource"]
+};
+</script>

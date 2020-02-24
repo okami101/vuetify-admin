@@ -1,5 +1,10 @@
 <template>
-  <v-btn v-if="can('delete')" text @click.stop="onDelete" :color="color">
+  <v-btn
+    v-if="can(this.resource, 'delete')"
+    text
+    @click.stop="onDelete"
+    :color="color"
+  >
     <v-icon small class="mr-2">
       {{ icon }}
     </v-icon>
@@ -8,13 +13,17 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapState, mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "DeleteButton",
   props: {
     item: Object,
+    resource: {
+      type: String,
+      required: true
+    },
+    redirect: Boolean,
     icon: {
       type: String,
       default: "mdi-trash-can"
@@ -27,9 +36,6 @@ export default {
   computed: {
     ...mapGetters({
       can: "api/can"
-    }),
-    ...mapState({
-      resourceName: state => state.api.resourceName
     })
   },
   methods: {
@@ -39,6 +45,9 @@ export default {
     }),
     async onDelete() {
       if (!this.item) {
+        /**
+         * Used on bulk delete
+         */
         this.$emit("delete");
         return;
       }
@@ -46,32 +55,26 @@ export default {
       if (
         await this.$confirm(
           this.$t("va.confirm.delete_title", {
-            resource: this.$tc(
-              `resources.${this.resourceName}`,
-              1
-            ).toLowerCase(),
+            resource: this.$tc(`resources.${this.resource}`, 1).toLowerCase(),
             id: this.item.id
           }),
           this.$t("va.confirm.delete_message", {
-            resource: this.$tc(
-              `resources.${this.resourceName}`,
-              1
-            ).toLowerCase(),
+            resource: this.$tc(`resources.${this.resource}`, 1).toLowerCase(),
             id: this.item.id
           })
         )
       ) {
-        await this.delete({ id: this.item.id });
+        await this.delete({
+          resource: this.resource,
+          params: { id: this.item.id }
+        });
 
-        /**
-         * Redirect to list if deleting on current ressource
-         */
-        if (["show", "edit"].includes(this.$route.meta.action)) {
-          this.$router.push(`/${this.resourceName}`);
+        if (this.redirect) {
+          this.$router.push(`/${this.resource}`);
           return;
         }
 
-        this.refresh();
+        this.refresh(this.resource);
       }
     }
   }

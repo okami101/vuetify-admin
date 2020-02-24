@@ -1,16 +1,26 @@
 <template>
-  <v-btn text exact :to="`/${$store.state.api.resourceName}`" :color="color">
+  <v-btn
+    v-if="can(this.resource, 'list')"
+    text
+    exact
+    :to="`/${resource}`"
+    :color="color"
+  >
     <v-icon small class="mr-2">{{ icon }}</v-icon>
     {{ $t("va.actions.list") }}
   </v-btn>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ListButton",
   props: {
+    resource: {
+      type: String,
+      required: true
+    },
     icon: {
       type: String,
       default: "mdi-view-list"
@@ -21,8 +31,8 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      resourceName: state => state.api.resourceName
+    ...mapGetters({
+      can: "api/can"
     })
   }
 };

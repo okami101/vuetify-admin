@@ -44,14 +44,14 @@ export default {
   },
   computed: {
     ...mapState({
-      showSnackbar: state => state.api.showSnackbar,
-      snackbarText: state => state.api.snackbarText,
-      snackbarColor: state => state.api.snackbarColor
+      showSnackbar: state => state.layout.showSnackbar,
+      snackbarText: state => state.layout.snackbarText,
+      snackbarColor: state => state.layout.snackbarColor
     })
   },
   methods: {
     ...mapMutations({
-      closeSnackbar: "api/closeSnackbar"
+      closeSnackbar: "layout/closeSnackbar"
     })
   }
 };

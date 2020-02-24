@@ -17,11 +17,11 @@ export default {
     }
   },
   actions: {
-    async save({ state, commit, dispatch }) {
+    async save({ state, commit, dispatch }, resource) {
       commit("setSaving", true);
 
       try {
-        await dispatch("api/save", state.model, {
+        await dispatch(`${resource}/save`, state.model, {
           root: true
         });
 

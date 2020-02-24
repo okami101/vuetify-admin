@@ -1,5 +1,5 @@
 <template>
-  <va-simple-form>
+  <va-simple-form :resource="resource" :item="item">
     <v-row>
       <v-col sm="3">
         <va-rating-input source="rating"></va-rating-input>
@@ -10,3 +10,9 @@
     </v-row>
   </va-simple-form>
 </template>
+
+<script>
+export default {
+  props: ["resource", "item"]
+};
+</script>

@@ -1,3 +1,5 @@
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     source: String,
@@ -9,6 +11,14 @@ export default {
     addLabel: {
       type: Boolean,
       default: true
+    }
+  },
+  computed: {
+    ...mapGetters({
+      routeItem: "api/item"
+    }),
+    record() {
+      return this.item || this.routeItem(this.$route.meta.resource);
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <va-field v-slot="record" v-bind="$props">
+  <va-field v-bind="$props">
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-icon v-if="record[source]" v-on="on">{{ iconTrue }}</v-icon>
