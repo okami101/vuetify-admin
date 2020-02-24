@@ -7,11 +7,10 @@
       'author',
       {
         source: 'price',
-        align: 'right',
         type: 'number',
         options: { format: 'currency' }
       },
-      { source: 'commentable', type: 'boolean', sortable: false },
+      { source: 'commentable', type: 'boolean', editable: true },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"

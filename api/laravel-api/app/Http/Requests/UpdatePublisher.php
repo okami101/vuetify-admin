@@ -24,11 +24,11 @@ class UpdatePublisher extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required',
-            'founder' => 'required',
-            'headquarter' => 'required',
-            'opening_date' => 'required|date',
+            'name' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'founder' => 'sometimes|required',
+            'headquarter' => 'sometimes|required',
+            'opening_date' => 'sometimes|required|date',
         ];
     }
 }

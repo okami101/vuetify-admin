@@ -18,6 +18,7 @@
       @update:page="loadDataAndQuery"
       @update:sort-by="loadDataAndQuery"
       @update:sort-desc="loadDataAndQuery"
+      @edit="onUpdateItem"
     >
       <template v-slot:header>
         <v-toolbar flat color="blue lighten-5" v-if="selected.length">
@@ -199,6 +200,8 @@ export default {
   methods: {
     ...mapActions({
       getList: "api/getList",
+      update: "api/update",
+      updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
     }),
     getFormattedFields(fields) {
@@ -213,6 +216,7 @@ export default {
         .map(f => {
           return {
             ...f,
+            type: f.type || "text",
             label: f.label || this.$t(`attributes.${f.source}`)
           };
         });
@@ -321,6 +325,14 @@ export default {
         this.selected = [];
         this.loadData();
       }
+    },
+    async onUpdateItem({ item, source, val }) {
+      this.update({
+        id: item.id,
+        data: {
+          [source]: val
+        }
+      });
     }
   }
 };

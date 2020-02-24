@@ -24,10 +24,10 @@ class UpdateReview extends FormRequest
     public function rules()
     {
         return [
-            'rating' => 'between:1,5',
-            'author' => 'required',
-            'publication_date' => 'required|date',
-            'book_id' => 'required',
+            'rating' => 'sometimes|between:1,5',
+            'author' => 'sometimes|required',
+            'publication_date' => 'sometimes|required|date',
+            'book_id' => 'sometimes|required',
         ];
     }
 }

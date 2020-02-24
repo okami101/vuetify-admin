@@ -24,13 +24,13 @@ class UpdateBook extends FormRequest
     public function rules()
     {
         return [
-            'isbn' => 'required|isbn',
-            'title' => 'required',
-            'description' => 'required',
-            'author' => 'required',
-            'price' => 'required|numeric',
-            'commentable' => 'boolean',
-            'publication_date' => 'required|date',
+            'isbn' => 'sometimes|required|isbn',
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'author' => 'sometimes|required',
+            'price' => 'sometimes|required|numeric',
+            'commentable' => 'sometimes|boolean',
+            'publication_date' => 'sometimes|required|date',
         ];
     }
 }

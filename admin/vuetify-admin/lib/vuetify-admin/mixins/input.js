@@ -3,14 +3,20 @@ import { mapState, mapMutations } from "vuex";
 export default {
   props: {
     source: String,
-    label: String,
+    label: {
+      type: [Boolean, String],
+      default: undefined
+    },
     hint: String,
     icon: String,
     hideDetails: Boolean,
     dense: Boolean,
     required: Boolean,
     alwaysOn: Boolean,
-    filter: Boolean,
+    update: {
+      type: Boolean,
+      default: true
+    },
     value: {
       default: null
     }
@@ -27,7 +33,9 @@ export default {
       errors: state => state.form.errors
     }),
     getLabel() {
-      return this.label || this.$t(`attributes.${this.source}`);
+      return this.label === undefined
+        ? this.$t(`attributes.${this.source}`)
+        : "";
     },
     getRules() {
       let rules = [];
@@ -72,7 +80,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      update: "form/update"
+      updateForm: "form/update"
     }),
     initializeInput() {
       let { source } = this.$route.query;
@@ -82,8 +90,11 @@ export default {
       }
     },
     updateValue() {
-      if (!this.filter) {
-        this.update({
+      /**
+       * Update model in the store if input inside a form (i.e. no filter or editable input)
+       */
+      if (this.update) {
+        this.updateForm({
           source: this.source,
           value: this.input
         });

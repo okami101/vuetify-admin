@@ -23,8 +23,21 @@
       v-slot:[`item.${field.source}`]="{ item }"
     >
       <slot :name="field.source" v-bind="{ item }">
+        <span @click.stop v-if="field.editable" :key="field.source">
+          <component
+            :is="`va-${field.type}-input`"
+            :source="field.source"
+            :value="item[field.source]"
+            dense
+            :label="false"
+            :update="false"
+            v-bind="field.options"
+            @input="val => updateItem({ item, source: field.source, val })"
+          ></component>
+        </span>
         <component
-          :is="`va-${field.type || 'text'}-field`"
+          v-else
+          :is="`va-${field.type}-field`"
           :source="field.source"
           :item="item"
           v-bind="field.options"
@@ -99,9 +112,13 @@ export default {
     headers() {
       let fields = this.fields.map(field => {
         return {
-          ...field,
           text: field.label || this.$t(`attributes.${field.source}`),
-          value: field.source
+          value: field.source,
+          sortable:
+            field.sortable === undefined
+              ? this.getDefaultSort(field.type)
+              : sortable,
+          align: field.align || this.getDefaultAlign(field.type)
         };
       });
 
@@ -115,6 +132,18 @@ export default {
     }
   },
   methods: {
+    getDefaultSort(type) {
+      if (["boolean"].includes(type)) {
+        return false;
+      }
+      return true;
+    },
+    getDefaultAlign(type) {
+      if (["number"].includes(type)) {
+        return "right";
+      }
+      return "left";
+    },
     onRowClick(item) {
       switch (this.rowClick) {
         case "show":
@@ -133,6 +162,9 @@ export default {
     },
     updateSelected(selected) {
       this.$parent.$parent.$emit("input", selected);
+    },
+    updateItem(payload) {
+      this.$parent.$parent.$emit("edit", payload);
     }
   }
 };

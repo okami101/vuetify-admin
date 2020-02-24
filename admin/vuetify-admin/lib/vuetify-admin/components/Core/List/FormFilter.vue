@@ -13,9 +13,9 @@
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
         <component
-          :is="`va-${item.type || 'text'}-input`"
+          :is="`va-${item.type}-input`"
           :source="item.source"
-          filter
+          :update="false"
           v-bind="item.options"
           v-model="filter[item.source]"
           hide-details
