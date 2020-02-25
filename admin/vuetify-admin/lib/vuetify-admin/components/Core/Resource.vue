@@ -32,7 +32,7 @@ export default {
       resourceCrudApi(
         this.$parent.$parent.$props.dataProvider,
         resource,
-        this.getActions
+        this.authorizedActions
       )
     );
 
@@ -138,13 +138,13 @@ export default {
           title: this.$tc(`resources.${resource}`, 10)
         },
         children: routes
-          .filter(({ action }) => this.hasAction(action))
+          .filter(({ action }) => this.authorizedActions.includes(action))
           .map(({ action, path, item }) => buildRoute(action, path, item))
       }
     ]);
   },
   computed: {
-    getActions() {
+    authorizedActions() {
       if (this.only.length) {
         return this.only;
       }
@@ -154,11 +154,6 @@ export default {
       }
 
       return actions;
-    }
-  },
-  methods: {
-    hasAction(name) {
-      return this.getActions.includes(name);
     }
   },
   render() {
