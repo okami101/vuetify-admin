@@ -1,5 +1,5 @@
 <template>
-  <va-simple-form :resource="resource" :item="item">
+  <va-simple-form v-bind="{ resource, item }">
     <v-row>
       <v-col sm="3">
         <va-text-input source="name"></va-text-input>

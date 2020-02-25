@@ -1,11 +1,10 @@
 <template>
   <va-tabbed-form
+    v-bind="{ resource, item }"
     :tabs="[
       { id: 'attributes', icon: 'mdi-eye' },
       { id: 'summary', icon: 'mdi-text' }
     ]"
-    :resource="resource"
-    :item="item"
   >
     <template v-slot:attributes>
       <v-row>

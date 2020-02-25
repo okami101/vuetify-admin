@@ -1,5 +1,5 @@
 <template>
-  <va-show :resource="resource">
+  <va-show v-bind="{ resource, item }">
     <va-tabbed-show
       :tabs="[
         { id: 'attributes', icon: 'mdi-eye' },
@@ -27,6 +27,6 @@
 
 <script>
 export default {
-  props: ["resource"]
+  props: ["resource", "item"]
 };
 </script>

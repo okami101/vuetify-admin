@@ -1,5 +1,5 @@
 <template>
-  <va-edit :resource="resource">
+  <va-edit v-bind="{ resource, item }">
     <template v-slot="props">
       <publishers-form v-bind="props"></publishers-form>
     </template>
@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  props: ["resource"]
+  props: ["resource", "item"]
 };
 </script>

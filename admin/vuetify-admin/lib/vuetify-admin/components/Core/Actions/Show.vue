@@ -18,17 +18,14 @@
 
 <script>
 import Page from "vuetify-admin/mixins/page";
-import { mapGetters } from "vuex";
 
 export default {
   name: "Show",
   mixins: [Page],
-  computed: {
-    ...mapGetters({
-      getItem: "api/item"
-    }),
-    item() {
-      return this.getItem(this.resource);
+  props: {
+    item: {
+      type: Object,
+      required: true
     }
   },
   methods: {

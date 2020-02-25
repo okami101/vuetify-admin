@@ -1,6 +1,5 @@
 <script>
-import resource from "vuetify-admin/store/resource";
-import { mapActions } from "vuex";
+import resourceCrudApi from "vuetify-admin/store/resource";
 
 let actions = ["list", "show", "create", "edit", "delete"];
 
@@ -21,39 +20,27 @@ export default {
     }
   },
   async created() {
+    let resource = this.name;
+    let store = this.$store;
+    let children = [];
+    let permissions = store.getters["auth/getPermissions"];
+
     /**
      * Register data api module for this resource
      */
-    this.$store.registerModule(
-      this.name,
-      resource(
+    store.registerModule(
+      resource,
+      resourceCrudApi(
         this.$parent.$parent.$props.dataProvider,
-        this.name,
+        resource,
         this.getActions
       )
     );
 
-    /**
-     * Register crud routes for this resource
-     */
-    let name = this.name;
-    let children = [];
-    let permissions = this.$store.getters["auth/getPermissions"];
-
     let beforeEnter = async (to, from, next) => {
-      switch (to.meta.action) {
-        case "show":
-        case "edit":
-          /**
-           * Load linked resource route
-           */
-          await this.getOne({ resource: name, params: { id: to.params.id } });
-          break;
-      }
-
       to.meta.title = this.$t(`va.pages.${to.meta.action}`, {
         resource: this.$tc(
-          `resources.${name}`,
+          `resources.${resource}`,
           to.meta.action === "list" ? 10 : 1
         ).toLowerCase(),
         id: to.params.id
@@ -61,25 +48,56 @@ export default {
       next();
     };
 
-    let props = {
+    const props = {
       permissions,
-      resource: name
+      resource
     };
 
+    const itemComponent = action => {
+      return {
+        functional: true,
+        render(c) {
+          return c(`${resource}-${action}`, {
+            props: {
+              ...props,
+              item: store.state[resource].item
+            }
+          });
+        },
+        async beforeRouteEnter(to, from, next) {
+          /**
+           * Route model binding
+           */
+          await store.dispatch(`${resource}/getOne`, {
+            id: to.params.id
+          });
+          next();
+        },
+        beforeRouteLeave(to, from, next) {
+          store.commit(`${resource}/removeItem`);
+          next();
+        }
+      };
+    };
+
+    /**
+     * Register crud routes for this resource
+     */
     if (this.hasAction("list")) {
       children.push({
         path: "/",
-        name: `${name}_list`,
+        name: `${resource}_list`,
         component: {
+          functional: true,
           render(c) {
-            return c(`${name}-list`, {
+            return c(`${resource}-list`, {
               props
             });
           }
         },
         meta: {
           action: "list",
-          resource: name
+          resource
         },
         beforeEnter
       });
@@ -87,18 +105,18 @@ export default {
     if (this.hasAction("create")) {
       children.push({
         path: "create",
-        name: `${name}_create`,
-        props: { permissions },
+        name: `${resource}_create`,
         component: {
+          functional: true,
           render(c) {
-            return c(`${name}-create`, {
+            return c(`${resource}-create`, {
               props
             });
           }
         },
         meta: {
           action: "create",
-          resource: name
+          resource
         },
         beforeEnter
       });
@@ -106,23 +124,11 @@ export default {
     if (this.hasAction("edit")) {
       children.push({
         path: ":id/edit",
-        name: `${name}_edit`,
-        props: { permissions },
-        component: {
-          render(c) {
-            return c(`${name}-edit`, {
-              props
-            });
-          },
-          beforeRouteLeave(to, from, next) {
-            this.$store.commit(`${name}/removeItem`);
-            next();
-          }
-        },
-        props: true,
+        name: `${resource}_edit`,
+        component: itemComponent("edit"),
         meta: {
           action: "edit",
-          resource: name
+          resource
         },
         beforeEnter
       });
@@ -130,37 +136,25 @@ export default {
     if (this.hasAction("show")) {
       children.push({
         path: ":id",
-        name: `${name}_show`,
-        props: { permissions },
-        component: {
-          render(c) {
-            return c(`${name}-show`, {
-              props
-            });
-          },
-          beforeRouteLeave(to, from, next) {
-            this.$store.commit(`${name}/removeItem`);
-            next();
-          }
-        },
-        props: true,
+        name: `${resource}_show`,
+        component: itemComponent("show"),
         meta: {
           action: "show",
-          resource: name
+          resource
         },
         beforeEnter
       });
     }
     this.$router.addRoutes([
       {
-        path: `/${this.name}`,
+        path: `/${resource}`,
         component: {
           render(c) {
             return c("router-view");
           }
         },
         meta: {
-          title: this.$tc(`resources.${name}`, 10)
+          title: this.$tc(`resources.${resource}`, 10)
         },
         children
       }
@@ -180,9 +174,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      getOne: "api/getOne"
-    }),
     hasAction(name) {
       return this.getActions.includes(name);
     }

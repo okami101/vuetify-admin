@@ -1,6 +1,6 @@
 <template>
   <va-list
-    :resource="resource"
+    v-bind="{ resource }"
     :fields="[
       'id',
       'isbn',

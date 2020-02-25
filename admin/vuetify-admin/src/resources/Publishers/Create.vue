@@ -1,5 +1,5 @@
 <template>
-  <va-create :resource="resource">
+  <va-create v-bind="{ resource }">
     <template v-slot="props">
       <publishers-form v-bind="props"></publishers-form>
     </template>
