@@ -24,13 +24,6 @@ export default (provider, resource, actions) => {
             root: true
           });
 
-          if (action === GET_ONE) {
-            /**
-             * Set resource on store
-             */
-            commit("setItem", response.data);
-          }
-
           /**
            * Apply success message on writes operations
            */
@@ -82,14 +75,16 @@ export default (provider, resource, actions) => {
     },
     actions: {
       ...storeActions,
-      async refresh({ state, dispatch }) {
+      async refresh({ state, commit, dispatch }) {
         if (state.item) {
           /**
-           * Refresh current resource
+           * Refresh current resource and update item state
            */
-          await dispatch(GET_ONE, {
+          let { data } = await dispatch(GET_ONE, {
             id: state.item.id
           });
+
+          commit("setItem", data);
         }
         EventBus.$emit("refresh");
       },

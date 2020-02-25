@@ -22,7 +22,6 @@ export default {
   async created() {
     let resource = this.name;
     let store = this.$store;
-    let children = [];
     let permissions = store.getters["auth/getPermissions"];
 
     /**
@@ -37,22 +36,17 @@ export default {
       )
     );
 
-    let beforeEnter = async (to, from, next) => {
-      to.meta.title = this.$t(`va.pages.${to.meta.action}`, {
-        resource: this.$tc(
-          `resources.${resource}`,
-          to.meta.action === "list" ? 10 : 1
-        ).toLowerCase(),
-        id: to.params.id
-      });
-      next();
-    };
-
+    /**
+     * Default props for all crud routes
+     */
     const props = {
       permissions,
       resource
     };
 
+    /**
+     * Route item component builder (edit and show)
+     */
     const itemComponent = action => {
       return {
         render(c) {
@@ -67,9 +61,14 @@ export default {
           /**
            * Route model binding
            */
-          await store.dispatch(`${resource}/getOne`, {
+          let { data } = await store.dispatch(`${resource}/getOne`, {
             id: to.params.id
           });
+
+          /**
+           * Insert model into resource store
+           */
+          store.commit(`${resource}/setItem`, data);
           next();
         },
         beforeRouteLeave(to, from, next) {
@@ -80,68 +79,53 @@ export default {
     };
 
     /**
+     * Action route builder
+     */
+    const buildRoute = (action, path, item = false) => {
+      return {
+        path,
+        name: `${resource}_${action}`,
+        component: item
+          ? itemComponent(action)
+          : {
+              render(c) {
+                return c(`${resource}-${action}`, {
+                  props
+                });
+              }
+            },
+        meta: {
+          resource
+        },
+        beforeEnter: (to, from, next) => {
+          /**
+           * Build default main title
+           */
+          to.meta.title = this.$t(`va.pages.${action}`, {
+            resource: this.$tc(
+              `resources.${resource}`,
+              action === "list" ? 10 : 1
+            ).toLowerCase(),
+            id: to.params.id
+          });
+          next();
+        }
+      };
+    };
+
+    /**
      * Register crud routes for this resource
      */
-    if (this.hasAction("list")) {
-      children.push({
-        path: "/",
-        name: `${resource}_list`,
-        component: {
-          render(c) {
-            return c(`${resource}-list`, {
-              props
-            });
-          }
-        },
-        meta: {
-          action: "list",
-          resource
-        },
-        beforeEnter
-      });
-    }
-    if (this.hasAction("create")) {
-      children.push({
-        path: "create",
-        name: `${resource}_create`,
-        component: {
-          render(c) {
-            return c(`${resource}-create`, {
-              props
-            });
-          }
-        },
-        meta: {
-          action: "create",
-          resource
-        },
-        beforeEnter
-      });
-    }
-    if (this.hasAction("edit")) {
-      children.push({
-        path: ":id/edit",
-        name: `${resource}_edit`,
-        component: itemComponent("edit"),
-        meta: {
-          action: "edit",
-          resource
-        },
-        beforeEnter
-      });
-    }
-    if (this.hasAction("show")) {
-      children.push({
-        path: ":id",
-        name: `${resource}_show`,
-        component: itemComponent("show"),
-        meta: {
-          action: "show",
-          resource
-        },
-        beforeEnter
-      });
-    }
+    const routes = [
+      { action: "list", path: "/", item: false },
+      { action: "create", path: "create", item: false },
+      { action: "show", path: ":id", item: true },
+      { action: "edit", path: ":id/edit", item: true }
+    ];
+
+    /**
+     * Add routes dynamically
+     */
     this.$router.addRoutes([
       {
         path: `/${resource}`,
@@ -153,7 +137,9 @@ export default {
         meta: {
           title: this.$tc(`resources.${resource}`, 10)
         },
-        children
+        children: routes
+          .filter(({ action }) => this.hasAction(action))
+          .map(({ action, path, item }) => buildRoute(action, path, item))
       }
     ]);
   },
