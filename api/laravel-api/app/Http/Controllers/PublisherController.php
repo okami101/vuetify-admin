@@ -64,7 +64,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        return new PublisherResource($publisher);
+        return new PublisherResource($publisher->loadCount('books'));
     }
 
     /**
