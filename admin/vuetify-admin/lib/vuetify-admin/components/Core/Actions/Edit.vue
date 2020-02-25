@@ -21,7 +21,6 @@ export default {
   mixins: [Page],
   props: {
     item: {
-      type: Object,
       required: true
     }
   },

@@ -55,7 +55,6 @@ export default {
 
     const itemComponent = action => {
       return {
-        functional: true,
         render(c) {
           return c(`${resource}-${action}`, {
             props: {
@@ -88,7 +87,6 @@ export default {
         path: "/",
         name: `${resource}_list`,
         component: {
-          functional: true,
           render(c) {
             return c(`${resource}-list`, {
               props
@@ -107,7 +105,6 @@ export default {
         path: "create",
         name: `${resource}_create`,
         component: {
-          functional: true,
           render(c) {
             return c(`${resource}-create`, {
               props
