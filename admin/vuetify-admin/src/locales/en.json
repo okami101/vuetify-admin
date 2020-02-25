@@ -51,6 +51,7 @@
     "rating": "Rating",
     "publisher": "Publisher",
     "book": "Book",
+    "books_count": "Books count",
     "reviews": "Reviews",
     "price": "Price",
     "commentable": "Commentable",

@@ -135,6 +135,10 @@ export default {
     useQueryString: {
       type: Boolean,
       default: true
+    },
+    include: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -301,7 +305,10 @@ export default {
       let { data, total } = await this.getList({
         resource: this.resource,
         params: {
-          fields: this.getFields.map(f => f.source),
+          fields: this.getFields
+            .filter(f => !this.include.includes(f.source))
+            .map(f => f.source),
+          include: this.include,
           pagination: {
             page,
             perPage: itemsPerPage

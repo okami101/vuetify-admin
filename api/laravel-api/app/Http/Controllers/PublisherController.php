@@ -10,6 +10,7 @@ use App\Http\Resources\PublisherCollection;
 use App\Publisher;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\AllowedInclude;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class PublisherController extends Controller
@@ -36,7 +37,10 @@ class PublisherController extends Controller
                     'founder',
                     'headquarter',
                 ])
-                ->allowedSorts('id', 'name', 'founder', 'headquarter', 'opening_date')
+                ->allowedIncludes([
+                    AllowedInclude::count('books_count'),
+                ])
+                ->allowedSorts('id', 'name', 'founder', 'headquarter', 'opening_date', 'books_count')
                 ->exportOrPaginate()
         );
     }

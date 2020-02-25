@@ -51,6 +51,7 @@
     "rating": "Note",
     "publisher": "Editeur",
     "book": "Livre",
+    "books_count": "Nombre de livres",
     "reviews": "Commentaires",
     "price": "Prix",
     "commentable": "Commentable",
