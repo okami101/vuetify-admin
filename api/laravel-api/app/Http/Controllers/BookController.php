@@ -28,7 +28,19 @@ class BookController extends Controller
     {
         return new BookCollection(
             QueryBuilder::for(Book::class)
-                ->allowedFields('id', 'publisher_id', 'isbn', 'title', 'description', 'author', 'price', 'commentable', 'publication_date')
+                ->allowedFields(
+                    'id',
+                    'publisher_id',
+                    'isbn',
+                    'title',
+                    'description',
+                    'author',
+                    'price',
+                    'commentable',
+                    'publication_date',
+                    'publisher.id',
+                    'publisher.name'
+                )
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'author', 'description', 'summary'])),
                     AllowedFilter::exact('id'),

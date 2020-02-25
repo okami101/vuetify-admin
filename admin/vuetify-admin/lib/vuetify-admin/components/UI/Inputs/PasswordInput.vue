@@ -1,8 +1,8 @@
 <template>
   <v-text-field
-    :label="getLabel"
+    :label="label"
     :hint="hint"
-    :rules="getRules"
+    :rules="rules"
     :error-messages="errorMessages"
     :filled="filled"
     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"

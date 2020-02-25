@@ -1,8 +1,8 @@
 <template>
   <v-input
-    :label="getLabel"
+    :label="label"
     :hint="hint"
-    :rules="getRules"
+    :rules="rules"
     :error-messages="errorMessages"
     :append-icon="icon"
     :hide-details="hideDetails"
@@ -26,16 +26,12 @@ export default {
     required: Boolean
   },
   computed: {
-    getLabel() {
-      return this.label || this.$t(`attributes.${this.source}`);
-    },
-    getRules() {
+    rules() {
       let rules = [];
 
       if (this.required) {
         rules.push(
-          v =>
-            !!v || this.$t("va.forms.required_field", { field: this.getLabel })
+          v => !!v || this.$t("va.forms.required_field", { field: this.label })
         );
       }
       return rules;

@@ -109,7 +109,7 @@ export default {
            */
           to.meta.title = i18n.t(`va.pages.${action}`, {
             resource: i18n
-              .tc(`resources.${resource}`, action === "list" ? 10 : 1)
+              .tc(`resources.${resource}.name`, action === "list" ? 10 : 1)
               .toLowerCase(),
             id: to.params.id
           });
@@ -140,7 +140,7 @@ export default {
           }
         },
         meta: {
-          title: i18n.tc(`resources.${resource}`, 10)
+          title: i18n.tc(`resources.${resource}.name`, 10)
         },
         children: routes
           .filter(({ action }) => actions.includes(action))

@@ -10,8 +10,8 @@
     <template v-slot:activator="{ on }">
       <v-text-field
         :value="dateFormatted"
-        :label="getLabel"
-        :rules="getRules"
+        :label="label"
+        :rules="rules"
         :error-messages="errorMessages"
         readonly
         append-icon="mdi-calendar"

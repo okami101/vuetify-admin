@@ -1,9 +1,9 @@
 <template>
   <v-text-field
     v-model="input"
-    :label="getLabel"
+    :label="label"
     :hint="hint"
-    :rules="getRules"
+    :rules="rules"
     :error-messages="errorMessages"
     :filled="filled"
     :append-icon="icon"

@@ -7,23 +7,11 @@ export default {
     VInput
   },
   props: {
-    source: String,
-    label: {
-      type: [Boolean, String],
-      default: undefined
-    },
-    addLabel: {
-      type: Boolean,
-      default: true
-    }
-  },
-  computed: {
-    getLabel() {
-      return this.label || this.$t(`attributes.${this.source}`);
-    }
+    label: String,
+    addLabel: Boolean
   },
   render(c) {
-    if (this.label === false) {
+    if (this.label === "") {
       return this.$slots.default;
     }
 
@@ -35,7 +23,7 @@ export default {
       "v-input",
       {
         props: {
-          label: this.getLabel
+          label: this.label
         }
       },
       [c("div", { class: "va-field" }, this.$slots.default)]

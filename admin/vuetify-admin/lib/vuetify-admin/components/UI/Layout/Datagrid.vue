@@ -31,7 +31,7 @@
             :item="item"
             :value="item[field.source]"
             dense
-            :label="false"
+            label=""
             v-bind="field.options"
             @change="val => updateItem({ item, source: field.source, val })"
           ></component>
@@ -42,7 +42,7 @@
           :source="field.source"
           :item="item"
           v-bind="field.options"
-          :label="false"
+          label=""
         ></component>
       </slot>
     </template>
@@ -132,7 +132,7 @@ export default {
     headers() {
       let fields = this.fields.map(field => {
         return {
-          text: field.label || this.$t(`attributes.${field.source}`),
+          text: field.label,
           value: field.source,
           sortable:
             field.sortable === undefined

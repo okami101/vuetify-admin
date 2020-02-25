@@ -3,6 +3,7 @@
   "logout": "Logout",
   "close": "Close",
   "datagrid": {
+    "search": "Search",
     "add_filter": "Add filter",
     "selected_items": "1 item selected | {count} items selected"
   },

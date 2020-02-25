@@ -5,8 +5,10 @@ export default {
   props: {
     source: String,
     label: {
-      type: [Boolean, String],
-      default: undefined
+      type: String,
+      default() {
+        return this.$t(`resources.${this.resource}.fields.${this.source}`);
+      }
     },
     addLabel: {
       type: Boolean,

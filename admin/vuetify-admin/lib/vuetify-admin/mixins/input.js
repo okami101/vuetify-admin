@@ -6,8 +6,10 @@ export default {
   props: {
     source: String,
     label: {
-      type: [Boolean, String],
-      default: undefined
+      type: String,
+      default() {
+        return this.$t(`resources.${this.resource}.fields.${this.source}`);
+      }
     },
     hint: String,
     icon: String,
@@ -31,18 +33,12 @@ export default {
     ...mapState({
       errors: state => state.form.errors
     }),
-    getLabel() {
-      return this.label === undefined
-        ? this.$t(`attributes.${this.source}`)
-        : "";
-    },
-    getRules() {
+    rules() {
       let rules = [];
 
       if (this.required) {
         rules.push(
-          v =>
-            !!v || this.$t("va.forms.required_field", { field: this.getLabel })
+          v => !!v || this.$t("va.forms.required_field", { field: this.label })
         );
       }
       return rules;

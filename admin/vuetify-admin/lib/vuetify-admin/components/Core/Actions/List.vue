@@ -175,6 +175,7 @@ export default {
           if (f === "q") {
             return {
               source: "q",
+              label: this.$t("va.datagrid.search"),
               alwaysOn: true,
               options: { icon: "mdi-magnify" }
             };
@@ -231,7 +232,9 @@ export default {
           return {
             ...f,
             type: f.type || "text",
-            label: f.label || this.$t(`attributes.${f.source}`)
+            label:
+              f.label ||
+              this.$t(`resources.${this.resource}.fields.${f.source}`)
           };
         });
     },

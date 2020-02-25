@@ -4,6 +4,9 @@
       'id',
       'isbn',
       'title',
+      //{ source: 'publisher_id', hidden: true },
+      //{ source: 'publisher.id', hidden: true },
+      //'publisher.name',
       'author',
       {
         source: 'price',
@@ -24,6 +27,7 @@
       { source: 'published_before', type: 'date', options: { format: 'long' } },
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
+    :include="['publisher', 'reviews']"
   >
     <template v-slot="props">
       <va-datagrid v-bind="props" show-expand>

@@ -15,6 +15,7 @@
         <component
           :is="`va-${item.type}-input`"
           :source="item.source"
+          :label="item.label"
           filter
           v-bind="item.options"
           v-model="filter[item.source]"

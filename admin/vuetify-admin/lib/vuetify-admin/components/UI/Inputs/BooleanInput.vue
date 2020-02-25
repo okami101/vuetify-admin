@@ -1,9 +1,9 @@
 <template>
   <v-switch
     v-model="input"
-    :label="getLabel"
+    :label="label"
     :hint="hint"
-    :rules="getRules"
+    :rules="rules"
     :error-messages="errorMessages"
     :hide-details="hideDetails"
     :dense="dense"

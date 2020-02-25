@@ -31,34 +31,50 @@
     "summary": "Summary"
   },
   "resources": {
-    "publishers": "Publisher | Publishers",
-    "books": "Book | Books",
-    "reviews": "Review | Reviews"
-  },
-  "attributes": {
-    "id": "ID",
-    "isbn": "ISBN",
-    "name": "Name",
-    "title": "Title",
-    "description": "Description",
-    "summary": "Summary",
-    "body": "Body",
-    "publication_date": "Publication date",
-    "founder": "Founder",
-    "author": "Author",
-    "headquarter": "Headquarter",
-    "opening_date": "Opening date",
-    "rating": "Rating",
-    "publisher": "Publisher",
-    "book": "Book",
-    "books_count": "Books count",
-    "reviews": "Reviews",
-    "price": "Price",
-    "commentable": "Commentable",
-    "q": "Search",
-    "published_before": "Published before",
-    "published_after": "Published after",
-    "pricier_than": "Pricier than",
-    "cheaper_than": "Cheaper than"
+    "publishers": {
+      "name": "Publisher | Publishers",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "description": "Description",
+        "founder": "Founder",
+        "headquarter": "Headquarter",
+        "opening_date": "Opening date",
+        "books_count": "Books count"
+      }
+    },
+    "books": {
+      "name": "Book | Books",
+      "fields": {
+        "id": "ID",
+        "isbn": "ISBN",
+        "title": "Title",
+        "description": "Description",
+        "summary": "Summary",
+        "publication_date": "Publication date",
+        "author": "Author",
+        "publisher": "Publisher",
+        "reviews": "Reviews",
+        "price": "Price",
+        "commentable": "Commentable",
+        "published_before": "Published before",
+        "published_after": "Published after",
+        "pricier_than": "Pricier than",
+        "cheaper_than": "Cheaper than"
+      }
+    },
+    "reviews": {
+      "name": "Review | Reviews",
+      "fields": {
+        "id": "ID",
+        "body": "Body",
+        "publication_date": "Publication date",
+        "author": "Author",
+        "rating": "Rating",
+        "book": "Book",
+        "published_before": "Published before",
+        "published_after": "Published after"
+      }
+    }
   }
 }
