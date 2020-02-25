@@ -1,10 +1,10 @@
 <template>
-  <va-form :resource="getResource" @saved="onSaved">
+  <va-form :resource="resource" @saved="onSaved">
     <v-card>
       <v-card-text>
         <slot></slot>
       </v-card-text>
-      <va-form-save :resource="getResource" :item="record"></va-form-save>
+      <va-form-save :resource="resource" :item="record"></va-form-save>
     </v-card>
   </va-form>
 </template>

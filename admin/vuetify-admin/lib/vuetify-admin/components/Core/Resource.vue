@@ -63,12 +63,7 @@ export default {
     const itemComponent = action => {
       return {
         render(c) {
-          return c(`${resource}-${action}`, {
-            props: {
-              ...props,
-              item: store.state[resource].item
-            }
-          });
+          return c(`${resource}-${action}`);
         },
         async beforeRouteEnter(to, from, next) {
           /**
@@ -102,9 +97,7 @@ export default {
           ? itemComponent(action)
           : {
               render(c) {
-                return c(`${resource}-${action}`, {
-                  props
-                });
+                return c(`${resource}-${action}`);
               }
             },
         meta: {

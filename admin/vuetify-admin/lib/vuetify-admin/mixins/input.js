@@ -1,8 +1,8 @@
-import RoutedResourceProps from "vuetify-admin/mixins/routedResourceProps";
+import Item from "vuetify-admin/mixins/item";
 import { mapState, mapMutations } from "vuex";
 
 export default {
-  mixins: [RoutedResourceProps],
+  mixins: [Item],
   props: {
     source: String,
     label: {

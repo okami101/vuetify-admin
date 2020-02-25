@@ -8,10 +8,9 @@ export default {
   },
   props: {
     source: String,
-    label: String,
-    item: {
-      type: Object,
-      default: () => {}
+    label: {
+      type: [Boolean, String],
+      default: undefined
     },
     addLabel: {
       type: Boolean,
@@ -24,7 +23,7 @@ export default {
     }
   },
   render(c) {
-    if (this.item) {
+    if (this.label === false) {
       return this.$slots.default;
     }
 

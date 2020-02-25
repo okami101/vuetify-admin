@@ -1,10 +1,13 @@
-import RoutedResourceProps from "vuetify-admin/mixins/routedResourceProps";
+import Item from "vuetify-admin/mixins/item";
 
 export default {
-  mixins: [RoutedResourceProps],
+  mixins: [Item],
   props: {
     source: String,
-    label: String,
+    label: {
+      type: [Boolean, String],
+      default: undefined
+    },
     addLabel: {
       type: Boolean,
       default: true

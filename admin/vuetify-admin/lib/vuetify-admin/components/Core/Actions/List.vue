@@ -3,7 +3,7 @@
     <va-aside-content>
       <slot
         name="aside"
-        :resource="getResource"
+        :resource="resource"
         v-bind="{ items, total, selected }"
       ></slot>
     </va-aside-content>
@@ -30,7 +30,7 @@
           <v-spacer></v-spacer>
           <div>
             <va-delete-button
-              :resource="getResource"
+              :resource="resource"
               @delete="onBlukDelete"
             ></va-delete-button>
           </div>
@@ -59,9 +59,9 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <va-create-button :resource="getResource"></va-create-button>
+          <va-create-button :resource="resource"></va-create-button>
           <va-export-button
-            :resource="getResource"
+            :resource="resource"
             v-if="exporter"
             text
             :options="options"
@@ -71,7 +71,7 @@
       </template>
       <template v-slot:default>
         <slot
-          :resource="getResource"
+          :resource="resource"
           :items="items"
           :fields="getFields.filter(f => !f.hidden)"
           :value="selected"
@@ -81,31 +81,32 @@
         ></slot>
       </template>
       <template v-slot:loading>
-        <slot :resource="getResource" :items-per-page="itemsPerPage"></slot>
+        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
       <template v-slot:no-data>
-        <slot :resource="getResource" :items-per-page="itemsPerPage"></slot>
+        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
       <template v-slot:no-results>
-        <slot :resource="getResource" :items-per-page="itemsPerPage"></slot>
+        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
     </v-data-iterator>
   </v-card>
 </template>
 
 <script>
+import Page from "vuetify-admin/mixins/page";
+import Resource from "vuetify-admin/mixins/resource";
 import debounce from "lodash/debounce";
 import FormFilter from "../List/FormFilter";
 import { mapActions } from "vuex";
-import Page from "vuetify-admin/mixins/page";
 import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "List",
+  mixins: [Page, Resource],
   components: {
     FormFilter
   },
-  mixins: [Page],
   props: {
     filter: {
       type: Object,
@@ -128,6 +129,10 @@ export default {
       default: () => [5, 10, 15, 25, 50, 100]
     },
     exporter: {
+      type: Boolean,
+      default: true
+    },
+    useQueryString: {
       type: Boolean,
       default: true
     }
@@ -227,7 +232,7 @@ export default {
         });
     },
     initFiltersFromQuery() {
-      if (!this.isRouteResource) {
+      if (!this.useQueryString) {
         return;
       }
 
@@ -265,7 +270,7 @@ export default {
       this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
-      if (!this.isRouteResource) {
+      if (!this.useQueryString) {
         return;
       }
 
@@ -294,7 +299,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        resource: this.getResource,
+        resource: this.resource,
         params: {
           fields: this.getFields.map(f => f.source),
           pagination: {
@@ -323,14 +328,14 @@ export default {
         await this.$confirm(
           this.$t("va.confirm.delete_many_title", {
             resource: this.$tc(
-              `resources.${this.getResource}`,
+              `resources.${this.resource}`,
               this.selected.length
             ).toLowerCase(),
             count: this.selected.length
           }),
           this.$t("va.confirm.delete_many_message", {
             resource: this.$tc(
-              `resources.${this.getResource}`,
+              `resources.${this.resource}`,
               this.selected.length
             ).toLowerCase(),
             count: this.selected.length
@@ -338,7 +343,7 @@ export default {
         )
       ) {
         await this.deleteMany({
-          resource: this.getResource,
+          resource: this.resource,
           params: { ids: this.selected.map(({ id }) => id) }
         });
         this.selected = [];
@@ -347,7 +352,7 @@ export default {
     },
     async onUpdateItem({ item, source, val }) {
       this.update({
-        resource: this.getResource,
+        resource: this.resource,
         params: {
           id: item.id,
           data: {
