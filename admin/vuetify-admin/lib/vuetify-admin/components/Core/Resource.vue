@@ -1,8 +1,6 @@
 <script>
 import resourceCrudApi from "vuetify-admin/store/resource";
 
-let actions = ["list", "show", "create", "edit", "delete"];
-
 export default {
   name: "Resource",
   props: {
@@ -17,11 +15,30 @@ export default {
     except: {
       type: Array,
       default: () => []
+    },
+    dataProvider: {
+      type: Object,
+      default: () => {}
     }
   },
-  async created() {
-    let resource = this.name;
+  created() {
     let store = this.$store;
+    let router = this.$router;
+    let i18n = this.$i18n;
+    let dataProvider = this.dataProvider || this.$parent.$parent.dataProvider;
+
+    let resource = this.name;
+    let actions = ["list", "show", "create", "edit", "delete"].filter(a => {
+      if (this.only.length) {
+        return this.only.includes(a);
+      }
+
+      if (this.except.length) {
+        return !this.except.includes(a);
+      }
+
+      return true;
+    });
     let permissions = store.getters["auth/getPermissions"];
 
     /**
@@ -29,11 +46,7 @@ export default {
      */
     store.registerModule(
       resource,
-      resourceCrudApi(
-        this.$parent.$parent.$props.dataProvider,
-        resource,
-        this.authorizedActions
-      )
+      resourceCrudApi(dataProvider, resource, actions)
     );
 
     /**
@@ -101,11 +114,10 @@ export default {
           /**
            * Build default main title
            */
-          to.meta.title = this.$t(`va.pages.${action}`, {
-            resource: this.$tc(
-              `resources.${resource}`,
-              action === "list" ? 10 : 1
-            ).toLowerCase(),
+          to.meta.title = i18n.t(`va.pages.${action}`, {
+            resource: i18n
+              .tc(`resources.${resource}`, action === "list" ? 10 : 1)
+              .toLowerCase(),
             id: to.params.id
           });
           next();
@@ -126,7 +138,7 @@ export default {
     /**
      * Add routes dynamically
      */
-    this.$router.addRoutes([
+    router.addRoutes([
       {
         path: `/${resource}`,
         component: {
@@ -135,28 +147,15 @@ export default {
           }
         },
         meta: {
-          title: this.$tc(`resources.${resource}`, 10)
+          title: i18n.tc(`resources.${resource}`, 10)
         },
         children: routes
-          .filter(({ action }) => this.authorizedActions.includes(action))
+          .filter(({ action }) => actions.includes(action))
           .map(({ action, path, item }) => buildRoute(action, path, item))
       }
     ]);
   },
-  computed: {
-    authorizedActions() {
-      if (this.only.length) {
-        return this.only;
-      }
-
-      if (this.except.length) {
-        return actions.filter(a => !this.except.includes(a));
-      }
-
-      return actions;
-    }
-  },
-  render() {
+  render(c) {
     return null;
   }
 };
