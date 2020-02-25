@@ -1,6 +1,5 @@
 <template>
   <va-tabbed-form
-    v-bind="{ resource, item }"
     :tabs="[
       { id: 'attributes', icon: 'mdi-eye' },
       { id: 'summary', icon: 'mdi-text' }
@@ -27,9 +26,3 @@
     </template>
   </va-tabbed-form>
 </template>
-
-<script>
-export default {
-  props: ["resource", "item"]
-};
-</script>

@@ -1,15 +1,15 @@
 <template>
   <div>
     <va-aside-content>
-      <slot name="aside" :resource="resource" :item="item"></slot>
+      <slot name="aside" :resource="getResource" :item="record"></slot>
     </va-aside-content>
     <div class="d-flex mb-2">
       <v-spacer></v-spacer>
       <slot name="actions">
-        <va-show-button :resource="resource" :item="item"></va-show-button>
+        <va-show-button :resource="getResource" :item="record"></va-show-button>
       </slot>
     </div>
-    <slot :resource="resource" :item="item"></slot>
+    <slot :resource="getResource" :item="record"></slot>
   </div>
 </template>
 
@@ -19,14 +19,9 @@ import Page from "vuetify-admin/mixins/page";
 export default {
   name: "Edit",
   mixins: [Page],
-  props: {
-    item: {
-      required: true
-    }
-  },
   methods: {
     onDeleted() {
-      this.$router.push(`/${this.resource}`);
+      this.$router.push(`/${this.getResource}`);
     }
   }
 };

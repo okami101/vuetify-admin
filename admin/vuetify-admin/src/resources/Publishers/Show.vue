@@ -1,5 +1,5 @@
 <template>
-  <va-show v-bind="{ resource, item }">
+  <va-show>
     <va-simple-show>
       <va-text-field source="name"></va-text-field>
       <va-text-field source="founder"></va-text-field>
@@ -9,9 +9,3 @@
     </va-simple-show>
   </va-show>
 </template>
-
-<script>
-export default {
-  props: ["resource", "item"]
-};
-</script>

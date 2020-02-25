@@ -3,7 +3,7 @@
     <va-save-button></va-save-button>
     <v-spacer></v-spacer>
     <va-delete-button
-      v-if="item"
+      v-if="item.id"
       :item="item"
       :resource="resource"
       redirect

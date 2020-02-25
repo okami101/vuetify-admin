@@ -1,13 +1,8 @@
+import RoutedResourceProps from "vuetify-admin/mixins/routedResourceProps";
+
 export default {
+  mixins: [RoutedResourceProps],
   props: {
-    item: {
-      type: Object,
-      default: () => {}
-    },
-    resource: {
-      type: String,
-      required: true
-    },
     redirect: {
       type: Boolean,
       default: true
@@ -16,7 +11,7 @@ export default {
   methods: {
     onSaved() {
       if (this.redirect) {
-        this.$router.push(`/${this.resource}`);
+        this.$router.push(`/${this.getResource}`);
       }
     }
   }

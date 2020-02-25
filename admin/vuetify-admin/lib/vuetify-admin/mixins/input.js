@@ -1,15 +1,13 @@
-import { mapState, mapGetters, mapMutations } from "vuex";
+import RoutedResourceProps from "vuetify-admin/mixins/routedResourceProps";
+import { mapState, mapMutations } from "vuex";
 
 export default {
+  mixins: [RoutedResourceProps],
   props: {
     source: String,
     label: {
       type: [Boolean, String],
       default: undefined
-    },
-    item: {
-      type: Object,
-      default: () => {}
     },
     hint: String,
     icon: String,
@@ -17,10 +15,8 @@ export default {
     dense: Boolean,
     required: Boolean,
     alwaysOn: Boolean,
-    update: {
-      type: Boolean,
-      default: true
-    },
+    filter: Boolean,
+    edit: Boolean,
     value: {
       default: null
     }
@@ -35,12 +31,6 @@ export default {
     ...mapState({
       errors: state => state.form.errors
     }),
-    ...mapGetters({
-      routeItem: "api/item"
-    }),
-    record() {
-      return this.item || this.routeItem(this.$route.meta.resource);
-    },
     getLabel() {
       return this.label === undefined
         ? this.$t(`attributes.${this.source}`)
@@ -71,6 +61,9 @@ export default {
     },
     record: {
       handler(val) {
+        if (this.filter) {
+          return;
+        }
         if (val && this.source) {
           this.input = val[this.source];
         }
@@ -102,7 +95,7 @@ export default {
       /**
        * Update model in the store if input inside a form (i.e. no filter or editable input)
        */
-      if (this.update) {
+      if (!this.filter || !this.edit) {
         this.updateForm({
           source: this.source,
           value: this.input

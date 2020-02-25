@@ -1,12 +1,10 @@
+import RoutedResourceProps from "vuetify-admin/mixins/routedResourceProps";
 import { mapMutations } from "vuex";
 
 export default {
+  mixins: [RoutedResourceProps],
   props: {
-    title: [String, Function],
-    resource: {
-      type: String,
-      required: true
-    }
+    title: [String, Function]
   },
   computed: {
     getTitle() {

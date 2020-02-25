@@ -3,7 +3,7 @@
     <va-aside-content>
       <slot
         name="aside"
-        :resource="resource"
+        :resource="getResource"
         v-bind="{ items, total, selected }"
       ></slot>
     </va-aside-content>
@@ -30,7 +30,7 @@
           <v-spacer></v-spacer>
           <div>
             <va-delete-button
-              :resource="resource"
+              :resource="getResource"
               @delete="onBlukDelete"
             ></va-delete-button>
           </div>
@@ -59,9 +59,9 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <va-create-button :resource="resource"></va-create-button>
+          <va-create-button :resource="getResource"></va-create-button>
           <va-export-button
-            :resource="resource"
+            :resource="getResource"
             v-if="exporter"
             text
             :options="options"
@@ -71,7 +71,7 @@
       </template>
       <template v-slot:default>
         <slot
-          :resource="resource"
+          :resource="getResource"
           :items="items"
           :fields="getFields.filter(f => !f.hidden)"
           :value="selected"
@@ -81,13 +81,13 @@
         ></slot>
       </template>
       <template v-slot:loading>
-        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+        <slot :resource="getResource" :items-per-page="itemsPerPage"></slot>
       </template>
       <template v-slot:no-data>
-        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+        <slot :resource="getResource" :items-per-page="itemsPerPage"></slot>
       </template>
       <template v-slot:no-results>
-        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+        <slot :resource="getResource" :items-per-page="itemsPerPage"></slot>
       </template>
     </v-data-iterator>
   </v-card>
@@ -107,10 +107,6 @@ export default {
   },
   mixins: [Page],
   props: {
-    resource: {
-      type: String,
-      required: true
-    },
     filter: {
       type: Object,
       default: () => {}
@@ -231,6 +227,10 @@ export default {
         });
     },
     initFiltersFromQuery() {
+      if (!this.isRouteResource) {
+        return;
+      }
+
       /**
        * Apply current route query into datagrid filter
        */
@@ -265,6 +265,10 @@ export default {
       this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
+      if (!this.isRouteResource) {
+        return;
+      }
+
       /**
        * Update query router
        */
@@ -290,7 +294,7 @@ export default {
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       let { data, total } = await this.getList({
-        resource: this.resource,
+        resource: this.getResource,
         params: {
           fields: this.getFields.map(f => f.source),
           pagination: {
@@ -319,14 +323,14 @@ export default {
         await this.$confirm(
           this.$t("va.confirm.delete_many_title", {
             resource: this.$tc(
-              `resources.${this.resource}`,
+              `resources.${this.getResource}`,
               this.selected.length
             ).toLowerCase(),
             count: this.selected.length
           }),
           this.$t("va.confirm.delete_many_message", {
             resource: this.$tc(
-              `resources.${this.resource}`,
+              `resources.${this.getResource}`,
               this.selected.length
             ).toLowerCase(),
             count: this.selected.length
@@ -334,7 +338,7 @@ export default {
         )
       ) {
         await this.deleteMany({
-          resource: this.resource,
+          resource: this.getResource,
           params: { ids: this.selected.map(({ id }) => id) }
         });
         this.selected = [];
@@ -343,7 +347,7 @@ export default {
     },
     async onUpdateItem({ item, source, val }) {
       this.update({
-        resource: this.resource,
+        resource: this.getResource,
         params: {
           id: item.id,
           data: {

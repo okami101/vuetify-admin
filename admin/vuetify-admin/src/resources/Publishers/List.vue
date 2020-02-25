@@ -1,6 +1,5 @@
 <template>
   <va-list
-    v-bind="{ resource }"
     :fields="[
       'id',
       'name',
@@ -15,9 +14,3 @@
     </template>
   </va-list>
 </template>
-
-<script>
-export default {
-  props: ["resource"]
-};
-</script>

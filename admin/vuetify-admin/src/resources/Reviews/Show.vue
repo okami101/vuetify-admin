@@ -1,5 +1,5 @@
 <template>
-  <va-show v-bind="{ resource, item }">
+  <va-show>
     <va-simple-show>
       <va-rating-field source="rating"></va-rating-field>
       <va-text-field source="body"></va-text-field>
@@ -8,9 +8,3 @@
     </va-simple-show>
   </va-show>
 </template>
-
-<script>
-export default {
-  props: ["resource", "item"]
-};
-</script>

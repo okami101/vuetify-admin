@@ -27,11 +27,11 @@
           <component
             :is="`va-${field.type}-input`"
             :source="field.source"
+            edit
             :item="item"
             :value="item[field.source]"
             dense
             :label="false"
-            :update="false"
             v-bind="field.options"
             @change="val => updateItem({ item, source: field.source, val })"
           ></component>

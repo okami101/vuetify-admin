@@ -15,7 +15,7 @@
         <component
           :is="`va-${item.type}-input`"
           :source="item.source"
-          :update="false"
+          filter
           v-bind="item.options"
           v-model="filter[item.source]"
           hide-details
