@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name
+ * @property string $type
  * @property string $description
  * @property string $founder
  * @property string $headquarter
@@ -27,6 +28,7 @@ class Publisher extends Model
 
     protected $fillable = [
         'name',
+        'type',
         'description',
         'founder',
         'headquarter',

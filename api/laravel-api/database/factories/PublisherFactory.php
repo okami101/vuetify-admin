@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Publisher::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
+        'type' => $faker->randomElement(['sarl', 'eurl', 'sa', 'sas', 'sasu', 'snc', 'scp']),
         'description' => $faker->paragraph(10),
         'founder' => $faker->name,
         'headquarter' => $faker->city,

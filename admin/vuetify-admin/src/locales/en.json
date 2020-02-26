@@ -36,12 +36,24 @@
       "fields": {
         "id": "ID",
         "name": "Name",
+        "type": "Company type",
         "description": "Description",
         "founder": "Founder",
         "headquarter": "Headquarter",
         "active": "Active",
         "opening_date": "Opening date",
         "books_count": "Books count"
+      },
+      "enums": {
+        "type": {
+          "sarl": "SARL",
+          "eurl": "EURL",
+          "sa": "SA",
+          "sas": "SAS",
+          "sasu": "SASU",
+          "snc": "SNC",
+          "scp": "SCP"
+        }
       }
     },
     "books": {
@@ -50,10 +62,12 @@
         "id": "ID",
         "isbn": "ISBN",
         "title": "Title",
+        "category": "Category",
         "description": "Description",
         "summary": "Summary",
         "publication_date": "Publication date",
         "author": "Author",
+        "formats": "Formats",
         "publisher": {
           "name": "Publisher"
         },
@@ -64,6 +78,25 @@
         "published_after": "Published after",
         "pricier_than": "Pricier than",
         "cheaper_than": "Cheaper than"
+      },
+      "enums": {
+        "category": {
+          "novel": "Novel",
+          "comic": "Comic",
+          "cook": "Cook",
+          "economy": "Economy",
+          "politics": "Politics",
+          "history": "History",
+          "fantasy": "Fantasy",
+          "biography": "Biography"
+        },
+        "formats": {
+          "pocket": "Pocket",
+          "paperback": "Paperback",
+          "pdf": "PDF",
+          "epub": "Epub",
+          "kindle": "Kindle"
+        }
       }
     },
     "reviews": {

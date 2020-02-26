@@ -22,6 +22,9 @@ import DateField from "./Fields/DateField";
 import NumberField from "./Fields/NumberField";
 import RatingField from "./Fields/RatingField";
 import BooleanField from "./Fields/BooleanField";
+import EnumField from "./Fields/EnumField";
+import ChipField from "./Fields/ChipField";
+import ArrayField from "./Fields/ArrayField";
 
 import TextInput from "./Inputs/TextInput";
 import DateInput from "./Inputs/DateInput";
@@ -54,6 +57,9 @@ export {
   RichTextField,
   RatingField,
   BooleanField,
+  EnumField,
+  ChipField,
+  ArrayField,
   TextInput,
   DateInput,
   NumberInput,

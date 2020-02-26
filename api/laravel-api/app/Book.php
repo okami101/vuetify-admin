@@ -16,6 +16,8 @@ use Illuminate\Support\Carbon;
  * @property string $description
  * @property string $summary
  * @property string $author
+ * @property string $category
+ * @property array $formats
  * @property float $price
  * @property bool $commentable
  * @property Carbon $publication_date
@@ -43,6 +45,8 @@ class Book extends Model
         'summary',
         'author',
         'price',
+        'category',
+        'formats',
         'commentable',
         'publication_date',
     ];
@@ -53,7 +57,8 @@ class Book extends Model
 
     protected $casts = [
         'price' => 'float',
-        'commentable' => 'boolean'
+        'commentable' => 'boolean',
+        'formats' => 'array'
     ];
 
     public function publisher()

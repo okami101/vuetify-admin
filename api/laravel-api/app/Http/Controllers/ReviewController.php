@@ -38,8 +38,8 @@ class ReviewController extends Controller
                     AllowedFilter::scope('published_before'),
                     AllowedFilter::scope('published_after'),
                 ])
-                ->allowedSorts('id', 'rating', 'author', 'publication_date')
-                ->allowedIncludes('book')
+                ->allowedSorts(['id', 'rating', 'author', 'publication_date'])
+                ->allowedIncludes(['book'])
                 ->exportOrPaginate()
         );
     }

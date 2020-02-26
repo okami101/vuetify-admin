@@ -26,8 +26,10 @@ class StoreBook extends FormRequest
         return [
             'isbn' => 'required|isbn',
             'title' => 'required',
+            'category' => 'required|in:novel,comic,cook,economy,politics,history,fantasy,biography',
             'description' => 'required',
             'author' => 'required',
+            'formats.*' => 'in:pocket,paperback,pdf,epub,kindle',
             'price' => 'required|numeric',
             'commentable' => 'boolean',
             'publication_date' => 'required|date',

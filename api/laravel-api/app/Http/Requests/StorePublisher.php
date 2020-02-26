@@ -25,6 +25,7 @@ class StorePublisher extends FormRequest
     {
         return [
             'name' => 'required',
+            'type' => 'required|in:sarl,eurl,sa,sas,sasu,snc,scp',
             'description' => 'required',
             'founder' => 'required',
             'headquarter' => 'required',

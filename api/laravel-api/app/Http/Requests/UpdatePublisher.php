@@ -25,6 +25,7 @@ class UpdatePublisher extends FormRequest
     {
         return [
             'name' => 'sometimes|required',
+            'type' => 'sometimes|required|in:sarl,eurl,sa,sas,sasu,snc,scp',
             'description' => 'sometimes|required',
             'founder' => 'sometimes|required',
             'headquarter' => 'sometimes|required',

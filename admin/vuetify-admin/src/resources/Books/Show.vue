@@ -10,8 +10,10 @@
         <va-text-field source="isbn"></va-text-field>
         <va-text-field source="publisher.name"></va-text-field>
         <va-text-field source="title"></va-text-field>
+        <va-enum-field source="category"></va-enum-field>
         <va-text-field source="description"></va-text-field>
         <va-text-field source="author"></va-text-field>
+        <va-enum-field source="formats" multiple></va-enum-field>
         <va-number-field source="price" format="currency"></va-number-field>
         <va-boolean-field source="commentable"></va-boolean-field>
         <va-date-field source="publication_date" format="long"></va-date-field>
