@@ -1,4 +1,7 @@
-import Datagrid from "./Layout/Datagrid";
+import Datagrid from "./List/Datagrid";
+import SimpleList from "./List/SimpleList";
+import SingleFieldList from "./List/SingleFieldList";
+
 import Form from "./Layout/Form";
 import FormSave from "./Layout/FormSave";
 import SimpleShow from "./Layout/SimpleShow";
@@ -36,6 +39,8 @@ import RichTextInput from "./Inputs/RichTextInput";
 
 export {
   Datagrid,
+  SimpleList,
+  SingleFieldList,
   Form,
   FormSave,
   SimpleShow,

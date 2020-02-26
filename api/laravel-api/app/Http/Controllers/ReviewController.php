@@ -28,12 +28,13 @@ class ReviewController extends Controller
     {
         return new ReviewCollection(
             QueryBuilder::for(Review::class)
-                ->allowedFields(['id', 'book_id', 'rating', 'body', 'author', 'publication_date'])
+                ->allowedFields(['id', 'book_id', 'rating', 'status', 'body', 'author', 'publication_date'])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['author', 'body'])),
                     AllowedFilter::exact('id'),
                     AllowedFilter::exact('book_id'),
                     AllowedFilter::exact('rating'),
+                    AllowedFilter::exact('status'),
                     'author',
                     AllowedFilter::scope('published_before'),
                     AllowedFilter::scope('published_after'),

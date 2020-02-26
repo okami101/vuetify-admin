@@ -1,8 +1,6 @@
 <template>
   <va-field v-bind="$props">
-    <template v-slot:default>
-      <slot :resource="resource" :items="value"></slot>
-    </template>
+    <slot :resource="resource" :items="value"></slot>
   </va-field>
 </template>
 

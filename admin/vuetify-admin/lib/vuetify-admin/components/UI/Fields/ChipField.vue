@@ -4,9 +4,13 @@
       getLabel(value)
     }}</v-chip>
     <span v-else>
-      <v-chip v-for="(v, i) in value" :key="i" :color="getColor(value)">{{
-        getLabel(v)
-      }}</v-chip>
+      <v-chip
+        v-for="(v, i) in value"
+        :key="i"
+        :color="getColor(value)"
+        class="mr-2 mb-2"
+        >{{ getLabel(v) }}</v-chip
+      >
     </span>
   </va-field>
 </template>
@@ -21,14 +25,14 @@ export default {
     enum: Boolean,
     color: [String, Function]
   },
-  computed: {
+  methods: {
     getLabel(value) {
       return this.enum
-        ? this.$t(`resources.${resource}.enums.${source}.${value}`)
+        ? this.$t(`resources.${this.resource}.enums.${this.source}.${value}`)
         : value;
     },
     getColor(value) {
-      return this.color === "string" ? this.color : this.color(value);
+      return typeof this.color === "function" ? this.color(value) : this.color;
     }
   }
 };

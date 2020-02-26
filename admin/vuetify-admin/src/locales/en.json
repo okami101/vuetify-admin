@@ -103,6 +103,7 @@
       "name": "Review | Reviews",
       "fields": {
         "id": "ID",
+        "status": "Status",
         "body": "Body",
         "publication_date": "Publication date",
         "author": "Author",
@@ -110,6 +111,13 @@
         "book": "Book",
         "published_before": "Published before",
         "published_after": "Published after"
+      },
+      "enums": {
+        "status": {
+          "published": "Published",
+          "pending": "Pending",
+          "denied": "Denied"
+        }
       }
     }
   }

@@ -47,30 +47,32 @@
       </slot>
     </template>
     <template v-slot:item.actions="{ item }">
-      <slot name="actions-item" v-bind="{ resource, item }">
-        <va-show-button
-          v-if="rowClick !== 'show'"
-          :resource="resource"
-          :item="item"
-          icon
-        ></va-show-button>
-        <va-edit-button
-          v-if="rowClick !== 'edit'"
-          :resource="resource"
-          :item="item"
-          icon
-        ></va-edit-button>
-        <va-delete-button
-          :resource="resource"
-          :item="item"
-          icon
-        ></va-delete-button>
-        <va-clone-button
-          :resource="resource"
-          :item="item"
-          icon
-        ></va-clone-button>
-      </slot>
+      <div class="item-actions">
+        <slot name="actions-item" v-bind="{ resource, item }">
+          <va-show-button
+            v-if="rowClick !== 'show'"
+            :resource="resource"
+            :item="item"
+            icon
+          ></va-show-button>
+          <va-edit-button
+            v-if="rowClick !== 'edit'"
+            :resource="resource"
+            :item="item"
+            icon
+          ></va-edit-button>
+          <va-delete-button
+            :resource="resource"
+            :item="item"
+            icon
+          ></va-delete-button>
+          <va-clone-button
+            :resource="resource"
+            :item="item"
+            icon
+          ></va-clone-button>
+        </slot>
+      </div>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
@@ -81,25 +83,19 @@
 </template>
 
 <script>
+import List from "vuetify-admin/mixins/list";
 import { mapState } from "vuex";
 
 export default {
   name: "Datagrid",
+  mixins: [List],
   props: {
-    resource: {
-      type: String,
-      required: true
-    },
     rowClick: {
       type: String,
       default: null,
       validator: v => ["show", "edit"].includes(v)
     },
     value: {
-      type: Array,
-      default: () => []
-    },
-    items: {
       type: Array,
       default: () => []
     },
@@ -211,5 +207,9 @@ export default {
 
 .v-data-table.clickable-rows tr {
   cursor: pointer;
+}
+
+.v-data-table .item-actions {
+  white-space: nowrap;
 }
 </style>

@@ -2,6 +2,11 @@
   <va-list
     :fields="[
       'id',
+      {
+        source: 'status',
+        type: 'chip',
+        options: { enum: true, color: v => $statusColor(v) }
+      },
       { source: 'rating', type: 'rating' },
       'author',
       { source: 'publication_date', type: 'date', options: { format: 'long' } }

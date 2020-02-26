@@ -7,7 +7,7 @@
       { source: 'publisher.id', hidden: true },
       'publisher.name',
       'title',
-      { source: 'category', type: 'enum' },
+      { source: 'category', type: 'chip', options: { enum: true } },
       'author',
       {
         source: 'price',

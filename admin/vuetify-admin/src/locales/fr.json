@@ -103,6 +103,7 @@
       "name": "Commentaire | Commentaires",
       "fields": {
         "id": "ID",
+        "status": "Statut",
         "body": "Corps",
         "publication_date": "Date de publication",
         "author": "Auteur",
@@ -110,6 +111,13 @@
         "book": "Livre",
         "published_before": "Publié avant",
         "published_after": "Publié après"
+      },
+      "enums": {
+        "status": {
+          "published": "Publié",
+          "pending": "En cours",
+          "denied": "Refusé"
+        }
       }
     }
   }

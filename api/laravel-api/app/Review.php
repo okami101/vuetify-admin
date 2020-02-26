@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property int $book_id
  * @property int $rating
+ * @property string $status
  * @property string|null $body
  * @property string $author
  * @property Carbon $publication_date
@@ -30,6 +31,7 @@ class Review extends Model
     protected $fillable = [
         'book_id',
         'rating',
+        'status',
         'body',
         'author',
         'publication_date',

@@ -1,7 +1,7 @@
 <template>
   <va-field v-bind="$props">
     <span v-if="typeof value === 'string'">{{ getLabel(value) }}</span>
-    <span v-else>{{ value.map(v => getLabel(v)).join(", ") }}</span>
+    <span v-else>{{ (value || []).map(v => getLabel(v)).join(", ") }}</span>
   </va-field>
 </template>
 

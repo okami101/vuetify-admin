@@ -26,6 +26,16 @@ files.keys().map(key => {
   Vue.component(`${dir}${name.split(".")[0]}`, files(key).default);
 });
 
+Vue.prototype.$statusColor = s => {
+  const colors = {
+    published: "success",
+    pending: "warning",
+    denied: "error"
+  };
+
+  return colors[s];
+};
+
 new Vue({
   router: router(i18n),
   store,
