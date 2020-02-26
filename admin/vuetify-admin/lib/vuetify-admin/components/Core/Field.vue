@@ -8,10 +8,11 @@ export default {
   },
   props: {
     label: String,
+    inline: Boolean,
     addLabel: Boolean
   },
   render(c) {
-    if (this.label === "") {
+    if (this.inline) {
       return this.$slots.default;
     }
 

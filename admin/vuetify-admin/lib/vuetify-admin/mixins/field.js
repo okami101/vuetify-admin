@@ -11,6 +11,7 @@ export default {
         return this.$t(`resources.${this.resource}.fields.${this.source}`);
       }
     },
+    inline: Boolean,
     addLabel: {
       type: Boolean,
       default: true

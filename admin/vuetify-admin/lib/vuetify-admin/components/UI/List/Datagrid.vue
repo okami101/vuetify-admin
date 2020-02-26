@@ -42,7 +42,7 @@
           :source="field.source"
           :item="item"
           v-bind="field.options"
-          label=""
+          inline
         ></component>
       </slot>
     </template>
