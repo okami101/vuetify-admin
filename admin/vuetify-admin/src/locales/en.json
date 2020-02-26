@@ -39,6 +39,7 @@
         "description": "Description",
         "founder": "Founder",
         "headquarter": "Headquarter",
+        "active": "Active",
         "opening_date": "Opening date",
         "books_count": "Books count"
       }

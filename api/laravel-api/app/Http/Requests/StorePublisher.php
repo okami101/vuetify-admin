@@ -28,6 +28,7 @@ class StorePublisher extends FormRequest
             'description' => 'required',
             'founder' => 'required',
             'headquarter' => 'required',
+            'active' => 'boolean',
             'opening_date' => 'required|date',
         ];
     }

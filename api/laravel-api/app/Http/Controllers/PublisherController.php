@@ -29,13 +29,14 @@ class PublisherController extends Controller
     {
         return new PublisherCollection(
             QueryBuilder::for(Publisher::class)
-                ->allowedFields('id', 'name', 'description', 'founder', 'headquarter', 'opening_date')
+                ->allowedFields('id', 'name', 'description', 'founder', 'headquarter', 'active', 'opening_date')
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['name', 'founder', 'headquarter', 'description'])),
                     AllowedFilter::exact('id'),
                     'name',
                     'founder',
                     'headquarter',
+                    AllowedFilter::exact('active'),
                 ])
                 ->allowedIncludes([
                     AllowedInclude::count('books_count'),

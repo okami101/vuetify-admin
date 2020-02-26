@@ -638,28 +638,29 @@
         },
         {
             "name": "fruitcake/laravel-cors",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruitcake/laravel-cors.git",
-                "reference": "4b1f95aeaef2c8c201519833ad212bcbf909f15e"
+                "reference": "138ad34ba5f578283e94c5614f6c48a10bc3ac6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/4b1f95aeaef2c8c201519833ad212bcbf909f15e",
-                "reference": "4b1f95aeaef2c8c201519833ad212bcbf909f15e",
+                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/138ad34ba5f578283e94c5614f6c48a10bc3ac6a",
+                "reference": "138ad34ba5f578283e94c5614f6c48a10bc3ac6a",
                 "shasum": ""
             },
             "require": {
                 "asm89/stack-cors": "^1.3",
-                "illuminate/support": "^5.5|^6.0|^7.0",
+                "illuminate/contracts": "^5.5|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.5|^6.0|^7.0|^8.0",
                 "php": ">=7",
-                "symfony/http-foundation": "^3.3|^4|^5.0",
-                "symfony/http-kernel": "^3.3|^4|^5.0"
+                "symfony/http-foundation": "^3.3|^4.0|^5.0",
+                "symfony/http-kernel": "^3.3|^4.0|^5.0"
             },
             "require-dev": {
-                "laravel/framework": "^5.5|^6.0|^7.0",
-                "orchestra/testbench": "^3.5|^4.0|^5.0",
+                "laravel/framework": "^5.5|^6.0|^7.0|^8.0",
+                "orchestra/testbench": "^3.5|^4.0|^5.0|^6.0",
                 "phpro/grumphp": "^0.16|^0.17",
                 "phpunit/phpunit": "^6.0|^7.0|^8.0",
                 "squizlabs/php_codesniffer": "^3.5"
@@ -701,7 +702,7 @@
                 "crossdomain",
                 "laravel"
             ],
-            "time": "2019-12-31T17:28:15+00:00"
+            "time": "2020-02-21T13:24:15+00:00"
         },
         {
             "name": "intervention/validation",
@@ -911,16 +912,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.16.0",
+            "version": "v6.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b47217e41868d3049ec545cbb713aa94c6f39e55"
+                "reference": "32d1ed55dd46dcd706ff2e45bb7965be7320b87d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b47217e41868d3049ec545cbb713aa94c6f39e55",
-                "reference": "b47217e41868d3049ec545cbb713aa94c6f39e55",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/32d1ed55dd46dcd706ff2e45bb7965be7320b87d",
+                "reference": "32d1ed55dd46dcd706ff2e45bb7965be7320b87d",
                 "shasum": ""
             },
             "require": {
@@ -1053,7 +1054,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-02-18T15:17:52+00:00"
+            "time": "2020-02-26T14:23:01+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2066,27 +2067,27 @@
         },
         {
             "name": "spatie/laravel-query-builder",
-            "version": "2.7.0",
+            "version": "2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-query-builder.git",
-                "reference": "366aaca9cf6195357812f01f412fe878cec414f5"
+                "reference": "c50eefcad8168aa549dc0436bd5ce62c676afc04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/366aaca9cf6195357812f01f412fe878cec414f5",
-                "reference": "366aaca9cf6195357812f01f412fe878cec414f5",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/c50eefcad8168aa549dc0436bd5ce62c676afc04",
+                "reference": "c50eefcad8168aa549dc0436bd5ce62c676afc04",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "~5.6.34|~5.7.0|~5.8.0|^6.0",
-                "illuminate/http": "~5.6.34|~5.7.0|~5.8.0|^6.0",
-                "illuminate/support": "~5.6.34|~5.7.0|~5.8.0|^6.0",
+                "illuminate/database": "~5.8.0|^6.0",
+                "illuminate/http": "~5.8.0|^6.0",
+                "illuminate/support": "~5.8.0|^6.0",
                 "php": "^7.1"
             },
             "require-dev": {
                 "ext-json": "*",
-                "orchestra/testbench": "~3.6.0|~3.7.0|~3.8.0|^4.0",
+                "orchestra/testbench": "~3.8.0|^4.0",
                 "phpunit/phpunit": "^7.0|^8.0"
             },
             "type": "library",
@@ -2120,7 +2121,7 @@
                 "laravel-query-builder",
                 "spatie"
             ],
-            "time": "2020-02-11T10:15:49+00:00"
+            "time": "2020-02-26T14:38:17+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3845,33 +3846,33 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.6.6",
+            "version": "v2.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "b91b959364d97af658f268c733c75dccdbff197e"
+                "reference": "edd69c5e0508972c81f1f7173236de2459c45814"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/b91b959364d97af658f268c733c75dccdbff197e",
-                "reference": "b91b959364d97af658f268c733c75dccdbff197e",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/edd69c5e0508972c81f1f7173236de2459c45814",
+                "reference": "edd69c5e0508972c81f1f7173236de2459c45814",
                 "shasum": ""
             },
             "require": {
                 "barryvdh/reflection-docblock": "^2.0.6",
                 "composer/composer": "^1.6",
                 "doctrine/dbal": "~2.3",
-                "illuminate/console": "^5.5|^6",
-                "illuminate/filesystem": "^5.5|^6",
-                "illuminate/support": "^5.5|^6",
-                "php": ">=7"
+                "illuminate/console": "^5.5|^6|^7",
+                "illuminate/filesystem": "^5.5|^6|^7",
+                "illuminate/support": "^5.5|^6|^7",
+                "php": ">=7.2"
             },
             "require-dev": {
-                "illuminate/config": "^5.5|^6",
-                "illuminate/view": "^5.5|^6",
-                "phpro/grumphp": "^0.14",
-                "phpunit/phpunit": "4.*",
-                "scrutinizer/ocular": "~1.1",
+                "illuminate/config": "^5.5|^6|^7",
+                "illuminate/view": "^5.5|^6|^7",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^3|^4",
+                "phpro/grumphp": "^0.17.1",
                 "squizlabs/php_codesniffer": "^3"
             },
             "type": "library",
@@ -3912,7 +3913,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2019-10-30T20:53:27+00:00"
+            "time": "2020-02-25T20:41:32+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
@@ -4021,16 +4022,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.9.3",
+            "version": "1.10.0-RC",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "1291a16ce3f48bfdeca39d64fca4875098af4d7b"
+                "reference": "ec39b4cbb5e012365d70cd95969ea11780d3c1fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/1291a16ce3f48bfdeca39d64fca4875098af4d7b",
-                "reference": "1291a16ce3f48bfdeca39d64fca4875098af4d7b",
+                "url": "https://api.github.com/repos/composer/composer/zipball/ec39b4cbb5e012365d70cd95969ea11780d3c1fc",
+                "reference": "ec39b4cbb5e012365d70cd95969ea11780d3c1fc",
                 "shasum": ""
             },
             "require": {
@@ -4043,17 +4044,17 @@
                 "psr/log": "^1.0",
                 "seld/jsonlint": "^1.4",
                 "seld/phar-utils": "^1.0",
-                "symfony/console": "^2.7 || ^3.0 || ^4.0",
-                "symfony/filesystem": "^2.7 || ^3.0 || ^4.0",
-                "symfony/finder": "^2.7 || ^3.0 || ^4.0",
-                "symfony/process": "^2.7 || ^3.0 || ^4.0"
+                "symfony/console": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "symfony/filesystem": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "symfony/finder": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "symfony/process": "^2.7 || ^3.0 || ^4.0 || ^5.0"
             },
             "conflict": {
                 "symfony/console": "2.8.38"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "phpunit/phpunit-mock-objects": "^2.3 || ^3.0"
+                "phpspec/prophecy": "^1.10",
+                "symfony/phpunit-bridge": "^3.4"
             },
             "suggest": {
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
@@ -4066,7 +4067,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.9-dev"
+                    "dev-master": "1.10-dev"
                 }
             },
             "autoload": {
@@ -4097,7 +4098,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-02-04T11:58:49+00:00"
+            "time": "2020-02-14T14:11:30+00:00"
         },
         {
             "name": "composer/semver",
@@ -5255,16 +5256,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.0.0",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f"
+                "reference": "cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/a48807183a4b819072f26e347bbd0b5199a9d15f",
-                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e",
+                "reference": "cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e",
                 "shasum": ""
             },
             "require": {
@@ -5304,7 +5305,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-02-09T09:16:15+00:00"
+            "time": "2020-02-22T12:28:44+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -6594,26 +6595,26 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.4",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "266c9540b475f26122b61ef8b23dd9198f5d1cfd"
+                "reference": "3afadc0f57cd74f86379d073e694b0f2cda2a88c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/266c9540b475f26122b61ef8b23dd9198f5d1cfd",
-                "reference": "266c9540b475f26122b61ef8b23dd9198f5d1cfd",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3afadc0f57cd74f86379d073e694b0f2cda2a88c",
+                "reference": "3afadc0f57cd74f86379d073e694b0f2cda2a88c",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -6640,7 +6641,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-21T08:20:44+00:00"
+            "time": "2020-01-21T08:40:24+00:00"
         },
         {
             "name": "symfony/options-resolver",

@@ -49,29 +49,29 @@ export default i18n => {
         let messages = {
           [CREATE]: () =>
             i18n.t("va.messages.created", {
-              resource: i18n.tc(`resources.${resource}`, 1)
+              resource: i18n.tc(`resources.${resource}.name`, 1)
             }),
           [UPDATE]: () =>
             i18n.t("va.messages.updated", {
-              resource: i18n.tc(`resources.${resource}`, 1),
+              resource: i18n.tc(`resources.${resource}.name`, 1),
               id: params.id
             }),
           [UPDATE_MANY]: () =>
             i18n.t("va.messages.updated_many", {
               resource: i18n
-                .tc(`resources.${resource}`, params.ids.length)
+                .tc(`resources.${resource}.name`, params.ids.length)
                 .toLowerCase(),
               count: params.ids.length
             }),
           [DELETE]: () =>
             i18n.t("va.messages.deleted", {
-              resource: i18n.tc(`resources.${resource}`, 1),
+              resource: i18n.tc(`resources.${resource}.name`, 1),
               id: params.id
             }),
           [DELETE_MANY]: () =>
             i18n.t("va.messages.deleted_many", {
               resource: i18n
-                .tc(`resources.${resource}`, params.ids.length)
+                .tc(`resources.${resource}.name`, params.ids.length)
                 .toLowerCase(),
               count: params.ids.length
             })

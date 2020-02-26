@@ -39,6 +39,7 @@
         "description": "Description",
         "founder": "Fondateur",
         "headquarter": "Siège",
+        "active": "Actif",
         "opening_date": "Date d'ouverture",
         "books_count": "Nombre de livres"
       }

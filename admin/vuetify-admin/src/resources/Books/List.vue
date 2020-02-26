@@ -31,6 +31,15 @@
   >
     <template v-slot="props">
       <va-datagrid v-bind="props" show-expand>
+        <template v-slot:isbn="{ item, value }">
+          <router-link
+            :to="{
+              name: 'books_show',
+              params: { id: item.id }
+            }"
+            >{{ value }}</router-link
+          >
+        </template>
         <template v-slot:publisher.name="{ item, value }">
           <router-link
             :to="{

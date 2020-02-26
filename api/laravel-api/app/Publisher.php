@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $founder
  * @property string $headquarter
+ * @property bool $active
  * @property string $opening_date
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
  * @property-read int|null $books_count
@@ -29,11 +30,16 @@ class Publisher extends Model
         'description',
         'founder',
         'headquarter',
+        'active',
         'opening_date',
     ];
 
     protected $dates = [
         'opening_date'
+    ];
+
+    protected $casts = [
+        'active' => 'boolean'
     ];
 
     public function books()

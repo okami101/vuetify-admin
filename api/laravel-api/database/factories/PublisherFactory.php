@@ -11,6 +11,7 @@ $factory->define(Publisher::class, function (Faker $faker) {
         'description' => $faker->paragraph(10),
         'founder' => $faker->name,
         'headquarter' => $faker->city,
+        'active' => $faker->boolean(80),
         'opening_date' => $faker->dateTime,
     ];
 });

@@ -1,16 +1,22 @@
 <template>
-  <v-btn
-    v-if="can(this.resource, 'create')"
-    text
-    exact
-    :to="`/${resource}/create`"
-    :color="color"
-  >
-    <v-icon small>mdi-plus</v-icon>
-    <span v-if="!icon" class="ml-2">
-      {{ $t("va.actions.create") }}
-    </span>
-  </v-btn>
+  <v-tooltip bottom :disabled="!icon">
+    <template v-slot:activator="{ on }">
+      <v-btn
+        v-if="can(resource, 'create')"
+        text
+        exact
+        :to="`/${resource}/create`"
+        :color="color"
+        v-on="on"
+      >
+        <v-icon small>mdi-plus</v-icon>
+        <span v-if="!icon" class="ml-2">
+          {{ $t("va.actions.create") }}
+        </span>
+      </v-btn>
+    </template>
+    <span>{{ $t("va.actions.create") }}</span>
+  </v-tooltip>
 </template>
 
 <script>

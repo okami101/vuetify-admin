@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip bottom>
+  <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
         v-if="item && can(resource, 'show')"

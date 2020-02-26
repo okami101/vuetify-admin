@@ -5,10 +5,17 @@
       'name',
       'founder',
       'headquarter',
+      { source: 'active', type: 'boolean' },
       { source: 'opening_date', type: 'date', options: { format: 'long' } },
       { source: 'books_count', type: 'number' }
     ]"
-    :filters="['q', 'name', 'founder', 'headquarter']"
+    :filters="[
+      'q',
+      'name',
+      'founder',
+      'headquarter',
+      { source: 'active', type: 'boolean' }
+    ]"
     :include="['books_count']"
   >
     <template v-slot="props">

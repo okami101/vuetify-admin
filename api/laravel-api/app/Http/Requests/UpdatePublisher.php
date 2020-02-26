@@ -28,6 +28,7 @@ class UpdatePublisher extends FormRequest
             'description' => 'sometimes|required',
             'founder' => 'sometimes|required',
             'headquarter' => 'sometimes|required',
+            'active' => 'sometimes|boolean',
             'opening_date' => 'sometimes|required|date',
         ];
     }
