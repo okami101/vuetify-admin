@@ -15,7 +15,7 @@
         options: { format: 'currency' }
       },
       { source: 'commentable', type: 'boolean', editable: true },
-      { source: 'formats', type: 'enum' },
+      { source: 'formats', type: 'select' },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"

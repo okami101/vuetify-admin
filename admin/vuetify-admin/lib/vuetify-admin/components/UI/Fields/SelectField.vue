@@ -9,7 +9,7 @@
 import Field from "vuetify-admin/mixins/field";
 
 export default {
-  name: "EnumField",
+  name: "SelectField",
   mixins: [Field],
   methods: {
     getLabel(value) {
