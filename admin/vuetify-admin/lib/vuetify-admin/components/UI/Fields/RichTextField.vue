@@ -1,6 +1,6 @@
 <template>
   <va-field v-bind="$props">
-    <span v-html="record[source]"></span>
+    <span v-html="value"></span>
   </va-field>
 </template>
 

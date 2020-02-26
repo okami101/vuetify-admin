@@ -71,14 +71,12 @@
       </template>
       <template v-slot:default>
         <slot
-          :resource="resource"
-          :items="items"
-          :fields="getFields.filter(f => !f.hidden)"
+          v-bind="{ resource, items, loading, itemsPerPage }"
+          :fields="getVisibleFields"
           :value="selected"
           :server-items-length="total"
-          :loading="loading"
-          :items-per-page="itemsPerPage"
-        ></slot>
+        >
+        </slot>
       </template>
       <template v-slot:loading>
         <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
@@ -166,6 +164,9 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
+    getVisibleFields() {
+      return this.getFields.filter(f => !f.hidden);
+    },
     getFields() {
       return this.getFormattedFields(this.fields);
     },
@@ -229,13 +230,15 @@ export default {
             : f;
         })
         .map(f => {
-          return {
-            ...f,
-            type: f.type || "text",
-            label:
-              f.label ||
-              this.$t(`resources.${this.resource}.fields.${f.source}`)
-          };
+          return f.hidden
+            ? f
+            : {
+                ...f,
+                type: f.type || "text",
+                label:
+                  f.label ||
+                  this.$t(`resources.${this.resource}.fields.${f.source}`)
+              };
         });
     },
     initFiltersFromQuery() {
@@ -308,9 +311,12 @@ export default {
       let { data, total } = await this.getList({
         resource: this.resource,
         params: {
-          fields: this.getFields
-            .filter(f => !this.include.includes(f.source))
-            .map(f => f.source),
+          fields: this.getFieldsQuery(
+            this.resource,
+            this.getFields
+              .filter(f => !this.include.includes(f.source))
+              .map(f => f.source)
+          ),
           include: this.include,
           pagination: {
             page,
@@ -329,6 +335,20 @@ export default {
       this.loading = false;
       this.items = data;
       this.total = total;
+    },
+    getFieldsQuery(resource, sources, fields = {}) {
+      sources.forEach(s => {
+        let segments = s.split(".");
+
+        if (segments.length === 1) {
+          let f = fields[resource] || [];
+          fields[resource] = [...f, segments[0]];
+          return;
+        }
+
+        return this.getFieldsQuery(segments[0], segments.splice(1), fields);
+      });
+      return fields;
     },
     async onDelete(item) {
       this.loadData();

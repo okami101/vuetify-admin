@@ -53,7 +53,9 @@
         "summary": "Résumé",
         "publication_date": "Date de publication",
         "author": "Auteur",
-        "publisher": "Editeur",
+        "publisher": {
+          "name": "Éditeur"
+        },
         "reviews": "Commentaires",
         "price": "Prix",
         "commentable": "Commentable",

@@ -1,7 +1,7 @@
 <template>
   <va-field v-bind="$props">
     <v-rating
-      :value="record[source]"
+      :value="value"
       readonly
       dense
       :color="color"

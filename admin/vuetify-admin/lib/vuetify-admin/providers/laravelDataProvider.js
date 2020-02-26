@@ -19,7 +19,9 @@ export default entrypoint => {
         const { fields, include, pagination, sort, filter } = params;
 
         if (fields) {
-          resourceUrl.searchParams.set(`fields[${resource}]`, fields.join(","));
+          Object.keys(fields).forEach(r => {
+            resourceUrl.searchParams.set(`fields[${r}]`, fields[r].join(","));
+          });
         }
 
         if (include) {

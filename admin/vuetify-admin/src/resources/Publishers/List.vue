@@ -12,7 +12,7 @@
     :include="['books_count']"
   >
     <template v-slot="props">
-      <va-datagrid v-bind="props"></va-datagrid>
+      <va-datagrid v-bind="props" row-click="show"></va-datagrid>
     </template>
   </va-list>
 </template>

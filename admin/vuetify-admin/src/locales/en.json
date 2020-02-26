@@ -53,7 +53,9 @@
         "summary": "Summary",
         "publication_date": "Publication date",
         "author": "Author",
-        "publisher": "Publisher",
+        "publisher": {
+          "name": "Publisher"
+        },
         "reviews": "Reviews",
         "price": "Price",
         "commentable": "Commentable",

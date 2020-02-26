@@ -3,10 +3,10 @@
     :fields="[
       'id',
       'isbn',
+      { source: 'publisher_id', hidden: true },
+      { source: 'publisher.id', hidden: true },
+      'publisher.name',
       'title',
-      //{ source: 'publisher_id', hidden: true },
-      //{ source: 'publisher.id', hidden: true },
-      //'publisher.name',
       'author',
       {
         source: 'price',
@@ -31,6 +31,15 @@
   >
     <template v-slot="props">
       <va-datagrid v-bind="props" show-expand>
+        <template v-slot:publisher.name="{ item, value }">
+          <router-link
+            :to="{
+              name: 'publishers_show',
+              params: { id: item.publisher_id }
+            }"
+            >{{ value }}</router-link
+          >
+        </template>
         <template v-slot:expanded-item="{ item }">
           <va-text-field :item="item" source="description"></va-text-field>
         </template>

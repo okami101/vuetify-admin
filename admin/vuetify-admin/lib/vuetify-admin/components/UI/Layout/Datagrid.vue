@@ -20,16 +20,16 @@
   >
     <template
       v-for="field in fields"
-      v-slot:[`item.${field.source}`]="{ item }"
+      v-slot:[`item.${field.source}`]="{ item, value }"
     >
-      <slot :name="field.source" v-bind="{ item }">
+      <slot :name="field.source" v-bind="{ item, value }">
         <span @click.stop v-if="field.editable" :key="field.source">
           <component
             :is="`va-${field.type}-input`"
             :source="field.source"
             edit
             :item="item"
-            :value="item[field.source]"
+            :value="value"
             dense
             label=""
             v-bind="field.options"
@@ -48,8 +48,18 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <slot name="actions-item" v-bind="{ resource, item }">
-        <va-show-button :resource="resource" :item="item" icon></va-show-button>
-        <va-edit-button :resource="resource" :item="item" icon></va-edit-button>
+        <va-show-button
+          v-if="rowClick !== 'show'"
+          :resource="resource"
+          :item="item"
+          icon
+        ></va-show-button>
+        <va-edit-button
+          v-if="rowClick !== 'edit'"
+          :resource="resource"
+          :item="item"
+          icon
+        ></va-edit-button>
         <va-delete-button
           :resource="resource"
           :item="item"

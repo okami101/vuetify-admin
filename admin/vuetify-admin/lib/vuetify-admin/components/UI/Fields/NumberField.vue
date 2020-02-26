@@ -1,6 +1,6 @@
 <template>
   <va-field v-bind="$props">
-    <span>{{ numberFormatted(record[source]) }}</span>
+    <span>{{ numberFormatted(value) }}</span>
   </va-field>
 </template>
 
