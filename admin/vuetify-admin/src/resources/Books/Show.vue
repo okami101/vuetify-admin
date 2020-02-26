@@ -8,6 +8,7 @@
     >
       <template v-slot:attributes>
         <va-text-field source="isbn"></va-text-field>
+        <va-text-field source="publisher.name"></va-text-field>
         <va-text-field source="title"></va-text-field>
         <va-text-field source="description"></va-text-field>
         <va-text-field source="author"></va-text-field>
