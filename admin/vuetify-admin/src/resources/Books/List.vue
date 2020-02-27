@@ -3,11 +3,15 @@
     :fields="[
       'id',
       'isbn',
+      {
+        source: 'category',
+        type: 'enum',
+        options: { chip: true }
+      },
       { source: 'publisher_id', hidden: true },
       { source: 'publisher.id', hidden: true },
       'publisher.name',
       'title',
-      { source: 'category', type: 'enum', options: { chip: true } },
       'author',
       {
         source: 'price',
@@ -15,7 +19,12 @@
         options: { format: 'currency' }
       },
       { source: 'commentable', type: 'boolean', editable: true },
-      { source: 'formats', type: 'array', options: { enum: true } },
+      {
+        source: 'formats',
+        type: 'enum',
+        multiple: true,
+        options: { chip: true, small: true, color: 'warning' }
+      },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"

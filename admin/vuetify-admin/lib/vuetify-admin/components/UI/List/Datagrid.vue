@@ -36,6 +36,26 @@
             @change="val => updateItem({ item, source: field.source, val })"
           ></component>
         </span>
+        <va-array-field
+          v-else-if="field.multiple"
+          :source="field.source"
+          :item="item"
+          inline
+        >
+          <template v-slot="{ items }">
+            <va-single-field-list :items="items">
+              <template v-slot="{ item }">
+                <component
+                  :is="`va-${field.type}-field`"
+                  :source="field.source"
+                  :item="item"
+                  v-bind="field.options"
+                  inline
+                ></component>
+              </template>
+            </va-single-field-list>
+          </template>
+        </va-array-field>
         <component
           v-else
           :is="`va-${field.type}-field`"

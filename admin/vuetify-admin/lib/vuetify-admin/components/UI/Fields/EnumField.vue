@@ -1,7 +1,7 @@
 <template>
   <va-field v-bind="$props">
     <slot :value="getLabel(value)">
-      <v-chip v-if="chip" :color="getColor(value)">{{
+      <v-chip v-if="chip" :color="getColor(value)" :small="small">{{
         getLabel(value)
       }}</v-chip>
       <span v-else>{{ getLabel(value) }}</span>
@@ -17,7 +17,8 @@ export default {
   mixins: [Field],
   props: {
     chip: Boolean,
-    color: [String, Function]
+    color: [String, Function],
+    small: Boolean
   },
   methods: {
     getLabel(value) {

@@ -1,6 +1,6 @@
 <template>
   <va-field v-bind="$props">
-    <v-chip :color="getColor(value)">{{ value }}</v-chip>
+    <v-chip :color="getColor(value)" :small="small">{{ value }}</v-chip>
   </va-field>
 </template>
 
@@ -11,7 +11,8 @@ export default {
   name: "ChipField",
   mixins: [Field],
   props: {
-    color: [String, Function]
+    color: [String, Function],
+    small: Boolean
   },
   methods: {
     getColor(value) {
