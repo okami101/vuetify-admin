@@ -2,11 +2,7 @@
   <va-list
     :fields="[
       'id',
-      {
-        source: 'status',
-        type: 'chip',
-        options: { enum: true, color: v => $statusColor(v) }
-      },
+      'status',
       { source: 'rating', type: 'rating' },
       'author',
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
@@ -24,6 +20,11 @@
     <va-datagrid v-bind="props" show-expand>
       <template v-slot:expanded-item="{ item }">
         <va-text-field :item="item" source="body"></va-text-field>
+      </template>
+      <template v-slot:status="{ item, value }">
+        <va-chip-field :color="$statusColor(value)" inline>
+          <va-enum-field source="status" :item="item" inline></va-enum-field>
+        </va-chip-field>
       </template>
     </va-datagrid>
   </va-list>

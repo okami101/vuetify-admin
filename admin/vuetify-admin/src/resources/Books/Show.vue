@@ -15,7 +15,7 @@
         <va-text-field source="author"></va-text-field>
         <va-array-field source="formats" v-slot="{ items }">
           <va-single-field-list :items="items" v-slot="{ item }">
-            <va-chip-field color="warning" inline>
+            <va-chip-field color="yellow" inline>
               <va-enum-field
                 source="formats"
                 :item="item"
