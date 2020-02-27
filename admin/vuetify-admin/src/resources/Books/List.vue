@@ -55,19 +55,15 @@
         <va-text-field :item="item" source="description"></va-text-field>
       </template>
       <template v-slot:category="{ item }">
-        <va-chip-field inline>
-          <va-enum-field source="category" :item="item" inline></va-enum-field>
+        <va-chip-field>
+          <va-enum-field source="category" :item="item"></va-enum-field>
         </va-chip-field>
       </template>
       <template v-slot:formats="{ item }">
-        <va-array-field source="formats" :item="item" v-slot="{ items }" inline>
+        <va-array-field source="formats" :item="item" v-slot="{ items }">
           <va-single-field-list :items="items" v-slot="{ item }">
-            <va-chip-field color="yellow" small inline>
-              <va-enum-field
-                source="formats"
-                :item="item"
-                inline
-              ></va-enum-field>
+            <va-chip-field color="yellow" small>
+              <va-enum-field source="formats" :item="item"></va-enum-field>
             </va-chip-field>
           </va-single-field-list>
         </va-array-field>

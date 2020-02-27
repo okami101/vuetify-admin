@@ -1,9 +1,9 @@
 <template>
-  <va-field v-bind="$props">
+  <div>
     <slot :value="getLabel(value)">
       <span>{{ getLabel(value) }}</span>
     </slot>
-  </va-field>
+  </div>
 </template>
 
 <script>

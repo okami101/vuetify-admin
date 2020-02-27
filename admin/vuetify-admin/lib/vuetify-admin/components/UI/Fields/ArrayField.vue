@@ -1,9 +1,9 @@
 <template>
-  <va-field v-bind="$props">
+  <div>
     <slot :resource="resource" :items="value">
-      {{ (value || []).map(v => getLabel(v)).join(", ") }}
+      {{ (value || []).join(", ") }}
     </slot>
-  </va-field>
+  </div>
 </template>
 
 <script>
@@ -11,16 +11,6 @@ import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "ArrayField",
-  mixins: [Field],
-  props: {
-    enum: Boolean
-  },
-  methods: {
-    getLabel(value) {
-      return this.enum
-        ? this.$t(`resources.${this.resource}.enums.${this.source}.${value}`)
-        : value;
-    }
-  }
+  mixins: [Field]
 };
 </script>

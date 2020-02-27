@@ -1,34 +1,40 @@
+<template>
+  <v-input :label="label">
+    <div>
+      <slot>
+        <component
+          :is="`va-${type}-field`"
+          :source="source"
+          :resource="resource"
+          :item="item"
+          v-bind="options"
+        ></component>
+      </slot>
+    </div>
+  </v-input>
+</template>
+
 <script>
-import { VInput } from "vuetify/lib";
+import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "Field",
-  components: {
-    VInput
-  },
+  mixins: [Item],
   props: {
-    label: String,
-    inline: Boolean,
-    addLabel: Boolean
-  },
-  render(c) {
-    if (this.inline) {
-      return this.$slots.default;
-    }
-
-    if (!this.addLabel) {
-      return c("v-input", this.$slots.default);
-    }
-
-    return c(
-      "v-input",
-      {
-        props: {
-          label: this.label
-        }
-      },
-      [c("div", { class: "va-field" }, this.$slots.default)]
-    );
+    source: String,
+    label: {
+      type: String,
+      default() {
+        return this.source
+          ? this.$t(`resources.${this.resource}.fields.${this.source}`)
+          : "";
+      }
+    },
+    type: {
+      type: String,
+      default: "text"
+    },
+    options: Object
   }
 };
 </script>

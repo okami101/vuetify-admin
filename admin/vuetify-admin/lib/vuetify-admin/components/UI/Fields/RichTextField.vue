@@ -1,7 +1,5 @@
 <template>
-  <va-field v-bind="$props">
-    <span v-html="value"></span>
-  </va-field>
+  <span v-html="value"></span>
 </template>
 
 <script>

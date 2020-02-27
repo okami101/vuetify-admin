@@ -1,13 +1,11 @@
 <template>
-  <va-field v-bind="$props">
-    <v-rating
-      :value="value"
-      readonly
-      dense
-      :color="color"
-      :background-color="backgroundColor"
-    ></v-rating>
-  </va-field>
+  <v-rating
+    :value="value"
+    readonly
+    dense
+    :color="color"
+    :background-color="backgroundColor"
+  ></v-rating>
 </template>
 
 <script>

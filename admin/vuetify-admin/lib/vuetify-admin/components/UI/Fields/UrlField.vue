@@ -1,7 +1,5 @@
 <template>
-  <va-field v-bind="$props">
-    <span>{{ value }}</span>
-  </va-field>
+  <span>{{ value }}</span>
 </template>
 
 <script>

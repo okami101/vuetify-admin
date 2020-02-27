@@ -1,13 +1,19 @@
 <template>
   <va-show>
     <va-simple-show>
-      <va-chip-field source="status" :color="v => $statusColor(v)">
-        <va-enum-field source="status" inline></va-enum-field>
-      </va-chip-field>
-      <va-rating-field source="rating"></va-rating-field>
-      <va-text-field source="body"></va-text-field>
-      <va-text-field source="author"></va-text-field>
-      <va-date-field source="publication_date" format="long"></va-date-field>
+      <va-field source="status">
+        <va-chip-field source="status" :color="v => $statusColor(v)">
+          <va-enum-field source="status"></va-enum-field>
+        </va-chip-field>
+      </va-field>
+      <va-field source="rating" type="rating"></va-field>
+      <va-field source="body"></va-field>
+      <va-field source="author"></va-field>
+      <va-field
+        source="publication_date"
+        type="date"
+        :options="{ format: 'long' }"
+      ></va-field>
     </va-simple-show>
   </va-show>
 </template>

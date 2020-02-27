@@ -22,8 +22,8 @@
         <va-text-field :item="item" source="body"></va-text-field>
       </template>
       <template v-slot:status="{ item, value }">
-        <va-chip-field :color="$statusColor(value)" inline>
-          <va-enum-field source="status" :item="item" inline></va-enum-field>
+        <va-chip-field :color="$statusColor(value)">
+          <va-enum-field source="status" :item="item"></va-enum-field>
         </va-chip-field>
       </template>
     </va-datagrid>

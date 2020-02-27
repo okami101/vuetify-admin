@@ -44,7 +44,6 @@
           :resource="resource"
           :item="item"
           v-bind="field.options"
-          inline
         ></component>
       </slot>
     </template>
