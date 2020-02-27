@@ -19,7 +19,9 @@ export default {
   },
   computed: {
     value() {
-      return get(this.record, this.source);
+      return typeof this.record === "string"
+        ? this.record
+        : get(this.record, this.source);
     }
   }
 };

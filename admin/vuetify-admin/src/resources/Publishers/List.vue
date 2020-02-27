@@ -3,7 +3,7 @@
     :fields="[
       'id',
       'name',
-      { source: 'type', type: 'select' },
+      { source: 'type', type: 'enum' },
       'founder',
       'headquarter',
       { source: 'active', type: 'boolean' },

@@ -7,7 +7,7 @@
       { source: 'publisher.id', hidden: true },
       'publisher.name',
       'title',
-      { source: 'category', type: 'chip', options: { enum: true } },
+      { source: 'category', type: 'enum', options: { chip: true } },
       'author',
       {
         source: 'price',
@@ -15,7 +15,7 @@
         options: { format: 'currency' }
       },
       { source: 'commentable', type: 'boolean', editable: true },
-      { source: 'formats', type: 'select' },
+      { source: 'formats', type: 'array', options: { enum: true } },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"

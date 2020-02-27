@@ -27,7 +27,7 @@ import BooleanField from "./Fields/BooleanField";
 import RichTextField from "./Fields/RichTextField";
 import ArrayField from "./Fields/ArrayField";
 import ChipField from "./Fields/ChipField";
-import SelectField from "./Fields/SelectField";
+import EnumField from "./Fields/EnumField";
 import EmailField from "./Fields/EmailField";
 import UrlField from "./Fields/UrlField";
 import FunctionField from "./Fields/FunctionField";
@@ -79,7 +79,7 @@ export {
   RichTextField,
   ArrayField,
   ChipField,
-  SelectField,
+  EnumField,
   EmailField,
   UrlField,
   FunctionField,

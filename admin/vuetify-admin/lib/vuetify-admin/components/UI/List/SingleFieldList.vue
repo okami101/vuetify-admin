@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div v-for="(item, i) in items" :key="i">
+  <ul>
+    <li v-for="(item, i) in items" :key="i">
       <slot :resource="resource" :item="item"></slot>
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -14,3 +14,14 @@ export default {
   mixins: [List]
 };
 </script>
+
+<style lang="scss" scoped>
+ul {
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+</style>

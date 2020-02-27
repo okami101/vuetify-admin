@@ -4,8 +4,8 @@
       'id',
       {
         source: 'status',
-        type: 'chip',
-        options: { enum: true, color: v => $statusColor(v) }
+        type: 'enum',
+        options: { chip: true, color: v => $statusColor(v) }
       },
       { source: 'rating', type: 'rating' },
       'author',

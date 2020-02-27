@@ -4,7 +4,7 @@ export default {
   mixins: [Resource],
   props: {
     item: {
-      type: Object,
+      type: [String, Object],
       default: () => {}
     }
   },
