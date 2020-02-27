@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $founder
  * @property string $headquarter
+ * @property string $url
+ * @property string $email
  * @property bool $active
  * @property string $opening_date
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
@@ -32,6 +34,8 @@ class Publisher extends Model
         'description',
         'founder',
         'headquarter',
+        'url',
+        'email',
         'active',
         'opening_date',
     ];

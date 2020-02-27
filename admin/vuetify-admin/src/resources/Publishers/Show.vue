@@ -6,6 +6,8 @@
       <va-field source="founder"></va-field>
       <va-field source="description"></va-field>
       <va-field source="headquarter"></va-field>
+      <va-field source="url" type="url"></va-field>
+      <va-field source="email" type="email"></va-field>
       <va-field source="active" type="boolean"></va-field>
       <va-field
         source="opening_date"

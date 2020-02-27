@@ -1,5 +1,5 @@
 <template>
-  <span>{{ value }}</span>
+  <a :href="`mailto:${value}`">{{ value }}</a>
 </template>
 
 <script>

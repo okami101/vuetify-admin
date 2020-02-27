@@ -1,5 +1,5 @@
 <template>
-  <span>{{ value }}</span>
+  <span>{{ render({ item, value }) }}</span>
 </template>
 
 <script>
@@ -7,6 +7,12 @@ import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "FunctionField",
-  mixins: [Field]
+  mixins: [Field],
+  props: {
+    render: {
+      type: Function,
+      required: true
+    }
+  }
 };
 </script>

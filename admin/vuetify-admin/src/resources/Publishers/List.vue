@@ -2,10 +2,19 @@
   <va-list
     :fields="[
       'id',
-      'name',
+      {
+        source: 'name',
+        type: 'function',
+        options: {
+          render: ({ item, value }) =>
+            `${value} (${$t(`resources.publishers.enums.type.${item.type}`)})`
+        }
+      },
       { source: 'type', type: 'enum' },
       'founder',
       'headquarter',
+      { source: 'url', type: 'url' },
+      { source: 'email', type: 'email' },
       { source: 'active', type: 'boolean' },
       { source: 'opening_date', type: 'date', options: { format: 'long' } },
       { source: 'books_count', type: 'number' }

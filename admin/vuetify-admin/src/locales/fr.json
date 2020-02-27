@@ -40,6 +40,8 @@
         "description": "Description",
         "founder": "Fondateur",
         "headquarter": "Siège",
+        "url": "Url",
+        "email": "Email",
         "active": "Actif",
         "opening_date": "Date d'ouverture",
         "books_count": "Nombre de livres"

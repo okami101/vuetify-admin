@@ -1,5 +1,5 @@
 <template>
-  <span>{{ value }}</span>
+  <a :href="`${value}`" target="_blank">{{ value }}</a>
 </template>
 
 <script>

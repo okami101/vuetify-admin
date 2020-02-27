@@ -23,8 +23,9 @@
       v-slot:[`item.${field.source}`]="{ item, value }"
     >
       <slot :name="field.source" v-bind="{ item, value }">
-        <span @click.stop v-if="field.editable" :key="field.source">
+        <span @click.stop :key="field.source">
           <component
+            v-if="field.editable"
             :is="`va-${field.type}-input`"
             :source="field.source"
             :resource="resource"
@@ -36,15 +37,15 @@
             v-bind="field.options"
             @change="val => updateItem({ item, source: field.source, val })"
           ></component>
+          <component
+            v-else
+            :is="`va-${field.type}-field`"
+            :source="field.source"
+            :resource="resource"
+            :item="item"
+            v-bind="field.options"
+          ></component>
         </span>
-        <component
-          v-else
-          :is="`va-${field.type}-field`"
-          :source="field.source"
-          :resource="resource"
-          :item="item"
-          v-bind="field.options"
-        ></component>
       </slot>
     </template>
     <template v-slot:item.actions="{ item }">
