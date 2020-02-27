@@ -8,7 +8,15 @@
     >
       <template v-slot:attributes>
         <va-field source="isbn"></va-field>
-        <va-field source="publisher.name"></va-field>
+        <va-field source="publisher_id">
+          <va-reference-field
+            source="publisher_id"
+            reference="publishers"
+            link="show"
+            property="name"
+          >
+          </va-reference-field>
+        </va-field>
         <va-field source="title"></va-field>
         <va-field source="category">
           <va-chip-field>

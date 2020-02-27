@@ -72,9 +72,7 @@
         "publication_date": "Publication date",
         "author": "Author",
         "formats": "Formats",
-        "publisher": {
-          "name": "Publisher"
-        },
+        "publisher_id": "Publisher",
         "reviews": "Reviews",
         "price": "Price",
         "commentable": "Commentable",

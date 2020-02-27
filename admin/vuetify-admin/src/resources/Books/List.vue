@@ -4,9 +4,11 @@
       'id',
       'isbn',
       'category',
-      { source: 'publisher_id', hidden: true },
-      { source: 'publisher.id', hidden: true },
-      'publisher.name',
+      {
+        source: 'publisher_id',
+        type: 'reference',
+        options: { reference: 'publishers', link: 'show', property: 'name' }
+      },
       'title',
       'author',
       {
@@ -29,7 +31,6 @@
       { source: 'published_before', type: 'date', options: { format: 'long' } },
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
-    :include="['publisher', 'reviews']"
     v-slot="props"
   >
     <va-datagrid v-bind="props" show-expand>
@@ -38,15 +39,6 @@
           :to="{
             name: 'books_show',
             params: { id: item.id }
-          }"
-          >{{ value }}</router-link
-        >
-      </template>
-      <template v-slot:publisher.name="{ item, value }">
-        <router-link
-          :to="{
-            name: 'publishers_show',
-            params: { id: item.publisher_id }
           }"
           >{{ value }}</router-link
         >
