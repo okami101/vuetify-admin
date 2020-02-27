@@ -1,4 +1,6 @@
 {
+  "good": "Good",
+  "bad": "Bad",
   "routes": {
     "login": "Login",
     "dashboard": "Dashboard",
@@ -110,6 +112,7 @@
         "publication_date": "Publication date",
         "author": "Author",
         "rating": "Rating",
+        "quality": "Quality",
         "book": "Book",
         "published_before": "Published before",
         "published_after": "Published after"

@@ -144,9 +144,9 @@ export default {
           value: field.source,
           sortable:
             field.sortable === undefined
-              ? this.getDefaultSort(field.type)
+              ? this.getDefaultSort(field)
               : sortable,
-          align: field.align || this.getDefaultAlign(field.type)
+          align: field.align || this.getDefaultAlign(field)
         };
       });
 
@@ -160,14 +160,14 @@ export default {
     }
   },
   methods: {
-    getDefaultSort(type) {
-      if (["boolean"].includes(type)) {
+    getDefaultSort(field) {
+      if (["boolean"].includes(field.type) || field.virtual) {
         return false;
       }
       return true;
     },
-    getDefaultAlign(type) {
-      if (["number"].includes(type)) {
+    getDefaultAlign(field) {
+      if (["number"].includes(field.type)) {
         return "right";
       }
       return "left";

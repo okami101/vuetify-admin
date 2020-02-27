@@ -4,6 +4,15 @@
       'id',
       'status',
       { source: 'rating', type: 'rating' },
+      {
+        source: 'quality',
+        type: 'function',
+        virtual: true,
+        options: {
+          render: ({ item, value }) =>
+            item.rating >= 3 ? $t('good') : $t('bad')
+        }
+      },
       'author',
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"

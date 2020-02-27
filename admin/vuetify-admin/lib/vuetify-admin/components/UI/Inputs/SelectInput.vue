@@ -10,6 +10,7 @@
     :filled="filled"
     :multiple="multiple"
     :items="enums"
+    :chips="chips"
   >
   </v-select>
 </template>
@@ -25,7 +26,15 @@ export default {
     multiple: Boolean,
     filled: {
       type: Boolean,
-      default: true
+      default() {
+        return !this.multiple;
+      }
+    },
+    chips: {
+      type: Boolean,
+      default() {
+        return this.multiple;
+      }
     }
   }
 };

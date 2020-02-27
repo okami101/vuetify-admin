@@ -167,6 +167,11 @@ export default {
     getVisibleFields() {
       return this.getFields.filter(f => !f.hidden);
     },
+    getQueriableFields() {
+      return this.getFields.filter(
+        f => !this.include.includes(f.source) && !f.virtual
+      );
+    },
     getFields() {
       return this.getFormattedFields(this.fields);
     },
@@ -241,6 +246,20 @@ export default {
               };
         });
     },
+    getQueryFields(resource, sources, fields = {}) {
+      sources.forEach(s => {
+        let segments = s.split(".");
+
+        if (segments.length === 1) {
+          let f = fields[resource] || [];
+          fields[resource] = [...f, segments[0]];
+          return;
+        }
+
+        return this.getQueryFields(segments[0], segments.splice(1), fields);
+      });
+      return fields;
+    },
     initFiltersFromQuery() {
       if (!this.useQueryString) {
         return;
@@ -311,11 +330,9 @@ export default {
       let { data, total } = await this.getList({
         resource: this.resource,
         params: {
-          fields: this.getFieldsQuery(
+          fields: this.getQueryFields(
             this.resource,
-            this.getFields
-              .filter(f => !this.include.includes(f.source))
-              .map(f => f.source)
+            this.getQueriableFields.map(f => f.source)
           ),
           include: this.include,
           pagination: {
@@ -336,20 +353,7 @@ export default {
       this.items = data;
       this.total = total;
     },
-    getFieldsQuery(resource, sources, fields = {}) {
-      sources.forEach(s => {
-        let segments = s.split(".");
 
-        if (segments.length === 1) {
-          let f = fields[resource] || [];
-          fields[resource] = [...f, segments[0]];
-          return;
-        }
-
-        return this.getFieldsQuery(segments[0], segments.splice(1), fields);
-      });
-      return fields;
-    },
     async onDelete(item) {
       this.loadData();
     },
