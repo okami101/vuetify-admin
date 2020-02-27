@@ -1,10 +1,7 @@
 <template>
   <va-field v-bind="$props">
     <slot :value="getLabel(value)">
-      <v-chip v-if="chip" :color="getColor(value)" :small="small">{{
-        getLabel(value)
-      }}</v-chip>
-      <span v-else>{{ getLabel(value) }}</span>
+      <span>{{ getLabel(value) }}</span>
     </slot>
   </va-field>
 </template>
@@ -16,8 +13,6 @@ export default {
   name: "EnumField",
   mixins: [Field],
   props: {
-    chip: Boolean,
-    color: [String, Function],
     small: Boolean
   },
   methods: {
@@ -25,9 +20,6 @@ export default {
       return value
         ? this.$t(`resources.${this.resource}.enums.${this.source}.${value}`)
         : "";
-    },
-    getColor(value) {
-      return typeof this.color === "function" ? this.color(value) : this.color;
     }
   }
 };

@@ -8,7 +8,9 @@ export default {
     label: {
       type: String,
       default() {
-        return this.$t(`resources.${this.resource}.fields.${this.source}`);
+        return this.source
+          ? this.$t(`resources.${this.resource}.fields.${this.source}`)
+          : "";
       }
     },
     inline: Boolean,

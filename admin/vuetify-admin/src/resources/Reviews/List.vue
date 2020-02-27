@@ -4,8 +4,8 @@
       'id',
       {
         source: 'status',
-        type: 'enum',
-        options: { chip: true, color: v => $statusColor(v) }
+        type: 'chip',
+        options: { enum: true, color: v => $statusColor(v) }
       },
       { source: 'rating', type: 'rating' },
       'author',
@@ -19,13 +19,12 @@
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
     :include="['book']"
+    v-slot="props"
   >
-    <template v-slot="props">
-      <va-datagrid v-bind="props" show-expand>
-        <template v-slot:expanded-item="{ item }">
-          <va-text-field :item="item" source="body"></va-text-field>
-        </template>
-      </va-datagrid>
-    </template>
+    <va-datagrid v-bind="props" show-expand>
+      <template v-slot:expanded-item="{ item }">
+        <va-text-field :item="item" source="body"></va-text-field>
+      </template>
+    </va-datagrid>
   </va-list>
 </template>

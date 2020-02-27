@@ -27,6 +27,7 @@
           <component
             :is="`va-${field.type}-input`"
             :source="field.source"
+            :resource="resource"
             edit
             :item="item"
             :value="value"
@@ -39,27 +40,30 @@
         <va-array-field
           v-else-if="field.multiple"
           :source="field.source"
+          :resource="resource"
           :item="item"
           inline
+          v-slot="{ resource, items }"
         >
-          <template v-slot="{ items }">
-            <va-single-field-list :items="items">
-              <template v-slot="{ item }">
-                <component
-                  :is="`va-${field.type}-field`"
-                  :source="field.source"
-                  :item="item"
-                  v-bind="field.options"
-                  inline
-                ></component>
-              </template>
-            </va-single-field-list>
-          </template>
+          <va-single-field-list
+            v-bind="{ resource, items }"
+            v-slot="{ resource, item }"
+          >
+            <component
+              :is="`va-${field.type}-field`"
+              :source="field.source"
+              :resource="resource"
+              :item="item"
+              v-bind="field.options"
+              inline
+            ></component>
+          </va-single-field-list>
         </va-array-field>
         <component
           v-else
           :is="`va-${field.type}-field`"
           :source="field.source"
+          :resource="resource"
           :item="item"
           v-bind="field.options"
           inline

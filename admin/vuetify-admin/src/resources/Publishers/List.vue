@@ -18,9 +18,8 @@
       { source: 'active', type: 'boolean' }
     ]"
     :include="['books_count']"
+    v-slot="props"
   >
-    <template v-slot="props">
-      <va-datagrid v-bind="props" row-click="show"></va-datagrid>
-    </template>
+    <va-datagrid v-bind="props" row-click="show"></va-datagrid>
   </va-list>
 </template>

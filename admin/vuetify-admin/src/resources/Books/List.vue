@@ -5,8 +5,8 @@
       'isbn',
       {
         source: 'category',
-        type: 'enum',
-        options: { chip: true }
+        type: 'chip',
+        options: { enum: true }
       },
       { source: 'publisher_id', hidden: true },
       { source: 'publisher.id', hidden: true },
@@ -21,9 +21,9 @@
       { source: 'commentable', type: 'boolean', editable: true },
       {
         source: 'formats',
-        type: 'enum',
+        type: 'chip',
         multiple: true,
-        options: { chip: true, small: true, color: 'warning' }
+        options: { chip: 'enum', small: true, color: 'warning' }
       },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
@@ -39,31 +39,30 @@
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
     :include="['publisher', 'reviews']"
+    v-slot="props"
   >
-    <template v-slot="props">
-      <va-datagrid v-bind="props" show-expand>
-        <template v-slot:isbn="{ item, value }">
-          <router-link
-            :to="{
-              name: 'books_show',
-              params: { id: item.id }
-            }"
-            >{{ value }}</router-link
-          >
-        </template>
-        <template v-slot:publisher.name="{ item, value }">
-          <router-link
-            :to="{
-              name: 'publishers_show',
-              params: { id: item.publisher_id }
-            }"
-            >{{ value }}</router-link
-          >
-        </template>
-        <template v-slot:expanded-item="{ item }">
-          <va-text-field :item="item" source="description"></va-text-field>
-        </template>
-      </va-datagrid>
-    </template>
+    <va-datagrid v-bind="props" show-expand>
+      <template v-slot:isbn="{ item, value }">
+        <router-link
+          :to="{
+            name: 'books_show',
+            params: { id: item.id }
+          }"
+          >{{ value }}</router-link
+        >
+      </template>
+      <template v-slot:publisher.name="{ item, value }">
+        <router-link
+          :to="{
+            name: 'publishers_show',
+            params: { id: item.publisher_id }
+          }"
+          >{{ value }}</router-link
+        >
+      </template>
+      <template v-slot:expanded-item="{ item }">
+        <va-text-field :item="item" source="description"></va-text-field>
+      </template>
+    </va-datagrid>
   </va-list>
 </template>

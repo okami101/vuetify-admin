@@ -1,6 +1,8 @@
 <template>
   <va-field v-bind="$props">
-    <v-chip :color="getColor(value)" :small="small">{{ value }}</v-chip>
+    <v-chip :color="getColor(value)" :small="small">
+      <slot>{{ value }}</slot>
+    </v-chip>
   </va-field>
 </template>
 
