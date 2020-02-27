@@ -1,5 +1,5 @@
 <template>
-  <v-switch
+  <v-radio-group
     v-model="input"
     :label="label"
     :hint="hint"
@@ -7,15 +7,29 @@
     :error-messages="errorMessages"
     :hide-details="hideDetails"
     :dense="dense"
-    @change="change"
-  ></v-switch>
+    :column="column"
+  >
+    <v-radio
+      v-for="(e, i) in enums"
+      :key="i"
+      :label="`${e.text}`"
+      :value="e.value"
+    ></v-radio>
+  </v-radio-group>
 </template>
 
 <script>
 import Input from "vuetify-admin/mixins/input";
+import Enum from "vuetify-admin/mixins/enum";
 
 export default {
   name: "RadioGroupInput",
-  mixins: [Input]
+  mixins: [Input, Enum],
+  props: {
+    column: {
+      type: Boolean,
+      default: true
+    }
+  }
 };
 </script>

@@ -46,23 +46,27 @@ export default (provider, router) => {
       /**
        * Explicit logout action, remove user from storage
        */
-      [LOGOUT]: async ({ commit }) => {
-        await provider.logout();
-        commit("setUser", null);
-        router.push("/login");
+      [LOGOUT]: async ({ state, commit }) => {
+        if (state.user) {
+          await provider.logout();
+          commit("setUser", null);
+        }
+
+        if (router.currentRoute.name !== "login") {
+          router.push("/login");
+        }
       },
       /**
        * Check valid auth on server by retrieving user infos
        * Set fresh user infos on store
        * Called after each URL navigation
        */
-      [CHECK_AUTH]: async ({ commit }) => {
+      [CHECK_AUTH]: async ({ commit, dispatch }) => {
         try {
           let user = await provider.checkAuth();
           commit("setUser", user);
         } catch (e) {
-          commit("setUser", null);
-          throw e;
+          dispatch("logout");
         }
       },
       /**

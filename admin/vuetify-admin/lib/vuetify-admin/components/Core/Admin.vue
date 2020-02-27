@@ -73,34 +73,25 @@ export default {
          * after each navigation
          */
         if (to.name !== "login") {
-          try {
-            await this.checkAuth();
-          } catch (e) {
-            return next("/login");
-          }
+          await this.checkAuth();
         }
 
         this.closeAside();
       }
+
       next();
     });
 
     /**
-     * Load authenticated user
+     * Recheck auth on app visible (switching tabs,...)
      */
-    if (this.unauthenticatedRoute) {
-      try {
-        await this.checkAuth();
-        await this.$router.push("/");
-      } catch (e) {}
-    } else {
-      try {
-        await this.checkAuth();
-      } catch (e) {
-        await this.$router.push("/login");
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        this.checkAuth();
       }
-    }
+    });
 
+    await this.checkAuth();
     this.loaded = true;
   },
   watch: {

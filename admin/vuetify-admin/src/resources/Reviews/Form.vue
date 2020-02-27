@@ -2,6 +2,7 @@
   <va-simple-form>
     <v-row>
       <v-col sm="3">
+        <va-radio-group-input source="status"></va-radio-group-input>
         <va-rating-input source="rating"></va-rating-input>
         <va-text-input source="body" multiline></va-text-input>
         <va-text-input source="author"></va-text-input>

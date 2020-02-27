@@ -8,19 +8,10 @@
 
 <script>
 import Field from "vuetify-admin/mixins/field";
+import Enum from "vuetify-admin/mixins/enum";
 
 export default {
   name: "EnumField",
-  mixins: [Field],
-  props: {
-    small: Boolean
-  },
-  methods: {
-    getLabel(value) {
-      return value
-        ? this.$t(`resources.${this.resource}.enums.${this.source}.${value}`)
-        : "";
-    }
-  }
+  mixins: [Field, Enum]
 };
 </script>

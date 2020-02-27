@@ -1,5 +1,5 @@
 <template>
-  <v-switch
+  <v-select
     v-model="input"
     :label="label"
     :hint="hint"
@@ -7,18 +7,26 @@
     :error-messages="errorMessages"
     :hide-details="hideDetails"
     :dense="dense"
-    @change="change"
-  ></v-switch>
+    :filled="filled"
+    :multiple="multiple"
+    :items="enums"
+  >
+  </v-select>
 </template>
 
 <script>
 import Input from "vuetify-admin/mixins/input";
+import Enum from "vuetify-admin/mixins/enum";
 
 export default {
   name: "SelectInput",
-  mixins: [Input],
+  mixins: [Input, Enum],
   props: {
-    multiple: Boolean
+    multiple: Boolean,
+    filled: {
+      type: Boolean,
+      default: true
+    }
   }
 };
 </script>
