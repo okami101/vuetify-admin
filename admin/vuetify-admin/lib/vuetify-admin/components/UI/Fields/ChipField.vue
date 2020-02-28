@@ -1,5 +1,5 @@
 <template>
-  <v-chip :color="getColor(value)" :small="small">
+  <v-chip :color="getColor(value)" :small="small" :to="to">
     <slot>{{ value }}</slot>
   </v-chip>
 </template>
@@ -12,7 +12,8 @@ export default {
   mixins: [Field],
   props: {
     color: [String, Function],
-    small: Boolean
+    small: Boolean,
+    to: [String, Object]
   },
   methods: {
     getColor(value) {

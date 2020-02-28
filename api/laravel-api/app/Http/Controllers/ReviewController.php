@@ -45,6 +45,17 @@ class ReviewController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Review  $review
+     * @return ReviewResource
+     */
+    public function show(Review $review)
+    {
+        return new ReviewResource($review);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param StoreReview $request
@@ -53,17 +64,6 @@ class ReviewController extends Controller
     public function store(StoreReview $request)
     {
         return new ReviewResource(Review::create($request->all()));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Review  $review
-     * @return ReviewResource
-     */
-    public function show(Review $review)
-    {
-        return new ReviewResource($review->load('book'));
     }
 
     /**

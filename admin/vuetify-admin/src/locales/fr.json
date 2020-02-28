@@ -73,7 +73,7 @@
         "author": "Auteur",
         "formats": "Formats",
         "publisher_id": "Éditeur",
-        "reviews": "Commentaires",
+        "review_ids": "Commentaires",
         "price": "Prix",
         "commentable": "Commentable",
         "published_before": "Publié avant",
@@ -111,7 +111,7 @@
         "author": "Auteur",
         "rating": "Note",
         "quality": "Qualité",
-        "book": "Livre",
+        "book_id": "Livre",
         "published_before": "Publié avant",
         "published_after": "Publié après"
       },

@@ -48,17 +48,6 @@ class PublisherController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return PublisherResource
-     */
-    public function store(StorePublisher $request)
-    {
-        return new PublisherResource(Publisher::create($request->all()));
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Publisher  $publisher
@@ -67,6 +56,17 @@ class PublisherController extends Controller
     public function show(Publisher $publisher)
     {
         return new PublisherResource($publisher->loadCount('books'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return PublisherResource
+     */
+    public function store(StorePublisher $request)
+    {
+        return new PublisherResource(Publisher::create($request->all()));
     }
 
     /**

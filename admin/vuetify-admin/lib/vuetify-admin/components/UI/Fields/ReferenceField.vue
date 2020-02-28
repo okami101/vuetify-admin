@@ -4,19 +4,28 @@
     :color="loadingColor"
     v-if="loading"
   ></v-progress-linear>
-  <router-link
-    v-else-if="data"
-    :to="{
-      name: `${reference}_${link}`,
-      params: { id: value }
-    }"
-  >
-    <slot :item="data">
-      <span v-if="property">
-        {{ getProperty(data) }}
-      </span>
+  <div v-else>
+    <slot v-if="multiple" :items="data" :link="`${reference}_${link}`"></slot>
+    <slot
+      v-else
+      :item="data"
+      :to="{
+        name: `${reference}_${link}`,
+        params: { id: value }
+      }"
+    >
+      <router-link
+        :to="{
+          name: `${reference}_${link}`,
+          params: { id: value }
+        }"
+      >
+        <span v-if="property">
+          {{ getProperty(data) }}
+        </span>
+      </router-link>
     </slot>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -82,7 +91,7 @@ export default {
          * Get data from the store via sync key
          * Used mainly for list references aggregation
          */
-        if (this.syncKey) {
+        if (this.syncKey || !val) {
           return;
         }
 

@@ -14,7 +14,11 @@
             reference="publishers"
             link="show"
             property="name"
+            v-slot="{ item, to }"
           >
+            <va-chip-field color="orange" :to="to">
+              {{ item.name }}
+            </va-chip-field>
           </va-reference-field>
         </va-field>
         <va-field source="title"></va-field>
@@ -45,6 +49,25 @@
           type="date"
           :options="{ format: 'long' }"
         ></va-field>
+        <va-field source="review_ids">
+          <va-reference-field
+            source="review_ids"
+            multiple
+            reference="reviews"
+            link="show"
+            property="author"
+            v-slot="{ items, link }"
+          >
+            <va-single-field-list :items="items" v-slot="{ item }">
+              <va-chip-field
+                color="green"
+                :to="{ name: link, params: { id: item.id } }"
+              >
+                {{ item.author }}
+              </va-chip-field>
+            </va-single-field-list>
+          </va-reference-field>
+        </va-field>
       </template>
       <template v-slot:summary>
         <va-rich-text-field source="summary"></va-rich-text-field>

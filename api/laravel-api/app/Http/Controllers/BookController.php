@@ -56,8 +56,20 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts(['id', 'isbn', 'title', 'author', 'price', 'publication_date'])
+                ->allowedIncludes(['reviews'])
                 ->exportOrPaginate()
         );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Book  $book
+     * @return BookResource
+     */
+    public function show(Book $book)
+    {
+        return new BookResource($book->load(['reviews']));
     }
 
     /**
@@ -69,17 +81,6 @@ class BookController extends Controller
     public function store(StoreBook $request)
     {
         return new BookResource(Book::create($request->all()));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Book  $book
-     * @return BookResource
-     */
-    public function show(Book $book)
-    {
-        return new BookResource($book->load(['publisher', 'reviews']));
     }
 
     /**

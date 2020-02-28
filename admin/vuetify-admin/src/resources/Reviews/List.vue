@@ -2,6 +2,16 @@
   <va-list
     :fields="[
       'id',
+      {
+        source: 'book_id',
+        type: 'reference',
+        options: {
+          reference: 'books',
+          syncKey: 'reviews_list',
+          link: 'show',
+          property: 'title'
+        }
+      },
       'status',
       { source: 'rating', type: 'rating' },
       {

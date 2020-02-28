@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 class Book extends JsonResource
 {
@@ -15,6 +16,11 @@ class Book extends JsonResource
     public function toArray($request)
     {
         $attributes = parent::toArray($request);
+
+        if ($this->whenLoaded('reviews') instanceof Collection) {
+            unset($attributes['reviews']);
+            $attributes['review_ids'] = $this->whenLoaded('reviews')->pluck('id');
+        }
 
         $attributes += [
             'links' => [

@@ -73,7 +73,7 @@
         "author": "Author",
         "formats": "Formats",
         "publisher_id": "Publisher",
-        "reviews": "Reviews",
+        "review_ids": "Reviews",
         "price": "Price",
         "commentable": "Commentable",
         "published_before": "Published before",
@@ -111,7 +111,7 @@
         "author": "Author",
         "rating": "Rating",
         "quality": "Quality",
-        "book": "Book",
+        "book_id": "Book",
         "published_before": "Published before",
         "published_after": "Published after"
       },

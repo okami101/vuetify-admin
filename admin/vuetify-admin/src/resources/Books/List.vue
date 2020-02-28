@@ -36,6 +36,7 @@
       { source: 'published_before', type: 'date', options: { format: 'long' } },
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
+    :include="['reviews']"
     v-slot="props"
   >
     <va-datagrid v-bind="props" show-expand>
