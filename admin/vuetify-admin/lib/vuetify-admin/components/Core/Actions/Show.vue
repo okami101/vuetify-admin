@@ -22,8 +22,6 @@
 <script>
 import Page from "vuetify-admin/mixins/page";
 import Item from "vuetify-admin/mixins/item";
-import { mapState, mapMutations, mapActions } from "vuex";
-import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "Show",
@@ -31,57 +29,6 @@ export default {
   methods: {
     onDeleted() {
       this.$router.push(`/${this.resource}`);
-    }
-  },
-  mounted() {
-    EventBus.$on("refresh", () => {
-      this.loadReferences();
-    });
-
-    this.loadReferences();
-  },
-  computed: {
-    ...mapState({
-      references: state => state.api.references
-    })
-  },
-  methods: {
-    ...mapMutations({
-      cleanReferences: "api/cleanReferences"
-    }),
-    ...mapActions({
-      getMany: "api/getMany"
-    }),
-    loadReferences() {
-      this.$nextTick(async () => {
-        /**
-         * Load all references for this list
-         */
-        if (!this.references[this.resource]) {
-          return;
-        }
-
-        let references = this.references[this.resource];
-
-        await Promise.all(
-          Object.keys(references).map(async resource => {
-            let { data } = await this.getMany({
-              resource,
-              params: {
-                ids: references[resource]
-              }
-            });
-
-            EventBus.$emit("references", {
-              resource: this.resource,
-              reference: resource,
-              items: data
-            });
-          })
-        );
-
-        this.cleanReferences(this.resource);
-      });
     }
   }
 };

@@ -15,6 +15,7 @@ export default entrypoint => {
 
     switch (type) {
       case GET_LIST:
+      case GET_MANY:
       case GET_MANY_REFERENCE:
         const { fields, include, pagination, sort, filter } = params;
 
@@ -26,6 +27,15 @@ export default entrypoint => {
 
         if (include) {
           resourceUrl.searchParams.set("include", include.join(","));
+        }
+
+        if (type === GET_MANY) {
+          resourceUrl.searchParams.set("filter[id]", params.ids.join(","));
+          return { url: resourceUrl };
+        }
+
+        if (type === GET_MANY_REFERENCE && params.target) {
+          resourceUrl.searchParams.set(`filter[${params.target}]`, params.id);
         }
 
         if (pagination) {
@@ -51,27 +61,18 @@ export default entrypoint => {
               })
               .join(",")
           );
-        }
 
-        if (filter) {
-          Object.keys(filter).forEach(key => {
-            resourceUrl.searchParams.set(`filter[${key}]`, filter[key]);
-          });
-        }
-
-        if (type === GET_MANY_REFERENCE && params.target) {
-          resourceUrl.searchParams.set(`filter[${params.target}]`, params.id);
+          if (filter) {
+            Object.keys(filter).forEach(key => {
+              resourceUrl.searchParams.set(`filter[${key}]`, filter[key]);
+            });
+          }
         }
 
         return { url: resourceUrl };
 
       case GET_ONE:
         return { url: itemUrl };
-
-      case GET_MANY:
-        resourceUrl.searchParams.set("filter[id]", params.ids.join(","));
-
-        return { url: resourceUrl };
 
       case CREATE:
         return {

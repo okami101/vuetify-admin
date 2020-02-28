@@ -164,9 +164,6 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
-    ...mapState({
-      references: state => state.api.references
-    }),
     getVisibleFields() {
       return this.getFields.filter(f => !f.hidden);
     },
@@ -205,42 +202,6 @@ export default {
     }
   },
   watch: {
-    loading: {
-      handler(val) {
-        if (!val) {
-          this.$nextTick(async () => {
-            /**
-             * Load all references for this list
-             */
-            if (!this.references[this.resource]) {
-              return;
-            }
-
-            let references = this.references[this.resource];
-
-            await Promise.all(
-              Object.keys(references).map(async resource => {
-                let { data } = await this.getMany({
-                  resource,
-                  params: {
-                    ids: references[resource]
-                  }
-                });
-
-                EventBus.$emit("references", {
-                  resource: this.resource,
-                  reference: resource,
-                  items: data
-                });
-              })
-            );
-
-            this.cleanReferences(this.resource);
-          });
-        }
-      },
-      immediate: true
-    },
     filters: {
       handler() {
         /**
@@ -259,7 +220,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      cleanReferences: "api/cleanReferences"
+      setReferenceData: "api/setReferenceData"
     }),
     ...mapActions({
       getList: "api/getList",
@@ -370,6 +331,9 @@ export default {
       this.loading = true;
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
+      /**
+       * Load paginated and sortad data list
+       */
       let { data, total } = await this.getList({
         resource: this.resource,
         params: {
@@ -392,11 +356,45 @@ export default {
         }
       });
 
+      await Promise.all(
+        this.getFields
+          .filter(f => f.type === "reference")
+          .map(async f => {
+            if (!f.options || !f.options.syncKey) {
+              return;
+            }
+
+            return await this.loadReferences(data, f.source, f.options);
+          })
+      );
+
       this.loading = false;
       this.items = data;
       this.total = total;
     },
-
+    async loadReferences(
+      result,
+      source,
+      { reference, fields, include, multiple, property, syncKey }
+    ) {
+      /**
+       * Preload keyed reference data resources
+       */
+      let { data } = await this.getMany({
+        resource: reference,
+        params: {
+          fields: {
+            [reference]: fields || ["id", property]
+          },
+          include,
+          ids: [...new Set(result.map(d => d[source]))]
+        }
+      });
+      this.setReferenceData({
+        key: syncKey,
+        data
+      });
+    },
     async onDelete(item) {
       this.loadData();
     },

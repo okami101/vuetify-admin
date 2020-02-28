@@ -7,7 +7,12 @@
       {
         source: 'publisher_id',
         type: 'reference',
-        options: { reference: 'publishers', link: 'show', property: 'name' }
+        options: {
+          reference: 'publishers',
+          syncKey: 'books_list',
+          link: 'show',
+          property: 'name'
+        }
       },
       'title',
       'author',

@@ -20,21 +20,8 @@ export default {
     setLoading(state, loading) {
       state.loading = loading;
     },
-    addReferenceId(state, { resource, reference, id }) {
-      if (!state.references[resource]) {
-        state.references[resource] = {
-          [reference]: [id]
-        };
-      }
-
-      state.references[resource][reference] = [
-        ...state.references[resource][reference],
-        id
-      ];
-    },
-    cleanReferences(state, { resource }) {
-      delete state.references[resource];
-      state.references = { ...state.references };
+    setReferenceData(state, { key, data }) {
+      state.references[key] = data;
     }
   },
   getters: {

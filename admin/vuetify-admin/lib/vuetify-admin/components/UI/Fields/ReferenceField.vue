@@ -15,9 +15,8 @@
 </template>
 
 <script>
-import EventBus from "vuetify-admin/utils/eventBus";
 import Field from "vuetify-admin/mixins/field";
-import { mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "ReferenceField",
@@ -31,7 +30,16 @@ export default {
       type: String,
       default: "edit"
     },
+    fields: {
+      type: Array,
+      default: () => []
+    },
+    include: {
+      type: Array,
+      default: () => []
+    },
     property: [String, Function],
+    syncKey: String,
     multiple: Boolean
   },
   data() {
@@ -39,28 +47,52 @@ export default {
       data: null
     };
   },
-  mounted() {
-    EventBus.$on("references", ({ resource, reference, items }) => {
-      if (resource === this.resource && reference === this.reference) {
-        this.data = items.find(item => item.id === this.value);
-      }
-    });
-  },
   watch: {
-    reference: {
+    value: {
       async handler(val) {
-        this.addReferenceId({
-          resource: this.resource,
-          reference: val,
-          id: this.value
+        /**
+         * Get data from the store via sync key
+         * Used mainly for list references aggregation
+         */
+        if (this.syncKey) {
+          this.data = this.multiple
+            ? this.references[this.syncKey].filter(r => val.includes(r.id))
+            : this.references[this.syncKey].find(r => r.id === val);
+          return;
+        }
+
+        /**
+         * Load api data if no async key
+         */
+        let { data } = await this.getMany({
+          resource: this.reference,
+          params: {
+            fields: {
+              [this.reference]: this.getFields
+            },
+            include: this.include,
+            ids: this.multiple ? val : [val]
+          }
         });
+        this.data = this.multiple ? data : data[0];
       },
       immediate: true
+    }
+  },
+  computed: {
+    ...mapState({
+      references: state => state.api.references
+    }),
+    getFields() {
+      return this.fields.length ? this.fields : ["id", this.property];
     }
   },
   methods: {
     ...mapMutations({
       addReferenceId: "api/addReferenceId"
+    }),
+    ...mapActions({
+      getMany: "api/getMany"
     }),
     getProperty(data) {
       return typeof this.property === "string"
