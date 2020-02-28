@@ -24,7 +24,7 @@
         <va-field source="title"></va-field>
         <va-field source="category">
           <va-chip-field>
-            <va-enum-field source="category"></va-enum-field>
+            <va-select-field source="category"></va-select-field>
           </va-chip-field>
         </va-field>
         <va-field source="description"></va-field>
@@ -33,7 +33,7 @@
           <va-array-field source="formats" v-slot="{ items }">
             <va-single-field-list :items="items" v-slot="{ item }">
               <va-chip-field color="yellow">
-                <va-enum-field source="formats" :item="item"></va-enum-field>
+                <va-select-field source="formats" :item="item"></va-select-field>
               </va-chip-field>
             </va-single-field-list>
           </va-array-field>

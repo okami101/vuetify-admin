@@ -12,7 +12,7 @@
       </va-field>
       <va-field source="status">
         <va-chip-field source="status" :color="v => $statusColor(v)">
-          <va-enum-field source="status"></va-enum-field>
+          <va-select-field source="status"></va-select-field>
         </va-chip-field>
       </va-field>
       <va-field source="rating" type="rating"></va-field>

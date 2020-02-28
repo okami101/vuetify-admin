@@ -2,7 +2,7 @@
   <va-show>
     <va-simple-show>
       <va-field source="name"></va-field>
-      <va-field source="type" type="enum"></va-field>
+      <va-field source="type" type="select"></va-field>
       <va-field source="founder"></va-field>
       <va-field source="description"></va-field>
       <va-field source="headquarter"></va-field>

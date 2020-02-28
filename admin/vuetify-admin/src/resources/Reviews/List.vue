@@ -42,7 +42,7 @@
       </template>
       <template v-slot:status="{ item, value }">
         <va-chip-field :color="$statusColor(value)">
-          <va-enum-field source="status" :item="item"></va-enum-field>
+          <va-select-field source="status" :item="item"></va-select-field>
         </va-chip-field>
       </template>
     </va-datagrid>

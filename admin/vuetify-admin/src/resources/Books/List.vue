@@ -67,12 +67,12 @@
         </va-chip-field>
       </template>
       <template v-slot:category="{ item }">
-        <va-enum-field source="category" :item="item"></va-enum-field>
+        <va-select-field source="category" :item="item"></va-select-field>
       </template>
       <template v-slot:formats="{ items }">
         <va-single-field-list :items="items" v-slot="{ item }">
           <va-chip-field color="yellow" small>
-            <va-enum-field source="formats" :item="item"></va-enum-field>
+            <va-select-field source="formats" :item="item"></va-select-field>
           </va-chip-field>
         </va-single-field-list>
       </template>
