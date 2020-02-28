@@ -348,7 +348,10 @@ export default {
             return;
           }
 
-          this.loadReferences(data, f.source, f.options);
+          this.loadReferences(
+            data.map(d => d[f.source]),
+            f.options
+          );
         });
 
       this.loading = false;
@@ -356,8 +359,7 @@ export default {
       this.total = total;
     },
     async loadReferences(
-      result,
-      source,
+      ids,
       { reference, fields, include, multiple, property, syncKey }
     ) {
       /**
@@ -370,7 +372,7 @@ export default {
             [reference]: fields || ["id", property]
           },
           include,
-          ids: [...new Set(result.map(d => d[source]))]
+          ids: [...new Set(multiple ? [].concat(...ids) : ids)]
         }
       });
       this.setReferenceData({
