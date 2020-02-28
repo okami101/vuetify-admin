@@ -9,19 +9,22 @@
     :dense="dense"
     :filled="filled"
     :multiple="multiple"
-    :items="enums"
+    :item-text="optionText"
+    :item-value="optionValue"
+    :items="choices"
     :chips="chips"
+    @change="change"
   >
   </v-select>
 </template>
 
 <script>
 import Input from "vuetify-admin/mixins/input";
-import Enum from "vuetify-admin/mixins/enum";
+import Choices from "vuetify-admin/mixins/choices";
 
 export default {
   name: "SelectInput",
-  mixins: [Input, Enum],
+  mixins: [Input, Choices],
   props: {
     multiple: Boolean,
     filled: {

@@ -10,21 +10,21 @@
     :column="column"
   >
     <v-radio
-      v-for="(e, i) in enums"
+      v-for="(c, i) in choices"
       :key="i"
-      :label="`${e.text}`"
-      :value="e.value"
+      :label="c[optionText]"
+      :value="c[optionValue]"
     ></v-radio>
   </v-radio-group>
 </template>
 
 <script>
 import Input from "vuetify-admin/mixins/input";
-import Enum from "vuetify-admin/mixins/enum";
+import Choices from "vuetify-admin/mixins/choices";
 
 export default {
   name: "RadioGroupInput",
-  mixins: [Input, Enum],
+  mixins: [Input, Choices],
   props: {
     column: {
       type: Boolean,
