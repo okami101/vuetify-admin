@@ -1,6 +1,11 @@
 <template>
+  <v-progress-linear
+    indeterminate
+    :color="loadingColor"
+    v-if="loading"
+  ></v-progress-linear>
   <router-link
-    v-if="data"
+    v-else-if="data"
     :to="{
       name: `${reference}_${link}`,
       params: { id: value }
@@ -38,16 +43,39 @@ export default {
       type: Array,
       default: () => []
     },
+    loadingColor: {
+      type: String,
+      default: "primary"
+    },
     property: [String, Function],
     syncKey: String,
     multiple: Boolean
   },
   data() {
     return {
-      data: null
+      data: null,
+      loading: true
     };
   },
   watch: {
+    references: {
+      async handler(val) {
+        /**
+         * Get data from the store via sync key
+         * Used mainly for list references aggregation
+         */
+        if (!this.syncKey || !val[this.syncKey]) {
+          return;
+        }
+
+        this.data = this.multiple
+          ? val[this.syncKey].filter(r => this.value.includes(r.id))
+          : val[this.syncKey].find(r => r.id === this.value);
+
+        this.loading = false;
+      },
+      immediate: true
+    },
     value: {
       async handler(val) {
         /**
@@ -55,9 +83,6 @@ export default {
          * Used mainly for list references aggregation
          */
         if (this.syncKey) {
-          this.data = this.multiple
-            ? this.references[this.syncKey].filter(r => val.includes(r.id))
-            : this.references[this.syncKey].find(r => r.id === val);
           return;
         }
 
@@ -75,6 +100,7 @@ export default {
           }
         });
         this.data = this.multiple ? data : data[0];
+        this.loading = false;
       },
       immediate: true
     }

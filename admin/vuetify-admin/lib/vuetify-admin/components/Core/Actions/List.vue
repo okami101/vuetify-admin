@@ -356,17 +356,15 @@ export default {
         }
       });
 
-      await Promise.all(
-        this.getFields
-          .filter(f => f.type === "reference")
-          .map(async f => {
-            if (!f.options || !f.options.syncKey) {
-              return;
-            }
+      this.getFields
+        .filter(f => f.type === "reference")
+        .map(async f => {
+          if (!f.options || !f.options.syncKey) {
+            return;
+          }
 
-            return await this.loadReferences(data, f.source, f.options);
-          })
-      );
+          this.loadReferences(data, f.source, f.options);
+        });
 
       this.loading = false;
       this.items = data;

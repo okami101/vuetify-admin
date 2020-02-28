@@ -21,7 +21,10 @@ export default {
       state.loading = loading;
     },
     setReferenceData(state, { key, data }) {
-      state.references[key] = data;
+      state.references = {
+        ...state.references,
+        [key]: data
+      };
     }
   },
   getters: {
