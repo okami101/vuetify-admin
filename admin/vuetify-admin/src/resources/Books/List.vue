@@ -77,10 +77,11 @@
         </va-single-field-list>
       </template>
       <template v-slot:review_ids="{ items, link }">
-        <va-single-field-list :items="items" v-slot="{ item }">
+        <va-single-field-list :items="items" v-slot="{ item }" :limit="2">
           <va-chip-field
             color="green"
             :to="{ name: link, params: { id: item.id } }"
+            small
           >
             {{ item.author }}
           </va-chip-field>
