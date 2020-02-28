@@ -5,10 +5,14 @@
     v-if="loading"
   ></v-progress-linear>
   <div v-else>
-    <slot v-if="multiple" :items="data" :link="`${reference}_${link}`"></slot>
     <slot
-      v-else-if="data"
-      :item="data"
+      v-if="multiple"
+      :items="dataItems"
+      :link="`${reference}_${link}`"
+    ></slot>
+    <slot
+      v-else-if="dataItem"
+      :item="dataItem"
       :to="{
         name: `${reference}_${link}`,
         params: { id: value }
@@ -21,7 +25,7 @@
         }"
       >
         <span v-if="property">
-          {{ getProperty(data) }}
+          {{ getProperty(dataItem) }}
         </span>
       </router-link>
     </slot>
@@ -62,7 +66,8 @@ export default {
   },
   data() {
     return {
-      data: null,
+      dataItems: [],
+      dataItem: null,
       loading: true
     };
   },
@@ -77,9 +82,13 @@ export default {
           return;
         }
 
-        this.data = this.multiple
-          ? val[this.syncKey].filter(r => this.value.includes(r.id))
-          : val[this.syncKey].find(r => r.id === this.value);
+        if (this.multiple) {
+          this.dataItems = val[this.syncKey].filter(r =>
+            this.value.includes(r.id)
+          );
+        } else {
+          this.dataItem = val[this.syncKey].find(r => r.id === this.value);
+        }
 
         this.loading = false;
       },
@@ -108,7 +117,13 @@ export default {
             ids: this.multiple ? val : [val]
           }
         });
-        this.data = this.multiple ? data : data[0];
+
+        if (this.multiple) {
+          this.dataItems = data;
+        } else {
+          this.dataItem = data[0];
+        }
+
         this.loading = false;
       },
       immediate: true
@@ -129,10 +144,10 @@ export default {
     ...mapActions({
       getMany: "api/getMany"
     }),
-    getProperty(data) {
+    getProperty(item) {
       return typeof this.property === "string"
-        ? data[this.property]
-        : this.property(data);
+        ? item[this.property]
+        : this.property(item);
     }
   }
 };

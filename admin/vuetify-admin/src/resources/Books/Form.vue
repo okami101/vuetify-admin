@@ -8,6 +8,17 @@
     <template v-slot:attributes>
       <v-row>
         <v-col sm="3">
+          <va-reference-input
+            source="publisher_id"
+            reference="publishers"
+            property="name"
+            v-slot="{ choices }"
+          >
+            <va-select-input
+              source="publisher_id"
+              :choices="choices"
+            ></va-select-input>
+          </va-reference-input>
           <va-text-input source="isbn"></va-text-input>
           <va-select-input source="category"></va-select-input>
           <va-text-input source="title"></va-text-input>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot :value="selected">
-      <span>{{ selected[optionText] }}</span>
+      <span>{{ selected ? selected[optionText] : "" }}</span>
     </slot>
   </div>
 </template>

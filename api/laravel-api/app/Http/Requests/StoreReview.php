@@ -24,11 +24,11 @@ class StoreReview extends FormRequest
     public function rules()
     {
         return [
+            'book_id' => 'required',
             'rating' => 'between:1,5',
             'status' => 'required',
             'author' => 'required',
             'publication_date' => 'required|date',
-            'book_id' => 'required',
         ];
     }
 }

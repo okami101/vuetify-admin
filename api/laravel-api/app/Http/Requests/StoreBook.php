@@ -24,6 +24,7 @@ class StoreBook extends FormRequest
     public function rules()
     {
         return [
+            'publisher_id' => 'required',
             'isbn' => 'required|isbn',
             'title' => 'required',
             'category' => 'required|in:novel,comic,cook,economy,politics,history,fantasy,biography',

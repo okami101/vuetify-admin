@@ -24,6 +24,7 @@ class UpdateBook extends FormRequest
     public function rules()
     {
         return [
+            'publisher_id' => 'sometimes|required',
             'isbn' => 'sometimes|required|isbn',
             'title' => 'sometimes|required',
             'category' => 'sometimes|required|in:novel,comic,cook,economy,politics,history,fantasy,biography',
