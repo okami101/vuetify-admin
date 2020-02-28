@@ -22,7 +22,7 @@
       v-for="field in fields"
       v-slot:[`item.${field.source}`]="{ item, value }"
     >
-      <slot :name="field.source" v-bind="{ item, value }">
+      <slot :name="`cell.${field.source}`" v-bind="{ item, value }">
         <span @click.stop :key="field.source">
           <component
             v-if="field.editable"
@@ -44,7 +44,14 @@
             :resource="resource"
             :item="item"
             v-bind="field.options"
-          ></component>
+            v-slot="props"
+          >
+            <slot
+              :name="field.source"
+              :item="props.item || item"
+              v-bind="props"
+            ></slot>
+          </component>
         </span>
       </slot>
     </template>

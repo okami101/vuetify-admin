@@ -3,7 +3,7 @@
     :fields="[
       'id',
       'isbn',
-      'category',
+      { source: 'category', type: 'chip' },
       {
         source: 'publisher_id',
         type: 'reference',
@@ -22,7 +22,7 @@
         options: { format: 'currency' }
       },
       { source: 'commentable', type: 'boolean', editable: true },
-      'formats',
+      { source: 'formats', type: 'array' },
       { source: 'description', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"
@@ -40,7 +40,7 @@
     v-slot="props"
   >
     <va-datagrid v-bind="props" show-expand>
-      <template v-slot:isbn="{ item, value }">
+      <template v-slot:cell.isbn="{ item, value }">
         <router-link
           :to="{
             name: 'books_show',
@@ -49,22 +49,23 @@
           >{{ value }}</router-link
         >
       </template>
-      <template v-slot:expanded-item="{ item }">
-        <va-text-field :item="item" source="description"></va-text-field>
-      </template>
-      <template v-slot:category="{ item }">
-        <va-chip-field>
-          <va-enum-field source="category" :item="item"></va-enum-field>
+      <template v-slot:publisher_id="{ item, to }">
+        <va-chip-field color="orange" :to="to">
+          {{ item.name }}
         </va-chip-field>
       </template>
-      <template v-slot:formats="{ item }">
-        <va-array-field source="formats" :item="item" v-slot="{ items }">
-          <va-single-field-list :items="items" v-slot="{ item }">
-            <va-chip-field color="yellow" small>
-              <va-enum-field source="formats" :item="item"></va-enum-field>
-            </va-chip-field>
-          </va-single-field-list>
-        </va-array-field>
+      <template v-slot:category="{ item }">
+        <va-enum-field source="category" :item="item"></va-enum-field>
+      </template>
+      <template v-slot:formats="{ items }">
+        <va-single-field-list :items="items" v-slot="{ item }">
+          <va-chip-field color="yellow" small>
+            <va-enum-field source="formats" :item="item"></va-enum-field>
+          </va-chip-field>
+        </va-single-field-list>
+      </template>
+      <template v-slot:expanded-item="{ item }">
+        <va-text-field :item="item" source="description"></va-text-field>
       </template>
     </va-datagrid>
   </va-list>
