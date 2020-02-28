@@ -62,7 +62,7 @@ export default {
   computed: {
     ...mapState({
       title: state => state.layout.title,
-      loading: state => state.layout.loading
+      loading: state => state.api.loading
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" })
   },

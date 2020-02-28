@@ -69,8 +69,11 @@ export default {
           /**
            * Route model binding
            */
-          let { data } = await store.dispatch(`${resource}/getOne`, {
-            id: to.params.id
+          let { data } = await store.dispatch("api/getOne", {
+            resource,
+            params: {
+              id: to.params.id
+            }
           });
 
           /**

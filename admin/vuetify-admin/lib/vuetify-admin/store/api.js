@@ -4,7 +4,7 @@ let storeActions = {};
 
 Object.values(methods).forEach(action => {
   storeActions[action] = async ({ dispatch }, { resource, params }) => {
-    return dispatch(`${resource}/${action}`, params, {
+    return await dispatch(`${resource}/${action}`, params, {
       root: true
     });
   };
@@ -12,6 +12,31 @@ Object.values(methods).forEach(action => {
 
 export default {
   namespaced: true,
+  state: {
+    loading: false,
+    references: {}
+  },
+  mutations: {
+    setLoading(state, loading) {
+      state.loading = loading;
+    },
+    addReferenceId(state, { resource, reference, id }) {
+      if (!state.references[resource]) {
+        state.references[resource] = {
+          [reference]: [id]
+        };
+      }
+
+      state.references[resource][reference] = [
+        ...state.references[resource][reference],
+        id
+      ];
+    },
+    cleanReferences(state, { resource }) {
+      delete state.references[resource];
+      state.references = { ...state.references };
+    }
+  },
   getters: {
     item: (state, getters, rootState, rootGetters) => resource => {
       return rootState[resource].item;

@@ -15,8 +15,9 @@
 </template>
 
 <script>
+import EventBus from "vuetify-admin/utils/eventBus";
 import Field from "vuetify-admin/mixins/field";
-import { mapActions } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: "ReferenceField",
@@ -38,23 +39,28 @@ export default {
       data: null
     };
   },
+  mounted() {
+    EventBus.$on("references", ({ resource, reference, items }) => {
+      if (resource === this.resource && reference === this.reference) {
+        this.data = items.find(item => item.id === this.value);
+      }
+    });
+  },
   watch: {
     reference: {
       async handler(val) {
-        let { data } = await this.getMany({
-          resource: this.reference,
-          params: {
-            ids: [this.value]
-          }
+        this.addReferenceId({
+          resource: this.resource,
+          reference: val,
+          id: this.value
         });
-        this.data = data[0];
       },
       immediate: true
     }
   },
   methods: {
-    ...mapActions({
-      getMany: "api/getMany"
+    ...mapMutations({
+      addReferenceId: "api/addReferenceId"
     }),
     getProperty(data) {
       return typeof this.property === "string"

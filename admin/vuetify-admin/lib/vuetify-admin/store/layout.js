@@ -11,7 +11,6 @@ export default i18n => {
     namespaced: true,
     state: {
       title: "Vuetify Admin",
-      loading: false,
       showSnackbar: false,
       snackbarText: null,
       snackbarColor: null
@@ -19,9 +18,6 @@ export default i18n => {
     mutations: {
       setTitle(state, title) {
         state.title = title;
-      },
-      setLoading(state, loading) {
-        state.loading = loading;
       },
       showSuccess(state, text) {
         state.snackbarText = text;

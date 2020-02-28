@@ -8,19 +8,19 @@ export default (provider, resource, actions) => {
   Object.values(methods).forEach(
     action =>
       (storeActions[action] = async ({ commit, dispatch }, params) => {
-        /**
-         * Only set global loading when read actions
-         */
-        if ([GET_LIST, GET_ONE].includes(action)) {
-          commit("layout/setLoading", true, {
-            root: true
-          });
-        }
-
         try {
+          /**
+           * Only set global loading when read actions
+           */
+          if ([GET_LIST, GET_ONE].includes(action)) {
+            commit("api/setLoading", true, {
+              root: true
+            });
+          }
+
           let response = await provider[action](resource, params);
 
-          commit("layout/setLoading", false, {
+          commit("api/setLoading", false, {
             root: true
           });
 
@@ -40,7 +40,7 @@ export default (provider, resource, actions) => {
           );
           return Promise.resolve(response);
         } catch (e) {
-          commit("layout/setLoading", false, {
+          commit("api/setLoading", false, {
             root: true
           });
           commit("layout/showError", e.message, {

@@ -96,7 +96,7 @@ import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
 import debounce from "lodash/debounce";
 import FormFilter from "../List/FormFilter";
-import { mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
@@ -141,7 +141,7 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loading: true,
       items: [],
       total: 0,
       options: {},
@@ -164,6 +164,9 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
+    ...mapState({
+      references: state => state.api.references
+    }),
     getVisibleFields() {
       return this.getFields.filter(f => !f.hidden);
     },
@@ -202,6 +205,42 @@ export default {
     }
   },
   watch: {
+    loading: {
+      handler(val) {
+        if (!val) {
+          this.$nextTick(async () => {
+            /**
+             * Load all references for this list
+             */
+            if (!this.references[this.resource]) {
+              return;
+            }
+
+            let references = this.references[this.resource];
+
+            await Promise.all(
+              Object.keys(references).map(async resource => {
+                let { data } = await this.getMany({
+                  resource,
+                  params: {
+                    ids: references[resource]
+                  }
+                });
+
+                EventBus.$emit("references", {
+                  resource: this.resource,
+                  reference: resource,
+                  items: data
+                });
+              })
+            );
+
+            this.cleanReferences(this.resource);
+          });
+        }
+      },
+      immediate: true
+    },
     filters: {
       handler() {
         /**
@@ -219,8 +258,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      cleanReferences: "api/cleanReferences"
+    }),
     ...mapActions({
       getList: "api/getList",
+      getMany: "api/getMany",
       update: "api/update",
       updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
