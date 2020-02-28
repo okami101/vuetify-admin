@@ -16,9 +16,6 @@ class Book extends JsonResource
     {
         $attributes = parent::toArray($request);
 
-        $attributes['publisher'] = new PublisherEmbedded($this->whenLoaded('publisher'));
-        $attributes['reviews'] = ReviewEmbedded::collection($this->whenLoaded('reviews'));
-
         $attributes += [
             'links' => [
                 'self' => route('books.show', $this->id),

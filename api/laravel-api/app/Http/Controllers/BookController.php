@@ -40,8 +40,6 @@ class BookController extends Controller
                     'price',
                     'commentable',
                     'publication_date',
-                    'publisher.id',
-                    'publisher.name'
                 ])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'author', 'description', 'summary'])),
@@ -58,7 +56,6 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts(['id', 'isbn', 'title', 'author', 'price', 'publication_date'])
-                ->allowedIncludes(['publisher', 'reviews'])
                 ->exportOrPaginate()
         );
     }

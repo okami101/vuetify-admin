@@ -250,20 +250,6 @@ export default {
               };
         });
     },
-    getQueryFields(resource, sources, fields = {}) {
-      sources.forEach(s => {
-        let segments = s.split(".");
-
-        if (segments.length === 1) {
-          let f = fields[resource] || [];
-          fields[resource] = [...f, segments[0]];
-          return;
-        }
-
-        return this.getQueryFields(segments[0], segments.splice(1), fields);
-      });
-      return fields;
-    },
     initFiltersFromQuery() {
       if (!this.useQueryString) {
         return;
@@ -337,10 +323,9 @@ export default {
       let { data, total } = await this.getList({
         resource: this.resource,
         params: {
-          fields: this.getQueryFields(
-            this.resource,
-            this.getQueriableFields.map(f => f.source)
-          ),
+          fields: {
+            [this.resource]: this.getQueriableFields.map(f => f.source)
+          },
           include: this.include,
           pagination: {
             page,
