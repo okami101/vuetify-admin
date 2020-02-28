@@ -9,7 +9,7 @@
         type: 'reference',
         options: {
           reference: 'publishers',
-          syncKey: 'books_list',
+          syncKey: 'books_publisher_list',
           link: 'show',
           property: 'name'
         }
@@ -24,7 +24,19 @@
       { source: 'commentable', type: 'boolean', editable: true },
       { source: 'formats', type: 'array' },
       { source: 'description', hidden: true },
-      { source: 'publication_date', type: 'date', options: { format: 'long' } }
+      { source: 'publication_date', type: 'date', options: { format: 'long' } },
+      {
+        source: 'review_ids',
+        virtual: true,
+        type: 'reference',
+        options: {
+          multiple: true,
+          reference: 'reviews',
+          syncKey: 'books_reviews_list',
+          link: 'show',
+          property: 'author'
+        }
+      }
     ]"
     :filters="[
       'q',
@@ -61,6 +73,16 @@
         <va-single-field-list :items="items" v-slot="{ item }">
           <va-chip-field color="yellow" small>
             <va-enum-field source="formats" :item="item"></va-enum-field>
+          </va-chip-field>
+        </va-single-field-list>
+      </template>
+      <template v-slot:review_ids="{ items, link }">
+        <va-single-field-list :items="items" v-slot="{ item }">
+          <va-chip-field
+            color="green"
+            :to="{ name: link, params: { id: item.id } }"
+          >
+            {{ item.author }}
           </va-chip-field>
         </va-single-field-list>
       </template>

@@ -7,7 +7,7 @@
   <div v-else>
     <slot v-if="multiple" :items="data" :link="`${reference}_${link}`"></slot>
     <slot
-      v-else
+      v-else-if="data"
       :item="data"
       :to="{
         name: `${reference}_${link}`,
