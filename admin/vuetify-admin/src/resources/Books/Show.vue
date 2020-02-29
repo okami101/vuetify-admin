@@ -29,7 +29,7 @@
         </va-field>
         <va-field source="description"></va-field>
         <va-field source="author"></va-field>
-        <va-field source="author">
+        <va-field source="formats">
           <va-array-field source="formats" v-slot="{ items }">
             <va-single-field-list :items="items" v-slot="{ item }">
               <va-chip-field color="yellow">
