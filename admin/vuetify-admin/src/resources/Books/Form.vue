@@ -12,11 +12,11 @@
             source="publisher_id"
             reference="publishers"
             property="name"
-            v-slot="{ choices }"
+            v-slot="{ items }"
           >
             <va-select-input
               source="publisher_id"
-              :choices="choices"
+              :choices="items"
             ></va-select-input>
           </va-reference-input>
           <va-text-input source="isbn"></va-text-input>

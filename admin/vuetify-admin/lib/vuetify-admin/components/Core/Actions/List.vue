@@ -94,6 +94,7 @@
 <script>
 import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
+import Search from "vuetify-admin/mixins/search";
 import debounce from "lodash/debounce";
 import FormFilter from "../List/FormFilter";
 import { mapState, mapMutations, mapActions } from "vuex";
@@ -101,26 +102,14 @@ import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "List",
-  mixins: [Page, Resource],
+  mixins: [Page, Resource, Search],
   components: {
     FormFilter
   },
   props: {
-    filter: {
-      type: Object,
-      default: () => {}
-    },
     filters: {
       type: Array,
       default: () => []
-    },
-    fields: {
-      type: Array,
-      default: () => []
-    },
-    itemsPerPage: {
-      type: Number,
-      default: 15
     },
     rowsPerPage: {
       type: Array,
@@ -133,17 +122,10 @@ export default {
     useQueryString: {
       type: Boolean,
       default: true
-    },
-    include: {
-      type: Array,
-      default: () => []
     }
   },
   data() {
     return {
-      loading: true,
-      items: [],
-      total: 0,
       options: {},
       selected: [],
       currentFilter: {},
@@ -152,13 +134,13 @@ export default {
   },
   created() {
     this.initFiltersFromQuery();
+  },
+  mounted() {
+    this.loadData();
 
     EventBus.$on("refresh", () => {
       this.loadData();
     });
-  },
-  mounted() {
-    this.loadData();
   },
   beforeDestroy() {
     EventBus.$off("refresh");
@@ -223,8 +205,6 @@ export default {
       setReferenceData: "api/setReferenceData"
     }),
     ...mapActions({
-      getList: "api/getList",
-      getMany: "api/getMany",
       update: "api/update",
       updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"

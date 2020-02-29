@@ -1,5 +1,5 @@
 <template>
-  <v-select
+  <v-autocomplete
     v-model="input"
     :label="label"
     :hint="hint"
@@ -13,9 +13,11 @@
     :item-value="optionValue"
     :items="choices"
     :chips="chips"
+    :loading="loading"
     @change="change"
+    @update:search-input="onSearch"
   >
-  </v-select>
+  </v-autocomplete>
 </template>
 
 <script>
@@ -38,6 +40,28 @@ export default {
       default() {
         return this.multiple;
       }
+    },
+    minChars: {
+      type: Number,
+      default: 3
+    }
+  },
+  data() {
+    return {
+      loading: false
+    };
+  },
+  methods: {
+    async onSearch(search) {
+      if (!search || search.length < this.minChars) {
+        return;
+      }
+
+      this.loading = true;
+      if (this.$parent.loadChoices) {
+        this.$parent.loadChoices(search);
+      }
+      this.loading = false;
     }
   }
 };

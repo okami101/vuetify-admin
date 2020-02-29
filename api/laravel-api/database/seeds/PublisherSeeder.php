@@ -12,6 +12,6 @@ class PublisherSeeder extends Seeder
      */
     public function run()
     {
-        factory(Publisher::class, 5)->create();
+        factory(Publisher::class, 10)->create();
     }
 }

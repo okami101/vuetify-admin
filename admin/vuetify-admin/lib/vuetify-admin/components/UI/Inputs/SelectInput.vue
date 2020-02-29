@@ -39,6 +39,14 @@ export default {
         return this.multiple;
       }
     }
+  },
+  created() {
+    /**
+     * Load parent reference input if available
+     */
+    if (this.$parent.loadChoices) {
+      this.$parent.loadChoices();
+    }
   }
 };
 </script>
