@@ -43,6 +43,7 @@ class BookController extends Controller
                     'formats',
                     'price',
                     'commentable',
+                    'tags',
                     'publication_date',
                 ])
                 ->allowedFilters([

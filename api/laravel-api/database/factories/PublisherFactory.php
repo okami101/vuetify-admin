@@ -15,6 +15,11 @@ $factory->define(Publisher::class, function (Faker $faker) {
         'url' => 'https://' . parse_url($faker->url)['host'],
         'email' => $faker->companyEmail,
         'active' => $faker->boolean(80),
+        'address' => [
+            'street' => $faker->streetAddress,
+            'postcode' => $faker->postcode,
+            'city' => $faker->city,
+        ],
         'opening_date' => $faker->dateTime,
     ];
 });

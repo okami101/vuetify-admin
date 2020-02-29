@@ -30,6 +30,11 @@
               option-text="author"
             ></va-autocomplete-input>
           </va-reference-input>
+          <va-autocomplete-input
+            source="tags"
+            multiple
+            taggable
+          ></va-autocomplete-input>
         </v-col>
       </v-row>
     </template>

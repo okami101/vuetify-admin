@@ -1,4 +1,5 @@
 import Item from "vuetify-admin/mixins/item";
+import get from "lodash/get";
 import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -62,7 +63,7 @@ export default {
           return;
         }
         if (val && this.source) {
-          this.input = val[this.source];
+          this.input = get(val, this.source);
         }
       },
       immediate: true

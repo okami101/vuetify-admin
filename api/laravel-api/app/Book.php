@@ -20,6 +20,7 @@ use Illuminate\Support\Carbon;
  * @property array $formats
  * @property float $price
  * @property bool $commentable
+ * @property array $tags
  * @property Carbon $publication_date
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
  * @property-read int|null $reviews_count
@@ -49,6 +50,7 @@ class Book extends Model
         'category',
         'formats',
         'commentable',
+        'tags',
         'publication_date',
     ];
 
@@ -59,7 +61,8 @@ class Book extends Model
     protected $casts = [
         'price' => 'float',
         'commentable' => 'boolean',
-        'formats' => 'array'
+        'formats' => 'array',
+        'tags' => 'array'
     ];
 
     public function publisher()

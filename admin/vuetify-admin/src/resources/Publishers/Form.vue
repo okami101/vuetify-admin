@@ -10,6 +10,9 @@
         <va-text-input source="url"></va-text-input>
         <va-text-input source="email"></va-text-input>
         <va-boolean-input source="active"></va-boolean-input>
+        <va-text-input source="address.street"></va-text-input>
+        <va-text-input source="address.postcode"></va-text-input>
+        <va-text-input source="address.city"></va-text-input>
         <va-date-input source="opening_date" format="long"></va-date-input>
       </v-col>
     </v-row>

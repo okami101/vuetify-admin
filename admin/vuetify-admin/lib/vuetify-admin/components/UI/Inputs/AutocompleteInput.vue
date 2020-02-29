@@ -1,5 +1,6 @@
 <template>
-  <v-autocomplete
+  <component
+    :is="taggable ? 'v-combobox' : 'v-autocomplete'"
     v-model="input"
     :label="label"
     :hint="hint"
@@ -24,16 +25,21 @@
     <template v-slot:item="data" v-if="$scopedSlots.item">
       <slot name="item" v-bind="data"></slot>
     </template>
-  </v-autocomplete>
+  </component>
 </template>
 
 <script>
+import { VAutocomplete, VCombobox } from "vuetify/lib";
 import Input from "vuetify-admin/mixins/input";
 import Choices from "vuetify-admin/mixins/choices";
 
 export default {
   name: "AutocompleteInput",
   mixins: [Input, Choices],
+  components: {
+    VAutocomplete,
+    VCombobox
+  },
   props: {
     multiple: Boolean,
     filled: {
@@ -51,7 +57,8 @@ export default {
     minChars: {
       type: Number,
       default: 3
-    }
+    },
+    taggable: Boolean
   },
   data() {
     return {

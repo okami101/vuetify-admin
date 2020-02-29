@@ -42,6 +42,15 @@
             </va-single-field-list>
           </va-array-field>
         </va-field>
+        <va-field source="tags">
+          <va-array-field source="tags">
+            <va-single-field-list v-slot="{ item }">
+              <va-chip-field>
+                {{ item }}
+              </va-chip-field>
+            </va-single-field-list>
+          </va-array-field>
+        </va-field>
         <va-field
           source="price"
           type="number"

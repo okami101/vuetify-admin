@@ -1,7 +1,7 @@
 <template>
   <v-input :label="label">
     <div>
-      <slot>
+      <slot v-if="value" :value="value">
         <component
           :is="`va-${type}-field`"
           :source="source"
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import Item from "vuetify-admin/mixins/item";
+import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "Field",
-  mixins: [Item],
+  mixins: [Field],
   props: {
     source: String,
     label: {

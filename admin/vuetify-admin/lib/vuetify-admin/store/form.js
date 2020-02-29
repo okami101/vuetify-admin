@@ -1,3 +1,5 @@
+import set from "lodash/set";
+
 export default {
   namespaced: true,
   state: {
@@ -7,7 +9,7 @@ export default {
   },
   mutations: {
     update(state, { source, value }) {
-      state.model[source] = value === undefined ? "" : value;
+      set(state.model, source, value === undefined ? "" : value);
     },
     setErrors(state, errors) {
       state.errors = errors;

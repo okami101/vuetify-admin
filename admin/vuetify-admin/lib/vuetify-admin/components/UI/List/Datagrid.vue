@@ -168,7 +168,10 @@ export default {
   },
   methods: {
     getDefaultSort(field) {
-      if (["boolean"].includes(field.type) || field.virtual) {
+      if (
+        ["boolean", "function", "reference", "select"].includes(field.type) ||
+        field.virtual
+      ) {
         return false;
       }
       return true;

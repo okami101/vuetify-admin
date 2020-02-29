@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $headquarter
  * @property string $url
  * @property string $email
+ * @property object $address
  * @property bool $active
  * @property string $opening_date
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
@@ -37,6 +38,7 @@ class Publisher extends Model
         'url',
         'email',
         'active',
+        'address',
         'opening_date',
     ];
 
@@ -45,7 +47,8 @@ class Publisher extends Model
     ];
 
     protected $casts = [
-        'active' => 'boolean'
+        'active' => 'boolean',
+        'address' => 'object'
     ];
 
     public function books()

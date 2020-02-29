@@ -9,6 +9,9 @@
       <va-field source="url" type="url"></va-field>
       <va-field source="email" type="email"></va-field>
       <va-field source="active" type="boolean"></va-field>
+      <va-field source="address" :label="$t('address')" v-slot="{ value }">
+        {{ value.street }}, {{ value.postcode }} {{ value.city }}
+      </va-field>
       <va-field
         source="opening_date"
         type="date"

@@ -1,6 +1,7 @@
 {
   "good": "Bon",
   "bad": "Mauvais",
+  "address": "Adresse",
   "routes": {
     "login": "Login",
     "dashboard": "Tableau de bord",
@@ -45,6 +46,11 @@
         "url": "Url",
         "email": "Email",
         "active": "Actif",
+        "address": {
+          "street": "Rue",
+          "postcode": "Code postal",
+          "city": "Ville"
+        },
         "opening_date": "Date d'ouverture",
         "books_count": "Nombre de livres"
       },
@@ -76,6 +82,7 @@
         "review_ids": "Commentaires",
         "price": "Prix",
         "commentable": "Commentable",
+        "tags": "Etiquettes",
         "published_before": "Publié avant",
         "published_after": "Publié après",
         "pricier_than": "Plus cher que",

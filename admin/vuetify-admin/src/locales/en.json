@@ -1,6 +1,7 @@
 {
   "good": "Good",
   "bad": "Bad",
+  "address": "Address",
   "routes": {
     "login": "Login",
     "dashboard": "Dashboard",
@@ -45,6 +46,11 @@
         "url": "Url",
         "email": "Email",
         "active": "Active",
+        "address": {
+          "street": "Street",
+          "postcode": "Postcode",
+          "city": "City"
+        },
         "opening_date": "Opening date",
         "books_count": "Books count"
       },
@@ -76,6 +82,7 @@
         "review_ids": "Reviews",
         "price": "Price",
         "commentable": "Commentable",
+        "tags": "Tags",
         "published_before": "Published before",
         "published_after": "Published after",
         "pricier_than": "Pricier than",
