@@ -13,10 +13,13 @@ class BookSeeder extends Seeder
     public function run()
     {
         $publishers = Publisher::all();
+        $authors = \App\Author::all();
 
-        factory(\App\Book::class, 500)->make()->each(function (\App\Book $book) use ($publishers) {
+        factory(\App\Book::class, 500)->make()->each(function (\App\Book $book) use ($publishers, $authors) {
             $book->publisher()->associate($publishers->random());
             $book->save();
+
+            $book->authors()->sync($authors->random(random_int(1, 2)));
         });
     }
 }

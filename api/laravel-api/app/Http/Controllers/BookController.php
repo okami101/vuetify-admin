@@ -39,7 +39,6 @@ class BookController extends Controller
                     'title',
                     'category',
                     'description',
-                    'author',
                     'formats',
                     'price',
                     'commentable',
@@ -47,21 +46,20 @@ class BookController extends Controller
                     'publication_date',
                 ])
                 ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'author', 'description', 'summary'])),
+                    AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'description', 'summary'])),
                     AllowedFilter::exact('id'),
                     AllowedFilter::exact('publisher_id'),
                     AllowedFilter::exact('commentable'),
                     'title',
                     AllowedFilter::exact('category'),
-                    'author',
                     AllowedFilter::exact('formats'),
                     AllowedFilter::scope('pricer_than'),
                     AllowedFilter::scope('cheaper_than'),
                     AllowedFilter::scope('published_before'),
                     AllowedFilter::scope('published_after'),
                 ])
-                ->allowedSorts(['id', 'isbn', 'title', 'author', 'price', 'publication_date'])
-                ->allowedIncludes(['reviews'])
+                ->allowedSorts(['id', 'isbn', 'title', 'price', 'publication_date'])
+                ->allowedIncludes(['publisher', 'authors', 'reviews'])
                 ->exportOrPaginate()
         );
     }

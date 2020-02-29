@@ -7,6 +7,7 @@
   >
     <va-resource name="publishers"></va-resource>
     <va-resource name="books"></va-resource>
+    <va-resource name="authors"></va-resource>
     <va-resource name="reviews"></va-resource>
   </va-admin>
 </template>
@@ -57,6 +58,11 @@ export default {
           icon: "mdi-globe-model",
           text: this.$t("menu.publishers"),
           link: "/publishers"
+        },
+        {
+          icon: "mdi-account",
+          text: this.$t("menu.authors"),
+          link: "/authors"
         },
         {
           icon: "mdi-book",

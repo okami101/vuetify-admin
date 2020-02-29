@@ -2,16 +2,16 @@
 
 namespace App\Policies;
 
-use App\Book;
+use App\Author;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BookPolicy
+class AuthorPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any books.
+     * Determine whether the user can view any authors.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -22,19 +22,19 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can view the book.
+     * Determine whether the user can view the author.
      *
      * @param  \App\User  $user
-     * @param  \App\Book  $book
+     * @param  \App\Author  $author
      * @return mixed
      */
-    public function view(?User $user, Book $book)
+    public function view(?User $user, Author $author)
     {
         return true;
     }
 
     /**
-     * Determine whether the user can create books.
+     * Determine whether the user can create authors.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -45,25 +45,25 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can update the book.
+     * Determine whether the user can update the author.
      *
      * @param  \App\User  $user
-     * @param  \App\Book  $book
+     * @param  \App\Author  $author
      * @return mixed
      */
-    public function update(User $user, Book $book)
+    public function update(User $user, Author $author)
     {
         return $user->is_admin;
     }
 
     /**
-     * Determine whether the user can delete the book.
+     * Determine whether the user can delete the author.
      *
      * @param  \App\User  $user
-     * @param  \App\Book  $book
+     * @param  \App\Author  $author
      * @return mixed
      */
-    public function delete(User $user, Book $book)
+    public function delete(User $user, Author $author)
     {
         return $user->is_admin;
     }

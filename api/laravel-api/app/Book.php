@@ -15,7 +15,6 @@ use Illuminate\Support\Carbon;
  * @property string $title
  * @property string $description
  * @property string $summary
- * @property string $author
  * @property string $category
  * @property array $formats
  * @property float $price
@@ -25,6 +24,8 @@ use Illuminate\Support\Carbon;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
  * @property-read int|null $reviews_count
  * @property-read \App\Publisher $publisher
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $authors
+ * @property-read int|null $authors_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book query()
@@ -45,7 +46,6 @@ class Book extends Model
         'title',
         'description',
         'summary',
-        'author',
         'price',
         'category',
         'formats',
@@ -73,6 +73,11 @@ class Book extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class);
     }
 
     public function scopeCommentables(Builder $query): Builder

@@ -40,6 +40,7 @@ class PublisherController extends Controller
                     AllowedFilter::exact('active'),
                 ])
                 ->allowedIncludes([
+                    'books',
                     AllowedInclude::count('books_count'),
                 ])
                 ->allowedSorts(['id', 'name', 'founder', 'headquarter', 'opening_date', 'books_count'])

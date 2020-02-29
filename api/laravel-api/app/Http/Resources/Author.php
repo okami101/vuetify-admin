@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Review extends JsonResource
+class Author extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,7 @@ class Review extends JsonResource
 
         $attributes += [
             'links' => [
-                'self' => route('reviews.show', $this->id),
+                'self' => route('authors.show', $this->id),
             ],
         ];
 

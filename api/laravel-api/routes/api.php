@@ -28,6 +28,7 @@ Route::group([
 });
 
 Route::apiResources([
+    'authors' => 'AuthorController',
     'books' => 'BookController',
     'reviews' => 'ReviewController',
     'publishers' => 'PublisherController'

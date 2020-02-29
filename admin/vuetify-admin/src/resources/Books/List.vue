@@ -15,7 +15,6 @@
         }
       },
       'title',
-      'author',
       {
         source: 'price',
         type: 'number',
@@ -41,7 +40,6 @@
     :filters="[
       'q',
       'title',
-      'author',
       { source: 'pricier_than', type: 'number' },
       { source: 'cheaper_than', type: 'number' },
       { source: 'commentable', type: 'boolean' },

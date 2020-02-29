@@ -26,6 +26,7 @@
     "list": "List",
     "create": "Create",
     "publishers": "Publishers",
+    "authors": "Authors",
     "books": "Books",
     "reviews": "Reviews"
   },
@@ -66,6 +67,14 @@
         }
       }
     },
+    "authors": {
+      "name": "Author | Authors",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "description": "Description"
+      }
+    },
     "books": {
       "name": "Book | Books",
       "fields": {
@@ -76,7 +85,6 @@
         "description": "Description",
         "summary": "Summary",
         "publication_date": "Publication date",
-        "author": "Author",
         "formats": "Formats",
         "publisher_id": "Publisher",
         "review_ids": "Reviews",

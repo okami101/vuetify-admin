@@ -14,7 +14,6 @@ $factory->define(Book::class, function (Faker $faker) {
         'category' => $faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
         'description' => $faker->paragraph(10),
         'summary' => $faker->htmlParagraphs(10, 10, 10),
-        'author' => $faker->name,
         'formats' => $faker->randomElements(
             ['pocket', 'paperback', 'pdf', 'epub', 'kindle'],
             $faker->numberBetween(1, 5)

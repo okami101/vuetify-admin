@@ -28,7 +28,6 @@
           </va-chip-field>
         </va-field>
         <va-field source="description"></va-field>
-        <va-field source="author"></va-field>
         <va-field source="formats">
           <va-array-field source="formats">
             <va-single-field-list v-slot="{ item }">
