@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 /**
  * App\Book
@@ -36,8 +39,10 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book commentables()
  * @mixin \Eloquent
  */
-class Book extends Model
+class Book extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -63,6 +68,20 @@ class Book extends Model
         'commentable' => 'boolean',
         'formats' => 'array',
         'tags' => 'array'
+    ];
+
+    protected $with = ['media'];
+
+    public $files = [
+        'cover' => [
+            'collection' => 'images',
+            'conversion' => 'thumb',
+            'multiple' => false
+        ],
+        'extract' => [
+            'collection' => 'files',
+            'multiple' => false
+        ]
     ];
 
     public function publisher()
@@ -103,5 +122,13 @@ class Book extends Model
     public function scopePublishedAfter(Builder $query, $date): Builder
     {
         return $query->where('publication_date', '>=', Carbon::parse($date));
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(300)
+            ->height(200)
+            ->nonOptimized();
     }
 }

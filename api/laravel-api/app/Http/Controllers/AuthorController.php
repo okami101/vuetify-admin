@@ -6,10 +6,10 @@ use App\Author;
 use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreAuthor;
 use App\Http\Requests\UpdateAuthor;
+use App\Http\Resources\Author as AuthorResource;
 use App\Http\Resources\AuthorCollection;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use App\Http\Resources\Author as AuthorResource;
 
 class AuthorController extends Controller
 {

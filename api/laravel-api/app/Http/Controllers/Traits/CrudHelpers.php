@@ -17,4 +17,9 @@ trait CrudHelpers
             'book_id' => $model->id
         ]);
     }
+
+    public function saveFiles(Model $model, $key)
+    {
+        /* @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $model */
+    }
 }

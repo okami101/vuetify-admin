@@ -2,9 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
-class Publisher extends JsonResource
+class Publisher extends MediaResource
 {
     /**
      * Transform the resource into an array.

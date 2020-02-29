@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 /**
  * App\Author
@@ -17,8 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Author query()
  * @mixin \Eloquent
  */
-class Author extends Model
+class Author extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -26,8 +31,30 @@ class Author extends Model
         'description',
     ];
 
+    protected $appends = [
+        'photo'
+    ];
+
+    protected $with = ['media'];
+
+    public $files = [
+        'photo' => [
+            'collection' => 'images',
+            'conversion' => 'thumb',
+            'multiple' => false
+        ]
+    ];
+
     public function books()
     {
         return $this->belongsToMany(Book::class);
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(300)
+            ->height(200)
+            ->nonOptimized();
     }
 }
