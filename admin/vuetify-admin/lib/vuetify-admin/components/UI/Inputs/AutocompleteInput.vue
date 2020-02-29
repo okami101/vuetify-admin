@@ -80,7 +80,10 @@ export default {
       this.loading = true;
 
       if (this.$parent.fetchChoices) {
-        this.items = await this.$parent.fetchChoices(val);
+        this.items = [
+          ...(this.items || []),
+          ...(await this.$parent.fetchChoices(val))
+        ];
       }
       this.loading = false;
     }

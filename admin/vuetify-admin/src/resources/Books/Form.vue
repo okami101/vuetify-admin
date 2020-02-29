@@ -23,6 +23,13 @@
             source="publication_date"
             format="long"
           ></va-date-input>
+          <va-reference-input reference="reviews" property="author">
+            <va-autocomplete-input
+              source="review_ids"
+              multiple
+              option-text="author"
+            ></va-autocomplete-input>
+          </va-reference-input>
         </v-col>
       </v-row>
     </template>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 
-trait RelationshipCrud
+trait CrudHelpers
 {
     public function saveMultiple(Model $model, $association, $key)
     {
