@@ -1,36 +1,16 @@
-<template>
-  <div>
-    <slot :items="items"></slot>
-  </div>
-</template>
-
 <script>
-import Field from "vuetify-admin/mixins/field";
 import Search from "vuetify-admin/mixins/search";
 import { mapActions } from "vuex";
 
 export default {
   name: "ReferenceInput",
-  mixins: [Field, Search],
+  mixins: [Search],
   props: {
     reference: {
       type: String,
       required: true
     },
-    link: {
-      type: String,
-      default: "edit"
-    },
-    property: [String, Function],
-    multiple: Boolean
-  },
-  watch: {
-    value: {
-      handler() {
-        this.loadData();
-      },
-      immediate: true
-    }
+    property: [String, Function]
   },
   computed: {
     getFields() {
@@ -42,7 +22,7 @@ export default {
       getList: "api/getList",
       getMany: "api/getMany"
     }),
-    async loadData() {
+    async fetchData(ids) {
       /**
        * Fetch related item records
        * Used for preloaded autocomplete inputs
@@ -54,15 +34,19 @@ export default {
             [this.reference]: this.getFields
           },
           include: this.include,
-          ids: this.multiple ? this.value : [this.value]
+          ids
         }
       });
 
-      this.items = data;
+      return data;
     },
-    loadChoices(search) {
-      this.search(search, this.reference, this.getFields);
+    async fetchChoices(search) {
+      let data = await this.search(search, this.reference, this.getFields);
+      return data;
     }
+  },
+  render(c) {
+    return this.$slots.default;
   }
 };
 </script>

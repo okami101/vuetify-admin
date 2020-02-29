@@ -11,12 +11,19 @@
     :multiple="multiple"
     :item-text="optionText"
     :item-value="optionValue"
-    :items="choices"
+    :items="items || choices"
     :chips="chips"
     :loading="loading"
+    :search-input.sync="search"
+    :clearable="clearable"
     @change="change"
-    @update:search-input="onSearch"
   >
+    <template v-slot:selection="data" v-if="$scopedSlots.selection">
+      <slot name="selection" v-bind="data"></slot>
+    </template>
+    <template v-slot:item="data" v-if="$scopedSlots.item">
+      <slot name="item" v-bind="data"></slot>
+    </template>
   </v-autocomplete>
 </template>
 
@@ -48,18 +55,32 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      items: null,
+      search: null
     };
   },
-  methods: {
-    async onSearch(search) {
-      if (!search || search.length < this.minChars) {
+  async mounted() {
+    if (this.$parent.fetchData && this.input) {
+      this.items = await this.$parent.fetchData(
+        this.multiple ? this.input : [this.input]
+      );
+    }
+  },
+  watch: {
+    async search(val, old) {
+      if (!val || val.length < this.minChars) {
+        return;
+      }
+
+      if (this.loading) {
         return;
       }
 
       this.loading = true;
-      if (this.$parent.loadChoices) {
-        this.$parent.loadChoices(search);
+
+      if (this.$parent.fetchChoices) {
+        this.items = await this.$parent.fetchChoices(val);
       }
       this.loading = false;
     }

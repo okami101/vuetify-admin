@@ -16,7 +16,7 @@
         readonly
         append-icon="mdi-calendar"
         v-on="on"
-        clearable
+        :clearable="clearable"
         :filled="filled"
         :single-line="singleLine"
         :hide-details="hideDetails"

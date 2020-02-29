@@ -3,18 +3,16 @@
     <v-row>
       <v-col sm="3">
         <va-reference-input
-          source="book_id"
           reference="books"
-          property="title"
-          v-slot="{ items }"
+          :fields="['id', 'title', 'author']"
         >
-          <va-autocomplete-input
-            source="book_id"
-            :choices="items"
-            option-text="title"
-          ></va-autocomplete-input>
+          <va-autocomplete-input source="book_id" option-text="title">
+            <template v-slot:item="{ item }">
+              {{ item.title }} ({{ item.author }})
+            </template>
+          </va-autocomplete-input>
         </va-reference-input>
-        <va-radio-group-input source="status"></va-radio-group-input>
+        <va-radio-group-input source="status" enum></va-radio-group-input>
         <va-rating-input source="rating"></va-rating-input>
         <va-text-input source="body" multiline></va-text-input>
         <va-text-input source="author"></va-text-input>

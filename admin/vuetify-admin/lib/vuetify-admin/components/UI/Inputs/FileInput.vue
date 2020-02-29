@@ -1,5 +1,5 @@
 <template>
-  <v-switch
+  <v-file-input
     v-model="input"
     :label="label"
     :hint="hint"
@@ -7,8 +7,9 @@
     :error-messages="errorMessages"
     :hide-details="hideDetails"
     :dense="dense"
+    :clearable="clearable"
     @change="change"
-  ></v-switch>
+  ></v-file-input>
 </template>
 
 <script>

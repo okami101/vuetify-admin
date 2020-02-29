@@ -10,6 +10,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :clearable="clearable"
     type="number"
     :step="step"
     @change="change"

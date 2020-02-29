@@ -26,7 +26,7 @@ class StoreReview extends FormRequest
         return [
             'book_id' => 'required',
             'rating' => 'between:1,5',
-            'status' => 'required',
+            'status' => 'required|in:published,pending,denied',
             'author' => 'required',
             'publication_date' => 'required|date',
         ];

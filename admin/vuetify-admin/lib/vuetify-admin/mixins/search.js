@@ -31,25 +31,16 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {
-      loading: false,
-      items: [],
-      total: 0
-    };
-  },
   methods: {
     ...mapActions({
       getList: "api/getList",
       getMany: "api/getMany"
     }),
     async search(search, resource, fields = []) {
-      this.loading = true;
-
       /**
        * Load paginated and sortad data list
        */
-      let { data, total } = await this.getList({
+      let { data } = await this.getList({
         resource,
         params: {
           fields: {
@@ -70,9 +61,7 @@ export default {
         }
       });
 
-      this.loading = false;
-      this.items = data;
-      this.total = total;
+      return data;
     }
   }
 };

@@ -24,7 +24,7 @@
         <va-field source="title"></va-field>
         <va-field source="category">
           <va-chip-field>
-            <va-select-field source="category"></va-select-field>
+            <va-select-field source="category" enum></va-select-field>
           </va-chip-field>
         </va-field>
         <va-field source="description"></va-field>
@@ -36,6 +36,7 @@
                 <va-select-field
                   source="formats"
                   :item="item"
+                  enum
                 ></va-select-field>
               </va-chip-field>
             </va-single-field-list>

@@ -15,6 +15,7 @@ export default {
     icon: String,
     hideDetails: Boolean,
     dense: Boolean,
+    clearable: Boolean,
     required: Boolean,
     alwaysOn: Boolean,
     filter: Boolean,

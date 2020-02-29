@@ -12,6 +12,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :clearable="clearable"
     @change="change"
   ></v-textarea>
   <v-text-field
@@ -26,6 +27,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :clearable="clearable"
     @change="change"
   ></v-text-field>
 </template>

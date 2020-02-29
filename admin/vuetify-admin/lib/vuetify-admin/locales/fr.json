@@ -39,6 +39,7 @@
     "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !"
   },
   "forms": {
+    "none": "Aucun",
     "required_field": "Le champ {field} est requis"
   }
 }

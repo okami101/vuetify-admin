@@ -10,7 +10,7 @@
             `${value} (${$t(`resources.publishers.enums.type.${item.type}`)})`
         }
       },
-      { source: 'type', type: 'select' },
+      { source: 'type', type: 'select', options: { enum: true } },
       'founder',
       'headquarter',
       { source: 'url', type: 'url' },

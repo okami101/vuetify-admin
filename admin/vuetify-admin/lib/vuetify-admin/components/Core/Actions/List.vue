@@ -18,10 +18,10 @@
         'items-per-page-options': rowsPerPage,
         showFirstLastPage: true
       }"
-      @update:items-per-page="loadDataAndQuery"
-      @update:page="loadDataAndQuery"
-      @update:sort-by="loadDataAndQuery"
-      @update:sort-desc="loadDataAndQuery"
+      @update:items-per-page="fetchDataAndQuery"
+      @update:page="fetchDataAndQuery"
+      @update:sort-by="fetchDataAndQuery"
+      @update:sort-desc="fetchDataAndQuery"
       @edit="onUpdateItem"
     >
       <template v-slot:header>
@@ -126,6 +126,9 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      items: [],
+      total: 0,
       options: {},
       selected: [],
       currentFilter: {},
@@ -136,10 +139,10 @@ export default {
     this.initFiltersFromQuery();
   },
   mounted() {
-    this.loadData();
+    this.fetchData();
 
     EventBus.$on("refresh", () => {
-      this.loadData();
+      this.fetchData();
     });
   },
   beforeDestroy() {
@@ -197,7 +200,7 @@ export default {
       immediate: true
     },
     currentFilter() {
-      this.loadDataAndQuery();
+      this.fetchDataAndQuery();
     }
   },
   methods: {
@@ -289,11 +292,11 @@ export default {
         })
         .catch(e => {});
     },
-    loadDataAndQuery() {
-      this.loadData();
+    fetchDataAndQuery() {
+      this.fetchData();
       this.updateQuery();
     },
-    async loadData() {
+    async fetchData() {
       this.loading = true;
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
@@ -361,7 +364,7 @@ export default {
       });
     },
     async onDelete(item) {
-      this.loadData();
+      this.fetchData();
     },
     async onBlukDelete() {
       if (
@@ -387,7 +390,7 @@ export default {
           params: { ids: this.selected.map(({ id }) => id) }
         });
         this.selected = [];
-        this.loadData();
+        this.fetchData();
       }
     },
     async onUpdateItem({ item, source, val }) {

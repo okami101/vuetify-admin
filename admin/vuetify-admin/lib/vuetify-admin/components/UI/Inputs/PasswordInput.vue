@@ -9,6 +9,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :clearable="clearable"
     :type="show ? 'text' : 'password'"
     @input="val => (input = val)"
     @click:append="show = !show"

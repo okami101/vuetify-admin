@@ -11,8 +11,9 @@
     :multiple="multiple"
     :item-text="optionText"
     :item-value="optionValue"
-    :items="choices"
+    :items="items || choices"
     :chips="chips"
+    :clearable="clearable"
     @change="change"
   >
   </v-select>
@@ -40,12 +41,17 @@ export default {
       }
     }
   },
-  created() {
+  data() {
+    return {
+      items: null
+    };
+  },
+  async mounted() {
     /**
      * Load parent reference input if available
      */
-    if (this.$parent.loadChoices) {
-      this.$parent.loadChoices();
+    if (this.$parent.fetchChoices) {
+      this.items = await this.$parent.fetchChoices();
     }
   }
 };

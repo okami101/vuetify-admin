@@ -13,6 +13,7 @@
     :item-value="optionValue"
     :items="choices"
     :chips="chips"
+    :clearable="clearable"
     @change="change"
   >
   </v-select>

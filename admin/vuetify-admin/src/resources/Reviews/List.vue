@@ -12,7 +12,11 @@
           property: 'title'
         }
       },
-      'status',
+      {
+        source: 'status',
+        type: 'chip',
+        options: { color: v => $statusColor(v) }
+      },
       { source: 'rating', type: 'rating' },
       {
         source: 'quality',
@@ -40,10 +44,8 @@
       <template v-slot:expanded-item="{ item }">
         <va-text-field :item="item" source="body"></va-text-field>
       </template>
-      <template v-slot:status="{ item, value }">
-        <va-chip-field :color="$statusColor(value)">
-          <va-select-field source="status" :item="item"></va-select-field>
-        </va-chip-field>
+      <template v-slot:status="{ item }">
+        <va-select-field source="status" :item="item" enum></va-select-field>
       </template>
     </va-datagrid>
   </va-list>

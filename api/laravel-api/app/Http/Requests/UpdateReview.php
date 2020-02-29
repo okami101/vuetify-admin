@@ -26,7 +26,7 @@ class UpdateReview extends FormRequest
         return [
             'book_id' => 'sometimes|required',
             'rating' => 'sometimes|between:1,5',
-            'status' => 'sometimes|required',
+            'status' => 'sometimes|required|in:published,pending,denied',
             'author' => 'sometimes|required',
             'publication_date' => 'sometimes|required|date',
         ];
