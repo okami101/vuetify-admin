@@ -30,8 +30,8 @@
         <va-field source="description"></va-field>
         <va-field source="author"></va-field>
         <va-field source="formats">
-          <va-array-field source="formats" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }">
+          <va-array-field source="formats">
+            <va-single-field-list v-slot="{ item }">
               <va-chip-field color="yellow">
                 <va-select-field
                   source="formats"
@@ -60,9 +60,9 @@
             reference="reviews"
             link="show"
             property="author"
-            v-slot="{ items, link }"
+            v-slot="{ link }"
           >
-            <va-single-field-list :items="items" v-slot="{ item }">
+            <va-single-field-list v-slot="{ item }">
               <va-chip-field
                 color="green"
                 :to="{ name: link, params: { id: item.id } }"

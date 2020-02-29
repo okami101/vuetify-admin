@@ -135,6 +135,9 @@ export default {
     }),
     getFields() {
       return this.fields.length ? this.fields : ["id", this.property];
+    },
+    items() {
+      return this.dataItems;
     }
   },
   methods: {

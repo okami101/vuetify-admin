@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :resource="resource" :items="value">
+    <slot :resource="resource" :items="items">
       {{ (value || []).join(", ") }}
     </slot>
   </div>
@@ -11,6 +11,11 @@ import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "ArrayField",
-  mixins: [Field]
+  mixins: [Field],
+  computed: {
+    items() {
+      return this.value;
+    }
+  }
 };
 </script>
