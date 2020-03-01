@@ -1,32 +1,40 @@
 <template>
   <ul v-if="isMultiple">
-    <li v-for="(file, i) in value" :key="i">
-      <a
+    <li v-for="(file, i) in limit ? value.slice(0, limit) : value" :key="i">
+      <component
         :href="getFileProp(file, src || 'src')"
         :title="getFileProp(file, title || 'title')"
         :target="target"
+        :is="getFileTag"
       >
         <slot :file="file" :title="getFileProp(file, title || 'title')">
           {{ title || value }}
         </slot>
-      </a>
+      </component>
     </li>
   </ul>
-  <a
+  <component
     v-else-if="isObject"
     :href="getFileProp(value, src || 'src')"
     :title="getFileProp(value, title || 'title') || title"
     :target="target"
+    :is="getFileTag"
   >
     <slot :file="value" :title="getFileProp(value, title || 'title') || title">
       {{ title || value }}
     </slot>
-  </a>
-  <a v-else :href="value" :title="title" :target="target">
+  </component>
+  <component
+    v-else
+    :href="value"
+    :title="title"
+    :target="target"
+    :is="getFileTag"
+  >
     <slot :file="value" :title="title">
       {{ title || value }}
     </slot>
-  </a>
+  </component>
 </template>
 
 <script>

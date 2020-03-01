@@ -7,6 +7,11 @@ export default {
     target: {
       type: String,
       default: "_blank"
+    },
+    limit: Number,
+    link: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -15,6 +20,9 @@ export default {
     },
     isObject() {
       return this.value instanceof Object;
+    },
+    getFileTag() {
+      return this.link ? "a" : "span";
     }
   },
   methods: {

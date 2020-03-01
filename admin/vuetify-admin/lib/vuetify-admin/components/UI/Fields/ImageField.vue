@@ -16,7 +16,13 @@ export default {
   name: "ImageField",
   mixins: [Field, Files],
   props: {
-    preview: String
+    preview: String,
+    link: {
+      type: Boolean,
+      default() {
+        return !!this.src;
+      }
+    }
   }
 };
 </script>
