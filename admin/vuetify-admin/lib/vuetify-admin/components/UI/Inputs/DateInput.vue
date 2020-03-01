@@ -21,6 +21,7 @@
         :single-line="singleLine"
         :hide-details="hideDetails"
         :dense="dense"
+        :placeholder="placeholder"
         @click:clear="input = null"
       ></v-text-field>
     </template>
@@ -39,6 +40,7 @@ export default {
   name: "DateInput",
   mixins: [Input],
   props: {
+    placeholder: String,
     singleLine: Boolean,
     filled: {
       type: Boolean,

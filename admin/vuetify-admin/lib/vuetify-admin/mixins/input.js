@@ -6,6 +6,7 @@ export default {
   mixins: [Item],
   props: {
     source: String,
+    model: String,
     label: {
       type: String,
       default() {
@@ -63,7 +64,7 @@ export default {
           return;
         }
         if (val && this.source) {
-          this.input = get(val, this.source);
+          this.input = get(val, this.model || this.source);
         }
       },
       immediate: true
@@ -75,7 +76,7 @@ export default {
       }
     },
     errors(val) {
-      this.errorMessages = val[this.source] || [];
+      this.errorMessages = val[this.model || this.source] || [];
     }
   },
   methods: {
@@ -95,7 +96,7 @@ export default {
        */
       if (!this.filter || !this.edit) {
         this.updateForm({
-          source: this.source,
+          source: this.model || this.source,
           value: this.input
         });
       }

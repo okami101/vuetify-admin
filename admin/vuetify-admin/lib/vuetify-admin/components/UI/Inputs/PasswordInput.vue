@@ -9,6 +9,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :placeholder="placeholder"
     :clearable="clearable"
     :type="show ? 'text' : 'password'"
     @input="val => (input = val)"
@@ -24,6 +25,7 @@ export default {
   name: "PasswordInput",
   mixins: [Input],
   props: {
+    placeholder: String,
     singleLine: Boolean,
     hideDetails: Boolean,
     filled: {

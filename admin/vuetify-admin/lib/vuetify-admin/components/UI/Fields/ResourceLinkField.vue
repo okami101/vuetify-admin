@@ -2,7 +2,7 @@
   <router-link
     :to="{
       name: `${resource}_${link}`,
-      params: { id: item.id }
+      params: { id: item[id] }
     }"
   >
     <slot :resource="resource" :item="item">
@@ -21,6 +21,10 @@ export default {
     link: {
       type: String,
       default: "edit"
+    },
+    id: {
+      type: String,
+      default: "id"
     }
   }
 };

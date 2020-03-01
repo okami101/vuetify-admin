@@ -16,6 +16,7 @@
     :chips="chips"
     :loading="loading"
     :search-input.sync="search"
+    :placeholder="placeholder"
     :clearable="clearable"
     @change="change"
   >
@@ -41,6 +42,7 @@ export default {
     VCombobox
   },
   props: {
+    placeholder: String,
     multiple: Boolean,
     filled: {
       type: Boolean,

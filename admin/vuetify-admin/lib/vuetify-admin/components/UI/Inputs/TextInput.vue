@@ -12,6 +12,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :placeholder="placeholder"
     :clearable="clearable"
     @change="change"
   ></v-textarea>
@@ -27,6 +28,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :placeholder="placeholder"
     :clearable="clearable"
     @change="change"
   ></v-text-field>
@@ -39,6 +41,7 @@ export default {
   name: "TextInput",
   mixins: [Input],
   props: {
+    placeholder: String,
     multiline: Boolean,
     icon: String,
     singleLine: Boolean,

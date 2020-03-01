@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Http\Controllers\Traits\CrudHelpers;
 use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreAuthor;
 use App\Http\Requests\UpdateAuthor;
@@ -13,6 +14,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class AuthorController extends Controller
 {
+    use CrudHelpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -57,7 +60,9 @@ class AuthorController extends Controller
      */
     public function store(StoreAuthor $request)
     {
-        return new AuthorResource(Author::create($request->all()));
+        $author = Author::create($request->all());
+        $this->saveFiles($author, 'photo', 'images');
+        return new AuthorResource($author);
     }
 
     /**
@@ -70,6 +75,7 @@ class AuthorController extends Controller
     public function update(UpdateAuthor $request, Author $author)
     {
         $author->update($request->all());
+        $this->saveFiles($author, 'photo', 'images');
         return new AuthorResource($author);
     }
 

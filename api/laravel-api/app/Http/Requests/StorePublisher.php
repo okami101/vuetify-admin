@@ -24,6 +24,10 @@ class StorePublisher extends FormRequest
     public function rules()
     {
         return [
+            'logo_delete' => 'nullable',
+            'logo_file' => 'nullable|image',
+            'local_delete.*' => 'nullable',
+            'local_file.*' => 'nullable|image',
             'name' => 'required',
             'type' => 'required|in:sarl,eurl,sa,sas,sasu,snc,scp',
             'description' => 'required',

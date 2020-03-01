@@ -24,6 +24,10 @@ class UpdatePublisher extends FormRequest
     public function rules()
     {
         return [
+            'logo_delete' => 'sometimes|nullable',
+            'logo_file' => 'sometimes|nullable|image',
+            'local_delete.*' => 'sometimes|nullable',
+            'local_file.*' => 'sometimes|nullable|image',
             'name' => 'sometimes|required',
             'type' => 'sometimes|required|in:sarl,eurl,sa,sas,sasu,snc,scp',
             'description' => 'sometimes|required',

@@ -13,6 +13,7 @@
     :item-value="optionValue"
     :items="items || choices"
     :chips="chips"
+    :placeholder="placeholder"
     :clearable="clearable"
     @change="change"
   >
@@ -27,6 +28,7 @@ export default {
   name: "SelectInput",
   mixins: [Input, Choices],
   props: {
+    placeholder: String,
     multiple: Boolean,
     filled: {
       type: Boolean,

@@ -24,6 +24,10 @@ class UpdateBook extends FormRequest
     public function rules()
     {
         return [
+            'cover_delete' => 'sometimes|nullable',
+            'cover_file' => 'sometimes|nullable|image',
+            'extract_delete' => 'sometimes|nullable',
+            'extract_file' => 'sometimes|nullable|file',
             'publisher_id' => 'sometimes|required',
             'isbn' => 'sometimes|required|isbn',
             'title' => 'sometimes|required',

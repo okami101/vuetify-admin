@@ -49,7 +49,6 @@ import SelectInput from "./Inputs/SelectInput";
 import RadioGroupInput from "./Inputs/RadioGroupInput";
 import AutocompleteInput from "./Inputs/AutocompleteInput";
 import FileInput from "./Inputs/FileInput";
-import ImageInput from "./Inputs/ImageInput";
 import ReferenceInput from "./Inputs/ReferenceInput";
 
 export {
@@ -100,6 +99,5 @@ export {
   RadioGroupInput,
   AutocompleteInput,
   FileInput,
-  ImageInput,
   ReferenceInput
 };

@@ -42,6 +42,7 @@ class MediaResource extends JsonResource
     private function getVersions($file, $conversions)
     {
         $attributes = [
+            'id' => $file->id,
             'title' => $file->name
         ];
 

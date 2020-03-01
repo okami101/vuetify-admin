@@ -10,6 +10,7 @@
     :single-line="singleLine"
     :hide-details="hideDetails"
     :dense="dense"
+    :placeholder="placeholder"
     :clearable="clearable"
     type="number"
     :step="step"
@@ -24,6 +25,7 @@ export default {
   name: "NumberInput",
   mixins: [Input],
   props: {
+    placeholder: String,
     icon: String,
     singleLine: Boolean,
     hideDetails: Boolean,

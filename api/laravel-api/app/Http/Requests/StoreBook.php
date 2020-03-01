@@ -24,6 +24,10 @@ class StoreBook extends FormRequest
     public function rules()
     {
         return [
+            'cover_delete' => 'nullable',
+            'cover_file' => 'nullable|image',
+            'extract_delete' => 'nullable',
+            'extract_file' => 'nullable|file',
             'publisher_id' => 'required',
             'isbn' => 'required|isbn',
             'title' => 'required',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\Models\Media;
 
 trait CrudHelpers
 {
@@ -18,8 +19,23 @@ trait CrudHelpers
         ]);
     }
 
-    public function saveFiles(Model $model, $key)
+    public function saveFiles(Model $model, $key, $collection)
     {
+        /**
+         * Media to delete
+         */
+        Media::destroy(request()->input("{$key}_delete"));
+
+        /**
+         * Media to add
+         */
         /* @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $model */
+        if (request()->hasFile("{$key}_file")) {
+            if (!$model->files[$key]['multiple']) {
+                // Remove old file if no multiple field
+                $model->clearMediaCollection($collection);
+            }
+            $model->addMediaFromRequest("{$key}_file")->toMediaCollection($collection);
+        }
     }
 }

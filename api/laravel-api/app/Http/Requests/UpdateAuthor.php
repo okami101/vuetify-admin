@@ -24,6 +24,8 @@ class UpdateAuthor extends FormRequest
     public function rules()
     {
         return [
+            'photo_delete' => 'sometimes|nullable',
+            'photo_file' => 'sometimes|nullable|image',
             'name' => 'sometimes|required',
             'description' => 'sometimes|required',
         ];

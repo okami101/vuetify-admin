@@ -83,7 +83,10 @@ class BookController extends Controller
      */
     public function store(StoreBook $request)
     {
-        return new BookResource(Book::create($request->all()));
+        $book = Book::create($request->all());
+        $this->saveFiles($book, 'cover', 'images');
+        $this->saveFiles($book, 'extract', 'files');
+        return new BookResource($book);
     }
 
     /**
@@ -96,6 +99,8 @@ class BookController extends Controller
     public function update(UpdateBook $request, Book $book)
     {
         $book->update($request->all());
+        $this->saveFiles($book, 'cover', 'images');
+        $this->saveFiles($book, 'extract', 'files');
         $this->saveMultiple($book, Review::class, 'review_ids');
         return new BookResource($book);
     }
