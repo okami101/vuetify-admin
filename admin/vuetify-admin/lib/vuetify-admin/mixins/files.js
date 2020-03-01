@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      deleted: null
+      deleted: []
     };
   },
   computed: {
@@ -37,18 +37,13 @@ export default {
     getFileTag() {
       return this.link ? "a" : "span";
     },
-    hasFiles() {
-      if (!this.value) {
-        return false;
-      }
-      return this.isMultiple
-        ? this.deleted.length === this.value.length
-        : this.deleted !== this.value.id;
-    },
     activeFiles() {
-      this.value
-        .map(f => f.id)
-        .filter(value => -1 !== this.deleted.indexOf(value));
+      if (!this.value) {
+        return [];
+      }
+
+      let value = this.isMultiple ? this.value : [this.value];
+      return value.filter(f => -1 === this.deleted.indexOf(f.id));
     }
   },
   methods: {
@@ -59,15 +54,11 @@ export default {
       return get(file, prop);
     },
     clear(id) {
-      if (this.isMultiple) {
-        this.deleted = [...(this.deleted || []), id];
-      } else {
-        this.deleted = id;
-      }
+      this.deleted = [...(this.deleted || []), id];
 
       this.updateForm({
         source: this.model || this.source,
-        value: this.deleted
+        value: this.isMultiple ? this.deleted : this.deleted[0]
       });
     }
   }

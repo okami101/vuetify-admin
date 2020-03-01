@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hasFiles">
+  <div v-if="activeFiles.length">
     <ul v-if="isMultiple">
       <li
         v-for="(file, i) in limit ? activeFiles.slice(0, limit) : activeFiles"
@@ -16,7 +16,7 @@
             :is="getFileTag"
           >
             <slot :file="file" :title="getFileProp(file, title || 'title')">
-              {{ title || getFileProp(value, title || "title") }}
+              {{ title || getFileProp(file, title || "title") }}
             </slot>
           </component>
         </span>

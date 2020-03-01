@@ -1,10 +1,10 @@
 <template>
   <va-file-field v-bind="$props" v-slot="{ file, title }">
-    <img
+    <v-img
       :src="getFileProp(file, preview || src) || file"
       :alt="title"
       :title="title"
-    />
+    ></v-img>
   </va-file-field>
 </template>
 

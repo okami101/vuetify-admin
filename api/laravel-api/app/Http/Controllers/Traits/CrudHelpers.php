@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\FileAdder\FileAdder;
 use Spatie\MediaLibrary\Models\Media;
 
 trait CrudHelpers
@@ -35,7 +36,9 @@ trait CrudHelpers
                 // Remove old file if no multiple field
                 $model->clearMediaCollection($collection);
             }
-            $model->addMediaFromRequest("{$key}_file")->toMediaCollection($collection);
+            $model->addMultipleMediaFromRequest(["{$key}_file"])->each(function (FileAdder $file) use ($collection) {
+                $file->toMediaCollection($collection);
+            });
         }
     }
 }

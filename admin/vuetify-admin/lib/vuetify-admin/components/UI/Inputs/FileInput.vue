@@ -1,6 +1,7 @@
 <template>
   <div>
     <slot></slot>
+    <!-- multiple as v-bind because of vuetify v-model bug forced to array -->
     <v-file-input
       v-model="input"
       :label="label"
@@ -12,9 +13,9 @@
       :placeholder="placeholder"
       :filled="filled"
       :chips="chips"
-      :multiple="multiple"
       :clearable="clearable"
       :accept="accept"
+      v-bind="multiple ? { multiple: true } : {}"
       @change="change"
     ></v-file-input>
   </div>

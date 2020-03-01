@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       input: null,
+      test: null,
       errorMessages: []
     };
   },
