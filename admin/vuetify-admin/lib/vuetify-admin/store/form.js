@@ -16,6 +16,11 @@ export default {
     },
     setSaving(state, saving) {
       state.saving = saving;
+    },
+    reset(state) {
+      state.model = {};
+      state.errors = {};
+      state.saving = false;
     }
   },
   actions: {
