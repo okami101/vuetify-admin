@@ -28,6 +28,7 @@
         }
       },
       'author',
+      { source: 'body', hidden: true },
       { source: 'publication_date', type: 'date', options: { format: 'long' } }
     ]"
     :filters="[
