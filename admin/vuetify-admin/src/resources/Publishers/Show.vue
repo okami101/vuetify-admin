@@ -15,7 +15,7 @@
         :options="{ enum: true }"
       ></va-field>
       <va-field source="founder"></va-field>
-      <va-field source="description"></va-field>
+      <va-field source="description" :options="{ multiline: true }"></va-field>
       <va-field source="headquarter"></va-field>
       <va-field source="url" type="url"></va-field>
       <va-field source="email" type="email"></va-field>

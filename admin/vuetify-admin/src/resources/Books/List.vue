@@ -2,7 +2,8 @@
   <va-list
     :fields="[
       'id',
-      'isbn',
+      { source: 'isbn', type: 'resource-link' },
+      { source: 'cover', virtual: true, type: 'resource-link' },
       { source: 'category', type: 'chip' },
       {
         source: 'publisher_id',
@@ -50,14 +51,12 @@
     v-slot="props"
   >
     <va-datagrid v-bind="props" show-expand>
-      <template v-slot:cell.isbn="{ item, value }">
-        <router-link
-          :to="{
-            name: 'books_show',
-            params: { id: item.id }
-          }"
-          >{{ value }}</router-link
-        >
+      <template v-slot:cover="{ item }">
+        <va-image-field
+          :item="item"
+          source="cover"
+          preview="thumbnails.small"
+        ></va-image-field>
       </template>
       <template v-slot:publisher_id="{ item, to }">
         <va-chip-field color="orange" :to="to">

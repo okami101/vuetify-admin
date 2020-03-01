@@ -16,7 +16,7 @@
         </va-chip-field>
       </va-field>
       <va-field source="rating" type="rating"></va-field>
-      <va-field source="body"></va-field>
+      <va-field source="body" :options="{ multiline: true }"></va-field>
       <va-field source="author"></va-field>
       <va-field
         source="publication_date"

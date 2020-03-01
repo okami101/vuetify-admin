@@ -2,13 +2,12 @@
   <va-simple-form>
     <v-row>
       <v-col sm="3">
-        <va-reference-input
-          reference="books"
-          :fields="['id', 'title', 'author']"
-        >
+        <va-reference-input reference="books" :fields="['id', 'title', 'isbn']">
           <va-autocomplete-input source="book_id" option-text="title">
             <template v-slot:item="{ item }">
-              {{ item.title }} ({{ item.author }})
+              <div>
+                {{ item.title }}&nbsp;&nbsp;<strong>({{ item.isbn }})</strong>
+              </div>
             </template>
           </va-autocomplete-input>
         </va-reference-input>

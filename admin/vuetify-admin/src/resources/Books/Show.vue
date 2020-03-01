@@ -8,6 +8,13 @@
     >
       <template v-slot:attributes>
         <va-field source="isbn"></va-field>
+        <va-field source="cover">
+          <va-image-field
+            source="cover"
+            src="thumbnails.large"
+            preview="thumbnails.medium"
+          ></va-image-field>
+        </va-field>
         <va-field source="publisher_id">
           <va-reference-field
             source="publisher_id"
@@ -27,7 +34,10 @@
             <va-select-field source="category" enum></va-select-field>
           </va-chip-field>
         </va-field>
-        <va-field source="description"></va-field>
+        <va-field
+          source="description"
+          :options="{ multiline: true }"
+        ></va-field>
         <va-field source="formats">
           <va-array-field source="formats">
             <va-single-field-list v-slot="{ item }">
@@ -83,6 +93,9 @@
       </template>
       <template v-slot:summary>
         <va-rich-text-field source="summary"></va-rich-text-field>
+        <va-field source="extract">
+          <va-file-field source="extract"></va-file-field>
+        </va-field>
       </template>
     </va-tabbed-show>
   </va-show>

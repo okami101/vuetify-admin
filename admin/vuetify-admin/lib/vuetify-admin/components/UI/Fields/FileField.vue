@@ -8,7 +8,7 @@
         :is="getFileTag"
       >
         <slot :file="file" :title="getFileProp(file, title || 'title')">
-          {{ title || value }}
+          {{ title || getFileProp(value, title || "title") }}
         </slot>
       </component>
     </li>
@@ -21,7 +21,7 @@
     :is="getFileTag"
   >
     <slot :file="value" :title="getFileProp(value, title || 'title') || title">
-      {{ title || value }}
+      {{ title || getFileProp(value, title || "title") }}
     </slot>
   </component>
   <component
@@ -32,7 +32,7 @@
     :is="getFileTag"
   >
     <slot :file="value" :title="title">
-      {{ title || value }}
+      {{ title || getFileProp(value, title || "title") }}
     </slot>
   </component>
 </template>
