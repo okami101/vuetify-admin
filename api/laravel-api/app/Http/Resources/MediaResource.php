@@ -50,7 +50,7 @@ class MediaResource extends JsonResource
             return $attributes;
         }
 
-        $attributes['thumbnails'] = collect($conversions)->mapWithKeys(function($c) use ($file) {
+        $attributes['thumbnails'] = collect($conversions)->mapWithKeys(function ($c) use ($file) {
             return [$c => $file->getFullUrl($c)];
         })->toArray();
         return $attributes;
