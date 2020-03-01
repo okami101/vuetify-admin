@@ -23,36 +23,34 @@
       v-slot:[`item.${field.source}`]="{ item, value }"
     >
       <slot :name="`cell.${field.source}`" v-bind="{ item, value }">
-        <span @click.stop :key="field.source">
-          <component
-            v-if="field.editable"
-            :is="`va-${field.type}-input`"
-            :source="field.source"
-            :resource="resource"
-            edit
-            :item="item"
-            :value="value"
-            dense
-            label=""
-            v-bind="field.options"
-            @change="val => updateItem({ item, source: field.source, val })"
-          ></component>
-          <component
-            v-else
-            :is="`va-${field.type}-field`"
-            :source="field.source"
-            :resource="resource"
-            :item="item"
-            v-bind="field.options"
-            v-slot="props"
-          >
-            <slot
-              :name="field.source"
-              :item="props.item || item"
-              v-bind="props"
-            ></slot>
-          </component>
-        </span>
+        <component
+          v-if="field.editable"
+          :is="`va-${field.type}-input`"
+          :source="field.source"
+          :resource="resource"
+          edit
+          :item="item"
+          :value="value"
+          dense
+          label=""
+          v-bind="field.options"
+          @change="val => updateItem({ item, source: field.source, val })"
+        ></component>
+        <component
+          v-else
+          :is="`va-${field.type}-field`"
+          :source="field.source"
+          :resource="resource"
+          :item="item"
+          v-bind="field.options"
+          v-slot="props"
+        >
+          <slot
+            :name="field.source"
+            :item="props.item || item"
+            v-bind="props"
+          ></slot>
+        </component>
       </slot>
     </template>
     <template v-slot:item.actions="{ item }">

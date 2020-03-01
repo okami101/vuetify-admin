@@ -39,7 +39,7 @@
     :include="['books_count']"
     v-slot="props"
   >
-    <va-datagrid v-bind="props" row-click="show">
+    <va-datagrid v-bind="props">
       <template v-slot:logo="{ item }">
         <va-image-field
           :item="item"
