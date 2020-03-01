@@ -31,16 +31,12 @@ class Author extends Model implements HasMedia
         'description',
     ];
 
-    protected $appends = [
-        'photo'
-    ];
-
     protected $with = ['media'];
 
     public $files = [
         'photo' => [
             'collection' => 'images',
-            'conversion' => 'thumb',
+            'conversions' => ['small', 'medium', 'large'],
             'multiple' => false
         ]
     ];
@@ -52,9 +48,19 @@ class Author extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('thumb')
-            ->width(300)
-            ->height(200)
+        $this->addMediaConversion('small')
+            ->width(120)
+            ->height(80)
+            ->nonOptimized();
+
+        $this->addMediaConversion('medium')
+            ->width(400)
+            ->height(300)
+            ->nonOptimized();
+
+        $this->addMediaConversion('large')
+            ->width(800)
+            ->height(600)
             ->nonOptimized();
     }
 }

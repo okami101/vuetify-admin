@@ -75,7 +75,7 @@ class Book extends Model implements HasMedia
     public $files = [
         'cover' => [
             'collection' => 'images',
-            'conversion' => 'thumb',
+            'conversions' => ['small', 'medium', 'large'],
             'multiple' => false
         ],
         'extract' => [
@@ -126,9 +126,19 @@ class Book extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('thumb')
-            ->width(300)
-            ->height(200)
+        $this->addMediaConversion('small')
+            ->width(120)
+            ->height(80)
+            ->nonOptimized();
+
+        $this->addMediaConversion('medium')
+            ->width(400)
+            ->height(300)
+            ->nonOptimized();
+
+        $this->addMediaConversion('large')
+            ->width(800)
+            ->height(600)
             ->nonOptimized();
     }
 }

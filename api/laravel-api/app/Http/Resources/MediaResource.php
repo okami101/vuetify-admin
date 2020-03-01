@@ -20,28 +20,39 @@ class MediaResource extends JsonResource
         if ($this->resource instanceof HasMedia) {
             foreach ($this->resource->files as $key => $options) {
                 $media = $this->resource->getMedia($options['collection']);
-                $conversion = $options['conversion'] ?? '';
+                $conversions = $options['conversions'] ?? [];
 
                 if ($options['multiple'] ?? false) {
                     foreach ($media as $file) {
-                        $attributes[$key][] = [
-                            'title' => $file->file_name,
-                            'src' => $file->getFullUrl($conversion),
-                        ];
+                        $attributes[$key][] = $this->getVersions($file, $conversions);
                     }
                     continue;
                 }
 
                 if ($file = $media->first()) {
-                    $attributes[$key] = [
-                        'title' => $file->file_name,
-                        'src' => $file->getFullUrl($conversion),
-                    ];
+                    $attributes[$key] = $this->getVersions($file, $conversions);
                 }
             }
         }
 
         unset($attributes['media']);
+        return $attributes;
+    }
+
+    private function getVersions($file, $conversions)
+    {
+        $attributes = [
+            'title' => $file->name
+        ];
+
+        if (empty($conversions)) {
+            $attributes['src'] = $file->getFullUrl();
+            return $attributes;
+        }
+
+        $attributes['thumbnails'] = collect($conversions)->mapWithKeys(function($c) use ($file) {
+            return [$c => $file->getFullUrl($c)];
+        })->toArray();
         return $attributes;
     }
 }

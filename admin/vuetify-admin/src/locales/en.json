@@ -39,6 +39,8 @@
       "name": "Publisher | Publishers",
       "fields": {
         "id": "ID",
+        "logo": "Logo",
+        "local": "Local",
         "name": "Name",
         "type": "Company type",
         "description": "Description",
@@ -72,6 +74,7 @@
       "fields": {
         "id": "ID",
         "name": "Name",
+        "photo": "Photo",
         "description": "Description"
       }
     },
@@ -81,6 +84,8 @@
         "id": "ID",
         "isbn": "ISBN",
         "title": "Title",
+        "cover": "Cover",
+        "extract": "Extract",
         "category": "Category",
         "description": "Description",
         "summary": "Summary",

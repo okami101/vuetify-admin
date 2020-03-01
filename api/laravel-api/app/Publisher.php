@@ -56,17 +56,18 @@ class Publisher extends Model implements HasMedia
         'address' => 'object'
     ];
 
-    protected $appends = [
-        'logo'
-    ];
-
     protected $with = ['media'];
 
     public $files = [
         'logo' => [
-            'collection' => 'images',
-            'conversion' => 'thumb',
+            'collection' => 'logos',
+            'conversions' => ['small', 'medium', 'large'],
             'multiple' => false
+        ],
+        'local' => [
+            'collection' => 'images',
+            'conversions' => ['small', 'medium', 'large'],
+            'multiple' => true
         ]
     ];
 
@@ -77,9 +78,19 @@ class Publisher extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('thumb')
-            ->width(300)
-            ->height(200)
+        $this->addMediaConversion('small')
+            ->width(120)
+            ->height(80)
+            ->nonOptimized();
+
+        $this->addMediaConversion('medium')
+            ->width(400)
+            ->height(300)
+            ->nonOptimized();
+
+        $this->addMediaConversion('large')
+            ->width(800)
+            ->height(600)
             ->nonOptimized();
     }
 }

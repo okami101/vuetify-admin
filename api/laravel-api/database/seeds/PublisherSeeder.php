@@ -15,9 +15,15 @@ class PublisherSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         factory(Publisher::class, 10)->create()->each(function (Publisher $publisher) use ($faker) {
-            $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'publishers', 1, 'png'))
+            $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'logos', 1, 'png'))
                 ->preservingOriginal()
-                ->toMediaCollection('images');
+                ->toMediaCollection('logos');
+
+            for ($i = 0; $i < $faker->numberBetween(3, 6); $i++) {
+                $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'office', 9, 'jpg'))
+                    ->preservingOriginal()
+                    ->toMediaCollection('images');
+            }
         });
     }
 }

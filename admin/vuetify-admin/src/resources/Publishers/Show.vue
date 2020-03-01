@@ -1,8 +1,19 @@
 <template>
   <va-show>
     <va-simple-show>
+      <va-field source="logo">
+        <va-image-field
+          source="logo"
+          src="thumbnails.large"
+          preview="thumbnails.medium"
+        ></va-image-field>
+      </va-field>
       <va-field source="name"></va-field>
-      <va-field source="type" type="select"></va-field>
+      <va-field
+        source="type"
+        type="select"
+        :options="{ enum: true }"
+      ></va-field>
       <va-field source="founder"></va-field>
       <va-field source="description"></va-field>
       <va-field source="headquarter"></va-field>
@@ -18,6 +29,13 @@
         :options="{ format: 'long' }"
       ></va-field>
       <va-field source="books_count" type="number"></va-field>
+      <va-field source="local">
+        <va-image-field
+          source="local"
+          src="thumbnails.large"
+          preview="thumbnails.medium"
+        ></va-image-field>
+      </va-field>
     </va-simple-show>
   </va-show>
 </template>
