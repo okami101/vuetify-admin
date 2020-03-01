@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -80,7 +79,8 @@ class Publisher extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('small')
-            ->fit(Manipulations::FIT_CROP, 120, 80)
+            ->width(120)
+            ->height(80)
             ->nonOptimized();
 
         $this->addMediaConversion('medium')
