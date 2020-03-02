@@ -12,11 +12,15 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
-        <va-reference-input
-          v-if="item.reference"
-          :reference="item.reference.resource"
-          :fields="item.reference.fields"
-          :multiple="item.reference.multiple"
+        <slot
+          :source="item.source"
+          :name="item.source"
+          :label="item.label"
+          filter
+          hide-details
+          :filled="false"
+          small-chips
+          :value="filter[item.source]"
         >
           <component
             :is="`va-${item.type}-input`"
@@ -24,28 +28,13 @@
             :label="item.label"
             filter
             v-bind="item.options"
-            v-model="filter[item.source]"
+            :value="filter[item.source]"
             hide-details
             :filled="false"
             small-chips
-            @input="onSearch"
           >
           </component>
-        </va-reference-input>
-        <component
-          v-else
-          :is="`va-${item.type}-input`"
-          :source="item.source"
-          :label="item.label"
-          filter
-          v-bind="item.options"
-          v-model="filter[item.source]"
-          hide-details
-          :filled="false"
-          small-chips
-          @input="onSearch"
-        >
-        </component>
+        </slot>
       </div>
     </v-col>
   </v-row>
@@ -53,6 +42,7 @@
 
 <script>
 import debounce from "lodash/debounce";
+import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "FormFilter",
@@ -70,6 +60,15 @@ export default {
     return {
       filter: {}
     };
+  },
+  mounted() {
+    EventBus.$on("filter", ({ source, value }) => {
+      this.filter[source] = value;
+      this.onSearch();
+    });
+  },
+  beforeDestroy() {
+    EventBus.$off("filter");
   },
   watch: {
     value: {

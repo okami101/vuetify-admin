@@ -33,12 +33,7 @@
     ]"
     :filters="[
       'q',
-      {
-        source: 'book_id',
-        type: 'autocomplete',
-        options: { optionText: 'title', multiple: true },
-        reference: { resource: 'books', fields: ['id', 'title', 'isbn'] }
-      },
+      'book_id',
       { source: 'rating', type: 'rating' },
       {
         source: 'status',
@@ -49,15 +44,27 @@
       { source: 'published_before', type: 'date', options: { format: 'long' } },
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
-    v-slot="props"
   >
-    <va-datagrid v-bind="props" show-expand>
-      <template v-slot:expanded-item="{ item }">
-        <va-text-field :item="item" source="body"></va-text-field>
-      </template>
-      <template v-slot:status="{ item }">
-        <va-select-field source="status" :item="item" enum></va-select-field>
-      </template>
-    </va-datagrid>
+    <template v-slot:filter.book_id="props">
+      <va-reference-input reference="books" :fields="['id', 'title', 'isbn']">
+        <va-autocomplete-input option-text="title" multiple v-bind="props">
+          <template v-slot:item="{ item }">
+            <div>
+              {{ item.title }}&nbsp;&nbsp;<strong>({{ item.isbn }})</strong>
+            </div>
+          </template>
+        </va-autocomplete-input>
+      </va-reference-input>
+    </template>
+    <template v-slot="props">
+      <va-datagrid v-bind="props" show-expand>
+        <template v-slot:expanded-item="{ item }">
+          <va-text-field :item="item" source="body"></va-text-field>
+        </template>
+        <template v-slot:status="{ item }">
+          <va-select-field source="status" :item="item" enum></va-select-field>
+        </template>
+      </va-datagrid>
+    </template>
   </va-list>
 </template>

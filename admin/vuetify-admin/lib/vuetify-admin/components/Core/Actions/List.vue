@@ -41,6 +41,12 @@
             @remove="disableFilter"
             v-model="currentFilter"
           >
+            <template
+              v-for="filter in getEnabledFilters"
+              v-slot:[filter.source]="props"
+            >
+              <slot :name="`filter.${filter.source}`" v-bind="props"></slot>
+            </template>
           </form-filter>
           <v-spacer></v-spacer>
           <v-menu offset-y v-if="getDisabledFilters.length">

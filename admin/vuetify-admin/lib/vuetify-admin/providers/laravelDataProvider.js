@@ -64,7 +64,9 @@ export default entrypoint => {
 
           if (filter) {
             Object.keys(filter).forEach(key => {
-              resourceUrl.searchParams.set(`filter[${key}]`, filter[key]);
+              if (filter[key]) {
+                resourceUrl.searchParams.set(`filter[${key}]`, filter[key]);
+              }
             });
           }
         }

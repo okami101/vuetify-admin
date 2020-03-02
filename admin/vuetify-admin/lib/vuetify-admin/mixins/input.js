@@ -1,4 +1,5 @@
 import Item from "vuetify-admin/mixins/item";
+import EventBus from "vuetify-admin/utils/eventBus";
 import get from "lodash/get";
 import { mapState, mapMutations } from "vuex";
 
@@ -111,6 +112,13 @@ export default {
       if (!this.filter || !this.edit) {
         this.updateForm({
           source: this.model || this.source,
+          value: this.input
+        });
+      }
+
+      if (this.filter) {
+        EventBus.$emit("filter", {
+          source: this.source,
           value: this.input
         });
       }
