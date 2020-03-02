@@ -1,20 +1,14 @@
 <template>
   <v-select
     v-model="input"
-    :label="label"
-    :hint="hint"
-    :rules="rules"
-    :error-messages="errorMessages"
-    :hide-details="hideDetails"
-    :dense="dense"
+    v-bind="commonProps"
+    :single-line="singleLine"
     :filled="filled"
     :multiple="multiple"
+    :chips="chips"
     :item-text="optionText"
     :item-value="optionValue"
     :items="items || choices"
-    :chips="chips"
-    :placeholder="placeholder"
-    :clearable="clearable"
     @change="change"
   >
   </v-select>
@@ -28,8 +22,8 @@ export default {
   name: "SelectInput",
   mixins: [Input, Choices],
   props: {
-    placeholder: String,
     multiple: Boolean,
+    singleLine: Boolean,
     filled: {
       type: Boolean,
       default() {

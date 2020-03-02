@@ -1,14 +1,5 @@
 <template>
-  <v-radio-group
-    v-model="input"
-    :label="label"
-    :hint="hint"
-    :rules="rules"
-    :error-messages="errorMessages"
-    :hide-details="hideDetails"
-    :dense="dense"
-    :column="column"
-  >
+  <v-radio-group v-model="input" v-bind="commonProps" :column="column">
     <v-radio v-if="clearable" :label="$t('va.forms.none')"></v-radio>
     <v-radio
       v-for="(c, i) in items || choices"

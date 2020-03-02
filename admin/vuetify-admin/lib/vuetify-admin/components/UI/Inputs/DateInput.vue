@@ -10,18 +10,12 @@
     <template v-slot:activator="{ on }">
       <v-text-field
         :value="dateFormatted"
-        :label="label"
-        :rules="rules"
-        :error-messages="errorMessages"
+        v-bind="commonProps"
         readonly
         append-icon="mdi-calendar"
         v-on="on"
-        :clearable="clearable"
         :filled="filled"
         :single-line="singleLine"
-        :hide-details="hideDetails"
-        :dense="dense"
-        :placeholder="placeholder"
         @click:clear="input = null"
       ></v-text-field>
     </template>
@@ -40,7 +34,6 @@ export default {
   name: "DateInput",
   mixins: [Input],
   props: {
-    placeholder: String,
     singleLine: Boolean,
     filled: {
       type: Boolean,

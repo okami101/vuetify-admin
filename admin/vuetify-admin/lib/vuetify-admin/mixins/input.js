@@ -17,6 +17,7 @@ export default {
     icon: String,
     hideDetails: Boolean,
     dense: Boolean,
+    placeholder: String,
     clearable: Boolean,
     required: Boolean,
     alwaysOn: Boolean,
@@ -37,6 +38,18 @@ export default {
     ...mapState({
       errors: state => state.form.errors
     }),
+    commonProps() {
+      return {
+        label: this.label,
+        hint: this.hint,
+        rules: this.rules,
+        errorMessages: this.errorMessages,
+        hideDetails: this.hideDetails,
+        dense: this.dense,
+        placeholder: this.placeholder,
+        clearable: this.clearable
+      };
+    },
     rules() {
       let rules = [];
 

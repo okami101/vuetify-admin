@@ -1,16 +1,9 @@
 <template>
   <v-text-field
-    :label="label"
-    :hint="hint"
-    :rules="rules"
-    :error-messages="errorMessages"
+    v-bind="commonProps"
     :filled="filled"
     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
     :single-line="singleLine"
-    :hide-details="hideDetails"
-    :dense="dense"
-    :placeholder="placeholder"
-    :clearable="clearable"
     :type="show ? 'text' : 'password'"
     @input="val => (input = val)"
     @click:append="show = !show"
@@ -25,14 +18,11 @@ export default {
   name: "PasswordInput",
   mixins: [Input],
   props: {
-    placeholder: String,
     singleLine: Boolean,
-    hideDetails: Boolean,
     filled: {
       type: Boolean,
       default: true
-    },
-    dense: Boolean
+    }
   },
   data() {
     return {

@@ -2,22 +2,16 @@
   <component
     :is="taggable ? 'v-combobox' : 'v-autocomplete'"
     v-model="input"
-    :label="label"
-    :hint="hint"
-    :rules="rules"
-    :error-messages="errorMessages"
-    :hide-details="hideDetails"
-    :dense="dense"
+    v-bind="commonProps"
+    :single-line="singleLine"
     :filled="filled"
     :multiple="multiple"
+    :chips="chips"
+    :loading="loading"
     :item-text="optionText"
     :item-value="optionValue"
     :items="items || choices"
-    :chips="chips"
-    :loading="loading"
     :search-input.sync="search"
-    :placeholder="placeholder"
-    :clearable="clearable"
     @change="change"
   >
     <template v-slot:selection="data" v-if="$scopedSlots.selection">
@@ -42,8 +36,8 @@ export default {
     VCombobox
   },
   props: {
-    placeholder: String,
     multiple: Boolean,
+    singleLine: Boolean,
     filled: {
       type: Boolean,
       default() {

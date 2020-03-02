@@ -1,14 +1,5 @@
 <template>
-  <v-switch
-    v-model="input"
-    :label="label"
-    :hint="hint"
-    :rules="rules"
-    :error-messages="errorMessages"
-    :hide-details="hideDetails"
-    :dense="dense"
-    @change="change"
-  ></v-switch>
+  <v-switch v-model="input" v-bind="commonProps" @change="change"></v-switch>
 </template>
 
 <script>
