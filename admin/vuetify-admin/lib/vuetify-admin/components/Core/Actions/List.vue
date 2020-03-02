@@ -177,28 +177,16 @@ export default {
     },
     getEnabledFilters() {
       return this.getFilters.filter(f => {
-        return this.enabledFilters.includes(f.source);
+        return f.alwaysOn || this.enabledFilters.includes(f.source);
       });
     },
     getDisabledFilters() {
       return this.getFilters.filter(f => {
-        return !this.enabledFilters.includes(f.source);
+        return !f.alwaysOn && !this.enabledFilters.includes(f.source);
       });
     }
   },
   watch: {
-    filters: {
-      handler() {
-        /**
-         * Pre-enable "alwaysOn" filters
-         * This filters cannot be removed
-         */
-        this.enabledFilters = this.getFilters
-          .filter(f => f.alwaysOn)
-          .map(f => f.source);
-      },
-      immediate: true
-    },
     currentFilter() {
       this.fetchDataAndQuery();
     }
