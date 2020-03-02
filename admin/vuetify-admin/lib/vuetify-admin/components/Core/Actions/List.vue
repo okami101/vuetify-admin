@@ -78,8 +78,7 @@
       </template>
       <template v-slot:default>
         <slot
-          v-bind="{ resource, items, loading, itemsPerPage }"
-          :fields="getVisibleFields"
+          v-bind="{ resource, items, fields, loading, itemsPerPage }"
           :value="selected"
           :server-items-length="total"
         >
@@ -115,6 +114,10 @@ export default {
   },
   props: {
     filters: {
+      type: Array,
+      default: () => []
+    },
+    references: {
       type: Array,
       default: () => []
     },
@@ -156,20 +159,9 @@ export default {
     EventBus.$off("refresh");
   },
   computed: {
-    getVisibleFields() {
-      return this.getFields.filter(f => !f.hidden);
-    },
-    getQueriableFields() {
-      return this.getFields.filter(
-        f => !this.include.includes(f.source) && !f.virtual
-      );
-    },
-    getFields() {
-      return this.getFormattedFields(this.fields);
-    },
     getFilters() {
-      return this.getFormattedFields(
-        this.filters.map(f => {
+      return this.filters
+        .map(f => {
           if (f === "q") {
             return {
               source: "q",
@@ -180,7 +172,22 @@ export default {
           }
           return f;
         })
-      );
+        .map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        })
+        .map(f => {
+          return {
+            ...f,
+            type: f.type || "text",
+            label:
+              f.label ||
+              this.$t(`resources.${this.resource}.fields.${f.source}`)
+          };
+        });
     },
     getEnabledFilters() {
       return this.getFilters.filter(f => {
@@ -207,27 +214,6 @@ export default {
       updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
     }),
-    getFormattedFields(fields) {
-      return fields
-        .map(f => {
-          return typeof f === "string"
-            ? {
-                source: f
-              }
-            : f;
-        })
-        .map(f => {
-          return f.hidden
-            ? f
-            : {
-                ...f,
-                type: f.type || "text",
-                label:
-                  f.label ||
-                  this.$t(`resources.${this.resource}.fields.${f.source}`)
-              };
-        });
-    },
     initFiltersFromQuery() {
       if (!this.useQueryString) {
         return;
@@ -302,7 +288,7 @@ export default {
         resource: this.resource,
         params: {
           fields: {
-            [this.resource]: this.getQueriableFields.map(f => f.source)
+            [this.resource]: this.fields
           },
           include: this.include,
           pagination: {
@@ -319,35 +305,29 @@ export default {
         }
       });
 
-      this.getFields
-        .filter(f => f.type === "reference")
-        .map(async f => {
-          if (!f.options || !f.options.syncKey) {
-            return;
-          }
-
-          this.loadReferences(
-            data.map(d => d[f.source]),
-            f.options
-          );
-        });
+      /**
+       * Async references preloading
+       */
+      this.references.map(r => {
+        this.loadReferences(
+          data.map(d => d[r.source]),
+          r
+        );
+      });
 
       this.loading = false;
       this.items = data;
       this.total = total;
     },
-    async loadReferences(
-      ids,
-      { reference, fields, include, multiple, property, syncKey }
-    ) {
+    async loadReferences(ids, { name, fields, include, multiple, syncKey }) {
       /**
        * Preload keyed reference data resources
        */
       let { data } = await this.getMany({
-        resource: reference,
+        resource: name,
         params: {
           fields: {
-            [reference]: fields || ["id", property]
+            [name]: fields
           },
           include,
           ids: [...new Set(multiple ? [].concat(...ids) : ids)]

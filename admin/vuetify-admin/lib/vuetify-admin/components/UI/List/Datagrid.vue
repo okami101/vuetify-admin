@@ -19,7 +19,7 @@
     :class="{ 'clickable-rows': rowClick }"
   >
     <template
-      v-for="field in fields"
+      v-for="field in getFields"
       v-slot:[`item.${field.source}`]="{ item, value }"
     >
       <slot :name="`cell.${field.source}`" v-bind="{ item, value }">
@@ -143,7 +143,7 @@ export default {
   },
   computed: {
     headers() {
-      let fields = this.fields.map(field => {
+      let fields = this.getFields.map(field => {
         return {
           text: field.label,
           value: field.source,
@@ -162,14 +162,30 @@ export default {
         });
       }
       return fields;
+    },
+    getFields() {
+      return this.fields
+        .map(f => {
+          return typeof f === "string"
+            ? {
+                source: f
+              }
+            : f;
+        })
+        .map(f => {
+          return {
+            ...f,
+            type: f.type || "text",
+            label:
+              f.label ||
+              this.$t(`resources.${this.resource}.fields.${f.source}`)
+          };
+        });
     }
   },
   methods: {
     getDefaultSort(field) {
-      if (
-        ["boolean", "function", "reference", "select"].includes(field.type) ||
-        field.virtual
-      ) {
+      if (["boolean", "function", "reference", "select"].includes(field.type)) {
         return false;
       }
       return true;

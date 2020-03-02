@@ -21,7 +21,9 @@ export default entrypoint => {
 
         if (fields) {
           Object.keys(fields).forEach(r => {
-            resourceUrl.searchParams.set(`fields[${r}]`, fields[r].join(","));
+            if (fields[r] && fields.length) {
+              resourceUrl.searchParams.set(`fields[${r}]`, fields[r].join(","));
+            }
           });
         }
 

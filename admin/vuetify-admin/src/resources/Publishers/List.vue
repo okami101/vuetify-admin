@@ -2,32 +2,14 @@
   <va-list
     :fields="[
       'id',
-      {
-        source: 'logo',
-        virtual: true,
-        type: 'resource-link'
-      },
-      { source: 'name', type: 'resource-link' },
-      { source: 'type', type: 'select', options: { enum: true } },
+      'name',
+      'type',
       'founder',
       'headquarter',
-      { source: 'url', type: 'url' },
-      { source: 'email', type: 'email' },
-      { source: 'active', type: 'boolean' },
-      {
-        source: 'address.street',
-        virtual: true
-      },
-      {
-        source: 'address',
-        label: $t('address'),
-        type: 'function',
-        options: {
-          render: ({ value }) => `${value.postcode} ${value.city} `
-        }
-      },
-      { source: 'opening_date', type: 'date', options: { format: 'long' } },
-      { source: 'books_count', type: 'number' }
+      'url',
+      'active',
+      'address',
+      'opening_date'
     ]"
     :filters="[
       'q',
@@ -39,7 +21,36 @@
     :include="['books_count']"
     v-slot="props"
   >
-    <va-datagrid v-bind="props">
+    <va-datagrid
+      :fields="[
+        'id',
+        {
+          source: 'logo',
+          type: 'resource-link'
+        },
+        { source: 'name', type: 'resource-link' },
+        { source: 'type', type: 'select', options: { enum: true } },
+        'founder',
+        'headquarter',
+        { source: 'url', type: 'url' },
+        { source: 'email', type: 'email' },
+        { source: 'active', type: 'boolean' },
+        {
+          source: 'address.street'
+        },
+        {
+          source: 'address',
+          label: $t('address'),
+          type: 'function',
+          options: {
+            render: ({ value }) => `${value.postcode} ${value.city} `
+          }
+        },
+        { source: 'opening_date', type: 'date', options: { format: 'long' } },
+        { source: 'books_count', type: 'number' }
+      ]"
+      v-bind="props"
+    >
       <template v-slot:logo="{ item }">
         <va-image-field
           :item="item"

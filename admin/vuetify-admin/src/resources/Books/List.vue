@@ -1,42 +1,32 @@
 <template>
   <va-list
-    :fields="[
-      'id',
-      { source: 'isbn', type: 'resource-link' },
-      { source: 'cover', virtual: true, type: 'resource-link' },
-      { source: 'category', type: 'chip' },
+    :references="[
       {
         source: 'publisher_id',
-        type: 'reference',
-        options: {
-          reference: 'publishers',
-          syncKey: 'books_publisher_list',
-          link: 'show',
-          property: 'name'
-        }
+        name: 'publishers',
+        syncKey: 'books_publisher_list',
+        fields: ['id', 'name']
       },
-      'title',
-      {
-        source: 'price',
-        type: 'number',
-        options: { format: 'currency' }
-      },
-      { source: 'commentable', type: 'boolean', editable: true },
-      { source: 'formats', type: 'array' },
-      { source: 'description', hidden: true },
-      { source: 'publication_date', type: 'date', options: { format: 'long' } },
       {
         source: 'review_ids',
-        virtual: true,
-        type: 'reference',
-        options: {
-          multiple: true,
-          reference: 'reviews',
-          syncKey: 'books_reviews_list',
-          link: 'show',
-          property: 'author'
-        }
+        name: 'reviews',
+        multiple: true,
+        reference: 'reviews',
+        syncKey: 'books_reviews_list',
+        fields: ['id', 'author']
       }
+    ]"
+    :fields="[
+      'id',
+      'isbn',
+      'category',
+      'publisher_id',
+      'title',
+      'price',
+      'commentable',
+      'formats',
+      'description',
+      'publication_date'
     ]"
     :filters="[
       'q',
@@ -50,7 +40,50 @@
     :include="['reviews']"
     v-slot="props"
   >
-    <va-datagrid v-bind="props" show-expand>
+    <va-datagrid
+      :fields="[
+        'id',
+        { source: 'isbn', type: 'resource-link' },
+        { source: 'cover', type: 'resource-link' },
+        { source: 'category', type: 'chip' },
+        {
+          source: 'publisher_id',
+          type: 'reference',
+          options: {
+            reference: 'publishers',
+            syncKey: 'books_publisher_list',
+            link: 'show',
+            property: 'name'
+          }
+        },
+        'title',
+        {
+          source: 'price',
+          type: 'number',
+          options: { format: 'currency' }
+        },
+        { source: 'commentable', type: 'boolean', editable: true },
+        { source: 'formats', type: 'array' },
+        {
+          source: 'publication_date',
+          type: 'date',
+          options: { format: 'long' }
+        },
+        {
+          source: 'review_ids',
+          type: 'reference',
+          options: {
+            multiple: true,
+            reference: 'reviews',
+            syncKey: 'books_reviews_list',
+            link: 'show',
+            property: 'author'
+          }
+        }
+      ]"
+      v-bind="props"
+      show-expand
+    >
       <template v-slot:cover="{ item }">
         <va-image-field
           :item="item"
