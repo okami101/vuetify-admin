@@ -5,6 +5,7 @@
     :filled="filled"
     :multiple="multiple"
     :chips="chips"
+    :small-chips="smallChips"
     :item-text="optionText"
     :item-value="optionValue"
     :items="items || choices"
@@ -33,7 +34,8 @@ export default {
       default() {
         return this.multiple;
       }
-    }
+    },
+    smallChips: Boolean
   },
   data() {
     return {

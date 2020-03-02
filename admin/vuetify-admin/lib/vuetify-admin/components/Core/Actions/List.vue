@@ -40,7 +40,8 @@
             :filters="getEnabledFilters"
             @remove="disableFilter"
             v-model="currentFilter"
-          ></form-filter>
+          >
+          </form-filter>
           <v-spacer></v-spacer>
           <v-menu offset-y v-if="getDisabledFilters.length">
             <template v-slot:activator="{ on }">

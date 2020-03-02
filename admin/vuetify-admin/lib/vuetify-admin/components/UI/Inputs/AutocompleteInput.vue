@@ -6,6 +6,7 @@
     :filled="filled"
     :multiple="multiple"
     :chips="chips"
+    :small-chips="smallChips"
     :loading="loading"
     :item-text="optionText"
     :item-value="optionValue"
@@ -48,6 +49,7 @@ export default {
         return this.multiple;
       }
     },
+    smallChips: Boolean,
     minChars: {
       type: Number,
       default: 3

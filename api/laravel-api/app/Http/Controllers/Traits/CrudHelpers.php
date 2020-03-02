@@ -22,15 +22,19 @@ trait CrudHelpers
 
     public function saveFiles(Model $model, $key, $collection)
     {
+        /* @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $model */
+
         /**
          * Media to delete
          */
-        Media::destroy(request()->input("{$key}_delete"));
+        $ids = request()->input("{$key}_delete");
+        $model->getMedia($collection)->filter(function (Media $media) use ($ids) {
+            return in_array($media->id, is_array($ids) ? $ids : [$ids], false);
+        })->each->delete();
 
         /**
          * Media to add
          */
-        /* @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $model */
         if (request()->hasFile("{$key}_file")) {
             if (!$model->files[$key]['multiple']) {
                 // Remove old file if no multiple field

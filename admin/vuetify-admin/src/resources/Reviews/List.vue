@@ -33,7 +33,18 @@
     ]"
     :filters="[
       'q',
+      {
+        source: 'book_id',
+        type: 'autocomplete',
+        options: { optionText: 'title', multiple: true },
+        reference: { resource: 'books', fields: ['id', 'title', 'isbn'] }
+      },
       { source: 'rating', type: 'rating' },
+      {
+        source: 'status',
+        type: 'select',
+        options: { enum: true, multiple: true }
+      },
       'author',
       { source: 'published_before', type: 'date', options: { format: 'long' } },
       { source: 'published_after', type: 'date', options: { format: 'long' } }

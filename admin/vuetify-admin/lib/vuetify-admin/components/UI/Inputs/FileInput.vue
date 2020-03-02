@@ -7,6 +7,7 @@
       v-bind="multiple ? { ...commonProps, multiple: true } : commonProps"
       :filled="filled"
       :chips="chips"
+      :small-chips="smallChips"
       :accept="accept"
       @change="change"
     ></v-file-input>
@@ -28,6 +29,7 @@ export default {
         return this.multiple;
       }
     },
+    smallChips: Boolean,
     model: {
       type: String,
       default() {

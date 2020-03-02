@@ -12,7 +12,28 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
+        <va-reference-input
+          v-if="item.reference"
+          :reference="item.reference.resource"
+          :fields="item.reference.fields"
+          :multiple="item.reference.multiple"
+        >
+          <component
+            :is="`va-${item.type}-input`"
+            :source="item.source"
+            :label="item.label"
+            filter
+            v-bind="item.options"
+            v-model="filter[item.source]"
+            hide-details
+            :filled="false"
+            small-chips
+            @input="onSearch"
+          >
+          </component>
+        </va-reference-input>
         <component
+          v-else
           :is="`va-${item.type}-input`"
           :source="item.source"
           :label="item.label"
@@ -21,8 +42,10 @@
           v-model="filter[item.source]"
           hide-details
           :filled="false"
+          small-chips
           @input="onSearch"
-        ></component>
+        >
+        </component>
       </div>
     </v-col>
   </v-row>
