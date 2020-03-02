@@ -3,7 +3,6 @@
     v-bind="commonProps"
     :filled="filled"
     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-    :single-line="singleLine"
     :type="show ? 'text' : 'password'"
     @input="val => (input = val)"
     @click:append="show = !show"
@@ -18,7 +17,6 @@ export default {
   name: "PasswordInput",
   mixins: [Input],
   props: {
-    singleLine: Boolean,
     filled: {
       type: Boolean,
       default: true

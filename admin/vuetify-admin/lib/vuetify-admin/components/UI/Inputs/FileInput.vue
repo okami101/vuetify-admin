@@ -5,7 +5,6 @@
     <v-file-input
       v-model="input"
       v-bind="multiple ? { ...commonProps, multiple: true } : commonProps"
-      :single-line="singleLine"
       :filled="filled"
       :chips="chips"
       :accept="accept"
@@ -23,7 +22,6 @@ export default {
   props: {
     multiple: Boolean,
     filled: Boolean,
-    singleLine: Boolean,
     chips: {
       type: Boolean,
       default() {

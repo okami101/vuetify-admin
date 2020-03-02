@@ -6,7 +6,6 @@
     auto-grow
     :filled="filled"
     :append-icon="icon"
-    :single-line="singleLine"
     @change="change"
   ></v-textarea>
   <v-text-field
@@ -15,7 +14,6 @@
     v-bind="commonProps"
     :filled="filled"
     :append-icon="icon"
-    :single-line="singleLine"
     @change="change"
   ></v-text-field>
 </template>
@@ -29,7 +27,6 @@ export default {
   props: {
     multiline: Boolean,
     icon: String,
-    singleLine: Boolean,
     filled: {
       type: Boolean,
       default: true

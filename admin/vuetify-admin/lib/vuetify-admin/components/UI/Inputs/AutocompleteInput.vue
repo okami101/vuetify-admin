@@ -3,7 +3,6 @@
     :is="taggable ? 'v-combobox' : 'v-autocomplete'"
     v-model="input"
     v-bind="commonProps"
-    :single-line="singleLine"
     :filled="filled"
     :multiple="multiple"
     :chips="chips"
@@ -37,7 +36,6 @@ export default {
   },
   props: {
     multiple: Boolean,
-    singleLine: Boolean,
     filled: {
       type: Boolean,
       default() {

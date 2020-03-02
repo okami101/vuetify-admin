@@ -15,7 +15,6 @@
         append-icon="mdi-calendar"
         v-on="on"
         :filled="filled"
-        :single-line="singleLine"
         @click:clear="input = null"
       ></v-text-field>
     </template>
@@ -34,7 +33,6 @@ export default {
   name: "DateInput",
   mixins: [Input],
   props: {
-    singleLine: Boolean,
     filled: {
       type: Boolean,
       default: true

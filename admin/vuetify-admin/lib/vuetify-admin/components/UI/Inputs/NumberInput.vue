@@ -4,7 +4,6 @@
     v-bind="commonProps"
     :filled="filled"
     :append-icon="icon"
-    :single-line="singleLine"
     type="number"
     :step="step"
     @change="change"
@@ -19,7 +18,6 @@ export default {
   mixins: [Input],
   props: {
     icon: String,
-    singleLine: Boolean,
     filled: {
       type: Boolean,
       default: true
