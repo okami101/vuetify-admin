@@ -16,6 +16,7 @@
 import symfonyDataProvider from "vuetify-admin/providers/symfonyDataProvider";
 import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
 import jwtAuthProvider from "vuetify-admin/providers/jwtAuthProvider";
+import airlockAuthProvider from "vuetify-admin/providers/airlockAuthProvider";
 
 export default {
   name: "App",
@@ -23,14 +24,25 @@ export default {
     return {
       defaultProvider: process.env.VUE_APP_DATA_PROVIDER,
       authProviders: {
-        symfony: jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL, {
+        symfonyJwt: jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL, {
           routes: {
             login: "authentication_token",
             user: "authentication_user"
           },
           tokenProp: "token"
         }),
-        laravel: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+        laravelJwt: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+          getName: u => u.name,
+          getEmail: u => u.email,
+          getPermissions: ({ roles }) => {
+            return {
+              is_admin: roles.includes("ROLE_ADMIN"),
+              is_editor: roles.includes("ROLE_EDITOR"),
+              is_author: roles.includes("ROLE_AUTHOR")
+            };
+          }
+        }),
+        laravelJwt: airlockAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
