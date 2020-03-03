@@ -43,19 +43,15 @@
     <va-datagrid
       :fields="[
         'id',
-        { source: 'isbn', type: 'resource-link' },
-        { source: 'cover', type: 'resource-link' },
-        { source: 'category', type: 'chip' },
+        { source: 'isbn', link: 'show' },
         {
-          source: 'publisher_id',
-          type: 'reference',
-          options: {
-            reference: 'publishers',
-            syncKey: 'books_publisher_list',
-            link: 'show',
-            property: 'name'
-          }
+          source: 'cover',
+          type: 'image',
+          link: 'show',
+          options: { preview: 'thumbnails.small' }
         },
+        'category',
+        'publisher_id',
         'title',
         {
           source: 'price',
@@ -63,63 +59,76 @@
           options: { format: 'currency' }
         },
         { source: 'commentable', type: 'boolean', editable: true },
-        { source: 'formats', type: 'array' },
+        'formats',
         {
           source: 'publication_date',
           type: 'date',
           options: { format: 'long' }
         },
-        {
-          source: 'review_ids',
-          type: 'reference',
-          options: {
-            multiple: true,
-            reference: 'reviews',
-            syncKey: 'books_reviews_list',
-            link: 'show',
-            property: 'author'
-          }
-        }
+        'review_ids'
       ]"
       v-bind="props"
       show-expand
     >
-      <template v-slot:cover="{ item }">
-        <va-image-field
+      <template v-slot:publisher_id="{ item }">
+        <va-reference-field
+          source="publisher_id"
           :item="item"
-          source="cover"
-          preview="thumbnails.small"
-        ></va-image-field>
-      </template>
-      <template v-slot:publisher_id="{ item, to }">
-        <va-chip-field color="orange" :to="to">
-          {{ item.name }}
-        </va-chip-field>
+          reference="publishers"
+          sync-key="books_publisher_list"
+          link="show"
+          property="name"
+        >
+          <template v-slot="{ item, to }">
+            <va-chip-field color="orange" :to="to">
+              {{ item.name }}
+            </va-chip-field>
+          </template>
+        </va-reference-field>
       </template>
       <template v-slot:category="{ item }">
-        <va-select-field source="category" :item="item" enum></va-select-field>
+        <va-chip-field>
+          <va-select-field
+            source="category"
+            :item="item"
+            enum
+          ></va-select-field>
+        </va-chip-field>
       </template>
-      <template v-slot:formats>
-        <va-single-field-list v-slot="{ item }">
-          <va-chip-field color="yellow" small>
-            <va-select-field
-              source="formats"
-              :item="item"
-              enum
-            ></va-select-field>
-          </va-chip-field>
-        </va-single-field-list>
+      <template v-slot:formats="{ item }">
+        <va-array-field source="formats" :item="item">
+          <va-single-field-list v-slot="{ item }">
+            <va-chip-field color="yellow" small>
+              <va-select-field
+                source="formats"
+                :item="item"
+                enum
+              ></va-select-field>
+            </va-chip-field>
+          </va-single-field-list>
+        </va-array-field>
       </template>
-      <template v-slot:review_ids="{ link }">
-        <va-single-field-list v-slot="{ item }" :limit="2">
-          <va-chip-field
-            color="green"
-            :to="{ name: link, params: { id: item.id } }"
-            small
-          >
-            {{ item.author }}
-          </va-chip-field>
-        </va-single-field-list>
+      <template v-slot:review_ids="{ item }">
+        <va-reference-field
+          source="review_ids"
+          :item="item"
+          multiple
+          reference="reviews"
+          sync-key="books_reviews_list"
+          link="show"
+          property="author"
+          v-slot="{ link }"
+        >
+          <va-single-field-list v-slot="{ item }" :limit="2">
+            <va-chip-field
+              color="green"
+              :to="{ name: link, params: { id: item.id } }"
+              small
+            >
+              {{ item.author }}
+            </va-chip-field>
+          </va-single-field-list>
+        </va-reference-field>
       </template>
       <template v-slot:expanded-item="{ item }">
         <va-text-field :item="item" source="description"></va-text-field>

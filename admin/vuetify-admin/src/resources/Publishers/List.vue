@@ -26,9 +26,11 @@
         'id',
         {
           source: 'logo',
-          type: 'resource-link'
+          type: 'image',
+          link: 'show',
+          options: { preview: 'thumbnails.small' }
         },
-        { source: 'name', type: 'resource-link' },
+        { source: 'name', link: 'show' },
         { source: 'type', type: 'select', options: { enum: true } },
         'founder',
         'headquarter',
@@ -51,13 +53,6 @@
       ]"
       v-bind="props"
     >
-      <template v-slot:logo="{ item }">
-        <va-image-field
-          :item="item"
-          source="logo"
-          preview="thumbnails.small"
-        ></va-image-field>
-      </template>
     </va-datagrid>
   </va-list>
 </template>

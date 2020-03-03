@@ -25,7 +25,6 @@ import RatingField from "./Fields/RatingField";
 import DateField from "./Fields/DateField";
 import BooleanField from "./Fields/BooleanField";
 import RichTextField from "./Fields/RichTextField";
-import ResourceLinkField from "./Fields/ResourceLinkField";
 import ArrayField from "./Fields/ArrayField";
 import ChipField from "./Fields/ChipField";
 import SelectField from "./Fields/SelectField";
@@ -77,7 +76,6 @@ export {
   BooleanField,
   RichTextField,
   ArrayField,
-  ResourceLinkField,
   ChipField,
   SelectField,
   EmailField,

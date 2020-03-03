@@ -22,22 +22,31 @@
       v-for="field in getFields"
       v-slot:[`item.${field.source}`]="{ item, value }"
     >
-      <slot :name="`cell.${field.source}`" v-bind="{ item, value }">
+      <component
+        v-if="field.editable"
+        :key="field.source"
+        :is="`va-${field.type || 'text'}-input`"
+        :source="field.source"
+        :resource="resource"
+        edit
+        :item="item"
+        :value="value"
+        dense
+        label=""
+        v-bind="field.options"
+        @change="val => updateItem({ item, source: field.source, val })"
+      ></component>
+      <router-link
+        v-else-if="field.link"
+        :key="field.source"
+        :to="{
+          name: `${resource}_${field.link}`,
+          params: { id: item.id }
+        }"
+      >
         <component
-          v-if="field.editable"
-          :is="`va-${field.type}-input`"
-          :source="field.source"
-          :resource="resource"
-          edit
-          :item="item"
-          :value="value"
-          dense
-          label=""
-          v-bind="field.options"
-          @change="val => updateItem({ item, source: field.source, val })"
-        ></component>
-        <component
-          v-else
+          v-if="field.type"
+          :key="field.source"
           :is="`va-${field.type}-field`"
           :source="field.source"
           :resource="resource"
@@ -51,6 +60,28 @@
             v-bind="props"
           ></slot>
         </component>
+        <slot v-else :name="field.source" v-bind="{ item, value }">
+          {{ value }}
+        </slot>
+      </router-link>
+      <component
+        v-else-if="field.type"
+        :key="field.source"
+        :is="`va-${field.type}-field`"
+        :source="field.source"
+        :resource="resource"
+        :item="item"
+        v-bind="field.options"
+        v-slot="props"
+      >
+        <slot
+          :name="field.source"
+          :item="props.item || item"
+          v-bind="props"
+        ></slot>
+      </component>
+      <slot v-else :name="field.source" v-bind="{ item, value }">
+        {{ value }}
       </slot>
     </template>
     <template v-slot:item.actions="{ item }">
@@ -175,7 +206,7 @@ export default {
         .map(f => {
           return {
             ...f,
-            type: f.type || "text",
+            type: f.type,
             label:
               f.label ||
               this.$t(`resources.${this.resource}.fields.${f.source}`)
@@ -185,10 +216,9 @@ export default {
   },
   methods: {
     getDefaultSort(field) {
-      if (["boolean", "function", "reference", "select"].includes(field.type)) {
-        return false;
-      }
-      return true;
+      return !["boolean", "function", "reference", "select", "image"].includes(
+        field.type
+      );
     },
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {
