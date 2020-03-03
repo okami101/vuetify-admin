@@ -35,7 +35,9 @@ export default (entrypoint, options = {}) => {
       /**
        * Get CSRF cookie
        */
-      await fetch(`${entrypoint}/airlock/csrf-cookie`);
+      await fetch(`${entrypoint}/airlock/csrf-cookie`, {
+        credentials: "include"
+      });
 
       let response = await doAuthAction(
         routes.login,
