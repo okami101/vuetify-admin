@@ -13,13 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:airlock')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources([
-    'authors' => 'AuthorController',
-    'books' => 'BookController',
-    'reviews' => 'ReviewController',
-    'publishers' => 'PublisherController'
-]);
+/**
+ * API resources controllers
+ */
+Route::group(['middleware' => 'auth:airlock'], function () {
+    Route::apiResources([
+        'authors' => 'AuthorController',
+        'books' => 'BookController',
+        'reviews' => 'ReviewController',
+        'publishers' => 'PublisherController'
+    ]);
+});

@@ -121,10 +121,9 @@ export default entrypoint => {
     });
 
     if (token) {
-      headers.append(
-        "Authorization",
-        `Bearer ${localStorage.getItem("token")}`
-      );
+      headers.append("Authorization", `Bearer ${token}`);
+    } else {
+      headers.append("Access-Control-Allow-Credentials", true);
     }
 
     let response = await fetch(url, {

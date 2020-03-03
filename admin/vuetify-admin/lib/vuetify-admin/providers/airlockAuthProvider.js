@@ -1,12 +1,10 @@
 export default (entrypoint, options = {}) => {
   options = {
     routes: {
-      login: "auth/login",
-      logout: "auth/logout",
-      refresh: "auth/refresh",
-      user: "auth/me"
+      login: "/login",
+      logout: "/logout",
+      user: "/user"
     },
-    tokenProp: "access_token",
     credentials: ({ username, password }) => {
       return {
         email: username,
@@ -19,72 +17,51 @@ export default (entrypoint, options = {}) => {
     ...options
   };
 
-  let {
-    routes,
-    credentials,
-    getName,
-    getEmail,
-    getPermissions,
-    tokenProp
-  } = options;
+  let { routes, credentials, getName, getEmail, getPermissions } = options;
 
-  const doAuthenticatedAction = route => {
-    return fetch(`${entrypoint}/${route}`, {
-      method: "POST",
+  const doAuthAction = (route, method, body) => {
+    return fetch(`${entrypoint}${route}`, {
+      method,
+      body,
+      credentials: "include",
       headers: new Headers({
-        Accept: "application/json",
-        "Access-Control-Allow-Credentials": true
+        Accept: "application/json"
       })
     });
   };
 
   return {
     login: async ({ username, password }) => {
-      let response = await fetch(`${entrypoint}/${routes.login}`, {
-        method: "POST",
-        body: JSON.stringify(credentials({ username, password })),
-        headers: new Headers({
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        })
-      });
+      /**
+       * Get CSRF cookie
+       */
+      await fetch(`${entrypoint}/airlock/csrf-cookie`);
+
+      let response = await doAuthAction(
+        routes.login,
+        "POST",
+        JSON.stringify(credentials({ username, password }))
+      );
 
       if (response.status < 200 || response.status >= 300) {
         throw new Error(response.statusText);
       }
-
-      let json = await response.json();
-      localStorage.setItem("token", json[tokenProp]);
     },
     logout: async () => {
-      if (routes.logout) {
-        await doAuthenticatedAction(routes.logout);
-      }
-
-      localStorage.removeItem("token");
+      await doAuthAction(routes.logout, "POST");
       return Promise.resolve();
     },
     checkAuth: async () => {
-      let response = await doAuthenticatedAction(routes.user);
+      let response = await doAuthAction(routes.user, "GET");
 
       if (response.status < 200 || response.status >= 300) {
         throw new Error(response.statusText);
-      }
-
-      /**
-       * Refresh token
-       */
-      if (routes.refresh) {
-        let response = await doAuthenticatedAction(routes.refresh);
-        let json = await response.json();
-        localStorage.setItem("token", json[tokenProp]);
       }
 
       return response.json();
     },
     checkError: ({ status }) => {
       if (status === 401 || status === 403) {
-        localStorage.removeItem("token");
         return Promise.reject();
       }
       return Promise.resolve();

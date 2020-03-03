@@ -2,8 +2,8 @@
   <va-admin
     title="Bookstore Admin"
     :menu="menu"
-    :auth-provider="authProviders[defaultProvider]"
-    :data-provider="dataProviders[defaultProvider]"
+    :auth-provider="authProviders[defaultAuthProvider]"
+    :data-provider="dataProviders[defaultDataProvider]"
   >
     <va-resource name="publishers"></va-resource>
     <va-resource name="books"></va-resource>
@@ -22,16 +22,17 @@ export default {
   name: "App",
   data() {
     return {
-      defaultProvider: process.env.VUE_APP_DATA_PROVIDER,
+      defaultAuthProvider: process.env.VUE_APP_AUTH_PROVIDER,
+      defaultDataProvider: process.env.VUE_APP_DATA_PROVIDER,
       authProviders: {
-        symfonyJwt: jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL, {
+        "symfony-jwt": jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL, {
           routes: {
             login: "authentication_token",
             user: "authentication_user"
           },
           tokenProp: "token"
         }),
-        laravelJwt: jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+        "laravel-jwt": jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
@@ -42,7 +43,7 @@ export default {
             };
           }
         }),
-        laravelJwt: airlockAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+        airlock: airlockAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
