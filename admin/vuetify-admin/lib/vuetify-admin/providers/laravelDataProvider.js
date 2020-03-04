@@ -8,10 +8,10 @@ const GET_ONE = "GET_ONE";
 const UPDATE = "UPDATE";
 const DELETE = "DELETE";
 
-export default entrypoint => {
+export default axios => {
   const getRequest = (type, resource, params = {}) => {
-    const resourceUrl = new URL(`${entrypoint}/${resource}`);
-    const itemUrl = new URL(`${entrypoint}/${resource}/${params.id}`);
+    const resourceUrl = new URL(`/${resource}`);
+    const itemUrl = new URL(`/${resource}/${params.id}`);
 
     switch (type) {
       case GET_LIST:
@@ -81,10 +81,8 @@ export default entrypoint => {
       case CREATE:
         return {
           url: resourceUrl,
-          options: {
-            method: "POST",
-            body: objectToFormData(params.data)
-          }
+          method: "post",
+          data: objectToFormData(params.data)
         };
 
       case UPDATE:
@@ -93,18 +91,14 @@ export default entrypoint => {
 
         return {
           url: itemUrl,
-          options: {
-            method: "POST",
-            body: form
-          }
+          method: "post",
+          data: form
         };
 
       case DELETE:
         return {
           url: itemUrl,
-          options: {
-            method: "DELETE"
-          }
+          method: "delete"
         };
 
       default:
@@ -113,23 +107,9 @@ export default entrypoint => {
   };
 
   const fetchApi = async (type, resource, params) => {
-    let { url, options } = getRequest(type, resource, params);
+    let { url, method, data } = getRequest(type, resource, params);
 
-    let token = localStorage.getItem("token");
-    let headers = new Headers({
-      Accept: "application/json"
-    });
-
-    if (token) {
-      headers.append("Authorization", `Bearer ${token}`);
-    } else {
-      headers.append("Access-Control-Allow-Credentials", true);
-    }
-
-    let response = await fetch(url, {
-      headers,
-      ...options
-    });
+    let response = await axios[method || "get"](url, data);
 
     if (response.status >= 200 && response.status < 400) {
       /**

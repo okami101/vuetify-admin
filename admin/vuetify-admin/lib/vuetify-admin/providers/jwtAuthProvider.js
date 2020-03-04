@@ -1,4 +1,4 @@
-export default (entrypoint, options = {}) => {
+export default (axios, options = {}) => {
   options = {
     routes: {
       login: "auth/login",
@@ -29,7 +29,7 @@ export default (entrypoint, options = {}) => {
   } = options;
 
   const doAuthenticatedAction = route => {
-    return fetch(`${entrypoint}/${route}`, {
+    return fetch(`/${route}`, {
       method: "POST",
       headers: new Headers({
         Accept: "application/json",
@@ -40,7 +40,7 @@ export default (entrypoint, options = {}) => {
 
   return {
     login: async ({ username, password }) => {
-      let response = await fetch(`${entrypoint}/${routes.login}`, {
+      let response = await fetch(`/${routes.login}`, {
         method: "POST",
         body: JSON.stringify(credentials({ username, password })),
         headers: new Headers({

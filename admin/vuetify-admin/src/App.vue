@@ -25,14 +25,14 @@ export default {
       defaultAuthProvider: process.env.VUE_APP_AUTH_PROVIDER,
       defaultDataProvider: process.env.VUE_APP_DATA_PROVIDER,
       authProviders: {
-        "symfony-jwt": jwtAuthProvider(process.env.VUE_APP_SYMFONY_API_URL, {
+        "symfony-jwt": jwtAuthProvider(this.$axios, {
           routes: {
             login: "authentication_token",
             user: "authentication_user"
           },
           tokenProp: "token"
         }),
-        "laravel-jwt": jwtAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+        "laravel-jwt": jwtAuthProvider(this.$axios, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
@@ -43,7 +43,7 @@ export default {
             };
           }
         }),
-        airlock: airlockAuthProvider(process.env.VUE_APP_LARAVEL_API_URL, {
+        airlock: airlockAuthProvider(this.$axios, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
@@ -56,8 +56,8 @@ export default {
         })
       },
       dataProviders: {
-        symfony: symfonyDataProvider(process.env.VUE_APP_SYMFONY_API_URL),
-        laravel: laravelDataProvider(process.env.VUE_APP_LARAVEL_API_URL)
+        symfony: symfonyDataProvider(this.$axios),
+        laravel: laravelDataProvider(this.$axios)
       },
       menu: [
         {

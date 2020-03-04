@@ -1,4 +1,4 @@
-export default (entrypoint, options = {}) => {
+export default (axios, options = {}) => {
   options = {
     routes: {
       login: "/login",
@@ -19,30 +19,16 @@ export default (entrypoint, options = {}) => {
 
   let { routes, credentials, getName, getEmail, getPermissions } = options;
 
-  const doAuthAction = (route, method, body) => {
-    return fetch(`${entrypoint}${route}`, {
-      method,
-      body,
-      credentials: "include",
-      headers: new Headers({
-        Accept: "application/json"
-      })
-    });
-  };
-
   return {
     login: async ({ username, password }) => {
       /**
        * Get CSRF cookie
        */
-      await fetch(`${entrypoint}/airlock/csrf-cookie`, {
-        credentials: "include"
-      });
+      await axios.get("/airlock/csrf-cookie");
 
-      let response = await doAuthAction(
+      let response = await axios.post(
         routes.login,
-        "POST",
-        JSON.stringify(credentials({ username, password }))
+        credentials({ username, password })
       );
 
       if (response.status < 200 || response.status >= 300) {
@@ -50,11 +36,11 @@ export default (entrypoint, options = {}) => {
       }
     },
     logout: async () => {
-      await doAuthAction(routes.logout, "POST");
+      await axios.post(routes.logout);
       return Promise.resolve();
     },
     checkAuth: async () => {
-      let response = await doAuthAction(routes.user, "GET");
+      let response = await axios.get(routes.user);
 
       if (response.status < 200 || response.status >= 300) {
         throw new Error(response.statusText);
