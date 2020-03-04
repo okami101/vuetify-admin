@@ -117,9 +117,9 @@
           sync-key="books_reviews_list"
           link="show"
           property="author"
-          v-slot="{ link }"
+          v-slot="{ items, link }"
         >
-          <va-single-field-list v-slot="{ item }" :limit="2">
+          <va-single-field-list :items="items" v-slot="{ item }" :limit="2">
             <va-chip-field
               color="green"
               :to="{ name: link, params: { id: item.id } }"

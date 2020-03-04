@@ -7,6 +7,11 @@ import Input from "vuetify-admin/mixins/input";
 
 export default {
   name: "BooleanInput",
-  mixins: [Input]
+  mixins: [Input],
+  data() {
+    return {
+      default: false
+    };
+  }
 };
 </script>

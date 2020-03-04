@@ -43,9 +43,11 @@ export default (provider, resource, actions) => {
           commit("api/setLoading", false, {
             root: true
           });
-          commit("layout/showError", e.message, {
-            root: true
-          });
+          if (e.response) {
+            commit("layout/showError", e.response.data.message, {
+              root: true
+            });
+          }
           dispatch("auth/checkError", e, {
             root: true
           });

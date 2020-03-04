@@ -34,11 +34,10 @@ export default {
 
         commit("setSaving", false);
       } catch (e) {
-        const { errors } = e;
         commit("setSaving", false);
 
-        if (errors) {
-          commit("setErrors", errors);
+        if (e.response) {
+          commit("setErrors", e.response.data.errors || {});
         }
         return Promise.reject(e);
       }

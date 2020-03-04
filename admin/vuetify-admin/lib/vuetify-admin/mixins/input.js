@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       input: null,
-      test: null,
+      default: null,
       errorMessages: []
     };
   },
@@ -69,7 +69,7 @@ export default {
   watch: {
     value: {
       handler(val) {
-        this.input = val;
+        this.input = val || this.default;
       },
       immediate: true
     },
@@ -79,7 +79,7 @@ export default {
           return;
         }
         if (val && this.source) {
-          this.input = get(val, this.model || this.source);
+          this.input = get(val, this.model || this.source) || this.default;
         }
       },
       immediate: true

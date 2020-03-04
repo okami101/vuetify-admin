@@ -34,7 +34,7 @@ export default (axios, base = "/api") => {
 
         if (type === GET_MANY) {
           searchParams.append("filter[id]", params.ids.join(","));
-          return { url: resourceUrl };
+          return { url: `${resourceUrl}?${searchParams.toString()}` };
         }
 
         if (type === GET_MANY_REFERENCE && params.target) {
@@ -48,34 +48,32 @@ export default (axios, base = "/api") => {
           }
           if (perPage) {
             searchParams.append("perPage", perPage);
-            console.log(searchParams);
           }
         }
         if (sort) {
-          searchParams.append(
-            "sort",
-            sort
-              .map(item => {
-                let { by, desc } = item;
+          let param = sort
+            .map(item => {
+              let { by, desc } = item;
 
-                if (desc) {
-                  return `-${by}`;
-                }
-                return by;
-              })
-              .join(",")
-          );
-
-          if (filter) {
-            Object.keys(filter).forEach(key => {
-              if (filter[key]) {
-                searchParams.append(`filter[${key}]`, filter[key]);
+              if (desc) {
+                return `-${by}`;
               }
-            });
-          }
+              return by;
+            })
+            .join(",");
+
+          if (param) searchParams.append("sort", param);
         }
 
-        return { url: resourceUrl, data: searchParams };
+        if (filter) {
+          Object.keys(filter).forEach(key => {
+            if (filter[key]) {
+              searchParams.append(`filter[${key}]`, filter[key]);
+            }
+          });
+        }
+
+        return { url: `${resourceUrl}?${searchParams.toString()}` };
 
       case GET_ONE:
         return { url: itemUrl };
@@ -111,14 +109,7 @@ export default (axios, base = "/api") => {
   const fetchApi = async (type, resource, params) => {
     let { url, method, data } = getRequest(type, resource, params);
 
-    const sarch = new URLSearchParams();
-    sarch.append("param1", "value1");
-    sarch.append("param2", "value2");
-
-    let response = await axios[method || "get"](url, {
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-      data: sarch
-    });
+    let response = await axios[method || "get"](url, data);
 
     if (response.status >= 200 && response.status < 400) {
       /**
