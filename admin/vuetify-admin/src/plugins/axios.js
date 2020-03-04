@@ -6,7 +6,9 @@ import axios from "axios";
 let config = {
   baseURL: process.env.VUE_APP_API_URL,
   withCredentials: true,
-  headers: { "X-Requested-With": "XMLHttpRequest" }
+  headers: {
+    "X-Requested-With": "XMLHttpRequest"
+  }
 };
 
 const _axios = axios.create(config);

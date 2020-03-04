@@ -8,10 +8,11 @@ const GET_ONE = "GET_ONE";
 const UPDATE = "UPDATE";
 const DELETE = "DELETE";
 
-export default axios => {
+export default (axios, base = "/api") => {
   const getRequest = (type, resource, params = {}) => {
-    const resourceUrl = new URL(`/${resource}`);
-    const itemUrl = new URL(`/${resource}/${params.id}`);
+    const searchParams = new URLSearchParams();
+    const resourceUrl = `${base}/${resource}`;
+    const itemUrl = `${base}/${resource}/${params.id}`;
 
     switch (type) {
       case GET_LIST:
@@ -22,35 +23,36 @@ export default axios => {
         if (fields) {
           Object.keys(fields).forEach(r => {
             if (fields[r] && fields.length) {
-              resourceUrl.searchParams.set(`fields[${r}]`, fields[r].join(","));
+              searchParams.append(`fields[${r}]`, fields[r].join(","));
             }
           });
         }
 
         if (include) {
-          resourceUrl.searchParams.set("include", include.join(","));
+          searchParams.append("include", include.join(","));
         }
 
         if (type === GET_MANY) {
-          resourceUrl.searchParams.set("filter[id]", params.ids.join(","));
+          searchParams.append("filter[id]", params.ids.join(","));
           return { url: resourceUrl };
         }
 
         if (type === GET_MANY_REFERENCE && params.target) {
-          resourceUrl.searchParams.set(`filter[${params.target}]`, params.id);
+          searchParams.append(`filter[${params.target}]`, params.id);
         }
 
         if (pagination) {
           let { page, perPage } = pagination;
           if (page) {
-            resourceUrl.searchParams.set("page", page);
+            searchParams.append("page", page);
           }
           if (perPage) {
-            resourceUrl.searchParams.set("perPage", perPage);
+            searchParams.append("perPage", perPage);
+            console.log(searchParams);
           }
         }
         if (sort) {
-          resourceUrl.searchParams.set(
+          searchParams.append(
             "sort",
             sort
               .map(item => {
@@ -67,13 +69,13 @@ export default axios => {
           if (filter) {
             Object.keys(filter).forEach(key => {
               if (filter[key]) {
-                resourceUrl.searchParams.set(`filter[${key}]`, filter[key]);
+                searchParams.append(`filter[${key}]`, filter[key]);
               }
             });
           }
         }
 
-        return { url: resourceUrl };
+        return { url: resourceUrl, data: searchParams };
 
       case GET_ONE:
         return { url: itemUrl };
@@ -87,7 +89,7 @@ export default axios => {
 
       case UPDATE:
         let form = objectToFormData(params.data);
-        form.set("_method", "PUT");
+        form.append("_method", "PUT");
 
         return {
           url: itemUrl,
@@ -109,7 +111,14 @@ export default axios => {
   const fetchApi = async (type, resource, params) => {
     let { url, method, data } = getRequest(type, resource, params);
 
-    let response = await axios[method || "get"](url, data);
+    const sarch = new URLSearchParams();
+    sarch.append("param1", "value1");
+    sarch.append("param2", "value2");
+
+    let response = await axios[method || "get"](url, {
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      data: sarch
+    });
 
     if (response.status >= 200 && response.status < 400) {
       /**
@@ -119,7 +128,7 @@ export default axios => {
         case GET_LIST:
         case GET_MANY:
         case GET_MANY_REFERENCE:
-          let { data, meta } = await response.json();
+          let { data, meta } = response.data;
 
           return Promise.resolve({
             data,
@@ -131,7 +140,7 @@ export default axios => {
         case GET_ONE:
         case CREATE:
         case UPDATE:
-          let json = await response.json();
+          let json = response.data;
           return Promise.resolve(json);
 
         default:
@@ -142,10 +151,7 @@ export default axios => {
       }
     }
 
-    return Promise.reject({
-      status: response.status,
-      ...(await response.json())
-    });
+    return Promise.reject(response);
   };
 
   return {

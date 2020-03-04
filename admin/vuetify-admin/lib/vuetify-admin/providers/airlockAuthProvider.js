@@ -3,7 +3,7 @@ export default (axios, options = {}) => {
     routes: {
       login: "/login",
       logout: "/logout",
-      user: "/user"
+      user: "/api/user"
     },
     credentials: ({ username, password }) => {
       return {
@@ -46,7 +46,7 @@ export default (axios, options = {}) => {
         throw new Error(response.statusText);
       }
 
-      return response.json();
+      return response.data;
     },
     checkError: ({ status }) => {
       if (status === 401 || status === 403) {

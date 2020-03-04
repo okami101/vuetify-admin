@@ -1,6 +1,8 @@
 const path = require("path");
 
 module.exports = {
+  publicPath: process.env.BASE_URL,
+
   transpileDependencies: ["vuetify"],
 
   configureWebpack: {
@@ -18,5 +20,9 @@ module.exports = {
       localeDir: "locales",
       enableInSFC: false
     }
+  },
+
+  devServer: {
+    disableHostCheck: true
   }
 };
