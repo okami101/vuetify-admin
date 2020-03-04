@@ -1,5 +1,5 @@
 <template>
-  <va-list :filters="['q', 'name']" v-slot="props">
+  <va-list :fields="['id', 'name']" :filters="['q', 'name']" v-slot="props">
     <va-datagrid
       :fields="[
         'id',

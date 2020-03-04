@@ -1,13 +1,5 @@
 <template>
   <va-list
-    :references="[
-      {
-        source: 'book_id',
-        name: 'books',
-        syncKey: 'reviews_book_list',
-        fields: ['id', 'title']
-      }
-    ]"
     :fields="[
       'id',
       'book_id',
@@ -29,6 +21,14 @@
       'author',
       { source: 'published_before', type: 'date', options: { format: 'long' } },
       { source: 'published_after', type: 'date', options: { format: 'long' } }
+    ]"
+    :references="[
+      {
+        source: 'book_id',
+        name: 'books',
+        syncKey: 'reviews_book_list',
+        fields: ['id', 'title']
+      }
     ]"
   >
     <template v-slot:filter.book_id="props">

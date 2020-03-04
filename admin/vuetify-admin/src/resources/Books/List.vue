@@ -1,21 +1,5 @@
 <template>
   <va-list
-    :references="[
-      {
-        source: 'publisher_id',
-        name: 'publishers',
-        syncKey: 'books_publisher_list',
-        fields: ['id', 'name']
-      },
-      {
-        source: 'review_ids',
-        name: 'reviews',
-        multiple: true,
-        reference: 'reviews',
-        syncKey: 'books_reviews_list',
-        fields: ['id', 'author']
-      }
-    ]"
     :fields="[
       'id',
       'isbn',
@@ -38,6 +22,20 @@
       { source: 'published_after', type: 'date', options: { format: 'long' } }
     ]"
     :include="['reviews']"
+    :references="[
+      {
+        source: 'publisher_id',
+        name: 'publishers',
+        syncKey: 'books_publisher_list'
+      },
+      {
+        source: 'review_ids',
+        name: 'reviews',
+        multiple: true,
+        reference: 'reviews',
+        syncKey: 'books_reviews_list'
+      }
+    ]"
     v-slot="props"
   >
     <va-datagrid
@@ -96,8 +94,8 @@
         </va-chip-field>
       </template>
       <template v-slot:formats="{ item }">
-        <va-array-field source="formats" :item="item">
-          <va-single-field-list v-slot="{ item }">
+        <va-array-field source="formats" :item="item" v-slot="{ items }">
+          <va-single-field-list :items="items" v-slot="{ item }">
             <va-chip-field color="yellow" small>
               <va-select-field
                 source="formats"
