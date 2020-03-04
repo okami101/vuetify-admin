@@ -27,9 +27,9 @@ class BookSeeder extends Seeder
                 ->preservingOriginal()
                 ->toMediaCollection('images');
 
-            /*$book->addMedia(DatabaseSeeder::pdf())
+            $book->addMedia(DatabaseSeeder::pdf())
                 ->preservingOriginal()
-                ->toMediaCollection('files');*/
+                ->toMediaCollection('files');
         });
     }
 }

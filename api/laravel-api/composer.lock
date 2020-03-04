@@ -1053,16 +1053,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.0.2",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cbd46c70bc747af5f80a4a257ff58fd533e3f815"
+                "reference": "1c5caccad9dc49c9233610d1c92a5a7e46ecaeba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cbd46c70bc747af5f80a4a257ff58fd533e3f815",
-                "reference": "cbd46c70bc747af5f80a4a257ff58fd533e3f815",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1c5caccad9dc49c9233610d1c92a5a7e46ecaeba",
+                "reference": "1c5caccad9dc49c9233610d1c92a5a7e46ecaeba",
                 "shasum": ""
             },
             "require": {
@@ -1153,7 +1153,7 @@
                 "ext-redis": "Required to use the Redis cache and queue drivers.",
                 "filp/whoops": "Required for friendly error pages in development (^2.4).",
                 "fzaninotto/faker": "Required to use the eloquent factory builder (^1.9.1).",
-                "guzzlehttp/guzzle": "Required to use the Mailgun mail driver and the ping methods on schedules (^6.3|^7.0).",
+                "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules (^6.3|^7.0).",
                 "laravel/tinker": "Required to use the tinker console command (^2.0).",
                 "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (^1.0).",
                 "league/flysystem-cached-adapter": "Required to use the Flysystem cache (^1.0).",
@@ -1200,7 +1200,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-03T22:20:03+00:00"
+            "time": "2020-03-04T16:21:04+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1912,6 +1912,44 @@
             "time": "2019-11-29T22:36:02+00:00"
         },
         {
+            "name": "org_heigl/ghostscript",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heiglandreas/Org_Heigl_Ghostscript.git",
+                "reference": "2bcd115f047589c28243a66e6bbea993fc91da21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heiglandreas/Org_Heigl_Ghostscript/zipball/2bcd115f047589c28243a66e6bbea993fc91da21",
+                "reference": "2bcd115f047589c28243a66e6bbea993fc91da21",
+                "shasum": ""
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpdocumentor/phpdocumentor": "^2.9",
+                "phpunit/phpunit": "^5.5||^6.0||^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Org_Heigl\\Ghostscript\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Heigl",
+                    "email": "andreas@heigl.org"
+                }
+            ],
+            "description": "A PHP-Wrapper around the Ghostscript-CLI",
+            "time": "2018-02-22T08:37:21+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v9.99.99",
             "source": {
@@ -2558,16 +2596,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.19.0",
+            "version": "7.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a7b75fe3730da8b6e0241629fa4c25c376e7863f"
+                "reference": "4cbe7c03df14015b6ea17338e642b1125142b86e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a7b75fe3730da8b6e0241629fa4c25c376e7863f",
-                "reference": "a7b75fe3730da8b6e0241629fa4c25c376e7863f",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/4cbe7c03df14015b6ea17338e642b1125142b86e",
+                "reference": "4cbe7c03df14015b6ea17338e642b1125142b86e",
                 "shasum": ""
             },
             "require": {
@@ -2640,7 +2678,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2020-03-03T07:52:30+00:00"
+            "time": "2020-03-04T17:01:00+00:00"
         },
         {
             "name": "spatie/laravel-query-builder",
@@ -2702,24 +2740,25 @@
         },
         {
             "name": "spatie/pdf-to-image",
-            "version": "2.0.0",
+            "version": "v2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "67136abe0db0540b4f29bb461389917ffa1b7e37"
+                "reference": "6718a89065c34dfadfbb2ca61eb1c3e6a956e503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/67136abe0db0540b4f29bb461389917ffa1b7e37",
-                "reference": "67136abe0db0540b4f29bb461389917ffa1b7e37",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/6718a89065c34dfadfbb2ca61eb1c3e6a956e503",
+                "reference": "6718a89065c34dfadfbb2ca61eb1c3e6a956e503",
                 "shasum": ""
             },
             "require": {
-                "ext-imagick": "*",
-                "php": "^7.2"
+                "org_heigl/ghostscript": "^2.2",
+                "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^6.2",
+                "spatie/temporary-directory": "^1.1"
             },
             "type": "library",
             "autoload": {
@@ -2748,7 +2787,7 @@
                 "pdf-to-image",
                 "spatie"
             ],
-            "time": "2020-01-08T00:13:23+00:00"
+            "time": "2017-06-20T05:58:45+00:00"
         },
         {
             "name": "spatie/temporary-directory",
