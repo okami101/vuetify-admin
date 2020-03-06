@@ -2,7 +2,7 @@
   <va-admin
     title="Bookstore Admin"
     :menu="menu"
-    :auth-provider="authProviders[defaultAuthProvider]"
+    :auth-provider="authProvider"
     :data-provider="dataProvider"
   >
     <va-resource name="publishers"></va-resource>
@@ -13,44 +13,29 @@
 </template>
 
 <script>
-import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
-import jwtAuthProvider from "vuetify-admin/providers/jwtAuthProvider";
 import airlockAuthProvider from "vuetify-admin/providers/airlockAuthProvider";
+import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
 
 export default {
   name: "App",
   data() {
     return {
-      defaultAuthProvider: process.env.VUE_APP_AUTH_PROVIDER,
-      authProviders: {
-        airlock: airlockAuthProvider(this.$axios, {
-          routes: {
-            login: "/auth/login",
-            logout: "/auth/logout",
-            user: "/api/user"
-          },
-          getName: u => u.name,
-          getEmail: u => u.email,
-          getPermissions: ({ roles }) => {
-            return {
-              is_admin: roles.includes("ROLE_ADMIN"),
-              is_editor: roles.includes("ROLE_EDITOR"),
-              is_author: roles.includes("ROLE_AUTHOR")
-            };
-          }
-        }),
-        jwt: jwtAuthProvider(this.$axios, {
-          getName: u => u.name,
-          getEmail: u => u.email,
-          getPermissions: ({ roles }) => {
-            return {
-              is_admin: roles.includes("ROLE_ADMIN"),
-              is_editor: roles.includes("ROLE_EDITOR"),
-              is_author: roles.includes("ROLE_AUTHOR")
-            };
-          }
-        })
-      },
+      authProvider: airlockAuthProvider(this.$axios, {
+        routes: {
+          login: "/auth/login",
+          logout: "/auth/logout",
+          user: "/api/user"
+        },
+        getName: u => u.name,
+        getEmail: u => u.email,
+        getPermissions: ({ roles }) => {
+          return {
+            is_admin: roles.includes("ROLE_ADMIN"),
+            is_editor: roles.includes("ROLE_EDITOR"),
+            is_author: roles.includes("ROLE_AUTHOR")
+          };
+        }
+      }),
       dataProvider: laravelDataProvider(this.$axios),
       menu: [
         {
