@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 7.0.3 on 2020-03-04 17:46:14.
+ * Generated for Laravel 7.0.6 on 2020-03-06 21:32:51.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -6489,6 +6489,214 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
+     * @method static \Illuminate\Http\Client\PendingRequest asJson()
+     * @method static \Illuminate\Http\Client\PendingRequest asForm()
+     * @method static \Illuminate\Http\Client\PendingRequest attach(string $name, string $contents, string|null $filename = null, array $headers)
+     * @method static \Illuminate\Http\Client\PendingRequest asMultipart()
+     * @method static \Illuminate\Http\Client\PendingRequest bodyFormat(string $format)
+     * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
+     * @method static \Illuminate\Http\Client\PendingRequest acceptJson()
+     * @method static \Illuminate\Http\Client\PendingRequest accept(string $contentType)
+     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0)
+     * @method static \Illuminate\Http\Client\PendingRequest withHeaders(array $headers)
+     * @method static \Illuminate\Http\Client\PendingRequest withBasicAuth(string $username, string $password)
+     * @method static \Illuminate\Http\Client\PendingRequest withDigestAuth(string $username, string $password)
+     * @method static \Illuminate\Http\Client\PendingRequest withToken(string $token, string $type = 'Bearer')
+     * @method static \Illuminate\Http\Client\PendingRequest withCookies(array $cookies, string $domain)
+     * @method static \Illuminate\Http\Client\PendingRequest withoutRedirecting()
+     * @method static \Illuminate\Http\Client\PendingRequest withoutVerifying()
+     * @method static \Illuminate\Http\Client\PendingRequest timeout(int $seconds)
+     * @method static \Illuminate\Http\Client\PendingRequest withOptions(array $options)
+     * @method static \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
+     * @method static \Illuminate\Http\Client\Response get(string $url, array $query = [])
+     * @method static \Illuminate\Http\Client\Response post(string $url, array $data = [])
+     * @method static \Illuminate\Http\Client\Response patch(string $url, array $data = [])
+     * @method static \Illuminate\Http\Client\Response put(string $url, array $data = [])
+     * @method static \Illuminate\Http\Client\Response delete(string $url, array $data = [])
+     * @method static \Illuminate\Http\Client\Response send(string $method, string $url, array $options = [])
+     * @method static \Illuminate\Http\Client\PendingRequest stub(callable $callback)
+     * @see \Illuminate\Http\Client\Factory
+     */ 
+    class Http {
+        
+        /**
+         * Create a new response instance for use during stubbing.
+         *
+         * @param array|string $body
+         * @param int $status
+         * @param array $headers
+         * @return \GuzzleHttp\Promise\PromiseInterface 
+         * @static 
+         */ 
+        public static function response($body = null, $status = 200, $headers = [])
+        {
+                        return \Illuminate\Http\Client\Factory::response($body, $status, $headers);
+        }
+        
+        /**
+         * Get an invokable object that returns a sequence of responses in order for use during stubbing.
+         *
+         * @param array $responses
+         * @return \Illuminate\Http\Client\ResponseSequence 
+         * @static 
+         */ 
+        public static function sequence($responses = [])
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->sequence($responses);
+        }
+        
+        /**
+         * Register a stub callable that will intercept requests and be able to return stub responses.
+         *
+         * @param callable|array $callback
+         * @return \Illuminate\Http\Client\Factory 
+         * @static 
+         */ 
+        public static function fake($callback = null)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->fake($callback);
+        }
+        
+        /**
+         * Register a response sequence for the given URL pattern.
+         *
+         * @param string $url
+         * @return \Illuminate\Http\Client\ResponseSequence 
+         * @static 
+         */ 
+        public static function fakeSequence($url = '*')
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->fakeSequence($url);
+        }
+        
+        /**
+         * Stub the given URL using the given callback.
+         *
+         * @param string $url
+         * @param \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface|callable $callback
+         * @return \Illuminate\Http\Client\Factory 
+         * @static 
+         */ 
+        public static function stubUrl($url, $callback)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->stubUrl($url, $callback);
+        }
+        
+        /**
+         * Record a request response pair.
+         *
+         * @param \Illuminate\Http\Client\Request $request
+         * @param \Illuminate\Http\Client\Response $response
+         * @return void 
+         * @static 
+         */ 
+        public static function recordRequestResponsePair($request, $response)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        $instance->recordRequestResponsePair($request, $response);
+        }
+        
+        /**
+         * Assert that a request / response pair was recorded matching a given truth test.
+         *
+         * @param callable $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertSent($callback)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        $instance->assertSent($callback);
+        }
+        
+        /**
+         * Assert that every created response sequence is empty.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function assertSequencesAreEmpty()
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        $instance->assertSequencesAreEmpty();
+        }
+        
+        /**
+         * Get a collection of the request / response pairs matching the given truth test.
+         *
+         * @param callable $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function recorded($callback)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->recorded($callback);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Illuminate\Http\Client\Factory::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Illuminate\Http\Client\Factory::mixin($mixin, $replace);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Illuminate\Http\Client\Factory::hasMacro($name);
+        }
+        
+        /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */ 
+        public static function macroCall($method, $parameters)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->macroCall($method, $parameters);
+        }
+         
+    }
+
+    /**
+     * 
+     *
      * @see \Illuminate\Translation\Translator
      */ 
     class Lang {
@@ -10868,7 +11076,7 @@ namespace Illuminate\Support\Facades {
          * Register a new GET route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10882,7 +11090,7 @@ namespace Illuminate\Support\Facades {
          * Register a new POST route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10896,7 +11104,7 @@ namespace Illuminate\Support\Facades {
          * Register a new PUT route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10910,7 +11118,7 @@ namespace Illuminate\Support\Facades {
          * Register a new PATCH route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10924,7 +11132,7 @@ namespace Illuminate\Support\Facades {
          * Register a new DELETE route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10938,7 +11146,7 @@ namespace Illuminate\Support\Facades {
          * Register a new OPTIONS route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10952,7 +11160,7 @@ namespace Illuminate\Support\Facades {
          * Register a new route responding to all verbs.
          *
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10965,7 +11173,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a new Fallback route with the router.
          *
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -11024,7 +11232,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array|string $methods
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -11136,7 +11344,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array|string $methods
          * @param string $uri
-         * @param \Closure|array|string|callable|null $action
+         * @param array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -18527,6 +18735,8 @@ namespace  {
     class Gate extends \Illuminate\Support\Facades\Gate {}
 
     class Hash extends \Illuminate\Support\Facades\Hash {}
+
+    class Http extends \Illuminate\Support\Facades\Http {}
 
     class Lang extends \Illuminate\Support\Facades\Lang {}
 
