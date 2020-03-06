@@ -20,7 +20,7 @@ Route::middleware('auth:airlock')->get('/user', function (Request $request) {
 /**
  * API resources controllers
  */
-Route::group(['middleware' => 'auth:airlock'], function () {
+Route::group(['middleware' => 'auth:airlock', 'prefix' => 'admin'], function () {
     Route::apiResources([
         'authors' => 'AuthorController',
         'books' => 'BookController',

@@ -52,9 +52,7 @@ export default (provider, router) => {
           commit("setUser", null);
         }
 
-        if (router.currentRoute.name !== "login") {
-          router.push("/login");
-        }
+        router.push("/login");
       },
       /**
        * Check valid auth on server by retrieving user infos
@@ -65,8 +63,10 @@ export default (provider, router) => {
         try {
           let user = await provider.checkAuth();
           commit("setUser", user);
+          return true;
         } catch (e) {
           dispatch("logout");
+          return false;
         }
       },
       /**

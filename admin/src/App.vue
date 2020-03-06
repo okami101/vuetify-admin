@@ -3,7 +3,7 @@
     title="Bookstore Admin"
     :menu="menu"
     :auth-provider="authProviders[defaultAuthProvider]"
-    :data-provider="dataProviders[defaultDataProvider]"
+    :data-provider="dataProvider"
   >
     <va-resource name="publishers"></va-resource>
     <va-resource name="books"></va-resource>
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import symfonyDataProvider from "vuetify-admin/providers/symfonyDataProvider";
 import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
 import jwtAuthProvider from "vuetify-admin/providers/jwtAuthProvider";
 import airlockAuthProvider from "vuetify-admin/providers/airlockAuthProvider";
@@ -23,16 +22,13 @@ export default {
   data() {
     return {
       defaultAuthProvider: process.env.VUE_APP_AUTH_PROVIDER,
-      defaultDataProvider: process.env.VUE_APP_DATA_PROVIDER,
       authProviders: {
-        "symfony-jwt": jwtAuthProvider(this.$axios, {
+        airlock: airlockAuthProvider(this.$axios, {
           routes: {
-            login: "authentication_token",
-            user: "authentication_user"
+            login: "/auth/login",
+            logout: "/auth/logout",
+            user: "/api/user"
           },
-          tokenProp: "token"
-        }),
-        "laravel-jwt": jwtAuthProvider(this.$axios, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
@@ -43,7 +39,7 @@ export default {
             };
           }
         }),
-        airlock: airlockAuthProvider(this.$axios, {
+        jwt: jwtAuthProvider(this.$axios, {
           getName: u => u.name,
           getEmail: u => u.email,
           getPermissions: ({ roles }) => {
@@ -55,10 +51,7 @@ export default {
           }
         })
       },
-      dataProviders: {
-        symfony: symfonyDataProvider(this.$axios),
-        laravel: laravelDataProvider(this.$axios)
-      },
+      dataProvider: laravelDataProvider(this.$axios),
       menu: [
         {
           icon: "mdi-view-dashboard",

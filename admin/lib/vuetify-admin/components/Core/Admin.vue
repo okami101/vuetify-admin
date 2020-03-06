@@ -91,7 +91,17 @@ export default {
       }
     });
 
-    await this.checkAuth();
+    /**
+     * Inital authentification check on full app reload
+     */
+    let isLogged = await this.checkAuth();
+
+    if (isLogged && this.$route.name === "login") {
+      // Redirect to home on login route if already connected
+      await this.$router.push("/");
+    }
+
+    // App loaded, show UI
     this.loaded = true;
   },
   watch: {

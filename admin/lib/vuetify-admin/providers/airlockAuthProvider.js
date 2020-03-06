@@ -3,7 +3,7 @@ export default (axios, options = {}) => {
     routes: {
       login: "/login",
       logout: "/logout",
-      user: "/api/user"
+      user: "/user"
     },
     credentials: ({ username, password }) => {
       return {

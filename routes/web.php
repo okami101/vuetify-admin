@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => false]);
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+});
