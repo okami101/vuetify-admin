@@ -18,11 +18,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      getList: "api/getList",
-      getMany: "api/getMany"
-    }),
     async fetchData(ids) {
+      if (!ids || !ids.length) {
+        return;
+      }
+
       /**
        * Fetch related item records
        * Used for preloaded autocomplete inputs

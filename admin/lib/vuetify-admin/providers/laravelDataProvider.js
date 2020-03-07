@@ -33,7 +33,9 @@ export default (axios, base = "/api") => {
         }
 
         if (type === GET_MANY) {
-          searchParams.append("filter[id]", params.ids.join(","));
+          if (params.ids.length) {
+            searchParams.append("filter[id]", params.ids.join(","));
+          }
           return { url: `${resourceUrl}?${searchParams.toString()}` };
         }
 

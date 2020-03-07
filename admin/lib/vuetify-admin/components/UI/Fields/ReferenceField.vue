@@ -96,11 +96,14 @@ export default {
     },
     value: {
       async handler(val) {
+        let ids = this.multiple ? val : [val];
+
         /**
          * Get data from the store via sync key
          * Used mainly for list references aggregation
          */
-        if (this.syncKey || !val) {
+        if (this.syncKey || !ids.length) {
+          this.loading = false;
           return;
         }
 
@@ -114,7 +117,7 @@ export default {
               [this.reference]: this.getFields
             },
             include: this.include,
-            ids: this.multiple ? val : [val]
+            ids
           }
         });
 
