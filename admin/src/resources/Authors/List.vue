@@ -1,38 +1,16 @@
 <template>
-  <va-list
-    :fields="['id', 'name']"
-    :filters="['q', 'name']"
-    v-slot="props"
-    v-model="selected"
-    :options.sync="options"
-  >
-    <va-datagrid
-      :fields="[
-        'id',
-        {
-          source: 'photo',
-          type: 'image',
-          options: {
-            preview: 'thumbnails.small'
-          }
-        },
-        'name'
-      ]"
-      row-click="show"
-      v-bind="props"
-      v-model="selected"
-      :options.sync="options"
-    ></va-datagrid>
+  <va-list :fields="['id', 'name']" :filters="['q', 'name']" v-slot="{ items }">
+    <v-card>
+      <v-card-text>
+        <va-single-field-list :items="items" v-slot="{ item }">
+          <va-chip-field
+            color="green"
+            :to="{ name: 'authors_show', params: { id: item.id } }"
+          >
+            {{ item.name }}
+          </va-chip-field>
+        </va-single-field-list>
+      </v-card-text>
+    </v-card>
   </va-list>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      options: {},
-      selected: []
-    };
-  }
-};
-</script>

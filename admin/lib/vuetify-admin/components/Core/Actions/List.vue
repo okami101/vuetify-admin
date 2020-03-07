@@ -11,14 +11,13 @@
       :items="items"
       :server-items-length="total"
       :loading="loading"
-      :options="options"
+      :options.sync="currentOptions"
       :value="value"
       :items-per-page="itemsPerPage"
       :footer-props="{
         'items-per-page-options': rowsPerPage,
         showFirstLastPage: true
       }"
-      @update:options="val => updateOptions(val)"
       @input="selected => $emit('input', selected)"
     >
       <template v-slot:header>
@@ -75,8 +74,7 @@
       </template>
       <template v-slot:default>
         <slot
-          v-bind="{ resource, items, fields, loading, itemsPerPage }"
-          :value="value"
+          v-bind="{ resource, items, loading, itemsPerPage }"
           :server-items-length="total"
         >
         </slot>
@@ -158,6 +156,7 @@ export default {
       loading: false,
       items: [],
       total: 0,
+      currentOptions: {},
       currentFilter: {},
       enabledFilters: []
     };
@@ -217,6 +216,17 @@ export default {
     }
   },
   watch: {
+    options: {
+      handler(val) {
+        this.currentOptions = val;
+      },
+      immediate: true
+    },
+    currentOptions(val) {
+      this.fetchData();
+      this.updateQuery();
+      this.$emit("update:options", val);
+    },
     currentFilter() {
       this.fetchData();
       this.updateQuery();
@@ -230,11 +240,6 @@ export default {
       updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
     }),
-    updateOptions(val) {
-      this.fetchData();
-      this.updateQuery();
-      this.$emit("update:options", val);
-    },
     async initFiltersFromQuery() {
       if (!this.useQueryString) {
         return;
@@ -245,14 +250,14 @@ export default {
        */
       const { perPage, page, sortBy, sortDesc, filter } = this.$route.query;
 
-      await this.$emit("update:options", {
+      this.currentOptions = {
         page: page ? parseInt(page, 10) : 1,
         itemsPerPage: perPage ? parseInt(perPage, 10) : this.itemsPerPage,
         sortBy: sortBy ? sortBy.split(",") : [],
         sortDesc: sortDesc
           ? sortDesc.split(",").map(bool => bool === "true")
           : []
-      });
+      };
 
       /**
        * Enable active filters from query
@@ -276,14 +281,14 @@ export default {
       this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
-      if (!this.useQueryString || isEmpty(this.options)) {
+      if (!this.useQueryString || isEmpty(this.currentOptions)) {
         return;
       }
 
       /**
        * Update query router
        */
-      let { itemsPerPage, page, sortBy, sortDesc } = this.options;
+      let { itemsPerPage, page, sortBy, sortDesc } = this.currentOptions;
       this.$router
         .push({
           query: {
@@ -297,12 +302,12 @@ export default {
         .catch(e => {});
     },
     async fetchData() {
-      if (!this.loaded || isEmpty(this.options)) {
+      if (!this.loaded || isEmpty(this.currentOptions)) {
         return;
       }
 
       this.loading = true;
-      const { sortBy, sortDesc, page, itemsPerPage } = this.options;
+      const { sortBy, sortDesc, page, itemsPerPage } = this.currentOptions;
 
       /**
        * Load paginated and sortad data list
