@@ -30,7 +30,6 @@ import ChipField from "./Fields/ChipField";
 import SelectField from "./Fields/SelectField";
 import EmailField from "./Fields/EmailField";
 import UrlField from "./Fields/UrlField";
-import FunctionField from "./Fields/FunctionField";
 import FileField from "./Fields/FileField";
 import ImageField from "./Fields/ImageField";
 import ReferenceField from "./Fields/ReferenceField";
@@ -80,7 +79,6 @@ export {
   SelectField,
   EmailField,
   UrlField,
-  FunctionField,
   FileField,
   ImageField,
   ReferenceField,

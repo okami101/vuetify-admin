@@ -41,16 +41,10 @@
           { source: 'url', type: 'url' },
           { source: 'email', type: 'email' },
           { source: 'active', type: 'boolean' },
-          {
-            source: 'address.street'
-          },
+          'address.street',
           {
             source: 'address',
-            label: $t('address'),
-            type: 'function',
-            options: {
-              render: ({ value }) => `${value.postcode} ${value.city} `
-            }
+            label: $t('address')
           },
           { source: 'opening_date', type: 'date', options: { format: 'long' } },
           { source: 'books_count', type: 'number' }
@@ -59,6 +53,9 @@
         v-model="selected"
         :options.sync="options"
       >
+        <template v-slot:address="{ value }">
+          {{ value.postcode }} {{ value.city }}
+        </template>
       </va-datagrid>
     </va-list>
   </v-card>

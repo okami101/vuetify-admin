@@ -66,14 +66,7 @@
             },
             'status',
             { source: 'rating', type: 'rating' },
-            {
-              source: 'quality',
-              type: 'function',
-              options: {
-                render: ({ item, value }) =>
-                  item.rating >= 3 ? $t('good') : $t('bad')
-              }
-            },
+            'quality',
             'author',
             {
               source: 'publication_date',
@@ -88,6 +81,9 @@
         >
           <template v-slot:expanded-item="{ item }">
             {{ item.body }}
+          </template>
+          <template v-slot:quality="{ item }">
+            {{ item.rating >= 3 ? $t("good") : $t("bad") }}
           </template>
           <template v-slot:status="{ item, value }">
             <v-chip :color="$statusColor(value)">

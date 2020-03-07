@@ -1,12 +1,12 @@
 <template>
   <v-input :label="label">
     <div>
-      <slot v-if="value !== undefined" :value="value">
+      <slot v-bind="{ item: record, value }">
         <component
           :is="`va-${type}-field`"
           :source="source"
           :resource="resource"
-          :item="item"
+          :item="record"
           v-bind="options"
         ></component>
       </slot>
