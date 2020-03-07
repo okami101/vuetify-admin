@@ -1,6 +1,5 @@
 <script>
 import Search from "vuetify-admin/mixins/search";
-import { mapActions } from "vuex";
 
 export default {
   name: "ReferenceInput",
