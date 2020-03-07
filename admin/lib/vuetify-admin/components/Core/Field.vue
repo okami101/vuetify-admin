@@ -1,7 +1,7 @@
 <template>
   <v-input :label="label">
     <div>
-      <slot v-if="value" :value="value">
+      <slot v-if="value !== undefined" :value="value">
         <component
           :is="`va-${type}-field`"
           :source="source"

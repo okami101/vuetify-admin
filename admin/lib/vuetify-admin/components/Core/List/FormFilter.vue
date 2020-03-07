@@ -20,7 +20,7 @@
           hide-details
           :filled="false"
           small-chips
-          :value="filter[item.source]"
+          :value="value[item.source]"
         >
           <component
             :is="`va-${item.type}-input`"
@@ -28,7 +28,7 @@
             :label="item.label"
             filter
             v-bind="item.options"
-            :value="filter[item.source]"
+            :value="value[item.source]"
             hide-details
             :filled="false"
             small-chips
@@ -63,29 +63,26 @@ export default {
   },
   mounted() {
     EventBus.$on("filter", ({ source, value }) => {
-      this.filter[source] = value;
-      this.onSearch();
+      this.filter = {
+        ...this.value,
+        [source]: value
+      };
+      this.debounceInput();
     });
   },
   beforeDestroy() {
     EventBus.$off("filter");
   },
-  watch: {
-    value: {
-      handler(val) {
-        this.filter = { ...(val || {}) };
-      },
-      immediate: true
-    }
-  },
   methods: {
     remove(filter) {
-      delete this.filter[filter.source];
+      let value = { ...this.value };
+      delete value[filter.source];
+
       this.$emit("remove", filter);
-      this.$emit("input", { ...this.filter });
+      this.$emit("input", value);
     },
-    onSearch: debounce(function() {
-      this.$emit("input", { ...this.filter });
+    debounceInput: debounce(function() {
+      this.$emit("input", this.filter);
     }, 200)
   }
 };

@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      input: this.value,
+      input: null,
       errorMessages: []
     };
   },
@@ -66,6 +66,12 @@ export default {
     this.initializeFromQuery();
   },
   watch: {
+    value: {
+      handler(val) {
+        this.input = val;
+      },
+      immediate: true
+    },
     record: {
       handler(val) {
         if (this.filter) {

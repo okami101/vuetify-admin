@@ -18,10 +18,7 @@
         'items-per-page-options': rowsPerPage,
         showFirstLastPage: true
       }"
-      @update:items-per-page="val => updateOptions(val)"
-      @update:page="val => updateOptions(val)"
-      @update:sort-by="val => updateOptions(val)"
-      @update:sort-desc="val => updateOptions(val)"
+      @update:options="val => updateOptions(val)"
       @input="selected => $emit('input', selected)"
     >
       <template v-slot:header>
@@ -101,7 +98,7 @@
 import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
 import Search from "vuetify-admin/mixins/search";
-import debounce from "lodash/debounce";
+import isEmpty from "lodash/isEmpty";
 import FormFilter from "../List/FormFilter";
 import { mapState, mapMutations, mapActions } from "vuex";
 import EventBus from "vuetify-admin/utils/eventBus";
@@ -113,10 +110,23 @@ export default {
     FormFilter
   },
   props: {
+    /**
+     * Internal filter
+     */
+    filter: {
+      type: Object,
+      default: () => {}
+    },
+    /**
+     * Exposed filters
+     */
     filters: {
       type: Array,
       default: () => []
     },
+    /**
+     * References to fetch
+     */
     references: {
       type: Array,
       default: () => []
@@ -144,6 +154,7 @@ export default {
   },
   data() {
     return {
+      loaded: false,
       loading: false,
       items: [],
       total: 0,
@@ -151,10 +162,9 @@ export default {
       enabledFilters: []
     };
   },
-  created() {
-    this.initFiltersFromQuery();
-  },
-  mounted() {
+  async mounted() {
+    await this.initFiltersFromQuery();
+    this.loaded = true;
     this.fetchData();
 
     EventBus.$on("refresh", () => {
@@ -223,12 +233,9 @@ export default {
     updateOptions(val) {
       this.fetchData();
       this.updateQuery();
-      this.$emit("update:options", {
-        ...this.options,
-        val
-      });
+      this.$emit("update:options", val);
     },
-    initFiltersFromQuery() {
+    async initFiltersFromQuery() {
       if (!this.useQueryString) {
         return;
       }
@@ -238,7 +245,7 @@ export default {
        */
       const { perPage, page, sortBy, sortDesc, filter } = this.$route.query;
 
-      this.$emit("update:options", {
+      await this.$emit("update:options", {
         page: page ? parseInt(page, 10) : 1,
         itemsPerPage: perPage ? parseInt(perPage, 10) : this.itemsPerPage,
         sortBy: sortBy ? sortBy.split(",") : [],
@@ -269,7 +276,7 @@ export default {
       this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
-      if (!this.useQueryString) {
+      if (!this.useQueryString || isEmpty(this.options)) {
         return;
       }
 
@@ -282,17 +289,19 @@ export default {
           query: {
             perPage: itemsPerPage,
             page,
-            sortBy: sortBy.join(","),
-            sortDesc: sortDesc.join(","),
+            sortBy: (sortBy || []).join(","),
+            sortDesc: (sortDesc || []).join(","),
             filter: JSON.stringify(this.currentFilter)
           }
         })
         .catch(e => {});
     },
-
     async fetchData() {
+      if (!this.loaded || isEmpty(this.options)) {
+        return;
+      }
+
       this.loading = true;
-      console.log(this.options);
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       /**
