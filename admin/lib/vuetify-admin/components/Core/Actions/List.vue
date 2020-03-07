@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <div>
     <va-aside-content>
       <slot
         name="aside"
@@ -21,56 +21,58 @@
       @input="selected => $emit('input', selected)"
     >
       <template v-slot:header>
-        <v-toolbar flat color="blue lighten-5" v-if="value.length">
-          {{ $tc("va.datagrid.selected_items", value.length) }}
-          <v-spacer></v-spacer>
-          <div>
-            <va-delete-button
-              :resource="resource"
-              @delete="onBlukDelete"
-            ></va-delete-button>
-          </div>
-        </v-toolbar>
-        <v-toolbar flat color="transparent" v-else>
-          <form-filter
-            :filters="getEnabledFilters"
-            @remove="disableFilter"
-            v-model="currentFilter"
-          >
-            <template
-              v-for="filter in getEnabledFilters"
-              v-slot:[filter.source]="props"
+        <v-card :flat="flat">
+          <v-toolbar flat color="blue lighten-5" v-if="value.length">
+            {{ $tc("va.datagrid.selected_items", value.length) }}
+            <v-spacer></v-spacer>
+            <div>
+              <va-delete-button
+                :resource="resource"
+                @delete="onBlukDelete"
+              ></va-delete-button>
+            </div>
+          </v-toolbar>
+          <v-toolbar flat v-else>
+            <form-filter
+              :filters="getEnabledFilters"
+              @remove="disableFilter"
+              v-model="currentFilter"
             >
-              <slot :name="`filter.${filter.source}`" v-bind="props"></slot>
-            </template>
-          </form-filter>
-          <v-spacer></v-spacer>
-          <v-menu offset-y v-if="getDisabledFilters.length">
-            <template v-slot:activator="{ on }">
-              <v-btn text color="success" v-on="on">
-                <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
-                {{ $t("va.datagrid.add_filter") }}
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(filter, index) in getDisabledFilters"
-                :key="index"
-                @click="enableFilter(filter)"
+              <template
+                v-for="filter in getEnabledFilters"
+                v-slot:[filter.source]="props"
               >
-                <v-list-item-title>{{ filter.label }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-          <va-create-button :resource="resource"></va-create-button>
-          <va-export-button
-            :resource="resource"
-            v-if="exporter"
-            text
-            :options="options"
-            :filter="{ ...filter, ...currentFilter }"
-          ></va-export-button>
-        </v-toolbar>
+                <slot :name="`filter.${filter.source}`" v-bind="props"></slot>
+              </template>
+            </form-filter>
+            <v-spacer></v-spacer>
+            <v-menu offset-y v-if="getDisabledFilters.length">
+              <template v-slot:activator="{ on }">
+                <v-btn text color="success" v-on="on">
+                  <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
+                  {{ $t("va.datagrid.add_filter") }}
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(filter, index) in getDisabledFilters"
+                  :key="index"
+                  @click="enableFilter(filter)"
+                >
+                  <v-list-item-title>{{ filter.label }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+            <va-create-button :resource="resource"></va-create-button>
+            <va-export-button
+              :resource="resource"
+              v-if="exporter"
+              text
+              :options="options"
+              :filter="{ ...filter, ...currentFilter }"
+            ></va-export-button>
+          </v-toolbar>
+        </v-card>
       </template>
       <template v-slot:default>
         <slot
@@ -89,7 +91,7 @@
         <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
       </template>
     </v-data-iterator>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -129,6 +131,7 @@ export default {
       type: Array,
       default: () => []
     },
+    flat: Boolean,
     rowsPerPage: {
       type: Array,
       default: () => [5, 10, 15, 25, 50, 100]
