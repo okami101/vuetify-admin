@@ -243,6 +243,7 @@ export default {
       this.loaded = true;
     },
     updateSelected(selected) {
+      this.$emit("input", selected);
       this.$parent.$parent.$emit("input", selected);
     },
     updateItem(payload) {
