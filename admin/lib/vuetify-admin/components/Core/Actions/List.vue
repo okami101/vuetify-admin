@@ -369,14 +369,14 @@ export default {
         await this.$confirm(
           this.$t("va.confirm.delete_many_title", {
             resource: this.$tc(
-              `resources.${this.resource}`,
+              `resources.${this.resource}.name`,
               this.value.length
             ).toLowerCase(),
             count: this.value.length
           }),
           this.$t("va.confirm.delete_many_message", {
             resource: this.$tc(
-              `resources.${this.resource}`,
+              `resources.${this.resource}.name`,
               this.value.length
             ).toLowerCase(),
             count: this.value.length
@@ -387,7 +387,7 @@ export default {
           resource: this.resource,
           params: { ids: this.value.map(({ id }) => id) }
         });
-        this.value = [];
+        this.$emit("input", []);
         this.fetchData();
       }
     }
