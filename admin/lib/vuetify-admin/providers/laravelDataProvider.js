@@ -25,13 +25,13 @@ export default (axios, base = "/api") => {
 
         if (fields) {
           Object.keys(fields).forEach(r => {
-            if (fields[r] && fields.length) {
+            if (fields[r].length) {
               searchParams.append(`fields[${r}]`, fields[r].join(","));
             }
           });
         }
 
-        if (include && include.length) {
+        if (include.length) {
           searchParams.append("include", include.join(","));
         }
 
