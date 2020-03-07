@@ -39,7 +39,6 @@
           'founder',
           'headquarter',
           { source: 'url', type: 'url' },
-          { source: 'email', type: 'email' },
           { source: 'active', type: 'boolean' },
           'address.street',
           {
