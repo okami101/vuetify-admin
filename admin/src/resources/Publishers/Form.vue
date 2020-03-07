@@ -16,7 +16,8 @@
         <va-text-input source="headquarter"></va-text-input>
         <va-text-input source="url"></va-text-input>
         <va-text-input source="email"></va-text-input>
-        <va-boolean-input source="active"></va-boolean-input>
+        <va-boolean-input source="active" v-model="test"></va-boolean-input>
+        {{ test }}
         <va-text-input source="address.street"></va-text-input>
         <va-text-input source="address.postcode"></va-text-input>
         <va-text-input source="address.city"></va-text-input>
@@ -32,3 +33,14 @@
     </v-row>
   </va-simple-form>
 </template>
+
+<script>
+export default {
+  name: "Form",
+  data() {
+    return {
+      test: false
+    };
+  }
+};
+</script>

@@ -8,10 +8,11 @@ import Input from "vuetify-admin/mixins/input";
 export default {
   name: "BooleanInput",
   mixins: [Input],
-  data() {
-    return {
+  props: {
+    default: {
+      type: Boolean,
       default: false
-    };
+    }
   }
 };
 </script>

@@ -24,6 +24,9 @@ export default {
     alwaysOn: Boolean,
     filter: Boolean,
     edit: Boolean,
+    default: {
+      default: null
+    },
     value: {
       default: null
     }
@@ -31,7 +34,6 @@ export default {
   data() {
     return {
       input: null,
-      default: null,
       errorMessages: []
     };
   },
@@ -78,8 +80,9 @@ export default {
         if (this.filter) {
           return;
         }
-        if (val && this.source) {
+        if (val && this.source && !this.input) {
           this.input = get(val, this.model || this.source) || this.default;
+          this.$emit("input", this.input);
         }
       },
       immediate: true
