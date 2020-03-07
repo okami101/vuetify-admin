@@ -1,12 +1,15 @@
+import {
+  GET_LIST,
+  GET_MANY,
+  GET_MANY_REFERENCE,
+  GET_ONE,
+  CREATE,
+  UPDATE,
+  UPDATE_MANY,
+  DELETE,
+  DELETE_MANY
+} from "vuetify-admin/utils/dataActions";
 import objectToFormData from "vuetify-admin/utils/objectToFormData";
-
-const GET_LIST = "GET_LIST";
-const GET_MANY = "GET_MANY";
-const GET_MANY_REFERENCE = "GET_MANY_REFERENCE";
-const CREATE = "CREATE";
-const GET_ONE = "GET_ONE";
-const UPDATE = "UPDATE";
-const DELETE = "DELETE";
 
 export default (axios, base = "/api") => {
   const getRequest = (type, resource, params = {}) => {
@@ -135,12 +138,6 @@ export default (axios, base = "/api") => {
         case UPDATE:
           let json = response.data;
           return Promise.resolve(json);
-
-        default:
-          return Promise.reject({
-            status: 400,
-            message: "Invalid action"
-          });
       }
     }
 
@@ -148,19 +145,19 @@ export default (axios, base = "/api") => {
   };
 
   return {
-    getList: (resource, params) => fetchApi(GET_LIST, resource, params),
-    getOne: (resource, params) => fetchApi(GET_ONE, resource, params),
-    getMany: (resource, params) => fetchApi(GET_MANY, resource, params),
-    getManyReference: (resource, params) =>
+    [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
+    [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
+    [GET_MANY_REFERENCE]: (resource, params) =>
       fetchApi(GET_MANY_REFERENCE, resource, params),
-    create: (resource, params) => fetchApi(CREATE, resource, params),
-    update: (resource, params) => fetchApi(UPDATE, resource, params),
-    updateMany: (resource, params) =>
+    [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
+    [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),
+    [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),
+    [UPDATE_MANY]: (resource, params) =>
       Promise.all(
         params.ids.map(id => fetchApi(UPDATE, resource, { id }))
       ).then(() => Promise.resolve({ data: { id: null } })),
-    delete: (resource, params) => fetchApi(DELETE, resource, params),
-    deleteMany: (resource, params) =>
+    [DELETE]: (resource, params) => fetchApi(DELETE, resource, params),
+    [DELETE_MANY]: (resource, params) =>
       Promise.all(
         params.ids.map(id => fetchApi(DELETE, resource, { id }))
       ).then(() => Promise.resolve({ data: { id: null } }))
