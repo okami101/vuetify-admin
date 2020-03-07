@@ -1,4 +1,5 @@
 import Resource from "vuetify-admin/mixins/resource";
+import { mapGetters } from "vuex";
 
 export default {
   mixins: [Resource],
@@ -9,8 +10,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      getItem: "api/item"
+    }),
     record() {
-      return this.item || this.$store.getters["api/item"](this.resource) || {};
+      return this.item || this.getItem(this.resource) || {};
     }
   }
 };
