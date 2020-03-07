@@ -28,7 +28,7 @@ export default (axios, base = "/api") => {
           });
         }
 
-        if (include) {
+        if (include && include.length) {
           searchParams.append("include", include.join(","));
         }
 

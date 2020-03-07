@@ -36,6 +36,8 @@
         syncKey: 'books_reviews_list'
       }
     ]"
+    v-model="selected"
+    :options.sync="options"
     v-slot="props"
   >
     <va-datagrid
@@ -67,6 +69,8 @@
       ]"
       v-bind="props"
       show-expand
+      v-model="selected"
+      :options.sync="options"
     >
       <template v-slot:publisher_id="{ item }">
         <va-reference-field
@@ -134,3 +138,14 @@
     </va-datagrid>
   </va-list>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      options: {},
+      selected: []
+    };
+  }
+};
+</script>

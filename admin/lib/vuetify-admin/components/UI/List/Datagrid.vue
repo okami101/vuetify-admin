@@ -14,8 +14,21 @@
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
-    @update:options="updateOptions"
-    @input="updateSelected"
+    @update:sort-by="
+      sortBy =>
+        $emit('update:options', {
+          ...options,
+          sortBy
+        })
+    "
+    @update:sort-desc="
+      sortDesc =>
+        $emit('update:options', {
+          ...options,
+          sortDesc
+        })
+    "
+    @input="selected => $emit('input', selected)"
     :class="{ 'clickable-rows': rowClick }"
   >
     <template
@@ -34,7 +47,6 @@
         dense
         label=""
         v-bind="field.options"
-        @change="val => updateItem({ item, source: field.source, val })"
       ></component>
       <router-link
         v-else-if="field.link"
@@ -167,11 +179,6 @@ export default {
     },
     serverItemsLength: Number
   },
-  data() {
-    return {
-      loaded: false
-    };
-  },
   computed: {
     headers() {
       let fields = this.getFields.map(field => {
@@ -235,19 +242,6 @@ export default {
           this.$router.push(`/${this.resource}/${item.id}/edit`);
           break;
       }
-    },
-    updateOptions(options) {
-      if (this.loaded) {
-        this.$parent.$parent.$emit("update:options", options);
-      }
-      this.loaded = true;
-    },
-    updateSelected(selected) {
-      this.$emit("input", selected);
-      this.$parent.$parent.$emit("input", selected);
-    },
-    updateItem(payload) {
-      this.$parent.$parent.$emit("edit", payload);
     }
   }
 };

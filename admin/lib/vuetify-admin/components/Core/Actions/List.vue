@@ -4,29 +4,29 @@
       <slot
         name="aside"
         :resource="resource"
-        v-bind="{ items, total, selected }"
+        v-bind="{ items, total, selected: value }"
       ></slot>
     </va-aside-content>
     <v-data-iterator
       :items="items"
       :server-items-length="total"
       :loading="loading"
-      :options.sync="options"
-      v-model="selected"
+      :options="options"
+      :value="value"
       :items-per-page="itemsPerPage"
       :footer-props="{
         'items-per-page-options': rowsPerPage,
         showFirstLastPage: true
       }"
-      @update:items-per-page="fetchDataAndQuery"
-      @update:page="fetchDataAndQuery"
-      @update:sort-by="fetchDataAndQuery"
-      @update:sort-desc="fetchDataAndQuery"
-      @edit="onUpdateItem"
+      @update:items-per-page="val => updateOptions(val)"
+      @update:page="val => updateOptions(val)"
+      @update:sort-by="val => updateOptions(val)"
+      @update:sort-desc="val => updateOptions(val)"
+      @input="selected => $emit('input', selected)"
     >
       <template v-slot:header>
-        <v-toolbar flat color="blue lighten-5" v-if="selected.length">
-          {{ $tc("va.datagrid.selected_items", selected.length) }}
+        <v-toolbar flat color="blue lighten-5" v-if="value.length">
+          {{ $tc("va.datagrid.selected_items", value.length) }}
           <v-spacer></v-spacer>
           <div>
             <va-delete-button
@@ -79,7 +79,7 @@
       <template v-slot:default>
         <slot
           v-bind="{ resource, items, fields, loading, itemsPerPage }"
-          :value="selected"
+          :value="value"
           :server-items-length="total"
         >
         </slot>
@@ -125,6 +125,14 @@ export default {
       type: Array,
       default: () => [5, 10, 15, 25, 50, 100]
     },
+    value: {
+      type: Array,
+      default: () => []
+    },
+    options: {
+      type: Object,
+      default: () => {}
+    },
     exporter: {
       type: Boolean,
       default: true
@@ -139,8 +147,6 @@ export default {
       loading: false,
       items: [],
       total: 0,
-      options: {},
-      selected: [],
       currentFilter: {},
       enabledFilters: []
     };
@@ -202,7 +208,8 @@ export default {
   },
   watch: {
     currentFilter() {
-      this.fetchDataAndQuery();
+      this.fetchData();
+      this.updateQuery();
     }
   },
   methods: {
@@ -210,30 +217,39 @@ export default {
       setReferenceData: "api/setReferenceData"
     }),
     ...mapActions({
-      update: "api/update",
       updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
     }),
+    updateOptions(val) {
+      this.fetchData();
+      this.updateQuery();
+      this.$emit("update:options", {
+        ...this.options,
+        val
+      });
+    },
     initFiltersFromQuery() {
       if (!this.useQueryString) {
         return;
       }
 
       /**
-       * Apply current route query into datagrid filter
+       * Apply current route query into options
        */
       const { perPage, page, sortBy, sortDesc, filter } = this.$route.query;
 
-      this.options = {
-        ...this.options,
+      this.$emit("update:options", {
         page: page ? parseInt(page, 10) : 1,
         itemsPerPage: perPage ? parseInt(perPage, 10) : this.itemsPerPage,
         sortBy: sortBy ? sortBy.split(",") : [],
         sortDesc: sortDesc
           ? sortDesc.split(",").map(bool => bool === "true")
           : []
-      };
+      });
 
+      /**
+       * Enable active filters from query
+       */
       if (filter) {
         this.currentFilter = JSON.parse(filter);
 
@@ -273,12 +289,10 @@ export default {
         })
         .catch(e => {});
     },
-    fetchDataAndQuery() {
-      this.fetchData();
-      this.updateQuery();
-    },
+
     async fetchData() {
       this.loading = true;
+      console.log(this.options);
       const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
       /**
@@ -295,7 +309,7 @@ export default {
             page,
             perPage: itemsPerPage
           },
-          sort: sortBy.map((by, index) => {
+          sort: (sortBy || []).map((by, index) => {
             return { by, desc: sortDesc[index] };
           }),
           filter: {
@@ -347,37 +361,26 @@ export default {
           this.$t("va.confirm.delete_many_title", {
             resource: this.$tc(
               `resources.${this.resource}`,
-              this.selected.length
+              this.value.length
             ).toLowerCase(),
-            count: this.selected.length
+            count: this.value.length
           }),
           this.$t("va.confirm.delete_many_message", {
             resource: this.$tc(
               `resources.${this.resource}`,
-              this.selected.length
+              this.value.length
             ).toLowerCase(),
-            count: this.selected.length
+            count: this.value.length
           })
         )
       ) {
         await this.deleteMany({
           resource: this.resource,
-          params: { ids: this.selected.map(({ id }) => id) }
+          params: { ids: this.value.map(({ id }) => id) }
         });
-        this.selected = [];
+        this.value = [];
         this.fetchData();
       }
-    },
-    async onUpdateItem({ item, source, val }) {
-      this.update({
-        resource: this.resource,
-        params: {
-          id: item.id,
-          data: {
-            [source]: val
-          }
-        }
-      });
     }
   }
 };

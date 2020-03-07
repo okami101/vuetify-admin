@@ -19,6 +19,8 @@
       { source: 'active', type: 'boolean' }
     ]"
     :include="['books_count']"
+    v-model="selected"
+    :options.sync="options"
     v-slot="props"
   >
     <va-datagrid
@@ -52,7 +54,20 @@
         { source: 'books_count', type: 'number' }
       ]"
       v-bind="props"
+      v-model="selected"
+      :options.sync="options"
     >
     </va-datagrid>
   </va-list>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      options: {},
+      selected: []
+    };
+  }
+};
+</script>

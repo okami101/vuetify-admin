@@ -1,7 +1,7 @@
 import Item from "vuetify-admin/mixins/item";
 import EventBus from "vuetify-admin/utils/eventBus";
 import get from "lodash/get";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   mixins: [Item],
@@ -85,6 +85,9 @@ export default {
     ...mapMutations({
       updateForm: "form/update"
     }),
+    ...mapActions({
+      updateItem: "api/update"
+    }),
     initializeFromQuery() {
       let { source } = this.$route.query;
 
@@ -94,6 +97,21 @@ export default {
     },
     change(value) {
       this.$emit("change", value);
+
+      if (this.edit) {
+        /**
+         * Quick update model on server
+         */
+        this.updateItem({
+          resource: this.resource,
+          params: {
+            id: this.item.id,
+            data: {
+              [this.source]: value
+            }
+          }
+        });
+      }
     },
     /**
      * Input event

@@ -30,6 +30,8 @@
         fields: ['id', 'title']
       }
     ]"
+    v-model="selected"
+    :options.sync="options"
   >
     <template v-slot:filter.book_id="props">
       <va-reference-input reference="books" :fields="['id', 'title', 'isbn']">
@@ -75,6 +77,8 @@
         ]"
         v-bind="props"
         show-expand
+        v-model="selected"
+        :options.sync="options"
       >
         <template v-slot:expanded-item="{ item }">
           <va-text-field :item="item" source="body"></va-text-field>
@@ -92,3 +96,14 @@
     </template>
   </va-list>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      options: {},
+      selected: []
+    };
+  }
+};
+</script>
