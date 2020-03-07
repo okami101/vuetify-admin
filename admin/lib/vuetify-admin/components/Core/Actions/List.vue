@@ -132,6 +132,10 @@ export default {
       default: () => []
     },
     flat: Boolean,
+    itemsPerPage: {
+      type: Number,
+      default: 15
+    },
     rowsPerPage: {
       type: Array,
       default: () => [5, 10, 15, 25, 50, 100]

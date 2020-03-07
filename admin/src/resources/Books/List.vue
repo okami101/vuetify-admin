@@ -41,6 +41,7 @@
           syncKey: 'books_reviews_list'
         }
       ]"
+      flat
       v-slot="props"
       v-model="selected"
       :options.sync="options"
@@ -73,7 +74,6 @@
           'review_ids'
         ]"
         show-expand
-        flat
         v-bind="props"
         v-model="selected"
         :options.sync="options"
@@ -88,31 +88,31 @@
             property="name"
           >
             <template v-slot="{ item, to }">
-              <va-chip-field color="orange" :to="to">
+              <v-chip color="orange" :to="to">
                 {{ item.name }}
-              </va-chip-field>
+              </v-chip>
             </template>
           </va-reference-field>
         </template>
         <template v-slot:category="{ item }">
-          <va-chip-field>
+          <v-chip>
             <va-select-field
               source="category"
               :item="item"
               enum
             ></va-select-field>
-          </va-chip-field>
+          </v-chip>
         </template>
         <template v-slot:formats="{ item }">
           <va-array-field source="formats" :item="item" v-slot="{ items }">
             <va-single-field-list :items="items" v-slot="{ item }">
-              <va-chip-field color="yellow" small>
+              <v-chip color="yellow" small>
                 <va-select-field
                   source="formats"
                   :item="item"
                   enum
                 ></va-select-field>
-              </va-chip-field>
+              </v-chip>
             </va-single-field-list>
           </va-array-field>
         </template>
@@ -128,18 +128,18 @@
             v-slot="{ items, link }"
           >
             <va-single-field-list :items="items" v-slot="{ item }" :limit="2">
-              <va-chip-field
+              <v-chip
                 color="green"
                 :to="{ name: link, params: { id: item.id } }"
                 small
               >
                 {{ item.author }}
-              </va-chip-field>
+              </v-chip>
             </va-single-field-list>
           </va-reference-field>
         </template>
         <template v-slot:expanded-item="{ item }">
-          <va-text-field :item="item" source="description"></va-text-field>
+          {{ item.description }}
         </template>
       </va-datagrid>
     </va-list>

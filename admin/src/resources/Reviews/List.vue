@@ -87,16 +87,16 @@
           :options.sync="options"
         >
           <template v-slot:expanded-item="{ item }">
-            <va-text-field :item="item" source="body"></va-text-field>
+            {{ item.body }}
           </template>
           <template v-slot:status="{ item, value }">
-            <va-chip-field :color="$statusColor(value)">
+            <v-chip :color="$statusColor(value)">
               <va-select-field
                 source="status"
                 :item="item"
                 enum
               ></va-select-field>
-            </va-chip-field>
+            </v-chip>
           </template>
         </va-datagrid>
       </template>

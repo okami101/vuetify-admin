@@ -23,16 +23,16 @@
             property="name"
             v-slot="{ item, to }"
           >
-            <va-chip-field color="orange" :to="to">
+            <v-chip color="orange" :to="to">
               {{ item.name }}
-            </va-chip-field>
+            </v-chip>
           </va-reference-field>
         </va-field>
         <va-field source="title"></va-field>
         <va-field source="category">
-          <va-chip-field>
+          <v-chip>
             <va-select-field source="category" enum></va-select-field>
-          </va-chip-field>
+          </v-chip>
         </va-field>
         <va-field
           source="description"
@@ -41,22 +41,22 @@
         <va-field source="formats">
           <va-array-field source="formats" v-slot="{ items }">
             <va-single-field-list :items="items" v-slot="{ item }" text>
-              <va-chip-field color="yellow">
+              <v-chip color="yellow">
                 <va-select-field
                   source="formats"
                   :item="item"
                   enum
                 ></va-select-field>
-              </va-chip-field>
+              </v-chip>
             </va-single-field-list>
           </va-array-field>
         </va-field>
         <va-field source="tags">
-          <va-array-field source="tags">
-            <va-single-field-list v-slot="{ item }">
-              <va-chip-field>
+          <va-array-field source="tags" v-slot="{ items }">
+            <va-single-field-list :items="items" v-slot="{ item }">
+              <v-chip>
                 {{ item }}
-              </va-chip-field>
+              </v-chip>
             </va-single-field-list>
           </va-array-field>
         </va-field>
@@ -81,12 +81,12 @@
             v-slot="{ items, link }"
           >
             <va-single-field-list :items="items" v-slot="{ item }">
-              <va-chip-field
+              <v-chip
                 color="green"
                 :to="{ name: link, params: { id: item.id } }"
               >
                 {{ item.author }}
-              </va-chip-field>
+              </v-chip>
             </va-single-field-list>
           </va-reference-field>
         </va-field>

@@ -11,9 +11,9 @@
         </va-reference-field>
       </va-field>
       <va-field source="status">
-        <va-chip-field source="status" :color="v => $statusColor(v)">
+        <v-chip source="status" :color="v => $statusColor(v)">
           <va-select-field source="status" enum></va-select-field>
-        </va-chip-field>
+        </v-chip>
       </va-field>
       <va-field source="rating" type="rating"></va-field>
       <va-field source="body" :options="{ multiline: true }"></va-field>

@@ -1,5 +1,11 @@
 <template>
-  <va-list :fields="['id', 'name']" :filters="['q', 'name']" v-slot="{ items }">
+  <va-list
+    :fields="['id', 'name']"
+    :filters="['q', 'name']"
+    v-slot="{ items }"
+    :items-per-page="8"
+    :rows-per-page="[8, 16, 32]"
+  >
     <v-row>
       <v-col lg="3" v-for="item in items" :key="item.id">
         <v-card
