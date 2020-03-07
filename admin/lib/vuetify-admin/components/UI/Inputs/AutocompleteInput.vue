@@ -1,7 +1,6 @@
 <template>
   <component
     :is="taggable ? 'v-combobox' : 'v-autocomplete'"
-    v-model="input"
     v-bind="commonProps"
     :filled="filled"
     :multiple="multiple"
@@ -13,6 +12,7 @@
     :items="items || choices"
     :search-input.sync="search"
     @change="change"
+    @input="update"
   >
     <template v-slot:selection="data" v-if="$scopedSlots.selection">
       <slot name="selection" v-bind="data"></slot>

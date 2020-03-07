@@ -18,11 +18,7 @@
         @click:clear="input = null"
       ></v-text-field>
     </template>
-    <v-date-picker
-      v-model="input"
-      @input="menu = false"
-      @change="change"
-    ></v-date-picker>
+    <v-date-picker @change="change" @input="updateDate"></v-date-picker>
   </v-menu>
 </template>
 
@@ -57,6 +53,12 @@ export default {
         }
       },
       immediate: true
+    }
+  },
+  methods: {
+    updateDate(val) {
+      this.menu = false;
+      this.update(val);
     }
   }
 };

@@ -24,16 +24,13 @@ export default {
     alwaysOn: Boolean,
     filter: Boolean,
     edit: Boolean,
-    default: {
-      default: null
-    },
     value: {
       default: null
     }
   },
   data() {
     return {
-      input: null,
+      input: this.value,
       errorMessages: []
     };
   },
@@ -44,6 +41,7 @@ export default {
     commonProps() {
       return {
         label: this.label,
+        value: this.input,
         hint: this.hint,
         rules: this.rules,
         errorMessages: this.errorMessages,
@@ -65,33 +63,19 @@ export default {
     }
   },
   created() {
-    this.initializeInput();
-    this.updateValue();
+    this.initializeFromQuery();
   },
   watch: {
-    value: {
-      handler(val) {
-        this.input = val || this.default;
-      },
-      immediate: true
-    },
     record: {
       handler(val) {
         if (this.filter) {
           return;
         }
-        if (val && this.source && !this.input) {
-          this.input = get(val, this.model || this.source) || this.default;
-          this.$emit("input", this.input);
+        if (val && this.source) {
+          this.update(get(val, this.model || this.source) || this.value);
         }
       },
       immediate: true
-    },
-    input: {
-      handler(val) {
-        this.updateValue();
-        this.$emit("input", val);
-      }
     },
     errors(val) {
       this.errorMessages = val[this.model || this.source] || [];
@@ -101,33 +85,39 @@ export default {
     ...mapMutations({
       updateForm: "form/update"
     }),
-    initializeInput() {
+    initializeFromQuery() {
       let { source } = this.$route.query;
 
       if (source) {
-        this.input = JSON.parse(source)[this.source];
+        this.update(JSON.parse(source)[this.source]);
       }
     },
-    updateValue() {
+    change(value) {
+      this.$emit("change", value);
+    },
+    /**
+     * Input event
+     */
+    update(value) {
       /**
        * Update model in the store if input inside a form (i.e. no filter or editable input)
        */
       if (!this.filter || !this.edit) {
         this.updateForm({
           source: this.model || this.source,
-          value: this.input
+          value
         });
       }
 
       if (this.filter) {
         EventBus.$emit("filter", {
           source: this.source,
-          value: this.input
+          value
         });
       }
-    },
-    change(val) {
-      this.$emit("change", val);
+
+      this.input = value;
+      this.$emit("input", value);
     }
   }
 };

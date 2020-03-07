@@ -3,13 +3,13 @@
     <slot></slot>
     <!-- multiple as v-bind because of vuetify v-model bug forced to array -->
     <v-file-input
-      v-model="input"
       v-bind="multiple ? { ...commonProps, multiple: true } : commonProps"
       :filled="filled"
       :chips="chips"
       :small-chips="smallChips"
       :accept="accept"
       @change="change"
+      @input="update"
     ></v-file-input>
   </div>
 </template>

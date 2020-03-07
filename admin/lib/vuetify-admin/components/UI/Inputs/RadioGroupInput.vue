@@ -1,5 +1,10 @@
 <template>
-  <v-radio-group v-model="input" v-bind="commonProps" :column="column">
+  <v-radio-group
+    v-bind="commonProps"
+    :column="column"
+    @change="change"
+    @input="update"
+  >
     <v-radio v-if="clearable" :label="$t('va.forms.none')"></v-radio>
     <v-radio
       v-for="(c, i) in items || choices"

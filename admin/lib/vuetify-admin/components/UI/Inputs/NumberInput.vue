@@ -1,12 +1,12 @@
 <template>
   <v-text-field
-    v-model="input"
     v-bind="commonProps"
     :filled="filled"
     :append-icon="icon"
     type="number"
     :step="step"
     @change="change"
+    @input="update"
   ></v-text-field>
 </template>
 

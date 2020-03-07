@@ -1,6 +1,5 @@
 <template>
   <v-select
-    v-model="input"
     v-bind="commonProps"
     :filled="filled"
     :multiple="multiple"
@@ -10,6 +9,7 @@
     :item-value="optionValue"
     :items="items || choices"
     @change="change"
+    @input="update"
   >
   </v-select>
 </template>

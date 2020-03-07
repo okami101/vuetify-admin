@@ -1,20 +1,20 @@
 <template>
   <v-textarea
     v-if="multiline"
-    v-model="input"
     v-bind="commonProps"
     auto-grow
     :filled="filled"
     :append-icon="icon"
     @change="change"
+    @input="update"
   ></v-textarea>
   <v-text-field
     v-else
-    v-model="input"
     v-bind="commonProps"
     :filled="filled"
     :append-icon="icon"
     @change="change"
+    @input="update"
   ></v-text-field>
 </template>
 

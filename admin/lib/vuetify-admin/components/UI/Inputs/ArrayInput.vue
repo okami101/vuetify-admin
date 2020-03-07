@@ -1,6 +1,5 @@
 <template>
   <v-switch
-    v-model="input"
     :label="label"
     :hint="hint"
     :rules="rules"
@@ -8,6 +7,7 @@
     :hide-details="hideDetails"
     :dense="dense"
     @change="change"
+    @input="update"
   ></v-switch>
 </template>
 

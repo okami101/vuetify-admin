@@ -1,11 +1,11 @@
 <template>
   <va-input v-bind="$props">
     <v-rating
-      v-model="input"
       dense
       :color="color"
       :background-color="backgroundColor"
       @change="change"
+      @input="update"
     ></v-rating>
   </va-input>
 </template>
