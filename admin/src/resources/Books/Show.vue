@@ -40,7 +40,7 @@
         ></va-field>
         <va-field source="formats">
           <va-array-field source="formats" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }">
+            <va-single-field-list :items="items" v-slot="{ item }" text>
               <va-chip-field color="yellow">
                 <va-select-field
                   source="formats"

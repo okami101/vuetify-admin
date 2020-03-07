@@ -36,9 +36,9 @@
         syncKey: 'books_reviews_list'
       }
     ]"
+    v-slot="props"
     v-model="selected"
     :options.sync="options"
-    v-slot="props"
   >
     <va-datagrid
       :fields="[
@@ -67,8 +67,8 @@
         },
         'review_ids'
       ]"
-      v-bind="props"
       show-expand
+      v-bind="props"
       v-model="selected"
       :options.sync="options"
     >

@@ -19,9 +19,9 @@
       { source: 'active', type: 'boolean' }
     ]"
     :include="['books_count']"
+    v-slot="props"
     v-model="selected"
     :options.sync="options"
-    v-slot="props"
   >
     <va-datagrid
       :fields="[

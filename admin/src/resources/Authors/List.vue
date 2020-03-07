@@ -18,8 +18,8 @@
         },
         'name'
       ]"
-      v-bind="props"
       row-click="show"
+      v-bind="props"
       v-model="selected"
       :options.sync="options"
     ></va-datagrid>
