@@ -71,17 +71,18 @@ export default {
     this.$store.registerModule("form", form);
 
     /**
-     * Directives
+     * Permissions helper & directive
      */
-    Vue.directive("can", (el, binding, vnode) => {
-      if (
-        isEmpty(
-          (Array.isArray(binding.value)
-            ? binding.value
-            : [binding.value]
-          ).filter(p => -1 !== this.permissions.indexOf(p))
+    const can = permissions => {
+      return !isEmpty(
+        (Array.isArray(permissions) ? permissions : [permissions]).filter(
+          p => -1 !== this.permissions.indexOf(p)
         )
-      ) {
+      );
+    };
+
+    Vue.directive("can", (el, binding, vnode) => {
+      if (!can(binding.value)) {
         // replace HTMLElement with comment node
         const comment = document.createComment("");
         vnode.elm = comment;
@@ -93,6 +94,7 @@ export default {
         }
       }
     });
+    Vue.prototype.$can = can;
   },
   async mounted() {
     this.$router.beforeEach(async (to, from, next) => {
