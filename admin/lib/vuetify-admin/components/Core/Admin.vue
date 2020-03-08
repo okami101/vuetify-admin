@@ -110,6 +110,13 @@ export default {
     Vue.prototype.$can = can;
 
     /**
+     * Add API resources modules dynamically
+     */
+    this.getResources.forEach(r =>
+      this.$store.registerModule(r.name, this.loadResourceModules(r))
+    );
+
+    /**
      * Add resources routes dynamically
      */
     this.$router.addRoutes(
@@ -173,11 +180,8 @@ export default {
     ...mapActions({
       checkAuth: "auth/checkAuth"
     }),
-    loadResourceRoutes(resource) {
-      /**
-       * Load resources routes
-       */
-      let actions = ["list", "show", "create", "edit", "delete"].filter(a => {
+    getResourceActions(resource) {
+      return ["list", "show", "create", "edit", "delete"].filter(a => {
         if ((resource.only || []).length) {
           return resource.only.includes(a);
         }
@@ -188,14 +192,14 @@ export default {
 
         return true;
       });
+    },
+    loadResourceModules(resource) {
+      let actions = this.getResourceActions(resource);
 
-      /**
-       * Register data api module for this resource
-       */
-      this.$store.registerModule(
-        resource.name,
-        resourceCrudApi(this.dataProvider, resource.name, actions)
-      );
+      return resourceCrudApi(this.dataProvider, resource.name, actions);
+    },
+    loadResourceRoutes(resource) {
+      let actions = this.getResourceActions(resource);
 
       /**
        * Route item component builder (edit and show)
