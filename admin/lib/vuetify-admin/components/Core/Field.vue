@@ -1,7 +1,7 @@
 <template>
-  <v-input :label="label">
+  <v-input v-if="record" :label="label">
     <div>
-      <slot v-if="hasItem" v-bind="{ item: record, value }">
+      <slot v-bind="{ item: record, value }">
         <component
           :is="`va-${type}-field`"
           :source="source"

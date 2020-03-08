@@ -15,10 +15,7 @@ export default {
       getItem: "api/item"
     }),
     record() {
-      return this.item || this.getItem(this.resource) || {};
-    },
-    hasItem() {
-      return !isEmpty(this.record);
+      return this.item || this.getItem(this.resource);
     }
   }
 };
