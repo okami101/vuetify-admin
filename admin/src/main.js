@@ -1,17 +1,22 @@
 import Vue from "vue";
-import router from "./router";
+import routerInit from "./router";
 import store from "./store";
-import "./plugins/axios";
+import i18n from "./i18n";
+import axios from "./plugins/axios";
 import vuetify from "./plugins/vuetify";
-import VuetifyAdmin from "vuetify-admin";
+import admin from "./plugins/admin";
 import App from "./App.vue";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
-import i18n from "./i18n";
 
 Vue.config.productionTip = false;
 
-Vue.use(VuetifyAdmin);
+let router = routerInit(i18n);
+
+/**
+ * Admin engine initialization
+ */
+admin(router, store, i18n, axios);
 
 /**
  * Register resource crud pages
@@ -36,7 +41,7 @@ Vue.prototype.$statusColor = s => {
 };
 
 new Vue({
-  router: router(i18n),
+  router,
   store,
   vuetify,
   i18n,

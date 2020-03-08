@@ -1,30 +1,12 @@
 <template>
-  <va-admin
-    title="Bookstore Admin"
-    :menu="menu"
-    :auth-provider="authProvider"
-    :data-provider="dataProvider"
-    :resources="['publishers', 'books', 'authors', 'reviews']"
-  >
-  </va-admin>
+  <va-admin title="Bookstore Admin" :menu="menu"></va-admin>
 </template>
 
 <script>
-import airlockAuthProvider from "vuetify-admin/providers/airlockAuthProvider";
-import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
-
 export default {
   name: "App",
   data() {
     return {
-      authProvider: airlockAuthProvider(this.$axios, {
-        routes: {
-          login: "/auth/login",
-          logout: "/auth/logout",
-          user: "/api/user"
-        }
-      }),
-      dataProvider: laravelDataProvider(this.$axios),
       menu: [
         {
           icon: "mdi-view-dashboard",
