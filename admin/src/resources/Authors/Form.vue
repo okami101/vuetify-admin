@@ -16,12 +16,15 @@
         <va-array-input
           source="backlinks"
           :label="$t('backlinks')"
-          :inputs="[
-            'text',
-            { source: 'date', type: 'date', options: { format: 'long' } },
-            'url'
-          ]"
+          v-slot="props"
         >
+          <va-text-input v-bind="props" source="text"></va-text-input>
+          <va-date-input
+            v-bind="props"
+            source="date"
+            format="long"
+          ></va-date-input>
+          <va-text-input v-bind="props" source="url"></va-text-input>
         </va-array-input>
       </v-col>
     </v-row>

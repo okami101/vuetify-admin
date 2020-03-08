@@ -8,16 +8,12 @@
       @input="update"
     >
       <div v-for="(item, i) in input" :key="i" class="item">
-        <div>
-          <component
-            v-for="childInput in getInputs"
-            :key="childInput.source"
-            :is="`va-${childInput.type}-input`"
-            :label="childInput.label"
-            v-bind="childInput.options"
-            v-model="input[i][childInput.source]"
-          ></component>
-        </div>
+        <slot
+          :resource="resource"
+          :item="item"
+          :parent-source="source"
+          :index="i"
+        ></slot>
         <div class="d-flex">
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
@@ -56,29 +52,6 @@ export default {
     inputs: {
       type: Array,
       default: () => []
-    }
-  },
-  computed: {
-    getInputs() {
-      return this.inputs
-        .map(f => {
-          return typeof f === "string"
-            ? {
-                source: f
-              }
-            : f;
-        })
-        .map(f => {
-          return {
-            ...f,
-            type: f.type || "text",
-            label:
-              f.label ||
-              this.$t(
-                `resources.${this.resource}.fields.${this.source}.${f.source}`
-              )
-          };
-        });
     }
   },
   methods: {

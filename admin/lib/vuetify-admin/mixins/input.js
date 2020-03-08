@@ -6,12 +6,19 @@ import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   mixins: [Item],
   props: {
+    parentSource: String,
     source: String,
+    index: Number,
     model: String,
     label: {
       type: String,
       default() {
-        return this.$t(`resources.${this.resource}.fields.${this.source}`);
+        let base = `resources.${this.resource}.fields`;
+
+        if (this.parentSource) {
+          return this.$t(`${base}.${this.parentSource}.${this.source}`);
+        }
+        return this.$t(`${base}.${this.source}`);
       }
     },
     hint: String,
@@ -38,6 +45,11 @@ export default {
     ...mapState({
       errors: state => state.form.errors
     }),
+    uniqueFormId() {
+      return [this.parentSource, this.index, this.model || this.source]
+        .filter(s => s !== undefined)
+        .join(".");
+    },
     commonProps() {
       return {
         label: this.label,
@@ -84,7 +96,7 @@ export default {
       immediate: true
     },
     errors(val) {
-      this.errorMessages = val[this.model || this.source] || [];
+      this.errorMessages = val[this.uniqueFormId] || [];
     }
   },
   methods: {
@@ -128,7 +140,7 @@ export default {
        */
       if (!this.filterable || !this.editable) {
         this.updateForm({
-          source: this.model || this.source,
+          source: this.uniqueFormId,
           value
         });
       }
