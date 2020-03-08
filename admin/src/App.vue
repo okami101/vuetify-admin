@@ -4,11 +4,8 @@
     :menu="menu"
     :auth-provider="authProvider"
     :data-provider="dataProvider"
+    :resources="['publishers', 'books', 'authors', 'reviews']"
   >
-    <va-resource name="publishers"></va-resource>
-    <va-resource name="books"></va-resource>
-    <va-resource name="authors"></va-resource>
-    <va-resource name="reviews"></va-resource>
   </va-admin>
 </template>
 
