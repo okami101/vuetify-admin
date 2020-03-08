@@ -17,29 +17,19 @@
 
 <script>
 import Input from "vuetify-admin/mixins/input";
-import Choices from "vuetify-admin/mixins/choices";
+import Reference from "vuetify-admin/mixins/reference";
 
 export default {
   name: "RadioGroupInput",
-  mixins: [Input, Choices],
+  mixins: [Input, Reference],
   props: {
     column: {
       type: Boolean,
       default: true
     }
   },
-  data() {
-    return {
-      items: null
-    };
-  },
   async created() {
-    /**
-     * Load parent reference input if available
-     */
-    if (this.$parent.fetchChoices) {
-      this.items = await this.$parent.fetchChoices();
-    }
+    this.items = await this.fetchChoices();
   }
 };
 </script>

@@ -97,7 +97,6 @@
 <script>
 import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
-import Search from "vuetify-admin/mixins/search";
 import isEmpty from "lodash/isEmpty";
 import FormFilter from "../List/FormFilter";
 import { mapState, mapMutations, mapActions } from "vuex";
@@ -105,7 +104,7 @@ import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "List",
-  mixins: [Page, Resource, Search],
+  mixins: [Page, Resource],
   components: {
     FormFilter
   },
@@ -121,6 +120,22 @@ export default {
      * Exposed filters
      */
     filters: {
+      type: Array,
+      default: () => []
+    },
+    fields: {
+      type: Array,
+      default: () => []
+    },
+    sortBy: {
+      type: Array,
+      default: () => []
+    },
+    sortDesc: {
+      type: Array,
+      default: () => []
+    },
+    include: {
       type: Array,
       default: () => []
     },
@@ -244,11 +259,21 @@ export default {
       setReferenceData: "api/setReferenceData"
     }),
     ...mapActions({
+      getList: "api/getList",
+      getMany: "api/getMany",
       updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
     }),
     async initFiltersFromQuery() {
+      let options = {
+        page: 1,
+        itemsPerPage: this.itemsPerPage,
+        sortBy: this.sortBy,
+        sortDesc: this.sortDesc
+      };
+
       if (!this.useQueryString) {
+        this.currentOptions = options;
         return;
       }
 
@@ -257,14 +282,23 @@ export default {
        */
       const { perPage, page, sortBy, sortDesc, filter } = this.$route.query;
 
-      this.currentOptions = {
-        page: page ? parseInt(page, 10) : 1,
-        itemsPerPage: perPage ? parseInt(perPage, 10) : this.itemsPerPage,
-        sortBy: sortBy ? sortBy.split(",") : [],
-        sortDesc: sortDesc
-          ? sortDesc.split(",").map(bool => bool === "true")
-          : []
-      };
+      if (page) {
+        options.page = parseInt(page, 10);
+      }
+
+      if (perPage) {
+        options.itemsPerPage = parseInt(perPage, 10);
+      }
+
+      if (sortBy) {
+        options.sortBy = sortBy.split(",");
+      }
+
+      if (sortDesc) {
+        options.sortDesc = sortDesc.split(",").map(bool => bool === "true");
+      }
+
+      this.currentOptions = options;
 
       /**
        * Enable active filters from query

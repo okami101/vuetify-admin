@@ -22,8 +22,8 @@ export default {
     clearable: Boolean,
     required: Boolean,
     alwaysOn: Boolean,
-    filter: Boolean,
-    edit: Boolean,
+    filterable: Boolean,
+    editable: Boolean,
     value: {
       default: null
     }
@@ -74,7 +74,7 @@ export default {
     },
     record: {
       handler(val) {
-        if (this.filter) {
+        if (this.filterable) {
           return;
         }
         if (val && this.source) {
@@ -104,7 +104,7 @@ export default {
     change(value) {
       this.$emit("change", value);
 
-      if (this.edit) {
+      if (this.editable) {
         /**
          * Quick update model on server
          */
@@ -126,14 +126,14 @@ export default {
       /**
        * Update model in the store if input inside a form (i.e. no filter or editable input)
        */
-      if (!this.filter || !this.edit) {
+      if (!this.filterable || !this.editable) {
         this.updateForm({
           source: this.model || this.source,
           value
         });
       }
 
-      if (this.filter) {
+      if (this.filterable) {
         EventBus.$emit("filter", {
           source: this.source,
           value

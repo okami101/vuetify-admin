@@ -26,11 +26,11 @@
 <script>
 import { VAutocomplete, VCombobox } from "vuetify/lib";
 import Input from "vuetify-admin/mixins/input";
-import Choices from "vuetify-admin/mixins/choices";
+import Reference from "vuetify-admin/mixins/reference";
 
 export default {
   name: "AutocompleteInput",
-  mixins: [Input, Choices],
+  mixins: [Input, Reference],
   components: {
     VAutocomplete,
     VCombobox
@@ -58,14 +58,12 @@ export default {
   },
   data() {
     return {
-      loading: false,
-      items: null,
       search: null
     };
   },
-  async mounted() {
-    if (this.$parent.fetchData && this.input) {
-      this.items = await this.$parent.fetchData(
+  async created() {
+    if (this.input) {
+      this.items = await this.fetchCurrentChoices(
         this.multiple ? this.input : [this.input]
       );
     }
@@ -76,19 +74,10 @@ export default {
         return;
       }
 
-      if (this.loading) {
-        return;
-      }
-
-      this.loading = true;
-
-      if (this.$parent.fetchChoices) {
-        this.items = [
-          ...(this.items || []),
-          ...(await this.$parent.fetchChoices(val))
-        ];
-      }
-      this.loading = false;
+      this.items = [
+        ...(this.items || []),
+        ...((await this.fetchChoices(val)) || [])
+      ];
     }
   }
 };

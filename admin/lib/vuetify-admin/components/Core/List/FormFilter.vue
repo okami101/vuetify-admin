@@ -16,7 +16,7 @@
           :source="item.source"
           :name="item.source"
           :label="item.label"
-          filter
+          filterable
           hide-details
           :filled="false"
           small-chips
@@ -26,7 +26,7 @@
             :is="`va-${item.type}-input`"
             :source="item.source"
             :label="item.label"
-            filter
+            filterable
             v-bind="item.options"
             :value="value[item.source]"
             hide-details

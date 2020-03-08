@@ -41,7 +41,7 @@
         :is="`va-${field.type || 'text'}-input`"
         :source="field.source"
         :resource="resource"
-        edit
+        editable
         :item="item"
         :value="value"
         dense

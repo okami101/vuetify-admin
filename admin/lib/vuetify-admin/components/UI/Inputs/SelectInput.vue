@@ -16,11 +16,11 @@
 
 <script>
 import Input from "vuetify-admin/mixins/input";
-import Choices from "vuetify-admin/mixins/choices";
+import Reference from "vuetify-admin/mixins/reference";
 
 export default {
   name: "SelectInput",
-  mixins: [Input, Choices],
+  mixins: [Input, Reference],
   props: {
     multiple: Boolean,
     filled: {
@@ -37,18 +37,8 @@ export default {
     },
     smallChips: Boolean
   },
-  data() {
-    return {
-      items: null
-    };
-  },
-  async mounted() {
-    /**
-     * Load parent reference input if available
-     */
-    if (this.$parent.fetchChoices) {
-      this.items = await this.$parent.fetchChoices();
-    }
+  async created() {
+    this.items = await this.fetchChoices();
   }
 };
 </script>

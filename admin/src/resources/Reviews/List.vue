@@ -40,15 +40,19 @@
       :options.sync="options"
     >
       <template v-slot:filter.book_id="props">
-        <va-reference-input reference="books" :fields="['id', 'title', 'isbn']">
-          <va-autocomplete-input option-text="title" multiple v-bind="props">
-            <template v-slot:item="{ item }">
-              <div>
-                {{ item.title }}&nbsp;&nbsp;<strong>({{ item.isbn }})</strong>
-              </div>
-            </template>
-          </va-autocomplete-input>
-        </va-reference-input>
+        <va-autocomplete-input
+          option-text="title"
+          multiple
+          reference="books"
+          :fields="['id', 'title', 'isbn']"
+          v-bind="props"
+        >
+          <template v-slot:item="{ item }">
+            <div>
+              {{ item.title }}&nbsp;&nbsp;<strong>({{ item.isbn }})</strong>
+            </div>
+          </template>
+        </va-autocomplete-input>
       </template>
       <template v-slot="props">
         <va-datagrid

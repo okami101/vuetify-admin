@@ -8,9 +8,12 @@
     <template v-slot:attributes>
       <v-row>
         <v-col sm="3">
-          <va-reference-input reference="publishers" property="name">
-            <va-select-input source="publisher_id"></va-select-input>
-          </va-reference-input>
+          <va-select-input
+            source="publisher_id"
+            reference="publishers"
+            :fields="['id', 'name']"
+            option-text="name"
+          ></va-select-input>
           <va-text-input source="isbn"></va-text-input>
           <va-select-input source="category" enum></va-select-input>
           <va-text-input source="title"></va-text-input>
@@ -22,13 +25,13 @@
             source="publication_date"
             format="long"
           ></va-date-input>
-          <va-reference-input reference="reviews" property="author">
-            <va-autocomplete-input
-              source="review_ids"
-              multiple
-              option-text="author"
-            ></va-autocomplete-input>
-          </va-reference-input>
+          <va-autocomplete-input
+            source="review_ids"
+            multiple
+            reference="reviews"
+            :fields="['id', 'author']"
+            option-text="author"
+          ></va-autocomplete-input>
           <va-autocomplete-input
             source="tags"
             multiple

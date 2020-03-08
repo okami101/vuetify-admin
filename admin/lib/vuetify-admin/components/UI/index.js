@@ -47,7 +47,6 @@ import SelectInput from "./Inputs/SelectInput";
 import RadioGroupInput from "./Inputs/RadioGroupInput";
 import AutocompleteInput from "./Inputs/AutocompleteInput";
 import FileInput from "./Inputs/FileInput";
-import ReferenceInput from "./Inputs/ReferenceInput";
 
 export {
   Datagrid,
@@ -94,6 +93,5 @@ export {
   SelectInput,
   RadioGroupInput,
   AutocompleteInput,
-  FileInput,
-  ReferenceInput
+  FileInput
 };
