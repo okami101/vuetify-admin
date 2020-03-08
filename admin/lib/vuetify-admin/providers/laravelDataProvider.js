@@ -26,7 +26,10 @@ export default (axios, base = "/api") => {
         if (fields) {
           Object.keys(fields).forEach(r => {
             if ((fields[r] || []).length) {
-              searchParams.append(`fields[${r}]`, fields[r].join(","));
+              searchParams.append(
+                `fields[${r}]`,
+                ["id", ...fields[r]].join(",")
+              );
             }
           });
         }

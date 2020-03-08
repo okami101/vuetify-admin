@@ -1,6 +1,6 @@
 <template>
   <va-list
-    :fields="['id', 'name', 'description']"
+    :fields="['name', 'description']"
     :filters="['q', 'name']"
     v-slot="{ items }"
     :items-per-page="8"

@@ -32,7 +32,7 @@
           source: 'book_id',
           name: 'books',
           syncKey: 'reviews_book_list',
-          fields: ['id', 'title']
+          fields: ['title']
         }
       ]"
       flat
@@ -44,7 +44,7 @@
           option-text="title"
           multiple
           reference="books"
-          :fields="['id', 'title', 'isbn']"
+          :fields="['title', 'isbn']"
           v-bind="props"
         >
           <template v-slot:item="{ item }">

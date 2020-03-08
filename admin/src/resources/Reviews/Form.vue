@@ -6,7 +6,7 @@
           source="book_id"
           option-text="title"
           reference="books"
-          :fields="['id', 'title', 'isbn']"
+          :fields="['title', 'isbn']"
         >
           <template v-slot:item="{ item }">
             <div>
