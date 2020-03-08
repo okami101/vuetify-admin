@@ -11,10 +11,16 @@
         </va-file-input>
         <va-text-input source="name"></va-text-input>
         <va-text-input source="description" multiline></va-text-input>
+      </v-col>
+      <v-col sm="3" offset="3">
         <va-array-input
           source="backlinks"
           :label="$t('backlinks')"
-          :inputs="['text', { source: 'date', type: 'date' }, 'url']"
+          :inputs="[
+            'text',
+            { source: 'date', type: 'date', options: { format: 'long' } },
+            'url'
+          ]"
         >
         </va-array-input>
       </v-col>
