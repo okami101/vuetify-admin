@@ -75,7 +75,8 @@
         "id": "ID",
         "name": "Name",
         "photo": "Photo",
-        "description": "Description"
+        "description": "Description",
+        "backlinks": "Backlinks"
       }
     },
     "books": {

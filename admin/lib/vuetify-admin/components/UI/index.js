@@ -1,6 +1,7 @@
 import Datagrid from "./List/Datagrid";
 import SimpleList from "./List/SimpleList";
 import SingleFieldList from "./List/SingleFieldList";
+import SimpleFormList from "./List/SimpleFormList";
 
 import Form from "./Layout/Form";
 import FormSave from "./Layout/FormSave";
@@ -52,6 +53,7 @@ export {
   Datagrid,
   SimpleList,
   SingleFieldList,
+  SimpleFormList,
   Form,
   FormSave,
   SimpleShow,

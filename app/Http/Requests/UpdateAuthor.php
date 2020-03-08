@@ -28,6 +28,8 @@ class UpdateAuthor extends FormRequest
             'photo_file' => 'sometimes|nullable|image',
             'name' => 'sometimes|required',
             'description' => 'sometimes|required',
+            'backlinks.*.date' => 'sometimes|required|date',
+            'backlinks.*.url' => 'sometimes|required|url',
         ];
     }
 }

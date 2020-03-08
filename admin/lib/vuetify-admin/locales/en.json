@@ -21,7 +21,9 @@
     "delete": "Delete",
     "save": "Save",
     "export": "Export",
-    "clone": "Clone"
+    "clone": "Clone",
+    "add": "Add",
+    "remove": "Remove"
   },
   "messages": {
     "created": "New {resource} successfully created !",

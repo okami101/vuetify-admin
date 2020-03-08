@@ -28,6 +28,8 @@ class StoreAuthor extends FormRequest
             'photo_file' => 'nullable|image',
             'name' => 'required',
             'description' => 'required',
+            'backlinks.*.date' => 'required|date',
+            'backlinks.*.url' => 'required|url',
         ];
     }
 }

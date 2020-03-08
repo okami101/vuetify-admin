@@ -13,6 +13,7 @@ use Spatie\MediaLibrary\Models\Media;
  * @property int $id
  * @property string $name
  * @property string $description
+ * @property string $backlinks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
  * @property-read int|null $books_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Author newModelQuery()
@@ -29,6 +30,11 @@ class Author extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
+        'backlinks',
+    ];
+
+    protected $casts = [
+        'backlinks' => 'array'
     ];
 
     protected $with = ['media'];

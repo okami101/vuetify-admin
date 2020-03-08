@@ -1,14 +1,7 @@
 <template>
-  <v-switch
-    :label="label"
-    :hint="hint"
-    :rules="rules"
-    :error-messages="errorMessages"
-    :hide-details="hideDetails"
-    :dense="dense"
-    @change="change"
-    @input="update"
-  ></v-switch>
+  <va-input v-bind="$props">
+    <slot :resource="resource" :items="value || []"></slot>
+  </va-input>
 </template>
 
 <script>
@@ -19,3 +12,13 @@ export default {
   mixins: [Input]
 };
 </script>
+
+<style lang="scss" scoped>
+::v-deep .v-input__slot {
+  display: block;
+}
+::v-deep .v-label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+</style>
