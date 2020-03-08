@@ -1,14 +1,9 @@
 <template>
   <v-app>
-    <div v-if="loaded">
-      <v-content v-if="unauthenticatedRoute">
-        <router-view></router-view>
-      </v-content>
-      <app-layout v-else-if="user" :menu="menu"></app-layout>
-    </div>
-    <v-overlay v-else>
-      <v-progress-circular indeterminate size="64"></v-progress-circular>
-    </v-overlay>
+    <v-content v-if="unauthenticatedRoute">
+      <router-view></router-view>
+    </v-content>
+    <app-layout v-else-if="user" :menu="menu"></app-layout>
   </v-app>
 </template>
 
@@ -24,11 +19,6 @@ export default {
   props: {
     title: String,
     menu: Array
-  },
-  data() {
-    return {
-      loaded: false
-    };
   },
   computed: {
     ...mapState({
@@ -47,19 +37,6 @@ export default {
         this.checkAuth();
       }
     });
-
-    /**
-     * Inital authentification check on full app reload
-     */
-    let isLogged = await this.checkAuth();
-
-    if (isLogged && this.$route.name === "login") {
-      // Redirect to home on login route if already connected
-      await this.$router.push("/");
-    }
-
-    // App loaded, show UI
-    this.loaded = true;
   },
   watch: {
     $route: {
