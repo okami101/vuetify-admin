@@ -22,7 +22,8 @@ import api from "vuetify-admin/store/api";
 import form from "vuetify-admin/store/form";
 import isEmpty from "lodash/isEmpty";
 import AppLayout from "vuetify-admin/components/Layout/AppLayout";
-import resourceCrudApi from "vuetify-admin/store/resource";
+import resourceCrudModule from "vuetify-admin/store/resource";
+import resourceCrudRoutes from "vuetify-admin/router/resource";
 
 import en from "vuetify-admin/locales/en.json";
 import fr from "vuetify-admin/locales/fr.json";
@@ -55,13 +56,20 @@ export default {
       permissions: "auth/getPermissions"
     }),
     getResources() {
-      return this.resources.map(r => {
-        return typeof r === "string"
-          ? {
-              name: r
-            }
-          : r;
-      });
+      return this.resources
+        .map(r => {
+          return typeof r === "string"
+            ? {
+                name: r
+              }
+            : r;
+        })
+        .map(r => {
+          return {
+            ...r,
+            actions: this.getResourceActions(r)
+          };
+        });
     },
     unauthenticatedRoute() {
       return this.$route.name === "login";
@@ -82,6 +90,25 @@ export default {
     this.$store.registerModule("api", api);
     this.$store.registerModule("auth", auth(this.authProvider, this.$router));
     this.$store.registerModule("form", form);
+
+    /**
+     * Add API resources modules dynamically
+     */
+    this.getResources.forEach(r =>
+      this.$store.registerModule(
+        r.name,
+        resourceCrudModule(this.dataProvider, r.name, r.actions)
+      )
+    );
+
+    /**
+     * Add resources routes dynamically
+     */
+    this.$router.addRoutes(
+      this.getResources.map(r =>
+        resourceCrudRoutes(this.$store, this.$i18n, r.name, r.actions)
+      )
+    );
 
     /**
      * Permissions helper & directive
@@ -108,20 +135,6 @@ export default {
       }
     });
     Vue.prototype.$can = can;
-
-    /**
-     * Add API resources modules dynamically
-     */
-    this.getResources.forEach(r =>
-      this.$store.registerModule(r.name, this.loadResourceModules(r))
-    );
-
-    /**
-     * Add resources routes dynamically
-     */
-    this.$router.addRoutes(
-      this.getResources.map(r => this.loadResourceRoutes(r))
-    );
   },
   async mounted() {
     this.$router.beforeEach(async (to, from, next) => {
@@ -192,104 +205,6 @@ export default {
 
         return true;
       });
-    },
-    loadResourceModules(resource) {
-      let actions = this.getResourceActions(resource);
-
-      return resourceCrudApi(this.dataProvider, resource.name, actions);
-    },
-    loadResourceRoutes(resource) {
-      let actions = this.getResourceActions(resource);
-
-      /**
-       * Route item component builder (edit and show)
-       */
-      let store = this.$store;
-
-      const itemComponent = action => {
-        return {
-          render(c) {
-            return c(`${resource.name}-${action}`);
-          },
-          async beforeRouteEnter(to, from, next) {
-            /**
-             * Route model binding
-             */
-            let { data } = await store.dispatch("api/getOne", {
-              resource: resource.name,
-              params: {
-                id: to.params.id
-              }
-            });
-
-            /**
-             * Insert model into resource store
-             */
-            store.commit(`${resource.name}/setItem`, data);
-            next();
-          },
-          beforeRouteLeave(to, from, next) {
-            store.commit(`${resource.name}/removeItem`);
-            next();
-          }
-        };
-      };
-
-      /**
-       * Action route builder
-       */
-      const buildRoute = (action, path, item = false) => {
-        return {
-          path,
-          name: `${resource.name}_${action}`,
-          component: item
-            ? itemComponent(action)
-            : {
-                render(c) {
-                  return c(`${resource.name}-${action}`);
-                }
-              },
-          meta: {
-            resource: resource.name
-          },
-          beforeEnter: (to, from, next) => {
-            /**
-             * Build default main title
-             */
-            to.meta.title = this.$t(`va.pages.${action}`, {
-              resource: this.$tc(
-                `resources.${resource.name}.name`,
-                action === "list" ? 10 : 1
-              ).toLowerCase(),
-              id: to.params.id
-            });
-            next();
-          }
-        };
-      };
-
-      /**
-       * Return crud routes for this resource
-       */
-      return {
-        path: `/${resource.name}`,
-        component: {
-          render(c) {
-            return c("router-view");
-          }
-        },
-        meta: {
-          title: this.$tc(`resources.${resource.name}.name`, 10)
-        },
-        children: [
-          { action: "list", path: "/", item: false },
-          { action: "create", path: "create", item: false },
-          { action: "show", path: ":id", item: true },
-          { action: "edit", path: ":id/edit", item: true }
-        ]
-          .filter(({ action }) => actions.includes(action))
-          .map(({ action, path, item }) => buildRoute(action, path, item))
-      };
     }
   }
 };

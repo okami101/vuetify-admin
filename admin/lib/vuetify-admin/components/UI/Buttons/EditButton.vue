@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="item && can(resource, 'show')"
+        v-if="item && can(resource, 'edit')"
         :icon="icon"
         text
         exact
