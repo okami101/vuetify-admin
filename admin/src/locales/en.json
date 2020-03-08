@@ -2,6 +2,7 @@
   "good": "Good",
   "bad": "Bad",
   "address": "Address",
+  "backlinks": "Backlinks",
   "routes": {
     "login": "Login",
     "dashboard": "Dashboard",
@@ -76,7 +77,11 @@
         "name": "Name",
         "photo": "Photo",
         "description": "Description",
-        "backlinks": "Backlinks"
+        "backlinks": {
+          "text": "Text",
+          "date": "Date",
+          "url": "Url"
+        }
       }
     },
     "books": {

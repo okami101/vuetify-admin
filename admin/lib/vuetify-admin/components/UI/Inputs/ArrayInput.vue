@@ -1,6 +1,6 @@
 <template>
   <va-input v-bind="$props">
-    <slot :resource="resource" :items="value || []"></slot>
+    <slot :resource="resource" :items="input || []"></slot>
   </va-input>
 </template>
 
@@ -9,7 +9,13 @@ import Input from "vuetify-admin/mixins/input";
 
 export default {
   name: "ArrayInput",
-  mixins: [Input]
+  mixins: [Input],
+  props: {
+    inputs: {
+      type: Array,
+      default: () => []
+    }
+  }
 };
 </script>
 
