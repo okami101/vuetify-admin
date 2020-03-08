@@ -23,7 +23,8 @@
     "export": "Exporter",
     "clone": "Dupliquer",
     "add": "Ajouter",
-    "remove": "Retirer"
+    "remove": "Retirer",
+    "move": "Déplacer"
   },
   "messages": {
     "created": "{resource} créé avec succès !",

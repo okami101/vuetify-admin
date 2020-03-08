@@ -19,6 +19,7 @@
     "vue": "^2.6.10",
     "vue-i18n": "^8.15.4",
     "vue-router": "^3.1.6",
+    "vuedraggable": "^2.23.2",
     "vuetify": "^2.2.15",
     "vuex": "^3.1.2"
   },
@@ -31,7 +32,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^6.2.1",
+    "eslint-plugin-vue": "^6.2.2",
     "prettier": "^1.19.1",
     "sass": "^1.26.2",
     "sass-loader": "^8.0.2",

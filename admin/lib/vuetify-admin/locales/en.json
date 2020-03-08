@@ -23,7 +23,8 @@
     "export": "Export",
     "clone": "Clone",
     "add": "Add",
-    "remove": "Remove"
+    "remove": "Remove",
+    "move": "Move"
   },
   "messages": {
     "created": "New {resource} successfully created !",
