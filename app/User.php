@@ -15,7 +15,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $password
  * @property string|null $remember_token
  * @property array $roles
- * @property bool $is_admin
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -57,12 +56,8 @@ class User extends Authenticatable
         'roles' => 'array',
     ];
 
-    protected $appends = [
-        'is_admin'
-    ];
-
-    public function getIsAdminAttribute()
+    public function hasRole(...$roles)
     {
-        return in_array('ROLE_ADMIN', $this->roles, true);
+        return (bool) count(array_intersect($this->roles, $roles));
     }
 }

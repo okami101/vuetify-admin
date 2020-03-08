@@ -10,13 +10,18 @@ class PublisherPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        return $user->hasRole('admin');
+    }
+
     /**
      * Determine whether the user can view any publishers.
      *
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +33,7 @@ class PublisherPolicy
      * @param  \App\Publisher  $publisher
      * @return mixed
      */
-    public function view(?User $user, Publisher $publisher)
+    public function view(User $user, Publisher $publisher)
     {
         return true;
     }
@@ -41,7 +46,7 @@ class PublisherPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin;
+        return true;
     }
 
     /**
@@ -53,7 +58,7 @@ class PublisherPolicy
      */
     public function update(User $user, Publisher $publisher)
     {
-        return $user->is_admin;
+        return true;
     }
 
     /**
@@ -65,6 +70,6 @@ class PublisherPolicy
      */
     public function delete(User $user, Publisher $publisher)
     {
-        return $user->is_admin;
+        return true;
     }
 }

@@ -1053,16 +1053,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.0.6",
+            "version": "v7.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2579730d60701a72b14eacb333b2b9cfb4746bef"
+                "reference": "5c3b3d9c77560b249305cbc42d0aa0a16f9e80f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2579730d60701a72b14eacb333b2b9cfb4746bef",
-                "reference": "2579730d60701a72b14eacb333b2b9cfb4746bef",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5c3b3d9c77560b249305cbc42d0aa0a16f9e80f9",
+                "reference": "5c3b3d9c77560b249305cbc42d0aa0a16f9e80f9",
                 "shasum": ""
             },
             "require": {
@@ -1200,7 +1200,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-06T21:19:59+00:00"
+            "time": "2020-03-07T14:35:34+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5519,16 +5519,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v4.1.2",
+            "version": "v4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "e81356da90969139c85709f8353e59f1e7d5e01c"
+                "reference": "a430bce33d1ad07f756ea6cae9afce9ef8670b42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/e81356da90969139c85709f8353e59f1e7d5e01c",
-                "reference": "e81356da90969139c85709f8353e59f1e7d5e01c",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/a430bce33d1ad07f756ea6cae9afce9ef8670b42",
+                "reference": "a430bce33d1ad07f756ea6cae9afce9ef8670b42",
                 "shasum": ""
             },
             "require": {
@@ -5585,7 +5585,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2020-03-03T18:17:47+00:00"
+            "time": "2020-03-07T12:46:00+00:00"
         },
         {
             "name": "phar-io/manifest",

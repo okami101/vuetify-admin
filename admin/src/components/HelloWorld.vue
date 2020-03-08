@@ -20,12 +20,10 @@
           <a href="https://community.vuetifyjs.com" target="_blank"
             >Discord Community</a
           >
-          <br />
-          Permissions : {{ permissions }}
         </p>
       </v-flex>
 
-      <v-flex mb-5 xs12>
+      <v-flex mb-5 xs12 v-can="['admin']">
         <h2 class="headline font-weight-bold mb-3">What's next?</h2>
 
         <v-layout justify-center>
@@ -41,7 +39,7 @@
         </v-layout>
       </v-flex>
 
-      <v-flex xs12 mb-5>
+      <v-flex xs12 mb-5 v-can="['editor']">
         <h2 class="headline font-weight-bold mb-3">Important Links</h2>
 
         <v-layout justify-center>
@@ -57,7 +55,7 @@
         </v-layout>
       </v-flex>
 
-      <v-flex xs12 mb-5>
+      <v-flex xs12 mb-5 v-can="['admin', 'editor']">
         <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
 
         <v-layout justify-center>
@@ -133,11 +131,6 @@ export default {
         href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
       }
     ]
-  }),
-  computed: {
-    ...mapGetters({
-      permissions: "auth/getPermissions"
-    })
-  }
+  })
 };
 </script>

@@ -16,7 +16,7 @@ class ReviewPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class ReviewPolicy
      * @param  \App\Review  $review
      * @return mixed
      */
-    public function view(?User $user, Review $review)
+    public function view(User $user, Review $review)
     {
         return true;
     }
@@ -41,7 +41,7 @@ class ReviewPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review)
     {
-        return $user->is_admin;
+        return true;
     }
 
     /**
@@ -65,6 +65,6 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review)
     {
-        return $user->is_admin;
+        return true;
     }
 }

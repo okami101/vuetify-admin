@@ -10,13 +10,18 @@ class AuthorPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        return $user->hasRole('admin');
+    }
+
     /**
      * Determine whether the user can view any authors.
      *
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +33,7 @@ class AuthorPolicy
      * @param  \App\Author  $author
      * @return mixed
      */
-    public function view(?User $user, Author $author)
+    public function view(User $user, Author $author)
     {
         return true;
     }
@@ -41,7 +46,7 @@ class AuthorPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin;
+        return true;
     }
 
     /**
@@ -53,7 +58,7 @@ class AuthorPolicy
      */
     public function update(User $user, Author $author)
     {
-        return $user->is_admin;
+        return true;
     }
 
     /**
@@ -65,6 +70,6 @@ class AuthorPolicy
      */
     public function delete(User $user, Author $author)
     {
-        return $user->is_admin;
+        return true;
     }
 }

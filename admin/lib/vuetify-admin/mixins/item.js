@@ -1,4 +1,5 @@
 import Resource from "vuetify-admin/mixins/resource";
+import isEmpty from "lodash/isEmpty";
 import { mapGetters } from "vuex";
 
 export default {
@@ -15,6 +16,9 @@ export default {
     }),
     record() {
       return this.item || this.getItem(this.resource) || {};
+    },
+    hasItem() {
+      return !isEmpty(this.record);
     }
   }
 };

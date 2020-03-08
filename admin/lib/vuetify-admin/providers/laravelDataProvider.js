@@ -25,18 +25,18 @@ export default (axios, base = "/api") => {
 
         if (fields) {
           Object.keys(fields).forEach(r => {
-            if (fields[r].length) {
+            if ((fields[r] || []).length) {
               searchParams.append(`fields[${r}]`, fields[r].join(","));
             }
           });
         }
 
-        if (include.length) {
+        if ((include || []).length) {
           searchParams.append("include", include.join(","));
         }
 
         if (type === GET_MANY) {
-          if (params.ids.length) {
+          if ((params.ids || []).length) {
             searchParams.append("filter[id]", params.ids.join(","));
           }
           return { url: `${resourceUrl}?${searchParams.toString()}` };

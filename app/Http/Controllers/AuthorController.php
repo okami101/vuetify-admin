@@ -16,6 +16,11 @@ class AuthorController extends Controller
 {
     use CrudHelpers;
 
+    public function __construct()
+    {
+        $this->authorizeResource(Author::class);
+    }
+
     /**
      * Display a listing of the resource.
      *

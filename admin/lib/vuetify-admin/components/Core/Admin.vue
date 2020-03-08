@@ -14,12 +14,14 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import Vue from "vue";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import layout from "vuetify-admin/store/layout";
 import aside from "vuetify-admin/store/aside";
 import auth from "vuetify-admin/store/auth";
 import api from "vuetify-admin/store/api";
 import form from "vuetify-admin/store/form";
+import isEmpty from "lodash/isEmpty";
 import AppLayout from "vuetify-admin/components/Layout/AppLayout";
 
 import en from "vuetify-admin/locales/en.json";
@@ -45,6 +47,9 @@ export default {
     ...mapState({
       user: state => state.auth.user
     }),
+    ...mapGetters({
+      permissions: "auth/getPermissions"
+    }),
     unauthenticatedRoute() {
       return this.$route.name === "login";
     }
@@ -64,6 +69,30 @@ export default {
     this.$store.registerModule("api", api);
     this.$store.registerModule("auth", auth(this.authProvider, this.$router));
     this.$store.registerModule("form", form);
+
+    /**
+     * Directives
+     */
+    Vue.directive("can", (el, binding, vnode) => {
+      if (
+        isEmpty(
+          (Array.isArray(binding.value)
+            ? binding.value
+            : [binding.value]
+          ).filter(p => -1 !== this.permissions.indexOf(p))
+        )
+      ) {
+        // replace HTMLElement with comment node
+        const comment = document.createComment("");
+        vnode.elm = comment;
+        vnode.text = "";
+        vnode.isComment = true;
+
+        if (el.parentNode) {
+          el.parentNode.replaceChild(comment, el);
+        }
+      }
+    });
   },
   async mounted() {
     this.$router.beforeEach(async (to, from, next) => {

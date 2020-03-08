@@ -25,15 +25,6 @@ export default {
           login: "/auth/login",
           logout: "/auth/logout",
           user: "/api/user"
-        },
-        getName: u => u.name,
-        getEmail: u => u.email,
-        getPermissions: ({ roles }) => {
-          return {
-            is_admin: roles.includes("ROLE_ADMIN"),
-            is_editor: roles.includes("ROLE_EDITOR"),
-            is_author: roles.includes("ROLE_AUTHOR")
-          };
         }
       }),
       dataProvider: laravelDataProvider(this.$axios),

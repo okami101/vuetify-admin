@@ -10,13 +10,18 @@ class BookPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        return $user->hasRole('admin');
+    }
+
     /**
      * Determine whether the user can view any books.
      *
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +33,7 @@ class BookPolicy
      * @param  \App\Book  $book
      * @return mixed
      */
-    public function view(?User $user, Book $book)
+    public function view(User $user, Book $book)
     {
         return true;
     }
@@ -41,7 +46,7 @@ class BookPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -53,7 +58,7 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        return $user->is_admin;
+        return $user->hasRole('admin');
     }
 
     /**
