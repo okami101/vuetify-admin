@@ -1,10 +1,10 @@
 import Vue from "vue";
-import routerInit from "./router";
+import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
 import axios from "./plugins/axios";
 import vuetify from "./plugins/vuetify";
-import adminInit from "./plugins/admin";
+import admin from "./plugins/admin";
 import App from "./App.vue";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
@@ -36,22 +36,14 @@ Vue.prototype.$statusColor = s => {
   return colors[s];
 };
 
-let router = routerInit(i18n);
-let admin = adminInit({
-  router,
-  store,
-  i18n,
-  axios
-});
-
 /**
  * Instancing & mounting Vue
  */
 new Vue({
-  router,
+  router: router(i18n),
   store,
   vuetify,
   i18n,
-  admin,
+  admin: admin(axios),
   render: h => h(App)
 }).$mount("#app");

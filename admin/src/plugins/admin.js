@@ -15,11 +15,8 @@ Vue.use(VuetifyAdmin);
 /**
  * Init
  */
-const admin = ({ router, store, i18n, axios }) => {
+const admin = axios => {
   return new VuetifyAdmin({
-    router,
-    store,
-    i18n,
     title: "Bookstore Admin",
     locales: { en, fr },
     authProvider: airlockAuthProvider(axios, {

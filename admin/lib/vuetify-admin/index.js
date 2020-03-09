@@ -14,16 +14,7 @@ import resourceCrudModule from "./store/resource";
 import resourceCrudRoutes from "./router/resource";
 
 export default class VuetifyAdmin {
-  constructor({
-    router,
-    store,
-    i18n,
-    title,
-    locales,
-    authProvider,
-    dataProvider,
-    resources
-  }) {
+  constructor({ title, locales, authProvider, dataProvider, resources }) {
     /**
      * Options properties
      */
@@ -31,6 +22,7 @@ export default class VuetifyAdmin {
     this.locales = locales;
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
+    this.loaded = false;
 
     /**
      * Format usable resources object
@@ -59,10 +51,12 @@ export default class VuetifyAdmin {
           })
         };
       });
-
-    this.init({ router, store, i18n });
   }
   init({ router, store, i18n }) {
+    if (this.loaded) {
+      return;
+    }
+
     /**
      * Load i18n locales
      */
@@ -101,26 +95,21 @@ export default class VuetifyAdmin {
     /**
      * Check Auth after each navigation
      */
-    router.beforeEach(async (to, from, next) => {
+    router.beforeEach((to, from, next) => {
+      /**
+       * Check and reload authenticated user with permissions
+       * after each navigation
+       */
+      store.dispatch("auth/checkAuth");
+
       /**
        * Main title
        */
       store.commit("layout/setTitle", to.meta.title || this.title);
+      store.commit("aside/close");
       document.title = to.meta.title
         ? `${to.meta.title} | ${this.title}`
         : this.title;
-
-      if (to.path !== from.path) {
-        /**
-         * Check and reload authenticated user with permissions
-         * after each navigation
-         */
-        if (to.name !== "login") {
-          await store.dispatch("auth/checkAuth");
-        }
-
-        store.commit("aside/close");
-      }
 
       next();
     });
@@ -144,6 +133,9 @@ export default class VuetifyAdmin {
         )
       );
     };
+
+    this.loaded = true;
+    store.dispatch("auth/checkAuth");
   }
 }
 
@@ -158,7 +150,20 @@ VuetifyAdmin.install = Vue => {
 
   Vue.mixin({
     beforeCreate() {
-      this.$admin = this.$root.$options.admin;
+      let router = this.$router;
+      let store = this.$store;
+      let i18n = this.$i18n;
+      let admin = this.$root.$options.admin;
+
+      if (!router || !store || !i18n) {
+        return;
+      }
+
+      /**
+       * Instantiate admin
+       */
+      admin.init({ router, store, i18n });
+      this.$admin = admin;
     }
   });
 
