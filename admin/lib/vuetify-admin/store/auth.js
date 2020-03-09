@@ -52,7 +52,7 @@ export default (provider, router) => {
           commit("setUser", null);
         }
 
-        router.push("/login");
+        router.push("/login").catch(() => {});
       },
       /**
        * Check valid auth on server by retrieving user infos
