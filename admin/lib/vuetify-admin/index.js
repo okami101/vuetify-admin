@@ -25,9 +25,17 @@ export default class VuetifyAdmin {
     resources
   }) {
     /**
+     * Options properties
+     */
+    this.title = title;
+    this.locales = locales;
+    this.authProvider = authProvider;
+    this.dataProvider = dataProvider;
+
+    /**
      * Format usable resources object
      */
-    resources = resources
+    this.resources = resources
       .map(r => {
         return typeof r === "string"
           ? {
@@ -52,11 +60,14 @@ export default class VuetifyAdmin {
         };
       });
 
+    this.init({ router, store, i18n });
+  }
+  init({ router, store, i18n }) {
     /**
      * Load i18n locales
      */
-    Object.keys(locales).forEach(locale => {
-      i18n.mergeLocaleMessage(locale, { va: locales[locale] });
+    Object.keys(this.locales).forEach(locale => {
+      i18n.mergeLocaleMessage(locale, { va: this.locales[locale] });
     });
 
     /**
@@ -65,16 +76,16 @@ export default class VuetifyAdmin {
     store.registerModule("layout", layout(i18n));
     store.registerModule("aside", aside);
     store.registerModule("api", api);
-    store.registerModule("auth", auth(authProvider, router));
+    store.registerModule("auth", auth(this.authProvider, router));
     store.registerModule("form", form);
 
     /**
      * Add API resources modules dynamically
      */
-    resources.forEach(r =>
+    this.resources.forEach(r =>
       store.registerModule(
         r.name,
-        resourceCrudModule(dataProvider, r.name, r.actions)
+        resourceCrudModule(this.dataProvider, r.name, r.actions)
       )
     );
 
@@ -82,7 +93,9 @@ export default class VuetifyAdmin {
      * Add resources routes dynamically
      */
     router.addRoutes(
-      resources.map(r => resourceCrudRoutes(store, i18n, r.name, r.actions))
+      this.resources.map(r =>
+        resourceCrudRoutes(store, i18n, r.name, r.actions)
+      )
     );
 
     /**
@@ -92,8 +105,10 @@ export default class VuetifyAdmin {
       /**
        * Main title
        */
-      store.commit("layout/setTitle", to.meta.title || title);
-      document.title = to.meta.title ? `${to.meta.title} | ${title}` : title;
+      store.commit("layout/setTitle", to.meta.title || this.title);
+      document.title = to.meta.title
+        ? `${to.meta.title} | ${this.title}`
+        : this.title;
 
       if (to.path !== from.path) {
         /**
@@ -120,15 +135,6 @@ export default class VuetifyAdmin {
     });
 
     /**
-     * Options properties
-     */
-    this.title = title;
-    this.locales = locales;
-    this.authProvider = authProvider;
-    this.dataProvider = dataProvider;
-    this.resources = resources;
-
-    /**
      * Permissions helper & directive
      */
     this.can = permissions => {
@@ -150,6 +156,12 @@ VuetifyAdmin.install = Vue => {
     });
   });
 
+  Vue.mixin({
+    beforeCreate() {
+      this.$admin = this.$root.$options.admin;
+    }
+  });
+
   Vue.directive("can", (el, binding, vnode) => {
     if (!vnode.context.$admin.can(binding.value)) {
       // replace HTMLElement with comment node
@@ -161,12 +173,6 @@ VuetifyAdmin.install = Vue => {
       if (el.parentNode) {
         el.parentNode.replaceChild(comment, el);
       }
-    }
-  });
-
-  Vue.mixin({
-    beforeCreate() {
-      this.$admin = this.$root.$options.admin;
     }
   });
 };
