@@ -13,7 +13,7 @@ import fr from "vuetify-admin/locales/fr.json";
 Vue.use(VuetifyAdmin);
 
 /**
- * Init
+ * Init vuetify admin class with options
  */
 const admin = axios => {
   return new VuetifyAdmin({
