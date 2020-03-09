@@ -330,17 +330,24 @@ export default {
        * Update query router
        */
       let { itemsPerPage, page, sortBy, sortDesc } = this.currentOptions;
-      this.$router
-        .push({
-          query: {
-            perPage: itemsPerPage,
-            page,
-            sortBy: (sortBy || []).join(","),
-            sortDesc: (sortDesc || []).join(","),
-            filter: JSON.stringify(this.currentFilter)
-          }
-        })
-        .catch(e => {});
+      let query = {
+        perPage: itemsPerPage,
+        page
+      };
+
+      if (!isEmpty(sortBy)) {
+        query.sortBy = sortBy.join(",");
+      }
+
+      if (!isEmpty(sortDesc)) {
+        query.sortDesc = sortDesc.join(",");
+      }
+
+      if (!isEmpty(this.currentFilter)) {
+        query.filter = JSON.stringify(this.currentFilter);
+      }
+
+      this.$router.push({ query }).catch(e => {});
     },
     async fetchData() {
       if (!this.loaded || isEmpty(this.currentOptions)) {

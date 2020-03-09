@@ -1,5 +1,5 @@
 <template>
-  <va-admin title="Bookstore Admin" :menu="menu"></va-admin>
+  <va-admin :menu="menu"></va-admin>
 </template>
 
 <script>

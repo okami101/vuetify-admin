@@ -27,6 +27,7 @@ export default {
     router,
     store,
     i18n,
+    title,
     locales,
     authProvider,
     dataProvider,
@@ -97,6 +98,12 @@ export default {
      * Check Auth after each navigation
      */
     router.beforeEach(async (to, from, next) => {
+      /**
+       * Main title
+       */
+      store.commit("layout/setTitle", to.meta.title || title);
+      document.title = to.meta.title ? `${to.meta.title} | ${title}` : title;
+
       if (to.path !== from.path) {
         /**
          * Check and reload authenticated user with permissions
@@ -137,5 +144,14 @@ export default {
       }
     });
     Vue.prototype.$can = can;
+
+    /**
+     * Recheck auth on app visible (switching tabs,...)
+     */
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        store.dispatch("auth/checkAuth");
+      }
+    });
   }
 };

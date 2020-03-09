@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState } from "vuex";
 import AppLayout from "vuetify-admin/components/Layout/AppLayout";
 
 export default {
@@ -17,7 +17,6 @@ export default {
     AppLayout
   },
   props: {
-    title: String,
     menu: Array
   },
   computed: {
@@ -27,34 +26,6 @@ export default {
     unauthenticatedRoute() {
       return this.$route.name === "login";
     }
-  },
-  async mounted() {
-    /**
-     * Recheck auth on app visible (switching tabs,...)
-     */
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) {
-        this.checkAuth();
-      }
-    });
-  },
-  watch: {
-    $route: {
-      handler(val) {
-        this.setTitle(val.meta.title || this.title);
-        document.title = val.meta.title
-          ? `${val.meta.title} | ${this.title}`
-          : this.title;
-      }
-    }
-  },
-  methods: {
-    ...mapMutations({
-      setTitle: "layout/setTitle"
-    }),
-    ...mapActions({
-      checkAuth: "auth/checkAuth"
-    })
   }
 };
 </script>

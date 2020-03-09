@@ -25,6 +25,7 @@ const admin = (router, store, i18n, axios) => {
     router,
     store,
     i18n,
+    title: "Bookstore Admin",
     locales: { en, fr },
     authProvider: airlockAuthProvider(axios, {
       routes: {
