@@ -12,18 +12,6 @@ import "@mdi/font/css/materialdesignicons.css";
 Vue.config.productionTip = false;
 
 /**
- * Register resource crud pages
- */
-const files = require.context("@/resources", true, /\.vue$/i);
-files.keys().map(key => {
-  const segments = key.split("/");
-  const name = segments.pop();
-  const dir = segments.pop();
-
-  Vue.component(`${dir}${name.split(".")[0]}`, files(key).default);
-});
-
-/**
  * Specific badge color status function
  */
 Vue.prototype.$statusColor = s => {
