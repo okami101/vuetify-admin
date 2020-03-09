@@ -14,14 +14,9 @@ Vue.use(VuetifyAdmin);
 
 /**
  * Init
- *
- * @param {*} router
- * @param {*} store
- * @param {*} i18n
- * @param {*} axios
  */
-const admin = (router, store, i18n, axios) => {
-  VuetifyAdmin.init({
+const admin = ({ router, store, i18n, axios }) => {
+  return new VuetifyAdmin({
     router,
     store,
     i18n,

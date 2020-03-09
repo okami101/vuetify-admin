@@ -131,6 +131,9 @@ export default {
         href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
       }
     ]
-  })
+  }),
+  mounted() {
+    console.log(this.$admin);
+  }
 };
 </script>

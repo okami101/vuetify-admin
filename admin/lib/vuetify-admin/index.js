@@ -13,17 +13,8 @@ import form from "./store/form";
 import resourceCrudModule from "./store/resource";
 import resourceCrudRoutes from "./router/resource";
 
-export default {
-  install(Vue) {
-    Vue.use(PortalVue);
-
-    [core, ui].forEach(c => {
-      Object.keys(c).forEach(name => {
-        Vue.component(`Va${name}`, c[name]);
-      });
-    });
-  },
-  init({
+export default class VuetifyAdmin {
+  constructor({
     router,
     store,
     i18n,
@@ -120,32 +111,6 @@ export default {
     });
 
     /**
-     * Permissions helper & directive
-     */
-    const can = permissions => {
-      return !isEmpty(
-        (Array.isArray(permissions) ? permissions : [permissions]).filter(
-          p => -1 !== store.getters["auth/getPermissions"].indexOf(p)
-        )
-      );
-    };
-
-    Vue.directive("can", (el, binding, vnode) => {
-      if (!can(binding.value)) {
-        // replace HTMLElement with comment node
-        const comment = document.createComment("");
-        vnode.elm = comment;
-        vnode.text = "";
-        vnode.isComment = true;
-
-        if (el.parentNode) {
-          el.parentNode.replaceChild(comment, el);
-        }
-      }
-    });
-    Vue.prototype.$can = can;
-
-    /**
      * Recheck auth on app visible (switching tabs,...)
      */
     document.addEventListener("visibilitychange", () => {
@@ -153,5 +118,55 @@ export default {
         store.dispatch("auth/checkAuth");
       }
     });
+
+    /**
+     * Options properties
+     */
+    this.title = title;
+    this.locales = locales;
+    this.authProvider = authProvider;
+    this.dataProvider = dataProvider;
+    this.resources = resources;
+
+    /**
+     * Permissions helper & directive
+     */
+    this.can = permissions => {
+      return !isEmpty(
+        (Array.isArray(permissions) ? permissions : [permissions]).filter(
+          p => -1 !== store.getters["auth/getPermissions"].indexOf(p)
+        )
+      );
+    };
   }
+}
+
+VuetifyAdmin.install = Vue => {
+  Vue.use(PortalVue);
+
+  [core, ui].forEach(c => {
+    Object.keys(c).forEach(name => {
+      Vue.component(`Va${name}`, c[name]);
+    });
+  });
+
+  Vue.directive("can", (el, binding, vnode) => {
+    if (!vnode.context.$admin.can(binding.value)) {
+      // replace HTMLElement with comment node
+      const comment = document.createComment("");
+      vnode.elm = comment;
+      vnode.text = "";
+      vnode.isComment = true;
+
+      if (el.parentNode) {
+        el.parentNode.replaceChild(comment, el);
+      }
+    }
+  });
+
+  Vue.mixin({
+    beforeCreate() {
+      this.$admin = this.$root.$options.admin;
+    }
+  });
 };

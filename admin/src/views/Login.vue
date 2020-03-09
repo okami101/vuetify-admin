@@ -86,6 +86,7 @@ export default {
 
 <style scoped>
 #login-page {
-  background-color: var(--v-accent-lighten2);
+  background: url(/login.jpg) center no-repeat;
+  background-size: cover;
 }
 </style>

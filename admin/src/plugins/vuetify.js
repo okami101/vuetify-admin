@@ -18,7 +18,7 @@ const vuetify = new Vuetify({
     },
     themes: {
       light: {
-        primary: colors.red.darken1,
+        primary: colors.blueGrey.darken2,
         secondary: colors.red.lighten4,
         accent: colors.indigo.base,
         error: "#FF5252",
