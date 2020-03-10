@@ -155,14 +155,13 @@ VuetifyAdmin.install = Vue => {
       let i18n = this.$i18n;
       let admin = this.$root.$options.admin;
 
-      if (!router || !store || !i18n) {
-        return;
+      if (router && store && i18n) {
+        /**
+         * Instantiate admin when main dependencies are availables
+         * Executed only once with loaded prop
+         */
+        admin.init({ router, store, i18n });
       }
-
-      /**
-       * Instantiate admin
-       */
-      admin.init({ router, store, i18n });
       this.$admin = admin;
     }
   });
