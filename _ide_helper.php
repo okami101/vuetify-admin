@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 7.0.8 on 2020-03-09 18:19:58.
+ * Generated for Laravel 7.1.0 on 2020-03-10 17:56:43.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1844,7 +1844,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the ID for the currently authenticated user.
          *
-         * @return int|null 
+         * @return int|string|null 
          * @static 
          */ 
         public static function id()

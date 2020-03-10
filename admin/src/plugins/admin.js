@@ -27,7 +27,8 @@ const admin = axios => {
       }
     }),
     dataProvider: laravelDataProvider(axios),
-    resources: ["publishers", "books", "authors", "reviews"]
+    resources: ["publishers", "books", "authors", "reviews"],
+    resourcesPath: "resources"
   });
 };
 

@@ -1,18 +1,20 @@
-export default (store, i18n, resource, actions) => {
+export default ({ store, i18n, resource }) => {
+  let { name, actions } = resource;
+
   /**
    * Route item component builder (edit and show)
    */
   const itemComponent = action => {
     return {
       render(c) {
-        return c(`${resource}-${action}`);
+        return c(`${name}-${action}`);
       },
       async beforeRouteEnter(to, from, next) {
         /**
          * Route model binding
          */
         let { data } = await store.dispatch("api/getOne", {
-          resource,
+          resource: name,
           params: {
             id: to.params.id
           }
@@ -21,11 +23,11 @@ export default (store, i18n, resource, actions) => {
         /**
          * Insert model into resource store
          */
-        store.commit(`${resource}/setItem`, data);
+        store.commit(`${name}/setItem`, data);
         next();
       },
       beforeRouteLeave(to, from, next) {
-        store.commit(`${resource}/removeItem`);
+        store.commit(`${name}/removeItem`);
         next();
       }
     };
@@ -37,16 +39,16 @@ export default (store, i18n, resource, actions) => {
   const buildRoute = (action, path, item = false) => {
     return {
       path,
-      name: `${resource}_${action}`,
+      name: `${name}_${action}`,
       component: item
         ? itemComponent(action)
         : {
             render(c) {
-              return c(`${resource}-${action}`);
+              return c(`${name}-${action}`);
             }
           },
       meta: {
-        resource
+        resource: name
       },
       beforeEnter: (to, from, next) => {
         /**
@@ -54,7 +56,7 @@ export default (store, i18n, resource, actions) => {
          */
         to.meta.title = i18n.t(`va.pages.${action}`, {
           resource: i18n
-            .tc(`resources.${resource}.name`, action === "list" ? 10 : 1)
+            .tc(`resources.${name}.name`, action === "list" ? 10 : 1)
             .toLowerCase(),
           id: to.params.id
         });
@@ -67,14 +69,14 @@ export default (store, i18n, resource, actions) => {
    * Return crud routes for this resource
    */
   return {
-    path: `/${resource}`,
+    path: `/${name}`,
     component: {
       render(c) {
         return c("router-view");
       }
     },
     meta: {
-      title: i18n.tc(`resources.${resource}.name`, 10)
+      title: i18n.tc(`resources.${name}.name`, 10)
     },
     children: [
       { action: "list", path: "/", item: false },

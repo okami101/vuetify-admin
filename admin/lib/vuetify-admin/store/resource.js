@@ -4,7 +4,9 @@ import * as methods from "../utils/dataActions";
 let storeActions = {};
 let { GET_LIST, GET_ONE, CREATE, UPDATE } = methods;
 
-export default (provider, resource, actions) => {
+export default ({ provider, resource }) => {
+  let { name, actions } = resource;
+
   Object.values(methods).forEach(
     action =>
       (storeActions[action] = async ({ commit, dispatch }, params) => {
@@ -18,7 +20,7 @@ export default (provider, resource, actions) => {
             });
           }
 
-          let response = await provider[action](resource, params);
+          let response = await provider[action](name, params);
 
           commit("api/setLoading", false, {
             root: true
@@ -31,7 +33,7 @@ export default (provider, resource, actions) => {
             "layout/showSuccess",
             {
               action,
-              resource,
+              resource: name,
               params
             },
             {

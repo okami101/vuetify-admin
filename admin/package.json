@@ -17,7 +17,7 @@
     "roboto-fontface": "^0.10.0",
     "tiptap-vuetify": "^2.13.2",
     "vue": "^2.6.10",
-    "vue-i18n": "^8.15.4",
+    "vue-i18n": "^8.15.5",
     "vue-router": "^3.1.6",
     "vuedraggable": "^2.23.2",
     "vuetify": "^2.2.15",

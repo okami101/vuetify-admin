@@ -3,6 +3,7 @@ import * as core from "./components/Core";
 import * as ui from "./components/UI";
 import PortalVue from "portal-vue";
 import isEmpty from "lodash/isEmpty";
+import capitalize from "lodash/capitalize";
 
 import layout from "./store/layout";
 import aside from "./store/aside";
@@ -14,7 +15,14 @@ import resourceCrudModule from "./store/resource";
 import resourceCrudRoutes from "./router/resource";
 
 export default class VuetifyAdmin {
-  constructor({ title, locales, authProvider, dataProvider, resources }) {
+  constructor({
+    title,
+    locales,
+    authProvider,
+    dataProvider,
+    resources,
+    resourcesPath
+  }) {
     /**
      * Options properties
      */
@@ -22,6 +30,7 @@ export default class VuetifyAdmin {
     this.locales = locales;
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
+    this.resourcesPath = resourcesPath;
     this.loaded = false;
 
     /**
@@ -51,6 +60,20 @@ export default class VuetifyAdmin {
           })
         };
       });
+
+    if (resourcesPath) {
+      this.resources.forEach(r => {
+        r.actions
+          .filter(a => a !== "delete")
+          .forEach(a => {
+            let componentPath = `${capitalize(r.name)}/${capitalize(a)}`;
+
+            Vue.component(componentPath.replace("/", ""), () =>
+              import(`@/${resourcesPath}/${componentPath}.vue`)
+            );
+          });
+      });
+    }
   }
   init({ router, store, i18n }) {
     if (this.loaded) {
@@ -76,10 +99,13 @@ export default class VuetifyAdmin {
     /**
      * Add API resources modules dynamically
      */
-    this.resources.forEach(r =>
+    this.resources.forEach(resource =>
       store.registerModule(
-        r.name,
-        resourceCrudModule(this.dataProvider, r.name, r.actions)
+        resource.name,
+        resourceCrudModule({
+          provider: this.dataProvider,
+          resource
+        })
       )
     );
 
@@ -87,8 +113,12 @@ export default class VuetifyAdmin {
      * Add resources routes dynamically
      */
     router.addRoutes(
-      this.resources.map(r =>
-        resourceCrudRoutes(store, i18n, r.name, r.actions)
+      this.resources.map(resource =>
+        resourceCrudRoutes({
+          store,
+          i18n,
+          resource
+        })
       )
     );
 
@@ -178,17 +208,5 @@ VuetifyAdmin.install = Vue => {
         el.parentNode.replaceChild(comment, el);
       }
     }
-  });
-
-  /**
-   * Register resources crud pages
-   */
-  const files = require.context("@/resources", true, /\.vue$/i);
-  files.keys().map(key => {
-    const segments = key.split("/");
-    const name = segments.pop();
-    const dir = segments.pop();
-
-    Vue.component(`${dir}${name.split(".")[0]}`, files(key).default);
   });
 };

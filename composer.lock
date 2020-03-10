@@ -1113,16 +1113,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.0.8",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d71ba61d51aec79a0a0f907991ec215dc24b09d4"
+                "reference": "59b97d2868ff42d11626e63c6773b41146b3eb9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d71ba61d51aec79a0a0f907991ec215dc24b09d4",
-                "reference": "d71ba61d51aec79a0a0f907991ec215dc24b09d4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/59b97d2868ff42d11626e63c6773b41146b3eb9c",
+                "reference": "59b97d2868ff42d11626e63c6773b41146b3eb9c",
                 "shasum": ""
             },
             "require": {
@@ -1260,7 +1260,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-08T16:03:46+00:00"
+            "time": "2020-03-10T14:07:01+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4614,16 +4614,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.0-RC",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "ec39b4cbb5e012365d70cd95969ea11780d3c1fc"
+                "reference": "472c917b2a083ec7d2fa25c55fd099d1300e2515"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/ec39b4cbb5e012365d70cd95969ea11780d3c1fc",
-                "reference": "ec39b4cbb5e012365d70cd95969ea11780d3c1fc",
+                "url": "https://api.github.com/repos/composer/composer/zipball/472c917b2a083ec7d2fa25c55fd099d1300e2515",
+                "reference": "472c917b2a083ec7d2fa25c55fd099d1300e2515",
                 "shasum": ""
             },
             "require": {
@@ -4690,7 +4690,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-02-14T14:11:30+00:00"
+            "time": "2020-03-10T13:08:05+00:00"
         },
         {
             "name": "composer/semver",
