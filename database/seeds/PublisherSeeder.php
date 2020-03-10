@@ -17,12 +17,12 @@ class PublisherSeeder extends Seeder
         factory(Publisher::class, 10)->create()->each(function (Publisher $publisher) use ($faker) {
             $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'logos', 1, 'png'))
                 ->preservingOriginal()
-                ->toMediaCollection('logos');
+                ->toMediaCollection('logo');
 
             for ($i = 0; $i < $faker->numberBetween(3, 6); $i++) {
                 $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'office', 9, 'jpg'))
                     ->preservingOriginal()
-                    ->toMediaCollection('images');
+                    ->toMediaCollection('local');
             }
         });
     }

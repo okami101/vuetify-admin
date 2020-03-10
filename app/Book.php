@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\ModelTraits\RequestMediaTrait;
+use App\ModelTraits\RequestMultipleAssociationTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -43,6 +45,8 @@ use Spatie\MediaLibrary\Models\Media;
 class Book extends Model implements HasMedia
 {
     use HasMediaTrait;
+    use RequestMediaTrait;
+    use RequestMultipleAssociationTrait;
 
     public $timestamps = false;
 
@@ -71,19 +75,17 @@ class Book extends Model implements HasMedia
         'tags' => 'array'
     ];
 
+    public $associations = [
+        'review_ids' => Review::class
+    ];
+
     protected $with = ['media'];
 
-    public $files = [
-        'cover' => [
-            'collection' => 'images',
-            'conversions' => ['small', 'medium', 'large'],
-            'multiple' => false
-        ],
-        'extract' => [
-            'collection' => 'files',
-            'multiple' => false
-        ]
-    ];
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('cover')->singleFile();
+        $this->addMediaCollection('extract')->singleFile();
+    }
 
     public function publisher()
     {

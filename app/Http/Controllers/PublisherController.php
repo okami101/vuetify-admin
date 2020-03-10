@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CrudHelpers;
 use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StorePublisher;
 use App\Http\Requests\UpdatePublisher;
@@ -16,8 +15,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class PublisherController extends Controller
 {
-    use CrudHelpers;
-
     public function __construct()
     {
         $this->authorizeResource(Publisher::class);
@@ -71,8 +68,6 @@ class PublisherController extends Controller
     public function store(StorePublisher $request)
     {
         $publisher = Publisher::create($request->all());
-        $this->saveFiles($publisher, 'logo', 'logos');
-        $this->saveFiles($publisher, 'local', 'images');
         return new PublisherResource($publisher);
     }
 
@@ -86,8 +81,6 @@ class PublisherController extends Controller
     public function update(UpdatePublisher $request, Publisher $publisher)
     {
         $publisher->update($request->all());
-        $this->saveFiles($publisher, 'logo', 'logos');
-        $this->saveFiles($publisher, 'local', 'images');
         return new PublisherResource($publisher);
     }
 

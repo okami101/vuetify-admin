@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ModelTraits\RequestMediaTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -31,6 +32,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Publisher extends Model implements HasMedia
 {
     use HasMediaTrait;
+    use RequestMediaTrait;
 
     public $timestamps = false;
 
@@ -58,18 +60,11 @@ class Publisher extends Model implements HasMedia
 
     protected $with = ['media'];
 
-    public $files = [
-        'logo' => [
-            'collection' => 'logos',
-            'conversions' => ['small', 'medium', 'large'],
-            'multiple' => false
-        ],
-        'local' => [
-            'collection' => 'images',
-            'conversions' => ['small', 'medium', 'large'],
-            'multiple' => true
-        ]
-    ];
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('logo')->singleFile();
+        $this->addMediaCollection('local');
+    }
 
     public function books()
     {

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ModelTraits\RequestMediaTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -24,6 +25,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Author extends Model implements HasMedia
 {
     use HasMediaTrait;
+    use RequestMediaTrait;
 
     public $timestamps = false;
 
@@ -39,13 +41,10 @@ class Author extends Model implements HasMedia
 
     protected $with = ['media'];
 
-    public $files = [
-        'photo' => [
-            'collection' => 'images',
-            'conversions' => ['small', 'medium', 'large'],
-            'multiple' => false
-        ]
-    ];
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
 
     public function books()
     {

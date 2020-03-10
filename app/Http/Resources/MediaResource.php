@@ -3,7 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\MediaCollection\MediaCollection;
+use Spatie\MediaLibrary\Models\Media;
 
 class MediaResource extends JsonResource
 {
@@ -18,33 +21,38 @@ class MediaResource extends JsonResource
         $attributes = parent::toArray($request);
 
         if ($this->resource instanceof HasMedia) {
-            foreach ($this->resource->files as $key => $options) {
-                $media = $this->resource->getMedia($options['collection']);
-                $conversions = $options['conversions'] ?? [];
+            $this->resource->registerMediaCollections();
 
-                if ($options['multiple'] ?? false) {
+            /** @var MediaCollection $collection */
+            collect($this->resource->mediaCollections)->each(function (MediaCollection $collection) use (&$attributes) {
+                /** @var Collection $media */
+                $media = $this->resource->getMedia($collection->name);
+
+                if (! $collection->singleFile) {
                     foreach ($media as $file) {
-                        $attributes[$key][] = $this->getVersions($file, $conversions);
+                        $attributes[$collection->name][] = $this->getVersions($file);
                     }
-                    continue;
+                    return;
                 }
 
                 if ($file = $media->first()) {
-                    $attributes[$key] = $this->getVersions($file, $conversions);
+                    $attributes[$collection->name] = $this->getVersions($file);
                 }
-            }
+            });
         }
 
         unset($attributes['media']);
         return $attributes;
     }
 
-    private function getVersions($file, $conversions)
+    private function getVersions(Media $file)
     {
         $attributes = [
             'id' => $file->id,
             'title' => $file->name
         ];
+
+        $conversions = $file->getMediaConversionNames();
 
         if (empty($conversions)) {
             $attributes['src'] = $file->getFullUrl();

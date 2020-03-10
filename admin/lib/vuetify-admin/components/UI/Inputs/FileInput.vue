@@ -8,8 +8,7 @@
       :chips="chips"
       :small-chips="smallChips"
       :accept="accept"
-      @change="change"
-      @input="update"
+      @change="update"
     ></v-file-input>
   </div>
 </template>

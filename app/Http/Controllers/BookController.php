@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Http\Controllers\Traits\CrudHelpers;
 use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
 use App\Http\Resources\BookCollection;
-use App\Review;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class BookController extends Controller
 {
-    use CrudHelpers;
-
     public function __construct()
     {
         $this->authorizeResource(Book::class);
@@ -84,8 +80,6 @@ class BookController extends Controller
     public function store(StoreBook $request)
     {
         $book = Book::create($request->all());
-        $this->saveFiles($book, 'cover', 'images');
-        $this->saveFiles($book, 'extract', 'files');
         return new BookResource($book);
     }
 
@@ -99,9 +93,6 @@ class BookController extends Controller
     public function update(UpdateBook $request, Book $book)
     {
         $book->update($request->all());
-        $this->saveFiles($book, 'cover', 'images');
-        $this->saveFiles($book, 'extract', 'files');
-        $this->saveMultiple($book, Review::class, 'review_ids');
         return new BookResource($book);
     }
 

@@ -25,11 +25,11 @@ class BookSeeder extends Seeder
 
             $book->addMedia(DatabaseSeeder::randomMedia($faker, 'covers', 9))
                 ->preservingOriginal()
-                ->toMediaCollection('images');
+                ->toMediaCollection('cover');
 
             $book->addMedia(DatabaseSeeder::pdf())
                 ->preservingOriginal()
-                ->toMediaCollection('files');
+                ->toMediaCollection('extract');
         });
     }
 }
