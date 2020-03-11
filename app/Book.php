@@ -4,6 +4,7 @@ namespace App;
 
 use App\ModelTraits\RequestMediaTrait;
 use App\ModelTraits\RequestMultipleAssociationTrait;
+use App\ModelTraits\RequestTranslatableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -11,7 +12,6 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
-use Spatie\Translatable\HasTranslations;
 
 /**
  * App\Book
@@ -46,7 +46,7 @@ use Spatie\Translatable\HasTranslations;
 class Book extends Model implements HasMedia
 {
     use HasMediaTrait;
-    use HasTranslations;
+    use RequestTranslatableTrait;
     use RequestMediaTrait;
     use RequestMultipleAssociationTrait;
 

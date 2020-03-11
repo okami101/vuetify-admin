@@ -25,7 +25,10 @@ class BaseResource extends JsonResource
          */
         if (property_exists($this->resource, 'translatable')) {
             collect($this->resource->translatable)->each(function ($field) use (&$attributes) {
-                $attributes[$field] = $this->resource->getTranslation($field, app()->getLocale());
+                $attributes[$field] = $this->resource->getTranslation(
+                    $field,
+                    request()->get('locale') ?: app()->getLocale()
+                );
             });
         }
 

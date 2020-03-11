@@ -5,11 +5,11 @@ let storeActions = {};
 let { GET_LIST, GET_ONE, CREATE, UPDATE } = methods;
 
 export default ({ provider, resource }) => {
-  let { name, actions } = resource;
+  let { name } = resource;
 
   Object.values(methods).forEach(
     action =>
-      (storeActions[action] = async ({ commit, dispatch }, params) => {
+      (storeActions[action] = async ({ state, commit, dispatch }, params) => {
         try {
           /**
            * Only set global loading when read actions
@@ -20,7 +20,10 @@ export default ({ provider, resource }) => {
             });
           }
 
-          let response = await provider[action](name, params);
+          let response = await provider[action](name, {
+            locale: state.locale,
+            ...params
+          });
 
           commit("api/setLoading", false, {
             root: true
@@ -61,7 +64,8 @@ export default ({ provider, resource }) => {
   return {
     namespaced: true,
     state: {
-      item: null
+      item: null,
+      locale: null
     },
     mutations: {
       setItem(state, item) {
@@ -69,6 +73,9 @@ export default ({ provider, resource }) => {
       },
       removeItem(state) {
         state.item = null;
+      },
+      setLocale(state, code) {
+        state.locale = code;
       }
     },
     actions: {
@@ -85,6 +92,13 @@ export default ({ provider, resource }) => {
           commit("setItem", data);
         }
         EventBus.$emit("refresh");
+      },
+      changeLocale({ commit, dispatch }, code) {
+        /**
+         * Change locale and refresh
+         */
+        commit("setLocale", code);
+        dispatch("refresh");
       },
       save({ state, dispatch }, data) {
         if (state.item) {

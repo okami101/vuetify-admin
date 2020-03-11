@@ -17,6 +17,10 @@ export default (axios, base = "/api") => {
     const resourceUrl = `${base}/${resource}`;
     const itemUrl = `${base}/${resource}/${params.id}`;
 
+    if (params.locale) {
+      searchParams.append("locale", params.locale);
+    }
+
     switch (type) {
       case GET_LIST:
       case GET_MANY:
@@ -81,14 +85,15 @@ export default (axios, base = "/api") => {
           });
         }
 
-        return { url: `${resourceUrl}?${searchParams.toString()}` };
+        return { url: resourceUrl, query: searchParams.toString() };
 
       case GET_ONE:
-        return { url: itemUrl };
+        return { url: itemUrl, query: searchParams.toString() };
 
       case CREATE:
         return {
           url: resourceUrl,
+          query: searchParams.toString(),
           method: "post",
           data: objectToFormData(params.data)
         };
@@ -99,6 +104,7 @@ export default (axios, base = "/api") => {
 
         return {
           url: itemUrl,
+          query: searchParams.toString(),
           method: "post",
           data: form
         };
@@ -115,7 +121,11 @@ export default (axios, base = "/api") => {
   };
 
   const fetchApi = async (type, resource, params) => {
-    let { url, method, data } = getRequest(type, resource, params);
+    let { url, query, method, data } = getRequest(type, resource, params);
+
+    if (query) {
+      url += `?${query}`;
+    }
 
     let response = await axios[method || "get"](url, data);
 

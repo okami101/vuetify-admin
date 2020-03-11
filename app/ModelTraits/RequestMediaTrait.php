@@ -2,6 +2,7 @@
 
 namespace App\ModelTraits;
 
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\FileAdder\FileAdder;
 use Spatie\MediaLibrary\MediaCollection\MediaCollection;
 use Spatie\MediaLibrary\Models\Media;
@@ -13,8 +14,7 @@ trait RequestMediaTrait
      */
     public static function bootRequestMediaTrait(): void
     {
-        static::saved(static function ($model) {
-            /** @var self $model */
+        static::saved(static function (Model $model) {
             $model->registerMediaCollections();
 
             collect($model->mediaCollections)->each(function (MediaCollection $collection) use ($model) {

@@ -3,11 +3,11 @@
 namespace App;
 
 use App\ModelTraits\RequestMediaTrait;
+use App\ModelTraits\RequestTranslatableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
-use Spatie\Translatable\HasTranslations;
 
 /**
  * App\Publisher
@@ -33,7 +33,7 @@ use Spatie\Translatable\HasTranslations;
 class Publisher extends Model implements HasMedia
 {
     use HasMediaTrait;
-    use HasTranslations;
+    use RequestTranslatableTrait;
     use RequestMediaTrait;
 
     public $timestamps = false;

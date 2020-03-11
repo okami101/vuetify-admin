@@ -27,14 +27,6 @@ export default {
       };
     }
   },
-  getters: {
-    item: (state, getters, rootState, rootGetters) => resource => {
-      return rootState[resource].item;
-    },
-    can: (state, getters, rootState, rootGetters) => (resource, action) => {
-      return rootGetters[`${resource}/can`](action);
-    }
-  },
   actions: {
     ...storeActions,
     async refresh({ dispatch }, resource) {

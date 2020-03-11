@@ -1,6 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
+    ->exclude('admin/')
     ->exclude('bootstrap/')
     ->exclude('public/')
     ->exclude('resources/')

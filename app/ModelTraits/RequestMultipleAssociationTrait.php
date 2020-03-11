@@ -11,8 +11,7 @@ trait RequestMultipleAssociationTrait
      */
     public static function bootRequestMultipleAssociationTrait(): void
     {
-        static::saved(static function ($model) {
-            /** @var self $model */
+        static::saved(static function (Model $model) {
             collect($model->associations)->each(function ($association, $key) use ($model) {
                 $ids = collect(request()->input($key));
 
