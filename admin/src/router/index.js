@@ -5,7 +5,7 @@ import Dashboard from "@/views/Dashboard";
 
 Vue.use(VueRouter);
 
-const router = i18n => {
+const router = ({ i18n }) => {
   const routes = [
     {
       path: "/",

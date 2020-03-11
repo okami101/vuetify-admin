@@ -7,6 +7,7 @@
       <v-spacer></v-spacer>
       <slot name="actions">
         <va-list-button :resource="resource"></va-list-button>
+        <va-locale-button :resource="resource"></va-locale-button>
       </slot>
     </div>
     <slot :resource="resource"></slot>

@@ -24,7 +24,8 @@
     "clone": "Dupliquer",
     "add": "Ajouter",
     "remove": "Retirer",
-    "move": "Déplacer"
+    "move": "Déplacer",
+    "locale": "Langue"
   },
   "messages": {
     "created": "{resource} créé avec succès !",

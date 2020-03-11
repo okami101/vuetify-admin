@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="can(resource, 'delete')"
+        v-if="hasAction('delete')"
         :icon="icon"
         text
         @click.stop="onDelete"
@@ -20,16 +20,13 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import Item from "vuetify-admin/mixins/item";
+import { mapActions } from "vuex";
 
 export default {
   name: "DeleteButton",
+  mixins: [Item],
   props: {
-    item: Object,
-    resource: {
-      type: String,
-      required: true
-    },
     icon: Boolean,
     label: {
       type: Boolean,
@@ -40,11 +37,6 @@ export default {
       type: String,
       default: "red"
     }
-  },
-  computed: {
-    ...mapGetters({
-      can: "api/can"
-    })
   },
   methods: {
     ...mapActions({

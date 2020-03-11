@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="can(resource, 'list')"
+        v-if="hasAction('list')"
         :icon="icon"
         text
         @click="onExport"
@@ -20,16 +20,14 @@
 </template>
 
 <script>
+import Resource from "vuetify-admin/mixins/resource";
 import Papa from "papaparse";
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "ExportButton",
+  mixins: [Resource],
   props: {
-    resource: {
-      type: String,
-      required: true
-    },
     icon: Boolean,
     color: {
       type: String,
@@ -43,11 +41,6 @@ export default {
       type: Object,
       default: () => {}
     }
-  },
-  computed: {
-    ...mapGetters({
-      can: "api/can"
-    })
   },
   methods: {
     ...mapActions({

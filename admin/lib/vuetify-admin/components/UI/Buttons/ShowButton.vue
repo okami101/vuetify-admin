@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="item && can(resource, 'show')"
+        v-if="item && hasAction('show')"
         :icon="icon"
         text
         exact
@@ -22,26 +22,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "ShowButton",
+  mixins: [Item],
   props: {
-    item: Object,
-    resource: {
-      type: String,
-      required: true
-    },
     icon: Boolean,
     color: {
       type: String,
       default: "green"
     }
-  },
-  computed: {
-    ...mapGetters({
-      can: "api/can"
-    })
   }
 };
 </script>

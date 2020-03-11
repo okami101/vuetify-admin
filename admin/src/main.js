@@ -28,10 +28,10 @@ Vue.prototype.$statusColor = s => {
  * Instancing & mounting Vue
  */
 new Vue({
-  router: router(i18n),
+  router: router({ i18n }),
   store,
   vuetify,
   i18n,
-  admin: admin(axios),
+  admin: admin({ i18n, axios }),
   render: h => h(App)
 }).$mount("#app");

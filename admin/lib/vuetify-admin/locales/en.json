@@ -24,7 +24,8 @@
     "clone": "Clone",
     "add": "Add",
     "remove": "Remove",
-    "move": "Move"
+    "move": "Move",
+    "locale": "Locale"
   },
   "messages": {
     "created": "New {resource} successfully created !",

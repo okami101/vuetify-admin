@@ -13,6 +13,7 @@
           :resource="resource"
           :item="record"
         ></va-delete-button>
+        <va-locale-button :resource="resource"></va-locale-button>
       </slot>
     </div>
     <slot :resource="resource" :item="record"></slot>

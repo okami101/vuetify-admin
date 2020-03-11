@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="item && can(resource, 'create')"
+        v-if="item && hasAction('create')"
         :icon="icon"
         text
         exact
@@ -25,16 +25,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "CloneButton",
+  mixins: [Item],
   props: {
-    item: Object,
-    resource: {
-      type: String,
-      required: true
-    },
     icon: Boolean,
     label: {
       type: Boolean,
@@ -44,11 +40,6 @@ export default {
       type: String,
       default: "success"
     }
-  },
-  computed: {
-    ...mapGetters({
-      can: "api/can"
-    })
   }
 };
 </script>

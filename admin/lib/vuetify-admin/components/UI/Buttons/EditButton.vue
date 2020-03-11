@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="item && can(resource, 'edit')"
+        v-if="item && hasAction('edit')"
         :icon="icon"
         text
         exact
@@ -22,16 +22,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "EditButton",
+  mixins: [Item],
   props: {
-    item: Object,
-    resource: {
-      type: String,
-      required: true
-    },
     icon: Boolean,
     label: {
       type: Boolean,
@@ -41,11 +37,6 @@ export default {
       type: String,
       default: "blue"
     }
-  },
-  computed: {
-    ...mapGetters({
-      can: "api/can"
-    })
   }
 };
 </script>

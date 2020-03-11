@@ -61,8 +61,7 @@ export default ({ provider, resource }) => {
   return {
     namespaced: true,
     state: {
-      item: null,
-      actions
+      item: null
     },
     mutations: {
       setItem(state, item) {
@@ -70,11 +69,6 @@ export default ({ provider, resource }) => {
       },
       removeItem(state) {
         state.item = null;
-      }
-    },
-    getters: {
-      can: state => action => {
-        return state.actions.includes(action);
       }
     },
     actions: {

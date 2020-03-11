@@ -15,12 +15,12 @@ Vue.use(VuetifyAdmin);
 /**
  * Init vuetify admin class with options
  */
-const admin = axios => {
+const admin = ({ i18n, axios }) => {
   return new VuetifyAdmin({
     title: "Bookstore Admin",
     locales: {
       ui: { en, fr },
-      translations: { en: "locales.en", fr: "locales.fr" }
+      translations: { en: i18n.t("locales.en"), fr: i18n.t("locales.fr") }
     },
     authProvider: airlockAuthProvider(axios, {
       routes: {

@@ -18,6 +18,7 @@ import DeleteButton from "./Buttons/DeleteButton";
 import SaveButton from "./Buttons/SaveButton";
 import ExportButton from "./Buttons/ExportButton";
 import CloneButton from "./Buttons/CloneButton";
+import LocaleButton from "./Buttons/LocaleButton";
 
 import TextField from "./Fields/TextField";
 import NumberField from "./Fields/NumberField";
@@ -67,6 +68,7 @@ export {
   SaveButton,
   ExportButton,
   CloneButton,
+  LocaleButton,
   TextField,
   NumberField,
   RatingField,

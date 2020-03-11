@@ -1,5 +1,5 @@
 export default ({ store, i18n, resource }) => {
-  let { name, actions } = resource;
+  let { name, actions, translatable } = resource;
 
   /**
    * Route item component builder (edit and show)
@@ -48,7 +48,9 @@ export default ({ store, i18n, resource }) => {
             }
           },
       meta: {
-        resource: name
+        resource: name,
+        translatable,
+        actions
       },
       beforeEnter: (to, from, next) => {
         /**

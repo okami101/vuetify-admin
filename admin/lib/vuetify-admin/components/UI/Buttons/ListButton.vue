@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="can(resource, 'list')"
+        v-if="hasAction('list')"
         :icon="icon"
         text
         exact
@@ -21,25 +21,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import Resource from "vuetify-admin/mixins/resource";
 
 export default {
   name: "ListButton",
+  mixins: [Resource],
   props: {
-    resource: {
-      type: String,
-      required: true
-    },
     icon: Boolean,
     color: {
       type: String,
       default: "warning"
     }
-  },
-  computed: {
-    ...mapGetters({
-      can: "api/can"
-    })
   }
 };
 </script>
