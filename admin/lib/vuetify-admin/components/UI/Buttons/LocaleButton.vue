@@ -5,11 +5,7 @@
         <v-icon small>mdi-translate</v-icon>
         <span v-if="!icon" class="ml-2">
           {{ $t("va.actions.locale") }} :
-          {{
-            $admin.locales.translations[
-              $store.state[resource].locale || $i18n.locale
-            ]
-          }}
+          {{ $admin.locales.translations[$store.state[resource].locale] }}
         </span>
       </v-btn>
     </template>
@@ -17,7 +13,7 @@
       <v-list-item
         v-for="(label, code) in $admin.locales.translations"
         :key="code"
-        @click="$store.dispatch(`${resource}/changeLocale`, code)"
+        @click="changeLocale(code)"
       >
         <v-list-item-title>{{ label }}</v-list-item-title>
       </v-list-item>
@@ -40,6 +36,17 @@ export default {
     color: {
       type: String,
       default: "primary"
+    }
+  },
+  created() {
+    /**
+     * Force to current locale
+     */
+    this.changeLocale(this.$i18n.locale);
+  },
+  methods: {
+    changeLocale(code) {
+      this.$store.dispatch(`${this.resource}/changeLocale`, code);
     }
   }
 };
