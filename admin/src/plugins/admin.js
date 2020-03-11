@@ -18,7 +18,10 @@ Vue.use(VuetifyAdmin);
 const admin = axios => {
   return new VuetifyAdmin({
     title: "Bookstore Admin",
-    locales: { en, fr },
+    locales: {
+      ui: { en, fr },
+      translations: { en: "locales.en", fr: "locales.fr" }
+    },
     authProvider: airlockAuthProvider(axios, {
       routes: {
         login: "/auth/login",
@@ -27,7 +30,12 @@ const admin = axios => {
       }
     }),
     dataProvider: laravelDataProvider(axios),
-    resources: ["publishers", "books", "authors", "reviews"],
+    resources: [
+      { name: "publishers", translatable: true },
+      { name: "books", translatable: true },
+      { name: "authors", translatable: true },
+      "reviews"
+    ],
     resourcesPath: "resources"
   });
 };

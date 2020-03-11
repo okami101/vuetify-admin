@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\MediaCollection\MediaCollection;
 use Spatie\MediaLibrary\Models\Media;
 
-class MediaResource extends JsonResource
+class BaseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,6 +20,18 @@ class MediaResource extends JsonResource
     {
         $attributes = parent::toArray($request);
 
+        /**
+         * Translatable API generator
+         */
+        if (property_exists($this->resource, 'translatable')) {
+            collect($this->resource->translatable)->each(function ($field) use (&$attributes) {
+                $attributes[$field] = $this->resource->getTranslation($field, app()->getLocale());
+            });
+        }
+
+        /**
+         * Media API generator
+         */
         if ($this->resource instanceof HasMedia) {
             $this->resource->registerMediaCollections();
 
@@ -41,7 +53,6 @@ class MediaResource extends JsonResource
             });
         }
 
-        unset($attributes['media']);
         return $attributes;
     }
 

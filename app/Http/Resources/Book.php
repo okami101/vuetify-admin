@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Support\Collection;
 
-class Book extends MediaResource
+class Book extends BaseResource
 {
     /**
      * Transform the resource into an array.

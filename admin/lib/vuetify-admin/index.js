@@ -83,8 +83,8 @@ export default class VuetifyAdmin {
     /**
      * Load i18n locales
      */
-    Object.keys(this.locales).forEach(locale => {
-      i18n.mergeLocaleMessage(locale, { va: this.locales[locale] });
+    Object.keys(this.locales.ui).forEach(locale => {
+      i18n.mergeLocaleMessage(locale, { va: this.locales.ui[locale] });
     });
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-class Author extends MediaResource
+class Author extends BaseResource
 {
     /**
      * Transform the resource into an array.

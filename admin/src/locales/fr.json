@@ -3,6 +3,10 @@
   "bad": "Mauvais",
   "address": "Adresse",
   "backlinks": "Références",
+  "locales": {
+    "en": "Anglais",
+    "fr": "Français"
+  },
   "routes": {
     "login": "Login",
     "dashboard": "Tableau de bord",
