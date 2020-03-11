@@ -11,6 +11,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * App\Book
@@ -45,6 +46,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Book extends Model implements HasMedia
 {
     use HasMediaTrait;
+    use HasTranslations;
     use RequestMediaTrait;
     use RequestMultipleAssociationTrait;
 
@@ -64,16 +66,18 @@ class Book extends Model implements HasMedia
         'publication_date',
     ];
 
-    protected $dates = [
-        'publication_date'
-    ];
-
     protected $casts = [
         'price' => 'float',
         'commentable' => 'boolean',
         'formats' => 'array',
         'tags' => 'array'
     ];
+
+    protected $dates = [
+        'publication_date'
+    ];
+
+    public $translatable = ['title', 'description', 'summary'];
 
     public $associations = [
         'review_ids' => Review::class

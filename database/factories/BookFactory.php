@@ -10,10 +10,19 @@ $factory->define(Book::class, function (Faker $faker) {
 
     return [
         'isbn' => $faker->isbn13,
-        'title' => $faker->sentence,
+        'title' => [
+            'en' => $faker->sentence,
+            'fr' => $faker->sentence,
+        ],
         'category' => $faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
-        'description' => $faker->paragraph(10),
-        'summary' => $faker->htmlParagraphs(10, 10, 10),
+        'description' => [
+            'en' => $faker->paragraph(10),
+            'fr' => $faker->paragraph(10),
+        ],
+        'summary' => [
+            'en' => $faker->htmlParagraphs(10, 10, 10),
+            'fr' => $faker->htmlParagraphs(10, 10, 10),
+        ],
         'formats' => $faker->randomElements(
             ['pocket', 'paperback', 'pdf', 'epub', 'kindle'],
             $faker->numberBetween(1, 5)

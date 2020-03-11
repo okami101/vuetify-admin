@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * App\Author
@@ -26,6 +27,7 @@ class Author extends Model implements HasMedia
 {
     use HasMediaTrait;
     use RequestMediaTrait;
+    use HasTranslations;
 
     public $timestamps = false;
 
@@ -38,6 +40,8 @@ class Author extends Model implements HasMedia
     protected $casts = [
         'backlinks' => 'array'
     ];
+
+    public $translatable = ['description'];
 
     protected $with = ['media'];
 

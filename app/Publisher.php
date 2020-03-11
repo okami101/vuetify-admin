@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * App\Publisher
@@ -32,6 +33,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Publisher extends Model implements HasMedia
 {
     use HasMediaTrait;
+    use HasTranslations;
     use RequestMediaTrait;
 
     public $timestamps = false;
@@ -49,14 +51,16 @@ class Publisher extends Model implements HasMedia
         'opening_date',
     ];
 
-    protected $dates = [
-        'opening_date'
-    ];
-
     protected $casts = [
         'active' => 'boolean',
         'address' => 'object'
     ];
+
+    protected $dates = [
+        'opening_date'
+    ];
+
+    public $translatable = ['description'];
 
     protected $with = ['media'];
 

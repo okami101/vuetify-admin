@@ -16,7 +16,7 @@ class AddAuthorsTable extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->longText('description');
+            $table->json('description');
         });
 
         Schema::create('author_book', function (Blueprint $table) {
