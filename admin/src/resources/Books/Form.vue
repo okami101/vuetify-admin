@@ -26,11 +26,11 @@
             format="long"
           ></va-date-input>
           <va-autocomplete-input
-            source="review_ids"
+            source="author_ids"
             multiple
-            reference="reviews"
-            :fields="['author']"
-            option-text="author"
+            reference="authors"
+            :fields="['name']"
+            option-text="name"
           ></va-autocomplete-input>
           <va-autocomplete-input
             source="tags"

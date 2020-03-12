@@ -16,12 +16,9 @@ class Book extends BaseResource
     {
         $attributes = parent::toArray($request);
 
-        if ($this->whenLoaded('reviews') instanceof Collection) {
-            unset($attributes['reviews']);
-            $attributes['review_ids'] = $this->whenLoaded('reviews')->pluck('id');
-        }
-
         $attributes += [
+            //'authors' => $this->whenLoaded('authors')->pluck('id'),
+            //'reviews' => $this->whenLoaded('reviews')->pluck('id'),
             'links' => [
                 'self' => route('books.show', $this->id),
             ],

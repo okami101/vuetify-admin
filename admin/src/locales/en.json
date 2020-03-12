@@ -103,6 +103,7 @@
         "formats": "Formats",
         "publisher_id": "Publisher",
         "review_ids": "Reviews",
+        "author_ids": "Authors",
         "price": "Price",
         "commentable": "Commentable",
         "tags": "Tags",

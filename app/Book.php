@@ -3,7 +3,6 @@
 namespace App;
 
 use App\ModelTraits\RequestMediaTrait;
-use App\ModelTraits\RequestMultipleAssociationTrait;
 use App\ModelTraits\RequestTranslatableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -48,7 +47,6 @@ class Book extends Model implements HasMedia
     use HasMediaTrait;
     use RequestTranslatableTrait;
     use RequestMediaTrait;
-    use RequestMultipleAssociationTrait;
 
     public $timestamps = false;
 

@@ -71,6 +71,25 @@
           type="date"
           :options="{ format: 'long' }"
         ></va-field>
+        <va-field source="author_ids">
+          <va-reference-field
+            source="author_ids"
+            multiple
+            reference="authors"
+            link="show"
+            property="name"
+            v-slot="{ items, link }"
+          >
+            <va-single-field-list :items="items" v-slot="{ item }">
+              <v-chip
+                color="primary"
+                :to="{ name: link, params: { id: item.id } }"
+              >
+                {{ item.name }}
+              </v-chip>
+            </va-single-field-list>
+          </va-reference-field>
+        </va-field>
         <va-field source="review_ids">
           <va-reference-field
             source="review_ids"
