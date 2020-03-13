@@ -99,7 +99,7 @@ import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
 import isEmpty from "lodash/isEmpty";
 import FormFilter from "../List/FormFilter";
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
@@ -136,13 +136,6 @@ export default {
       default: () => []
     },
     include: {
-      type: Array,
-      default: () => []
-    },
-    /**
-     * References to fetch
-     */
-    references: {
       type: Array,
       default: () => []
     },
@@ -255,9 +248,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      setReferenceData: "api/setReferenceData"
-    }),
     ...mapActions({
       getList: "api/getList",
       getMany: "api/getMany",
@@ -379,16 +369,6 @@ export default {
         }
       });
 
-      /**
-       * Async references preloading
-       */
-      this.references.map(r => {
-        this.loadReferences(
-          data.map(d => d[r.source]).filter(d => d),
-          r
-        );
-      });
-
       this.loading = false;
       this.items = data;
       this.total = total;
@@ -419,25 +399,6 @@ export default {
         fields[relation] = [...f, s.substr(lastIndex + 1)];
       });
       return fields;
-    },
-    async loadReferences(ids, { name, fields, include, multiple, syncKey }) {
-      /**
-       * Preload keyed reference data resources
-       */
-      let { data } = await this.getMany({
-        resource: name,
-        params: {
-          fields: {
-            [name]: fields
-          },
-          include,
-          ids: [...new Set(multiple ? [].concat(...ids) : ids)]
-        }
-      });
-      this.setReferenceData({
-        key: syncKey,
-        data
-      });
     },
     async onDelete(item) {
       this.fetchData();

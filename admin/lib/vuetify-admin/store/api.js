@@ -13,18 +13,11 @@ Object.values(methods).forEach(action => {
 export default {
   namespaced: true,
   state: {
-    loading: false,
-    references: {}
+    loading: false
   },
   mutations: {
     setLoading(state, loading) {
       state.loading = loading;
-    },
-    setReferenceData(state, { key, data }) {
-      state.references = {
-        ...state.references,
-        [key]: data
-      };
     }
   },
   actions: {
