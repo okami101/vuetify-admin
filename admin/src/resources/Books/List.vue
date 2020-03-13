@@ -2,11 +2,9 @@
   <v-card>
     <va-list
       :fields="[
-        'id',
         'isbn',
         'category',
         'publisher_id',
-        'publisher.id',
         'publisher.name',
         'title',
         'price',
@@ -16,10 +14,9 @@
         'publication_date',
         'description',
         'publication_date',
-        'authors.id',
         'authors.name',
-        'reviews.id',
-        'reviews.name'
+        'reviews.book_id',
+        'reviews.author'
       ]"
       :filters="[
         'q',
@@ -34,7 +31,7 @@
         },
         { source: 'published_after', type: 'date', options: { format: 'long' } }
       ]"
-      :include="['publisher', 'authors']"
+      :include="['publisher', 'authors', 'reviews']"
       flat
       v-slot="props"
       v-model="selected"
@@ -42,7 +39,6 @@
     >
       <va-datagrid
         :fields="[
-          'id',
           { source: 'isbn', link: 'show' },
           {
             source: 'cover',
@@ -65,29 +61,21 @@
             type: 'date',
             options: { format: 'long' }
           },
-          'reviews',
-          'authors'
+          'authors',
+          'reviews'
         ]"
         show-expand
         v-bind="props"
         v-model="selected"
         :options.sync="options"
       >
-        <template v-slot:publisher_id="{ item }">
-          <va-reference-field
-            source="publisher_id"
-            :item="item"
-            reference="publishers"
-            sync-key="books_publisher_list"
-            link="show"
-            property="name"
+        <template v-slot:publisher="{ value }">
+          <v-chip
+            color="orange"
+            :to="{ name: 'publishers_show', params: { id: value.id } }"
           >
-            <template v-slot="{ item, to }">
-              <v-chip color="orange" :to="to">
-                {{ item.name }}
-              </v-chip>
-            </template>
-          </va-reference-field>
+            {{ value.name }}
+          </v-chip>
         </template>
         <template v-slot:category="{ item }">
           <v-chip>
@@ -111,31 +99,27 @@
             </va-single-field-list>
           </va-array-field>
         </template>
-        <template v-slot:reviews="{ item }">
-          <va-array-field source="reviews" :item="item" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }">
-              <v-chip
-                color="green"
-                :to="{ name: 'reviews_show', params: { id: item.id } }"
-                small
-              >
-                {{ item.author }}
-              </v-chip>
-            </va-single-field-list>
-          </va-array-field>
+        <template v-slot:authors="{ value }">
+          <va-single-field-list :items="value" v-slot="{ item }">
+            <v-chip
+              color="primary"
+              :to="{ name: 'authors_show', params: { id: item.id } }"
+              small
+            >
+              {{ item.name }}
+            </v-chip>
+          </va-single-field-list>
         </template>
-        <template v-slot:authors="{ item }">
-          <va-array-field source="authors" :item="item" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }">
-              <v-chip
-                color="primary"
-                :to="{ name: 'authors_show', params: { id: item.id } }"
-                small
-              >
-                {{ item.name }}
-              </v-chip>
-            </va-single-field-list>
-          </va-array-field>
+        <template v-slot:reviews="{ value }">
+          <va-single-field-list :items="value" v-slot="{ item }" :limit="2">
+            <v-chip
+              color="green"
+              :to="{ name: 'reviews_show', params: { id: item.id } }"
+              small
+            >
+              {{ item.author }}
+            </v-chip>
+          </va-single-field-list>
         </template>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}

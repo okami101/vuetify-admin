@@ -4,6 +4,7 @@
       <v-col sm="3">
         <va-autocomplete-input
           source="book_id"
+          :label="$tc('resources.books.name')"
           option-text="title"
           reference="books"
           :fields="['title', 'isbn']"

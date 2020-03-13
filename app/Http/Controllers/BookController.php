@@ -7,7 +7,6 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
-use App\Http\Resources\BookCollection;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -22,11 +21,11 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return BookCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return new BookCollection(
+        return BookResource::collection(
             QueryBuilder::for(Book::class)
                 ->allowedFields([
                     'id',
@@ -45,6 +44,7 @@ class BookController extends Controller
                     'authors.id',
                     'authors.name',
                     'reviews.id',
+                    'reviews.book_id',
                     'reviews.author',
                 ])
                 ->allowedFilters([

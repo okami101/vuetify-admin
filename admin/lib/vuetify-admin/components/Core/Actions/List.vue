@@ -363,9 +363,7 @@ export default {
       let { data, total } = await this.getList({
         resource: this.resource,
         params: {
-          fields: {
-            [this.resource]: this.fields
-          },
+          fields: this.getFieldsQuery(this.resource, this.fields),
           include: this.include,
           pagination: {
             page,
@@ -394,6 +392,33 @@ export default {
       this.loading = false;
       this.items = data;
       this.total = total;
+    },
+    getFieldsQuery(resource, sources, fields = {}) {
+      sources.forEach(s => {
+        /**
+         * Dot notation support
+         */
+        var lastIndex = s.lastIndexOf(".");
+
+        if (lastIndex === -1) {
+          /**
+           * This is simple field
+           * Add simple field to main resource
+           */
+          let f = fields[resource] || [];
+          fields[resource] = [...f, s];
+          return;
+        }
+
+        /**
+         * This is field of relation
+         * Recurcivity for nested relation
+         */
+        let relation = s.substr(0, lastIndex);
+        let f = fields[relation] || [];
+        fields[relation] = [...f, s.substr(lastIndex + 1)];
+      });
+      return fields;
     },
     async loadReferences(ids, { name, fields, include, multiple, syncKey }) {
       /**

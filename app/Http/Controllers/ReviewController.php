@@ -6,7 +6,6 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
-use App\Http\Resources\ReviewCollection;
 use App\Review;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -22,13 +21,13 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return ReviewCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return new ReviewCollection(
+        return ReviewResource::collection(
             QueryBuilder::for(Review::class)
-                ->allowedFields(['id', 'book_id', 'rating', 'status', 'body', 'author', 'publication_date'])
+                ->allowedFields(['id', 'book_id', 'book.id', 'book.title', 'rating', 'status', 'body', 'author', 'publication_date'])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['author', 'body'])),
                     AllowedFilter::exact('id'),

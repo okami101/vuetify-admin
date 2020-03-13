@@ -6,7 +6,6 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StorePublisher;
 use App\Http\Requests\UpdatePublisher;
 use App\Http\Resources\Publisher as PublisherResource;
-use App\Http\Resources\PublisherCollection;
 use App\Publisher;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -23,11 +22,11 @@ class PublisherController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return PublisherCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return new PublisherCollection(
+        return PublisherResource::collection(
             QueryBuilder::for(Publisher::class)
                 ->allowedFields(['id', 'type', 'name', 'description', 'founder', 'headquarter', 'url', 'email', 'active', 'address', 'opening_date'])
                 ->allowedFilters([

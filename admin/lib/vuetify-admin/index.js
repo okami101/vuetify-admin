@@ -123,9 +123,20 @@ export default class VuetifyAdmin {
     );
 
     /**
-     * Check Auth after each navigation
+     * Permissions helper & directive
      */
-    router.beforeEach((to, from, next) => {
+    this.can = permissions => {
+      return !isEmpty(
+        (Array.isArray(permissions) ? permissions : [permissions]).filter(
+          p => -1 !== store.getters["auth/getPermissions"].indexOf(p)
+        )
+      );
+    };
+
+    /**
+     * Each navigation trigger function
+     */
+    const beforeEachNavigation = to => {
       /**
        * Check and reload authenticated user with permissions
        * after each navigation
@@ -133,16 +144,35 @@ export default class VuetifyAdmin {
       store.dispatch("auth/checkAuth");
 
       /**
-       * Main title
+       * Auto close aside
+       */
+      store.commit("aside/close");
+
+      /**
+       * Set main and document title
        */
       store.commit("layout/setTitle", to.meta.title || this.title);
-      store.commit("aside/close");
       document.title = to.meta.title
         ? `${to.meta.title} | ${this.title}`
         : this.title;
+    };
+
+    /**
+     * Check Auth after each navigation
+     */
+    router.beforeEach((to, from, next) => {
+      /**
+       * Main title
+       */
+      beforeEachNavigation(to);
 
       next();
     });
+
+    /**
+     * Init navigation
+     */
+    beforeEachNavigation(router.currentRoute);
 
     /**
      * Recheck auth on app visible (switching tabs,...)
@@ -154,18 +184,9 @@ export default class VuetifyAdmin {
     });
 
     /**
-     * Permissions helper & directive
+     * Admin app is loaded
      */
-    this.can = permissions => {
-      return !isEmpty(
-        (Array.isArray(permissions) ? permissions : [permissions]).filter(
-          p => -1 !== store.getters["auth/getPermissions"].indexOf(p)
-        )
-      );
-    };
-
     this.loaded = true;
-    store.dispatch("auth/checkAuth");
   }
 }
 

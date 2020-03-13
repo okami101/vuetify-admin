@@ -7,7 +7,6 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreAuthor;
 use App\Http\Requests\UpdateAuthor;
 use App\Http\Resources\Author as AuthorResource;
-use App\Http\Resources\AuthorCollection;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -21,11 +20,11 @@ class AuthorController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return AuthorCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return new AuthorCollection(
+        return AuthorResource::collection(
             QueryBuilder::for(Author::class)
                 ->allowedFields([
                     'id',

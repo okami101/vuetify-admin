@@ -1,21 +1,17 @@
 <template>
-  <va-show>
+  <va-show v-slot="{ item }">
     <va-simple-show>
-      <va-field source="book_id">
-        <va-reference-field
-          source="book_id"
-          reference="books"
-          link="show"
-          property="title"
-        >
-        </va-reference-field>
+      <va-field source="book">
+        <router-link :to="{ name: 'books_show', params: { id: item.book.id } }">
+          {{ item.book.title }}
+        </router-link>
       </va-field>
-      <va-field source="status" v-slot="{ value }">
-        <v-chip :color="$statusColor(value)">
+      <va-field source="status">
+        <v-chip :color="$statusColor(item.status)">
           <va-select-field source="status" enum></va-select-field>
         </v-chip>
       </va-field>
-      <va-field source="quality" v-slot="{ item }">
+      <va-field source="quality">
         {{ item.rating >= 3 ? $t("good") : $t("bad") }}
       </va-field>
       <va-field source="rating" type="rating"></va-field>

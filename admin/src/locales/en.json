@@ -54,6 +54,7 @@
         "url": "Url",
         "email": "Email",
         "active": "Active",
+        "books": "Livres",
         "address": {
           "street": "Street",
           "postcode": "Postcode",
@@ -81,6 +82,7 @@
         "name": "Name",
         "photo": "Photo",
         "description": "Description",
+        "books": "Books",
         "backlinks": {
           "text": "Text",
           "date": "Date",
@@ -102,11 +104,8 @@
         "publication_date": "Publication date",
         "formats": "Formats",
         "publisher": "Publisher",
-        "publisher_id": "Publisher",
         "reviews": "Reviews",
-        "review_ids": "Reviews",
         "authors": "Authors",
-        "author_ids": "Authors",
         "price": "Price",
         "commentable": "Commentable",
         "tags": "Tags",
@@ -145,7 +144,7 @@
         "author": "Author",
         "rating": "Rating",
         "quality": "Quality",
-        "book_id": "Book",
+        "book": "Book",
         "published_before": "Published before",
         "published_after": "Published after"
       },

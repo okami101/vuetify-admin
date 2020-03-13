@@ -2,7 +2,6 @@
   <v-card>
     <va-list
       :fields="[
-        'id',
         'name',
         'type',
         'founder',
@@ -27,7 +26,6 @@
     >
       <va-datagrid
         :fields="[
-          'id',
           {
             source: 'logo',
             type: 'image',

@@ -14,6 +14,8 @@ class Review extends BaseResource
     {
         $attributes = parent::toArray($request);
 
+        $attributes['book'] = Book::make($this->whenLoaded('book'));
+
         $attributes += [
             'links' => [
                 'self' => route('reviews.show', $this->id),

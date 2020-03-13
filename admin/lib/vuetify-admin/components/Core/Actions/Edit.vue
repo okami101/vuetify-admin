@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="record">
     <va-aside-content>
       <slot name="aside" :resource="resource" :item="record"></slot>
     </va-aside-content>

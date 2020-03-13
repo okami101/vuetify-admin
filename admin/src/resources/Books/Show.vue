@@ -1,5 +1,5 @@
 <template>
-  <va-show>
+  <va-show v-slot="{ item }">
     <va-tabbed-show
       :tabs="[
         { id: 'attributes', icon: 'mdi-eye' },
@@ -15,18 +15,13 @@
             preview="thumbnails.medium"
           ></va-image-field>
         </va-field>
-        <va-field source="publisher_id">
-          <va-reference-field
-            source="publisher_id"
-            reference="publishers"
-            link="show"
-            property="name"
-            v-slot="{ item, to }"
+        <va-field source="publisher">
+          <v-chip
+            color="orange"
+            :to="{ name: 'publishers_show', params: { id: item.publisher.id } }"
           >
-            <v-chip color="orange" :to="to">
-              {{ item.name }}
-            </v-chip>
-          </va-reference-field>
+            {{ item.publisher.name }}
+          </v-chip>
         </va-field>
         <va-field source="title"></va-field>
         <va-field source="category">
@@ -71,43 +66,22 @@
           type="date"
           :options="{ format: 'long' }"
         ></va-field>
-        <va-field source="author_ids">
-          <va-reference-field
-            source="author_ids"
-            multiple
-            reference="authors"
-            link="show"
-            property="name"
-            v-slot="{ items, link }"
-          >
-            <va-single-field-list :items="items" v-slot="{ item }">
-              <v-chip
-                color="primary"
-                :to="{ name: link, params: { id: item.id } }"
-              >
-                {{ item.name }}
-              </v-chip>
-            </va-single-field-list>
-          </va-reference-field>
+        <va-field source="authors">
+          <va-single-field-list :items="item.authors" v-slot="{ item }">
+            <v-chip
+              color="primary"
+              :to="{ name: link, params: { id: item.id } }"
+            >
+              {{ item.name }}
+            </v-chip>
+          </va-single-field-list>
         </va-field>
-        <va-field source="review_ids">
-          <va-reference-field
-            source="review_ids"
-            multiple
-            reference="reviews"
-            link="show"
-            property="author"
-            v-slot="{ items, link }"
-          >
-            <va-single-field-list :items="items" v-slot="{ item }">
-              <v-chip
-                color="green"
-                :to="{ name: link, params: { id: item.id } }"
-              >
-                {{ item.author }}
-              </v-chip>
-            </va-single-field-list>
-          </va-reference-field>
+        <va-field source="reviews">
+          <va-single-field-list :items="item.reviews" v-slot="{ item }">
+            <v-chip color="green" :to="{ name: link, params: { id: item.id } }">
+              {{ item.author }}
+            </v-chip>
+          </va-single-field-list>
         </va-field>
       </template>
       <template v-slot:summary>

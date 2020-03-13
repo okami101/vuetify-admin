@@ -2,8 +2,8 @@
   <v-card>
     <va-list
       :fields="[
-        'id',
         'book_id',
+        'book.title',
         'status',
         'rating',
         'author',
@@ -12,7 +12,7 @@
       ]"
       :filters="[
         'q',
-        'book_id',
+        'book',
         { source: 'rating', type: 'rating' },
         {
           source: 'status',
@@ -27,20 +27,15 @@
         },
         { source: 'published_after', type: 'date', options: { format: 'long' } }
       ]"
-      :references="[
-        {
-          source: 'book_id',
-          name: 'books',
-          syncKey: 'reviews_book_list',
-          fields: ['title']
-        }
-      ]"
+      :include="['book']"
       flat
       v-model="selected"
       :options.sync="options"
     >
-      <template v-slot:filter.book_id="props">
+      <template v-slot:filter.book="props">
         <va-autocomplete-input
+          source="book_id"
+          :label="$tc('resources.books.name')"
           option-text="title"
           multiple
           reference="books"
@@ -57,17 +52,7 @@
       <template v-slot="props">
         <va-datagrid
           :fields="[
-            'id',
-            {
-              source: 'book_id',
-              type: 'reference',
-              options: {
-                reference: 'books',
-                syncKey: 'reviews_book_list',
-                link: 'show',
-                property: 'title'
-              }
-            },
+            'book',
             'status',
             { source: 'rating', type: 'rating' },
             'quality',
@@ -85,6 +70,11 @@
         >
           <template v-slot:expanded-item="{ item }">
             {{ item.body }}
+          </template>
+          <template v-slot:book="{ value }">
+            <router-link :to="{ name: 'books_show', params: { id: value.id } }">
+              {{ value.title }}
+            </router-link>
           </template>
           <template v-slot:quality="{ item }">
             {{ item.rating >= 3 ? $t("good") : $t("bad") }}
