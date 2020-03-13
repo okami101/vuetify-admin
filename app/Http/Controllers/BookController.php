@@ -31,6 +31,8 @@ class BookController extends Controller
                 ->allowedFields([
                     'id',
                     'publisher_id',
+                    'publisher.id',
+                    'publisher.name',
                     'isbn',
                     'title',
                     'category',
@@ -40,6 +42,10 @@ class BookController extends Controller
                     'commentable',
                     'tags',
                     'publication_date',
+                    'authors.id',
+                    'authors.name',
+                    'reviews.id',
+                    'reviews.author',
                 ])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'description', 'summary'])),
@@ -55,7 +61,7 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts(['id', 'isbn', 'title', 'price', 'publication_date'])
-                ->allowedIncludes(['authors', 'reviews'])
+                ->allowedIncludes(['publisher', 'authors', 'reviews'])
                 ->exportOrPaginate()
         );
     }
@@ -68,7 +74,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return new BookResource($book->load(['authors', 'reviews']));
+        return new BookResource($book->load(['publisher', 'authors', 'reviews']));
     }
 
     /**

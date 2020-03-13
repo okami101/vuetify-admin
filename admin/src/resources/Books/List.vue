@@ -6,12 +6,20 @@
         'isbn',
         'category',
         'publisher_id',
+        'publisher.id',
+        'publisher.name',
         'title',
         'price',
         'commentable',
         'formats',
         'description',
-        'publication_date'
+        'publication_date',
+        'description',
+        'publication_date',
+        'authors.id',
+        'authors.name',
+        'reviews.id',
+        'reviews.name'
       ]"
       :filters="[
         'q',
@@ -26,28 +34,7 @@
         },
         { source: 'published_after', type: 'date', options: { format: 'long' } }
       ]"
-      :include="['authors', 'reviews']"
-      :references="[
-        {
-          source: 'publisher_id',
-          name: 'publishers',
-          syncKey: 'books_publisher_list'
-        },
-        {
-          source: 'author_ids',
-          name: 'authors',
-          multiple: true,
-          reference: 'authors',
-          syncKey: 'books_authors_list'
-        },
-        {
-          source: 'review_ids',
-          name: 'reviews',
-          multiple: true,
-          reference: 'reviews',
-          syncKey: 'books_reviews_list'
-        }
-      ]"
+      :include="['publisher', 'authors']"
       flat
       v-slot="props"
       v-model="selected"
@@ -64,7 +51,7 @@
             options: { preview: 'thumbnails.small' }
           },
           'category',
-          'publisher_id',
+          'publisher',
           'title',
           {
             source: 'price',
@@ -78,8 +65,8 @@
             type: 'date',
             options: { format: 'long' }
           },
-          'review_ids',
-          'author_ids'
+          'reviews',
+          'authors'
         ]"
         show-expand
         v-bind="props"
@@ -124,49 +111,31 @@
             </va-single-field-list>
           </va-array-field>
         </template>
-        <template v-slot:review_ids="{ item }">
-          <va-reference-field
-            source="review_ids"
-            :item="item"
-            multiple
-            reference="reviews"
-            sync-key="books_reviews_list"
-            link="show"
-            property="author"
-            v-slot="{ items, link }"
-          >
-            <va-single-field-list :items="items" v-slot="{ item }" :limit="2">
+        <template v-slot:reviews="{ item }">
+          <va-array-field source="reviews" :item="item" v-slot="{ items }">
+            <va-single-field-list :items="items" v-slot="{ item }">
               <v-chip
                 color="green"
-                :to="{ name: link, params: { id: item.id } }"
+                :to="{ name: 'reviews_show', params: { id: item.id } }"
                 small
               >
                 {{ item.author }}
               </v-chip>
             </va-single-field-list>
-          </va-reference-field>
+          </va-array-field>
         </template>
-        <template v-slot:author_ids="{ item }">
-          <va-reference-field
-            source="author_ids"
-            :item="item"
-            multiple
-            reference="authors"
-            sync-key="books_authors_list"
-            link="show"
-            property="name"
-            v-slot="{ items, link }"
-          >
+        <template v-slot:authors="{ item }">
+          <va-array-field source="authors" :item="item" v-slot="{ items }">
             <va-single-field-list :items="items" v-slot="{ item }">
               <v-chip
                 color="primary"
-                :to="{ name: link, params: { id: item.id } }"
+                :to="{ name: 'authors_show', params: { id: item.id } }"
                 small
               >
                 {{ item.name }}
               </v-chip>
             </va-single-field-list>
-          </va-reference-field>
+          </va-array-field>
         </template>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
