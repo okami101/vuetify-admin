@@ -386,7 +386,7 @@ export default {
        */
       this.references.map(r => {
         this.loadReferences(
-          data.map(d => d[r.source]),
+          data.map(d => d[r.source]).filter(d => d),
           r
         );
       });

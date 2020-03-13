@@ -21,6 +21,22 @@ class BaseResource extends JsonResource
         $attributes = parent::toArray($request);
 
         /**
+         * Generate array ids for relation collections (belongsToMany or hasMany)
+         */
+        collect($this->resource->getRelations())->each(function ($relation, $name) use (&$attributes) {
+            $items = $this->whenLoaded($name);
+            if ($items instanceof Collection) {
+                $class = strtolower(basename(get_class($this->resource->$name()->getRelated())));
+                $attributes["{$class}_ids"] = $items->pluck('id');
+            }
+
+            /**
+             * Remove list entirely from response because VA can use only ids for fetching relations
+             */
+            unset($attributes[$name]);
+        });
+
+        /**
          * Translatable API generator
          */
         if (property_exists($this->resource, 'translatable')) {

@@ -40,7 +40,7 @@ class ReviewController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts(['id', 'rating', 'author', 'publication_date'])
-                ->allowedIncludes(['books'])
+                ->allowedIncludes(['book'])
                 ->exportOrPaginate()
         );
     }
@@ -53,7 +53,7 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        return new ReviewResource($review);
+        return new ReviewResource($review->load(['book']));
     }
 
     /**

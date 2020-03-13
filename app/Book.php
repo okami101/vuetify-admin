@@ -77,10 +77,6 @@ class Book extends Model implements HasMedia
 
     public $translatable = ['title', 'description', 'summary'];
 
-    public $associations = [
-        'review_ids' => Review::class
-    ];
-
     protected $with = ['media'];
 
     public function registerMediaCollections()

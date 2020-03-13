@@ -55,7 +55,7 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts(['id', 'isbn', 'title', 'price', 'publication_date'])
-                ->allowedIncludes(['publisher', 'authors', 'reviews'])
+                ->allowedIncludes(['authors', 'reviews'])
                 ->exportOrPaginate()
         );
     }
@@ -80,6 +80,7 @@ class BookController extends Controller
     public function store(StoreBook $request)
     {
         $book = Book::create($request->all());
+        $book->authors()->sync($request->input('author_ids'));
         return new BookResource($book);
     }
 
@@ -93,6 +94,7 @@ class BookController extends Controller
     public function update(UpdateBook $request, Book $book)
     {
         $book->update($request->all());
+        $book->authors()->sync($request->input('author_ids'));
         return new BookResource($book);
     }
 

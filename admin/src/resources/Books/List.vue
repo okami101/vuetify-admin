@@ -26,12 +26,19 @@
         },
         { source: 'published_after', type: 'date', options: { format: 'long' } }
       ]"
-      :include="['reviews']"
+      :include="['authors', 'reviews']"
       :references="[
         {
           source: 'publisher_id',
           name: 'publishers',
           syncKey: 'books_publisher_list'
+        },
+        {
+          source: 'author_ids',
+          name: 'authors',
+          multiple: true,
+          reference: 'authors',
+          syncKey: 'books_authors_list'
         },
         {
           source: 'review_ids',
@@ -71,7 +78,8 @@
             type: 'date',
             options: { format: 'long' }
           },
-          'review_ids'
+          'review_ids',
+          'author_ids'
         ]"
         show-expand
         v-bind="props"
@@ -134,6 +142,28 @@
                 small
               >
                 {{ item.author }}
+              </v-chip>
+            </va-single-field-list>
+          </va-reference-field>
+        </template>
+        <template v-slot:author_ids="{ item }">
+          <va-reference-field
+            source="author_ids"
+            :item="item"
+            multiple
+            reference="authors"
+            sync-key="books_authors_list"
+            link="show"
+            property="name"
+            v-slot="{ items, link }"
+          >
+            <va-single-field-list :items="items" v-slot="{ item }">
+              <v-chip
+                color="primary"
+                :to="{ name: link, params: { id: item.id } }"
+                small
+              >
+                {{ item.name }}
               </v-chip>
             </va-single-field-list>
           </va-reference-field>
