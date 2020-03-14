@@ -43,8 +43,6 @@ class Author extends Model implements HasMedia
 
     public $translatable = ['description'];
 
-    protected $with = ['media'];
-
     public function registerMediaCollections()
     {
         $this->addMediaCollection('photo')->singleFile();

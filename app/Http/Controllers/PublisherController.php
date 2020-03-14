@@ -40,6 +40,7 @@ class PublisherController extends Controller
                 ])
                 ->allowedIncludes([
                     'books',
+                    'media',
                     AllowedInclude::count('books_count'),
                 ])
                 ->allowedSorts(['id', 'name', 'founder', 'headquarter', 'opening_date', 'books_count'])
@@ -55,7 +56,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        return new PublisherResource($publisher->load(['books'])->loadCount(['books']));
+        return new PublisherResource($publisher->load(['books', 'media'])->loadCount(['books']));
     }
 
     /**

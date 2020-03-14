@@ -37,7 +37,7 @@ class AuthorController extends Controller
                     'name'
                 ])
                 ->allowedSorts(['id', 'name'])
-                ->allowedIncludes(['books'])
+                ->allowedIncludes(['books', 'media'])
                 ->exportOrPaginate()
         );
     }
@@ -50,7 +50,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return new AuthorResource($author->load(['books']));
+        return new AuthorResource($author->load(['books', 'media']));
     }
 
     /**

@@ -61,7 +61,7 @@ class BookController extends Controller
                     AllowedFilter::scope('published_after'),
                 ])
                 ->allowedSorts(['id', 'isbn', 'title', 'price', 'publication_date'])
-                ->allowedIncludes(['publisher', 'authors', 'reviews'])
+                ->allowedIncludes(['publisher', 'authors', 'reviews', 'media'])
                 ->exportOrPaginate()
         );
     }
@@ -74,7 +74,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return new BookResource($book->load(['publisher', 'authors', 'reviews']));
+        return new BookResource($book->load(['publisher', 'authors', 'reviews', 'media']));
     }
 
     /**

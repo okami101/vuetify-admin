@@ -35,6 +35,9 @@
     "books": "Livres",
     "reviews": "Commentaires"
   },
+  "authors": {
+    "last_books": "Derniers livres"
+  },
   "tabs": {
     "attributes": "Attributs",
     "summary": "Résumé"

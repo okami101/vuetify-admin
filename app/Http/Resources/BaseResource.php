@@ -37,9 +37,9 @@ class BaseResource extends JsonResource
         }
 
         /**
-         * Media API generator
+         * Media API generator only if media included
          */
-        if ($this->resource instanceof HasMedia) {
+        if (!empty($attributes['media']) && $this->resource instanceof HasMedia) {
             $this->resource->registerMediaCollections();
 
             /** @var MediaCollection $collection */

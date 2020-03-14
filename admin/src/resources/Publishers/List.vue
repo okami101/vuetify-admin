@@ -18,7 +18,7 @@
         'headquarter',
         { source: 'active', type: 'boolean' }
       ]"
-      :include="['books_count']"
+      :include="['media', 'books_count']"
       flat
       v-slot="props"
       v-model="selected"

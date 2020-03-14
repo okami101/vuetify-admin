@@ -31,7 +31,7 @@
         },
         { source: 'published_after', type: 'date', options: { format: 'long' } }
       ]"
-      :include="['publisher', 'authors', 'reviews']"
+      :include="['publisher', 'authors', 'reviews', 'media']"
       flat
       v-slot="props"
       v-model="selected"

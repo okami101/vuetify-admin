@@ -11,8 +11,8 @@ $factory->define(Book::class, function (Faker $faker) {
     return [
         'isbn' => $faker->isbn13,
         'title' => [
-            'en' => $faker->sentence,
-            'fr' => $faker->sentence,
+            'en' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
+            'fr' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
         ],
         'category' => $faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
         'description' => [

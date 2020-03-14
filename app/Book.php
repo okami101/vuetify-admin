@@ -77,8 +77,6 @@ class Book extends Model implements HasMedia
 
     public $translatable = ['title', 'description', 'summary'];
 
-    protected $with = ['media'];
-
     public function registerMediaCollections()
     {
         $this->addMediaCollection('cover')->singleFile();
