@@ -14,9 +14,7 @@
         'publication_date',
         'description',
         'publication_date',
-        'authors.name',
-        'reviews.book_id',
-        'reviews.author'
+        'authors.name'
       ]"
       :filters="[
         'q',
@@ -31,7 +29,7 @@
         },
         { source: 'published_after', type: 'date', options: { format: 'long' } }
       ]"
-      :include="['publisher', 'authors', 'reviews', 'media']"
+      :include="['publisher', 'authors', 'media']"
       flat
       v-slot="props"
       v-model="selected"
@@ -61,8 +59,7 @@
             type: 'date',
             options: { format: 'long' }
           },
-          'authors',
-          'reviews'
+          'authors'
         ]"
         show-expand
         v-bind="props"
@@ -86,40 +83,29 @@
             ></va-select-field>
           </v-chip>
         </template>
-        <template v-slot:formats="{ item }">
-          <va-array-field source="formats" :item="item" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }">
-              <v-chip color="yellow" small>
-                <va-select-field
-                  source="formats"
-                  :item="item"
-                  enum
-                ></va-select-field>
-              </v-chip>
-            </va-single-field-list>
-          </va-array-field>
+        <template v-slot:formats="{ value }">
+          <v-chip-group column>
+            <v-chip color="yellow" small v-for="(item, i) in value" :key="i">
+              <va-select-field
+                source="formats"
+                :item="item"
+                enum
+              ></va-select-field>
+            </v-chip>
+          </v-chip-group>
         </template>
         <template v-slot:authors="{ value }">
-          <va-single-field-list :items="value" v-slot="{ item }">
+          <v-chip-group column>
             <v-chip
               color="primary"
-              :to="{ name: 'authors_show', params: { id: item.id } }"
               small
+              v-for="(item, i) in value"
+              :key="i"
+              :to="{ name: 'authors_show', params: { id: item.id } }"
             >
               {{ item.name }}
             </v-chip>
-          </va-single-field-list>
-        </template>
-        <template v-slot:reviews="{ value }">
-          <va-single-field-list :items="value" v-slot="{ item }" :limit="2">
-            <v-chip
-              color="green"
-              :to="{ name: 'reviews_show', params: { id: item.id } }"
-              small
-            >
-              {{ item.author }}
-            </v-chip>
-          </va-single-field-list>
+          </v-chip-group>
         </template>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}

@@ -34,26 +34,22 @@
           :options="{ multiline: true }"
         ></va-field>
         <va-field source="formats">
-          <va-array-field source="formats" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }" text>
-              <v-chip color="yellow">
-                <va-select-field
-                  source="formats"
-                  :item="item"
-                  enum
-                ></va-select-field>
-              </v-chip>
-            </va-single-field-list>
-          </va-array-field>
+          <v-chip-group>
+            <v-chip color="yellow" v-for="(item, i) in item.formats" :key="i">
+              <va-select-field
+                source="formats"
+                :item="item"
+                enum
+              ></va-select-field>
+            </v-chip>
+          </v-chip-group>
         </va-field>
         <va-field source="tags">
-          <va-array-field source="tags" v-slot="{ items }">
-            <va-single-field-list :items="items" v-slot="{ item }">
-              <v-chip>
-                {{ item }}
-              </v-chip>
-            </va-single-field-list>
-          </va-array-field>
+          <v-chip-group>
+            <v-chip v-for="(item, i) in item.tags" :key="i">
+              {{ item }}
+            </v-chip>
+          </v-chip-group>
         </va-field>
         <va-field
           source="price"
@@ -67,21 +63,28 @@
           :options="{ format: 'long' }"
         ></va-field>
         <va-field source="authors">
-          <va-single-field-list :items="item.authors" v-slot="{ item }">
+          <v-chip-group>
             <v-chip
               color="primary"
-              :to="{ name: link, params: { id: item.id } }"
+              v-for="(item, i) in item.authors"
+              :key="i"
+              :to="{ name: 'authors_show', params: { id: item.id } }"
             >
               {{ item.name }}
             </v-chip>
-          </va-single-field-list>
+          </v-chip-group>
         </va-field>
         <va-field source="reviews">
-          <va-single-field-list :items="item.reviews" v-slot="{ item }">
-            <v-chip color="green" :to="{ name: link, params: { id: item.id } }">
+          <v-chip-group>
+            <v-chip
+              color="green"
+              v-for="(item, i) in item.reviews"
+              :key="i"
+              :to="{ name: 'reviews_show', params: { id: item.id } }"
+            >
               {{ item.author }}
             </v-chip>
-          </va-single-field-list>
+          </v-chip-group>
         </va-field>
       </template>
       <template v-slot:summary>
