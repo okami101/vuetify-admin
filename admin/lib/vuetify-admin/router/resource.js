@@ -1,68 +1,83 @@
-export default ({ store, i18n, resource }) => {
-  let { name, actions, translatable } = resource;
+export default ({ store, i18n, resource, title }) => {
+  let { name, actions, translatable, titles = {} } = resource;
 
-  /**
-   * Route item component builder (edit and show)
-   */
-  const itemComponent = action => {
-    return {
-      render(c) {
-        return c(`${name}-${action}`);
-      },
-      async beforeRouteEnter(to, from, next) {
-        /**
-         * Route model binding
-         */
-        let { data } = await store.dispatch("api/getOne", {
-          resource: name,
-          params: {
+  const setTitle = (to, action, item = null) => {
+    if (item) {
+      /**
+       * Build default main title with item
+       */
+      to.meta.title = titles[action]
+        ? titles[action](data)
+        : i18n.t(`va.pages.${action}`, {
+            resource: i18n.tc(`resources.${name}.name`, 1).toLowerCase(),
             id: to.params.id
-          }
+          });
+    } else {
+      /**
+       * Build default main title
+       */
+      to.meta.title =
+        titles[action] ||
+        i18n.t(`va.pages.${action}`, {
+          resource: i18n
+            .tc(`resources.${name}.name`, action === "list" ? 10 : 1)
+            .toLowerCase()
         });
+    }
 
-        /**
-         * Insert model into resource store
-         */
-        store.commit(`${name}/setItem`, data);
-        next();
-      },
-      beforeRouteLeave(to, from, next) {
-        store.commit(`${name}/removeItem`);
-        next();
-      }
-    };
+    /**
+     * Set main and document title
+     */
+    //store.commit("layout/setTitle", to.meta.title || this.title);
+    document.title = `${to.meta.title} | ${title}`;
+
+    return title;
   };
 
   /**
    * Action route builder
    */
-  const buildRoute = (action, path, item = false) => {
+  const buildRoute = (action, path) => {
     return {
       path,
       name: `${name}_${action}`,
-      component: item
-        ? itemComponent(action)
-        : {
-            render(c) {
-              return c(`${name}-${action}`);
-            }
-          },
+      component: {
+        render(c) {
+          return c(`${name}-${action}`);
+        },
+        async beforeRouteEnter(to, from, next) {
+          if (to.params.id) {
+            /**
+             * Route model binding
+             */
+            let { data } = await store.dispatch("api/getOne", {
+              resource: name,
+              params: {
+                id: to.params.id
+              }
+            });
+
+            /**
+             * Insert model into resource store
+             */
+            store.commit(`${name}/setItem`, data);
+
+            setTitle(to, action, data);
+            return next();
+          }
+
+          setTitle(to, action);
+          next();
+        },
+        beforeRouteLeave(to, from, next) {
+          store.commit(`${name}/removeItem`);
+          next();
+        }
+      },
       meta: {
         resource: name,
         translatable,
         actions
-      },
-      beforeEnter: (to, from, next) => {
-        /**
-         * Build default main title
-         */
-        to.meta.title = i18n.t(`va.pages.${action}`, {
-          resource: i18n
-            .tc(`resources.${name}.name`, action === "list" ? 10 : 1)
-            .toLowerCase(),
-          id: to.params.id
-        });
-        next();
       }
     };
   };
@@ -81,12 +96,12 @@ export default ({ store, i18n, resource }) => {
       title: i18n.tc(`resources.${name}.name`, 10)
     },
     children: [
-      { action: "list", path: "/", item: false },
-      { action: "create", path: "create", item: false },
-      { action: "show", path: ":id", item: true },
-      { action: "edit", path: ":id/edit", item: true }
+      { action: "list", path: "/" },
+      { action: "create", path: "create" },
+      { action: "show", path: ":id" },
+      { action: "edit", path: ":id/edit" }
     ]
       .filter(({ action }) => actions.includes(action))
-      .map(({ action, path, item }) => buildRoute(action, path, item))
+      .map(({ action, path }) => buildRoute(action, path))
   };
 };

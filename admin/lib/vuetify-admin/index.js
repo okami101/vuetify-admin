@@ -117,7 +117,8 @@ export default class VuetifyAdmin {
         resourceCrudRoutes({
           store,
           i18n,
-          resource
+          resource,
+          title: this.title
         })
       )
     );
@@ -151,7 +152,6 @@ export default class VuetifyAdmin {
       /**
        * Set main and document title
        */
-      store.commit("layout/setTitle", to.meta.title || this.title);
       document.title = to.meta.title
         ? `${to.meta.title} | ${this.title}`
         : this.title;

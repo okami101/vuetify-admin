@@ -15,11 +15,10 @@
 </template>
 
 <script>
-import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
 
 export default {
   name: "Create",
-  mixins: [Page, Resource]
+  mixins: [Resource]
 };
 </script>

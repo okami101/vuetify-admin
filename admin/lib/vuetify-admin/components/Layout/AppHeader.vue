@@ -9,7 +9,7 @@
   >
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />
     <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-      <span class="hidden-sm-and-down">{{ title }}</span>
+      <span class="hidden-sm-and-down">{{ $route.meta.title }}</span>
     </v-toolbar-title>
     <v-spacer />
     <div>
@@ -61,7 +61,6 @@ export default {
   name: "AppHeader",
   computed: {
     ...mapState({
-      title: state => state.layout.title,
       loading: state => state.api.loading
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" })

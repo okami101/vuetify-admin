@@ -10,15 +10,11 @@ export default i18n => {
   return {
     namespaced: true,
     state: {
-      title: "Vuetify Admin",
       showSnackbar: false,
       snackbarText: null,
       snackbarColor: null
     },
     mutations: {
-      setTitle(state, title) {
-        state.title = title;
-      },
       showSuccess(state, text) {
         state.snackbarText = text;
         state.snackbarColor = "success";

@@ -95,7 +95,6 @@
 </template>
 
 <script>
-import Page from "vuetify-admin/mixins/page";
 import Resource from "vuetify-admin/mixins/resource";
 import isEmpty from "lodash/isEmpty";
 import FormFilter from "../List/FormFilter";
@@ -104,7 +103,7 @@ import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "List",
-  mixins: [Page, Resource],
+  mixins: [Resource],
   components: {
     FormFilter
   },

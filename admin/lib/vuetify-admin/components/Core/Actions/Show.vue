@@ -21,12 +21,11 @@
 </template>
 
 <script>
-import Page from "vuetify-admin/mixins/page";
 import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "Show",
-  mixins: [Page, Item],
+  mixins: [Item],
   methods: {
     onDeleted() {
       this.$router.push(`/${this.resource}`);

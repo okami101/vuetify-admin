@@ -31,7 +31,10 @@ const admin = ({ i18n, axios }) => {
     }),
     dataProvider: laravelDataProvider(axios),
     resources: [
-      { name: "publishers", translatable: true },
+      {
+        name: "publishers",
+        translatable: true
+      },
       { name: "books", translatable: true },
       { name: "authors", translatable: true },
       "reviews"
