@@ -20,7 +20,6 @@
           filterable
           hide-details
           :filled="false"
-          small-chips
           :value="value[item.model || item.source]"
         >
           <component
@@ -33,7 +32,6 @@
             :value="value[item.model || item.source]"
             hide-details
             :filled="false"
-            small-chips
           >
           </component>
         </slot>
