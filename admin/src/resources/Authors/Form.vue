@@ -17,6 +17,7 @@
           <v-col sm="4" offset="3">
             <va-array-input
               source="backlinks"
+              tracked-by="date"
               :label="$t('backlinks')"
               v-slot="props"
             >

@@ -7,7 +7,7 @@
       handle=".handle"
       @input="update"
     >
-      <div v-for="(item, i) in input" :key="i" class="item">
+      <div v-for="(item, i) in input" :key="item[trackedBy]" class="item">
         <slot
           :resource="resource"
           :item="item"
@@ -49,17 +49,19 @@ export default {
   },
   mixins: [Input],
   props: {
-    inputs: {
-      type: Array,
-      default: () => []
+    trackedBy: {
+      type: String,
+      default: "id"
     }
   },
   methods: {
     add() {
       this.input.push({});
+      this.update(this.input);
     },
     remove(index) {
       this.input.splice(index, 1);
+      this.update(this.input);
     }
   }
 };
