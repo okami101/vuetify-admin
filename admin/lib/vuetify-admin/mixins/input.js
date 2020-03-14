@@ -1,10 +1,14 @@
-import Item from "vuetify-admin/mixins/item";
 import EventBus from "vuetify-admin/utils/eventBus";
+import Item from "vuetify-admin/mixins/item";
 import get from "lodash/get";
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   mixins: [Item],
+  inject: {
+    formName: { default: undefined },
+    formItem: { default: undefined }
+  },
   props: {
     parentSource: String,
     source: String,
@@ -41,10 +45,30 @@ export default {
       errorMessages: []
     };
   },
+  created() {
+    /**
+     * Initiate parent model form
+     */
+    this.initializeValue();
+
+    EventBus.$on("form-errors", ({ name, errors }) => {
+      if (name === this.formName) {
+        this.errorMessages = errors[this.uniqueFormId] || [];
+      }
+    });
+  },
+  beforeDestroy() {
+    EventBus.$off("form-errors");
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.input = val;
+      },
+      immediate: true
+    }
+  },
   computed: {
-    ...mapState({
-      errors: state => state.form.errors
-    }),
     getModelProp() {
       /**
        * Get original prop source for value
@@ -52,8 +76,11 @@ export default {
        */
       return this.model || this.source;
     },
+    hasItem() {
+      return !!(this.formItem || this.record);
+    },
     getValue() {
-      return get(this.record, this.getModelProp);
+      return get(this.formItem || this.record, this.getModelProp);
     },
     uniqueFormId() {
       return [this.parentSource, this.index, this.getModelProp]
@@ -84,45 +111,30 @@ export default {
       return rules;
     }
   },
-  created() {
-    this.initializeFromQuery();
-  },
-  watch: {
-    value: {
-      handler(val) {
-        this.input = val;
-      },
-      immediate: true
-    },
-    record: {
-      handler(val) {
-        if (this.filterable) {
-          return;
-        }
-        if (val && this.source) {
-          this.update(this.getValue || this.value);
-        }
-      },
-      immediate: true
-    },
-    errors(val) {
-      this.errorMessages = val[this.uniqueFormId] || [];
-    }
-  },
   methods: {
-    ...mapMutations({
-      updateForm: "form/update"
-    }),
     ...mapActions({
       updateItem: "api/update"
     }),
-    initializeFromQuery() {
+    initializeValue() {
+      if (this.hasItem) {
+        /**
+         * Initialize from context
+         */
+        return this.updateForm(this.getValue);
+      }
+
+      /**
+       * Initialize from query
+       */
       let { source } = this.$route.query;
 
       if (source) {
         this.update(JSON.parse(source)[this.source]);
       }
     },
+    /**
+     * Interaction event
+     */
     change(value) {
       this.$emit("change", value);
 
@@ -135,7 +147,7 @@ export default {
           params: {
             id: this.item.id,
             data: {
-              [this.source]: value
+              [this.getModelProp]: value
             }
           }
         });
@@ -146,13 +158,10 @@ export default {
      */
     update(value) {
       /**
-       * Update model in the store if input inside a form (i.e. no filter or editable input)
+       * Update model in the injected form if available
        */
-      if (!this.filterable || !this.editable) {
-        this.updateForm({
-          source: this.uniqueFormId,
-          value
-        });
+      if (this.formName) {
+        return this.updateForm(value);
       }
 
       if (this.filterable) {
@@ -160,7 +169,17 @@ export default {
           source: this.getModelProp,
           value
         });
+
+        this.input = value;
+        this.$emit("input", value);
       }
+    },
+    updateForm(value) {
+      EventBus.$emit("update-model", {
+        name: this.formName,
+        source: this.uniqueFormId,
+        value
+      });
 
       this.input = value;
       this.$emit("input", value);

@@ -9,7 +9,6 @@ import layout from "./store/layout";
 import aside from "./store/aside";
 import auth from "./store/auth";
 import api from "./store/api";
-import form from "./store/form";
 
 import resourceCrudModule from "./store/resource";
 import resourceCrudRoutes from "./router/resource";
@@ -94,7 +93,6 @@ export default class VuetifyAdmin {
     store.registerModule("aside", aside);
     store.registerModule("api", api);
     store.registerModule("auth", auth(this.authProvider, router));
-    store.registerModule("form", form);
 
     /**
      * Add API resources modules dynamically

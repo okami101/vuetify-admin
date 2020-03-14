@@ -5,29 +5,82 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import EventBus from "vuetify-admin/utils/eventBus";
+import Item from "vuetify-admin/mixins/item";
+import set from "lodash/set";
 
 export default {
   name: "Form",
+  mixins: [Item],
+  provide() {
+    return {
+      formName: this.name,
+      formItem: this.item
+    };
+  },
   props: {
-    resource: {
+    name: {
       type: String,
-      required: true
+      default: "VaForm"
+    },
+    saving: Boolean,
+    redirect: {
+      type: String,
+      default: "list"
     }
   },
+  data() {
+    return {
+      model: {}
+    };
+  },
+  created() {
+    EventBus.$on("update-model", ({ name, source, value }) => {
+      if (name === this.name) {
+        set(this.model, source, value === undefined ? "" : value);
+      }
+    });
+  },
+  beforeDestroy() {
+    EventBus.$off("update-model");
+  },
   methods: {
-    ...mapActions({
-      save: "form/save"
-    }),
     async onSave() {
       if (!this.$refs.form.validate()) {
         return;
       }
 
+      this.$emit("update:saving", true);
+
       try {
-        await this.save(this.resource);
-        this.$emit("saved");
-      } catch (e) {}
+        let { data } = await this.$store.dispatch(
+          `${this.resource}/save`,
+          this.model
+        );
+
+        this.$emit("update:saving", false);
+
+        switch (this.redirect) {
+          case "list":
+            this.$router.push(`/${this.resource}`);
+            break;
+          case "show":
+            this.$router.push(`/${this.resource}/${data.id}`);
+            break;
+          case "edit":
+            this.$router.push(`/${this.resource}/${data.id}/edit`);
+            break;
+        }
+      } catch (e) {
+        this.$emit("update:saving", false);
+
+        if (e.response) {
+          EventBus.$emit("form-errors", {
+            name: this.name,
+            errors: e.response.data.errors
+          });
+        }
+      }
     }
   }
 };

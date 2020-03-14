@@ -1,7 +1,10 @@
-import { mapMutations } from "vuex";
+import EventBus from "vuetify-admin/utils/eventBus";
 import get from "lodash/get";
 
 export default {
+  inject: {
+    formName: { default: undefined }
+  },
   props: {
     src: String,
     title: String,
@@ -47,19 +50,19 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      updateForm: "form/update"
-    }),
     getFileProp(file, prop) {
       return get(file, prop);
     },
     clear(id) {
       this.deleted = [...(this.deleted || []), id];
 
-      this.updateForm({
-        source: this.model || this.source,
-        value: this.isMultiple ? this.deleted : this.deleted[0]
-      });
+      if (this.formName) {
+        EventBus.$emit("update-model", {
+          name: this.formName,
+          source: this.model || this.source,
+          value: this.isMultiple ? this.deleted : this.deleted[0]
+        });
+      }
     }
   }
 };

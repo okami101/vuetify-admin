@@ -7,6 +7,10 @@
       <v-spacer></v-spacer>
       <slot name="actions">
         <va-show-button :resource="resource" :item="record"></va-show-button>
+        <va-delete-button
+          :resource="resource"
+          :item="record"
+        ></va-delete-button>
         <va-locale-button :resource="resource"></va-locale-button>
       </slot>
     </div>

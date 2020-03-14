@@ -28,12 +28,8 @@ export default {
     color: {
       type: String,
       default: "primary"
-    }
-  },
-  computed: {
-    ...mapState({
-      saving: state => state.form.saving
-    })
+    },
+    saving: Boolean
   }
 };
 </script>
