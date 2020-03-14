@@ -2,7 +2,6 @@ import Datagrid from "./List/Datagrid";
 
 import Form from "./Layout/Form";
 import FormSave from "./Layout/FormSave";
-import SimpleShow from "./Layout/SimpleShow";
 import TabbedShow from "./Layout/TabbedShow";
 import SimpleForm from "./Layout/SimpleForm";
 import TabbedForm from "./Layout/TabbedForm";
@@ -49,7 +48,6 @@ export {
   Datagrid,
   Form,
   FormSave,
-  SimpleShow,
   TabbedShow,
   SimpleForm,
   TabbedForm,
