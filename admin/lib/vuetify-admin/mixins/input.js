@@ -45,8 +45,18 @@ export default {
     ...mapState({
       errors: state => state.form.errors
     }),
+    getModelProp() {
+      /**
+       * Get original prop source for value
+       * If specific model prop is not set, take required source prop as default
+       */
+      return this.model || this.source;
+    },
+    getValue() {
+      return get(this.record, this.getModelProp);
+    },
     uniqueFormId() {
-      return [this.parentSource, this.index, this.model || this.source]
+      return [this.parentSource, this.index, this.getModelProp]
         .filter(s => s !== undefined)
         .join(".");
     },
@@ -90,7 +100,7 @@ export default {
           return;
         }
         if (val && this.source) {
-          this.update(get(val, this.model || this.source) || this.value);
+          this.update(this.getValue || this.value);
         }
       },
       immediate: true
@@ -147,7 +157,7 @@ export default {
 
       if (this.filterable) {
         EventBus.$emit("filter", {
-          source: this.source,
+          source: this.getModelProp,
           value
         });
       }

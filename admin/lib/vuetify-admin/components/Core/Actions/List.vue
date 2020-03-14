@@ -221,12 +221,14 @@ export default {
     },
     getEnabledFilters() {
       return this.getFilters.filter(f => {
-        return f.alwaysOn || this.enabledFilters.includes(f.source);
+        return f.alwaysOn || this.enabledFilters.includes(f.model || f.source);
       });
     },
     getDisabledFilters() {
       return this.getFilters.filter(f => {
-        return !f.alwaysOn && !this.enabledFilters.includes(f.source);
+        return (
+          !f.alwaysOn && !this.enabledFilters.includes(f.model || f.source)
+        );
       });
     }
   },
@@ -297,7 +299,9 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.getFilters.find(f => f.source === prop);
+          let filter = this.getFilters.find(
+            f => (f.model || f.source) === prop
+          );
 
           if (filter) {
             this.enableFilter(filter);
@@ -306,10 +310,13 @@ export default {
       }
     },
     enableFilter(filter) {
-      this.enabledFilters.push(filter.source);
+      this.enabledFilters.push(filter.model || filter.source);
     },
     disableFilter(filter) {
-      this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
+      this.enabledFilters.splice(
+        this.enabledFilters.indexOf(filter.model || filter.source),
+        1
+      );
     },
     updateQuery() {
       if (!this.useQueryString || isEmpty(this.currentOptions)) {

@@ -29,7 +29,7 @@ $factory->define(Book::class, function (Faker $faker) {
         ),
         'price' => $faker->randomFloat(2, 10, 50),
         'commentable' => $faker->boolean(80),
-        'tags' => $faker->words($faker->numberBetween(2, 5)),
+        'tags' => $faker->unique()->words($faker->numberBetween(2, 5)),
         'publication_date' => $faker->dateTime,
     ];
 });

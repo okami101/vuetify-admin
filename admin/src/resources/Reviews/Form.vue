@@ -3,8 +3,8 @@
     <v-row>
       <v-col sm="3">
         <va-autocomplete-input
-          source="book_id"
-          :label="$tc('resources.books.name')"
+          source="book"
+          model="book_id"
           option-text="title"
           reference="books"
           :fields="['title', 'isbn']"

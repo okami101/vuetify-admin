@@ -14,21 +14,23 @@
         </v-btn>
         <slot
           :source="item.source"
+          :model="item.model"
           :name="item.source"
           :label="item.label"
           filterable
           hide-details
           :filled="false"
           small-chips
-          :value="value[item.source]"
+          :value="value[item.model || item.source]"
         >
           <component
             :is="`va-${item.type}-input`"
             :source="item.source"
+            :model="item.model"
             :label="item.label"
             filterable
             v-bind="item.options"
-            :value="value[item.source]"
+            :value="value[item.model || item.source]"
             hide-details
             :filled="false"
             small-chips

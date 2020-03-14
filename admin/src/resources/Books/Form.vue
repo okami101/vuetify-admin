@@ -9,7 +9,8 @@
       <v-row>
         <v-col sm="3">
           <va-select-input
-            source="publisher_id"
+            source="publisher"
+            model="publisher_id"
             reference="publishers"
             :fields="['name']"
             option-text="name"
@@ -26,7 +27,8 @@
             format="long"
           ></va-date-input>
           <va-autocomplete-input
-            source="author_ids"
+            source="authors"
+            model="author_ids"
             multiple
             reference="authors"
             :fields="['name']"

@@ -12,7 +12,7 @@
       ]"
       :filters="[
         'q',
-        'book',
+        { source: 'book', model: 'book_id' },
         { source: 'rating', type: 'rating' },
         {
           source: 'status',
@@ -34,8 +34,8 @@
     >
       <template v-slot:filter.book="props">
         <va-autocomplete-input
-          source="book_id"
-          :label="$tc('resources.books.name')"
+          source="book"
+          model="book_id"
           option-text="title"
           multiple
           reference="books"

@@ -27,6 +27,7 @@
 import { VAutocomplete, VCombobox } from "vuetify/lib";
 import Input from "vuetify-admin/mixins/input";
 import Reference from "vuetify-admin/mixins/reference";
+import get from "lodash/get";
 
 export default {
   name: "AutocompleteInput",
@@ -61,11 +62,34 @@ export default {
       search: null
     };
   },
-  async created() {
+  created() {
     if (this.input) {
-      this.items = await this.fetchCurrentChoices(
-        this.multiple ? this.input : [this.input]
-      );
+      this.loadCurrentChoices(this.input);
+    }
+  },
+  computed: {
+    getValue() {
+      if (!this.reference) {
+        return get(this.record, this.model || this.source);
+      }
+
+      let value = this.record[this.source];
+      let input = this.multiple
+        ? value.map(v => v[this.optionValue])
+        : value[this.optionValue];
+
+      this.loadCurrentChoices(input);
+
+      return input;
+    }
+  },
+  methods: {
+    async loadCurrentChoices(value) {
+      if (this.reference) {
+        this.items = await this.fetchCurrentChoices(
+          this.multiple ? value : [value]
+        );
+      }
     }
   },
   watch: {
