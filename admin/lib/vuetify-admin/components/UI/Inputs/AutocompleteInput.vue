@@ -68,27 +68,22 @@ export default {
     };
   },
   created() {
-    if (this.input) {
-      this.loadCurrentChoices(this.input);
-    }
+    this.fillInputFromSource();
+    this.loadCurrentChoices(this.input);
   },
-  computed: {
-    getValue() {
-      if (!this.reference) {
-        return get(this.record, this.model || this.source);
+  methods: {
+    fillInputFromSource() {
+      if (!this.reference || !this.formItem) {
+        return;
       }
 
-      let value = this.record[this.source];
+      let value = this.formItem[this.source];
       let input = this.multiple
         ? value.map(v => v[this.optionValue])
         : value[this.optionValue];
 
-      this.loadCurrentChoices(input);
-
-      return input;
-    }
-  },
-  methods: {
+      this.update(input);
+    },
     async loadCurrentChoices(value) {
       if (this.reference) {
         this.items = await this.fetchCurrentChoices(
