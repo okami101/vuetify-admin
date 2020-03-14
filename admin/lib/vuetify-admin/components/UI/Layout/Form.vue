@@ -6,12 +6,12 @@
 
 <script>
 import EventBus from "vuetify-admin/utils/eventBus";
-import Item from "vuetify-admin/mixins/item";
+import Resource from "vuetify-admin/mixins/resource";
 import set from "lodash/set";
 
 export default {
   name: "Form",
-  mixins: [Item],
+  mixins: [Resource],
   provide() {
     return {
       formName: this.name,
@@ -19,6 +19,10 @@ export default {
     };
   },
   props: {
+    item: {
+      type: Object,
+      default: () => {}
+    },
     name: {
       type: String,
       default: "VaForm"
@@ -53,10 +57,14 @@ export default {
       this.$emit("update:saving", true);
 
       try {
-        let { data } = await this.$store.dispatch(
-          `${this.resource}/save`,
-          this.model
-        );
+        let { data } = this.item
+          ? await this.$store.dispatch(`${this.resource}/update`, {
+              id: this.item.id,
+              data: this.model
+            })
+          : await this.$store.dispatch(`${this.resource}/create`, {
+              data: this.model
+            });
 
         this.$emit("update:saving", false);
 

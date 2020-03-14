@@ -76,12 +76,6 @@ export default {
        */
       return this.model || this.source;
     },
-    hasItem() {
-      return !!(this.formItem || this.record);
-    },
-    getValue() {
-      return get(this.formItem || this.record, this.getModelProp);
-    },
     uniqueFormId() {
       return [this.parentSource, this.index, this.getModelProp]
         .filter(s => s !== undefined)
@@ -116,11 +110,11 @@ export default {
       updateItem: "api/update"
     }),
     initializeValue() {
-      if (this.hasItem) {
+      if (this.formItem) {
         /**
          * Initialize from context
          */
-        return this.updateForm(this.getValue);
+        return this.updateForm(get(this.formItem, this.getModelProp));
       }
 
       /**

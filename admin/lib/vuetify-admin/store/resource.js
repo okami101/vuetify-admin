@@ -99,24 +99,6 @@ export default ({ provider, resource }) => {
          */
         commit("setLocale", code);
         dispatch("refresh");
-      },
-      save({ state, dispatch }, data) {
-        if (state.item) {
-          /**
-           * Update current resource
-           */
-          return dispatch(UPDATE, {
-            id: state.item.id,
-            data
-          });
-        }
-
-        /**
-         * Create new resource
-         */
-        return dispatch(CREATE, {
-          data
-        });
       }
     }
   };
