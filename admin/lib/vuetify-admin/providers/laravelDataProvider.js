@@ -79,7 +79,7 @@ export default (axios, base = "/api") => {
 
         if (filter) {
           Object.keys(filter).forEach(key => {
-            if (filter[key]) {
+            if (filter[key] !== "") {
               searchParams.append(`filter[${key}]`, filter[key]);
             }
           });
