@@ -30,7 +30,7 @@
             source: 'logo',
             type: 'image',
             link: 'show',
-            options: { preview: 'thumbnails.small' }
+            options: { src: 'thumbnails.small', contain: true }
           },
           { source: 'name', link: 'show' },
           { source: 'type', type: 'select', options: { enum: true } },

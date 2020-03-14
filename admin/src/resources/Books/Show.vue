@@ -15,8 +15,7 @@
                 <va-field source="cover">
                   <va-image-field
                     source="cover"
-                    src="thumbnails.large"
-                    preview="thumbnails.medium"
+                    src="thumbnails.medium"
                   ></va-image-field>
                 </va-field>
                 <va-field source="publisher">

@@ -42,7 +42,7 @@
             source: 'cover',
             type: 'image',
             link: 'show',
-            options: { preview: 'thumbnails.small' }
+            options: { src: 'thumbnails.small' }
           },
           'category',
           'publisher',

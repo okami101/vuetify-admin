@@ -1,56 +1,19 @@
 <template>
-  <div v-if="activeFiles.length">
-    <ul v-if="isMultiple">
-      <li
-        v-for="(file, i) in limit ? activeFiles.slice(0, limit) : activeFiles"
-        :key="i"
-      >
-        <span class="file-item">
-          <v-btn v-if="clearable" icon @click="clear(file.id)">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <component
-            :href="getFileProp(file, src || 'src')"
-            :title="getFileProp(file, title || 'title')"
-            :target="target"
-            :is="getFileTag"
-          >
-            <slot :file="file" :title="getFileProp(file, title || 'title')">
-              {{ title || getFileProp(file, title || "title") }}
-            </slot>
-          </component>
-        </span>
-      </li>
-    </ul>
-    <span v-else-if="isObject" class="file-item">
-      <v-btn v-if="clearable" icon @click="clear(value.id)">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-      <component
-        :href="getFileProp(value, src || 'src')"
-        :title="getFileProp(value, title || 'title') || title"
-        :target="target"
-        :is="getFileTag"
-      >
-        <slot
-          :file="value"
-          :title="getFileProp(value, title || 'title') || title"
+  <ul v-if="activeFiles.length">
+    <li v-for="(file, i) in activeFiles" :key="i">
+      <span class="file-item">
+        <v-btn v-if="clearable" icon @click="clear(file.id)">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <a
+          :href="getFileProp(file, src || 'src')"
+          :title="getFileProp(file, title || 'title')"
+          :target="target"
         >
-          {{ title || getFileProp(value, title || "title") }}
-        </slot>
-      </component>
-    </span>
-    <span v-else class="file-item">
-      <v-btn v-if="clearable" icon @click="clear(value.id)">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-      <component :href="value" :title="title" :target="target" :is="getFileTag">
-        <slot :file="value" :title="title">
-          {{ title || getFileProp(value, title || "title") }}
-        </slot>
-      </component>
-    </span>
-  </div>
+        </a>
+      </span>
+    </li>
+  </ul>
 </template>
 
 <script>

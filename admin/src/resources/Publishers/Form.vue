@@ -9,7 +9,8 @@
                 <va-file-input source="logo">
                   <va-image-field
                     source="logo"
-                    preview="thumbnails.small"
+                    src="thumbnails.medium"
+                    contain
                     clearable
                   ></va-image-field>
                 </va-file-input>
@@ -37,7 +38,8 @@
                 <va-file-input source="local" multiple>
                   <va-image-field
                     source="local"
-                    preview="thumbnails.small"
+                    src="thumbnails.medium"
+                    lg="4"
                     clearable
                   ></va-image-field>
                 </va-file-input>

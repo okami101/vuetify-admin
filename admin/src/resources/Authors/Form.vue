@@ -7,7 +7,7 @@
             <va-file-input source="photo">
               <va-image-field
                 source="photo"
-                preview="thumbnails.medium"
+                src="thumbnails.medium"
                 clearable
               ></va-image-field>
             </va-file-input>

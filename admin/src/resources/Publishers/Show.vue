@@ -8,7 +8,7 @@
               <va-image-field
                 source="logo"
                 src="thumbnails.large"
-                preview="thumbnails.medium"
+                contain
               ></va-image-field>
             </va-field>
             <v-row>
@@ -58,8 +58,7 @@
             <va-field source="local">
               <va-image-field
                 source="local"
-                src="thumbnails.large"
-                preview="thumbnails.medium"
+                src="thumbnails.medium"
               ></va-image-field>
             </va-field>
           </v-card-text>

@@ -12,7 +12,6 @@ export default {
       type: String,
       default: "_blank"
     },
-    limit: Number,
     link: {
       type: Boolean,
       default: true
@@ -36,9 +35,6 @@ export default {
     },
     isObject() {
       return this.value instanceof Object;
-    },
-    getFileTag() {
-      return this.link ? "a" : "span";
     },
     activeFiles() {
       if (!this.value) {
