@@ -2,6 +2,7 @@
   <v-radio-group
     v-bind="commonProps"
     :column="column"
+    :row="row"
     @change="change"
     @input="update"
   >
@@ -26,7 +27,8 @@ export default {
     column: {
       type: Boolean,
       default: true
-    }
+    },
+    row: Boolean
   },
   async created() {
     this.items = await this.fetchChoices();

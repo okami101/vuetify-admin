@@ -1,7 +1,7 @@
 <template>
   <va-form :item="item" :saving.sync="saving">
-    <v-row>
-      <v-col sm="6" offset="3">
+    <v-row justify="center">
+      <v-col sm="6">
         <v-card>
           <v-card-text>
             <v-row>

@@ -12,6 +12,7 @@
         <va-delete-button
           :resource="resource"
           :item="record"
+          redirect
         ></va-delete-button>
         <va-locale-button :resource="resource"></va-locale-button>
       </slot>
