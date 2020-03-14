@@ -50,16 +50,21 @@ export default {
       /**
        * Generate CSV string from JSON api
        */
-      const { sortBy, sortDesc } = this.options;
+      let params = {
+        filter: this.filter
+      };
+
+      if (this.options) {
+        const { sortBy, sortDesc } = this.options;
+
+        params.sort = sortBy.map((by, index) => {
+          return { by, desc: sortDesc[index] };
+        });
+      }
 
       let { data } = await this.getList({
         resource: this.resource,
-        params: {
-          sort: sortBy.map((by, index) => {
-            return { by, desc: sortDesc[index] };
-          }),
-          filter: this.filter
-        }
+        params
       });
 
       const csv = Papa.unparse(
