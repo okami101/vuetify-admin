@@ -11,14 +11,20 @@
                 preview="thumbnails.medium"
               ></va-image-field>
             </va-field>
-            <va-field source="name"></va-field>
-            <va-field
-              source="type"
-              type="select"
-              :options="{ enum: true }"
-            ></va-field>
-            <va-field source="founder"></va-field>
-            <va-field source="headquarter"></va-field>
+            <v-row>
+              <v-col>
+                <va-field source="name"></va-field>
+                <va-field
+                  source="type"
+                  type="select"
+                  :options="{ enum: true }"
+                ></va-field>
+              </v-col>
+              <v-col>
+                <va-field source="founder"></va-field>
+                <va-field source="headquarter"></va-field>
+              </v-col>
+            </v-row>
             <va-field
               source="description"
               :options="{ multiline: true }"
