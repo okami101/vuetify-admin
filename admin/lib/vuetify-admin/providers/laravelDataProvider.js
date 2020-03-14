@@ -149,8 +149,7 @@ export default (axios, base = "/api") => {
         case GET_ONE:
         case CREATE:
         case UPDATE:
-          let json = response.data;
-          return Promise.resolve(json);
+          return Promise.resolve(response.data);
       }
     }
 

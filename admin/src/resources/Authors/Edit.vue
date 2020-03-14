@@ -1,6 +1,6 @@
 <template>
-  <va-edit>
-    <authors-form></authors-form>
+  <va-edit v-slot="{ item }">
+    <authors-form :item="item"></authors-form>
   </va-edit>
 </template>
 

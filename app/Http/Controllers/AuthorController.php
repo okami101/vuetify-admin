@@ -50,7 +50,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return new AuthorResource($author->load(['books', 'media']));
+        return new AuthorResource($author->load(['media']));
     }
 
     /**

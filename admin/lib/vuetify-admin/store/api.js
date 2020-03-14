@@ -3,8 +3,8 @@ import * as methods from "vuetify-admin/utils/dataActions";
 let storeActions = {};
 
 Object.values(methods).forEach(action => {
-  storeActions[action] = async ({ dispatch }, { resource, params }) => {
-    return await dispatch(`${resource}/${action}`, params, {
+  storeActions[action] = ({ dispatch }, { resource, params }) => {
+    return dispatch(`${resource}/${action}`, params, {
       root: true
     });
   };
@@ -22,8 +22,8 @@ export default {
   },
   actions: {
     ...storeActions,
-    async refresh({ dispatch }, resource) {
-      await dispatch(
+    refresh({ dispatch }, resource) {
+      return dispatch(
         `${resource}/refresh`,
         {},
         {

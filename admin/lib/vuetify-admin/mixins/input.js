@@ -69,15 +69,8 @@ export default {
     }
   },
   computed: {
-    getModelProp() {
-      /**
-       * Get original prop source for value
-       * If specific model prop is not set, take required source prop as default
-       */
-      return this.model || this.source;
-    },
     uniqueFormId() {
-      return [this.parentSource, this.index, this.getModelProp]
+      return [this.parentSource, this.index, this.model || this.source]
         .filter(s => s !== undefined)
         .join(".");
     },
@@ -112,9 +105,9 @@ export default {
     initializeValue() {
       if (this.formItem) {
         /**
-         * Initialize from context
+         * Initialize from parent form context
          */
-        return this.updateForm(get(this.formItem, this.getModelProp));
+        return this.updateForm(get(this.formItem, this.uniqueFormId));
       }
 
       /**
@@ -141,7 +134,7 @@ export default {
           params: {
             id: this.item.id,
             data: {
-              [this.getModelProp]: value
+              [this.uniqueFormId]: value
             }
           }
         });
@@ -160,7 +153,7 @@ export default {
 
       if (this.filterable) {
         EventBus.$emit("filter", {
-          source: this.getModelProp,
+          source: this.uniqueFormId,
           value
         });
 

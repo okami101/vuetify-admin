@@ -7,7 +7,7 @@ export default ({ store, i18n, resource, title }) => {
        * Build default main title with item
        */
       to.meta.title = titles[action]
-        ? titles[action](data)
+        ? titles[action](item)
         : i18n.t(`va.pages.${action}`, {
             resource: i18n.tc(`resources.${name}.name`, 1).toLowerCase(),
             id: to.params.id
@@ -50,11 +50,8 @@ export default ({ store, i18n, resource, title }) => {
             /**
              * Route model binding
              */
-            let { data } = await store.dispatch("api/getOne", {
-              resource: name,
-              params: {
-                id: to.params.id
-              }
+            let { data } = await store.dispatch(`${name}/getOne`, {
+              id: to.params.id
             });
 
             /**
