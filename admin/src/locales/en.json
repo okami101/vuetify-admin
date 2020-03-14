@@ -36,7 +36,8 @@
     "reviews": "Reviews"
   },
   "authors": {
-    "last_books": "Last books"
+    "last_books": "Last books",
+    "all_books": "All books"
   },
   "tabs": {
     "attributes": "Attributes",

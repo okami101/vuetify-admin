@@ -1,19 +1,35 @@
 <template>
-  <va-show>
-    <v-card>
-      <v-card-text>
-        <va-field source="photo">
-          <va-image-field
-            source="photo"
-            preview="thumbnails.large"
-          ></va-image-field>
-        </va-field>
-        <va-field source="name"></va-field>
-        <va-field
-          source="description"
-          :options="{ multiline: true }"
-        ></va-field>
-      </v-card-text>
-    </v-card>
+  <va-show v-slot="{ item }">
+    <v-row justify="center">
+      <v-col lg="4">
+        <v-card>
+          <v-img
+            v-if="item.photo"
+            class="white--text align-end"
+            height="600px"
+            :src="item.photo.thumbnails.large"
+          >
+          </v-img>
+          <v-card-title>
+            {{ item.name }}
+          </v-card-title>
+
+          <v-card-text>
+            <div class="mb-3">{{ item.description }}</div>
+            <div v-if="item.books.length">
+              <h3>{{ $t("authors.all_books") }}</h3>
+              <v-chip-group column>
+                <v-chip
+                  v-for="book in item.books"
+                  :key="book.id"
+                  :to="{ name: 'books_show', params: { id: book.id } }"
+                  >{{ book.title }}</v-chip
+                >
+              </v-chip-group>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </va-show>
 </template>
