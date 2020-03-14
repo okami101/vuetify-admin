@@ -188,7 +188,7 @@ export default {
           sortable:
             field.sortable === undefined
               ? this.getDefaultSort(field)
-              : sortable,
+              : field.sortable,
           align: field.align || this.getDefaultAlign(field)
         };
       });

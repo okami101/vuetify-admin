@@ -38,10 +38,11 @@
           'headquarter',
           { source: 'url', type: 'url' },
           { source: 'active', type: 'boolean' },
-          'address.street',
+          { source: 'address.street', sortable: false },
           {
             source: 'address',
-            label: $t('address')
+            label: $t('address'),
+            sortable: false
           },
           { source: 'opening_date', type: 'date', options: { format: 'long' } },
           { source: 'books_count', type: 'number' }
