@@ -24,7 +24,6 @@
           :filled="false"
           @input="val => update(item.source, val)"
         >
-          <slot :name="item.source"></slot>
         </component>
       </div>
     </v-col>
