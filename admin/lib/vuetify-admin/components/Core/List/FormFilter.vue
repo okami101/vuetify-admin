@@ -20,7 +20,7 @@
           filterable
           hide-details
           :filled="false"
-          :value="value[item.model || item.source]"
+          :value="value[item.query]"
         >
           <component
             :is="`va-${item.type}-input`"
@@ -29,7 +29,7 @@
             :label="item.label"
             filterable
             v-bind="item.options"
-            :value="value[item.model || item.source]"
+            :value="value[item.query]"
             hide-details
             :filled="false"
           >
@@ -76,7 +76,7 @@ export default {
   methods: {
     remove(filter) {
       let value = { ...this.value };
-      delete value[filter.source];
+      delete value[filter.query];
 
       this.$emit("remove", filter);
       this.$emit("input", value);

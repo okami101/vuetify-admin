@@ -7,6 +7,7 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -48,9 +49,14 @@ class BookController extends Controller
                     'reviews.author',
                 ])
                 ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'description', 'summary'])),
+                    AllowedFilter::custom('q', new SearchFilter(['isbn', 'title'])),
                     AllowedFilter::exact('id'),
                     AllowedFilter::exact('publisher_id'),
+                    AllowedFilter::callback('author_ids', function (Builder $query, $value) {
+                        $query->whereHas('authors', function (Builder $query) use ($value) {
+                            $query->whereIn('id', is_array($value) ? $value : [$value]);
+                        });
+                    }),
                     AllowedFilter::exact('commentable'),
                     'title',
                     AllowedFilter::exact('category'),

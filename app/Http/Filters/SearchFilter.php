@@ -17,8 +17,10 @@ class SearchFilter implements Filter
     public function __invoke(Builder $query, $value, string $property)
     {
         $query->where(function (Builder $query) use ($value) {
+            $value = mb_strtolower($value, 'UTF8');
+
             foreach ($this->fields as $field) {
-                $query->orWhere($field, 'like', "%$value%");
+                $query->orWhereRaw("LOWER({$field}) LIKE ?", ["%{$value}%"]);
             }
         });
     }

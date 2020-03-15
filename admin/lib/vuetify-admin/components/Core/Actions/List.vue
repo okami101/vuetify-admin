@@ -212,6 +212,7 @@ export default {
           return {
             ...f,
             type: f.type || "text",
+            query: f.model || f.source,
             label:
               f.label ||
               this.$t(`resources.${this.resource}.fields.${f.source}`)
@@ -220,14 +221,12 @@ export default {
     },
     getEnabledFilters() {
       return this.getFilters.filter(f => {
-        return f.alwaysOn || this.enabledFilters.includes(f.model || f.source);
+        return f.alwaysOn || this.enabledFilters.includes(f.query);
       });
     },
     getDisabledFilters() {
       return this.getFilters.filter(f => {
-        return (
-          !f.alwaysOn && !this.enabledFilters.includes(f.model || f.source)
-        );
+        return !f.alwaysOn && !this.enabledFilters.includes(f.query);
       });
     }
   },
@@ -298,9 +297,7 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.getFilters.find(
-            f => (f.model || f.source) === prop
-          );
+          let filter = this.getFilters.find(f => f.query === prop);
 
           if (filter) {
             this.enableFilter(filter);
@@ -309,13 +306,10 @@ export default {
       }
     },
     enableFilter(filter) {
-      this.enabledFilters.push(filter.model || filter.source);
+      this.enabledFilters.push(filter.query);
     },
     disableFilter(filter) {
-      this.enabledFilters.splice(
-        this.enabledFilters.indexOf(filter.model || filter.source),
-        1
-      );
+      this.enabledFilters.splice(this.enabledFilters.indexOf(filter.query), 1);
     },
     updateQuery() {
       if (!this.useQueryString || isEmpty(this.currentOptions)) {

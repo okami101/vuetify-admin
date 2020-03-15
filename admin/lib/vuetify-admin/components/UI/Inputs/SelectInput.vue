@@ -35,7 +35,12 @@ export default {
         return this.multiple;
       }
     },
-    smallChips: Boolean
+    smallChips: {
+      type: Boolean,
+      default() {
+        return this.multiple && this.filterable;
+      }
+    }
   },
   async created() {
     this.items = await this.fetchChoices();

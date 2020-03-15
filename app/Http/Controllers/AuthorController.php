@@ -7,6 +7,7 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreAuthor;
 use App\Http\Requests\UpdateAuthor;
 use App\Http\Resources\Author as AuthorResource;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -34,7 +35,12 @@ class AuthorController extends Controller
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['name', 'description'])),
                     AllowedFilter::exact('id'),
-                    'name'
+                    'name',
+                    AllowedFilter::callback('book_ids', function (Builder $query, $value) {
+                        $query->whereHas('books', function (Builder $query) use ($value) {
+                            $query->whereIn('id', is_array($value) ? $value : [$value]);
+                        });
+                    }),
                 ])
                 ->allowedSorts(['id', 'name'])
                 ->allowedIncludes(['books', 'media'])

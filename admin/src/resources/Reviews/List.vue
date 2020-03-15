@@ -34,8 +34,6 @@
     >
       <template v-slot:filter.book="props">
         <va-autocomplete-input
-          source="book"
-          model="book_id"
           option-text="title"
           multiple
           reference="books"
