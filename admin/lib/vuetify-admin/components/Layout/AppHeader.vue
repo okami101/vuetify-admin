@@ -38,6 +38,20 @@
 
           <v-divider></v-divider>
           <v-list nav dense>
+            <v-list-item
+              v-for="(item, index) in menu"
+              :key="index"
+              link
+              :to="item.link"
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
             <v-list-item @click="logout()">
               <v-list-item-icon>
                 <v-icon>mdi-logout</v-icon>
@@ -59,6 +73,9 @@ import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "AppHeader",
+  props: {
+    menu: Array
+  },
   computed: {
     ...mapState({
       loading: state => state.api.loading

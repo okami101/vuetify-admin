@@ -23,6 +23,7 @@
   },
   "menu": {
     "login": "Login",
+    "profile": "Profile",
     "dashboard": "Dashboard",
     "help": "Help",
     "settings": "Settings",

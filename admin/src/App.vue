@@ -1,5 +1,5 @@
 <template>
-  <va-admin :sidebar-menu="menu"></va-admin>
+  <va-admin :sidebar-menu="sidebarMenu" :profile-menu="profileMenu"></va-admin>
 </template>
 
 <script>
@@ -7,7 +7,14 @@ export default {
   name: "App",
   data() {
     return {
-      menu: [
+      profileMenu: [
+        {
+          icon: "mdi-account",
+          text: this.$t("menu.profile"),
+          link: "/profile"
+        }
+      ],
+      sidebarMenu: [
         {
           icon: "mdi-view-dashboard",
           text: this.$t("menu.dashboard"),

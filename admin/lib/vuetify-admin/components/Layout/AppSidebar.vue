@@ -5,7 +5,7 @@
     app
   >
     <v-list dense>
-      <template v-for="(item, index) in items">
+      <template v-for="(item, index) in menu">
         <v-subheader v-if="item.heading && !mini" :key="index">
           {{ item.heading }}
         </v-subheader>
@@ -61,19 +61,6 @@ export default {
   props: {
     menu: Array,
     mini: Boolean
-  },
-  data() {
-    return {
-      items: []
-    };
-  },
-  watch: {
-    menu: {
-      handler(newVal) {
-        this.items = newVal;
-      },
-      immediate: true
-    }
   }
 };
 </script>

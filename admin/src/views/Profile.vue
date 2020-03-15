@@ -14,8 +14,8 @@ export default {
       accountUpdating: false,
       passwordChanging: false,
       accountForm: {
-        name: this.user.name,
-        email: this.user.email
+        name: null,
+        email: null
       },
       passwordForm: {
         oldPassword: null,
@@ -28,6 +28,17 @@ export default {
     ...mapState({
       user: state => state.auth.user
     })
+  },
+  watch: {
+    user: {
+      handler({ name, email }) {
+        this.accountForm = {
+          name,
+          email
+        };
+      },
+      immediate: true
+    }
   },
   methods: {
     async update() {
