@@ -9,8 +9,6 @@
         :fields="[
           'isbn',
           'category',
-          'publisher_id',
-          'publisher.name',
           'title',
           'price',
           'commentable',
@@ -24,15 +22,6 @@
         :filters="[
           'q',
           'title',
-          {
-            source: 'publisher',
-            type: 'select',
-            options: {
-              optionText: 'name',
-              multiple: true,
-              reference: 'publishers'
-            }
-          },
           { source: 'pricier_than', type: 'number' },
           { source: 'cheaper_than', type: 'number' },
           { source: 'commentable', type: 'boolean' },
@@ -47,7 +36,7 @@
             options: { format: 'long' }
           }
         ]"
-        :include="['publisher', 'media']"
+        :include="['publisher', 'reviews']"
         flat
         v-model="selected"
         :options.sync="options"
@@ -57,7 +46,6 @@
           :fields="[
             { source: 'isbn', link: 'show' },
             'category',
-            'publisher',
             'title',
             {
               source: 'price',
@@ -69,20 +57,13 @@
               source: 'publication_date',
               type: 'date',
               options: { format: 'long' }
-            }
+            },
+            'reviews'
           ]"
           v-bind="props"
           v-model="selected"
           :options.sync="options"
         >
-          <template v-slot:publisher="{ value }">
-            <v-chip
-              color="orange"
-              :to="{ name: 'publishers_show', params: { id: value.id } }"
-            >
-              {{ value.name }}
-            </v-chip>
-          </template>
           <template v-slot:category="{ item }">
             <v-chip>
               <va-select-field
@@ -92,6 +73,19 @@
                 enum
               ></va-select-field>
             </v-chip>
+          </template>
+          <template v-slot:reviews="{ value }">
+            <v-chip-group column>
+              <v-chip
+                color="green"
+                small
+                v-for="(item, i) in value"
+                :key="i"
+                :to="{ name: 'reviews_show', params: { id: item.id } }"
+              >
+                {{ item.author }}
+              </v-chip>
+            </v-chip-group>
           </template>
         </va-datagrid>
       </va-list>

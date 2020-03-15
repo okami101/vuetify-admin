@@ -46,7 +46,7 @@
             options: { format: 'long' }
           }
         ]"
-        :include="['authors', 'media']"
+        :include="['authors']"
         flat
         v-model="selected"
         :options.sync="options"
