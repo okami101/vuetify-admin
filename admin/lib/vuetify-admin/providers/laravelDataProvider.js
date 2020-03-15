@@ -1,7 +1,6 @@
 import {
   GET_LIST,
   GET_MANY,
-  GET_MANY_REFERENCE,
   GET_ONE,
   CREATE,
   UPDATE,
@@ -24,7 +23,6 @@ export default (axios, base = "/api") => {
     switch (type) {
       case GET_LIST:
       case GET_MANY:
-      case GET_MANY_REFERENCE:
         const { fields, include, pagination, sort, filter } = params;
 
         if (fields) {
@@ -47,10 +45,6 @@ export default (axios, base = "/api") => {
             searchParams.append("filter[id]", params.ids.join(","));
           }
           return { url: `${resourceUrl}?${searchParams.toString()}` };
-        }
-
-        if (type === GET_MANY_REFERENCE && params.target) {
-          searchParams.append(`filter[${params.target}]`, params.id);
         }
 
         if (pagination) {
@@ -136,7 +130,6 @@ export default (axios, base = "/api") => {
       switch (type) {
         case GET_LIST:
         case GET_MANY:
-        case GET_MANY_REFERENCE:
           let { data, meta } = response.data;
 
           return Promise.resolve({
@@ -159,8 +152,6 @@ export default (axios, base = "/api") => {
   return {
     [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
     [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
-    [GET_MANY_REFERENCE]: (resource, params) =>
-      fetchApi(GET_MANY_REFERENCE, resource, params),
     [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
     [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),
     [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),

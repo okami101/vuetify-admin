@@ -26,7 +26,6 @@ import EmailField from "./Fields/EmailField";
 import UrlField from "./Fields/UrlField";
 import FileField from "./Fields/FileField";
 import ImageField from "./Fields/ImageField";
-import ReferenceManyField from "./Fields/ReferenceManyField";
 
 import TextInput from "./Inputs/TextInput";
 import PasswordInput from "./Inputs/PasswordInput";
@@ -67,7 +66,6 @@ export {
   UrlField,
   FileField,
   ImageField,
-  ReferenceManyField,
   TextInput,
   PasswordInput,
   NumberInput,
