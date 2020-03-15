@@ -4,13 +4,17 @@
       <v-col lg="6">
         <v-card>
           <v-card-text>
-            <va-file-input source="photo">
-              <va-image-field
-                source="photo"
-                src="thumbnails.medium"
-                clearable
-              ></va-image-field>
-            </va-file-input>
+            <v-row>
+              <v-col lg="6">
+                <va-file-input source="photo">
+                  <va-image-field
+                    source="photo"
+                    src="thumbnails.medium"
+                    clearable
+                  ></va-image-field>
+                </va-file-input>
+              </v-col>
+            </v-row>
             <va-text-input source="name"></va-text-input>
             <va-text-input source="description" multiline></va-text-input>
             <va-array-input

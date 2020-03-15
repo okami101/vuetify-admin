@@ -5,7 +5,8 @@
       <va-list
         resource="reviews"
         disable-query-string
-        :fields="['status', 'rating', 'author', 'body', 'publication_date']"
+        :items-per-page="10"
+        :fields="['status', 'rating', 'author', 'publication_date']"
         :filter="{
           book: item.id
         }"
