@@ -159,10 +159,7 @@ export default {
       type: Boolean,
       default: true
     },
-    useQueryString: {
-      type: Boolean,
-      default: true
-    }
+    disableQueryString: Boolean
   },
   data() {
     return {
@@ -261,7 +258,7 @@ export default {
         sortDesc: this.sortDesc
       };
 
-      if (!this.useQueryString) {
+      if (this.disableQueryString) {
         this.currentOptions = options;
         return;
       }
@@ -311,7 +308,7 @@ export default {
       this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
-      if (!this.useQueryString || isEmpty(this.currentOptions)) {
+      if (this.disableQueryString || isEmpty(this.currentOptions)) {
         return;
       }
 
