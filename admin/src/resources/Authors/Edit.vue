@@ -1,5 +1,5 @@
 <template>
-  <va-edit v-slot="{ item }">
+  <va-edit>
     <authors-form :item="item"></authors-form>
   </va-edit>
 </template>
@@ -8,6 +8,9 @@
 import AuthorsForm from "./Form";
 
 export default {
+  props: {
+    item: Object
+  },
   components: {
     AuthorsForm
   }

@@ -1,5 +1,5 @@
 <template>
-  <va-show v-slot="{ item }">
+  <va-show>
     <v-row justify="center">
       <v-col lg="4">
         <v-card>
@@ -33,3 +33,11 @@
     </v-row>
   </va-show>
 </template>
+
+<script>
+export default {
+  props: {
+    item: Object
+  }
+};
+</script>

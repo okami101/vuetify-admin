@@ -43,7 +43,11 @@ export default ({ store, i18n, resource, title }) => {
       name: `${name}_${action}`,
       component: {
         render(c) {
-          return c(`${name}-${action}`);
+          return c(`${name}-${action}`, {
+            props: {
+              item: store.state[name].item
+            }
+          });
         },
         async beforeRouteEnter(to, from, next) {
           if (to.params.id) {
@@ -55,7 +59,7 @@ export default ({ store, i18n, resource, title }) => {
             });
 
             /**
-             * Insert model into resource store
+             * Insert model into route & resource store
              */
             store.commit(`${name}/setItem`, data);
 

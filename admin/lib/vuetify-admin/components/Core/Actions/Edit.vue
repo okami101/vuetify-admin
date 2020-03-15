@@ -24,11 +24,6 @@ import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "Edit",
-  mixins: [Item],
-  methods: {
-    onDeleted() {
-      this.$router.push(`/${this.resource}`);
-    }
-  }
+  mixins: [Item]
 };
 </script>

@@ -67,3 +67,11 @@
     </v-row>
   </va-show>
 </template>
+
+<script>
+export default {
+  props: {
+    item: Object
+  }
+};
+</script>
