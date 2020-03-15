@@ -1,5 +1,5 @@
 <template>
-  <va-admin :menu="menu"></va-admin>
+  <va-admin :sidebar-menu="menu"></va-admin>
 </template>
 
 <script>

@@ -32,7 +32,8 @@ export default {
     AppBreadcrumbs
   },
   props: {
-    menu: Array
+    sidebarMenu: Array,
+    profileMenu: Array
   },
   data() {
     return {

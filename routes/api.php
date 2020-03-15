@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Resources\User as UserResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,19 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:airlock')->get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 });
 
-/**
- * API resources controllers
- */
-Route::group([/*'middleware' => 'auth:airlock'*/], function () {
+Route::group(['middleware' => 'auth:airlock'], function () {
+    /**
+     * Profile management routes
+     */
+    Route::patch('account/update', 'AccountController@update')->name('account.update');
+    Route::patch('account/password', 'AccountController@password')->name('account.password');
+
+    /**
+     * API resources controllers
+     */
     Route::apiResources([
         'authors' => 'AuthorController',
         'books' => 'BookController',

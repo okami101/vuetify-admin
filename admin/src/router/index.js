@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "@/views/Login";
+import Profile from "@/views/Profile";
 import Dashboard from "@/views/Dashboard";
 
 Vue.use(VueRouter);
@@ -18,6 +19,14 @@ const router = ({ i18n }) => {
       component: Login,
       meta: {
         title: i18n.t("routes.login")
+      }
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile,
+      meta: {
+        title: i18n.t("routes.profile")
       }
     },
     {

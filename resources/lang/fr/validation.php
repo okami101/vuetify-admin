@@ -116,6 +116,8 @@ return [
     'uploaded'    => "Le fichier du champ :attribute n'a pu être téléversé.",
     'url'         => "Le format de l'URL de :attribute n'est pas valide.",
     'uuid'        => 'Le champ :attribute doit être un UUID valide',
+    'mismatch_password' => 'Le champ :attribute ne correspond pas à votre mot de passe courant.',
+    'strong_password'   => 'Le mot de passe doit contenir des lettres minuscules et majuscules, ainsi qu\'au moins un chiffre et un caractère spécial.',
 
     /*
     |--------------------------------------------------------------------------

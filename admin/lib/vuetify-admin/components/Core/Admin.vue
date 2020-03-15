@@ -3,7 +3,11 @@
     <v-content v-if="unauthenticatedRoute">
       <router-view></router-view>
     </v-content>
-    <app-layout v-else-if="user" :menu="menu"></app-layout>
+    <app-layout
+      v-else-if="user"
+      :sidebarMenu="sidebarMenu"
+      :profileMenu="profileMenu"
+    ></app-layout>
   </v-app>
 </template>
 
@@ -17,7 +21,8 @@ export default {
     AppLayout
   },
   props: {
-    menu: Array
+    sidebarMenu: Array,
+    profileMenu: Array
   },
   computed: {
     ...mapState({

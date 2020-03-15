@@ -61,8 +61,8 @@ export default (provider, router) => {
        */
       [CHECK_AUTH]: async ({ commit, dispatch }) => {
         try {
-          let user = await provider.checkAuth();
-          commit("setUser", user);
+          let { data } = await provider.checkAuth();
+          commit("setUser", data);
           return true;
         } catch (e) {
           dispatch("logout");

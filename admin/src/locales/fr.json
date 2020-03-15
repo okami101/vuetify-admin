@@ -22,6 +22,7 @@
   },
   "menu": {
     "login": "Login",
+    "profile": "Compte",
     "dashboard": "Tableau de bord",
     "help": "Aide",
     "settings": "Paramètres",

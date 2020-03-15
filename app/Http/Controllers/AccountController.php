@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\User as UserResource;
 
 class AccountController extends Controller
 {
     /**
+     * Update account infos
+     *
      * @param \Illuminate\Http\Request $request
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @return UserResource
+     *@throws \Illuminate\Validation\ValidationException
      *
-     * @return array
      */
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name'     => 'required|max:191',
-            'email'    => 'required|email|unique:users,email,'.auth()->id(),
+            'name'  => 'required|max:191',
+            'email' => 'required|email|unique:users,email,'.auth()->id(),
         ]);
 
         /** @var User $user */
@@ -29,20 +32,19 @@ class AccountController extends Controller
 
         $user->save();
 
-        return [
-            'message' => __('crud.account.profile_updated'),
-            'user'    => $user,
-        ];
+        return new UserResource($user);
     }
 
     /**
+     * Change password
+     *
      * @param Request $request
      *
+     * @return \Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      *
-     * @return array
      */
-    public function changePassword(Request $request)
+    public function password(Request $request)
     {
         /** @var User $user */
         $user = auth()->user();
@@ -52,12 +54,9 @@ class AccountController extends Controller
             'new_password' => 'required|confirmed|min:8|strong_password',
         ]);
 
-        $user->password = Hash::make($request->get('new_password'));
-
+        $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
-        return [
-            'message' => __('crud.account.password_updated'),
-        ];
+        return response()->noContent();
     }
 }
