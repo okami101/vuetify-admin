@@ -1,5 +1,5 @@
 <template>
-  <va-show v-slot="{ item }">
+  <va-show>
     <v-row justify="center">
       <v-col lg="8">
         <va-tabbed-show
@@ -18,15 +18,15 @@
                     src="thumbnails.medium"
                   ></va-image-field>
                 </va-field>
-                <va-field source="publisher">
+                <va-field source="publisher" v-slot="{ value }">
                   <v-chip
                     color="orange"
                     :to="{
                       name: 'publishers_show',
-                      params: { id: item.publisher.id }
+                      params: { id: value.id }
                     }"
                   >
-                    {{ item.publisher.name }}
+                    {{ value.name }}
                   </v-chip>
                 </va-field>
                 <va-field source="title"></va-field>
@@ -37,13 +37,9 @@
                 </va-field>
               </v-col>
               <v-col>
-                <va-field source="formats">
+                <va-field source="formats" v-slot="{ value }">
                   <v-chip-group>
-                    <v-chip
-                      color="yellow"
-                      v-for="(item, i) in item.formats"
-                      :key="i"
-                    >
+                    <v-chip color="yellow" v-for="(item, i) in value" :key="i">
                       <va-select-field
                         source="formats"
                         :item="item"
@@ -52,9 +48,9 @@
                     </v-chip>
                   </v-chip-group>
                 </va-field>
-                <va-field source="tags">
+                <va-field source="tags" v-slot="{ value }">
                   <v-chip-group>
-                    <v-chip v-for="(item, i) in item.tags" :key="i">
+                    <v-chip v-for="(item, i) in value" :key="i">
                       {{ item }}
                     </v-chip>
                   </v-chip-group>
@@ -70,11 +66,11 @@
                   type="date"
                   :options="{ format: 'long' }"
                 ></va-field>
-                <va-field source="authors">
+                <va-field source="authors" v-slot="{ value }">
                   <v-chip-group>
                     <v-chip
                       color="primary"
-                      v-for="(item, i) in item.authors"
+                      v-for="(item, i) in value"
                       :key="i"
                       :to="{ name: 'authors_show', params: { id: item.id } }"
                     >
@@ -88,11 +84,11 @@
               source="description"
               :options="{ multiline: true }"
             ></va-field>
-            <va-field source="reviews">
+            <va-field source="reviews" v-slot="{ value }">
               <v-chip-group column>
                 <v-chip
                   color="green"
-                  v-for="(item, i) in item.reviews"
+                  v-for="(item, i) in value"
                   :key="i"
                   :to="{ name: 'reviews_show', params: { id: item.id } }"
                 >

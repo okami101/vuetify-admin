@@ -4,15 +4,15 @@
       <v-col lg="4">
         <v-card>
           <v-card-text>
-            <va-field source="book">
+            <va-field source="book" v-slot="{ value }">
               <router-link
-                :to="{ name: 'books_show', params: { id: item.book.id } }"
+                :to="{ name: 'books_show', params: { id: value.id } }"
               >
-                {{ item.book.title }}
+                {{ value.title }}
               </router-link>
             </va-field>
-            <va-field source="status">
-              <v-chip :color="$statusColor(item.status)">
+            <va-field source="status" v-slot="{ value }">
+              <v-chip :color="$statusColor(value)">
                 <va-select-field source="status" enum></va-select-field>
               </v-chip>
             </va-field>

@@ -69,15 +69,12 @@ class BaseResource extends JsonResource
     {
         $attributes = [
             'id' => $file->id,
-            'title' => $file->name
+            'name' => $file->name,
+            'file_name' => $file->file_name,
+            'url' => $file->getFullUrl()
         ];
 
         $conversions = $file->getMediaConversionNames();
-
-        if (empty($conversions)) {
-            $attributes['src'] = $file->getFullUrl();
-            return $attributes;
-        }
 
         $attributes['thumbnails'] = collect($conversions)->mapWithKeys(function ($c) use ($file) {
             return [$c => $file->getFullUrl($c)];

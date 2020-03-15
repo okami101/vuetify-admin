@@ -6,10 +6,11 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <a
-          :href="getFileProp(file, src || 'src')"
-          :title="getFileProp(file, title || 'title')"
+          :href="getFileProp(file, src)"
+          :title="getFileProp(file, title)"
           :target="target"
         >
+          {{ getFileProp(file, fileName) }}
         </a>
       </span>
     </li>

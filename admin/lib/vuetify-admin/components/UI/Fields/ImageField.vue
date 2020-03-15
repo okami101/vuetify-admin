@@ -15,7 +15,7 @@
           :class="{ 'on-hover': hover }"
         >
           <v-img
-            :src="getFileProp(file, src) || file"
+            :src="getFileProp(file, src)"
             :alt="title"
             :title="title"
             :contain="contain"

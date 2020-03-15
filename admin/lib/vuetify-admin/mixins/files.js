@@ -6,8 +6,18 @@ export default {
     formName: { default: undefined }
   },
   props: {
-    src: String,
-    title: String,
+    src: {
+      type: String,
+      default: "url"
+    },
+    title: {
+      type: String,
+      default: "name"
+    },
+    fileName: {
+      type: String,
+      default: "file_name"
+    },
     target: {
       type: String,
       default: "_blank"
