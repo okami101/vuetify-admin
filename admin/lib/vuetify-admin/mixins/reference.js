@@ -59,7 +59,9 @@ export default {
         resource: this.reference,
         params: {
           fields: {
-            [this.reference]: this.fields
+            [this.reference]: this.fields.length
+              ? this.fields
+              : [this.optionText]
           },
           include: this.include,
           pagination: {

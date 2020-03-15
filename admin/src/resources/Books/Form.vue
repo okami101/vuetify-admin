@@ -15,7 +15,6 @@
                   source="publisher"
                   model="publisher_id"
                   reference="publishers"
-                  :fields="['name']"
                   option-text="name"
                 ></va-select-input>
                 <va-text-input source="isbn"></va-text-input>
@@ -42,7 +41,6 @@
                   model="author_ids"
                   multiple
                   reference="authors"
-                  :fields="['name']"
                   option-text="name"
                 ></va-autocomplete-input>
                 <va-autocomplete-input

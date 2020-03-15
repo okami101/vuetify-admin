@@ -1,21 +1,23 @@
 <template>
   <va-list
     :fields="['name', 'description']"
-    :filters="['q', 'name', 'books']"
+    :filters="[
+      'q',
+      'name',
+      {
+        source: 'books',
+        type: 'autocomplete',
+        options: {
+          optionText: 'title',
+          multiple: true,
+          reference: 'books'
+        }
+      }
+    ]"
     :items-per-page="8"
     :rows-per-page="[8, 16, 32]"
     :include="['media', 'books']"
   >
-    <template v-slot:filter.books="props">
-      <va-autocomplete-input
-        option-text="title"
-        multiple
-        reference="books"
-        :fields="['title']"
-        v-bind="props"
-      >
-      </va-autocomplete-input>
-    </template>
     <template v-slot="{ items }">
       <v-row>
         <v-col lg="3" v-for="item in items" :key="item.id">
