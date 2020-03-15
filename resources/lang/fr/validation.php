@@ -178,6 +178,8 @@ return [
         'available'             => 'disponible',
         'size'                  => 'taille',
         # APP
+        'old_password'          => 'ancien mot de passe',
+        'new_password'          => 'nouveau mot de passe',
         'isbn'                  => 'isbn',
         'body'                  => 'corps',
         'publication_date'      => 'date de publication',

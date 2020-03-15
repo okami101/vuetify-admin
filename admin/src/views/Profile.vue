@@ -12,13 +12,16 @@
                     :label="$t('profile.name')"
                     v-model="accountForm.name"
                     required
+                    :error-messages="errorMessages.name"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
                     :label="$t('profile.email')"
                     v-model="accountForm.email"
+                    type="email"
                     required
+                    :error-messages="errorMessages.email"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -39,24 +42,27 @@
                   <v-text-field
                     :label="$t('profile.old_password')"
                     type="password"
-                    v-model="passwordForm.oldPassword"
+                    v-model="passwordForm.old_password"
                     required
+                    :error-messages="errorMessages.old_password"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
                     :label="$t('profile.new_password')"
                     type="password"
-                    v-model="passwordForm.newPassword"
+                    v-model="passwordForm.new_password"
                     required
+                    :error-messages="errorMessages.new_password"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
                     :label="$t('profile.confirm_password')"
                     type="password"
-                    v-model="passwordForm.newPasswordConfirmation"
+                    v-model="passwordForm.new_password_confirmation"
                     required
+                    :error-messages="errorMessages.new_password_confirmation"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -88,10 +94,11 @@ export default {
         email: null
       },
       passwordForm: {
-        oldPassword: null,
-        newPassword: null,
-        newPasswordConfirmation: null
-      }
+        old_password: null,
+        new_password: null,
+        new_password_confirmation: null
+      },
+      errorMessages: {}
     };
   },
   computed: {
@@ -115,30 +122,44 @@ export default {
       checkAuth: "auth/checkAuth"
     }),
     async update() {
-      this.accountUpdating = true;
-      await this.$axios.patch("/api/account/update", this.accountForm);
-      this.accountUpdating = false;
+      try {
+        this.accountUpdating = true;
+        await this.$axios.patch("/api/account/update", this.accountForm);
+        this.accountUpdating = false;
 
-      /**
-       * Recheck auth
-       */
-      this.checkAuth();
-      this.$snackbar.success(this.$t("profile.account_updated"));
+        /**
+         * Recheck auth
+         */
+        this.checkAuth();
+        this.errorMessages = {};
+        this.$snackbar.success(this.$t("profile.account_updated"));
+      } catch ({ response }) {
+        this.accountUpdating = false;
+        this.$snackbar.error(response.data.message);
+        this.errorMessages = response.data.errors;
+      }
     },
     async changePassword() {
-      this.passwordChanging = true;
-      await this.$axios.patch("/api/account/password", this.passwordForm);
-      this.passwordChanging = false;
+      try {
+        this.passwordChanging = true;
+        await this.$axios.patch("/api/account/password", this.passwordForm);
+        this.passwordChanging = false;
 
-      /**
-       * Reset
-       */
-      this.passwordForm = {
-        oldPassword: null,
-        newPassword: null,
-        newPasswordConfirmation: null
-      };
-      this.$snackbar.success(this.$t("profile.password_changed"));
+        /**
+         * Reset
+         */
+        this.passwordForm = {
+          oldPassword: null,
+          newPassword: null,
+          newPasswordConfirmation: null
+        };
+        this.errorMessages = {};
+        this.$snackbar.success(this.$t("profile.password_changed"));
+      } catch ({ response }) {
+        this.passwordChanging = false;
+        this.$snackbar.error(response.data.message);
+        this.errorMessages = response.data.errors;
+      }
     }
   }
 };

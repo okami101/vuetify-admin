@@ -13,8 +13,6 @@
 <script>
 import Vue from "vue";
 import Confirm from "./Confirm";
-import { mapState, mapMutations } from "vuex";
-import capitalize from "lodash/capitalize";
 
 export default {
   name: "AppMessages",
@@ -38,40 +36,23 @@ export default {
     /**
      * Global toaster function
      */
-    let snackbarActions = {};
-    ["success", "error", "info", "warning"].forEach(action => {
-      snackbarActions[action] = text => {
-        this.snackbar = true;
-        this.text = text;
-        this.color = action;
-      };
-    });
-    Vue.prototype.$snackbar = snackbarActions;
-  },
-  watch: {
-    showSnackbar(val) {
-      this.snackbar = val;
-    },
-    snackbarText(val) {
-      this.text = val;
-    },
-    snackbar(val) {
-      if (!val) {
-        this.closeSnackbar();
-      }
-    }
-  },
-  computed: {
-    ...mapState({
-      showSnackbar: state => state.layout.showSnackbar,
-      snackbarText: state => state.layout.snackbarText,
-      snackbarColor: state => state.layout.snackbarColor
-    })
-  },
-  methods: {
-    ...mapMutations({
-      closeSnackbar: "layout/closeSnackbar"
-    })
+    Vue.prototype.$snackbar = [
+      "success",
+      "error",
+      "info",
+      "warning",
+      "message"
+    ].reduce(
+      (o, action) => ({
+        ...o,
+        [action]: text => {
+          this.snackbar = true;
+          this.text = text;
+          this.color = action !== "message" ? action : null;
+        }
+      }),
+      {}
+    );
   }
 };
 </script>

@@ -5,7 +5,6 @@ import PortalVue from "portal-vue";
 import isEmpty from "lodash/isEmpty";
 import capitalize from "lodash/capitalize";
 
-import layout from "./store/layout";
 import aside from "./store/aside";
 import auth from "./store/auth";
 import api from "./store/api";
@@ -89,7 +88,6 @@ export default class VuetifyAdmin {
     /**
      * Auth store & api dispatcher module injection
      */
-    store.registerModule("layout", layout(i18n));
     store.registerModule("aside", aside);
     store.registerModule("api", api);
     store.registerModule("auth", auth(this.authProvider, router));
@@ -102,7 +100,8 @@ export default class VuetifyAdmin {
         resource.name,
         resourceCrudModule({
           provider: this.dataProvider,
-          resource
+          resource,
+          i18n
         })
       )
     );
