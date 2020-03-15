@@ -21,6 +21,18 @@
     "password": "Password",
     "sign_in": "sign_in"
   },
+  "profile": {
+    "account": "Account",
+    "password": "Password",
+    "name": "Name",
+    "email": "Email",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "update": "Update",
+    "account_updated": "Account updated",
+    "password_changed": "Password changed"
+  },
   "menu": {
     "login": "Login",
     "profile": "Profile",

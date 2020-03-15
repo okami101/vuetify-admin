@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-snackbar v-model="snackbar" :color="snackbarColor">
-      {{ snackbarText }}
+    <v-snackbar v-model="snackbar" :color="color">
+      {{ text }}
       <v-btn text @click="snackbar = false">
         {{ $t("va.close") }}
       </v-btn>
@@ -14,6 +14,7 @@
 import Vue from "vue";
 import Confirm from "./Confirm";
 import { mapState, mapMutations } from "vuex";
+import capitalize from "lodash/capitalize";
 
 export default {
   name: "AppMessages",
@@ -22,12 +23,30 @@ export default {
   },
   data() {
     return {
-      snackbar: false
+      snackbar: false,
+      text: null,
+      color: null
     };
   },
   created() {
+    /**
+     * Global confirm dialog function
+     */
     Vue.prototype.$confirm = (title, message) =>
       this.$refs.confirm.open(title, message);
+
+    /**
+     * Global toaster function
+     */
+    let snackbarActions = {};
+    ["success", "error", "info", "warning"].forEach(action => {
+      snackbarActions[action] = text => {
+        this.snackbar = true;
+        this.text = text;
+        this.color = action;
+      };
+    });
+    Vue.prototype.$snackbar = snackbarActions;
   },
   watch: {
     showSnackbar(val) {

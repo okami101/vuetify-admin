@@ -21,6 +21,18 @@
     "password": "Mot de passe",
     "sign_in": "Se connecter"
   },
+  "profile": {
+    "account": "Mon compte",
+    "password": "Mot de passe",
+    "name": "Nom",
+    "email": "Email",
+    "old_password": "Ancien mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirmation du mot de passe",
+    "update": "Mettre à jour",
+    "account_updated": "Compte mis à jour",
+    "password_changed": "Mot de passe changé"
+  },
   "menu": {
     "login": "Login",
     "profile": "Compte",

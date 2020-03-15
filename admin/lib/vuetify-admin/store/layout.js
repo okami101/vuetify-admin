@@ -25,6 +25,11 @@ export default i18n => {
         state.snackbarColor = "error";
         state.showSnackbar = true;
       },
+      showWarning(state, text) {
+        state.snackbarText = text;
+        state.snackbarColor = "yellow";
+        state.showSnackbar = true;
+      },
       showInfo(state, text) {
         state.snackbarText = text;
         state.snackbarColor = "blue";
