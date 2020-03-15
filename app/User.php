@@ -60,4 +60,19 @@ class User extends Authenticatable
     {
         return (bool) count(array_intersect($this->roles, $roles));
     }
+
+    public function setImpersonating($id)
+    {
+        session()->put('impersonate', $id);
+    }
+
+    public function stopImpersonating()
+    {
+        session()->forget('impersonate');
+    }
+
+    public function isImpersonating()
+    {
+        return session()->has('impersonate');
+    }
 }

@@ -57,6 +57,11 @@ export default {
         { divider: true },
         { heading: this.$t("menu.other") },
         {
+          icon: "mdi-account",
+          text: this.$t("menu.users"),
+          link: "/users"
+        },
+        {
           icon: "mdi-settings",
           text: this.$t("menu.settings"),
           link: "/settings"

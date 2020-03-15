@@ -11,10 +11,9 @@
               <v-text-field
                 :label="$t('login.username')"
                 prepend-icon="mdi-account"
-                :rules="usernameRules"
                 v-model="username"
                 required
-                :error-messages="error"
+                :error-messages="errorMessages.email"
                 autofocus
               ></v-text-field>
 
@@ -22,7 +21,6 @@
                 :label="$t('login.password')"
                 prepend-icon="mdi-lock"
                 type="password"
-                :rules="passwordRules"
                 v-model="password"
                 required
               ></v-text-field>
@@ -52,14 +50,8 @@ export default {
     return {
       username: null,
       password: null,
-      error: null,
-      loading: false,
-      usernameRules: [
-        v => !!v || this.$t("va.forms.required_field", { field: "Email" })
-      ],
-      passwordRules: [
-        v => !!v || this.$t("va.forms.required_field", { field: "Password" })
-      ]
+      errorMessages: {},
+      loading: false
     };
   },
   methods: {
@@ -74,8 +66,8 @@ export default {
             username: this.username,
             password: this.password
           });
-        } catch (e) {
-          this.error = e.toString();
+        } catch ({ response }) {
+          this.errorMessages = response.data.errors;
         }
         this.loading = false;
       }

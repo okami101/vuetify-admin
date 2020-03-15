@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Author;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AuthorPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -16,7 +15,7 @@ class AuthorPolicy
     }
 
     /**
-     * Determine whether the user can view any authors.
+     * Determine whether the user can view any users.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -27,48 +26,48 @@ class AuthorPolicy
     }
 
     /**
-     * Determine whether the user can view the author.
+     * Determine whether the user can view the user.
      *
+     * @param  \App\User  $auth
      * @param  \App\User  $user
-     * @param  \App\Author  $author
      * @return mixed
      */
-    public function view(User $user, Author $author)
+    public function view(User $auth, User $user)
     {
         return true;
     }
 
     /**
-     * Determine whether the user can create authors.
+     * Determine whether the user can create users.
      *
-     * @param  \App\User  $user
+     * @param  \App\User  $auth
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $auth)
     {
         return true;
     }
 
     /**
-     * Determine whether the user can update the author.
+     * Determine whether the user can update the user.
      *
+     * @param  \App\User  $auth
      * @param  \App\User  $user
-     * @param  \App\Author  $author
      * @return mixed
      */
-    public function update(User $user, Author $author)
+    public function update(User $auth, User $user)
     {
         return true;
     }
 
     /**
-     * Determine whether the user can delete the author.
+     * Determine whether the user can delete the user.
      *
+     * @param  \App\User  $auth
      * @param  \App\User  $user
-     * @param  \App\Author  $author
      * @return mixed
      */
-    public function delete(User $user, Author $author)
+    public function delete(User $auth, User $user)
     {
         return true;
     }

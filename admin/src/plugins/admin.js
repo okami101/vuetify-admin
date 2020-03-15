@@ -37,7 +37,8 @@ const admin = ({ i18n, axios }) => {
       },
       { name: "books", translatable: true },
       { name: "authors", translatable: true },
-      "reviews"
+      "reviews",
+      "users"
     ],
     resourcesPath: "resources"
   });

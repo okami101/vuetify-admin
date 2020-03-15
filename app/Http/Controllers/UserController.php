@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Filters\SearchFilter;
-use App\Http\Requests\StoreReview;
-use App\Http\Requests\UpdateReview;
-use App\Http\Resources\Review as ReviewResource;
-use App\Review;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
+use App\Http\Resources\User as UserResource;
+use App\User;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class ReviewController extends Controller
+class UserController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Review::class);
+        $this->authorizeResource(User::class);
     }
 
     /**
@@ -25,21 +24,14 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return ReviewResource::collection(
-            QueryBuilder::for(Review::class)
-                ->allowedFields(['id', 'book_id', 'book.id', 'book.title', 'rating', 'status', 'body', 'author', 'publication_date'])
+        return UserResource::collection(
+            QueryBuilder::for(User::class)
+                ->allowedFields(['id', 'name', 'email', 'roles', 'created_at', 'updated_at'])
                 ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter(['author', 'body'])),
-                    AllowedFilter::exact('id'),
-                    AllowedFilter::exact('book', 'book_id'),
-                    AllowedFilter::exact('rating'),
-                    AllowedFilter::exact('status'),
-                    'author',
-                    AllowedFilter::scope('published_before'),
-                    AllowedFilter::scope('published_after'),
+                    AllowedFilter::custom('q', new SearchFilter(['name', 'email'])),
+                    AllowedFilter::partial('roles'),
                 ])
-                ->allowedSorts(['id', 'rating', 'author', 'publication_date'])
-                ->allowedIncludes(['book'])
+                ->allowedSorts(['id', 'name', 'email'])
                 ->exportOrPaginate()
         );
     }
@@ -47,49 +39,61 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Review  $review
-     * @return ReviewResource
+     * @param  \App\User  $user
+     * @return UserResource
      */
-    public function show(Review $review)
+    public function show(User $user)
     {
-        return new ReviewResource($review->load(['book']));
+        return new UserResource($user);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreReview $request
-     * @return ReviewResource
+     * @param StoreUser $request
+     * @return UserResource
      */
-    public function store(StoreReview $request)
+    public function store(StoreUser $request)
     {
-        $review = Review::create($request->all());
-        return new ReviewResource($review);
+        $user = User::create($request->all());
+        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateReview $request
-     * @param \App\Review $review
-     * @return ReviewResource
+     * @param UpdateUser $request
+     * @param \App\User $user
+     * @return UserResource
      */
-    public function update(UpdateReview $request, Review $review)
+    public function update(UpdateUser $request, User $user)
     {
-        $review->update($request->all());
-        return new ReviewResource($review);
+        $user->update($request->all());
+        return new UserResource($user);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Review $review
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Review $review)
+    public function destroy(User $user)
     {
-        $review->delete();
+        $user->delete();
+        return response()->noContent();
+    }
+
+    public function impersonate(User $user)
+    {
+        auth()->user()->setImpersonating($user->id);
+        return new UserResource($user);
+    }
+
+    public function stopImpersonate()
+    {
+        auth()->user()->stopImpersonating();
         return response()->noContent();
     }
 }

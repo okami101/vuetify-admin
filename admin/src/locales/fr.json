@@ -47,7 +47,8 @@
     "publishers": "Éditeurs",
     "authors": "Auteurs",
     "books": "Livres",
-    "reviews": "Commentaires"
+    "reviews": "Commentaires",
+    "users": "Utilisateurs"
   },
   "authors": {
     "last_books": "Derniers livres",
@@ -171,6 +172,24 @@
           "published": "Publié",
           "pending": "En cours",
           "denied": "Refusé"
+        }
+      }
+    },
+    "users": {
+      "name": "Utilisateur | Utilisateurs",
+      "fields": {
+        "id": "ID",
+        "name": "Nom",
+        "email": "Email",
+        "roles": "Rôles",
+        "created_at": "Date de création",
+        "updated_at": "Date de modification"
+      },
+      "enums": {
+        "roles": {
+          "admin": "Admin",
+          "editor": "Editeur",
+          "author": "Auteur"
         }
       }
     }
