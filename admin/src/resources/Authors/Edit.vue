@@ -4,8 +4,8 @@
     <v-card>
       <va-list
         resource="books"
-        disable-query-string
-        :items-per-page="10"
+        disable-pagination
+        hide-header
         :fields="[
           'isbn',
           'category',
@@ -19,30 +19,14 @@
         :filter="{
           authors: item.id
         }"
-        :filters="[
-          'q',
-          'title',
-          { source: 'pricier_than', type: 'number' },
-          { source: 'cheaper_than', type: 'number' },
-          { source: 'commentable', type: 'boolean' },
-          {
-            source: 'published_before',
-            type: 'date',
-            options: { format: 'long' }
-          },
-          {
-            source: 'published_after',
-            type: 'date',
-            options: { format: 'long' }
-          }
-        ]"
         :include="['publisher', 'reviews']"
         flat
-        v-model="selected"
         :options.sync="options"
         v-slot="props"
       >
         <va-datagrid
+          disable-sort
+          disable-select
           :fields="[
             { source: 'isbn', link: 'show' },
             'category',
@@ -61,7 +45,6 @@
             'reviews'
           ]"
           v-bind="props"
-          v-model="selected"
           :options.sync="options"
         >
           <template v-slot:category="{ item }">
@@ -105,8 +88,7 @@ export default {
   },
   data() {
     return {
-      options: {},
-      selected: []
+      options: {}
     };
   }
 };

@@ -14,13 +14,14 @@
       :options.sync="currentOptions"
       :value="value"
       :items-per-page="itemsPerPage"
+      :hide-default-footer="disablePagination"
       :footer-props="{
         'items-per-page-options': rowsPerPage,
         showFirstLastPage: true
       }"
       @input="selected => $emit('input', selected)"
     >
-      <template v-slot:header>
+      <template v-slot:header v-if="!hideHeader">
         <v-card :flat="flat">
           <v-toolbar flat color="blue lighten-5" v-if="value.length">
             {{ $tc("va.datagrid.selected_items", value.length) }}
@@ -159,7 +160,9 @@ export default {
       type: Boolean,
       default: true
     },
-    disableQueryString: Boolean
+    disableQueryString: Boolean,
+    disablePagination: Boolean,
+    hideHeader: Boolean
   },
   data() {
     return {
@@ -343,26 +346,31 @@ export default {
       this.loading = true;
       const { sortBy, sortDesc, page, itemsPerPage } = this.currentOptions;
 
+      let params = {
+        fields: this.getFieldsQuery(this.resource, this.fields),
+        include: this.include,
+        sort: (sortBy || []).map((by, index) => {
+          return { by, desc: sortDesc[index] };
+        }),
+        filter: {
+          ...this.filter,
+          ...this.currentFilter
+        }
+      };
+
+      if (!this.disablePagination) {
+        params.pagination = {
+          page,
+          perPage: itemsPerPage
+        };
+      }
+
       /**
        * Load paginated and sortad data list
        */
       let { data, total } = await this.getList({
         resource: this.resource,
-        params: {
-          fields: this.getFieldsQuery(this.resource, this.fields),
-          include: this.include,
-          pagination: {
-            page,
-            perPage: itemsPerPage
-          },
-          sort: (sortBy || []).map((by, index) => {
-            return { by, desc: sortDesc[index] };
-          }),
-          filter: {
-            ...this.filter,
-            ...this.currentFilter
-          }
-        }
+        params
       });
 
       this.loading = false;

@@ -2,7 +2,8 @@
   <v-data-table
     :headers="headers"
     :items="items"
-    :show-select="showSelect"
+    :show-select="!disableSelect"
+    :disable-sort="disableSort"
     :value="value"
     :dense="dense"
     hide-default-footer
@@ -153,10 +154,6 @@ export default {
       type: Array,
       default: () => []
     },
-    showSelect: {
-      type: Boolean,
-      default: true
-    },
     dense: Boolean,
     loading: Boolean,
     itemsPerPage: Number,
@@ -177,7 +174,9 @@ export default {
       type: Boolean,
       default: true
     },
-    serverItemsLength: Number
+    serverItemsLength: Number,
+    disableSelect: Boolean,
+    disableSort: Boolean
   },
   computed: {
     headers() {
