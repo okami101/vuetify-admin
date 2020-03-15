@@ -151,15 +151,8 @@ export default {
         return this.updateForm(value);
       }
 
-      if (this.filterable) {
-        EventBus.$emit("filter", {
-          source: this.uniqueFormId,
-          value
-        });
-
-        this.input = value;
-        this.$emit("input", value);
-      }
+      this.input = value;
+      this.$emit("input", value);
     },
     updateForm(value) {
       EventBus.$emit("update-model", {

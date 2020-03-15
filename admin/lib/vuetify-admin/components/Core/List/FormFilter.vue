@@ -12,29 +12,20 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
-        <slot
+        <component
+          :is="`va-${item.type}-input`"
           :source="item.source"
           :model="item.model"
-          :name="item.source"
           :label="item.label"
           filterable
+          v-bind="item.options"
+          :value="value[item.source]"
           hide-details
           :filled="false"
-          :value="value[item.source]"
+          @input="val => update(item.source, val)"
         >
-          <component
-            :is="`va-${item.type}-input`"
-            :source="item.source"
-            :model="item.model"
-            :label="item.label"
-            filterable
-            v-bind="item.options"
-            :value="value[item.source]"
-            hide-details
-            :filled="false"
-          >
-          </component>
-        </slot>
+          <slot :name="item.source"></slot>
+        </component>
       </div>
     </v-col>
   </v-row>
@@ -42,7 +33,6 @@
 
 <script>
 import debounce from "lodash/debounce";
-import EventBus from "vuetify-admin/utils/eventBus";
 
 export default {
   name: "FormFilter",
@@ -61,18 +51,6 @@ export default {
       filter: {}
     };
   },
-  mounted() {
-    EventBus.$on("filter", ({ source, value }) => {
-      this.filter = {
-        ...this.value,
-        [source]: value
-      };
-      this.debounceInput();
-    });
-  },
-  beforeDestroy() {
-    EventBus.$off("filter");
-  },
   methods: {
     remove(filter) {
       let value = { ...this.value };
@@ -80,6 +58,13 @@ export default {
 
       this.$emit("remove", filter);
       this.$emit("input", value);
+    },
+    update(source, value) {
+      this.filter = {
+        ...this.value,
+        [source]: value
+      };
+      this.debounceInput();
     },
     debounceInput: debounce(function() {
       this.$emit("input", this.filter);
