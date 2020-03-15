@@ -6,8 +6,6 @@ import axios from "./plugins/axios";
 import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 import App from "./App.vue";
-import "roboto-fontface/css/roboto/roboto-fontface.css";
-import "@mdi/font/css/materialdesignicons.css";
 
 Vue.config.productionTip = false;
 
