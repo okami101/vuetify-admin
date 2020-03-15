@@ -31,7 +31,7 @@ class ReviewController extends Controller
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['author', 'body'])),
                     AllowedFilter::exact('id'),
-                    AllowedFilter::exact('book_id'),
+                    AllowedFilter::exact('book', 'book_id'),
                     AllowedFilter::exact('rating'),
                     AllowedFilter::exact('status'),
                     'author',

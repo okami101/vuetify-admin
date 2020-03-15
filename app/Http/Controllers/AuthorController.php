@@ -36,7 +36,7 @@ class AuthorController extends Controller
                     AllowedFilter::custom('q', new SearchFilter(['name', 'description'])),
                     AllowedFilter::exact('id'),
                     'name',
-                    AllowedFilter::callback('book_ids', function (Builder $query, $value) {
+                    AllowedFilter::callback('books', function (Builder $query, $value) {
                         $query->whereHas('books', function (Builder $query) use ($value) {
                             $query->whereIn('id', is_array($value) ? $value : [$value]);
                         });

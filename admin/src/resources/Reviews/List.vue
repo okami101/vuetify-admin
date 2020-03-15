@@ -12,7 +12,7 @@
       ]"
       :filters="[
         'q',
-        { source: 'book', model: 'book_id' },
+        'book',
         { source: 'rating', type: 'rating' },
         {
           source: 'status',

@@ -212,7 +212,6 @@ export default {
           return {
             ...f,
             type: f.type || "text",
-            query: f.model || f.source,
             label:
               f.label ||
               this.$t(`resources.${this.resource}.fields.${f.source}`)
@@ -221,12 +220,12 @@ export default {
     },
     getEnabledFilters() {
       return this.getFilters.filter(f => {
-        return f.alwaysOn || this.enabledFilters.includes(f.query);
+        return f.alwaysOn || this.enabledFilters.includes(f.source);
       });
     },
     getDisabledFilters() {
       return this.getFilters.filter(f => {
-        return !f.alwaysOn && !this.enabledFilters.includes(f.query);
+        return !f.alwaysOn && !this.enabledFilters.includes(f.source);
       });
     }
   },
@@ -297,7 +296,7 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.getFilters.find(f => f.query === prop);
+          let filter = this.getFilters.find(f => f.source === prop);
 
           if (filter) {
             this.enableFilter(filter);
@@ -306,10 +305,10 @@ export default {
       }
     },
     enableFilter(filter) {
-      this.enabledFilters.push(filter.query);
+      this.enabledFilters.push(filter.source);
     },
     disableFilter(filter) {
-      this.enabledFilters.splice(this.enabledFilters.indexOf(filter.query), 1);
+      this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
       if (!this.useQueryString || isEmpty(this.currentOptions)) {

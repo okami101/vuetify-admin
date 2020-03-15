@@ -49,10 +49,10 @@ class BookController extends Controller
                     'reviews.author',
                 ])
                 ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter(['isbn', 'title'])),
+                    AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'description'])),
                     AllowedFilter::exact('id'),
-                    AllowedFilter::exact('publisher_id'),
-                    AllowedFilter::callback('author_ids', function (Builder $query, $value) {
+                    AllowedFilter::exact('publisher', 'publisher_id'),
+                    AllowedFilter::callback('authors', function (Builder $query, $value) {
                         $query->whereHas('authors', function (Builder $query) use ($value) {
                             $query->whereIn('id', is_array($value) ? $value : [$value]);
                         });

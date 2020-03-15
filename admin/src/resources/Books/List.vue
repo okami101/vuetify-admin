@@ -19,8 +19,8 @@
       :filters="[
         'q',
         'title',
-        { source: 'publisher', model: 'publisher_id' },
-        { source: 'authors', model: 'author_ids' },
+        'publisher',
+        'authors',
         { source: 'pricier_than', type: 'number' },
         { source: 'cheaper_than', type: 'number' },
         { source: 'commentable', type: 'boolean' },

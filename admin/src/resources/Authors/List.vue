@@ -1,7 +1,7 @@
 <template>
   <va-list
     :fields="['name', 'description']"
-    :filters="['q', 'name', { source: 'books', model: 'book_ids' }]"
+    :filters="['q', 'name', 'books']"
     :items-per-page="8"
     :rows-per-page="[8, 16, 32]"
     :include="['media', 'books']"
