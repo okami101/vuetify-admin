@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Routing\Pipeline;
 
 class Impersonate
 {
@@ -15,10 +16,16 @@ class Impersonate
      */
     public function handle($request, Closure $next)
     {
-        if ($id = $request->session()->get('impersonate')) {
+        if ($request->hasSession() && ($id = $request->session()->get('impersonate'))) {
             auth()->onceUsingId($id);
+
+            return $next($request);
         }
 
-        return $next($request);
+        return (new Pipeline(app()))->send($request)->through([
+            \App\Http\Middleware\Authenticate::class . ':airlock'
+        ])->then(function ($request) use ($next) {
+            return $next($request);
+        });
     }
 }

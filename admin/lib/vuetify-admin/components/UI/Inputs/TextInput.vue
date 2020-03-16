@@ -15,6 +15,7 @@
     :append-icon="icon"
     @change="change"
     @input="update"
+    :type="type"
   ></v-text-field>
 </template>
 
@@ -27,6 +28,7 @@ export default {
   props: {
     multiline: Boolean,
     icon: String,
+    type: String,
     filled: {
       type: Boolean,
       default: true

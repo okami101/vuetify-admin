@@ -28,10 +28,6 @@ export default {
   mixins: [Item],
   props: {
     icon: Boolean,
-    label: {
-      type: Boolean,
-      default: true
-    },
     redirect: Boolean,
     color: {
       type: String,

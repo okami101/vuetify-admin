@@ -1,0 +1,32 @@
+<template>
+  <va-form :item="item" :saving.sync="saving">
+    <v-row justify="center">
+      <v-col lg="3">
+        <v-card>
+          <v-card-text>
+            <va-text-input source="name"></va-text-input>
+            <va-text-input source="email" type="email"></va-text-input>
+            <va-boolean-input source="active"></va-boolean-input>
+            <va-select-input source="roles" enum multiple></va-select-input>
+          </v-card-text>
+          <v-toolbar flat color="grey lighten-4">
+            <va-save-button :saving="saving"></va-save-button>
+          </v-toolbar>
+        </v-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: {
+    item: Object
+  },
+  data() {
+    return {
+      saving: false
+    };
+  }
+};
+</script>

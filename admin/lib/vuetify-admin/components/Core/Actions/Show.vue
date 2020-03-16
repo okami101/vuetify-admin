@@ -8,6 +8,7 @@
       <slot name="actions">
         <va-list-button :resource="resource" :item="record"></va-list-button>
         <va-edit-button :resource="resource" :item="record"></va-edit-button>
+        <slot name="actions.custom" v-bind="{ resource, item }"></slot>
         <va-clone-button :resource="resource" :item="record"></va-clone-button>
         <va-delete-button
           :resource="resource"

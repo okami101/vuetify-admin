@@ -1,8 +1,21 @@
 <template>
-  <va-admin :sidebar-menu="sidebarMenu" :profile-menu="profileMenu"></va-admin>
+  <va-admin :sidebar-menu="sidebarMenu" :profile-menu="profileMenu">
+    <template v-slot:message v-if="user && user.impersonate">
+      <v-alert type="warning" text>
+        <i18n path="users.logged_as">
+          <strong>{{ user.name }}</strong>
+          <a href="javascript:void(0)" @click="stopImpersonate">{{
+            $t("here")
+          }}</a>
+        </i18n>
+      </v-alert>
+    </template>
+  </va-admin>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "App",
   data() {
@@ -74,6 +87,29 @@ export default {
         { icon: "mdi-help-circle", text: this.$t("menu.help"), link: "/help" }
       ]
     };
+  },
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
+  },
+  methods: {
+    ...mapActions({
+      checkAuth: "auth/checkAuth"
+    }),
+    async stopImpersonate() {
+      try {
+        await this.$axios.post(`/api/users/stopImpersonate`);
+
+        /**
+         * Check auth and redirect to home
+         */
+        this.checkAuth();
+        this.$router.push("/").catch(() => {});
+      } catch ({ response }) {
+        this.$snackbar.error(response.data.message);
+      }
+    }
   }
 };
 </script>

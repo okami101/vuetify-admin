@@ -50,7 +50,8 @@ export default {
      * Initiate parent model form
      */
     this.initializeValue();
-
+  },
+  mounted() {
     EventBus.$on("form-errors", ({ name, errors }) => {
       if (name === this.formName) {
         this.errorMessages = errors[this.uniqueFormId] || [];

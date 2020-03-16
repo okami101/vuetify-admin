@@ -29,10 +29,6 @@ export default {
   mixins: [Resource],
   props: {
     icon: Boolean,
-    label: {
-      type: Boolean,
-      default: true
-    },
     color: {
       type: String,
       default: "primary"

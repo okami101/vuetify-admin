@@ -1,6 +1,7 @@
 {
   "good": "Bon",
   "bad": "Mauvais",
+  "here": "ici",
   "address": "Adresse",
   "backlinks": "Références",
   "locales": {
@@ -32,6 +33,11 @@
     "update": "Mettre à jour",
     "account_updated": "Compte mis à jour",
     "password_changed": "Mot de passe changé"
+  },
+  "users": {
+    "impersonate": "Usurper",
+    "stop_impersonate": "Arrêter usurpation",
+    "logged_as": "Vous êtes actuellement connecté en tant que {0}, cliquer {1} pour arrêter le mode d'usurpation."
   },
   "menu": {
     "login": "Login",

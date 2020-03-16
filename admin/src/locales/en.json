@@ -1,6 +1,7 @@
 {
   "good": "Good",
   "bad": "Bad",
+  "here": "here",
   "address": "Address",
   "backlinks": "Backlinks",
   "locales": {
@@ -32,6 +33,11 @@
     "update": "Update",
     "account_updated": "Account updated",
     "password_changed": "Password changed"
+  },
+  "users": {
+    "impersonate": "Impersonate",
+    "stop_impersonate": "Stop impersonate",
+    "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
   },
   "menu": {
     "login": "Login",

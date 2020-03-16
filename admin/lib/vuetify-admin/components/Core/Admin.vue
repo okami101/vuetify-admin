@@ -9,6 +9,7 @@
 
       <v-content>
         <app-breadcrumbs></app-breadcrumbs>
+        <slot name="message"></slot>
         <app-messages></app-messages>
         <v-container fluid>
           <router-view></router-view>

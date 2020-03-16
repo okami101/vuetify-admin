@@ -14,11 +14,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:airlock')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
-});
+Route::group(['middleware' => ['impersonate']], function () {
+    Route::get('/user', function (Request $request) {
+        return new UserResource($request->user());
+    });
 
-Route::group(['middleware' => ['auth:airlock', 'impersonate']], function () {
     /**
      * Profile management routes
      */
@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth:airlock', 'impersonate']], function () {
      * Impersonation routes
      */
     Route::post('/users/{user}/impersonate', 'UserController@impersonate');
-    Route::post('/users/stop', 'UserController@stopImpersonate');
+    Route::post('/users/stopImpersonate', 'UserController@stopImpersonate');
 
     /**
      * API resources controllers

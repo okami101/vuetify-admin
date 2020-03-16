@@ -14,6 +14,10 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $attributes = parent::toArray($request);
+
+        $attributes['impersonate'] = $request->session()->has('impersonate');
+
+        return $attributes;
     }
 }

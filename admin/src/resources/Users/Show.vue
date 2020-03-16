@@ -1,5 +1,8 @@
 <template>
   <va-show>
+    <template v-slot:actions.custom>
+      <impersonate-button :item="item"></impersonate-button>
+    </template>
     <v-row justify="center">
       <v-col lg="2">
         <v-card>
@@ -26,7 +29,12 @@
 </template>
 
 <script>
+import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
+
 export default {
+  components: {
+    ImpersonateButton
+  },
   props: {
     item: Object
   }

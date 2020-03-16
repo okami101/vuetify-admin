@@ -1,0 +1,43 @@
+<template>
+  <va-action-button
+    v-if="![1, user.id].includes(item.id)"
+    :item="item"
+    @click="impersonate"
+    :show-label="!icon"
+    :label="$t('users.impersonate')"
+    icon="mdi-lock"
+    text
+  ></va-action-button>
+</template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  name: "ImpersonateButton",
+  props: {
+    item: Object,
+    icon: Boolean
+  },
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
+  },
+  methods: {
+    async impersonate() {
+      try {
+        await this.$axios.post(`/api/users/${this.item.id}/impersonate`);
+
+        /**
+         * Redirect to home
+         * New auth user will be checked
+         */
+        this.$router.push("/");
+      } catch ({ response }) {
+        this.$snackbar.error(response.data.message);
+      }
+    }
+  }
+};
+</script>

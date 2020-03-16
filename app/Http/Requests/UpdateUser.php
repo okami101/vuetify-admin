@@ -23,11 +23,13 @@ class UpdateUser extends FormRequest
      */
     public function rules()
     {
+        $user = $this->route('user');
+
         return [
             'name' => 'sometimes|required',
-            'email' => 'sometimes|required|email|unique:users,email,'.$this->route('id'),
+            'email' => 'sometimes|required|email|unique:users,email,'.$user->id,
             'active' => 'sometimes|boolean',
-            'roles.*' => 'sometimes|array|in:admin,editor,author',
+            'roles.*' => 'sometimes|in:admin,editor,author',
         ];
     }
 }

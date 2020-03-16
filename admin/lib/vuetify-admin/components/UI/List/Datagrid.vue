@@ -99,7 +99,7 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <div class="item-actions">
-        <slot name="actions-item" v-bind="{ resource, item }">
+        <slot name="item.actions" v-bind="{ resource, item }">
           <va-show-button
             v-if="rowClick !== 'show'"
             :resource="resource"
@@ -112,6 +112,7 @@
             :item="item"
             icon
           ></va-edit-button>
+          <slot name="item.actions.custom" v-bind="{ resource, item }"></slot>
           <va-delete-button
             :resource="resource"
             :item="item"

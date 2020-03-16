@@ -56,13 +56,25 @@
             </v-chip>
           </v-chip-group>
         </template>
+        <template v-slot:item.actions.custom="{ resource, item }">
+          <impersonate-button
+            :resource="resource"
+            :item="item"
+            icon
+          ></impersonate-button>
+        </template>
       </va-datagrid>
     </va-list>
   </v-card>
 </template>
 
 <script>
+import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
+
 export default {
+  components: {
+    ImpersonateButton
+  },
   data() {
     return {
       options: {},
