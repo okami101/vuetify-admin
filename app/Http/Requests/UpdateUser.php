@@ -26,6 +26,7 @@ class UpdateUser extends FormRequest
         return [
             'name' => 'sometimes|required',
             'email' => 'sometimes|required|email|unique:users,email,'.$this->route('id'),
+            'active' => 'sometimes|boolean',
             'roles.*' => 'sometimes|array|in:admin,editor,author',
         ];
     }

@@ -26,6 +26,7 @@ class StoreUser extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'active' => 'boolean',
             'roles.*' => 'array|in:admin,editor,author',
         ];
     }

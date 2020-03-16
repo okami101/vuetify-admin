@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
+ * @property bool $active
  * @property array $roles
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -34,7 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'active',
     ];
 
     /**
@@ -52,6 +53,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'active' => 'boolean',
         'email_verified_at' => 'datetime',
         'roles' => 'array',
     ];

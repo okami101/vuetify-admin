@@ -181,6 +181,7 @@
         "id": "ID",
         "name": "Nom",
         "email": "Email",
+        "active": "Actif",
         "roles": "Rôles",
         "created_at": "Date de création",
         "updated_at": "Date de modification"

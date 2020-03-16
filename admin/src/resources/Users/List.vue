@@ -1,9 +1,10 @@
 <template>
   <v-card>
     <va-list
-      :fields="['name', 'email', 'roles', 'created_at', 'updated_at']"
+      :fields="['name', 'email', 'active', 'roles', 'created_at', 'updated_at']"
       :filters="[
         'q',
+        { source: 'active', type: 'boolean' },
         {
           source: 'roles',
           type: 'select',
@@ -22,6 +23,7 @@
         :fields="[
           'name',
           { source: 'email', type: 'email' },
+          { source: 'active', type: 'boolean', editable: true },
           'roles',
           {
             source: 'created_at',

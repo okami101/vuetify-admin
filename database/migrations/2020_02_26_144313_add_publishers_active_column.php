@@ -14,7 +14,7 @@ class AddPublishersActiveColumn extends Migration
     public function up()
     {
         Schema::table('publishers', function (Blueprint $table) {
-            $table->boolean('active')->after('headquarter');
+            $table->boolean('active')->default(0)->after('headquarter');
         });
     }
 

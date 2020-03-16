@@ -14,7 +14,7 @@ class AddBooksCommentableColumn extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->boolean('commentable')->after('price');
+            $table->boolean('commentable')->default(0)->after('price');
         });
     }
 
