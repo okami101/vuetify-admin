@@ -1,23 +1,17 @@
 <template>
   <va-admin :sidebar-menu="sidebarMenu" :profile-menu="profileMenu">
-    <template v-slot:message v-if="user && user.impersonate">
-      <v-alert type="warning" text>
-        <i18n path="users.logged_as">
-          <strong>{{ user.name }}</strong>
-          <a href="javascript:void(0)" @click="stopImpersonate">{{
-            $t("here")
-          }}</a>
-        </i18n>
-      </v-alert>
-    </template>
+    <impersonate-message slot="message"></impersonate-message>
   </va-admin>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import ImpersonateMessage from "@/components/ImpersonateMessage";
 
 export default {
   name: "App",
+  components: {
+    ImpersonateMessage
+  },
   data() {
     return {
       profileMenu: [
@@ -38,17 +32,20 @@ export default {
         {
           icon: "mdi-globe-model",
           text: this.$t("menu.publishers"),
-          link: "/publishers"
+          link: "/publishers",
+          permissions: ["admin", "editor"]
         },
         {
           icon: "mdi-account",
           text: this.$t("menu.authors"),
-          link: "/authors"
+          link: "/authors",
+          permissions: ["admin", "editor"]
         },
         {
           icon: "mdi-book",
           text: this.$t("menu.books"),
           expanded: true,
+          permissions: ["admin", "editor", "author"],
           children: [
             {
               icon: "mdi-view-list",
@@ -65,51 +62,32 @@ export default {
         {
           icon: "mdi-comment",
           text: this.$t("menu.reviews"),
-          link: "/reviews"
+          link: "/reviews",
+          permissions: ["admin", "editor", "author"]
         },
         { divider: true },
         { heading: this.$t("menu.other") },
         {
           icon: "mdi-account",
           text: this.$t("menu.users"),
-          link: "/users"
+          link: "/users",
+          permissions: ["admin"]
         },
         {
           icon: "mdi-settings",
           text: this.$t("menu.settings"),
-          link: "/settings"
+          link: "/settings",
+          permissions: ["admin"]
         },
         {
           icon: "mdi-message",
           text: this.$t("menu.feedback"),
-          link: "/feedback"
+          link: "/feedback",
+          permissions: ["admin", "editor"]
         },
         { icon: "mdi-help-circle", text: this.$t("menu.help"), link: "/help" }
       ]
     };
-  },
-  computed: {
-    ...mapState({
-      user: state => state.auth.user
-    })
-  },
-  methods: {
-    ...mapActions({
-      checkAuth: "auth/checkAuth"
-    }),
-    async stopImpersonate() {
-      try {
-        await this.$axios.post(`/api/users/stopImpersonate`);
-
-        /**
-         * Check auth and redirect to home
-         */
-        this.checkAuth();
-        this.$router.push("/").catch(() => {});
-      } catch ({ response }) {
-        this.$snackbar.error(response.data.message);
-      }
-    }
   }
 };
 </script>

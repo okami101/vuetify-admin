@@ -30,10 +30,9 @@ export default {
         await this.$axios.post(`/api/users/${this.item.id}/impersonate`);
 
         /**
-         * Redirect to home
-         * New auth user will be checked
+         * Full reload to home
          */
-        this.$router.push("/");
+        location.href = process.env.BASE_URL;
       } catch ({ response }) {
         this.$snackbar.error(response.data.message);
       }

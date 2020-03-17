@@ -43,6 +43,7 @@
               :key="index"
               link
               :to="item.link"
+              v-can="item.permissions"
             >
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>

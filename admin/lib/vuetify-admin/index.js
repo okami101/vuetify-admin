@@ -123,14 +123,13 @@ export default class VuetifyAdmin {
     /**
      * Permissions helper & directive
      */
-    this.can = permissions => {
-      return !isEmpty(
+    this.can = permissions =>
+      isEmpty(permissions) ||
+      !isEmpty(
         (Array.isArray(permissions) ? permissions : [permissions]).filter(
           p => -1 !== store.getters["auth/getPermissions"].indexOf(p)
         )
       );
-    };
-
     /**
      * Each navigation trigger function
      */

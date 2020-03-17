@@ -16,6 +16,7 @@
           v-model="item.expanded"
           :prepend-icon="item.icon"
           append-icon="mdi-chevron-up"
+          v-can="item.permissions"
         >
           <template v-slot:activator>
             <v-list-item-content>
@@ -29,6 +30,7 @@
             :key="i"
             link
             :to="child.link"
+            v-can="child.permissions"
           >
             <v-list-item-action v-if="child.icon">
               <v-icon>{{ child.icon }}</v-icon>
@@ -40,7 +42,13 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-        <v-list-item v-else-if="item.text" :key="index" link :to="item.link">
+        <v-list-item
+          v-else-if="item.text"
+          :key="index"
+          link
+          :to="item.link"
+          v-can="item.permissions"
+        >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
