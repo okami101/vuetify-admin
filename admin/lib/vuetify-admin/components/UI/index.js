@@ -15,6 +15,7 @@ import CloneButton from "./Buttons/CloneButton";
 import LocaleButton from "./Buttons/LocaleButton";
 import ActionButton from "./Buttons/ActionButton";
 import BulkActionButton from "./Buttons/BulkActionButton";
+import BulkDeleteButton from "./Buttons/BulkDeleteButton";
 
 import TextField from "./Fields/TextField";
 import NumberField from "./Fields/NumberField";
@@ -58,6 +59,7 @@ export {
   LocaleButton,
   ActionButton,
   BulkActionButton,
+  BulkDeleteButton,
   TextField,
   NumberField,
   RatingField,

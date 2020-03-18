@@ -24,10 +24,11 @@
             <v-spacer></v-spacer>
             <div>
               <slot name="bulk.actions"></slot>
-              <va-delete-button
+              <va-bulk-delete-button
                 :resource="resource"
-                @delete="onBlukDelete"
-              ></va-delete-button>
+                :value="value"
+                @input="value => $emit('input', value)"
+              ></va-bulk-delete-button>
             </div>
           </v-toolbar>
           <v-toolbar flat v-else>
@@ -246,8 +247,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getList: "api/getList",
-      deleteMany: "api/deleteMany"
+      getList: "api/getList"
     }),
     async initFiltersFromQuery() {
       let options = {
@@ -402,33 +402,6 @@ export default {
     },
     async onDelete(item) {
       this.fetchData();
-    },
-    async onBlukDelete() {
-      if (
-        await this.$confirm(
-          this.$t("va.confirm.delete_many_title", {
-            resource: this.$tc(
-              `resources.${this.resource}.name`,
-              this.value.length
-            ).toLowerCase(),
-            count: this.value.length
-          }),
-          this.$t("va.confirm.delete_many_message", {
-            resource: this.$tc(
-              `resources.${this.resource}.name`,
-              this.value.length
-            ).toLowerCase(),
-            count: this.value.length
-          })
-        )
-      ) {
-        await this.deleteMany({
-          resource: this.resource,
-          params: { ids: this.value.map(({ id }) => id) }
-        });
-        this.$emit("input", []);
-        this.fetchData();
-      }
     }
   }
 };
