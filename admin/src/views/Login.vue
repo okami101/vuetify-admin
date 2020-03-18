@@ -67,7 +67,9 @@ export default {
             password: this.password
           });
         } catch ({ response }) {
-          this.errorMessages = response.data.errors;
+          if (response.data.errors) {
+            this.errorMessages = response.data.errors;
+          }
         }
         this.loading = false;
       }

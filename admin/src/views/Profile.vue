@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <form @submit.prevent="update" class="mb-5">
+        <form @submit.prevent="updateAccount" class="mb-5">
           <v-card>
             <v-card-title>{{ $t("profile.account") }}</v-card-title>
             <v-card-text>
@@ -121,30 +121,37 @@ export default {
     ...mapActions({
       checkAuth: "auth/checkAuth"
     }),
-    async update() {
+    async update(method, url, data) {
       try {
-        this.accountUpdating = true;
-        await this.$axios.patch("/api/account/update", this.accountForm);
-        this.accountUpdating = false;
+        await this.$axios({ method, url, data });
 
+        this.errorMessages = {};
+        return true;
+      } catch ({ response }) {
+        this.$snackbar.error(response.data.message);
+
+        if (response.data.errors) {
+          this.errorMessages = response.data.errors;
+        }
+      }
+      return false;
+    },
+    async updateAccount() {
+      this.accountUpdating = true;
+      if (await this.update("patch", "/api/account/update", this.accountForm)) {
         /**
          * Recheck auth
          */
         this.checkAuth();
-        this.errorMessages = {};
         this.$snackbar.success(this.$t("profile.account_updated"));
-      } catch ({ response }) {
-        this.accountUpdating = false;
-        this.$snackbar.error(response.data.message);
-        this.errorMessages = response.data.errors;
       }
+      this.accountUpdating = false;
     },
     async changePassword() {
-      try {
-        this.passwordChanging = true;
-        await this.$axios.patch("/api/account/password", this.passwordForm);
-        this.passwordChanging = false;
-
+      this.passwordChanging = true;
+      if (
+        await this.update("patch", "/api/account/password", this.passwordForm)
+      ) {
         /**
          * Reset
          */
@@ -153,13 +160,9 @@ export default {
           newPassword: null,
           newPasswordConfirmation: null
         };
-        this.errorMessages = {};
         this.$snackbar.success(this.$t("profile.password_changed"));
-      } catch ({ response }) {
-        this.passwordChanging = false;
-        this.$snackbar.error(response.data.message);
-        this.errorMessages = response.data.errors;
       }
+      this.passwordChanging = false;
     }
   }
 };
