@@ -1,6 +1,6 @@
 <template>
   <va-show>
-    <template v-slot:actions.custom>
+    <template v-slot:actions>
       <impersonate-button :item="item"></impersonate-button>
     </template>
     <v-row justify="center">

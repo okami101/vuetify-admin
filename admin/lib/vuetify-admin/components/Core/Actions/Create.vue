@@ -1,16 +1,19 @@
 <template>
   <div>
     <va-aside-content>
-      <slot :resource="resource" name="aside"></slot>
+      <slot name="aside"></slot>
     </va-aside-content>
-    <div class="d-flex mb-2">
-      <v-spacer></v-spacer>
-      <slot name="actions">
-        <va-list-button :resource="resource"></va-list-button>
-        <va-locale-button :resource="resource"></va-locale-button>
-      </slot>
-    </div>
-    <slot :resource="resource"></slot>
+    <slot name="header">
+      <div class="d-flex mb-2">
+        <v-spacer></v-spacer>
+        <slot name="actions">
+          <va-list-button :resource="resource"></va-list-button>
+          <slot name="actions"></slot>
+          <va-locale-button :resource="resource"></va-locale-button>
+        </slot>
+      </div>
+    </slot>
+    <slot></slot>
   </div>
 </template>
 

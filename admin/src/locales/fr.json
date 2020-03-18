@@ -36,6 +36,8 @@
   },
   "users": {
     "impersonate": "Usurper",
+    "enable": "Activer",
+    "disable": "Désactiver",
     "stop_impersonate": "Arrêter usurpation",
     "logged_as": "Vous êtes actuellement connecté en tant que {0}, cliquer {1} pour arrêter le mode d'usurpation."
   },

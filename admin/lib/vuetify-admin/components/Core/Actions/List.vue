@@ -1,11 +1,7 @@
 <template>
   <div>
     <va-aside-content>
-      <slot
-        name="aside"
-        :resource="resource"
-        v-bind="{ items, total, selected: value }"
-      ></slot>
+      <slot name="aside" v-bind="{ items, total, selected: value }"></slot>
     </va-aside-content>
     <v-data-iterator
       :items="items"
@@ -27,6 +23,7 @@
             {{ $tc("va.datagrid.selected_items", value.length) }}
             <v-spacer></v-spacer>
             <div>
+              <slot name="bulk.actions"></slot>
               <va-delete-button
                 :resource="resource"
                 @delete="onBlukDelete"
@@ -65,6 +62,7 @@
               </v-list>
             </v-menu>
             <va-create-button :resource="resource"></va-create-button>
+            <slot name="actions"></slot>
             <va-export-button
               :resource="resource"
               v-if="exporter"
@@ -249,8 +247,6 @@ export default {
   methods: {
     ...mapActions({
       getList: "api/getList",
-      getMany: "api/getMany",
-      updateMany: "api/updateMany",
       deleteMany: "api/deleteMany"
     }),
     async initFiltersFromQuery() {

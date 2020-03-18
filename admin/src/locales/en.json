@@ -36,6 +36,8 @@
   },
   "users": {
     "impersonate": "Impersonate",
+    "enable": "Enable",
+    "disable": "Disable",
     "stop_impersonate": "Stop impersonate",
     "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
   },

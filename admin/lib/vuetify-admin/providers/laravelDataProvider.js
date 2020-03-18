@@ -157,7 +157,9 @@ export default (axios, base = "/api") => {
     [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),
     [UPDATE_MANY]: (resource, params) =>
       Promise.all(
-        params.ids.map(id => fetchApi(UPDATE, resource, { id }))
+        params.ids.map(id =>
+          fetchApi(UPDATE, resource, { id, data: params.data })
+        )
       ).then(() => Promise.resolve({ data: { id: null } })),
     [DELETE]: (resource, params) => fetchApi(DELETE, resource, params),
     [DELETE_MANY]: (resource, params) =>
