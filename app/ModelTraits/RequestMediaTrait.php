@@ -3,9 +3,9 @@
 namespace App\ModelTraits;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\FileAdder\FileAdder;
-use Spatie\MediaLibrary\MediaCollection\MediaCollection;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
+use Spatie\MediaLibrary\MediaCollections\MediaCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 trait RequestMediaTrait
 {
@@ -18,8 +18,6 @@ trait RequestMediaTrait
             $model->registerMediaCollections();
 
             collect($model->mediaCollections)->each(function (MediaCollection $collection) use ($model) {
-                /* @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $model */
-
                 /**
                  * Media to delete
                  */

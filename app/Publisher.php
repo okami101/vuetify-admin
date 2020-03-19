@@ -5,9 +5,9 @@ namespace App;
 use App\ModelTraits\RequestMediaTrait;
 use App\ModelTraits\RequestTranslatableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * App\Publisher
@@ -32,7 +32,7 @@ use Spatie\MediaLibrary\Models\Media;
  */
 class Publisher extends Model implements HasMedia
 {
-    use HasMediaTrait;
+    use InteractsWithMedia;
     use RequestTranslatableTrait;
     use RequestMediaTrait;
 
@@ -62,7 +62,7 @@ class Publisher extends Model implements HasMedia
 
     public $translatable = ['description'];
 
-    public function registerMediaCollections()
+    public function registerMediaCollections(): void
     {
         $this->addMediaCollection('logo')->singleFile();
         $this->addMediaCollection('local');
@@ -73,7 +73,7 @@ class Publisher extends Model implements HasMedia
         return $this->hasMany(Book::class);
     }
 
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('small')
             ->width(120)

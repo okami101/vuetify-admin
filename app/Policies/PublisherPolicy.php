@@ -21,7 +21,7 @@ class PublisherPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return true;
     }
@@ -33,7 +33,7 @@ class PublisherPolicy
      * @param  \App\Publisher  $publisher
      * @return mixed
      */
-    public function view(User $user, Publisher $publisher)
+    public function view(?User $user, Publisher $publisher)
     {
         return true;
     }
