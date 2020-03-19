@@ -73,7 +73,7 @@ export default {
     record: {
       handler(val) {
         if (val) {
-          this.updateForm(get(val, this.uniqueFormId));
+          this.update(get(val, this.uniqueFormId));
         }
       },
       immediate: true

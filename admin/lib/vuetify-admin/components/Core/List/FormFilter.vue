@@ -59,6 +59,10 @@ export default {
       this.$emit("input", value);
     },
     update(source, value) {
+      if (value === undefined) {
+        return;
+      }
+
       this.filter = {
         ...this.value,
         [source]: value
