@@ -18,7 +18,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.1",
         "laravel/ui": "^2.0",
-        "spatie/laravel-medialibrary": "^7.18",
+        "spatie/laravel-medialibrary": "^8.0",
         "spatie/laravel-query-builder": "^2.5",
         "spatie/laravel-translatable": "^4.3"
     },
