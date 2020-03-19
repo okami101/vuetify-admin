@@ -45,12 +45,11 @@
 </template>
 
 <script>
-import Field from "vuetify-admin/mixins/field";
 import Files from "vuetify-admin/mixins/files";
 
 export default {
   name: "ImageField",
-  mixins: [Field, Files],
+  mixins: [Files],
   props: {
     contain: Boolean,
     height: String,

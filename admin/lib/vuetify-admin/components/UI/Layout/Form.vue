@@ -57,14 +57,15 @@ export default {
       this.$emit("update:saving", true);
 
       try {
-        let { data } = this.item
-          ? await this.$store.dispatch(`${this.resource}/update`, {
-              id: this.item.id,
-              data: this.model
-            })
-          : await this.$store.dispatch(`${this.resource}/create`, {
-              data: this.model
-            });
+        let { data } =
+          this.item && this.item.id
+            ? await this.$store.dispatch(`${this.resource}/update`, {
+                id: this.item.id,
+                data: this.model
+              })
+            : await this.$store.dispatch(`${this.resource}/create`, {
+                data: this.model
+              });
 
         this.$emit("update:saving", false);
 

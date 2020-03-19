@@ -8,7 +8,7 @@
         exact
         :to="{
           name: `${resource}_create`,
-          query: { source: JSON.stringify(item) }
+          query: { source: item.id }
         }"
         @click.stop="$emit('clone', item)"
         :color="color"

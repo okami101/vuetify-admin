@@ -1,10 +1,12 @@
 import EventBus from "vuetify-admin/utils/eventBus";
+import Field from "vuetify-admin/mixins/field";
 import get from "lodash/get";
 
 export default {
   inject: {
     formName: { default: undefined }
   },
+  mixins: [Field],
   props: {
     src: {
       type: String,
@@ -47,7 +49,10 @@ export default {
       return this.value instanceof Object;
     },
     activeFiles() {
-      if (!this.value) {
+      /**
+       * Current item must have valid ID in order to have files
+       */
+      if (!this.value || !this.record || !this.record.id) {
         return [];
       }
 

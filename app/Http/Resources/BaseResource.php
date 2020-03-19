@@ -32,7 +32,9 @@ class BaseResource extends JsonResource
 
                 if (!empty($translated)) {
                     $attributes[$field] = $translated;
+                    return;
                 }
+                $attributes[$field] = null;
             });
         }
 

@@ -46,10 +46,12 @@ export default {
     };
   },
   created() {
-    /**
-     * Initiate parent model form
-     */
-    this.initializeValue();
+    if (this.formItem) {
+      /**
+       * Initialize from parent form context
+       */
+      this.updateForm(get(this.formItem, this.uniqueFormId));
+    }
   },
   mounted() {
     EventBus.$on("form-errors", ({ name, errors }) => {
@@ -65,6 +67,14 @@ export default {
     value: {
       handler(val) {
         this.input = val;
+      },
+      immediate: true
+    },
+    record: {
+      handler(val) {
+        if (val) {
+          this.updateForm(get(val, this.uniqueFormId));
+        }
       },
       immediate: true
     }
@@ -103,23 +113,6 @@ export default {
     ...mapActions({
       updateItem: "api/update"
     }),
-    initializeValue() {
-      if (this.formItem) {
-        /**
-         * Initialize from parent form context
-         */
-        return this.updateForm(get(this.formItem, this.uniqueFormId));
-      }
-
-      /**
-       * Initialize from query
-       */
-      let { source } = this.$route.query;
-
-      if (source) {
-        this.update(JSON.parse(source)[this.source]);
-      }
-    },
     /**
      * Interaction event
      */

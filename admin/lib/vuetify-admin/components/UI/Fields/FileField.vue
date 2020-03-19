@@ -18,12 +18,11 @@
 </template>
 
 <script>
-import Field from "vuetify-admin/mixins/field";
 import Files from "vuetify-admin/mixins/files";
 
 export default {
   name: "FileField",
-  mixins: [Field, Files]
+  mixins: [Files]
 };
 </script>
 
