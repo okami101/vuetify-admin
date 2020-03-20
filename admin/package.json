@@ -9,11 +9,11 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^3.2.0",
     "core-js": "^3.4.4",
     "lodash": "^4.17.15",
     "papaparse": "^5.1.1",
     "portal-vue": "^2.1.7",
-    "tiptap-vuetify": "^2.13.2",
     "vue": "^2.6.10",
     "vue-i18n": "^8.15.5",
     "vue-router": "^3.1.6",
