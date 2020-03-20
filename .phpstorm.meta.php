@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-03-19 18:58:56.
+    * Generated on 2020-03-20 18:16:50.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -79,6 +79,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -255,6 +256,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -431,6 +433,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -607,6 +610,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -783,6 +787,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -959,6 +964,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -1135,6 +1141,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,
@@ -1311,6 +1318,7 @@ namespace PHPSTORM_META {
         'command.controller.make' => \Illuminate\Routing\Console\ControllerMakeCommand::class,
         'command.db.wipe' => \Illuminate\Database\Console\WipeCommand::class,
         'command.down' => \Illuminate\Foundation\Console\DownCommand::class,
+        'command.elfinder.publish' => \Barryvdh\Elfinder\Console\PublishCommand::class,
         'command.environment' => \Illuminate\Foundation\Console\EnvironmentCommand::class,
         'command.event.cache' => \Illuminate\Foundation\Console\EventCacheCommand::class,
         'command.event.clear' => \Illuminate\Foundation\Console\EventClearCommand::class,

@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         /**
          * Cleanup media
          */
-        foreach (Storage::disk('public')->allDirectories() as $dir) {
+        foreach (Storage::disk('public')->allDirectories('media') as $dir) {
             Storage::disk('public')->deleteDirectory($dir);
         }
 
