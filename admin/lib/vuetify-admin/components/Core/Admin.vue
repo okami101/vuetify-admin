@@ -1,9 +1,6 @@
 <template>
-  <v-app>
-    <v-content v-if="$route.name === 'login'">
-      <router-view></router-view>
-    </v-content>
-    <template v-else-if="user">
+  <v-app v-if="loaded">
+    <template v-if="user">
       <app-header :menu="profileMenu" @mini="mini = !mini"></app-header>
       <app-sidebar :menu="sidebarMenu" :mini="mini"></app-sidebar>
 
@@ -18,6 +15,9 @@
 
       <app-aside></app-aside>
     </template>
+    <v-content v-else>
+      <router-view></router-view>
+    </v-content>
   </v-app>
 </template>
 
@@ -49,7 +49,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.auth.user
+      user: state => state.auth.user,
+      loaded: state => state.auth.loaded
     })
   }
 };

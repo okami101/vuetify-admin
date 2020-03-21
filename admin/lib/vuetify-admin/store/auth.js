@@ -11,10 +11,11 @@ import {
 export default (provider, router) => {
   return {
     namespaced: true,
-    state: { user: null },
+    state: { user: null, loaded: false },
     mutations: {
       setUser(state, user) {
         state.user = user;
+        state.loaded = true;
       }
     },
     getters: {
@@ -32,6 +33,7 @@ export default (provider, router) => {
         if (state.user) {
           return provider.getPermissions(state.user);
         }
+        return [];
       }
     },
     actions: {
@@ -63,8 +65,16 @@ export default (provider, router) => {
         try {
           let { data } = await provider.checkAuth();
           commit("setUser", data);
+
+          /**
+           * Redirect to home if login page and connected
+           */
+          if (router.currentRoute.name === "login") {
+            router.push("/");
+          }
           return true;
         } catch (e) {
+          commit("setUser", null);
           dispatch("logout");
           return false;
         }

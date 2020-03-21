@@ -29,6 +29,7 @@ export default class VuetifyAdmin {
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
     this.resourcesPath = resourcesPath;
+    this.loading = false;
     this.loaded = false;
 
     /**
@@ -74,9 +75,11 @@ export default class VuetifyAdmin {
     }
   }
   init({ router, store, i18n }) {
-    if (this.loaded) {
+    if (this.loaded || this.loading) {
       return;
     }
+
+    this.loading = true;
 
     /**
      * Load i18n locales
@@ -182,6 +185,7 @@ export default class VuetifyAdmin {
     /**
      * Admin app is loaded
      */
+    this.loading = false;
     this.loaded = true;
   }
 }
