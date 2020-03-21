@@ -41,6 +41,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book pricierThan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book commentables()
  * @mixin \Eloquent
+ * @property-read mixed $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  */
 class Book extends Model implements HasMedia
 {

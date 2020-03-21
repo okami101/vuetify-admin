@@ -1,5 +1,5 @@
 <template>
-  <va-form :item="item" :saving.sync="saving">
+  <va-form :source="source" :item="item" :saving.sync="saving">
     <v-row justify="center">
       <v-col sm="6">
         <v-card>
@@ -67,6 +67,13 @@
                 <va-boolean-input source="active"></va-boolean-input>
               </v-col>
             </v-row>
+            <va-autocomplete-input
+              source="users"
+              model="user_ids"
+              multiple
+              reference="users"
+              option-text="name"
+            ></va-autocomplete-input>
           </v-card-text>
           <v-toolbar flat color="grey lighten-4">
             <va-save-button :saving="saving"></va-save-button>
@@ -80,7 +87,8 @@
 <script>
 export default {
   props: {
-    item: Object
+    item: Object,
+    source: Object
   },
   data() {
     return {

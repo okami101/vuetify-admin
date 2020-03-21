@@ -15,7 +15,20 @@
                 </va-file-input>
               </v-col>
             </v-row>
-            <va-text-input source="name"></va-text-input>
+            <v-row>
+              <v-col>
+                <va-text-input source="name"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-autocomplete-input
+                  source="users"
+                  model="user_ids"
+                  multiple
+                  reference="users"
+                  option-text="name"
+                ></va-autocomplete-input>
+              </v-col>
+            </v-row>
             <va-text-input source="description" multiline></va-text-input>
             <va-array-input
               source="backlinks"

@@ -17,34 +17,9 @@
 
 <script>
 import Resource from "vuetify-admin/mixins/resource";
-import { mapActions } from "vuex";
 
 export default {
   name: "Create",
-  mixins: [Resource],
-  methods: {
-    ...mapActions({
-      getOne: "api/getOne"
-    })
-  },
-  async mounted() {
-    /**
-     * Initialize from query
-     */
-    let { source } = this.$route.query;
-
-    if (source) {
-      let { data } = await this.getOne({
-        resource: this.resource,
-        params: {
-          id: source
-        }
-      });
-
-      let { id, ...item } = data;
-
-      this.$store.commit(`${this.resource}/setItem`, item);
-    }
-  }
+  mixins: [Resource]
 };
 </script>

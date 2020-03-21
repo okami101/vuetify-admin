@@ -7,7 +7,8 @@ export default {
   mixins: [Item],
   inject: {
     formName: { default: undefined },
-    formItem: { default: undefined }
+    formItem: { default: undefined },
+    formSource: { default: undefined }
   },
   props: {
     parentSource: String,
@@ -70,7 +71,7 @@ export default {
       },
       immediate: true
     },
-    record: {
+    formSource: {
       handler(val) {
         if (val) {
           this.update(get(val, this.uniqueFormId));

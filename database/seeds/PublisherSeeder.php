@@ -13,8 +13,9 @@ class PublisherSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
+        $editors = \App\User::role('editor')->get();
 
-        factory(Publisher::class, 10)->create()->each(function (Publisher $publisher) use ($faker) {
+        factory(Publisher::class, 10)->create()->each(function (Publisher $publisher) use ($faker, $editors) {
             $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'logos', 1, 'png'))
                 ->preservingOriginal()
                 ->toMediaCollection('logo');
@@ -24,6 +25,8 @@ class PublisherSeeder extends Seeder
                     ->preservingOriginal()
                     ->toMediaCollection('local');
             }
+
+            $publisher->users()->attach($editors->random($faker->numberBetween(1, 5))->pluck('id'));
         });
     }
 }

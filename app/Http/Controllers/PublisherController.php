@@ -56,7 +56,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        return new PublisherResource($publisher->load(['books', 'media'])->loadCount(['books']));
+        return new PublisherResource($publisher->load(['media', 'users'])->loadCount(['books']));
     }
 
     /**
@@ -68,6 +68,7 @@ class PublisherController extends Controller
     public function store(StorePublisher $request)
     {
         $publisher = Publisher::create($request->all());
+        $publisher->users()->sync($request->input('user_ids'));
         return new PublisherResource($publisher);
     }
 
@@ -81,6 +82,7 @@ class PublisherController extends Controller
     public function update(UpdatePublisher $request, Publisher $publisher)
     {
         $publisher->update($request->all());
+        $publisher->users()->sync($request->input('user_ids'));
         return new PublisherResource($publisher);
     }
 

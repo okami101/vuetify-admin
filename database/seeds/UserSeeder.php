@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'roles' => ['admin'],
         ]);
 
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             factory(User::class)->create([
                 'name' => "Editor $i",
                 'email' => "editor-$i@example.com",
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        for ($i = 1; $i <= 9; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             factory(User::class)->create([
                 'name' => "Author $i",
                 'email' => "author-$i@example.com",

@@ -81,7 +81,8 @@
         "url": "Url",
         "email": "Email",
         "active": "Active",
-        "books": "Livres",
+        "books": "Books",
+        "users": "Users",
         "address": {
           "street": "Street",
           "postcode": "Postcode",
@@ -110,6 +111,7 @@
         "photo": "Photo",
         "description": "Description",
         "books": "Books",
+        "users": "Users",
         "backlinks": {
           "text": "Text",
           "date": "Date",

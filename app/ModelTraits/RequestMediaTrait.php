@@ -7,6 +7,12 @@ use Spatie\MediaLibrary\MediaCollections\FileAdder;
 use Spatie\MediaLibrary\MediaCollections\MediaCollection;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+/**
+ * Trait RequestMediaTrait
+ * @package App\ModelTraits
+ *
+ * @mixin Model
+ */
 trait RequestMediaTrait
 {
     /**

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,6 +25,11 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $authors
+ * @property-read int|null $authors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publisher[] $publishers
+ * @property-read int|null $publishers_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User role($role)
  */
 class User extends Authenticatable
 {
@@ -63,6 +69,11 @@ class User extends Authenticatable
         return (bool) count(array_intersect($this->roles, $roles));
     }
 
+    public function scopeRole(Builder $query, $role): Builder
+    {
+        return $query->where('roles', 'like', "%$role%");
+    }
+
     public function setImpersonating($id)
     {
         session()->put('impersonate', $id);
@@ -76,5 +87,15 @@ class User extends Authenticatable
     public function isImpersonating()
     {
         return session()->has('impersonate');
+    }
+
+    public function publishers()
+    {
+        return $this->morphedByMany(Publisher::class, 'user_relation');
+    }
+
+    public function authors()
+    {
+        return $this->morphedByMany(Author::class, 'user_relation');
     }
 }

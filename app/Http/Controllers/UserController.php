@@ -29,6 +29,7 @@ class UserController extends Controller
                 ->allowedFields(['id', 'name', 'email', 'active', 'roles', 'created_at', 'updated_at'])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['name', 'email'])),
+                    AllowedFilter::exact('id'),
                     AllowedFilter::partial('roles'),
                 ])
                 ->allowedSorts(['id', 'name', 'email'])

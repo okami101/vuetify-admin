@@ -4,6 +4,7 @@ namespace App;
 
 use App\ModelTraits\RequestMediaTrait;
 use App\ModelTraits\RequestTranslatableTrait;
+use App\ModelTraits\UserRelationTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -22,9 +23,15 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Author newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Author query()
  * @mixin \Eloquent
+ * @property-read mixed $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read int|null $users_count
  */
 class Author extends Model implements HasMedia
 {
+    use UserRelationTrait;
     use InteractsWithMedia;
     use RequestTranslatableTrait;
     use RequestMediaTrait;

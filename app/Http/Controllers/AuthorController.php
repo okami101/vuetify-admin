@@ -56,7 +56,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return new AuthorResource($author->load(['books', 'media']));
+        return new AuthorResource($author->load(['books', 'media', 'users']));
     }
 
     /**
@@ -68,6 +68,7 @@ class AuthorController extends Controller
     public function store(StoreAuthor $request)
     {
         $author = Author::create($request->all());
+        $author->users()->sync($request->input('user_ids'));
         return new AuthorResource($author);
     }
 
@@ -81,6 +82,7 @@ class AuthorController extends Controller
     public function update(UpdateAuthor $request, Author $author)
     {
         $author->update($request->all());
+        $author->users()->sync($request->input('user_ids'));
         return new AuthorResource($author);
     }
 

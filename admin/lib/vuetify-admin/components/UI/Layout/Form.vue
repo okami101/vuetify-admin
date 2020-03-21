@@ -15,11 +15,16 @@ export default {
   provide() {
     return {
       formName: this.name,
-      formItem: this.item
+      formItem: this.item,
+      formSource: this.source
     };
   },
   props: {
     item: {
+      type: Object,
+      default: () => {}
+    },
+    source: {
       type: Object,
       default: () => {}
     },

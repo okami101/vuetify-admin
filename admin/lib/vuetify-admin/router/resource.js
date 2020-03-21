@@ -45,26 +45,38 @@ export default ({ store, i18n, resource, title }) => {
         render(c) {
           return c(`${name}-${action}`, {
             props: {
-              item: store.state[name].item
+              item: store.state[name].item,
+              source: store.state[name].source
             }
           });
         },
         async beforeRouteEnter(to, from, next) {
-          if (to.params.id) {
+          /**
+           * Initialize from query if available
+           */
+          let id = to.params.id || to.query.source;
+
+          if (id) {
             /**
              * Route model binding
              */
             let { data } = await store.dispatch(`${name}/getOne`, {
-              id: to.params.id
+              id
             });
 
-            /**
-             * Insert model into route & resource store
-             */
-            store.commit(`${name}/setItem`, data);
+            if (to.params.id) {
+              /**
+               * Insert model into route & resource store
+               */
+              store.commit(`${name}/setItem`, data);
+              setTitle(to, action, data);
+              return next();
+            }
 
-            setTitle(to, action, data);
-            return next();
+            /**
+             * Insert cloned object
+             */
+            store.commit(`${name}/setSource`, data);
           }
 
           setTitle(to, action);
@@ -72,6 +84,7 @@ export default ({ store, i18n, resource, title }) => {
         },
         beforeRouteLeave(to, from, next) {
           store.commit(`${name}/removeItem`);
+          store.commit(`${name}/removeSource`);
           next();
         }
       },
