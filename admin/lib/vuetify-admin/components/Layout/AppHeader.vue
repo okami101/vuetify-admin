@@ -39,11 +39,12 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item
-              v-for="(item, index) in menu"
+              v-for="(item, index) in menu.filter(i =>
+                $admin.can(i.permissions)
+              )"
               :key="index"
               link
               :to="item.link"
-              v-can="item.permissions"
             >
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>

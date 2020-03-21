@@ -16,6 +16,9 @@ class User extends JsonResource
     {
         $attributes = parent::toArray($request);
 
+        $attributes['publishers'] = Publisher::collection($this->whenLoaded('publishers'));
+        $attributes['authors'] = Author::collection($this->whenLoaded('authors'));
+
         $attributes['impersonate'] = $request->session()->has('impersonate');
 
         return $attributes;

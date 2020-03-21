@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        return new UserResource($user->load(['publishers', 'authors']));
     }
 
     /**
@@ -57,6 +57,8 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         $user = User::create($request->all());
+        $user->publishers()->sync($request->input('publisher_ids'));
+        $user->authors()->sync($request->input('author_ids'));
         return new UserResource($user);
     }
 
@@ -70,6 +72,8 @@ class UserController extends Controller
     public function update(UpdateUser $request, User $user)
     {
         $user->update($request->all());
+        $user->publishers()->sync($request->input('publisher_ids'));
+        $user->authors()->sync($request->input('author_ids'));
         return new UserResource($user);
     }
 

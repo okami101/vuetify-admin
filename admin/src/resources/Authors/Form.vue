@@ -21,6 +21,7 @@
               </v-col>
               <v-col>
                 <va-autocomplete-input
+                  v-if="$admin.can(['admin'])"
                   source="users"
                   model="user_ids"
                   multiple

@@ -212,18 +212,4 @@ VuetifyAdmin.install = Vue => {
       this.$admin = admin;
     }
   });
-
-  Vue.directive("can", (el, binding, vnode) => {
-    if (!vnode.context.$admin.can(binding.value)) {
-      // replace HTMLElement with comment node
-      const comment = document.createComment("");
-      vnode.elm = comment;
-      vnode.text = "";
-      vnode.isComment = true;
-
-      if (el.parentNode) {
-        el.parentNode.replaceChild(comment, el);
-      }
-    }
-  });
 };

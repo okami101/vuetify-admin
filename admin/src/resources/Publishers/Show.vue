@@ -48,11 +48,7 @@
                   type="date"
                   :options="{ format: 'long' }"
                 ></va-field>
-                <va-field
-                  source="books_count"
-                  type="number"
-                  v-can="['admin']"
-                ></va-field>
+                <va-field source="books_count" type="number"></va-field>
               </v-col>
             </v-row>
             <va-field source="local">

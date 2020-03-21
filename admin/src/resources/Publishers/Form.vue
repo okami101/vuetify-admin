@@ -68,6 +68,7 @@
               </v-col>
             </v-row>
             <va-autocomplete-input
+              v-if="$admin.can(['admin'])"
               source="users"
               model="user_ids"
               multiple

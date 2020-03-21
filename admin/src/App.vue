@@ -39,7 +39,7 @@ export default {
           icon: "mdi-account",
           text: this.$t("menu.authors"),
           link: "/authors",
-          permissions: ["admin", "editor"]
+          permissions: ["admin", "author"]
         },
         {
           icon: "mdi-book",

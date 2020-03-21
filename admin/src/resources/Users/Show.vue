@@ -5,7 +5,7 @@
     </template>
     <v-row justify="center">
       <v-col lg="2">
-        <v-card>
+        <v-card v-if="item">
           <v-card-text>
             <va-field source="name"></va-field>
             <va-field source="email"></va-field>
@@ -18,6 +18,28 @@
                     :item="item"
                     enum
                   ></va-select-field>
+                </v-chip>
+              </v-chip-group>
+            </va-field>
+            <va-field
+              source="publishers"
+              v-slot="{ value }"
+              v-if="item.roles.includes('editor')"
+            >
+              <v-chip-group>
+                <v-chip v-for="(item, i) in value" :key="i">
+                  {{ item.name }}
+                </v-chip>
+              </v-chip-group>
+            </va-field>
+            <va-field
+              source="authors"
+              v-slot="{ value }"
+              v-if="item.roles.includes('author')"
+            >
+              <v-chip-group>
+                <v-chip v-for="(item, i) in value" :key="i">
+                  {{ item.name }}
                 </v-chip>
               </v-chip-group>
             </va-field>

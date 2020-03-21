@@ -11,12 +11,11 @@
         </v-subheader>
         <v-divider v-else-if="item.divider" :key="index"></v-divider>
         <v-list-group
-          v-else-if="item.children"
+          v-else-if="item.children && $admin.can(item.permissions)"
           :key="index"
           v-model="item.expanded"
           :prepend-icon="item.icon"
           append-icon="mdi-chevron-up"
-          v-can="item.permissions"
         >
           <template v-slot:activator>
             <v-list-item-content>
@@ -26,11 +25,12 @@
             </v-list-item-content>
           </template>
           <v-list-item
-            v-for="(child, i) in item.children"
+            v-for="(child, i) in item.children.filter(c =>
+              $admin.can(c.permissions)
+            )"
             :key="i"
             link
             :to="child.link"
-            v-can="child.permissions"
           >
             <v-list-item-action v-if="child.icon">
               <v-icon>{{ child.icon }}</v-icon>
@@ -43,11 +43,10 @@
           </v-list-item>
         </v-list-group>
         <v-list-item
-          v-else-if="item.text"
+          v-else-if="item.text && $admin.can(item.permissions)"
           :key="index"
           link
           :to="item.link"
-          v-can="item.permissions"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>

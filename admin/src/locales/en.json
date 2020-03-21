@@ -193,6 +193,8 @@
         "email": "Email",
         "active": "Active",
         "roles": "Roles",
+        "publishers": "Publishers",
+        "authors": "Authors",
         "created_at": "Created at",
         "updated_at": "Updated at"
       },

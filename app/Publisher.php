@@ -35,6 +35,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publisher hasUser(\App\User $user)
  */
 class Publisher extends Model implements HasMedia
 {

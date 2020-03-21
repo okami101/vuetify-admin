@@ -23,7 +23,7 @@
         </p>
       </v-flex>
 
-      <v-flex mb-5 xs12 v-can="['admin']">
+      <v-flex mb-5 xs12 v-if="$admin.can(['admin'])">
         <h2 class="headline font-weight-bold mb-3">What's next?</h2>
 
         <v-layout justify-center>
@@ -39,7 +39,7 @@
         </v-layout>
       </v-flex>
 
-      <v-flex xs12 mb-5 v-can="['editor']">
+      <v-flex xs12 mb-5 v-if="$admin.can(['editor'])">
         <h2 class="headline font-weight-bold mb-3">Important Links</h2>
 
         <v-layout justify-center>
@@ -55,7 +55,7 @@
         </v-layout>
       </v-flex>
 
-      <v-flex xs12 mb-5 v-can="['admin', 'editor']">
+      <v-flex xs12 mb-5 v-if="$admin.can(['admin', 'editor'])">
         <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
 
         <v-layout justify-center>

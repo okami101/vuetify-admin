@@ -12,7 +12,7 @@ class PublisherPolicy
 
     public function before(User $user)
     {
-        return $user->hasRole('admin');
+        return $user->hasRole('admin', 'editor');
     }
 
     /**
