@@ -12,7 +12,13 @@ class PublisherPolicy
 
     public function before(User $user)
     {
-        return $user->hasRole('admin', 'editor');
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
+        if (!$user->hasRole('editor')) {
+            return false;
+        }
     }
 
     /**
@@ -21,7 +27,7 @@ class PublisherPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -33,9 +39,9 @@ class PublisherPolicy
      * @param  \App\Publisher  $publisher
      * @return mixed
      */
-    public function view(?User $user, Publisher $publisher)
+    public function view(User $user, Publisher $publisher)
     {
-        return true;
+        return $publisher->canAccess($user);
     }
 
     /**
@@ -58,7 +64,7 @@ class PublisherPolicy
      */
     public function update(User $user, Publisher $publisher)
     {
-        return true;
+        return $publisher->canAccess($user);
     }
 
     /**
@@ -70,6 +76,6 @@ class PublisherPolicy
      */
     public function delete(User $user, Publisher $publisher)
     {
-        return true;
+        return false;
     }
 }

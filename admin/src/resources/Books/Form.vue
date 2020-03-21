@@ -37,6 +37,7 @@
                   format="long"
                 ></va-date-input>
                 <va-autocomplete-input
+                  v-if="$admin.can(['admin'])"
                   source="authors"
                   model="author_ids"
                   multiple

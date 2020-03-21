@@ -12,7 +12,9 @@ class BookPolicy
 
     public function before(User $user)
     {
-        return $user->hasRole('admin', 'editor', 'author');
+        if ($user->hasRole('admin')) {
+            return true;
+        }
     }
 
     /**
@@ -35,7 +37,7 @@ class BookPolicy
      */
     public function view(User $user, Book $book)
     {
-        return true;
+        return $book->canAccess($user);
     }
 
     /**
@@ -46,7 +48,7 @@ class BookPolicy
      */
     public function create(User $user)
     {
-        return $user->hasRole('admin');
+        return true;
     }
 
     /**
@@ -58,7 +60,7 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        return $user->hasRole('admin');
+        return $book->canAccess($user);
     }
 
     /**
@@ -70,6 +72,6 @@ class BookPolicy
      */
     public function delete(User $user, Book $book)
     {
-        return $user->is_admin;
+        return $book->canAccess($user);
     }
 }

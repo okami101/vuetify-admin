@@ -7,6 +7,7 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -26,6 +27,11 @@ class BookController extends Controller
      */
     public function index()
     {
+        /**
+         * @var User $user
+         */
+        $user = auth()->user();
+
         return BookResource::collection(
             QueryBuilder::for(Book::class)
                 ->allowedFields([
@@ -68,6 +74,16 @@ class BookController extends Controller
                 ])
                 ->allowedSorts(['id', 'isbn', 'title', 'price', 'publication_date'])
                 ->allowedIncludes(['publisher', 'authors', 'reviews', 'media'])
+                ->where(function (Builder $query) use ($user) {
+                    if ($user->hasRole('editor')) {
+                        $query->whereIn('publisher_id', $user->publishers()->pluck('id'));
+                    }
+                    if ($user->hasRole('author')) {
+                        $query->whereHas('authors', function (Builder $query) use ($user) {
+                            $query->whereIn('id', $user->authors()->pluck('id'));
+                        });
+                    }
+                })
                 ->exportOrPaginate()
         );
     }

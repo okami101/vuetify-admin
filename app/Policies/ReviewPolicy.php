@@ -10,6 +10,13 @@ class ReviewPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view any reviews.
      *
@@ -30,7 +37,7 @@ class ReviewPolicy
      */
     public function view(User $user, Review $review)
     {
-        return true;
+        return $review->book->canAccess($user);
     }
 
     /**
@@ -53,7 +60,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review)
     {
-        return true;
+        return $review->book->canAccess($user);
     }
 
     /**
@@ -65,6 +72,6 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review)
     {
-        return true;
+        return $review->book->canAccess($user);
     }
 }

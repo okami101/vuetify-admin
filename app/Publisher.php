@@ -4,7 +4,7 @@ namespace App;
 
 use App\ModelTraits\RequestMediaTrait;
 use App\ModelTraits\RequestTranslatableTrait;
-use App\ModelTraits\UserRelationTrait;
+use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -39,7 +39,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Publisher extends Model implements HasMedia
 {
-    use UserRelationTrait;
+    use UserAccessTrait;
     use InteractsWithMedia;
     use RequestTranslatableTrait;
     use RequestMediaTrait;

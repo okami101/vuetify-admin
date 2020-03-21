@@ -12,7 +12,13 @@ class AuthorPolicy
 
     public function before(User $user)
     {
-        return $user->hasRole('admin');
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
+        if (!$user->hasRole('author')) {
+            return false;
+        }
     }
 
     /**
@@ -35,7 +41,7 @@ class AuthorPolicy
      */
     public function view(User $user, Author $author)
     {
-        return true;
+        return $author->canAccess($user);
     }
 
     /**
@@ -58,7 +64,7 @@ class AuthorPolicy
      */
     public function update(User $user, Author $author)
     {
-        return true;
+        return $author->canAccess($user);
     }
 
     /**
@@ -70,6 +76,6 @@ class AuthorPolicy
      */
     public function delete(User $user, Author $author)
     {
-        return true;
+        return false;
     }
 }

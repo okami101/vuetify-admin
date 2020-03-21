@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @mixin Model
  */
-trait UserRelationTrait
+trait UserAccessTrait
 {
     public function users()
     {
@@ -21,8 +21,16 @@ trait UserRelationTrait
 
     public function scopeHasUser(Builder $query, User $user): Builder
     {
-        return $query->whereHas('users', function (Builder $query) use ($user) {
-            $query->where('user_id', '=', $user->id);
-        });
+        if (!$user->hasRole('admin')) {
+            return $query->whereHas('users', function (Builder $query) use ($user) {
+                $query->where('user_id', '=', $user->id);
+            });
+        }
+        return $query;
+    }
+
+    public function canAccess(User $user)
+    {
+        return $this->users->contains('id', '=', $user->id);
     }
 }

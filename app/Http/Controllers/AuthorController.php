@@ -44,6 +44,7 @@ class AuthorController extends Controller
                 ])
                 ->allowedSorts(['id', 'name'])
                 ->allowedIncludes(['books', 'media'])
+                ->hasUser(auth()->user())
                 ->exportOrPaginate()
         );
     }
