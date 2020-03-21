@@ -23,7 +23,7 @@ class Impersonate
         }
 
         return (new Pipeline(app()))->send($request)->through([
-            \App\Http\Middleware\Authenticate::class . ':airlock'
+            \App\Http\Middleware\Authenticate::class . ':sanctum'
         ])->then(function ($request) use ($next) {
             return $next($request);
         });

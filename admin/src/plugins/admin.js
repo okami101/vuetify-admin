@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VuetifyAdmin from "vuetify-admin";
 
-import airlockAuthProvider from "vuetify-admin/providers/airlockAuthProvider";
+import sanctumAuthProvider from "vuetify-admin/providers/sanctumAuthProvider";
 import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
 
 import en from "vuetify-admin/locales/en.json";
@@ -22,7 +22,7 @@ const admin = ({ i18n, axios }) => {
       ui: { en, fr },
       translations: { en: i18n.t("locales.en"), fr: i18n.t("locales.fr") }
     },
-    authProvider: airlockAuthProvider(axios, {
+    authProvider: sanctumAuthProvider(axios, {
       routes: {
         login: "/auth/login",
         logout: "/auth/logout",

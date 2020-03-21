@@ -24,7 +24,7 @@ export default (axios, options = {}) => {
       /**
        * Get CSRF cookie
        */
-      await axios.get("/airlock/csrf-cookie");
+      await axios.get("/sanctum/csrf-cookie");
 
       let response = await axios.post(
         routes.login,
