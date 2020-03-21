@@ -960,16 +960,16 @@
         },
         {
             "name": "intervention/validation",
-            "version": "2.0.3",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/validation.git",
-                "reference": "fe1ba3e6547762f82b234d77c54c8fad127ee4b9"
+                "reference": "80f97961b0926e2a18f3e3a8905cecfd5baaccf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/validation/zipball/fe1ba3e6547762f82b234d77c54c8fad127ee4b9",
-                "reference": "fe1ba3e6547762f82b234d77c54c8fad127ee4b9",
+                "url": "https://api.github.com/repos/Intervention/validation/zipball/80f97961b0926e2a18f3e3a8905cecfd5baaccf4",
+                "reference": "80f97961b0926e2a18f3e3a8905cecfd5baaccf4",
                 "shasum": ""
             },
             "require": {
@@ -978,6 +978,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
+                "phpstan/phpstan": "^0.12.17",
                 "phpunit/phpunit": "^8.0"
             },
             "type": "library",
@@ -1016,7 +1017,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-03-03T19:23:26+00:00"
+            "time": "2020-03-21T16:31:55+00:00"
         },
         {
             "name": "itsgoingd/clockwork",
