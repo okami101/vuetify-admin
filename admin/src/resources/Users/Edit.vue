@@ -1,6 +1,6 @@
 <template>
   <va-edit>
-    <users-form :item="item"></users-form>
+    <users-form :id="id" :item="item"></users-form>
   </va-edit>
 </template>
 
@@ -8,9 +8,7 @@
 import UsersForm from "./Form";
 
 export default {
-  props: {
-    item: Object
-  },
+  props: ["id", "item"],
   components: {
     UsersForm
   }

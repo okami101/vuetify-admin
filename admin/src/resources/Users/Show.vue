@@ -32,11 +32,9 @@
 import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
 
 export default {
+  props: ["item"],
   components: {
     ImpersonateButton
-  },
-  props: {
-    item: Object
   }
 };
 </script>

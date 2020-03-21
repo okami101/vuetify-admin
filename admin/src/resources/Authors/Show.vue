@@ -2,7 +2,7 @@
   <va-show>
     <v-row justify="center">
       <v-col lg="4">
-        <v-card>
+        <v-card v-if="item">
           <v-img
             v-if="item.photo"
             class="white--text align-end"
@@ -36,8 +36,6 @@
 
 <script>
 export default {
-  props: {
-    item: Object
-  }
+  props: ["item"]
 };
 </script>

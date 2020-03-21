@@ -15,11 +15,12 @@ export default {
   provide() {
     return {
       formName: this.name,
-      formItem: this.item,
-      formSource: this.source
+      formEdit: !!this.id,
+      formItem: this.item
     };
   },
   props: {
+    id: [String, Number],
     item: {
       type: Object,
       default: () => {}
@@ -62,15 +63,14 @@ export default {
       this.$emit("update:saving", true);
 
       try {
-        let { data } =
-          this.item && this.item.id
-            ? await this.$store.dispatch(`${this.resource}/update`, {
-                id: this.item.id,
-                data: this.model
-              })
-            : await this.$store.dispatch(`${this.resource}/create`, {
-                data: this.model
-              });
+        let { data } = this.id
+          ? await this.$store.dispatch(`${this.resource}/update`, {
+              id: this.id,
+              data: this.model
+            })
+          : await this.$store.dispatch(`${this.resource}/create`, {
+              data: this.model
+            });
 
         this.$emit("update:saving", false);
 

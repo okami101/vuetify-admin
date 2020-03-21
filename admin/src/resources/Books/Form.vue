@@ -1,5 +1,5 @@
 <template>
-  <va-form :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item" :saving.sync="saving">
     <v-row justify="center">
       <v-col lg="8">
         <va-tabbed-show
@@ -68,9 +68,7 @@
 
 <script>
 export default {
-  props: {
-    item: Object
-  },
+  props: ["id", "item"],
   data() {
     return {
       saving: false

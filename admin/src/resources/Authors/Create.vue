@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <authors-form></authors-form>
+    <authors-form :item="item"></authors-form>
   </va-create>
 </template>
 
@@ -8,6 +8,7 @@
 import AuthorsForm from "./Form";
 
 export default {
+  props: ["item"],
   components: {
     AuthorsForm
   }

@@ -36,8 +36,6 @@
 
 <script>
 export default {
-  props: {
-    item: Object
-  }
+  props: ["item"]
 };
 </script>

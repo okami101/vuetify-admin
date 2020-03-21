@@ -1,6 +1,6 @@
 <template>
   <va-edit>
-    <books-form :item="item"></books-form>
+    <books-form :id="id" :item="item"></books-form>
     <v-card>
       <va-list
         resource="reviews"
@@ -8,7 +8,7 @@
         :items-per-page="10"
         :fields="['status', 'rating', 'author', 'publication_date']"
         :filter="{
-          book: item.id
+          book: id
         }"
         :filters="[
           'q',
@@ -74,9 +74,7 @@
 import BooksForm from "./Form";
 
 export default {
-  props: {
-    item: Object
-  },
+  props: ["id", "item"],
   components: {
     BooksForm
   },

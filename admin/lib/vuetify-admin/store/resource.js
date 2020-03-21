@@ -61,7 +61,6 @@ export default ({ provider, resource, i18n, app }) => {
     namespaced: true,
     state: {
       item: null,
-      source: null,
       locale: null
     },
     mutations: {
@@ -70,12 +69,6 @@ export default ({ provider, resource, i18n, app }) => {
       },
       removeItem(state) {
         state.item = null;
-      },
-      setSource(state, item) {
-        state.source = item;
-      },
-      removeSource(state) {
-        state.source = null;
       },
       setLocale(state, code) {
         state.locale = code;

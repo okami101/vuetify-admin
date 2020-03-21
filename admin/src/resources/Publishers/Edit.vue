@@ -1,6 +1,6 @@
 <template>
   <va-edit>
-    <publishers-form :item="item"></publishers-form>
+    <publishers-form :id="id" :item="item"></publishers-form>
     <v-card>
       <va-list
         resource="books"
@@ -18,7 +18,7 @@
           'authors.name'
         ]"
         :filter="{
-          publisher: item.id
+          publisher: id
         }"
         :filters="[
           'q',
@@ -107,9 +107,7 @@
 import PublishersForm from "./Form";
 
 export default {
-  props: {
-    item: Object
-  },
+  props: ["id", "item"],
   components: {
     PublishersForm
   },

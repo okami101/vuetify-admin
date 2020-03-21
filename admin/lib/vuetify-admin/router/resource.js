@@ -41,12 +41,14 @@ export default ({ store, i18n, resource, title }) => {
     return {
       path,
       name: `${name}_${action}`,
+      props: true,
       component: {
+        props: ["id"],
         render(c) {
           return c(`${name}-${action}`, {
             props: {
-              item: store.state[name].item,
-              source: store.state[name].source
+              id: this.id,
+              item: store.state[name].item
             }
           });
         },
@@ -64,19 +66,15 @@ export default ({ store, i18n, resource, title }) => {
               id
             });
 
+            /**
+             * Insert model into route & resource store
+             */
+            store.commit(`${name}/setItem`, data);
+
             if (to.params.id) {
-              /**
-               * Insert model into route & resource store
-               */
-              store.commit(`${name}/setItem`, data);
               setTitle(to, action, data);
               return next();
             }
-
-            /**
-             * Insert cloned object
-             */
-            store.commit(`${name}/setSource`, data);
           }
 
           setTitle(to, action);
@@ -84,7 +82,6 @@ export default ({ store, i18n, resource, title }) => {
         },
         beforeRouteLeave(to, from, next) {
           store.commit(`${name}/removeItem`);
-          store.commit(`${name}/removeSource`);
           next();
         }
       },

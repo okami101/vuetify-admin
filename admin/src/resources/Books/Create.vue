@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <books-form></books-form>
+    <books-form :item="item"></books-form>
   </va-create>
 </template>
 
@@ -8,6 +8,7 @@
 import BooksForm from "./Form";
 
 export default {
+  props: ["item"],
   components: {
     BooksForm
   }

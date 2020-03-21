@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <reviews-form></reviews-form>
+    <reviews-form :item="item"></reviews-form>
   </va-create>
 </template>
 
@@ -8,6 +8,7 @@
 import ReviewsForm from "./Form";
 
 export default {
+  props: ["item"],
   components: {
     ReviewsForm
   }

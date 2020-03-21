@@ -7,8 +7,8 @@ export default {
   mixins: [Item],
   inject: {
     formName: { default: undefined },
-    formItem: { default: undefined },
-    formSource: { default: undefined }
+    formEdit: { default: undefined },
+    formItem: { default: undefined }
   },
   props: {
     parentSource: String,
@@ -46,14 +46,6 @@ export default {
       errorMessages: []
     };
   },
-  created() {
-    if (this.formItem) {
-      /**
-       * Initialize from parent form context
-       */
-      this.updateForm(get(this.formItem, this.uniqueFormId));
-    }
-  },
   mounted() {
     EventBus.$on("form-errors", ({ name, errors }) => {
       if (name === this.formName) {
@@ -71,10 +63,13 @@ export default {
       },
       immediate: true
     },
-    formSource: {
+    formItem: {
       handler(val) {
         if (val) {
-          this.update(get(val, this.uniqueFormId));
+          /**
+           * Initialize from parent form context
+           */
+          this.updateForm(get(val, this.uniqueFormId));
         }
       },
       immediate: true

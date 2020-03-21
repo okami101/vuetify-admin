@@ -4,6 +4,7 @@ import get from "lodash/get";
 
 export default {
   inject: {
+    formEdit: { default: true },
     formName: { default: undefined }
   },
   mixins: [Field],
@@ -50,9 +51,9 @@ export default {
     },
     activeFiles() {
       /**
-       * Current item must have valid ID in order to have files
+       * Only used on edit form
        */
-      if (!this.value || !this.record || !this.record.id) {
+      if (!this.value || !this.formEdit) {
         return [];
       }
 

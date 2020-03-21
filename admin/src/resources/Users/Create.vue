@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <users-form></users-form>
+    <users-form :item="item"></users-form>
   </va-create>
 </template>
 
@@ -8,6 +8,7 @@
 import UsersForm from "./Form";
 
 export default {
+  props: ["item"],
   components: {
     UsersForm
   }
