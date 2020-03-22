@@ -10,6 +10,7 @@ RUN apk add --no-cache \
 		$PHPIZE_DEPS \
 	;
 
+RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
 RUN docker-php-ext-install exif && docker-php-ext-enable exif
 RUN pecl install redis && docker-php-ext-enable redis
 
@@ -33,13 +34,14 @@ COPY public public/
 COPY resources resources/
 COPY routes routes/
 COPY artisan ./
-
-ARG COMPOSER_HOME
-COPY ${COMPOSER_HOME} $HOME/.composer
+COPY .env ./
 
 RUN composer install --no-dev
+
 RUN php artisan key:generate
 RUN php artisan storage:link
+RUN php artisan elfinder:publish
+
 RUN php artisan migrate
 
 VOLUME /srv/api/storage

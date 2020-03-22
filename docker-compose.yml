@@ -5,8 +5,6 @@ services:
   php:
     build:
       context: ./
-      args:
-        - ${COMPOSER_HOME}
     volumes:
       - ./:/srv/api
     expose:
