@@ -23,6 +23,7 @@ services:
       - "${NGINX_HTTP_PORT}:80"
     depends_on:
       - php
+      - admin
 
   ### MySQL ################################################
   mysql:
@@ -36,8 +37,6 @@ services:
       - TZ=${APP_TIMEZONE}
     volumes:
       - ${DATA_PATH}/mysql:/var/lib/mysql
-    ports:
-      - "${DB_PORT}:3306"
 
   ### phpMyAdmin ###########################################
   phpmyadmin:
@@ -59,14 +58,10 @@ services:
       context: ./docker/redis
     volumes:
       - ${DATA_PATH}/redis:/data
-    ports:
-      - "${REDIS_PORT}:6379"
 
   ### Admin UI build ################################################
   admin:
     build:
       context: ./admin
-      args:
-        - APP_ENV=${APP_ENV}
     volumes:
       - ./admin:/usr/src/admin

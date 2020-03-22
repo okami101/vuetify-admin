@@ -7,9 +7,11 @@ RUN apk add --no-cache \
 		gettext \
 		git \
 		openssl \
+		$PHPIZE_DEPS \
 	;
 
 RUN docker-php-ext-install exif && docker-php-ext-enable exif
+RUN pecl install redis && docker-php-ext-enable redis
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY docker/php/php.ini /usr/local/etc/php/php.ini

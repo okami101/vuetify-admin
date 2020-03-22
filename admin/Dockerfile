@@ -9,10 +9,4 @@ RUN yarn
 
 COPY . ./
 
-ARG APP_ENV=production
-
-RUN if [ "$APP_ENV" = "production" ]; then \
-    yarn build; \
-  else \
-    yarn serve; \
-  fi
+CMD yarn serve
