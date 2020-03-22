@@ -15,10 +15,10 @@
           'publication_date',
           'description',
           'publication_date',
-          'authors.name'
+          'authors.name',
         ]"
         :filter="{
-          publisher: id
+          publisher: id,
         }"
         :filters="[
           'q',
@@ -29,8 +29,8 @@
             options: {
               optionText: 'name',
               multiple: true,
-              reference: 'authors'
-            }
+              reference: 'authors',
+            },
           },
           { source: 'pricier_than', type: 'number' },
           { source: 'cheaper_than', type: 'number' },
@@ -38,13 +38,13 @@
           {
             source: 'published_before',
             type: 'date',
-            options: { format: 'long' }
+            options: { format: 'long' },
           },
           {
             source: 'published_after',
             type: 'date',
-            options: { format: 'long' }
-          }
+            options: { format: 'long' },
+          },
         ]"
         :include="['authors']"
         flat
@@ -60,15 +60,15 @@
             {
               source: 'price',
               type: 'number',
-              options: { format: 'currency' }
+              options: { format: 'currency' },
             },
             { source: 'commentable', type: 'boolean' },
             {
               source: 'publication_date',
               type: 'date',
-              options: { format: 'long' }
+              options: { format: 'long' },
             },
-            'authors'
+            'authors',
           ]"
           v-bind="props"
           v-model="selected"
@@ -109,13 +109,13 @@ import PublishersForm from "./Form";
 export default {
   props: ["id", "item"],
   components: {
-    PublishersForm
+    PublishersForm,
   },
   data() {
     return {
       options: {},
-      selected: []
+      selected: [],
     };
-  }
+  },
 };
 </script>

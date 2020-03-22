@@ -12,11 +12,11 @@ Vue.config.productionTip = false;
 /**
  * Specific badge color status function
  */
-Vue.prototype.$statusColor = s => {
+Vue.prototype.$statusColor = (s) => {
   const colors = {
     published: "success",
     pending: "warning",
-    denied: "error"
+    denied: "error",
   };
 
   return colors[s];
@@ -31,5 +31,5 @@ new Vue({
   vuetify,
   i18n,
   admin: admin({ i18n, axios }),
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

@@ -14,7 +14,7 @@
         'publication_date',
         'description',
         'publication_date',
-        'authors.name'
+        'authors.name',
       ]"
       :filters="[
         'q',
@@ -25,8 +25,8 @@
           options: {
             optionText: 'name',
             multiple: true,
-            reference: 'publishers'
-          }
+            reference: 'publishers',
+          },
         },
         {
           source: 'authors',
@@ -34,8 +34,8 @@
           options: {
             optionText: 'name',
             multiple: true,
-            reference: 'authors'
-          }
+            reference: 'authors',
+          },
         },
         { source: 'pricier_than', type: 'number' },
         { source: 'cheaper_than', type: 'number' },
@@ -43,9 +43,13 @@
         {
           source: 'published_before',
           type: 'date',
-          options: { format: 'long' }
+          options: { format: 'long' },
         },
-        { source: 'published_after', type: 'date', options: { format: 'long' } }
+        {
+          source: 'published_after',
+          type: 'date',
+          options: { format: 'long' },
+        },
       ]"
       :include="['publisher', 'authors', 'media']"
       flat
@@ -60,7 +64,7 @@
             source: 'cover',
             type: 'image',
             link: 'show',
-            options: { src: 'thumbnails.small' }
+            options: { src: 'thumbnails.small' },
           },
           'category',
           'publisher',
@@ -68,16 +72,16 @@
           {
             source: 'price',
             type: 'number',
-            options: { format: 'currency' }
+            options: { format: 'currency' },
           },
           { source: 'commentable', type: 'boolean', editable: true },
           'formats',
           {
             source: 'publication_date',
             type: 'date',
-            options: { format: 'long' }
+            options: { format: 'long' },
           },
-          'authors'
+          'authors',
         ]"
         show-expand
         v-bind="props"
@@ -138,8 +142,8 @@ export default {
   data() {
     return {
       options: {},
-      selected: []
+      selected: [],
     };
-  }
+  },
 };
 </script>

@@ -10,7 +10,7 @@ import BooksForm from "./Form";
 export default {
   props: ["item"],
   components: {
-    BooksForm
-  }
+    BooksForm,
+  },
 };
 </script>

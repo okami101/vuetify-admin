@@ -5,7 +5,7 @@
         <va-tabbed-show
           :tabs="[
             { id: 'attributes', icon: 'mdi-eye' },
-            { id: 'summary', icon: 'mdi-text' }
+            { id: 'summary', icon: 'mdi-text' },
           ]"
         >
           <template v-slot:attributes>
@@ -72,8 +72,8 @@ export default {
   props: ["id", "item"],
   data() {
     return {
-      saving: false
+      saving: false,
     };
-  }
+  },
 };
 </script>

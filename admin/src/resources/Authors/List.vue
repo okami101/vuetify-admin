@@ -10,9 +10,9 @@
         options: {
           optionText: 'title',
           multiple: true,
-          reference: 'books'
-        }
-      }
+          reference: 'books',
+        },
+      },
     ]"
     :items-per-page="8"
     :rows-per-page="[8, 16, 32]"

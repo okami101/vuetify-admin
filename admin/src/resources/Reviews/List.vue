@@ -8,7 +8,7 @@
         'rating',
         'author',
         'body',
-        'publication_date'
+        'publication_date',
       ]"
       :filters="[
         'q',
@@ -18,22 +18,26 @@
           options: {
             optionText: 'title',
             multiple: true,
-            reference: 'books'
-          }
+            reference: 'books',
+          },
         },
         { source: 'rating', type: 'rating' },
         {
           source: 'status',
           type: 'select',
-          options: { enum: true, multiple: true }
+          options: { enum: true, multiple: true },
         },
         'author',
         {
           source: 'published_before',
           type: 'date',
-          options: { format: 'long' }
+          options: { format: 'long' },
         },
-        { source: 'published_after', type: 'date', options: { format: 'long' } }
+        {
+          source: 'published_after',
+          type: 'date',
+          options: { format: 'long' },
+        },
       ]"
       :include="['book']"
       flat
@@ -51,8 +55,8 @@
           {
             source: 'publication_date',
             type: 'date',
-            options: { format: 'long' }
-          }
+            options: { format: 'long' },
+          },
         ]"
         v-bind="props"
         show-expand
@@ -89,8 +93,8 @@ export default {
   data() {
     return {
       options: {},
-      selected: []
+      selected: [],
     };
-  }
+  },
 };
 </script>

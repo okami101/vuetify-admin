@@ -20,27 +20,27 @@ const admin = ({ i18n, axios }) => {
     title: "Bookstore Admin",
     locales: {
       ui: { en, fr },
-      translations: { en: i18n.t("locales.en"), fr: i18n.t("locales.fr") }
+      translations: { en: i18n.t("locales.en"), fr: i18n.t("locales.fr") },
     },
     authProvider: sanctumAuthProvider(axios, {
       routes: {
         login: "/auth/login",
         logout: "/auth/logout",
-        user: "/api/user"
-      }
+        user: "/api/user",
+      },
     }),
     dataProvider: laravelDataProvider(axios),
     resources: [
       {
         name: "publishers",
-        translatable: true
+        translatable: true,
       },
       { name: "books", translatable: true },
       { name: "authors", translatable: true },
       "reviews",
-      "users"
+      "users",
     ],
-    resourcesPath: "resources"
+    resourcesPath: "resources",
   });
 };
 

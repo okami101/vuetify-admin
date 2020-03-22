@@ -17,12 +17,12 @@ export default {
   name: "ImpersonateButton",
   props: {
     item: Object,
-    icon: Boolean
+    icon: Boolean,
   },
   computed: {
     ...mapState({
-      user: state => state.auth.user
-    })
+      user: (state) => state.auth.user,
+    }),
   },
   methods: {
     async impersonate() {
@@ -36,7 +36,7 @@ export default {
       } catch ({ response }) {
         this.$snackbar.error(response.data.message);
       }
-    }
-  }
+    },
+  },
 };
 </script>

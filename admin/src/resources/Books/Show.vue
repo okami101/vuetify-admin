@@ -5,7 +5,7 @@
         <va-tabbed-show
           :tabs="[
             { id: 'attributes', icon: 'mdi-eye' },
-            { id: 'summary', icon: 'mdi-text' }
+            { id: 'summary', icon: 'mdi-text' },
           ]"
         >
           <template v-slot:attributes>
@@ -23,7 +23,7 @@
                     color="orange"
                     :to="{
                       name: 'publishers_show',
-                      params: { id: value.id }
+                      params: { id: value.id },
                     }"
                   >
                     {{ value.name }}
@@ -111,6 +111,6 @@
 
 <script>
 export default {
-  props: ["item"]
+  props: ["item"],
 };
 </script>

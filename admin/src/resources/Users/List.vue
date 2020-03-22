@@ -10,9 +10,9 @@
           type: 'select',
           options: {
             multiple: true,
-            enum: true
-          }
-        }
+            enum: true,
+          },
+        },
       ]"
       flat
       v-model="selected"
@@ -50,13 +50,13 @@
             {
               source: 'created_at',
               type: 'date',
-              options: { format: 'long' }
+              options: { format: 'long' },
             },
             {
               source: 'updated_at',
               type: 'date',
-              options: { format: 'long' }
-            }
+              options: { format: 'long' },
+            },
           ]"
           v-bind="props"
           v-model="selected"
@@ -96,13 +96,13 @@ import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
 
 export default {
   components: {
-    ImpersonateButton
+    ImpersonateButton,
   },
   data() {
     return {
       options: {},
-      selected: []
+      selected: [],
     };
-  }
+  },
 };
 </script>

@@ -8,7 +8,7 @@
         :items-per-page="10"
         :fields="['status', 'rating', 'author', 'publication_date']"
         :filter="{
-          book: id
+          book: id,
         }"
         :filters="[
           'q',
@@ -16,19 +16,19 @@
           {
             source: 'status',
             type: 'select',
-            options: { enum: true, multiple: true }
+            options: { enum: true, multiple: true },
           },
           'author',
           {
             source: 'published_before',
             type: 'date',
-            options: { format: 'long' }
+            options: { format: 'long' },
           },
           {
             source: 'published_after',
             type: 'date',
-            options: { format: 'long' }
-          }
+            options: { format: 'long' },
+          },
         ]"
         flat
         v-model="selected"
@@ -44,8 +44,8 @@
             {
               source: 'publication_date',
               type: 'date',
-              options: { format: 'long' }
-            }
+              options: { format: 'long' },
+            },
           ]"
           v-bind="props"
           v-model="selected"
@@ -76,13 +76,13 @@ import BooksForm from "./Form";
 export default {
   props: ["id", "item"],
   components: {
-    BooksForm
+    BooksForm,
   },
   data() {
     return {
       options: {},
-      selected: []
+      selected: [],
     };
-  }
+  },
 };
 </script>

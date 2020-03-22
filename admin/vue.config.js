@@ -8,9 +8,9 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        "vuetify-admin": path.resolve(__dirname, "lib/vuetify-admin")
-      }
-    }
+        "vuetify-admin": path.resolve(__dirname, "lib/vuetify-admin"),
+      },
+    },
   },
 
   pluginOptions: {
@@ -18,11 +18,11 @@ module.exports = {
       locale: "en",
       fallbackLocale: "en",
       localeDir: "locales",
-      enableInSFC: false
-    }
+      enableInSFC: false,
+    },
   },
 
   devServer: {
-    disableHostCheck: true
-  }
+    disableHostCheck: true,
+  },
 };

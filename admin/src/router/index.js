@@ -11,62 +11,62 @@ const router = ({ i18n }) => {
     {
       path: "/",
       name: "home",
-      redirect: "/dashboard"
+      redirect: "/dashboard",
     },
     {
       path: "/login",
       name: "login",
       component: Login,
       meta: {
-        title: i18n.t("routes.login")
-      }
+        title: i18n.t("routes.login"),
+      },
     },
     {
       path: "/profile",
       name: "profile",
       component: Profile,
       meta: {
-        title: i18n.t("routes.profile")
-      }
+        title: i18n.t("routes.profile"),
+      },
     },
     {
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
       meta: {
-        title: i18n.t("routes.dashboard")
-      }
+        title: i18n.t("routes.dashboard"),
+      },
     },
     {
       path: "/help",
       name: "help",
       component: () => import("@/views/Help"),
       meta: {
-        title: i18n.t("routes.help")
-      }
+        title: i18n.t("routes.help"),
+      },
     },
     {
       path: "/settings",
       name: "settings",
       component: () => import("@/views/Settings"),
       meta: {
-        title: i18n.t("routes.settings")
-      }
+        title: i18n.t("routes.settings"),
+      },
     },
     {
       path: "/feedback",
       name: "feedback",
       component: () => import("@/views/Feedback"),
       meta: {
-        title: i18n.t("routes.feedback")
-      }
-    }
+        title: i18n.t("routes.feedback"),
+      },
+    },
   ];
 
   return new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,
-    routes
+    routes,
   });
 };
 

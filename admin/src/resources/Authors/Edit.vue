@@ -14,10 +14,10 @@
           'commentable',
           'publication_date',
           'description',
-          'publication_date'
+          'publication_date',
         ]"
         :filter="{
-          authors: id
+          authors: id,
         }"
         :include="['publisher', 'reviews']"
         flat
@@ -34,15 +34,15 @@
             {
               source: 'price',
               type: 'number',
-              options: { format: 'currency' }
+              options: { format: 'currency' },
             },
             { source: 'commentable', type: 'boolean' },
             {
               source: 'publication_date',
               type: 'date',
-              options: { format: 'long' }
+              options: { format: 'long' },
             },
-            'reviews'
+            'reviews',
           ]"
           v-bind="props"
           :options.sync="options"
@@ -82,12 +82,12 @@ import AuthorsForm from "./Form";
 export default {
   props: ["id", "item"],
   components: {
-    AuthorsForm
+    AuthorsForm,
   },
   data() {
     return {
-      options: {}
+      options: {},
     };
-  }
+  },
 };
 </script>

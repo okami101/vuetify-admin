@@ -57,8 +57,8 @@ export default {
   props: ["id", "item"],
   data() {
     return {
-      saving: false
+      saving: false,
     };
-  }
+  },
 };
 </script>

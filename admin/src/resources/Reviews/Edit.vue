@@ -10,7 +10,7 @@ import ReviewsForm from "./Form";
 export default {
   props: ["id", "item"],
   components: {
-    ReviewsForm
-  }
+    ReviewsForm,
+  },
 };
 </script>

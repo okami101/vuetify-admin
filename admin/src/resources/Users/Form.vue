@@ -45,8 +45,8 @@ export default {
   data() {
     return {
       roles: [],
-      saving: false
+      saving: false,
     };
-  }
+  },
 };
 </script>

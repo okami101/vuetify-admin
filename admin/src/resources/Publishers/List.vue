@@ -9,14 +9,14 @@
         'url',
         'active',
         'address',
-        'opening_date'
+        'opening_date',
       ]"
       :filters="[
         'q',
         'name',
         'founder',
         'headquarter',
-        { source: 'active', type: 'boolean' }
+        { source: 'active', type: 'boolean' },
       ]"
       :include="['media', 'books_count']"
       flat
@@ -30,7 +30,7 @@
             source: 'logo',
             type: 'image',
             link: 'show',
-            options: { src: 'thumbnails.small', contain: true }
+            options: { src: 'thumbnails.small', contain: true },
           },
           { source: 'name', link: 'show' },
           { source: 'type', type: 'select', options: { enum: true } },
@@ -42,10 +42,10 @@
           {
             source: 'address',
             label: $t('address'),
-            sortable: false
+            sortable: false,
           },
           { source: 'opening_date', type: 'date', options: { format: 'long' } },
-          { source: 'books_count', type: 'number' }
+          { source: 'books_count', type: 'number' },
         ]"
         v-bind="props"
         v-model="selected"
@@ -64,8 +64,8 @@ export default {
   data() {
     return {
       options: {},
-      selected: []
+      selected: [],
     };
-  }
+  },
 };
 </script>

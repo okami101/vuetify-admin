@@ -14,12 +14,12 @@ export default {
   name: "ImpersonateMessage",
   computed: {
     ...mapState({
-      user: state => state.auth.user
-    })
+      user: (state) => state.auth.user,
+    }),
   },
   methods: {
     ...mapActions({
-      checkAuth: "auth/checkAuth"
+      checkAuth: "auth/checkAuth",
     }),
     async stopImpersonate() {
       try {
@@ -32,7 +32,7 @@ export default {
       } catch ({ response }) {
         this.$snackbar.error(response.data.message);
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -10,7 +10,7 @@ import UsersForm from "./Form";
 export default {
   props: ["id", "item"],
   components: {
-    UsersForm
-  }
+    UsersForm,
+  },
 };
 </script>

@@ -51,12 +51,12 @@ export default {
       username: null,
       password: null,
       errorMessages: {},
-      loading: false
+      loading: false,
     };
   },
   methods: {
     ...mapActions({
-      login: "auth/login"
+      login: "auth/login",
     }),
     async validate() {
       if (this.$refs.form.validate()) {
@@ -64,7 +64,7 @@ export default {
         try {
           await this.login({
             username: this.username,
-            password: this.password
+            password: this.password,
           });
         } catch ({ response }) {
           if (response.data.errors) {
@@ -73,8 +73,8 @@ export default {
         }
         this.loading = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

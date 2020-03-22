@@ -10,7 +10,7 @@ function loadLocaleMessages() {
     /[A-Za-z0-9-_,\s]+\.json$/i
   );
   const messages = {};
-  locales.keys().forEach(key => {
+  locales.keys().forEach((key) => {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i);
     if (matched && matched.length > 1) {
       const locale = matched[1];
@@ -29,13 +29,13 @@ export default new VueI18n({
       short: {
         year: "numeric",
         month: "short",
-        day: "numeric"
+        day: "numeric",
       },
       long: {
         year: "numeric",
         month: "long",
         day: "numeric",
-        weekday: "long"
+        weekday: "long",
       },
       longWithTime: {
         year: "numeric",
@@ -43,20 +43,20 @@ export default new VueI18n({
         day: "numeric",
         weekday: "long",
         hour: "numeric",
-        minute: "numeric"
-      }
+        minute: "numeric",
+      },
     },
     fr: {
       short: {
         year: "numeric",
         month: "short",
-        day: "numeric"
+        day: "numeric",
       },
       long: {
         year: "numeric",
         month: "long",
         day: "numeric",
-        weekday: "long"
+        weekday: "long",
       },
       longWithTime: {
         year: "numeric",
@@ -64,22 +64,22 @@ export default new VueI18n({
         day: "numeric",
         weekday: "long",
         hour: "numeric",
-        minute: "numeric"
-      }
-    }
+        minute: "numeric",
+      },
+    },
   },
   numberFormats: {
     en: {
       currency: {
         style: "currency",
-        currency: "USD"
-      }
+        currency: "USD",
+      },
     },
     fr: {
       currency: {
         style: "currency",
-        currency: "EUR"
-      }
-    }
-  }
+        currency: "EUR",
+      },
+    },
+  },
 });

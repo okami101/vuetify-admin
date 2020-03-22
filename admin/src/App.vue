@@ -10,7 +10,7 @@ import ImpersonateMessage from "@/components/ImpersonateMessage";
 export default {
   name: "App",
   components: {
-    ImpersonateMessage
+    ImpersonateMessage,
   },
   data() {
     return {
@@ -18,14 +18,14 @@ export default {
         {
           icon: "mdi-account",
           text: this.$t("menu.profile"),
-          link: "/profile"
-        }
+          link: "/profile",
+        },
       ],
       sidebarMenu: [
         {
           icon: "mdi-view-dashboard",
           text: this.$t("menu.dashboard"),
-          link: "/"
+          link: "/",
         },
         { divider: true },
         { heading: this.$t("menu.bookstore") },
@@ -33,13 +33,13 @@ export default {
           icon: "mdi-globe-model",
           text: this.$t("menu.publishers"),
           link: "/publishers",
-          permissions: ["admin", "editor"]
+          permissions: ["admin", "editor"],
         },
         {
           icon: "mdi-account",
           text: this.$t("menu.authors"),
           link: "/authors",
-          permissions: ["admin", "author"]
+          permissions: ["admin", "author"],
         },
         {
           icon: "mdi-book",
@@ -50,20 +50,20 @@ export default {
             {
               icon: "mdi-view-list",
               text: this.$t("menu.list"),
-              link: "/books"
+              link: "/books",
             },
             {
               icon: "mdi-plus",
               text: this.$t("menu.create"),
-              link: "/books/create"
-            }
-          ]
+              link: "/books/create",
+            },
+          ],
         },
         {
           icon: "mdi-comment",
           text: this.$t("menu.reviews"),
           link: "/reviews",
-          permissions: ["admin", "editor", "author"]
+          permissions: ["admin", "editor", "author"],
         },
         { divider: true },
         { heading: this.$t("menu.other") },
@@ -71,23 +71,23 @@ export default {
           icon: "mdi-account",
           text: this.$t("menu.users"),
           link: "/users",
-          permissions: ["admin"]
+          permissions: ["admin"],
         },
         {
           icon: "mdi-settings",
           text: this.$t("menu.settings"),
           link: "/settings",
-          permissions: ["admin"]
+          permissions: ["admin"],
         },
         {
           icon: "mdi-message",
           text: this.$t("menu.feedback"),
           link: "/feedback",
-          permissions: ["admin", "editor"]
+          permissions: ["admin", "editor"],
         },
-        { icon: "mdi-help-circle", text: this.$t("menu.help"), link: "/help" }
-      ]
+        { icon: "mdi-help-circle", text: this.$t("menu.help"), link: "/help" },
+      ],
     };
-  }
+  },
 };
 </script>

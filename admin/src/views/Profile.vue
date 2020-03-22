@@ -91,35 +91,35 @@ export default {
       passwordChanging: false,
       accountForm: {
         name: null,
-        email: null
+        email: null,
       },
       passwordForm: {
         old_password: null,
         new_password: null,
-        new_password_confirmation: null
+        new_password_confirmation: null,
       },
-      errorMessages: {}
+      errorMessages: {},
     };
   },
   computed: {
     ...mapState({
-      user: state => state.auth.user
-    })
+      user: (state) => state.auth.user,
+    }),
   },
   watch: {
     user: {
       handler({ name, email }) {
         this.accountForm = {
           name,
-          email
+          email,
         };
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     ...mapActions({
-      checkAuth: "auth/checkAuth"
+      checkAuth: "auth/checkAuth",
     }),
     async update(method, url, data) {
       try {
@@ -158,12 +158,12 @@ export default {
         this.passwordForm = {
           oldPassword: null,
           newPassword: null,
-          newPasswordConfirmation: null
+          newPasswordConfirmation: null,
         };
         this.$snackbar.success(this.$t("profile.password_changed"));
       }
       this.passwordChanging = false;
-    }
-  }
+    },
+  },
 };
 </script>
