@@ -1,5 +1,4 @@
-ARG PHP_VERSION=7.4
-FROM php:${PHP_VERSION}-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # persistent / runtime deps
 RUN apk add --no-cache \
@@ -10,16 +9,15 @@ RUN apk add --no-cache \
 		openssl \
 	;
 
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY php${PHP_VERSION}.ini /usr/local/etc/php/php.ini
+COPY docker/php/php.ini /usr/local/etc/php/php.ini
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 WORKDIR /usr/src/api
-
-# build for production
-ARG APP_ENV=production
 
 # prevent the reinstallation of vendors at every changes in the source code
 COPY composer.json composer.lock ./
@@ -29,13 +27,14 @@ RUN set -eux; \
 	composer clear-cache
 
 # copy only specifically what we need
-COPY bin bin/
+COPY app app/
+COPY bootstrap bootstrap/
 COPY config config/
+COPY database database/
 COPY public public/
-COPY src src/
-# only for demo
-COPY fixtures fixtures/
+COPY resources resources/
+COPY routes routes/
 
-VOLUME /srv/api/var
+VOLUME /srv/api/storage
 
 CMD ["php-fpm"]

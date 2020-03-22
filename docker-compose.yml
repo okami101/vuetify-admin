@@ -4,7 +4,7 @@ services:
   ### PHP-FPM ##############################################
   php:
     build:
-      context: ./docker/php
+      context: ./
     volumes:
       - ./:/usr/src/api
     expose:
@@ -14,6 +14,8 @@ services:
   nginx:
     build:
       context: ./docker/nginx
+      args:
+        - APP_ENV=${APP_ENV}
     volumes:
       - ./:/usr/src/api
       - ${DATA_PATH}/nginx:/var/log/nginx
@@ -26,11 +28,9 @@ services:
   mysql:
     build:
       context: ./docker/mysql
-      args:
-        - MYSQL_VERSION=${MYSQL_VERSION}
     environment:
       - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_USER=${DB_USER}
+      - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${APP_TIMEZONE}
@@ -41,12 +41,13 @@ services:
 
   ### phpMyAdmin ###########################################
   phpmyadmin:
-    build: ./docker/phpmyadmin
+    build:
+      context: ./docker/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - MYSQL_USER=${PMA_USER}
-      - MYSQL_PASSWORD=${PMA_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
+      - MYSQL_USER=pma
+      - MYSQL_PASSWORD=pmapass
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - "${PMA_PORT}:80"
     depends_on:
@@ -54,7 +55,8 @@ services:
 
   ### Redis ################################################
   redis:
-    build: ./docker/redis
+    build:
+      context: ./docker/redis
     volumes:
       - ${DATA_PATH}/redis:/data
     ports:
