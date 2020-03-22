@@ -62,9 +62,9 @@ services:
 
   ### Admin UI build ################################################
   admin:
-    build: ./admin
-    env_file:
-      - ./admin/.env
+    build:
+      context: ./admin
+      args:
+        - APP_ENV=${APP_ENV}
     volumes:
-      - ./admin:/usr/src/admin:rw,cached
-      - /usr/src/admin/node_modules
+      - ./admin:/usr/src/admin
