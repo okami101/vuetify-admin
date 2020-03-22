@@ -960,16 +960,16 @@
         },
         {
             "name": "intervention/validation",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/validation.git",
-                "reference": "cff09e54cd8a1b2045ade59fc1561879d5d11074"
+                "reference": "cfaa8b09130945117f1c54bb4ea6013c889c8a19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/validation/zipball/cff09e54cd8a1b2045ade59fc1561879d5d11074",
-                "reference": "cff09e54cd8a1b2045ade59fc1561879d5d11074",
+                "url": "https://api.github.com/repos/Intervention/validation/zipball/cfaa8b09130945117f1c54bb4ea6013c889c8a19",
+                "reference": "cfaa8b09130945117f1c54bb4ea6013c889c8a19",
                 "shasum": ""
             },
             "require": {
@@ -1017,7 +1017,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-03-21T18:43:50+00:00"
+            "time": "2020-03-22T15:20:29+00:00"
         },
         {
             "name": "itsgoingd/clockwork",
