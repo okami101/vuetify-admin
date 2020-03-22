@@ -68,5 +68,3 @@ services:
     volumes:
       - ./admin:/usr/src/admin:rw,cached
       - /usr/src/admin/node_modules
-    ports:
-      - "8080:8080"
