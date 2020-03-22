@@ -16,20 +16,20 @@
     :show-expand="showExpand"
     @click:row="onRowClick"
     @update:sort-by="
-      sortBy =>
+      (sortBy) =>
         $emit('update:options', {
           ...options,
-          sortBy
+          sortBy,
         })
     "
     @update:sort-desc="
-      sortDesc =>
+      (sortDesc) =>
         $emit('update:options', {
           ...options,
-          sortDesc
+          sortDesc,
         })
     "
-    @input="selected => $emit('input', selected)"
+    @input="(selected) => $emit('input', selected)"
     :class="{ 'clickable-rows': rowClick }"
   >
     <template
@@ -54,7 +54,7 @@
         :key="field.source"
         :to="{
           name: `${resource}_${field.link}`,
-          params: { id: item.id }
+          params: { id: item.id },
         }"
       >
         <component
@@ -145,43 +145,43 @@ export default {
     rowClick: {
       type: String,
       default: null,
-      validator: v => ["show", "edit"].includes(v)
+      validator: (v) => ["show", "edit"].includes(v),
     },
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     fields: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     dense: Boolean,
     loading: Boolean,
     itemsPerPage: Number,
     multiSort: {
       type: Boolean,
-      default: true
+      default: true,
     },
     singleExpand: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showExpand: Boolean,
     options: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     rowActions: {
       type: Boolean,
-      default: true
+      default: true,
     },
     serverItemsLength: Number,
     disableSelect: Boolean,
-    disableSort: Boolean
+    disableSort: Boolean,
   },
   computed: {
     headers() {
-      let fields = this.getFields.map(field => {
+      let fields = this.getFields.map((field) => {
         return {
           text: field.label,
           value: field.source,
@@ -189,37 +189,37 @@ export default {
             field.sortable === undefined
               ? this.getDefaultSort(field)
               : field.sortable,
-          align: field.align || this.getDefaultAlign(field)
+          align: field.align || this.getDefaultAlign(field),
         };
       });
 
       if (this.rowActions) {
         fields.push({
           value: "actions",
-          sortable: false
+          sortable: false,
         });
       }
       return fields;
     },
     getFields() {
       return this.fields
-        .map(f => {
+        .map((f) => {
           return typeof f === "string"
             ? {
-                source: f
+                source: f,
               }
             : f;
         })
-        .map(f => {
+        .map((f) => {
           return {
             ...f,
             type: f.type,
             label:
               f.label ||
-              this.$t(`resources.${this.resource}.fields.${f.source}`)
+              this.$t(`resources.${this.resource}.fields.${f.source}`),
           };
         });
-    }
+    },
   },
   methods: {
     getDefaultSort(field) {
@@ -242,8 +242,8 @@ export default {
           this.$router.push(`/${this.resource}/${item.id}/edit`);
           break;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

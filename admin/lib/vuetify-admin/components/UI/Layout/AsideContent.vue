@@ -16,8 +16,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      openAside: "aside/open"
-    })
-  }
+      openAside: "aside/open",
+    }),
+  },
 };
 </script>

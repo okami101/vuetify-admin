@@ -31,27 +31,27 @@ export default {
     icon: Boolean,
     color: {
       type: String,
-      default: "success"
+      default: "success",
     },
     options: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     filter: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   methods: {
     ...mapActions({
-      getList: "api/getList"
+      getList: "api/getList",
     }),
     async onExport() {
       /**
        * Generate CSV string from JSON api
        */
       let params = {
-        filter: this.filter
+        filter: this.filter,
       };
 
       if (this.options) {
@@ -64,11 +64,11 @@ export default {
 
       let { data } = await this.getList({
         resource: this.resource,
-        params
+        params,
       });
 
       const csv = Papa.unparse(
-        data.map(item => {
+        data.map((item) => {
           /**
            * Remove nested object which is not supported on Papa
            */
@@ -87,7 +87,7 @@ export default {
           header: true,
           newline: "\r\n",
           skipEmptyLines: false, //or 'greedy',
-          columns: null //or array of strings
+          columns: null, //or array of strings
         }
       );
 
@@ -110,7 +110,7 @@ export default {
       fakeLink.setAttribute("href", URL.createObjectURL(blob));
       fakeLink.setAttribute("download", `${fileName}.csv`);
       fakeLink.click();
-    }
-  }
+    },
+  },
 };
 </script>

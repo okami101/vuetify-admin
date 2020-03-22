@@ -13,9 +13,9 @@
       :hide-default-footer="disablePagination"
       :footer-props="{
         'items-per-page-options': rowsPerPage,
-        showFirstLastPage: true
+        showFirstLastPage: true,
       }"
-      @input="selected => $emit('input', selected)"
+      @input="(selected) => $emit('input', selected)"
     >
       <template v-slot:header v-if="!hideHeader">
         <v-card :flat="flat">
@@ -27,7 +27,7 @@
               <va-bulk-delete-button
                 :resource="resource"
                 :value="value"
-                @input="value => $emit('input', value)"
+                @input="(value) => $emit('input', value)"
               ></va-bulk-delete-button>
             </div>
           </v-toolbar>
@@ -105,7 +105,7 @@ export default {
   name: "List",
   mixins: [Resource],
   components: {
-    FormFilter
+    FormFilter,
   },
   props: {
     /**
@@ -113,55 +113,55 @@ export default {
      */
     filter: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     /**
      * Exposed filters
      */
     filters: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     fields: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     sortBy: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     sortDesc: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     include: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     flat: Boolean,
     itemsPerPage: {
       type: Number,
-      default: 15
+      default: 15,
     },
     rowsPerPage: {
       type: Array,
-      default: () => [5, 10, 15, 25, 50, 100]
+      default: () => [5, 10, 15, 25, 50, 100],
     },
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     options: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     exporter: {
       type: Boolean,
-      default: true
+      default: true,
     },
     disableQueryString: Boolean,
     disablePagination: Boolean,
-    hideHeader: Boolean
+    hideHeader: Boolean,
   },
   data() {
     return {
@@ -171,7 +171,7 @@ export default {
       total: 0,
       currentOptions: {},
       currentFilter: {},
-      enabledFilters: []
+      enabledFilters: [],
     };
   },
   async mounted() {
@@ -189,51 +189,51 @@ export default {
   computed: {
     getFilters() {
       return this.filters
-        .map(f => {
+        .map((f) => {
           if (f === "q") {
             return {
               source: "q",
               label: this.$t("va.datagrid.search"),
               alwaysOn: true,
-              options: { icon: "mdi-magnify" }
+              options: { icon: "mdi-magnify" },
             };
           }
           return f;
         })
-        .map(f => {
+        .map((f) => {
           return typeof f === "string"
             ? {
-                source: f
+                source: f,
               }
             : f;
         })
-        .map(f => {
+        .map((f) => {
           return {
             ...f,
             type: f.type || "text",
             label:
               f.label ||
-              this.$t(`resources.${this.resource}.fields.${f.source}`)
+              this.$t(`resources.${this.resource}.fields.${f.source}`),
           };
         });
     },
     getEnabledFilters() {
-      return this.getFilters.filter(f => {
+      return this.getFilters.filter((f) => {
         return f.alwaysOn || this.enabledFilters.includes(f.source);
       });
     },
     getDisabledFilters() {
-      return this.getFilters.filter(f => {
+      return this.getFilters.filter((f) => {
         return !f.alwaysOn && !this.enabledFilters.includes(f.source);
       });
-    }
+    },
   },
   watch: {
     options: {
       handler(val) {
         this.currentOptions = val;
       },
-      immediate: true
+      immediate: true,
     },
     currentOptions(val) {
       this.fetchData();
@@ -243,18 +243,18 @@ export default {
     currentFilter() {
       this.fetchData();
       this.updateQuery();
-    }
+    },
   },
   methods: {
     ...mapActions({
-      getList: "api/getList"
+      getList: "api/getList",
     }),
     async initFiltersFromQuery() {
       let options = {
         page: 1,
         itemsPerPage: this.itemsPerPage,
         sortBy: this.sortBy,
-        sortDesc: this.sortDesc
+        sortDesc: this.sortDesc,
       };
 
       if (this.disableQueryString) {
@@ -280,7 +280,7 @@ export default {
       }
 
       if (sortDesc) {
-        options.sortDesc = sortDesc.split(",").map(bool => bool === "true");
+        options.sortDesc = sortDesc.split(",").map((bool) => bool === "true");
       }
 
       this.currentOptions = options;
@@ -292,7 +292,7 @@ export default {
         this.currentFilter = JSON.parse(filter);
 
         for (let prop in this.currentFilter) {
-          let filter = this.getFilters.find(f => f.source === prop);
+          let filter = this.getFilters.find((f) => f.source === prop);
 
           if (filter) {
             this.enableFilter(filter);
@@ -317,7 +317,7 @@ export default {
       let { itemsPerPage, page, sortBy, sortDesc } = this.currentOptions;
       let query = {
         perPage: itemsPerPage,
-        page
+        page,
       };
 
       if (!isEmpty(sortBy)) {
@@ -332,7 +332,7 @@ export default {
         query.filter = JSON.stringify(this.currentFilter);
       }
 
-      this.$router.push({ query }).catch(e => {});
+      this.$router.push({ query }).catch((e) => {});
     },
     async fetchData() {
       if (!this.loaded || isEmpty(this.currentOptions)) {
@@ -350,14 +350,14 @@ export default {
         }),
         filter: {
           ...this.filter,
-          ...this.currentFilter
-        }
+          ...this.currentFilter,
+        },
       };
 
       if (!this.disablePagination) {
         params.pagination = {
           page,
-          perPage: itemsPerPage
+          perPage: itemsPerPage,
         };
       }
 
@@ -366,7 +366,7 @@ export default {
        */
       let { data, total } = await this.getList({
         resource: this.resource,
-        params
+        params,
       });
 
       this.loading = false;
@@ -374,7 +374,7 @@ export default {
       this.total = total;
     },
     getFieldsQuery(resource, sources, fields = {}) {
-      sources.forEach(s => {
+      sources.forEach((s) => {
         /**
          * Dot notation support
          */
@@ -402,7 +402,7 @@ export default {
     },
     async onDelete(item) {
       this.fetchData();
-    }
-  }
+    },
+  },
 };
 </script>

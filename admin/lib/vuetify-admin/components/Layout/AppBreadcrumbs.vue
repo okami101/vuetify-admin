@@ -11,18 +11,18 @@ export default {
         {
           text: this.$t("va.home"),
           exact: true,
-          to: "/"
+          to: "/",
         },
-        ...this.$route.matched.map(route => {
+        ...this.$route.matched.map((route) => {
           return {
             text: route.meta ? route.meta.title : route.name,
             exact: true,
-            to: route
+            to: route,
           };
-        })
+        }),
       ];
-    }
-  }
+    },
+  },
 };
 </script>
 

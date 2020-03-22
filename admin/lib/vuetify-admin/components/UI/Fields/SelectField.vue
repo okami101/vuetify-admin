@@ -15,8 +15,8 @@ export default {
   mixins: [Field, Choices],
   computed: {
     selected() {
-      return this.choices.find(c => c[this.optionValue] === this.value);
-    }
-  }
+      return this.choices.find((c) => c[this.optionValue] === this.value);
+    },
+  },
 };
 </script>

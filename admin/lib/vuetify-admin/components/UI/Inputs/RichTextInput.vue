@@ -9,7 +9,7 @@
         plugins,
         toolbar,
         inline,
-        file_picker_callback: elFinderBrowser
+        file_picker_callback: elFinderBrowser,
       }"
       :value="input"
       @change="change"
@@ -29,11 +29,11 @@ export default {
   props: {
     language: {
       type: String,
-      default: process.env.VUE_APP_TINYMCE_LANGUAGE
+      default: process.env.VUE_APP_TINYMCE_LANGUAGE,
     },
     height: {
       type: Number,
-      default: 500
+      default: 500,
     },
     menubar: Boolean,
     inline: Boolean,
@@ -42,20 +42,20 @@ export default {
       default: () => [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table paste code help wordcount"
-      ]
+        "insertdatetime media table paste code help wordcount",
+      ],
     },
     toolbar: {
       type: String,
       default:
         "undo redo | formatselect | bold italic backcolor | \
            alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | image media | removeformat | help"
-    }
+           bullist numlist outdent indent | image media | removeformat | help",
+    },
   },
   data() {
     return {
-      apiKey: process.env.VUE_APP_TINYMCE_API_KEY
+      apiKey: process.env.VUE_APP_TINYMCE_API_KEY,
     };
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
          * @param details
          * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
          */
-        onMessage: function(dialogApi, details) {
+        onMessage: function (dialogApi, details) {
           if (details.mceAction === "fileSelected") {
             const file = details.data.file;
 
@@ -94,10 +94,10 @@ export default {
 
             dialogApi.close();
           }
-        }
+        },
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

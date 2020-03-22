@@ -29,8 +29,8 @@ export default {
     icon: Boolean,
     color: {
       type: String,
-      default: "success"
-    }
-  }
+      default: "success",
+    },
+  },
 };
 </script>

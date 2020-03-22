@@ -29,15 +29,15 @@ export default {
     icon: String,
     label: {
       type: String,
-      required: true
+      required: true,
     },
     showLabel: Boolean,
     color: {
       type: String,
-      default: "primary"
+      default: "primary",
     },
     to: [String, Object],
-    text: Boolean
-  }
+    text: Boolean,
+  },
 };
 </script>

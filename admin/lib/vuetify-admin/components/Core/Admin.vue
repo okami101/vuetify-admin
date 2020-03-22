@@ -36,23 +36,23 @@ export default {
     AppSidebar,
     AppAside,
     AppMessages,
-    AppBreadcrumbs
+    AppBreadcrumbs,
   },
   props: {
     sidebarMenu: Array,
-    profileMenu: Array
+    profileMenu: Array,
   },
   data() {
     return {
-      mini: false
+      mini: false,
     };
   },
   computed: {
     ...mapState({
-      user: state => state.auth.user,
-      loaded: state => state.auth.loaded
-    })
-  }
+      user: (state) => state.auth.user,
+      loaded: (state) => state.auth.loaded,
+    }),
+  },
 };
 </script>
 

@@ -24,14 +24,14 @@ export default {
   name: "AppAside",
   computed: {
     ...mapState({
-      opened: state => state.aside.opened
-    })
+      opened: (state) => state.aside.opened,
+    }),
   },
   methods: {
     ...mapMutations({
-      close: "aside/close"
-    })
-  }
+      close: "aside/close",
+    }),
+  },
 };
 </script>
 

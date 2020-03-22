@@ -30,8 +30,8 @@ export default {
     icon: Boolean,
     color: {
       type: String,
-      default: "warning"
-    }
-  }
+      default: "warning",
+    },
+  },
 };
 </script>

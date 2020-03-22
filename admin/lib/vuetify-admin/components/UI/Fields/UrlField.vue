@@ -7,6 +7,6 @@ import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "UrlField",
-  mixins: [Field]
+  mixins: [Field],
 };
 </script>

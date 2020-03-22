@@ -26,7 +26,7 @@ export default {
     resolve: null,
     reject: null,
     title: null,
-    message: null
+    message: null,
   }),
   methods: {
     open(title, message) {
@@ -45,7 +45,7 @@ export default {
     cancel() {
       this.resolve(false);
       this.dialog = false;
-    }
-  }
+    },
+  },
 };
 </script>

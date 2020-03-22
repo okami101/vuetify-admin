@@ -13,12 +13,12 @@ export default {
   name: "BulkActionButton",
   mixins: [Resource],
   props: {
-    value: Array
+    value: Array,
   },
   methods: {
     ...mapActions({
       deleteMany: "api/deleteMany",
-      refresh: "api/refresh"
+      refresh: "api/refresh",
     }),
     async onBlukDelete() {
       if (
@@ -28,25 +28,25 @@ export default {
               `resources.${this.resource}.name`,
               this.value.length
             ).toLowerCase(),
-            count: this.value.length
+            count: this.value.length,
           }),
           this.$t("va.confirm.delete_many_message", {
             resource: this.$tc(
               `resources.${this.resource}.name`,
               this.value.length
             ).toLowerCase(),
-            count: this.value.length
+            count: this.value.length,
           })
         )
       ) {
         await this.deleteMany({
           resource: this.resource,
-          params: { ids: this.value.map(({ id }) => id) }
+          params: { ids: this.value.map(({ id }) => id) },
         });
         this.$emit("input", []);
         this.refresh(this.resource);
       }
-    }
-  }
+    },
+  },
 };
 </script>

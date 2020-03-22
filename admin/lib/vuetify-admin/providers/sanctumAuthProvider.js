@@ -3,18 +3,18 @@ export default (axios, options = {}) => {
     routes: {
       login: "/login",
       logout: "/logout",
-      user: "/user"
+      user: "/user",
     },
     credentials: ({ username, password }) => {
       return {
         email: username,
-        password
+        password,
       };
     },
-    getName: u => u.name,
-    getEmail: u => u.email,
-    getPermissions: u => u.roles,
-    ...options
+    getName: (u) => u.name,
+    getEmail: (u) => u.email,
+    getPermissions: (u) => u.roles,
+    ...options,
   };
 
   let { routes, credentials, getName, getEmail, getPermissions } = options;
@@ -54,14 +54,14 @@ export default (axios, options = {}) => {
       }
       return Promise.resolve();
     },
-    getName: user => {
+    getName: (user) => {
       return getName(user);
     },
-    getEmail: user => {
+    getEmail: (user) => {
       return getEmail(user);
     },
-    getPermissions: user => {
+    getPermissions: (user) => {
       return getPermissions(user);
-    }
+    },
   };
 };

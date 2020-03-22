@@ -17,13 +17,13 @@ import Confirm from "./Confirm";
 export default {
   name: "AppMessages",
   components: {
-    Confirm
+    Confirm,
   },
   data() {
     return {
       snackbar: false,
       text: null,
-      color: null
+      color: null,
     };
   },
   created() {
@@ -41,18 +41,18 @@ export default {
       "error",
       "info",
       "warning",
-      "message"
+      "message",
     ].reduce(
       (o, action) => ({
         ...o,
-        [action]: text => {
+        [action]: (text) => {
           this.snackbar = true;
           this.text = text;
           this.color = action !== "message" ? action : null;
-        }
+        },
       }),
       {}
     );
-  }
+  },
 };
 </script>

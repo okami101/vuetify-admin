@@ -22,7 +22,7 @@
           :value="value[item.source]"
           hide-details
           :filled="false"
-          @input="val => update(item.source, val)"
+          @input="(val) => update(item.source, val)"
         >
         </component>
       </div>
@@ -38,16 +38,16 @@ export default {
   props: {
     value: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     filters: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
-      filter: {}
+      filter: {},
     };
   },
   methods: {
@@ -65,13 +65,13 @@ export default {
 
       this.filter = {
         ...this.value,
-        [source]: value
+        [source]: value,
       };
       this.debounceInput();
     },
-    debounceInput: debounce(function() {
+    debounceInput: debounce(function () {
       this.$emit("input", this.filter);
-    }, 200)
-  }
+    }, 200),
+  },
 };
 </script>

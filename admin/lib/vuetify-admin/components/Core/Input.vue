@@ -23,7 +23,7 @@ export default {
     hideDetails: Boolean,
     dense: Boolean,
     errorMessages: Array,
-    required: Boolean
+    required: Boolean,
   },
   computed: {
     rules() {
@@ -31,11 +31,12 @@ export default {
 
       if (this.required) {
         rules.push(
-          v => !!v || this.$t("va.forms.required_field", { field: this.label })
+          (v) =>
+            !!v || this.$t("va.forms.required_field", { field: this.label })
         );
       }
       return rules;
-    }
-  }
+    },
+  },
 };
 </script>

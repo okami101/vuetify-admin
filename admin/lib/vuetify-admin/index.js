@@ -19,7 +19,7 @@ export default class VuetifyAdmin {
     authProvider,
     dataProvider,
     resources,
-    resourcesPath
+    resourcesPath,
   }) {
     /**
      * Options properties
@@ -36,17 +36,17 @@ export default class VuetifyAdmin {
      * Format usable resources object
      */
     this.resources = resources
-      .map(r => {
+      .map((r) => {
         return typeof r === "string"
           ? {
-              name: r
+              name: r,
             }
           : r;
       })
-      .map(r => {
+      .map((r) => {
         return {
           ...r,
-          actions: ["list", "show", "create", "edit", "delete"].filter(a => {
+          actions: ["list", "show", "create", "edit", "delete"].filter((a) => {
             if ((r.only || []).length) {
               return r.only.includes(a);
             }
@@ -56,15 +56,15 @@ export default class VuetifyAdmin {
             }
 
             return true;
-          })
+          }),
         };
       });
 
     if (resourcesPath) {
-      this.resources.forEach(r => {
+      this.resources.forEach((r) => {
         r.actions
-          .filter(a => a !== "delete")
-          .forEach(a => {
+          .filter((a) => a !== "delete")
+          .forEach((a) => {
             let componentPath = `${capitalize(r.name)}/${capitalize(a)}`;
 
             Vue.component(componentPath.replace("/", ""), () =>
@@ -84,7 +84,7 @@ export default class VuetifyAdmin {
     /**
      * Load i18n locales
      */
-    Object.keys(this.locales.ui).forEach(locale => {
+    Object.keys(this.locales.ui).forEach((locale) => {
       i18n.mergeLocaleMessage(locale, { va: this.locales.ui[locale] });
     });
 
@@ -98,13 +98,13 @@ export default class VuetifyAdmin {
     /**
      * Add API resources modules dynamically
      */
-    this.resources.forEach(resource =>
+    this.resources.forEach((resource) =>
       store.registerModule(
         resource.name,
         resourceCrudModule({
           provider: this.dataProvider,
           resource,
-          i18n
+          i18n,
         })
       )
     );
@@ -113,12 +113,12 @@ export default class VuetifyAdmin {
      * Add resources routes dynamically
      */
     router.addRoutes(
-      this.resources.map(resource =>
+      this.resources.map((resource) =>
         resourceCrudRoutes({
           store,
           i18n,
           resource,
-          title: this.title
+          title: this.title,
         })
       )
     );
@@ -126,17 +126,17 @@ export default class VuetifyAdmin {
     /**
      * Permissions helper & directive
      */
-    this.can = permissions =>
+    this.can = (permissions) =>
       isEmpty(permissions) ||
       !isEmpty(
         (Array.isArray(permissions) ? permissions : [permissions]).filter(
-          p => -1 !== store.getters["auth/getPermissions"].indexOf(p)
+          (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
         )
       );
     /**
      * Each navigation trigger function
      */
-    const beforeEachNavigation = to => {
+    const beforeEachNavigation = (to) => {
       /**
        * Check and reload authenticated user with permissions
        * after each navigation
@@ -190,11 +190,11 @@ export default class VuetifyAdmin {
   }
 }
 
-VuetifyAdmin.install = Vue => {
+VuetifyAdmin.install = (Vue) => {
   Vue.use(PortalVue);
 
-  [core, ui].forEach(c => {
-    Object.keys(c).forEach(name => {
+  [core, ui].forEach((c) => {
+    Object.keys(c).forEach((name) => {
       Vue.component(`Va${name}`, c[name]);
     });
   });
@@ -214,6 +214,6 @@ VuetifyAdmin.install = Vue => {
         admin.init({ router, store, i18n });
       }
       this.$admin = admin;
-    }
+    },
   });
 };

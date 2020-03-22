@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    opened: false
+    opened: false,
   },
   mutations: {
     open(state) {
@@ -12,6 +12,6 @@ export default {
     },
     toggle(state) {
       state.opened = !state.opened;
-    }
-  }
+    },
+  },
 };

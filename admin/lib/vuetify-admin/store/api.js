@@ -2,10 +2,10 @@ import * as methods from "vuetify-admin/utils/dataActions";
 
 let storeActions = {};
 
-Object.values(methods).forEach(action => {
+Object.values(methods).forEach((action) => {
   storeActions[action] = ({ dispatch }, { resource, params }) => {
     return dispatch(`${resource}/${action}`, params, {
-      root: true
+      root: true,
     });
   };
 });
@@ -13,12 +13,12 @@ Object.values(methods).forEach(action => {
 export default {
   namespaced: true,
   state: {
-    loading: false
+    loading: false,
   },
   mutations: {
     setLoading(state, loading) {
       state.loading = loading;
-    }
+    },
   },
   actions: {
     ...storeActions,
@@ -27,9 +27,9 @@ export default {
         `${resource}/refresh`,
         {},
         {
-          root: true
+          root: true,
         }
       );
-    }
-  }
+    },
+  },
 };

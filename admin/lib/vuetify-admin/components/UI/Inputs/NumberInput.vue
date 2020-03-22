@@ -20,12 +20,12 @@ export default {
     icon: String,
     filled: {
       type: Boolean,
-      default: true
+      default: true,
     },
     step: {
       type: Number,
-      default: 1
-    }
-  }
+      default: 1,
+    },
+  },
 };
 </script>

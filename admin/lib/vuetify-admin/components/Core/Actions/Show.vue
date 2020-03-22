@@ -27,6 +27,6 @@ import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "Show",
-  mixins: [Item]
+  mixins: [Item],
 };
 </script>

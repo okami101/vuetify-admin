@@ -27,9 +27,9 @@ export default {
     icon: Boolean,
     color: {
       type: String,
-      default: "primary"
+      default: "primary",
     },
-    saving: Boolean
-  }
+    saving: Boolean,
+  },
 };
 </script>

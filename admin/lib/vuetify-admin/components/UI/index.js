@@ -83,5 +83,5 @@ export {
   SelectInput,
   RadioGroupInput,
   AutocompleteInput,
-  FileInput
+  FileInput,
 };

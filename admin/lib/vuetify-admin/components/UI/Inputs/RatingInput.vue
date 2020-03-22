@@ -19,12 +19,12 @@ export default {
   props: {
     color: {
       type: String,
-      default: "yellow darken-2"
+      default: "yellow darken-2",
     },
     backgroundColor: {
       type: String,
-      default: "yellow"
-    }
-  }
+      default: "yellow",
+    },
+  },
 };
 </script>

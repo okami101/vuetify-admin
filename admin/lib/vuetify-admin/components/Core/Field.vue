@@ -28,14 +28,14 @@ export default {
         return this.source
           ? this.$t(`resources.${this.resource}.fields.${this.source}`)
           : "";
-      }
+      },
     },
     type: {
       type: String,
-      default: "text"
+      default: "text",
     },
-    options: Object
-  }
+    options: Object,
+  },
 };
 </script>
 

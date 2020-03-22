@@ -17,14 +17,14 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     changeState(value) {
       this.change(value);
       this.update(value);
-    }
-  }
+    },
+  },
 };
 </script>

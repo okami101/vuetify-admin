@@ -25,7 +25,7 @@
             </v-list-item-content>
           </template>
           <v-list-item
-            v-for="(child, i) in item.children.filter(c =>
+            v-for="(child, i) in item.children.filter((c) =>
               $admin.can(c.permissions)
             )"
             :key="i"
@@ -67,7 +67,7 @@ export default {
   name: "AppSidebar",
   props: {
     menu: Array,
-    mini: Boolean
-  }
+    mini: Boolean,
+  },
 };
 </script>

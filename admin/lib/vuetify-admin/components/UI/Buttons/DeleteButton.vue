@@ -31,13 +31,13 @@ export default {
     redirect: Boolean,
     color: {
       type: String,
-      default: "red"
-    }
+      default: "red",
+    },
   },
   methods: {
     ...mapActions({
       delete: "api/delete",
-      refresh: "api/refresh"
+      refresh: "api/refresh",
     }),
     async onDelete() {
       if (!this.item) {
@@ -55,20 +55,20 @@ export default {
               `resources.${this.resource}.name`,
               1
             ).toLowerCase(),
-            id: this.item.id
+            id: this.item.id,
           }),
           this.$t("va.confirm.delete_message", {
             resource: this.$tc(
               `resources.${this.resource}.name`,
               1
             ).toLowerCase(),
-            id: this.item.id
+            id: this.item.id,
           })
         )
       ) {
         await this.delete({
           resource: this.resource,
-          params: { id: this.item.id }
+          params: { id: this.item.id },
         });
 
         if (this.redirect) {
@@ -78,7 +78,7 @@ export default {
 
         this.refresh(this.resource);
       }
-    }
-  }
+    },
+  },
 };
 </script>

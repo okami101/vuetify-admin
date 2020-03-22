@@ -5,41 +5,41 @@ import get from "lodash/get";
 export default {
   inject: {
     formEdit: { default: true },
-    formName: { default: undefined }
+    formName: { default: undefined },
   },
   mixins: [Field],
   props: {
     src: {
       type: String,
-      default: "url"
+      default: "url",
     },
     title: {
       type: String,
-      default: "name"
+      default: "name",
     },
     fileName: {
       type: String,
-      default: "file_name"
+      default: "file_name",
     },
     target: {
       type: String,
-      default: "_blank"
+      default: "_blank",
     },
     link: {
       type: Boolean,
-      default: true
+      default: true,
     },
     clearable: Boolean,
     model: {
       type: String,
       default() {
         return `${this.source}_delete`;
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      deleted: []
+      deleted: [],
     };
   },
   computed: {
@@ -58,8 +58,8 @@ export default {
       }
 
       let value = this.isMultiple ? this.value : [this.value];
-      return value.filter(f => -1 === this.deleted.indexOf(f.id));
-    }
+      return value.filter((f) => -1 === this.deleted.indexOf(f.id));
+    },
   },
   methods: {
     getFileProp(file, prop) {
@@ -72,9 +72,9 @@ export default {
         EventBus.$emit("update-model", {
           name: this.formName,
           source: this.model || this.source,
-          value: this.isMultiple ? this.deleted : this.deleted[0]
+          value: this.isMultiple ? this.deleted : this.deleted[0],
         });
       }
-    }
-  }
+    },
+  },
 };

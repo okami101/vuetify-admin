@@ -22,7 +22,7 @@ import Files from "vuetify-admin/mixins/files";
 
 export default {
   name: "FileField",
-  mixins: [Files]
+  mixins: [Files],
 };
 </script>
 

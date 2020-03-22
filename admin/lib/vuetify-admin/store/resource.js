@@ -9,14 +9,14 @@ let {
   UPDATE,
   UPDATE_MANY,
   DELETE,
-  DELETE_MANY
+  DELETE_MANY,
 } = methods;
 
 export default ({ provider, resource, i18n, app }) => {
   let { name } = resource;
 
   Object.values(methods).forEach(
-    action =>
+    (action) =>
       (storeActions[action] = async ({ state, commit, dispatch }, params) => {
         try {
           /**
@@ -24,17 +24,17 @@ export default ({ provider, resource, i18n, app }) => {
            */
           if ([GET_LIST, GET_ONE].includes(action)) {
             commit("api/setLoading", true, {
-              root: true
+              root: true,
             });
           }
 
           let response = await provider[action](name, {
             locale: state.locale,
-            ...params
+            ...params,
           });
 
           commit("api/setLoading", false, {
-            root: true
+            root: true,
           });
 
           /**
@@ -44,13 +44,13 @@ export default ({ provider, resource, i18n, app }) => {
           return Promise.resolve(response);
         } catch (e) {
           commit("api/setLoading", false, {
-            root: true
+            root: true,
           });
           if (e.response) {
             dispatch("showError", e.response.data.message);
           }
           dispatch("auth/checkError", e, {
-            root: true
+            root: true,
           });
           return Promise.reject(e);
         }
@@ -61,7 +61,7 @@ export default ({ provider, resource, i18n, app }) => {
     namespaced: true,
     state: {
       item: null,
-      locale: null
+      locale: null,
     },
     mutations: {
       setItem(state, item) {
@@ -72,7 +72,7 @@ export default ({ provider, resource, i18n, app }) => {
       },
       setLocale(state, code) {
         state.locale = code;
-      }
+      },
     },
     actions: {
       ...storeActions,
@@ -82,7 +82,7 @@ export default ({ provider, resource, i18n, app }) => {
            * Refresh current resource and update item state
            */
           let { data } = await dispatch(GET_ONE, {
-            id: state.item.id
+            id: state.item.id,
           });
 
           commit("setItem", data);
@@ -100,32 +100,32 @@ export default ({ provider, resource, i18n, app }) => {
         let messages = {
           [CREATE]: () =>
             i18n.t("va.messages.created", {
-              resource: i18n.tc(`resources.${name}.name`, 1)
+              resource: i18n.tc(`resources.${name}.name`, 1),
             }),
           [UPDATE]: () =>
             i18n.t("va.messages.updated", {
               resource: i18n.tc(`resources.${name}.name`, 1),
-              id: params.id
+              id: params.id,
             }),
           [UPDATE_MANY]: () =>
             i18n.t("va.messages.updated_many", {
               resource: i18n
                 .tc(`resources.${name}.name`, params.ids.length)
                 .toLowerCase(),
-              count: params.ids.length
+              count: params.ids.length,
             }),
           [DELETE]: () =>
             i18n.t("va.messages.deleted", {
               resource: i18n.tc(`resources.${name}.name`, 1),
-              id: params.id
+              id: params.id,
             }),
           [DELETE_MANY]: () =>
             i18n.t("va.messages.deleted_many", {
               resource: i18n
                 .tc(`resources.${name}.name`, params.ids.length)
                 .toLowerCase(),
-              count: params.ids.length
-            })
+              count: params.ids.length,
+            }),
         };
 
         if (messages[action]) {
@@ -134,7 +134,7 @@ export default ({ provider, resource, i18n, app }) => {
       },
       showError({}, message) {
         this._vm.$snackbar.error(message);
-      }
-    }
+      },
+    },
   };
 };

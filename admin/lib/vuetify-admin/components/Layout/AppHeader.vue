@@ -8,7 +8,7 @@
     dense
   >
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />
-    <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+    <v-toolbar-title style="width: 300px;" class="ml-0 pl-4">
       <span class="hidden-sm-and-down">{{ $route.meta.title }}</span>
     </v-toolbar-title>
     <v-spacer />
@@ -39,7 +39,7 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item
-              v-for="(item, index) in menu.filter(i =>
+              v-for="(item, index) in menu.filter((i) =>
                 $admin.can(i.permissions)
               )"
               :key="index"
@@ -76,19 +76,19 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "AppHeader",
   props: {
-    menu: Array
+    menu: Array,
   },
   computed: {
     ...mapState({
-      loading: state => state.api.loading
+      loading: (state) => state.api.loading,
     }),
-    ...mapGetters({ name: "auth/getName", email: "auth/getEmail" })
+    ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
   },
   methods: {
     ...mapActions({
       refresh: "api/refresh",
-      logout: "auth/logout"
-    })
-  }
+      logout: "auth/logout",
+    }),
+  },
 };
 </script>

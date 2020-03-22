@@ -29,33 +29,33 @@ export default {
     value: Array,
     action: {
       type: Object,
-      required: true
+      required: true,
     },
     icon: String,
     label: {
       type: String,
-      required: true
+      required: true,
     },
     showLabel: Boolean,
     color: {
       type: String,
-      default: "primary"
+      default: "primary",
     },
-    text: Boolean
+    text: Boolean,
   },
   methods: {
     ...mapActions({
       updateMany: "api/updateMany",
-      refresh: "api/refresh"
+      refresh: "api/refresh",
     }),
     async onBlukUpdate() {
       await this.updateMany({
         resource: this.resource,
-        params: { ids: this.value.map(({ id }) => id), data: this.action }
+        params: { ids: this.value.map(({ id }) => id), data: this.action },
       });
       this.$emit("input", []);
       this.refresh(this.resource);
-    }
-  }
+    },
+  },
 };
 </script>

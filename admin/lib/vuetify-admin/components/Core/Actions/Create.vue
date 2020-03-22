@@ -20,6 +20,6 @@ import Resource from "vuetify-admin/mixins/resource";
 
 export default {
   name: "Create",
-  mixins: [Resource]
+  mixins: [Resource],
 };
 </script>

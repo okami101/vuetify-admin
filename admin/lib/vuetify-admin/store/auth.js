@@ -5,7 +5,7 @@ import {
   CHECK_ERROR,
   GET_NAME,
   GET_EMAIL,
-  GET_PERMISSIONS
+  GET_PERMISSIONS,
 } from "vuetify-admin/utils/authActions";
 
 export default (provider, router) => {
@@ -16,7 +16,7 @@ export default (provider, router) => {
       setUser(state, user) {
         state.user = user;
         state.loaded = true;
-      }
+      },
     },
     getters: {
       [GET_NAME](state) {
@@ -34,7 +34,7 @@ export default (provider, router) => {
           return provider.getPermissions(state.user);
         }
         return [];
-      }
+      },
     },
     actions: {
       /**
@@ -90,7 +90,7 @@ export default (provider, router) => {
         } catch (e) {
           dispatch("logout");
         }
-      }
-    }
+      },
+    },
   };
 };

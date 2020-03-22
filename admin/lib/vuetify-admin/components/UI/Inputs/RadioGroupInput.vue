@@ -26,12 +26,12 @@ export default {
   props: {
     column: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    row: Boolean
+    row: Boolean,
   },
   async created() {
     this.items = await this.fetchChoices();
-  }
+  },
 };
 </script>

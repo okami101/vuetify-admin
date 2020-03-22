@@ -25,11 +25,11 @@
 export default {
   name: "TabbedShow",
   props: {
-    tabs: Array
+    tabs: Array,
   },
   data() {
     return {
-      currentTab: this.$route.hash.substring(1)
+      currentTab: this.$route.hash.substring(1),
     };
   },
   watch: {
@@ -41,7 +41,7 @@ export default {
           this.$router.replace({ hash: `#${val}` });
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>

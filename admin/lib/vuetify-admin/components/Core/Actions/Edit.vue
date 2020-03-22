@@ -27,6 +27,6 @@ import Item from "vuetify-admin/mixins/item";
 
 export default {
   name: "Edit",
-  mixins: [Item]
+  mixins: [Item],
 };
 </script>

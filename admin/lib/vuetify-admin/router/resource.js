@@ -10,7 +10,7 @@ export default ({ store, i18n, resource, title }) => {
         ? titles[action](item)
         : i18n.t(`va.pages.${action}`, {
             resource: i18n.tc(`resources.${name}.name`, 1).toLowerCase(),
-            id: to.params.id
+            id: to.params.id,
           });
     } else {
       /**
@@ -21,7 +21,7 @@ export default ({ store, i18n, resource, title }) => {
         i18n.t(`va.pages.${action}`, {
           resource: i18n
             .tc(`resources.${name}.name`, action === "list" ? 10 : 1)
-            .toLowerCase()
+            .toLowerCase(),
         });
     }
 
@@ -48,8 +48,8 @@ export default ({ store, i18n, resource, title }) => {
           return c(`${name}-${action}`, {
             props: {
               id: this.id,
-              item: store.state[name].item
-            }
+              item: store.state[name].item,
+            },
           });
         },
         async beforeRouteEnter(to, from, next) {
@@ -63,7 +63,7 @@ export default ({ store, i18n, resource, title }) => {
              * Route model binding
              */
             let { data } = await store.dispatch(`${name}/getOne`, {
-              id
+              id,
             });
 
             /**
@@ -83,13 +83,13 @@ export default ({ store, i18n, resource, title }) => {
         beforeRouteLeave(to, from, next) {
           store.commit(`${name}/removeItem`);
           next();
-        }
+        },
       },
       meta: {
         resource: name,
         translatable,
-        actions
-      }
+        actions,
+      },
     };
   };
 
@@ -101,18 +101,18 @@ export default ({ store, i18n, resource, title }) => {
     component: {
       render(c) {
         return c("router-view");
-      }
+      },
     },
     meta: {
-      title: i18n.tc(`resources.${name}.name`, 10)
+      title: i18n.tc(`resources.${name}.name`, 10),
     },
     children: [
       { action: "list", path: "/" },
       { action: "create", path: "create" },
       { action: "show", path: ":id" },
-      { action: "edit", path: ":id/edit" }
+      { action: "edit", path: ":id/edit" },
     ]
       .filter(({ action }) => actions.includes(action))
-      .map(({ action, path }) => buildRoute(action, path))
+      .map(({ action, path }) => buildRoute(action, path)),
   };
 };

@@ -27,23 +27,23 @@ export default {
       type: Boolean,
       default() {
         return !this.multiple;
-      }
+      },
     },
     chips: {
       type: Boolean,
       default() {
         return this.multiple;
-      }
+      },
     },
     smallChips: {
       type: Boolean,
       default() {
         return this.multiple && this.filterable;
-      }
-    }
+      },
+    },
   },
   async created() {
     this.items = await this.fetchChoices();
-  }
+  },
 };
 </script>

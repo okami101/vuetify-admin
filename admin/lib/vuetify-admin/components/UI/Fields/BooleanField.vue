@@ -17,20 +17,20 @@ export default {
   props: {
     labelTrue: {
       type: String,
-      default: "va.confirm.yes"
+      default: "va.confirm.yes",
     },
     labelFalse: {
       type: String,
-      default: "va.confirm.no"
+      default: "va.confirm.no",
     },
     iconTrue: {
       type: String,
-      default: "mdi-check"
+      default: "mdi-check",
     },
     iconFalse: {
       type: String,
-      default: "mdi-close"
-    }
-  }
+      default: "mdi-close",
+    },
+  },
 };
 </script>

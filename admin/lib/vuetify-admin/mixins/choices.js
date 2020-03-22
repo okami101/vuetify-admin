@@ -2,11 +2,11 @@ export default {
   props: {
     optionText: {
       type: [String, Array, Function],
-      default: "name"
+      default: "name",
     },
     optionValue: {
       type: [String, Array, Function],
-      default: "id"
+      default: "id",
     },
     enum: Boolean,
     choices: {
@@ -18,13 +18,13 @@ export default {
 
         let enums = this.$t(`resources.${this.resource}.enums.${this.source}`);
 
-        return Object.keys(enums).map(key => {
+        return Object.keys(enums).map((key) => {
           return {
             id: key,
-            name: enums[key]
+            name: enums[key],
           };
         });
-      }
-    }
-  }
+      },
+    },
+  },
 };

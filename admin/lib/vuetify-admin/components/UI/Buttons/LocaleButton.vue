@@ -31,8 +31,8 @@ export default {
     icon: Boolean,
     color: {
       type: String,
-      default: "primary"
-    }
+      default: "primary",
+    },
   },
   created() {
     /**
@@ -43,7 +43,7 @@ export default {
   methods: {
     changeLocale(code) {
       this.$store.dispatch(`${this.resource}/changeLocale`, code);
-    }
-  }
+    },
+  },
 };
 </script>

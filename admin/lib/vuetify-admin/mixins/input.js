@@ -8,7 +8,7 @@ export default {
   inject: {
     formName: { default: undefined },
     formEdit: { default: undefined },
-    formItem: { default: undefined }
+    formItem: { default: undefined },
   },
   props: {
     parentSource: String,
@@ -24,7 +24,7 @@ export default {
           return this.$t(`${base}.${this.parentSource}.${this.source}`);
         }
         return this.$t(`${base}.${this.source}`);
-      }
+      },
     },
     hint: String,
     icon: String,
@@ -37,13 +37,13 @@ export default {
     filterable: Boolean,
     editable: Boolean,
     value: {
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       input: null,
-      errorMessages: []
+      errorMessages: [],
     };
   },
   mounted() {
@@ -61,7 +61,7 @@ export default {
       handler(val) {
         this.input = val;
       },
-      immediate: true
+      immediate: true,
     },
     formItem: {
       handler(val) {
@@ -72,13 +72,13 @@ export default {
           this.updateForm(get(val, this.uniqueFormId));
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   computed: {
     uniqueFormId() {
       return [this.parentSource, this.index, this.model || this.source]
-        .filter(s => s !== undefined)
+        .filter((s) => s !== undefined)
         .join(".");
     },
     commonProps() {
@@ -91,7 +91,7 @@ export default {
         hideDetails: this.hideDetails,
         dense: this.dense,
         placeholder: this.placeholder,
-        clearable: this.clearable
+        clearable: this.clearable,
       };
     },
     rules() {
@@ -99,15 +99,16 @@ export default {
 
       if (this.required) {
         rules.push(
-          v => !!v || this.$t("va.forms.required_field", { field: this.label })
+          (v) =>
+            !!v || this.$t("va.forms.required_field", { field: this.label })
         );
       }
       return rules;
-    }
+    },
   },
   methods: {
     ...mapActions({
-      updateItem: "api/update"
+      updateItem: "api/update",
     }),
     /**
      * Interaction event
@@ -124,9 +125,9 @@ export default {
           params: {
             id: this.item.id,
             data: {
-              [this.uniqueFormId]: value
-            }
-          }
+              [this.uniqueFormId]: value,
+            },
+          },
         });
       }
     },
@@ -148,11 +149,11 @@ export default {
       EventBus.$emit("update-model", {
         name: this.formName,
         source: this.uniqueFormId,
-        value
+        value,
       });
 
       this.input = value;
       this.$emit("input", value);
-    }
-  }
+    },
+  },
 };

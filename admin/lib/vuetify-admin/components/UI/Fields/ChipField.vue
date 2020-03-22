@@ -13,12 +13,12 @@ export default {
   props: {
     color: [String, Function],
     small: Boolean,
-    to: [String, Object]
+    to: [String, Object],
   },
   methods: {
     getColor(value) {
       return typeof this.color === "function" ? this.color(value) : this.color;
-    }
-  }
+    },
+  },
 };
 </script>

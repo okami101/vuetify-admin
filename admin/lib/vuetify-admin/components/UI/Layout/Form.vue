@@ -16,32 +16,32 @@ export default {
     return {
       formName: this.name,
       formEdit: !!this.id,
-      formItem: this.item
+      formItem: this.item,
     };
   },
   props: {
     id: [String, Number],
     item: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     source: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     name: {
       type: String,
-      default: "VaForm"
+      default: "VaForm",
     },
     saving: Boolean,
     redirect: {
       type: String,
-      default: "list"
-    }
+      default: "list",
+    },
   },
   data() {
     return {
-      model: {}
+      model: {},
     };
   },
   created() {
@@ -66,10 +66,10 @@ export default {
         let { data } = this.id
           ? await this.$store.dispatch(`${this.resource}/update`, {
               id: this.id,
-              data: this.model
+              data: this.model,
             })
           : await this.$store.dispatch(`${this.resource}/create`, {
-              data: this.model
+              data: this.model,
             });
 
         this.$emit("update:saving", false);
@@ -91,11 +91,11 @@ export default {
         if (e.response) {
           EventBus.$emit("form-errors", {
             name: this.name,
-            errors: e.response.data.errors
+            errors: e.response.data.errors,
           });
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>

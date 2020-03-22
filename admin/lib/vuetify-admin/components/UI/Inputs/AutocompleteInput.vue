@@ -34,7 +34,7 @@ export default {
   mixins: [Input, Reference],
   components: {
     VAutocomplete,
-    VCombobox
+    VCombobox,
   },
   props: {
     multiple: Boolean,
@@ -42,29 +42,29 @@ export default {
       type: Boolean,
       default() {
         return !this.multiple;
-      }
+      },
     },
     chips: {
       type: Boolean,
       default() {
         return this.multiple;
-      }
+      },
     },
     smallChips: {
       type: Boolean,
       default() {
         return this.multiple && this.filterable;
-      }
+      },
     },
     minChars: {
       type: Number,
-      default: 3
+      default: 3,
     },
-    taggable: Boolean
+    taggable: Boolean,
   },
   data() {
     return {
-      search: null
+      search: null,
     };
   },
   created() {
@@ -79,7 +79,7 @@ export default {
 
       let value = this.formItem[this.source];
       let input = this.multiple
-        ? value.map(v => v[this.optionValue])
+        ? value.map((v) => v[this.optionValue])
         : value[this.optionValue];
 
       this.update(input);
@@ -90,7 +90,7 @@ export default {
           this.multiple ? value : [value]
         );
       }
-    }
+    },
   },
   watch: {
     async search(val, old) {
@@ -100,9 +100,9 @@ export default {
 
       this.items = [
         ...(this.items || []),
-        ...((await this.fetchChoices(val)) || [])
+        ...((await this.fetchChoices(val)) || []),
       ];
-    }
-  }
+    },
+  },
 };
 </script>

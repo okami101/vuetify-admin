@@ -31,19 +31,19 @@ export default {
   props: {
     filled: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    format: String
+    format: String,
   },
   data() {
     return {
-      menu: false
+      menu: false,
     };
   },
   computed: {
     dateFormatted() {
       return this.input ? this.$d(new Date(this.input), this.format) : "";
-    }
+    },
   },
   watch: {
     input: {
@@ -52,14 +52,14 @@ export default {
           this.input = val.substring(0, 10);
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     updateDate(val) {
       this.menu = false;
       this.update(val);
-    }
-  }
+    },
+  },
 };
 </script>

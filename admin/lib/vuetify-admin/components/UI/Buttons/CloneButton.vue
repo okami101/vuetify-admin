@@ -8,7 +8,7 @@
         exact
         :to="{
           name: `${resource}_create`,
-          query: { source: item.id }
+          query: { source: item.id },
         }"
         @click.stop="$emit('clone', item)"
         :color="color"
@@ -34,8 +34,8 @@ export default {
     icon: Boolean,
     color: {
       type: String,
-      default: "success"
-    }
-  }
+      default: "success",
+    },
+  },
 };
 </script>

@@ -31,8 +31,8 @@ export default {
     type: String,
     filled: {
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
 };
 </script>

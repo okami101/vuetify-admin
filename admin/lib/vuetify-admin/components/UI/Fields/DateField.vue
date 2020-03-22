@@ -9,14 +9,14 @@ export default {
   name: "DateField",
   mixins: [Field],
   props: {
-    format: String
+    format: String,
   },
   methods: {
     dateFormatted(val) {
       if (val) {
         return this.$d(new Date(val), this.format);
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -6,44 +6,44 @@ export default {
   props: {
     filter: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     reference: String,
     fields: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     sortBy: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     sortDesc: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     include: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     itemsPerPage: {
       type: Number,
-      default: 15
+      default: 15,
     },
     searchQuery: {
       type: String,
-      default: "q"
-    }
+      default: "q",
+    },
   },
   data() {
     return {
       loading: false,
-      items: null
+      items: null,
     };
   },
   methods: {
     ...mapActions({
       getList: "api/getList",
-      getMany: "api/getMany"
+      getMany: "api/getMany",
     }),
     async fetchChoices(search = null) {
       if (!this.reference || this.loading) {
@@ -61,21 +61,21 @@ export default {
           fields: {
             [this.reference]: this.fields.length
               ? this.fields
-              : [this.optionText]
+              : [this.optionText],
           },
           include: this.include,
           pagination: {
             page: 1,
-            perPage: this.itemsPerPage
+            perPage: this.itemsPerPage,
           },
           sort: this.sortBy.map((by, index) => {
             return { by, desc: this.sortDesc[index] };
           }),
           filter: {
             ...this.filter,
-            [this.searchQuery]: search || ""
-          }
-        }
+            [this.searchQuery]: search || "",
+          },
+        },
       });
 
       this.loading = false;
@@ -96,15 +96,15 @@ export default {
         resource: this.reference,
         params: {
           fields: {
-            [this.reference]: this.fields
+            [this.reference]: this.fields,
           },
           include: this.include,
-          ids
-        }
+          ids,
+        },
       });
 
       this.loading = false;
       return data;
-    }
-  }
+    },
+  },
 };

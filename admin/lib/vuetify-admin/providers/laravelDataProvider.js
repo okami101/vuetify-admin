@@ -6,7 +6,7 @@ import {
   UPDATE,
   UPDATE_MANY,
   DELETE,
-  DELETE_MANY
+  DELETE_MANY,
 } from "vuetify-admin/utils/dataActions";
 import objectToFormData from "vuetify-admin/utils/objectToFormData";
 
@@ -26,7 +26,7 @@ export default (axios, base = "/api") => {
         const { fields, include, pagination, sort, filter } = params;
 
         if (fields) {
-          Object.keys(fields).forEach(r => {
+          Object.keys(fields).forEach((r) => {
             if ((fields[r] || []).length) {
               searchParams.append(
                 `fields[${r}]`,
@@ -58,7 +58,7 @@ export default (axios, base = "/api") => {
         }
         if (sort) {
           let param = sort
-            .map(item => {
+            .map((item) => {
               let { by, desc } = item;
 
               if (desc) {
@@ -72,7 +72,7 @@ export default (axios, base = "/api") => {
         }
 
         if (filter) {
-          Object.keys(filter).forEach(key => {
+          Object.keys(filter).forEach((key) => {
             if (filter[key] !== "") {
               searchParams.append(`filter[${key}]`, filter[key]);
             }
@@ -89,7 +89,7 @@ export default (axios, base = "/api") => {
           url: resourceUrl,
           query: searchParams.toString(),
           method: "post",
-          data: objectToFormData(params.data)
+          data: objectToFormData(params.data),
         };
 
       case UPDATE:
@@ -100,13 +100,13 @@ export default (axios, base = "/api") => {
           url: itemUrl,
           query: searchParams.toString(),
           method: "post",
-          data: form
+          data: form,
         };
 
       case DELETE:
         return {
           url: itemUrl,
-          method: "delete"
+          method: "delete",
         };
 
       default:
@@ -134,7 +134,7 @@ export default (axios, base = "/api") => {
 
           return Promise.resolve({
             data,
-            total: meta ? meta.total : data.length
+            total: meta ? meta.total : data.length,
           });
         case DELETE:
           return Promise.resolve({ data: { id: null } });
@@ -157,14 +157,14 @@ export default (axios, base = "/api") => {
     [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),
     [UPDATE_MANY]: (resource, params) =>
       Promise.all(
-        params.ids.map(id =>
+        params.ids.map((id) =>
           fetchApi(UPDATE, resource, { id, data: params.data })
         )
       ).then(() => Promise.resolve({ data: { id: null } })),
     [DELETE]: (resource, params) => fetchApi(DELETE, resource, params),
     [DELETE_MANY]: (resource, params) =>
       Promise.all(
-        params.ids.map(id => fetchApi(DELETE, resource, { id }))
-      ).then(() => Promise.resolve({ data: { id: null } }))
+        params.ids.map((id) => fetchApi(DELETE, resource, { id }))
+      ).then(() => Promise.resolve({ data: { id: null } })),
   };
 };

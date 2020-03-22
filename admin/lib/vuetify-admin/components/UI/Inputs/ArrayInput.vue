@@ -45,14 +45,14 @@ import draggable from "vuedraggable";
 export default {
   name: "ArrayInput",
   components: {
-    draggable
+    draggable,
   },
   mixins: [Input],
   props: {
     trackedBy: {
       type: String,
-      default: "id"
-    }
+      default: "id",
+    },
   },
   methods: {
     add() {
@@ -62,8 +62,8 @@ export default {
     remove(index) {
       this.input.splice(index, 1);
       this.update(this.input);
-    }
-  }
+    },
+  },
 };
 </script>
 

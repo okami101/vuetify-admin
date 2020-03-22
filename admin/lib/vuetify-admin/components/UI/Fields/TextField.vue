@@ -7,6 +7,6 @@ import Field from "vuetify-admin/mixins/field";
 
 export default {
   name: "TextField",
-  mixins: [Field]
+  mixins: [Field],
 };
 </script>

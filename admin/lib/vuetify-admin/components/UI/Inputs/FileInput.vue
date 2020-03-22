@@ -26,16 +26,16 @@ export default {
       type: Boolean,
       default() {
         return this.multiple;
-      }
+      },
     },
     smallChips: Boolean,
     model: {
       type: String,
       default() {
         return `${this.source}_file`;
-      }
+      },
     },
-    accept: String
-  }
+    accept: String,
+  },
 };
 </script>

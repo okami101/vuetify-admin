@@ -53,8 +53,8 @@ export default {
   props: {
     contain: Boolean,
     height: String,
-    lg: [String, Number]
-  }
+    lg: [String, Number],
+  },
 };
 </script>
 
