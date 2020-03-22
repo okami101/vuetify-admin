@@ -21,14 +21,14 @@ return [
 
     'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => ['/localhost:\d/'],
+    'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => false,
+    'exposed_headers' => [],
 
-    'max_age' => false,
+    'max_age' => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials' => false,
 
 ];

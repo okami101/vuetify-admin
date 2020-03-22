@@ -19,14 +19,10 @@ COPY docker/php/php.ini /usr/local/etc/php/php.ini
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /usr/src/api
+WORKDIR /srv/api
 
 # prevent the reinstallation of vendors at every changes in the source code
 COPY composer.json composer.lock ./
-
-RUN set -eux; \
-	composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress --no-suggest; \
-	composer clear-cache
 
 # copy only specifically what we need
 COPY app app/
@@ -36,6 +32,15 @@ COPY database database/
 COPY public public/
 COPY resources resources/
 COPY routes routes/
+COPY artisan ./
+
+ARG COMPOSER_HOME
+COPY ${COMPOSER_HOME} $HOME/.composer
+
+RUN composer install --no-dev
+RUN php artisan key:generate
+RUN php artisan storage:link
+RUN php artisan migrate
 
 VOLUME /srv/api/storage
 

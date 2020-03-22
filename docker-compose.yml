@@ -5,10 +5,14 @@ services:
   php:
     build:
       context: ./
+      args:
+        - ${COMPOSER_HOME}
     volumes:
-      - ./:/usr/src/api
+      - ./:/srv/api
     expose:
       - "9000"
+    depends_on:
+      - mysql
 
   ### NGINX Server #########################################
   nginx:
@@ -17,7 +21,7 @@ services:
       args:
         - APP_ENV=${APP_ENV}
     volumes:
-      - ./:/usr/src/api
+      - ./:/srv/api
       - ${DATA_PATH}/nginx:/var/log/nginx
     ports:
       - "${NGINX_HTTP_PORT}:80"
@@ -64,4 +68,4 @@ services:
     build:
       context: ./admin
     volumes:
-      - ./admin:/usr/src/admin
+      - ./admin:/srv/api/admin

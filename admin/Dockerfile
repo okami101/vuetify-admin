@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-WORKDIR /usr/src/admin
+WORKDIR /srv/api/admin
 
 # Prevent the reinstallation of node modules at every changes in the source code
 COPY package.json yarn.lock ./
