@@ -44,7 +44,9 @@ COPY artisan ./
 
 RUN composer install --no-dev
 
-# copy some aliases
+VOLUME /srv/api/storage
+
+# copy init script
 COPY docker/php/start.sh /usr/local/bin/start
 RUN chmod +x /usr/local/bin/start
 

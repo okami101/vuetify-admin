@@ -1,0 +1,14 @@
+**/*.log
+**/*.md
+**/.idea/
+**/.vscode/
+**/.dockerignore
+**/.DS_Store
+**/.git/
+**/.gitattributes
+**/.gitignore
+**/.gitmodules
+**/Dockerfile
+**/Thumbs.db
+.env*
+node_modules/
