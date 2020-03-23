@@ -44,4 +44,10 @@ COPY artisan ./
 
 RUN composer install --no-dev
 
+# copy some aliases
+COPY docker/php/start.sh /usr/local/bin/start
+RUN chmod +x /usr/local/bin/start
+
 CMD ["php-fpm"]
+
+EXPOSE 9000

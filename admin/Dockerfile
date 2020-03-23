@@ -10,3 +10,5 @@ RUN yarn
 COPY . ./
 
 CMD yarn serve
+
+EXPOSE 8080
