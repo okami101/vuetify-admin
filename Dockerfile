@@ -44,11 +44,11 @@ COPY artisan ./
 
 RUN composer install --no-dev
 
-VOLUME /srv/api/storage
-
 # copy init script
-COPY docker/php/start.sh /usr/local/bin/start
-RUN chmod +x /usr/local/bin/start
+COPY docker/php/init.sh /usr/local/bin/init
+RUN chmod +x /usr/local/bin/init
+COPY docker/php/seed.sh /usr/local/bin/seed
+RUN chmod +x /usr/local/bin/seed
 
 CMD ["php-fpm"]
 
