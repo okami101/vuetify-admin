@@ -5,8 +5,8 @@
   "address": "Address",
   "backlinks": "Backlinks",
   "locales": {
-    "en": "English",
-    "fr": "French"
+    "english": "English",
+    "french": "French"
   },
   "routes": {
     "login": "Login",

@@ -20,7 +20,10 @@ const admin = ({ i18n, axios }) => {
     title: "Bookstore Admin",
     locales: {
       ui: { en, fr },
-      translations: { en: i18n.t("locales.en"), fr: i18n.t("locales.fr") },
+      translations: {
+        en: i18n.t("locales.english"),
+        fr: i18n.t("locales.french"),
+      },
     },
     authProvider: sanctumAuthProvider(axios, {
       routes: {
