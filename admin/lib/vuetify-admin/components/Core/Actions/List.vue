@@ -378,7 +378,7 @@ export default {
         /**
          * Dot notation support
          */
-        var lastIndex = s.lastIndexOf(".");
+        let lastIndex = s.lastIndexOf(".");
 
         if (lastIndex === -1) {
           /**

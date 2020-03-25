@@ -89,6 +89,20 @@ export default class VuetifyAdmin {
     });
 
     /**
+     * Default try to humanize i18n locale
+     */
+    i18n.missing = (locale, key, vm, values) => {
+      let label = key;
+      let lastIndex = key.lastIndexOf(".");
+
+      if (lastIndex !== -1) {
+        label = key.substr(lastIndex + 1, key.length);
+      }
+
+      return capitalize(label.replace("_", " "));
+    };
+
+    /**
      * Auth store & api dispatcher module injection
      */
     store.registerModule("aside", aside);

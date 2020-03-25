@@ -1,10 +1,5 @@
 {
-  "home": "Home",
-  "logout": "Logout",
-  "close": "Close",
   "datagrid": {
-    "search": "Search",
-    "add_filter": "Add filter",
     "selected_items": "1 item selected | {count} items selected"
   },
   "pages": {
@@ -12,20 +7,6 @@
     "create": "Creation of {resource}",
     "show": "Detail of {resource} #{id}",
     "edit": "Modification of {resource} #{id}"
-  },
-  "actions": {
-    "list": "List",
-    "create": "Create",
-    "show": "Show",
-    "edit": "Edit",
-    "delete": "Delete",
-    "save": "Save",
-    "export": "Export",
-    "clone": "Clone",
-    "add": "Add",
-    "remove": "Remove",
-    "move": "Move",
-    "locale": "Locale"
   },
   "messages": {
     "created": "New {resource} successfully created !",
@@ -35,15 +16,12 @@
     "deleted_many": "{count} {resource} successfully deleted !"
   },
   "confirm": {
-    "yes": "Yes",
-    "no": "No",
     "delete_title": "Delete {resource} #{id} ?",
     "delete_message": "You are about deleting {resource} #{id}. This operation is irreversible !",
     "delete_many_title": "Delete {count} {resource} ?",
     "delete_many_message": "You are about deleting {count} {resource}. This operation is irreversible !"
   },
   "forms": {
-    "none": "None",
     "required_field": "{field] is required"
   }
 }

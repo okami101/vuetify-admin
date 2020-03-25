@@ -1,9 +1,7 @@
 {
-  "good": "Good",
-  "bad": "Bad",
-  "here": "here",
-  "address": "Address",
-  "backlinks": "Backlinks",
+  "login": {
+    "title": "Bookstore Admin"
+  },
   "locales": {
     "english": "English",
     "french": "French"
@@ -16,81 +14,12 @@
     "settings": "Settings",
     "feedback": "Feedback"
   },
-  "login": {
-    "title": "Bookstore Admin",
-    "username": "Username",
-    "password": "Password",
-    "sign_in": "sign_in"
-  },
-  "profile": {
-    "account": "Account",
-    "password": "Password",
-    "name": "Name",
-    "email": "Email",
-    "old_password": "Old password",
-    "new_password": "New password",
-    "confirm_password": "Confirm password",
-    "update": "Update",
-    "account_updated": "Account updated",
-    "password_changed": "Password changed"
-  },
   "users": {
-    "impersonate": "Impersonate",
-    "enable": "Enable",
-    "disable": "Disable",
-    "stop_impersonate": "Stop impersonate",
     "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
-  },
-  "menu": {
-    "login": "Login",
-    "profile": "Profile",
-    "dashboard": "Dashboard",
-    "help": "Help",
-    "settings": "Settings",
-    "feedback": "Feedback",
-    "other": "Other",
-    "bookstore": "Bookstore",
-    "list": "List",
-    "create": "Create",
-    "publishers": "Publishers",
-    "authors": "Authors",
-    "books": "Books",
-    "reviews": "Reviews",
-    "users": "Users"
-  },
-  "authors": {
-    "last_books": "Last books",
-    "all_books": "All books"
-  },
-  "tabs": {
-    "attributes": "Attributes",
-    "summary": "Summary"
   },
   "resources": {
     "publishers": {
       "name": "Publisher | Publishers",
-      "fields": {
-        "id": "ID",
-        "logo": "Logo",
-        "local": "Local",
-        "name": "Name",
-        "type": "Company type",
-        "description": "Description",
-        "founder": "Founder",
-        "headquarter": "Headquarter",
-        "url": "Url",
-        "email": "Email",
-        "active": "Active",
-        "books": "Books",
-        "users": "Users",
-        "address": {
-          "street": "Street",
-          "postcode": "Postcode",
-          "city": "City"
-        },
-        "opening_date": "Opening date",
-        "books_count": "Books count"
-      },
       "enums": {
         "type": {
           "sarl": "SARL",
@@ -104,107 +33,16 @@
       }
     },
     "authors": {
-      "name": "Author | Authors",
-      "fields": {
-        "id": "ID",
-        "name": "Name",
-        "photo": "Photo",
-        "description": "Description",
-        "books": "Books",
-        "users": "Users",
-        "backlinks": {
-          "text": "Text",
-          "date": "Date",
-          "url": "Url"
-        }
-      }
+      "name": "Author | Authors"
     },
     "books": {
-      "name": "Book | Books",
-      "fields": {
-        "id": "ID",
-        "isbn": "ISBN",
-        "title": "Title",
-        "cover": "Cover",
-        "extract": "Extract",
-        "category": "Category",
-        "description": "Description",
-        "summary": "Summary",
-        "publication_date": "Publication date",
-        "formats": "Formats",
-        "publisher": "Publisher",
-        "reviews": "Reviews",
-        "authors": "Authors",
-        "price": "Price",
-        "commentable": "Commentable",
-        "tags": "Tags",
-        "published_before": "Published before",
-        "published_after": "Published after",
-        "pricier_than": "Pricier than",
-        "cheaper_than": "Cheaper than"
-      },
-      "enums": {
-        "category": {
-          "novel": "Novel",
-          "comic": "Comic",
-          "cook": "Cook",
-          "economy": "Economy",
-          "politics": "Politics",
-          "history": "History",
-          "fantasy": "Fantasy",
-          "biography": "Biography"
-        },
-        "formats": {
-          "pocket": "Pocket",
-          "paperback": "Paperback",
-          "pdf": "PDF",
-          "epub": "Epub",
-          "kindle": "Kindle"
-        }
-      }
+      "name": "Book | Books"
     },
     "reviews": {
-      "name": "Review | Reviews",
-      "fields": {
-        "id": "ID",
-        "status": "Status",
-        "body": "Body",
-        "publication_date": "Publication date",
-        "author": "Author",
-        "rating": "Rating",
-        "quality": "Quality",
-        "book": "Book",
-        "published_before": "Published before",
-        "published_after": "Published after"
-      },
-      "enums": {
-        "status": {
-          "published": "Published",
-          "pending": "Pending",
-          "denied": "Denied"
-        }
-      }
+      "name": "Review | Reviews"
     },
     "users": {
-      "name": "User | Users",
-      "fields": {
-        "id": "ID",
-        "name": "Name",
-        "email": "Email",
-        "active": "Active",
-        "roles": "Roles",
-        "publishers": "Publishers",
-        "authors": "Authors",
-        "created_at": "Created at",
-        "updated_at": "Updated at"
-      },
-      "enums": {
-        "roles": {
-          "admin": "Admin",
-          "editor": "Editor",
-          "author": "Author"
-        }
-      }
+      "name": "User | Users"
     }
   }
 }
