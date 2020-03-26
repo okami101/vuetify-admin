@@ -1,0 +1,110 @@
+monsters:
+  name: Monstre | Monstres
+  to_string: name
+  translatable: true
+  mediable: true
+  actions:
+    - list
+    - show
+    - create
+    - edit
+  fields:
+    id:
+      label: ID
+      type: integer
+      primary: true
+    name:
+      label: Nom
+      filterable: true
+    email:
+      label: Email
+      field: email
+    label:
+      label: Libellé traduisible
+      translatable: true
+      filterable: true
+    active:
+      label: Booléen
+      type: boolean
+      filterable: true
+    level:
+      label: Niveau
+      type: integer
+      field: number
+      filterable: true
+    rating:
+      label: Puissance
+      type: integer
+      field: rating
+      filterable: true
+    price:
+      label: Prix
+      type: float
+    description:
+      label: Texte long
+      field: textarea
+      translatable: true
+    body:
+      label: Texte riche
+      field: rich_text
+      translatable: true
+    category:
+      label: Choix (enum)
+      field: select
+      filterable: true
+      enum:
+        history: Histoire
+        novel: Roman
+        comics: BD
+    tags:
+      label: Choix multiple
+      type: array
+      field: array
+      input: combobox
+      multiple: true
+    publication_date:
+      label: Date
+      type: date
+    avatar:
+      label: Avatar
+      type: image
+    images:
+      label: Photos
+      type: image
+      multiple: true
+    files:
+      label: Fichiers
+      type: file
+      multiple: true
+    embedded:
+      label: Objets embarqués
+      type: array
+      fields:
+        url:
+          label: URL
+          field: url
+        date:
+          label: Date
+          type: date
+    children:
+      label: Enfants
+      type: reference
+      relation: one_to_many
+      multiple: true
+
+children_monsters:
+  name: Monstre enfant | Monstres enfants
+  to_string: name
+  fields:
+    id:
+      label: ID
+      type: integer
+    name:
+      label: Nom
+      filterable: true
+    parent:
+      label: Monstre parent
+      type: reference
+      relation: many_to_one
+      input: autocomplete
+      filterable: true

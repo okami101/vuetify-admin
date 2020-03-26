@@ -1,0 +1,16 @@
+<template>
+  <va-create>
+    <{{ resource|lower }}-form :item="item"></{{ resource|lower }}-form>
+  </va-create>
+</template>
+
+<script>
+import {{ resource }}Form from "./Form";
+
+export default {
+  props: ["item"],
+  components: {
+    {{ resource }}Form,
+  },
+};
+</script>

@@ -1,0 +1,29 @@
+<template>
+  <va-form :id="id" :item="item" :saving.sync="saving">
+    <v-row justify="center">
+      <v-col sm="6">
+        <v-card>
+          <v-card-text>
+            {{ #foreach input }}
+            <va-{{ input.type }}-input source="{{ input.name }}"></va-{{ input.type }}-input>
+            {{ #endforeach }}
+          </v-card-text>
+          <v-toolbar flat color="grey lighten-4">
+            <va-save-button :saving="saving"></va-save-button>
+          </v-toolbar>
+        </v-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: ["id", "item"],
+  data() {
+    return {
+      saving: false,
+    };
+  },
+};
+</script>
