@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
@@ -47,7 +46,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Book extends Model implements HasMedia
 {
-    use InteractsWithMedia;
     use RequestTranslatableTrait;
     use RequestMediaTrait;
 

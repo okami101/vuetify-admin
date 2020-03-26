@@ -7,7 +7,6 @@ use App\ModelTraits\RequestTranslatableTrait;
 use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
@@ -40,7 +39,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Publisher extends Model implements HasMedia
 {
     use UserAccessTrait;
-    use InteractsWithMedia;
     use RequestTranslatableTrait;
     use RequestMediaTrait;
 

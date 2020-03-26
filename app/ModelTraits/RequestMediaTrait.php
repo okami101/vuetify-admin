@@ -3,6 +3,7 @@
 namespace App\ModelTraits;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\FileAdder;
 use Spatie\MediaLibrary\MediaCollections\MediaCollection;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -15,6 +16,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 trait RequestMediaTrait
 {
+    use InteractsWithMedia;
+
     /**
      * Auto attach media via request
      */
