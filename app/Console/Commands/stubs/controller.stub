@@ -3,11 +3,22 @@
 namespace {{ namespace }};
 
 use {{ namespacedModel }};
+use App\Http\Filters\SearchFilter;
 use {{ rootNamespace }}Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Request\Store{{ model }};
+use App\Http\Request\Update{{ model }};
+use App\Http\Resources\{{ model }} as {{ model }}Resource;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class {{ class }} extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource({{ model }}::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,18 +26,17 @@ class {{ class }} extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return {{ model }}Resource::collection(
+            QueryBuilder::for({{ model }}::class)
+                ->allowedFields({{ fields }})
+                ->allowedFilters([
+                    AllowedFilter::custom('q', new SearchFilter({{ searchables }})),
+                    AllowedFilter::exact('id'),
+                ])
+                ->allowedSorts({{ sortables }})
+                ->allowedIncludes({{ include }})
+                ->exportOrPaginate()
+        );
     }
 
     /**
@@ -37,7 +47,19 @@ class {{ class }} extends Controller
      */
     public function show({{ model }} ${{ modelVariable }})
     {
-        //
+        return new {{ model }}Resource(${{ modelVariable }});
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Store{{ model }} $request)
+    {
+        ${{ modelVariable }} = {{ model }}::create($request->all());
+        return new {{ model }}Resource(${{ modelVariable }});
     }
 
     /**
@@ -47,9 +69,10 @@ class {{ class }} extends Controller
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    public function update(Update{{ model }} $request, {{ model }} ${{ modelVariable }})
     {
-        //
+        ${{ modelVariable }}->update($request->all());
+        return new {{ model }}Resource(${{ modelVariable }});
     }
 
     /**
@@ -60,6 +83,7 @@ class {{ class }} extends Controller
      */
     public function destroy({{ model }} ${{ modelVariable }})
     {
-        //
+        ${{ modelVariable }}->delete();
+        return response()->noContent();
     }
 }

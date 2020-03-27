@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class {{ class }} extends FormRequest
+class {{ type }}{{ model }} extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

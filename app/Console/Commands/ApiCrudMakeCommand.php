@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class ApiCrudMakeCommand extends GeneratorCommand
 {
@@ -12,7 +13,7 @@ class ApiCrudMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'make:api-crud';
+    protected $name = 'make:crud';
 
     /**
      * The console command description.
@@ -47,7 +48,16 @@ class ApiCrudMakeCommand extends GeneratorCommand
     {
         collect($this->stubs)->each(function ($name, $type) {
             $this->type = $type;
-            //parent::handle();
+
+            if ($this->option('mediable')) {
+                $this->createSeeder();
+            }
+
+            if ($this->option('translatable')) {
+                $this->createSeeder();
+            }
+
+            parent::handle();
         });
     }
 
@@ -57,5 +67,32 @@ class ApiCrudMakeCommand extends GeneratorCommand
     protected function getStub()
     {
         return __DIR__."/stubs/{$this->stubs[$this->type]}.stub";
+    }
+
+
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['mediable', 'm', InputOption::VALUE_NONE, 'Create a mediable model'],
+            ['translatable', 't', InputOption::VALUE_NONE, 'Create a translatable model'],
+        ];
     }
 }

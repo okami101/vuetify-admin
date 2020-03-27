@@ -1,5 +1,6 @@
 monsters:
-  name: Monstre | Monstres
+  name: monster
+  label: Monstre | Monstres
   to_string: name
   translatable: true
   mediable: true
@@ -93,7 +94,8 @@ monsters:
       multiple: true
 
 children_monsters:
-  name: Monstre enfant | Monstres enfants
+  name: child_monster
+  label: Monstre enfant | Monstres enfants
   to_string: name
   fields:
     id:

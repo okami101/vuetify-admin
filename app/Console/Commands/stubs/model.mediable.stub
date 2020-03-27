@@ -3,7 +3,6 @@
 namespace {{ namespace }};
 
 use App\ModelTraits\RequestMediaTrait;
-use App\ModelTraits\RequestTranslatableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -11,7 +10,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class {{ class }} extends Model implements HasMedia
 {
-    use RequestTranslatableTrait;
     use RequestMediaTrait;
 
     protected $fillable = [];
@@ -19,8 +17,6 @@ class {{ class }} extends Model implements HasMedia
     protected $casts = [];
 
     protected $dates = [];
-
-    public $translatable = [];
 
     public function registerMediaCollections(): void
     {
