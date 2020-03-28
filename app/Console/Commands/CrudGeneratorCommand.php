@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Yaml\Yaml;
 
 class CrudGeneratorCommand extends Command
@@ -73,6 +74,7 @@ class CrudGeneratorCommand extends Command
                     '--searchable' => $this->getFieldNames($resource, 'searchable'),
                     '--sortable' => $this->getFieldNames($resource, 'sortable'),
                     '--mediable' => $this->getMediableFields($resource),
+                    '--force' => $this->option('force'),
                 ]);
             }
         }
@@ -120,5 +122,17 @@ class CrudGeneratorCommand extends Command
             $multiple = $field['multiple'] ?? false;
             return "$name:$multiple";
         })->values();
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
+        ];
     }
 }

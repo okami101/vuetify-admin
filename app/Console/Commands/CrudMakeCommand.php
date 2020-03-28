@@ -50,7 +50,6 @@ class CrudMakeCommand extends GeneratorCommand
             $this->type = $type;
 
             parent::handle();
-            dd('ok model');
         });
     }
 
@@ -100,11 +99,13 @@ class CrudMakeCommand extends GeneratorCommand
     {
         $class = parent::replaceClass($stub, $name);
 
-        return str_replace(['{{ fields }}', '{{ casts }}', '{{ translatable }}', '{{ mediable }}'], [
-            $this->getArrayString($this->getFields()->keys()->toArray()),
-            $this->getArrayWithKeysString($this->getCasts()->toArray()),
-            $this->getArrayString($this->getTranslatableFields()->toArray()),
-            $this->getMediaCodeLines($this->getMediableFields()->toArray()),
+        return str_replace(['{{ fields }}', '{{ casts }}', '{{ translatable }}', '{{ searchable }}', '{{ sortable }}', '{{ mediable }}'], [
+            $this->getArrayString($this->getFields()->keys()),
+            $this->getArrayWithKeysString($this->getCasts()),
+            $this->getArrayString($this->getTranslatableFields()),
+            $this->getArrayString($this->getSearchableFields()),
+            $this->getArrayString($this->getSortableFields()),
+            $this->getMediaCodeLines($this->getMediableFields()),
         ], $class);
     }
 
@@ -115,10 +116,19 @@ class CrudMakeCommand extends GeneratorCommand
             return [$segments[0] => $segments[1]];
         });
     }
-
     private function getTranslatableFields()
     {
         return collect($this->option('translatable'));
+    }
+
+    private function getSearchableFields()
+    {
+        return collect($this->option('searchable'));
+    }
+
+    private function getSortableFields()
+    {
+        return collect($this->option('sortable'));
     }
 
     private function getMediableFields()
@@ -128,6 +138,7 @@ class CrudMakeCommand extends GeneratorCommand
             return [$segments[0] => $segments[1]];
         });
     }
+
 
     private function getCasts()
     {
@@ -154,7 +165,7 @@ class CrudMakeCommand extends GeneratorCommand
         });
     }
 
-    private function getMediaCodeLines(array $array)
+    private function getMediaCodeLines($array)
     {
         return collect($array)->map(function ($multiple, $collection) {
             $line = "\$this->addMediaCollection('$collection')";
@@ -204,6 +215,7 @@ class CrudMakeCommand extends GeneratorCommand
             ['translatable', 't', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of translatable fields'],
             ['searchable', 'sc', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of searchable fields'],
             ['sortable', 'st', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of sortable fields'],
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
         ];
     }
 }
