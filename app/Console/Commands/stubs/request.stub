@@ -1,10 +1,10 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class {{ type }}{{ model }} extends FormRequest
+class {{ class }} extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class {{ type }}{{ model }} extends FormRequest
     public function rules()
     {
         return [
-            {{ rules }}
+            //
         ];
     }
 }

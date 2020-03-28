@@ -6,7 +6,7 @@ use App\User;
 use {{ namespacedModel }};
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class {{ model }}Policy
+class {{ class }}
 {
     use HandlesAuthorization;
 
