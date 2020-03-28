@@ -69,11 +69,8 @@ class Book extends Model implements HasMedia
         'price' => 'float',
         'commentable' => 'boolean',
         'formats' => 'array',
-        'tags' => 'array'
-    ];
-
-    protected $dates = [
-        'publication_date'
+        'tags' => 'array',
+        'publication_date' => 'date'
     ];
 
     public $translatable = ['title', 'description', 'summary'];

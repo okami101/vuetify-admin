@@ -15,9 +15,7 @@ class {{ class }} extends Model implements HasMedia
 
     protected $fillable = [{{ fields }}];
 
-    protected $casts = [{{ casts }};
-
-    protected $dates = [{{ dates }}];
+    protected $casts = [{{ casts }}];
 
     public $translatable = [{{ translatable }}];
 

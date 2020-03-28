@@ -9,6 +9,4 @@ class {{ class }} extends Model
     protected $fillable = [{{ fields }}];
 
     protected $casts = [{{ casts }}];
-
-    protected $dates = [{{ dates }}];
 }

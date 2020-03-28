@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -101,10 +100,11 @@ class CrudMakeCommand extends GeneratorCommand
     {
         $class = parent::replaceClass($stub, $name);
 
-        dd($this->getFields());
-        return str_replace(['{{ fields }}', '{{ casts }}'], [
-            $this->getArrayString($this->getFields()),
-            $this->getArrayWithKeysString($this->getCasts()),
+        return str_replace(['{{ fields }}', '{{ casts }}', '{{ translatable }}', '{{ mediable }}'], [
+            $this->getArrayString($this->getFields()->keys()->toArray()),
+            $this->getArrayWithKeysString($this->getCasts()->toArray()),
+            $this->getArrayString($this->getTranslatableFields()->toArray()),
+            $this->getMediaCodeLines($this->getMediableFields()->toArray()),
         ], $class);
     }
 
@@ -116,27 +116,67 @@ class CrudMakeCommand extends GeneratorCommand
         });
     }
 
+    private function getTranslatableFields()
+    {
+        return collect($this->option('translatable'));
+    }
+
+    private function getMediableFields()
+    {
+        return collect($this->option('mediable'))->mapWithKeys(function ($field) {
+            $segments = explode(':', $field);
+            return [$segments[0] => $segments[1]];
+        });
+    }
+
     private function getCasts()
     {
-        return collect($this->option('fields'))->map(function ($field) {
-            return explode(':', $field);
-        })->filter(function ($field) {
-            return explode(':', $field)[0];
-        })->toArray();
+        return collect($this->getFields())->filter(function ($type) {
+            return in_array($type, [
+                'integer',
+                'real',
+                'float',
+                'double',
+                'decimal',
+                'boolean',
+                'object',
+                'array',
+                'collection',
+                'date',
+                'datetime',
+                'timestamp'
+            ]);
+        })->map(function ($type) {
+            if ($type === 'decimal') {
+                return "$type:2";
+            }
+            return $type;
+        });
+    }
+
+    private function getMediaCodeLines(array $array)
+    {
+        return collect($array)->map(function ($multiple, $collection) {
+            $line = "\$this->addMediaCollection('$collection')";
+            if (!$multiple) {
+                $line .= '->singleFile()';
+            }
+            return "$line;";
+        })->implode("\n        ");
     }
 
     private function getArrayString($array)
     {
-        return implode(', ', array_map(function ($item) {
+        return collect($array)->map(function ($item) {
             return "'$item'";
-        }, $array));
+        })->values()->implode(', ');
     }
 
     private function getArrayWithKeysString($array)
     {
-        return implode(', ', array_map(function ($item) {
-            return "'$item'";
-        }, $array));
+        return collect($array)->map(function ($item, $key) {
+            return "'$key' => '$item'";
+        })->values()->implode(', ');
     }
 
     /**

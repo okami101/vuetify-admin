@@ -15,8 +15,6 @@ class {{ class }} extends Model implements HasMedia
 
     protected $casts = [{{ casts }}];
 
-    protected $dates = [{{ dates }}];
-
     public function registerMediaCollections(): void
     {
         {{ mediable }}

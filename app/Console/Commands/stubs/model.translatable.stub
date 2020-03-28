@@ -13,7 +13,5 @@ class {{ class }} extends Model
 
     protected $casts = [{{ casts }}];
 
-    protected $dates = [{{ dates }}];
-
     public $translatable = [{{ translatable }}];
 }

@@ -39,10 +39,7 @@ class Review extends Model
 
     protected $casts = [
         'rating' => 'integer',
-    ];
-
-    protected $dates = [
-        'publication_date'
+        'publication_date' => 'date'
     ];
 
     public function book()
