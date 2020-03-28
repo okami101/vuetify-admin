@@ -132,7 +132,7 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.$this->stubs[$this->type]['namespace'];
+        return $rootNamespace.($this->stubs[$this->type]['namespace'] ?? null);
     }
 
     private function isMediable()
