@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Composer;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -23,21 +26,56 @@ class CrudMakeCommand extends GeneratorCommand
     protected $description = 'Create all necessary server-side resource stubs';
 
     /**
+     * The Composer instance.
+     *
+     * @var \Illuminate\Support\Composer
+     */
+    protected $composer;
+
+    /**
      * Stubs to generate
      *
      * @var array
      */
     protected $stubs = [
-        'Model' => 'model',
-        'Migration' => 'migration',
-        'Factory' => 'factory',
-        'Seeder' => 'seeder',
-        'Controller' => 'controller',
-        'Policy' => 'policy',
-        'StoreRequest' => 'request',
-        'UpdateRequest' => 'request',
-        'Resource' => 'resource',
+        'Model' => [
+            'stub' => 'model',
+        ],
+        'Controller' => [
+            'stub' => 'controller',
+            'namespace' => '\Http\Controllers'
+        ],
+        'Policy' => [
+            'stub' => 'policy',
+            'namespace' => '\Policies'
+        ],
+        'StoreRequest' => [
+            'stub' => 'request',
+            'namespace' => '\Http\Requests'
+        ],
+        'UpdateRequest' => [
+            'stub' => 'request',
+            'namespace' => '\Http\Requests'
+        ],
+        'Resource' => [
+            'stub' => 'resource',
+            'namespace' => '\Http\Resources'
+        ],
     ];
+
+    /**
+     * Create a new command instance.
+     *
+     * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @param  \Illuminate\Support\Composer  $composer
+     * @return void
+     */
+    public function __construct(Filesystem $files, Composer $composer)
+    {
+        parent::__construct($files);
+
+        $this->composer = $composer;
+    }
 
     /**
      * Execute the console command.
@@ -46,11 +84,19 @@ class CrudMakeCommand extends GeneratorCommand
      */
     public function handle()
     {
+        /**
+         * Generate resource files
+         */
         collect($this->stubs)->each(function ($name, $type) {
             $this->type = $type;
 
             parent::handle();
         });
+
+        /**
+         * Generate resource migration
+         */
+        $this->createMigration();
     }
 
     /**
@@ -58,7 +104,7 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        $stub = $this->stubs[$this->type];
+        $stub = $this->stubs[$this->type]['stub'];
 
         if ($stub === 'model') {
             /**
@@ -76,6 +122,17 @@ class CrudMakeCommand extends GeneratorCommand
         }
 
         return __DIR__."/stubs/{$stub}.stub";
+    }
+
+    /**
+     * Get the default namespace for the class.
+     *
+     * @param  string  $rootNamespace
+     * @return string
+     */
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        return $rootNamespace.$this->stubs[$this->type]['namespace'];
     }
 
     private function isMediable()
@@ -188,6 +245,21 @@ class CrudMakeCommand extends GeneratorCommand
         return collect($array)->map(function ($item, $key) {
             return "'$key' => '$item'";
         })->values()->implode(', ');
+    }
+
+    /**
+     * Create a migration file for the model.
+     *
+     * @return void
+     */
+    protected function createMigration()
+    {
+        $table = Str::snake(Str::pluralStudly(class_basename($this->argument('name'))));
+
+        $this->call('make:migration', [
+            'name' => "create_{$table}_table",
+            '--create' => $table,
+        ]);
     }
 
     /**
