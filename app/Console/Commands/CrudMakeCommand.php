@@ -3,8 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -26,13 +24,6 @@ class CrudMakeCommand extends GeneratorCommand
     protected $description = 'Create all necessary server-side resource stubs';
 
     /**
-     * The Composer instance.
-     *
-     * @var \Illuminate\Support\Composer
-     */
-    protected $composer;
-
-    /**
      * Stubs to generate
      *
      * @var array
@@ -43,39 +34,29 @@ class CrudMakeCommand extends GeneratorCommand
         ],
         'Controller' => [
             'stub' => 'controller',
-            'namespace' => '\Http\Controllers'
+            'namespace' => '\Http\Controllers',
+            'suffix' => 'Controller',
         ],
         'Policy' => [
             'stub' => 'policy',
-            'namespace' => '\Policies'
+            'namespace' => '\Policies',
+            'suffix' => 'Policy',
         ],
         'StoreRequest' => [
             'stub' => 'request',
-            'namespace' => '\Http\Requests'
+            'namespace' => '\Http\Requests',
+            'prefix' => 'Store',
         ],
         'UpdateRequest' => [
             'stub' => 'request',
-            'namespace' => '\Http\Requests'
+            'namespace' => '\Http\Requests',
+            'prefix' => 'Update',
         ],
         'Resource' => [
             'stub' => 'resource',
             'namespace' => '\Http\Resources'
         ],
     ];
-
-    /**
-     * Create a new command instance.
-     *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Illuminate\Support\Composer  $composer
-     * @return void
-     */
-    public function __construct(Filesystem $files, Composer $composer)
-    {
-        parent::__construct($files);
-
-        $this->composer = $composer;
-    }
 
     /**
      * Execute the console command.
@@ -96,7 +77,7 @@ class CrudMakeCommand extends GeneratorCommand
         /**
          * Generate resource migration
          */
-        $this->createMigration();
+        //$this->createMigration();
     }
 
     /**
@@ -104,7 +85,7 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        $stub = $this->stubs[$this->type]['stub'];
+        $stub = $this->getType()['stub'];
 
         if ($stub === 'model') {
             /**
@@ -132,7 +113,33 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.($this->stubs[$this->type]['namespace'] ?? null);
+        return $rootNamespace.($this->getType()['namespace'] ?? null);
+    }
+
+    /**
+     * Get the desired class name from the input.
+     *
+     * @return string
+     */
+    protected function getNameInput()
+    {
+        $name = trim($this->argument('name'));
+        $info = $this->getType();
+
+        if ($info['prefix'] ?? null) {
+            $name = "{$info['prefix']}$name";
+        }
+
+        if ($info['suffix'] ?? null) {
+            $name = "$name{$info['suffix']}";
+        }
+
+        return $name;
+    }
+
+    private function getType()
+    {
+        return $this->stubs[$this->type];
     }
 
     private function isMediable()
@@ -154,15 +161,29 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function replaceClass($stub, $name)
     {
+        $modelClass = $this->rootNamespace().$name;
         $class = parent::replaceClass($stub, $name);
 
-        return str_replace(['{{ fields }}', '{{ casts }}', '{{ translatable }}', '{{ searchable }}', '{{ sortable }}', '{{ mediable }}'], [
+        return str_replace([
+            '{{ fields }}',
+            '{{ casts }}',
+            '{{ translatable }}',
+            '{{ searchable }}',
+            '{{ sortable }}',
+            '{{ mediable }}',
+            '{{ namespacedModel }}',
+            '{{ model }}',
+            '{{ modelVariable }}',
+        ], [
             $this->getArrayString($this->getFields()->keys()),
             $this->getArrayWithKeysString($this->getCasts()),
             $this->getArrayString($this->getTranslatableFields()),
             $this->getArrayString($this->getSearchableFields()),
             $this->getArrayString($this->getSortableFields()),
             $this->getMediaCodeLines($this->getMediableFields()),
+            $modelClass,
+            class_basename($modelClass),
+            lcfirst(class_basename($modelClass)),
         ], $class);
     }
 
@@ -195,7 +216,6 @@ class CrudMakeCommand extends GeneratorCommand
             return [$segments[0] => $segments[1]];
         });
     }
-
 
     private function getCasts()
     {
