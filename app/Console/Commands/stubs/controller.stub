@@ -28,13 +28,12 @@ class {{ class }} extends Controller
     {
         return {{ model }}Resource::collection(
             QueryBuilder::for({{ model }}::class)
-                ->allowedFields({{ fields }})
+                ->allowedFields([{{ fields }}])
                 ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter({{ searchables }})),
+                    AllowedFilter::custom('q', new SearchFilter([{{ searchables }}])),
                     AllowedFilter::exact('id'),
                 ])
-                ->allowedSorts({{ sortables }})
-                ->allowedIncludes({{ include }})
+                ->allowedSorts([{{ sortables }}])
                 ->exportOrPaginate()
         );
     }

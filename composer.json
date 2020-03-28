@@ -21,7 +21,8 @@
         "laravel/ui": "^2.0",
         "spatie/laravel-medialibrary": "^8.0",
         "spatie/laravel-query-builder": "^2.5",
-        "spatie/laravel-translatable": "^4.3"
+        "spatie/laravel-translatable": "^4.3",
+        "symfony/yaml": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

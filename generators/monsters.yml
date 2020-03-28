@@ -1,5 +1,5 @@
 monsters:
-  name: monster
+  model: Monster
   label: Monstre | Monstres
   to_string: name
   translatable: true
@@ -10,20 +10,23 @@ monsters:
     - create
     - edit
   fields:
-    id:
-      label: ID
-      type: integer
-      primary: true
     name:
       label: Nom
       filterable: true
+      searchable: true
+      sortable: true
+      required: true
     email:
       label: Email
       field: email
+      required: true
     label:
       label: Libellé traduisible
       translatable: true
       filterable: true
+      searchable: true
+      sortable: true
+      required: true
     active:
       label: Booléen
       type: boolean
@@ -32,19 +35,25 @@ monsters:
       label: Niveau
       type: integer
       field: number
+      sortable: true
       filterable: true
     rating:
       label: Puissance
       type: integer
       field: rating
       filterable: true
+      sortable: true
+      required: true
     price:
       label: Prix
       type: float
+      sortable: true
+      required: true
     description:
       label: Texte long
       field: textarea
       translatable: true
+      searchable: true
     body:
       label: Texte riche
       field: rich_text
@@ -53,6 +62,7 @@ monsters:
       label: Choix (enum)
       field: select
       filterable: true
+      required: true
       enum:
         history: Histoire
         novel: Roman
@@ -66,6 +76,8 @@ monsters:
     publication_date:
       label: Date
       type: date
+      sortable: true
+      required: true
     avatar:
       label: Avatar
       type: image
@@ -77,36 +89,34 @@ monsters:
       label: Fichiers
       type: file
       multiple: true
-    embedded:
-      label: Objets embarqués
-      type: array
-      fields:
-        url:
-          label: URL
-          field: url
-        date:
-          label: Date
-          type: date
-    children:
-      label: Enfants
-      type: reference
-      relation: one_to_many
-      multiple: true
+#    embedded:
+#      label: Objets embarqués
+#      type: array
+#      fields:
+#        url:
+#          label: URL
+#          field: url
+#        date:
+#          label: Date
+#          type: date
+#    children:
+#      label: Enfants
+#      type: reference
+#      relation: one_to_many
+#      multiple: true
 
-children_monsters:
-  name: child_monster
-  label: Monstre enfant | Monstres enfants
-  to_string: name
-  fields:
-    id:
-      label: ID
-      type: integer
-    name:
-      label: Nom
-      filterable: true
-    parent:
-      label: Monstre parent
-      type: reference
-      relation: many_to_one
-      input: autocomplete
-      filterable: true
+#children_monsters:
+#  name: child_monster
+#  label: Monstre enfant | Monstres enfants
+#  to_string: name
+#  fields:
+#    name:
+#      label: Nom
+#      filterable: true
+#      required: true
+#    parent:
+#      label: Monstre parent
+#      type: reference
+#      relation: many_to_one
+#      input: autocomplete
+#      filterable: true

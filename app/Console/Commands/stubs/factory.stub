@@ -9,5 +9,6 @@ $factory->define({{ model }}::class, function (Faker $faker) {
     $faker->addProvider(new \App\Faker\Provider\Html($faker));
 
     return [
+        {{ fields }}
     ];
 });

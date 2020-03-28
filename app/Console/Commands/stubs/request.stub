@@ -24,7 +24,7 @@ class {{ type }}{{ model }} extends FormRequest
     public function rules()
     {
         return [
-            //
+            {{ rules }}
         ];
     }
 }
