@@ -4,10 +4,8 @@ namespace {{ namespace }};
 
 use {{ namespacedModel }};
 use App\Http\Filters\SearchFilter;
-use {{ rootNamespace }}Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Request\Store{{ model }};
-use App\Http\Request\Update{{ model }};
+use App\Http\Requests\Store{{ model }};
+use App\Http\Requests\Update{{ model }};
 use App\Http\Resources\{{ model }} as {{ model }}Resource;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -22,7 +20,7 @@ class {{ class }} extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
@@ -30,10 +28,10 @@ class {{ class }} extends Controller
             QueryBuilder::for({{ model }}::class)
                 ->allowedFields([{{ fields }}])
                 ->allowedFilters([
-                    AllowedFilter::custom('q', new SearchFilter([{{ searchables }}])),
+                    AllowedFilter::custom('q', new SearchFilter([{{ searchable }}])),
                     AllowedFilter::exact('id'),
                 ])
-                ->allowedSorts([{{ sortables }}])
+                ->allowedSorts([{{ sortable }}])
                 ->exportOrPaginate()
         );
     }
@@ -42,7 +40,7 @@ class {{ class }} extends Controller
      * Display the specified resource.
      *
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return \Illuminate\Http\Response
+     * @return {{ model }}Resource
      */
     public function show({{ model }} ${{ modelVariable }})
     {
@@ -53,7 +51,7 @@ class {{ class }} extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return {{ model }}Resource
      */
     public function store(Store{{ model }} $request)
     {
@@ -66,7 +64,7 @@ class {{ class }} extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return \Illuminate\Http\Response
+     * @return {{ model }}Resource
      */
     public function update(Update{{ model }} $request, {{ model }} ${{ modelVariable }})
     {
@@ -79,6 +77,7 @@ class {{ class }} extends Controller
      *
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy({{ model }} ${{ modelVariable }})
     {

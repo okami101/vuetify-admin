@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace {{ namespace }};
 
 use App\User;
 use {{ namespacedModel }};
@@ -17,9 +17,6 @@ class {{ class }}
 
     /**
      * Determine whether the user can view any {{ modelVariable }}s.
-     *
-     * @param  \App\User  $user
-     * @return mixed
      */
     public function viewAny(User $user)
     {
@@ -28,10 +25,6 @@ class {{ class }}
 
     /**
      * Determine whether the user can view the {{ modelVariable }}.
-     *
-     * @param  \App\User  $auth
-     * @param  \App\User  $user
-     * @return mixed
      */
     public function view(User $user, {{ model }} ${{ modelVariable }})
     {
@@ -40,9 +33,6 @@ class {{ class }}
 
     /**
      * Determine whether the user can create {{ modelVariable }}s.
-     *
-     * @param  \App\User  $auth
-     * @return mixed
      */
     public function create(User $user)
     {
@@ -51,10 +41,6 @@ class {{ class }}
 
     /**
      * Determine whether the user can update the {{ modelVariable }}.
-     *
-     * @param  \App\User  $auth
-     * @param  \App\User  $user
-     * @return mixed
      */
     public function update(User $user, {{ model }} ${{ modelVariable }})
     {
@@ -63,10 +49,6 @@ class {{ class }}
 
     /**
      * Determine whether the user can delete the {{ modelVariable }}.
-     *
-     * @param  \App\User  $auth
-     * @param  \App\User  $user
-     * @return mixed
      */
     public function delete(User $user, {{ model }} ${{ modelVariable }})
     {

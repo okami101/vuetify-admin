@@ -75,9 +75,19 @@ class CrudMakeCommand extends GeneratorCommand
         });
 
         /**
-         * Generate resource migration
+         * Generate resource data (migration, factory and seeder)
          */
-        //$this->createMigration();
+        if ($this->option('factory')) {
+            $this->createFactory();
+        }
+
+        if ($this->option('migration')) {
+            $this->createMigration();
+        }
+
+        if ($this->option('seed')) {
+            $this->createSeeder();
+        }
     }
 
     /**
@@ -161,7 +171,7 @@ class CrudMakeCommand extends GeneratorCommand
      */
     protected function replaceClass($stub, $name)
     {
-        $modelClass = $this->rootNamespace().$name;
+        $modelClass = $this->rootNamespace().$this->argument('name');
         $class = parent::replaceClass($stub, $name);
 
         return str_replace([
@@ -268,6 +278,21 @@ class CrudMakeCommand extends GeneratorCommand
     }
 
     /**
+     * Create a model factory for the model.
+     *
+     * @return void
+     */
+    protected function createFactory()
+    {
+        $factory = Str::studly(class_basename($this->argument('name')));
+
+        $this->call('make:factory', [
+            'name' => "{$factory}Factory",
+            '--model' => $this->qualifyClass($this->getNameInput()),
+        ]);
+    }
+
+    /**
      * Create a migration file for the model.
      *
      * @return void
@@ -279,6 +304,20 @@ class CrudMakeCommand extends GeneratorCommand
         $this->call('make:migration', [
             'name' => "create_{$table}_table",
             '--create' => $table,
+        ]);
+    }
+
+    /**
+     * Create a seeder file for the model.
+     *
+     * @return void
+     */
+    protected function createSeeder()
+    {
+        $seeder = Str::studly(class_basename($this->argument('name')));
+
+        $this->call('make:seed', [
+            'name' => "{$seeder}Seeder",
         ]);
     }
 
@@ -302,11 +341,14 @@ class CrudMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['fields', 'f', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of fields (field:type)'],
-            ['mediable', 'm', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of mediable fields (field:multiple)'],
-            ['translatable', 't', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of translatable fields'],
-            ['searchable', 'sc', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of searchable fields'],
-            ['sortable', 'st', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of sortable fields'],
+            ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
+            ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the model'],
+            ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder file for the model'],
+            ['fields', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of fields (field:type)'],
+            ['mediable', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of mediable fields (field:multiple)'],
+            ['translatable', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of translatable fields'],
+            ['searchable', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of searchable fields'],
+            ['sortable', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of sortable fields'],
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
         ];
     }

@@ -75,6 +75,9 @@ class CrudGeneratorCommand extends Command
                     '--sortable' => $this->getFieldNames($resource, 'sortable'),
                     '--mediable' => $this->getMediableFields($resource),
                     '--force' => $this->option('force'),
+                    '--migration' => $this->option('migration'),
+                    '--factory' => $this->option('factory'),
+                    '--seed' => $this->option('seed'),
                 ]);
             }
         }
@@ -132,6 +135,9 @@ class CrudGeneratorCommand extends Command
     protected function getOptions()
     {
         return [
+            ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
+            ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the model'],
+            ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder file for the model'],
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
         ];
     }
