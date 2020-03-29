@@ -1,18 +1,23 @@
 <template>
-  <va-admin
-    :header-menu="headerMenu"
-    :footer-menu="footerMenu"
-    :sidebar-menu="sidebarMenu"
-    :profile-menu="profileMenu"
-    app-bar-color="secondary"
-    app-bar-dense
-    app-bar-dark
-    sidebar-bg="/login.jpg"
-    :sidebar-bg-opacity="0.4"
-    sidebar-dark
-  >
-    <impersonate-message slot="message"></impersonate-message>
-    <template slot="footer">
+  <va-admin>
+    <va-header
+      slot="header"
+      :header-menu="headerMenu"
+      :profile-menu="profileMenu"
+      color="secondary"
+      dense
+      dark
+      @mini="mini = !mini"
+    ></va-header>
+    <va-sidebar
+      slot="sidebar"
+      :menu="sidebarMenu"
+      dark
+      bg="/login.jpg"
+      :bg-opacity="0.4"
+      :mini="mini"
+    ></va-sidebar>
+    <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
       <v-icon size="18">
         mdi-xml
@@ -21,9 +26,11 @@
       <v-icon size="18">
         mdi-heart
       </v-icon>
-      by <a href="https://www.my-awesome-company.com">My Awesome Company</a> for
-      a better web.
-    </template>
+      by
+      <a href="https://www.my-awesome-company.com">My Awesome Company</a> for a
+      better web.
+    </va-footer>
+    <impersonate-message slot="message"></impersonate-message>
   </va-admin>
 </template>
 
@@ -37,6 +44,7 @@ export default {
   },
   data() {
     return {
+      mini: false,
       headerMenu: [
         {
           link: "/",

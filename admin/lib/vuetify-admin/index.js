@@ -1,5 +1,6 @@
 import Vue from "vue";
 import * as core from "./components/Core";
+import * as layout from "./components/Layout";
 import * as ui from "./components/UI";
 import PortalVue from "portal-vue";
 import isEmpty from "lodash/isEmpty";
@@ -207,7 +208,7 @@ export default class VuetifyAdmin {
 VuetifyAdmin.install = (Vue) => {
   Vue.use(PortalVue);
 
-  [core, ui].forEach((c) => {
+  [core, layout, ui].forEach((c) => {
     Object.keys(c).forEach((name) => {
       Vue.component(`Va${name}`, c[name]);
     });

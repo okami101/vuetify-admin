@@ -1,22 +1,8 @@
 <template>
   <v-app v-if="loaded">
     <template v-if="user">
-      <app-header
-        :header-menu="headerMenu"
-        :profile-menu="profileMenu"
-        @mini="mini = !mini"
-        :color="appBarColor"
-        :dense="appBarDense"
-        :dark="appBarDark"
-      ></app-header>
-      <app-sidebar
-        :menu="sidebarMenu"
-        :mini="mini"
-        :color="sidebarColor"
-        :dark="sidebarDark"
-        :bg="sidebarBg"
-        :bg-opacity="sidebarBgOpacity"
-      ></app-sidebar>
+      <slot name="header"></slot>
+      <slot name="sidebar"></slot>
 
       <v-content>
         <div class="d-flex flex-column fill-height">
@@ -29,9 +15,7 @@
 
           <v-spacer></v-spacer>
 
-          <app-footer :menu="footerMenu">
-            <slot name="footer"></slot>
-          </app-footer>
+          <slot name="footer"></slot>
         </div>
       </v-content>
 
@@ -44,9 +28,6 @@
 </template>
 
 <script>
-import AppHeader from "../Layout/AppHeader";
-import AppFooter from "../Layout/AppFooter";
-import AppSidebar from "../Layout/AppSidebar";
 import AppAside from "../Layout/AppAside";
 import AppMessages from "../Layout/AppMessages";
 import AppBreadcrumbs from "../Layout/AppBreadcrumbs";
@@ -55,36 +36,9 @@ import { mapState } from "vuex";
 export default {
   name: "Admin",
   components: {
-    AppHeader,
-    AppFooter,
-    AppSidebar,
     AppAside,
     AppMessages,
     AppBreadcrumbs,
-  },
-  props: {
-    headerMenu: Array,
-    footerMenu: Array,
-    sidebarMenu: Array,
-    profileMenu: Array,
-    appBarColor: {
-      type: String,
-      default: "primary",
-    },
-    appBarDense: Boolean,
-    appBarDark: Boolean,
-    sidebarColor: {
-      type: String,
-      default: "white",
-    },
-    sidebarBg: String,
-    sidebarDark: Boolean,
-    sidebarBgOpacity: Number,
-  },
-  data() {
-    return {
-      mini: false,
-    };
   },
   computed: {
     ...mapState({
