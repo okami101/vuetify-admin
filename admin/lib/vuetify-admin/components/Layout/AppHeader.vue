@@ -3,7 +3,7 @@
     :clipped-left="$vuetify.breakpoint.lgAndUp"
     :clipped-right="$vuetify.breakpoint.lgAndUp"
     app
-    dark
+    :dark="dark"
     :color="color"
     :dense="dense"
   >
@@ -101,6 +101,7 @@ export default {
       default: "primary",
     },
     dense: Boolean,
+    dark: Boolean,
   },
   computed: {
     ...mapState({

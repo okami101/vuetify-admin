@@ -7,8 +7,16 @@
         @mini="mini = !mini"
         :color="appBarColor"
         :dense="appBarDense"
+        :dark="appBarDark"
       ></app-header>
-      <app-sidebar :menu="sidebarMenu" :mini="mini"></app-sidebar>
+      <app-sidebar
+        :menu="sidebarMenu"
+        :mini="mini"
+        :color="sidebarColor"
+        :dark="sidebarDark"
+        :bg="sidebarBg"
+        :bg-opacity="sidebarBgOpacity"
+      ></app-sidebar>
 
       <v-content>
         <div class="d-flex flex-column fill-height">
@@ -64,6 +72,14 @@ export default {
       default: "primary",
     },
     appBarDense: Boolean,
+    appBarDark: Boolean,
+    sidebarColor: {
+      type: String,
+      default: "white",
+    },
+    sidebarBg: String,
+    sidebarDark: Boolean,
+    sidebarBgOpacity: Number,
   },
   data() {
     return {

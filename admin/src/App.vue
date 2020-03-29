@@ -6,6 +6,10 @@
     :profile-menu="profileMenu"
     app-bar-color="secondary"
     app-bar-dense
+    app-bar-dark
+    sidebar-bg="/login.jpg"
+    :sidebar-bg-opacity="0.4"
+    sidebar-dark
   >
     <impersonate-message slot="message"></impersonate-message>
     <template slot="footer">
