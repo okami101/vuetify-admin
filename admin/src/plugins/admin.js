@@ -7,44 +7,40 @@ import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
 import en from "vuetify-admin/locales/en.json";
 import fr from "vuetify-admin/locales/fr.json";
 
+import i18n from "@/i18n";
+import axios from "@/plugins/axios";
+
 /**
  * Load UI components
  */
 Vue.use(VuetifyAdmin);
 
-/**
- * Init vuetify admin class with options
- */
-const admin = ({ i18n, axios }) => {
-  return new VuetifyAdmin({
-    title: "Bookstore Admin",
-    locales: {
-      ui: { en, fr },
-      translations: {
-        en: i18n.t("locales.english"),
-        fr: i18n.t("locales.french"),
-      },
+export default new VuetifyAdmin({
+  title: "Bookstore Admin",
+  locales: {
+    ui: { en, fr },
+    translations: {
+      en: i18n.t("locales.english"),
+      fr: i18n.t("locales.french"),
     },
-    authProvider: sanctumAuthProvider(axios, {
-      routes: {
-        login: "/auth/login",
-        logout: "/auth/logout",
-        user: "/api/user",
-      },
-    }),
-    dataProvider: laravelDataProvider(axios),
-    resources: [
-      {
-        name: "publishers",
-        translatable: true,
-      },
-      { name: "books", translatable: true },
-      { name: "authors", translatable: true },
-      "reviews",
-      "users",
-    ],
-    resourcesPath: "resources",
-  });
-};
-
-export default admin;
+  },
+  authProvider: sanctumAuthProvider(axios, {
+    routes: {
+      login: "/auth/login",
+      logout: "/auth/logout",
+      user: "/api/user",
+    },
+  }),
+  dataProvider: laravelDataProvider(axios),
+  resources: [
+    {
+      name: "publishers",
+      translatable: true,
+    },
+    { name: "books", translatable: true },
+    { name: "authors", translatable: true },
+    "reviews",
+    "users",
+  ],
+  resourcesPath: "resources",
+});

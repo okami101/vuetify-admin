@@ -2,7 +2,7 @@ import Vue from "vue";
 import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
-import axios from "./plugins/axios";
+
 import "./plugins/base";
 import "./plugins/chartist";
 import vuetify from "./plugins/vuetify";
@@ -28,10 +28,10 @@ Vue.prototype.$statusColor = (s) => {
  * Instancing & mounting Vue
  */
 new Vue({
-  router: router({ i18n }),
+  router,
   store,
   vuetify,
   i18n,
-  admin: admin({ i18n, axios }),
+  admin,
   render: (h) => h(App),
 }).$mount("#app");
