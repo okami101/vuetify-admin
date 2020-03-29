@@ -7,13 +7,7 @@
       :lg="lg"
     >
       <v-hover v-slot:default="{ hover }" :disabled="!clearable">
-        <v-card
-          flat
-          tile
-          class="d-flex"
-          :elevation="hover ? 12 : 2"
-          :class="{ 'on-hover': hover }"
-        >
+        <v-card flat tile class="d-flex" :class="{ 'on-hover': hover }">
           <v-img
             :src="getFileProp(file, src)"
             :alt="title"

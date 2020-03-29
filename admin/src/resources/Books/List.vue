@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <base-material-card icon="mdi-book" :title="$route.meta.title">
     <va-list
       :fields="[
         'isbn',
@@ -134,7 +134,7 @@
         </template>
       </va-datagrid>
     </va-list>
-  </v-card>
+  </base-material-card>
 </template>
 
 <script>

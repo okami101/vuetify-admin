@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <base-material-card icon="mdi-globe-model" :title="$route.meta.title">
     <va-list
       :fields="[
         'name',
@@ -19,7 +19,6 @@
         { source: 'active', type: 'boolean' },
       ]"
       :include="['media', 'books_count']"
-      flat
       v-slot="props"
       v-model="selected"
       :options.sync="options"
@@ -56,7 +55,7 @@
         </template>
       </va-datagrid>
     </va-list>
-  </v-card>
+  </base-material-card>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <base-material-card icon="mdi-comment" :title="$route.meta.title">
     <va-list
       :fields="[
         'book_id',
@@ -85,7 +85,7 @@
         </template>
       </va-datagrid>
     </va-list>
-  </v-card>
+  </base-material-card>
 </template>
 
 <script>
