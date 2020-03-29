@@ -5,6 +5,9 @@
     </va-aside-content>
     <slot name="header">
       <div class="d-flex align-center mb-2">
+        <h1 class="display-2">
+          {{ title }}
+        </h1>
         <v-spacer></v-spacer>
         <slot name="actions"></slot>
       </div>
@@ -16,5 +19,8 @@
 <script>
 export default {
   name: "AppPage",
+  props: {
+    title: String,
+  },
 };
 </script>

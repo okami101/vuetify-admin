@@ -1,7 +1,6 @@
 import Datagrid from "./List/Datagrid";
 
 import Form from "./Layout/Form";
-import TabbedShow from "./Layout/TabbedShow";
 import AsideContent from "./Layout/AsideContent";
 
 import ListButton from "./Buttons/ListButton";
@@ -46,7 +45,6 @@ import FileInput from "./Inputs/FileInput";
 export {
   Datagrid,
   Form,
-  TabbedShow,
   AsideContent,
   ListButton,
   CreateButton,

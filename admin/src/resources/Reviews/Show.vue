@@ -2,7 +2,12 @@
   <va-show>
     <v-row justify="center">
       <v-col lg="4">
-        <v-card>
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
           <v-card-text>
             <va-field source="book" v-slot="{ value }">
               <router-link
@@ -16,7 +21,7 @@
                 <va-select-field source="status" enum></va-select-field>
               </v-chip>
             </va-field>
-            <va-field source="quality">
+            <va-field source="quality" v-if="item">
               {{ item.rating >= 3 ? $t("good") : $t("bad") }}
             </va-field>
             <va-field source="rating" type="rating"></va-field>
@@ -28,7 +33,7 @@
               :options="{ format: 'long' }"
             ></va-field>
           </v-card-text>
-        </v-card>
+        </base-material-card>
       </v-col>
     </v-row>
   </va-show>

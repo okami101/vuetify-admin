@@ -1,5 +1,5 @@
 <template>
-  <va-page>
+  <va-page :title="title">
     <template slot="actions">
       <va-list-button :resource="resource" :item="record"></va-list-button>
       <va-show-button :resource="resource" :item="record"></va-show-button>
@@ -12,7 +12,7 @@
       ></va-delete-button>
       <va-locale-button :resource="resource"></va-locale-button>
     </template>
-    <slot></slot>
+    <slot v-if="record"></slot>
   </va-page>
 </template>
 
@@ -22,5 +22,8 @@ import Item from "vuetify-admin/mixins/item";
 export default {
   name: "Edit",
   mixins: [Item],
+  props: {
+    title: String,
+  },
 };
 </script>

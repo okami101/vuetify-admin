@@ -1,6 +1,6 @@
 <template>
   <va-edit>
-    <reviews-form :id="id" :item="item"></reviews-form>
+    <reviews-form :id="id" :title="title" :item="item"></reviews-form>
   </va-edit>
 </template>
 

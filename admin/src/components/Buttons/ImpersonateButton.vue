@@ -6,6 +6,7 @@
     :show-label="!icon"
     :label="$t('users.impersonate')"
     icon="mdi-lock"
+    color="warning"
     text
   ></va-action-button>
 </template>

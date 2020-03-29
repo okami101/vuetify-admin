@@ -2,7 +2,12 @@
   <va-form :id="id" :item="item" :saving.sync="saving">
     <v-row justify="center">
       <v-col lg="3">
-        <v-card>
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
           <v-card-text>
             <va-text-input source="name"></va-text-input>
             <va-text-input source="email" type="email"></va-text-input>
@@ -30,10 +35,8 @@
               v-if="roles.includes('author')"
             ></va-autocomplete-input>
           </v-card-text>
-          <v-toolbar flat color="grey lighten-4">
-            <va-save-button :saving="saving"></va-save-button>
-          </v-toolbar>
-        </v-card>
+          <va-save-button :saving="saving"></va-save-button>
+        </base-material-card>
       </v-col>
     </v-row>
   </va-form>
@@ -41,7 +44,7 @@
 
 <script>
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   data() {
     return {
       roles: [],

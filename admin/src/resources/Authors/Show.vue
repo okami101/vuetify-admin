@@ -1,5 +1,5 @@
 <template>
-  <va-show>
+  <va-show :title="title">
     <v-row justify="center">
       <v-col lg="4">
         <v-card v-if="item">

@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <users-form :item="item"></users-form>
+    <users-form :title="title" :item="item"></users-form>
   </va-create>
 </template>
 

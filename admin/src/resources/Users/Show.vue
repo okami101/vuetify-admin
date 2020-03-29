@@ -5,7 +5,12 @@
     </template>
     <v-row justify="center">
       <v-col lg="2">
-        <v-card v-if="item">
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
           <v-card-text>
             <va-field source="name"></va-field>
             <va-field source="email"></va-field>
@@ -24,7 +29,7 @@
             <va-field
               source="publishers"
               v-slot="{ value }"
-              v-if="item.roles.includes('editor')"
+              v-if="item && item.roles.includes('editor')"
             >
               <v-chip-group>
                 <v-chip v-for="(item, i) in value" :key="i">
@@ -35,7 +40,7 @@
             <va-field
               source="authors"
               v-slot="{ value }"
-              v-if="item.roles.includes('author')"
+              v-if="item && item.roles.includes('author')"
             >
               <v-chip-group>
                 <v-chip v-for="(item, i) in value" :key="i">
@@ -44,7 +49,7 @@
               </v-chip-group>
             </va-field>
           </v-card-text>
-        </v-card>
+        </base-material-card>
       </v-col>
     </v-row>
   </va-show>

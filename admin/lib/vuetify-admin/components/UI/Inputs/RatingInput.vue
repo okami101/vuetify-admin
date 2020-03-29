@@ -2,6 +2,7 @@
   <va-input v-bind="$props">
     <v-rating
       dense
+      v-bind="commonProps"
       :color="color"
       :background-color="backgroundColor"
       @change="change"

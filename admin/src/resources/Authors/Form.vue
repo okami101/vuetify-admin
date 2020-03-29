@@ -56,9 +56,7 @@
               </v-row>
             </va-array-input>
           </v-card-text>
-          <v-toolbar flat color="grey lighten-4">
-            <va-save-button :saving="saving"></va-save-button>
-          </v-toolbar>
+          <va-save-button :saving="saving"></va-save-button>
         </base-material-card>
       </v-col>
     </v-row>

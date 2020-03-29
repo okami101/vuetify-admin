@@ -80,8 +80,8 @@
               reference="users"
               option-text="name"
             ></va-autocomplete-input>
-            <va-save-button :saving="saving"></va-save-button>
           </v-card-text>
+          <va-save-button :saving="saving"></va-save-button>
         </base-material-card>
       </v-col>
     </v-row>

@@ -1,7 +1,10 @@
 <template>
   <va-edit>
     <authors-form :id="id" :title="title" :item="item"></authors-form>
-    <v-card>
+    <base-material-card
+      icon="mdi-book"
+      :title="$tc('resources.books.name', 10)"
+    >
       <va-list
         resource="books"
         disable-pagination
@@ -73,7 +76,7 @@
           </template>
         </va-datagrid>
       </va-list>
-    </v-card>
+    </base-material-card>
   </va-edit>
 </template>
 

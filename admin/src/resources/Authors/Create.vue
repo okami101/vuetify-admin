@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <authors-form :item="item"></authors-form>
+    <authors-form :title="title" :item="item"></authors-form>
   </va-create>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <va-page>
+  <va-page :title="title">
     <template slot="actions">
       <va-list-button :resource="resource"></va-list-button>
       <slot name="actions"></slot>
@@ -15,5 +15,8 @@ import Resource from "vuetify-admin/mixins/resource";
 export default {
   name: "Create",
   mixins: [Resource],
+  props: {
+    title: String,
+  },
 };
 </script>

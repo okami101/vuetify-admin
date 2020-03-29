@@ -2,7 +2,7 @@
   <va-show>
     <v-row justify="center">
       <v-col lg="8">
-        <va-tabbed-show
+        <base-material-tabs-card
           :tabs="[
             { id: 'attributes', icon: 'mdi-eye' },
             { id: 'summary', icon: 'mdi-text' },
@@ -103,7 +103,7 @@
               <va-file-field source="extract"></va-file-field>
             </va-field>
           </template>
-        </va-tabbed-show>
+        </base-material-tabs-card>
       </v-col>
     </v-row>
   </va-show>

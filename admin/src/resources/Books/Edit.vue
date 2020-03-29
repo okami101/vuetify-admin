@@ -1,7 +1,10 @@
 <template>
   <va-edit>
-    <books-form :id="id" :item="item"></books-form>
-    <v-card>
+    <books-form :id="id" :title="title" :item="item"></books-form>
+    <base-material-card
+      icon="mdi-comment"
+      :title="$tc('resources.reviews.name', 10)"
+    >
       <va-list
         resource="reviews"
         disable-query-string
@@ -66,7 +69,7 @@
           </template>
         </va-datagrid>
       </va-list>
-    </v-card>
+    </base-material-card>
   </va-edit>
 </template>
 

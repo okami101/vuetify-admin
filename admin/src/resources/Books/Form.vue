@@ -2,7 +2,7 @@
   <va-form :id="id" :item="item" :saving.sync="saving">
     <v-row justify="center">
       <v-col lg="8">
-        <va-tabbed-show
+        <base-material-tabs-card
           :tabs="[
             { id: 'attributes', icon: 'mdi-eye' },
             { id: 'summary', icon: 'mdi-text' },
@@ -57,11 +57,9 @@
             <va-rich-text-input source="summary"></va-rich-text-input>
           </template>
           <template v-slot:footer>
-            <v-toolbar flat color="grey lighten-4">
-              <va-save-button :saving="saving"></va-save-button>
-            </v-toolbar>
+            <va-save-button :saving="saving"></va-save-button>
           </template>
-        </va-tabbed-show>
+        </base-material-tabs-card>
       </v-col>
     </v-row>
   </va-form>
@@ -69,7 +67,7 @@
 
 <script>
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   data() {
     return {
       saving: false,

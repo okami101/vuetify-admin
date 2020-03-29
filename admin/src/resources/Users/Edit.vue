@@ -1,6 +1,6 @@
 <template>
   <va-edit>
-    <users-form :id="id" :item="item"></users-form>
+    <users-form :id="id" :title="title" :item="item"></users-form>
   </va-edit>
 </template>
 
