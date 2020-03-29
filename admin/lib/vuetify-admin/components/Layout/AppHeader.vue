@@ -9,7 +9,7 @@
   >
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />
     <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
-      <span class="hidden-sm-and-down">{{ $route.meta.title }}</span>
+      <span class="hidden-sm-and-down">{{ $admin.title }}</span>
     </v-toolbar-title>
     <v-row>
       <v-col

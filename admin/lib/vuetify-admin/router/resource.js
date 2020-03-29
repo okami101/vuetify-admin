@@ -28,7 +28,6 @@ export default ({ store, i18n, resource, title }) => {
     /**
      * Set main and document title
      */
-    //store.commit("layout/setTitle", to.meta.title || this.title);
     document.title = `${to.meta.title} | ${title}`;
 
     return title;

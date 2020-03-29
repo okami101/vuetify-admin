@@ -4,7 +4,10 @@
       <slot name="aside"></slot>
     </va-aside-content>
     <slot name="header">
-      <div class="d-flex mb-2">
+      <div class="d-flex align-center mb-2">
+        <h1 class="display-2 grey--text text--darken-3">
+          {{ $route.meta.title }}
+        </h1>
         <v-spacer></v-spacer>
         <va-list-button :resource="resource" :item="record"></va-list-button>
         <va-show-button :resource="resource" :item="record"></va-show-button>
