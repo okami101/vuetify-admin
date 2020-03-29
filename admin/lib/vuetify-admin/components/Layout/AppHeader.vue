@@ -55,6 +55,7 @@
           </v-list-item>
 
           <v-divider></v-divider>
+
           <v-list-item
             v-for="(item, index) in profileMenu.filter((i) =>
               $admin.can(i.permissions)
@@ -62,6 +63,7 @@
             :key="index"
             link
             :to="item.link"
+            class="mt-2"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>

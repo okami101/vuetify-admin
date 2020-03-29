@@ -3,10 +3,12 @@
     <v-layout align-center justify-center>
       <v-flex :style="{ 'max-width': '350px' }">
         <v-form ref="form" @submit.prevent="validate">
-          <v-card class="elevation-12">
-            <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>{{ $t("login.title") }}</v-toolbar-title>
-            </v-toolbar>
+          <base-material-card class="text-center">
+            <template v-slot:heading>
+              <div class="display-3 text-center">
+                {{ $t("login.title") }}
+              </div>
+            </template>
             <v-card-text>
               <v-text-field
                 :label="$t('login.username')"
@@ -25,17 +27,17 @@
                 required
               ></v-text-field>
             </v-card-text>
-            <v-card-actions>
-              <v-btn
-                :loading="loading"
-                color="primary"
-                block
-                large
-                type="submit"
-                >{{ $t("login.sign_in") }}</v-btn
-              >
-            </v-card-actions>
-          </v-card>
+
+            <v-btn
+              :loading="loading"
+              color="primary"
+              large
+              type="submit"
+              text
+              rounded
+              >{{ $t("login.sign_in") }}</v-btn
+            >
+          </base-material-card>
         </v-form>
       </v-flex>
     </v-layout>
@@ -80,7 +82,13 @@ export default {
 
 <style scoped>
 #login-page {
-  background: url(/login.jpg) center no-repeat;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url(/login.jpg);
+  background-position: center;
   background-size: cover;
 }
 </style>

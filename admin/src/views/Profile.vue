@@ -5,7 +5,7 @@
         <form @submit.prevent="updateAccount" class="mb-5">
           <base-material-card>
             <template v-slot:heading>
-              <div class="display-2 font-weight-light">
+              <div class="display-2">
                 {{ $t("profile.account") }}
               </div>
             </template>
