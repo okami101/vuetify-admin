@@ -1,6 +1,6 @@
 <template>
   <va-action-button
-    v-if="![1, user.id].includes(item.id)"
+    v-if="item && ![1, user.id].includes(item.id)"
     :item="item"
     @click="impersonate"
     :show-label="!icon"
