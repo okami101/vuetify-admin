@@ -1,6 +1,25 @@
 <template>
-  <va-admin :sidebar-menu="sidebarMenu" :profile-menu="profileMenu">
+  <va-admin
+    :header-menu="headerMenu"
+    :footer-menu="footerMenu"
+    :sidebar-menu="sidebarMenu"
+    :profile-menu="profileMenu"
+    app-bar-color="secondary"
+    app-bar-dense
+  >
     <impersonate-message slot="message"></impersonate-message>
+    <template slot="footer">
+      &copy; 2020,
+      <v-icon size="18">
+        mdi-xml
+      </v-icon>
+      with
+      <v-icon size="18">
+        mdi-heart
+      </v-icon>
+      by <a href="https://www.my-awesome-company.com">My Awesome Company</a> for
+      a better web.
+    </template>
   </va-admin>
 </template>
 
@@ -14,6 +33,42 @@ export default {
   },
   data() {
     return {
+      headerMenu: [
+        {
+          link: "/",
+          text: this.$t("menu.dashboard"),
+        },
+        {
+          href: "www.google.fr",
+          text: this.$t("menu.publishers"),
+        },
+        {
+          link: "/authors",
+          text: this.$t("menu.authors"),
+        },
+        {
+          link: "/books",
+          text: this.$t("menu.books"),
+        },
+        {
+          link: "/reviews",
+          text: this.$t("menu.reviews"),
+        },
+      ],
+      footerMenu: [
+        {
+          href: "#",
+          text: "About Us",
+        },
+        {
+          href: "#",
+          text: "Blog",
+        },
+        {
+          href: "#",
+          text: "Licenses",
+        },
+      ],
       profileMenu: [
         {
           icon: "mdi-account",

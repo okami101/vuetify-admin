@@ -3,6 +3,8 @@ import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
 import axios from "./plugins/axios";
+import "./plugins/base";
+import "./plugins/chartist";
 import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 import App from "./App.vue";

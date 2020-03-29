@@ -3,8 +3,12 @@
     <v-row>
       <v-col>
         <form @submit.prevent="updateAccount" class="mb-5">
-          <v-card>
-            <v-card-title>{{ $t("profile.account") }}</v-card-title>
+          <base-material-card>
+            <template v-slot:heading>
+              <div class="display-2 font-weight-light">
+                {{ $t("profile.account") }}
+              </div>
+            </template>
             <v-card-text>
               <v-row>
                 <v-col>
@@ -29,13 +33,17 @@
                 $t("profile.update")
               }}</v-btn>
             </v-card-text>
-          </v-card>
+          </base-material-card>
         </form>
       </v-col>
       <v-col>
         <form @submit.prevent="changePassword">
-          <v-card>
-            <v-card-title>{{ $t("profile.password") }}</v-card-title>
+          <base-material-card color="warning">
+            <template v-slot:heading>
+              <div class="display-2 font-weight-light">
+                {{ $t("profile.password") }}
+              </div>
+            </template>
             <v-card-text>
               <v-row>
                 <v-col>
@@ -73,7 +81,7 @@
                 >{{ $t("profile.update") }}</v-btn
               >
             </v-card-text>
-          </v-card>
+          </base-material-card>
         </form>
       </v-col>
     </v-row>
