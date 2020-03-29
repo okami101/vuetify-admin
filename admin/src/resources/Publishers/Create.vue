@@ -1,6 +1,6 @@
 <template>
   <va-create>
-    <publishers-form :item="item"></publishers-form>
+    <publishers-form :title="title" :item="item"></publishers-form>
   </va-create>
 </template>
 
@@ -8,7 +8,7 @@
 import PublishersForm from "./Form";
 
 export default {
-  props: ["item"],
+  props: ["title", "item"],
   components: {
     PublishersForm,
   },

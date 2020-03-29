@@ -1,5 +1,5 @@
 <template>
-  <base-material-card icon="mdi-book" :title="$route.meta.title">
+  <base-material-card icon="mdi-book" :title="title">
     <va-list
       :fields="[
         'isbn',
@@ -139,6 +139,7 @@
 
 <script>
 export default {
+  props: ["title"],
   data() {
     return {
       options: {},

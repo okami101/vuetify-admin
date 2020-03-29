@@ -47,6 +47,7 @@ export default ({ store, i18n, resource, title }) => {
           return c(`${name}-${action}`, {
             props: {
               id: this.id,
+              title: this.$route.meta.title,
               item: store.state[name].item,
             },
           });

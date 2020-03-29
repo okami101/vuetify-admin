@@ -8,7 +8,7 @@
 import ReviewsForm from "./Form";
 
 export default {
-  props: ["item"],
+  props: ["title", "item"],
   components: {
     ReviewsForm,
   },

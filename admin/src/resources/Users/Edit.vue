@@ -8,7 +8,7 @@
 import UsersForm from "./Form";
 
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   components: {
     UsersForm,
   },

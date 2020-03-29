@@ -1,6 +1,6 @@
 <template>
   <va-edit>
-    <authors-form :id="id" :item="item"></authors-form>
+    <authors-form :id="id" :title="title" :item="item"></authors-form>
     <v-card>
       <va-list
         resource="books"
@@ -81,7 +81,7 @@
 import AuthorsForm from "./Form";
 
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   components: {
     AuthorsForm,
   },

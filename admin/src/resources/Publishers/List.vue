@@ -1,5 +1,5 @@
 <template>
-  <base-material-card icon="mdi-globe-model" :title="$route.meta.title">
+  <base-material-card icon="mdi-globe-model" :title="title">
     <va-list
       :fields="[
         'name',
@@ -60,6 +60,7 @@
 
 <script>
 export default {
+  props: ["title"],
   data() {
     return {
       options: {},

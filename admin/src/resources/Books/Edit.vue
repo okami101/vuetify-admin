@@ -74,7 +74,7 @@
 import BooksForm from "./Form";
 
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   components: {
     BooksForm,
   },

@@ -1,5 +1,5 @@
 <template>
-  <base-material-card icon="mdi-account" :title="$route.meta.title">
+  <base-material-card icon="mdi-account" :title="title">
     <va-list
       :fields="['name', 'description']"
       :filters="[
@@ -60,3 +60,9 @@
     </va-list>
   </base-material-card>
 </template>
+
+<script>
+export default {
+  props: ["title"],
+};
+</script>

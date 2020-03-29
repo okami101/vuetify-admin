@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <base-material-card icon="mdi-account" :title="title">
     <va-list
       :fields="['name', 'email', 'active', 'roles', 'created_at', 'updated_at']"
       :filters="[
@@ -14,7 +14,6 @@
           },
         },
       ]"
-      flat
       v-model="selected"
       :options.sync="options"
     >
@@ -88,7 +87,7 @@
         </va-datagrid>
       </template>
     </va-list>
-  </v-card>
+  </base-material-card>
 </template>
 
 <script>
@@ -98,6 +97,7 @@ export default {
   components: {
     ImpersonateButton,
   },
+  props: ["title"],
   data() {
     return {
       options: {},

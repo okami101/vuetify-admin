@@ -2,7 +2,12 @@
   <va-show>
     <v-row justify="center">
       <v-col sm="6">
-        <v-card>
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
           <v-card-text>
             <va-field source="logo">
               <va-image-field
@@ -58,7 +63,7 @@
               ></va-image-field>
             </va-field>
           </v-card-text>
-        </v-card>
+        </base-material-card>
       </v-col>
     </v-row>
   </va-show>
@@ -66,6 +71,6 @@
 
 <script>
 export default {
-  props: ["item"],
+  props: ["title", "item"],
 };
 </script>

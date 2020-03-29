@@ -1,5 +1,5 @@
 <template>
-  <va-page :title="title">
+  <va-page>
     <template slot="actions">
       <va-list-button :resource="resource" :item="record"></va-list-button>
       <va-edit-button :resource="resource" :item="record"></va-edit-button>
@@ -22,8 +22,5 @@ import Item from "vuetify-admin/mixins/item";
 export default {
   name: "Show",
   mixins: [Item],
-  props: {
-    title: String,
-  },
 };
 </script>

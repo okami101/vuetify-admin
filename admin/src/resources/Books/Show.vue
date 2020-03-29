@@ -111,6 +111,6 @@
 
 <script>
 export default {
-  props: ["item"],
+  props: ["title", "item"],
 };
 </script>

@@ -8,7 +8,7 @@
 import AuthorsForm from "./Form";
 
 export default {
-  props: ["item"],
+  props: ["title", "item"],
   components: {
     AuthorsForm,
   },

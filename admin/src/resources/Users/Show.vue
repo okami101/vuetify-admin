@@ -54,7 +54,7 @@
 import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
 
 export default {
-  props: ["item"],
+  props: ["title", "item"],
   components: {
     ImpersonateButton,
   },

@@ -1,5 +1,5 @@
 <template>
-  <base-material-card icon="mdi-comment" :title="$route.meta.title">
+  <base-material-card icon="mdi-comment" :title="title">
     <va-list
       :fields="[
         'book_id',
@@ -90,6 +90,7 @@
 
 <script>
 export default {
+  props: ["title"],
   data() {
     return {
       options: {},

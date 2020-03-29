@@ -1,7 +1,10 @@
 <template>
   <va-edit>
-    <publishers-form :id="id" :item="item"></publishers-form>
-    <v-card>
+    <publishers-form :id="id" :title="title" :item="item"></publishers-form>
+    <base-material-card
+      icon="mdi-book"
+      :title="$tc('resources.books.name', 10)"
+    >
       <va-list
         resource="books"
         disable-query-string
@@ -99,7 +102,7 @@
           </template>
         </va-datagrid>
       </va-list>
-    </v-card>
+    </base-material-card>
   </va-edit>
 </template>
 
@@ -107,7 +110,7 @@
 import PublishersForm from "./Form";
 
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   components: {
     PublishersForm,
   },
