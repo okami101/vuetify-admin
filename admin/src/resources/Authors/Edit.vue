@@ -5,6 +5,7 @@
       <va-list
         resource="books"
         disable-pagination
+        disable-query-string
         hide-header
         :fields="[
           'isbn',

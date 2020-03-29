@@ -22,6 +22,10 @@
     "password": "Mot de passe",
     "sign_in": "Se connecter"
   },
+  "pages": {
+    "authors_show": "Auteur {name} #{id}",
+    "authors_edit": "Edition auteur {name} #{id}"
+  },
   "profile": {
     "account": "Mon compte",
     "password": "Mot de passe",

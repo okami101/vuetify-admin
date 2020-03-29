@@ -8,7 +8,7 @@
     :dense="dense"
   >
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />
-    <v-toolbar-title class="ml-0 pl-4 mr-12">
+    <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
       <span class="hidden-sm-and-down">{{ $route.meta.title }}</span>
     </v-toolbar-title>
     <v-row>
