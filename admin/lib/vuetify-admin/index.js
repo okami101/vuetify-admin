@@ -15,6 +15,9 @@ import resourceCrudRoutes from "./router/resource";
 
 export default class VuetifyAdmin {
   constructor({
+    router,
+    store,
+    i18n,
     title,
     locales,
     authProvider,
@@ -30,8 +33,6 @@ export default class VuetifyAdmin {
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
     this.resourcesPath = resourcesPath;
-    this.loading = false;
-    this.loaded = false;
 
     /**
      * Format usable resources object
@@ -74,13 +75,6 @@ export default class VuetifyAdmin {
           });
       });
     }
-  }
-  init({ router, store, i18n }) {
-    if (this.loaded || this.loading) {
-      return;
-    }
-
-    this.loading = true;
 
     /**
      * Load i18n locales
@@ -148,10 +142,11 @@ export default class VuetifyAdmin {
           (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
         )
       );
+
     /**
-     * Each navigation trigger function
+     * Check Auth after each navigation
      */
-    const beforeEachNavigation = (to) => {
+    router.beforeEach((to, from, next) => {
       /**
        * Check and reload authenticated user with permissions
        * after each navigation
@@ -169,24 +164,9 @@ export default class VuetifyAdmin {
       document.title = to.meta.title
         ? `${to.meta.title} | ${this.title}`
         : this.title;
-    };
-
-    /**
-     * Check Auth after each navigation
-     */
-    router.beforeEach((to, from, next) => {
-      /**
-       * Main title
-       */
-      beforeEachNavigation(to);
 
       next();
     });
-
-    /**
-     * Init navigation
-     */
-    beforeEachNavigation(router.currentRoute);
 
     /**
      * Recheck auth on app visible (switching tabs,...)
@@ -196,12 +176,6 @@ export default class VuetifyAdmin {
         store.dispatch("auth/checkAuth");
       }
     });
-
-    /**
-     * Admin app is loaded
-     */
-    this.loading = false;
-    this.loaded = true;
   }
 }
 
@@ -216,19 +190,7 @@ VuetifyAdmin.install = (Vue) => {
 
   Vue.mixin({
     beforeCreate() {
-      let router = this.$router;
-      let store = this.$store;
-      let i18n = this.$i18n;
-      let admin = this.$root.$options.admin;
-
-      if (router && store && i18n) {
-        /**
-         * Instantiate admin when main dependencies are availables
-         * Executed only once with loaded prop
-         */
-        admin.init({ router, store, i18n });
-      }
-      this.$admin = admin;
+      this.$admin = this.$root.$options.admin;
     },
   });
 };
