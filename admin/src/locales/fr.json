@@ -73,6 +73,12 @@
   "resources": {
     "publishers": {
       "name": "Éditeur | Éditeurs",
+      "titles": {
+        "list": "Liste des éditeurs",
+        "show": "Détail de l'éditeur {name}",
+        "create": "Créer un nouvel éditeur",
+        "edit": "Edition de l'éditeur {name}"
+      },
       "fields": {
         "id": "ID",
         "name": "Nom",
@@ -109,6 +115,12 @@
     },
     "authors": {
       "name": "Auteur | Auteurs",
+      "titles": {
+        "list": "Liste des auteurs",
+        "show": "Détail de l'auteur {name}",
+        "create": "Créer un nouvel auteur",
+        "edit": "Edition de l'auteur {name}"
+      },
       "fields": {
         "id": "ID",
         "name": "Nom",
@@ -125,6 +137,12 @@
     },
     "books": {
       "name": "Livre | Livres",
+      "titles": {
+        "list": "Liste des livres",
+        "show": "Détail du livre {title}",
+        "create": "Créer un nouveau livre",
+        "edit": "Edition du livre {title}"
+      },
       "fields": {
         "id": "ID",
         "isbn": "ISBN",
@@ -169,6 +187,12 @@
     },
     "reviews": {
       "name": "Commentaire | Commentaires",
+      "titles": {
+        "list": "Liste des commentaires",
+        "show": "Détail du commentaire {author}",
+        "create": "Créer un nouveu commentaire",
+        "edit": "Edition du commentaire {author}"
+      },
       "fields": {
         "id": "ID",
         "status": "Statut",
@@ -191,6 +215,12 @@
     },
     "users": {
       "name": "Utilisateur | Utilisateurs",
+      "titles": {
+        "list": "Liste des utilisateurs",
+        "show": "Détail de l'utilisateur {name}",
+        "create": "Créer un nouvel utilisateur",
+        "edit": "Edition de l'utilisateur {name}"
+      },
       "fields": {
         "id": "ID",
         "name": "Nom",

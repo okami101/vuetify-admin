@@ -1,28 +1,31 @@
 export default ({ store, i18n, resource, title }) => {
-  let { name, actions, translatable, titles = {} } = resource;
+  let { name, actions, translatable } = resource;
 
   const setTitle = (to, action, item = null) => {
+    let nameKey = `resources.${name}.name`;
+    let titleKey = `resources.${name}.titles.${action}`;
+
     if (item) {
       /**
        * Build default main title with item
        */
-      to.meta.title = titles[action]
-        ? titles[action](item)
+      to.meta.title = i18n.te(titleKey)
+        ? `${i18n.t(titleKey, item)} #${to.params.id}`
         : i18n.t(`va.pages.${action}`, {
-            resource: i18n.tc(`resources.${name}.name`, 1).toLowerCase(),
+            resource: i18n.tc(nameKey, 1).toLowerCase(),
             id: to.params.id,
           });
     } else {
       /**
        * Build default main title
        */
-      to.meta.title =
-        titles[action] ||
-        i18n.t(`va.pages.${action}`, {
-          resource: i18n
-            .tc(`resources.${name}.name`, action === "list" ? 10 : 1)
-            .toLowerCase(),
-        });
+      to.meta.title = i18n.te(titleKey)
+        ? i18n.t(titleKey)
+        : i18n.t(`va.pages.${action}`, {
+            resource: i18n
+              .tc(nameKey, action === "list" ? 10 : 1)
+              .toLowerCase(),
+          });
     }
 
     /**

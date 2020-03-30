@@ -46,10 +46,6 @@ export default new VuetifyAdmin({
     {
       name: "authors",
       translatable: true,
-      titles: {
-        show: ({ id, name }) => i18n.t("pages.authors_show", { name, id }),
-        edit: ({ id, name }) => i18n.t("pages.authors_edit", { name, id }),
-      },
     },
     "reviews",
     "users",
