@@ -1,67 +1,44 @@
 <template>
-  <va-show>
-    <template v-slot:actions>
-      <impersonate-button :item="item"></impersonate-button>
-    </template>
-    <v-row justify="center">
-      <v-col lg="2">
-        <base-material-card>
-          <template v-slot:heading>
-            <div class="display-2">
-              {{ title }}
-            </div>
-          </template>
-          <v-card-text>
-            <va-field source="name"></va-field>
-            <va-field source="email"></va-field>
-            <va-field source="active" type="boolean"></va-field>
-            <va-field source="roles" v-slot="{ value }">
-              <v-chip-group>
-                <v-chip v-for="(item, i) in value" :key="i">
-                  <va-select-field
-                    source="roles"
-                    :item="item"
-                    enum
-                  ></va-select-field>
-                </v-chip>
-              </v-chip-group>
-            </va-field>
-            <va-field
-              source="publishers"
-              v-slot="{ value }"
-              v-if="item && item.roles.includes('editor')"
-            >
-              <v-chip-group>
-                <v-chip v-for="(item, i) in value" :key="i">
-                  {{ item.name }}
-                </v-chip>
-              </v-chip-group>
-            </va-field>
-            <va-field
-              source="authors"
-              v-slot="{ value }"
-              v-if="item && item.roles.includes('author')"
-            >
-              <v-chip-group>
-                <v-chip v-for="(item, i) in value" :key="i">
-                  {{ item.name }}
-                </v-chip>
-              </v-chip-group>
-            </va-field>
-          </v-card-text>
-        </base-material-card>
-      </v-col>
-    </v-row>
-  </va-show>
+  <div>
+    <va-field source="name" :item="item"></va-field>
+    <va-field source="email" :item="item"></va-field>
+    <va-field source="active" type="boolean" :item="item"></va-field>
+    <va-field source="roles" v-slot="{ value }" :item="item">
+      <v-chip-group>
+        <v-chip v-for="(item, i) in value" :key="i">
+          <va-select-field source="roles" :item="item" enum></va-select-field>
+        </v-chip>
+      </v-chip-group>
+    </va-field>
+    <va-field
+      source="publishers"
+      v-slot="{ value }"
+      v-if="item && item.roles.includes('editor')"
+      :item="item"
+    >
+      <v-chip-group>
+        <v-chip v-for="(item, i) in value" :key="i">
+          {{ item.name }}
+        </v-chip>
+      </v-chip-group>
+    </va-field>
+    <va-field
+      source="authors"
+      v-slot="{ value }"
+      v-if="item && item.roles.includes('author')"
+      :item="item"
+    >
+      <v-chip-group>
+        <v-chip v-for="(item, i) in value" :key="i">
+          {{ item.name }}
+        </v-chip>
+      </v-chip-group>
+    </va-field>
+  </div>
 </template>
 
 <script>
-import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
-
 export default {
-  props: ["title", "item"],
-  components: {
-    ImpersonateButton,
-  },
+  props: ["item"],
 };
 </script>

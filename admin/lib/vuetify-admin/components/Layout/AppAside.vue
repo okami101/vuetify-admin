@@ -7,11 +7,16 @@
     :width="400"
   >
     <div class="pa-4">
-      <v-btn class="close" icon @click="close()">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
+      <div class="d-flex align-center">
+        <h3 class="display-2">
+          <portal-target name="aside-title"></portal-target>
+        </h3>
+        <v-btn class="close" icon @click="close()">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </div>
       <div class="content">
-        <portal-target name="aside"></portal-target>
+        <portal-target name="aside-content"></portal-target>
       </div>
     </div>
   </v-navigation-drawer>

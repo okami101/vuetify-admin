@@ -1,95 +1,94 @@
 <template>
-  <div>
-    <va-aside-content>
-      <slot name="aside" v-bind="{ items, total, selected: value }"></slot>
-    </va-aside-content>
-    <v-data-iterator
-      :items="items"
-      :server-items-length="total"
-      :loading="loading"
-      :options.sync="currentOptions"
-      :value="value"
-      :items-per-page="itemsPerPage"
-      :hide-default-footer="disablePagination"
-      :footer-props="{
-        'items-per-page-options': rowsPerPage,
-        showFirstLastPage: true,
-      }"
-      @input="(selected) => $emit('input', selected)"
-    >
-      <template v-slot:header v-if="!hideHeader">
-        <v-toolbar flat color="blue lighten-5" v-if="value.length">
-          {{ $tc("va.datagrid.selected_items", value.length) }}
-          <v-spacer></v-spacer>
-          <div>
-            <slot name="bulk.actions"></slot>
-            <va-bulk-delete-button
-              :resource="resource"
-              :value="value"
-              @input="(value) => $emit('input', value)"
-            ></va-bulk-delete-button>
-          </div>
-        </v-toolbar>
-        <v-toolbar flat v-else>
-          <form-filter
-            :filters="getEnabledFilters"
-            @remove="disableFilter"
-            v-model="currentFilter"
-          >
-            <template
-              v-for="filter in getEnabledFilters"
-              v-slot:[filter.source]="props"
-            >
-              <slot :name="`filter.${filter.source}`" v-bind="props"></slot>
-            </template>
-          </form-filter>
-          <v-spacer></v-spacer>
-          <v-menu offset-y v-if="getDisabledFilters.length">
-            <template v-slot:activator="{ on }">
-              <v-btn text color="success" v-on="on">
-                <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
-                {{ $t("va.datagrid.add_filter") }}
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(filter, index) in getDisabledFilters"
-                :key="index"
-                @click="enableFilter(filter)"
-              >
-                <v-list-item-title>{{ filter.label }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-          <va-create-button :resource="resource"></va-create-button>
-          <slot name="actions"></slot>
-          <va-export-button
+  <v-data-iterator
+    :items="items"
+    :server-items-length="total"
+    :loading="loading"
+    :options.sync="currentOptions"
+    :value="value"
+    :items-per-page="itemsPerPage"
+    :hide-default-footer="disablePagination"
+    :footer-props="{
+      'items-per-page-options': rowsPerPage,
+      showFirstLastPage: true,
+    }"
+    @input="(selected) => $emit('input', selected)"
+  >
+    <template v-slot:header v-if="!hideHeader">
+      <v-toolbar flat color="blue lighten-5" v-if="value.length">
+        {{ $tc("va.datagrid.selected_items", value.length) }}
+        <v-spacer></v-spacer>
+        <div>
+          <slot name="bulk.actions"></slot>
+          <va-bulk-delete-button
             :resource="resource"
-            v-if="exporter"
-            text
-            :options="options"
-            :filter="{ ...filter, ...currentFilter }"
-          ></va-export-button>
-        </v-toolbar>
-      </template>
-      <template v-slot:default>
-        <slot
-          v-bind="{ resource, items, loading, itemsPerPage }"
-          :server-items-length="total"
+            :value="value"
+            @input="(value) => $emit('input', value)"
+          ></va-bulk-delete-button>
+        </div>
+      </v-toolbar>
+      <v-toolbar flat v-else>
+        <form-filter
+          :filters="getEnabledFilters"
+          @remove="disableFilter"
+          v-model="currentFilter"
         >
-        </slot>
-      </template>
-      <template v-slot:loading>
-        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
-      </template>
-      <template v-slot:no-data>
-        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
-      </template>
-      <template v-slot:no-results>
-        <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
-      </template>
-    </v-data-iterator>
-  </div>
+          <template
+            v-for="filter in getEnabledFilters"
+            v-slot:[filter.source]="props"
+          >
+            <slot :name="`filter.${filter.source}`" v-bind="props"></slot>
+          </template>
+        </form-filter>
+        <v-spacer></v-spacer>
+        <v-menu offset-y v-if="getDisabledFilters.length">
+          <template v-slot:activator="{ on }">
+            <v-btn text color="success" v-on="on">
+              <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
+              {{ $t("va.datagrid.add_filter") }}
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(filter, index) in getDisabledFilters"
+              :key="index"
+              @click="enableFilter(filter)"
+            >
+              <v-list-item-title>{{ filter.label }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <va-create-button
+          :resource="resource"
+          :disable-route="disableCreateRoute"
+          @click="$emit('create')"
+        ></va-create-button>
+        <slot name="actions"></slot>
+        <va-export-button
+          :resource="resource"
+          v-if="exporter"
+          text
+          :options="options"
+          :filter="{ ...filter, ...currentFilter }"
+        ></va-export-button>
+      </v-toolbar>
+    </template>
+    <template v-slot:default>
+      <slot
+        v-bind="{ resource, items, loading, itemsPerPage }"
+        :server-items-length="total"
+      >
+      </slot>
+    </template>
+    <template v-slot:loading>
+      <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+    </template>
+    <template v-slot:no-data>
+      <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+    </template>
+    <template v-slot:no-results>
+      <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+    </template>
+  </v-data-iterator>
 </template>
 
 <script>
@@ -159,6 +158,7 @@ export default {
     disableQueryString: Boolean,
     disablePagination: Boolean,
     hideHeader: Boolean,
+    disableCreateRoute: Boolean,
   },
   data() {
     return {

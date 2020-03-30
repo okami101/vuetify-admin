@@ -1,108 +1,174 @@
 <template>
-  <base-material-card icon="mdi-account" :title="title">
-    <va-list
-      :fields="['name', 'email', 'active', 'roles', 'created_at', 'updated_at']"
-      :filters="[
-        'q',
-        { source: 'active', type: 'boolean' },
-        {
-          source: 'roles',
-          type: 'select',
-          options: {
-            multiple: true,
-            enum: true,
+  <div>
+    <va-aside v-model="asideOpened" :title="asideTitle">
+      <users-show v-if="show" :item="item"></users-show>
+      <users-form v-else :id="id" :item="item"></users-form>
+    </va-aside>
+    <base-material-card icon="mdi-account" :title="title">
+      <va-list
+        :fields="[
+          'name',
+          'email',
+          'active',
+          'roles',
+          'created_at',
+          'updated_at',
+        ]"
+        :filters="[
+          'q',
+          { source: 'active', type: 'boolean' },
+          {
+            source: 'roles',
+            type: 'select',
+            options: {
+              multiple: true,
+              enum: true,
+            },
           },
-        },
-      ]"
-      v-model="selected"
-      :options.sync="options"
-    >
-      <template v-slot:bulk.actions>
-        <va-bulk-action-button
-          resource="users"
-          v-model="selected"
-          :label="$t('users.enable')"
-          icon="mdi-publish"
-          color="success"
-          :action="{ active: true }"
-          show-label
-          text
-        ></va-bulk-action-button>
-        <va-bulk-action-button
-          resource="users"
-          v-model="selected"
-          :label="$t('users.disable')"
-          icon="mdi-download"
-          color="orange"
-          :action="{ active: false }"
-          show-label
-          text
-        ></va-bulk-action-button>
-      </template>
-      <template v-slot="props">
-        <va-datagrid
-          :fields="[
-            'name',
-            { source: 'email', type: 'email' },
-            { source: 'active', type: 'boolean', editable: true },
-            'roles',
-            {
-              source: 'created_at',
-              type: 'date',
-              options: { format: 'long' },
-            },
-            {
-              source: 'updated_at',
-              type: 'date',
-              options: { format: 'long' },
-            },
-          ]"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-          <template v-slot:name="{ item, value }">
-            <router-link :to="{ name: 'users_show', params: { id: item.id } }">
+        ]"
+        v-model="selected"
+        :options.sync="options"
+        disable-create-route
+        @create="onCreate"
+      >
+        <template v-slot:bulk.actions>
+          <va-bulk-action-button
+            resource="users"
+            v-model="selected"
+            :label="$t('users.enable')"
+            icon="mdi-publish"
+            color="success"
+            :action="{ active: true }"
+            show-label
+            text
+          ></va-bulk-action-button>
+          <va-bulk-action-button
+            resource="users"
+            v-model="selected"
+            :label="$t('users.disable')"
+            icon="mdi-download"
+            color="orange"
+            :action="{ active: false }"
+            show-label
+            text
+          ></va-bulk-action-button>
+        </template>
+        <template v-slot="props">
+          <va-datagrid
+            :fields="[
+              'name',
+              { source: 'email', type: 'email' },
+              { source: 'active', type: 'boolean', editable: true },
+              'roles',
+              {
+                source: 'created_at',
+                type: 'date',
+                options: { format: 'long' },
+              },
+              {
+                source: 'updated_at',
+                type: 'date',
+                options: { format: 'long' },
+              },
+            ]"
+            v-bind="props"
+            v-model="selected"
+            :options.sync="options"
+            disable-show-route
+            disable-edit-route
+            @show="onShow"
+            @edit="onEdit"
+            @clone="onClone"
+          >
+            <template v-slot:name="{ item, value }">
               {{ value }}
-            </router-link>
-          </template>
-          <template v-slot:roles="{ value }">
-            <v-chip-group column>
-              <v-chip color="yellow" small v-for="(item, i) in value" :key="i">
-                <va-select-field
-                  source="roles"
-                  :item="item"
-                  enum
-                ></va-select-field>
-              </v-chip>
-            </v-chip-group>
-          </template>
-          <template v-slot:item.actions="{ resource, item }">
-            <impersonate-button
-              :resource="resource"
-              :item="item"
-              icon
-            ></impersonate-button>
-          </template>
-        </va-datagrid>
-      </template>
-    </va-list>
-  </base-material-card>
+            </template>
+            <template v-slot:roles="{ value }">
+              <v-chip-group column>
+                <v-chip
+                  color="yellow"
+                  small
+                  v-for="(item, i) in value"
+                  :key="i"
+                >
+                  <va-select-field
+                    source="roles"
+                    :item="item"
+                    enum
+                  ></va-select-field>
+                </v-chip>
+              </v-chip-group>
+            </template>
+            <template v-slot:item.actions="{ resource, item }">
+              <impersonate-button
+                :resource="resource"
+                :item="item"
+                icon
+              ></impersonate-button>
+            </template>
+          </va-datagrid>
+        </template>
+      </va-list>
+    </base-material-card>
+  </div>
 </template>
 
 <script>
+import UsersShow from "./Show";
+import UsersForm from "./Form";
 import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
 
 export default {
   components: {
+    UsersShow,
+    UsersForm,
     ImpersonateButton,
   },
   props: ["title"],
   data() {
     return {
+      asideOpened: false,
+      asideTitle: null,
+      id: null,
+      item: null,
+      show: false,
       options: {},
       selected: [],
     };
+  },
+  methods: {
+    onCreate() {
+      this.asideOpened = true;
+      this.asideTitle = this.$t("resources.users.titles.create");
+      this.id = null;
+      this.show = false;
+      this.item = null;
+    },
+    onShow(item) {
+      this.asideOpened = true;
+      this.asideTitle = `${this.$t("resources.users.titles.show", item)} #${
+        item.id
+      }`;
+      this.id = item.id;
+      this.show = true;
+      this.item = item;
+    },
+    onEdit(item) {
+      this.asideOpened = true;
+      this.asideTitle = `${this.$t("resources.users.titles.edit", item)} #${
+        item.id
+      }`;
+      this.id = item.id;
+      this.show = false;
+      this.item = item;
+    },
+    onClone(item) {
+      this.asideOpened = true;
+      this.asideTitle = this.$t("resources.users.titles.create");
+      this.id = null;
+      this.show = false;
+      this.item = item;
+    },
   },
 };
 </script>

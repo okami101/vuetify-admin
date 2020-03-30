@@ -1,13 +1,16 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
+  <v-tooltip
+    bottom
+    :disabled="!icon"
+    v-if="item && (disableRoute || hasAction('edit'))"
+  >
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="item && hasAction('edit')"
         :icon="icon"
         text
         exact
-        :to="`/${resource}/${item.id}/edit`"
-        @click.stop="$emit('edit', item)"
+        :to="route"
+        @click.stop="$emit('click', item)"
         :color="color"
         v-on="on"
       >
@@ -29,9 +32,18 @@ export default {
   mixins: [Item],
   props: {
     icon: Boolean,
+    disableRoute: Boolean,
     color: {
       type: String,
       default: "blue",
+    },
+  },
+  computed: {
+    route() {
+      if (this.disableRoute) {
+        return null;
+      }
+      return `/${this.resource}/${this.item.id}/edit`;
     },
   },
 };

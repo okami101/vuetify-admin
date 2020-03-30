@@ -12,7 +12,7 @@ let {
   DELETE_MANY,
 } = methods;
 
-export default ({ provider, resource, i18n, app }) => {
+export default ({ provider, resource, i18n }) => {
   let { name } = resource;
 
   Object.values(methods).forEach(

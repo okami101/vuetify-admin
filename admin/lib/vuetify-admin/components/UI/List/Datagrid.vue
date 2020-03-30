@@ -105,12 +105,16 @@
             :resource="resource"
             :item="item"
             icon
+            :disable-route="disableShowRoute"
+            @click="$emit('show', item)"
           ></va-show-button>
           <va-edit-button
             v-if="rowClick !== 'edit'"
             :resource="resource"
             :item="item"
             icon
+            :disable-route="disableEditRoute"
+            @click="$emit('edit', item)"
           ></va-edit-button>
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
           <va-delete-button
@@ -122,6 +126,8 @@
             :resource="resource"
             :item="item"
             icon
+            :disable-route="disableEditRoute"
+            @click="$emit('clone', item)"
           ></va-clone-button>
         </slot>
       </div>
@@ -178,6 +184,8 @@ export default {
     serverItemsLength: Number,
     disableSelect: Boolean,
     disableSort: Boolean,
+    disableShowRoute: Boolean,
+    disableEditRoute: Boolean,
   },
   computed: {
     headers() {
