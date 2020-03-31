@@ -3,12 +3,7 @@
     <v-row>
       <v-col>
         <form @submit.prevent="updateAccount" class="mb-5">
-          <base-material-card>
-            <template v-slot:heading>
-              <div class="display-2">
-                {{ $t("profile.account") }}
-              </div>
-            </template>
+          <base-material-card icon="mdi-account" :title="$t('profile.account')">
             <v-card-text>
               <v-row>
                 <v-col>
@@ -38,12 +33,11 @@
       </v-col>
       <v-col>
         <form @submit.prevent="changePassword">
-          <base-material-card color="warning">
-            <template v-slot:heading>
-              <div class="display-2 font-weight-light">
-                {{ $t("profile.password") }}
-              </div>
-            </template>
+          <base-material-card
+            color="warning"
+            icon="mdi-lock"
+            :title="$t('profile.password')"
+          >
             <v-card-text>
               <v-row>
                 <v-col>
@@ -76,7 +70,7 @@
               </v-row>
               <v-btn
                 :loading="passwordChanging"
-                color="primary"
+                color="warning"
                 type="submit"
                 >{{ $t("profile.update") }}</v-btn
               >
