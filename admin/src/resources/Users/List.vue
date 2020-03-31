@@ -30,7 +30,7 @@
         v-model="selected"
         :options.sync="options"
         disable-create-route
-        @create="onAction('create')"
+        @action="onAction"
       >
         <template v-slot:bulk.actions>
           <va-bulk-action-button
@@ -77,9 +77,7 @@
             :options.sync="options"
             disable-show-route
             disable-edit-route
-            @show="(item) => onAction('show', item)"
-            @edit="(item) => onAction('edit', item)"
-            @clone="(item) => onAction('create', item)"
+            @item-action="onAction"
           >
             <template v-slot:name="{ item, value }">
               {{ value }}
@@ -118,7 +116,6 @@
 import UsersShow from "./Show";
 import UsersForm from "./Form";
 import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
-import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -139,28 +136,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions({
-      getOne: "api/getOne",
-    }),
-    async onAction(action, item = null) {
-      let titleKey = `resources.users.titles.${action}`;
-      let hasItem = ["show", "edit"].includes(action);
-
-      this.asideTitle = hasItem
-        ? `${this.$t(titleKey, item)} #${item.id}`
-        : this.$t(titleKey);
-      this.id = hasItem ? item.id : null;
+    async onAction({ action, title, id, item }) {
+      this.asideTitle = title;
+      this.id = id;
       this.show = action === "show";
-
-      if (item) {
-        let { data } = await this.getOne({
-          resource: "users",
-          params: { id: item.id },
-        });
-        this.item = data;
-      } else {
-        this.item = null;
-      }
+      this.item = item;
       this.asideOpened = true;
     },
     onSaved() {

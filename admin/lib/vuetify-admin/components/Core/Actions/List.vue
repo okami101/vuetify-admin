@@ -60,7 +60,7 @@
         <va-create-button
           :resource="resource"
           :disable-route="disableCreateRoute"
-          @click="$emit('create')"
+          @click="onCreate"
         ></va-create-button>
         <slot name="actions"></slot>
         <va-export-button
@@ -399,6 +399,11 @@ export default {
     },
     async onDelete(item) {
       this.fetchData();
+    },
+    onCreate() {
+      let title = this.$t("resources.users.titles.create");
+
+      this.$emit("action", { action: "create", title });
     },
   },
 };

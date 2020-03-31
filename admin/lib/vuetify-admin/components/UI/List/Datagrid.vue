@@ -106,7 +106,7 @@
             :item="item"
             icon
             :disable-route="disableShowRoute"
-            @click="$emit('show', item)"
+            @click="(item) => onAction('show', item)"
           ></va-show-button>
           <va-edit-button
             v-if="rowClick !== 'edit'"
@@ -114,20 +114,21 @@
             :item="item"
             icon
             :disable-route="disableEditRoute"
-            @click="$emit('edit', item)"
+            @click="(item) => onAction('edit', item)"
           ></va-edit-button>
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
           <va-delete-button
             :resource="resource"
             :item="item"
             icon
+            @deleted="$emit('deleted', item)"
           ></va-delete-button>
           <va-clone-button
             :resource="resource"
             :item="item"
             icon
             :disable-route="disableEditRoute"
-            @click="$emit('clone', item)"
+            @click="(item) => onAction('create', item)"
           ></va-clone-button>
         </slot>
       </div>
@@ -142,7 +143,8 @@
 
 <script>
 import List from "vuetify-admin/mixins/list";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
+import capitalize from "lodash/capitalize";
 
 export default {
   name: "Datagrid",
@@ -230,6 +232,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      getOne: "api/getOne",
+    }),
     getDefaultSort(field) {
       return !["boolean", "function", "reference", "select", "image"].includes(
         field.type
@@ -250,6 +255,30 @@ export default {
           this.$router.push(`/${this.resource}/${item.id}/edit`);
           break;
       }
+    },
+    async onAction(action, item) {
+      if (!this[`disable${capitalize(action)}Route`]) {
+        return;
+      }
+
+      let titleKey = `resources.users.titles.${action}`;
+      let hasItem = action !== "create";
+
+      let title = hasItem
+        ? `${this.$t(titleKey, item)} #${item.id}`
+        : this.$t(titleKey);
+      let id = hasItem ? item.id : null;
+
+      /**
+       * Get freshed item
+       */
+      let { data } = await this.getOne({
+        resource: "users",
+        params: { id: item.id },
+      });
+      this.item = data;
+
+      this.$emit("item-action", { action, title, id, item });
     },
   },
 };
