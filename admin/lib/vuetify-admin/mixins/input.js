@@ -46,7 +46,7 @@ export default {
   },
   mounted() {
     EventBus.$on("form-errors", ({ name, errors }) => {
-      if (name === this.formName) {
+      if (name === this.formName && errors) {
         this.errorMessages = errors[this.uniqueFormId] || [];
       }
     });

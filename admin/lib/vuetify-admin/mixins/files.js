@@ -4,8 +4,7 @@ import get from "lodash/get";
 
 export default {
   inject: {
-    formEdit: { default: true },
-    formName: { default: undefined },
+    formData: { default: undefined },
   },
   mixins: [Field],
   props: {
@@ -53,7 +52,7 @@ export default {
       /**
        * Only used on edit form
        */
-      if (!this.value || !this.formEdit) {
+      if (!this.value || (this.formData && !this.formData.edit)) {
         return [];
       }
 
