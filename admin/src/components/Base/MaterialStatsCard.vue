@@ -32,15 +32,9 @@
 </template>
 
 <script>
-import Card from "./Card";
-
 export default {
   name: "MaterialStatsCard",
-
-  inheritAttrs: false,
-
   props: {
-    ...Card.props,
     icon: {
       type: String,
       required: true,
