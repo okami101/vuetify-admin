@@ -4,9 +4,9 @@
     :filled="filled"
     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
     :type="show ? 'text' : 'password'"
-    @input="(val) => (input = val)"
     @click:append="show = !show"
     @change="change"
+    @input="update"
   ></v-text-field>
 </template>
 

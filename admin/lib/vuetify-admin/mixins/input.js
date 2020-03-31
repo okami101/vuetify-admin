@@ -63,11 +63,12 @@ export default {
     },
     formData: {
       handler(val) {
-        if (val && val.item) {
+        if (val) {
           /**
            * Initialize from parent form context
            */
-          this.updateForm(get(val.item, this.uniqueFormId));
+          this.updateForm(val.item ? get(val.item, this.uniqueFormId) : null);
+          this.errorMessages = [];
         }
       },
       immediate: true,

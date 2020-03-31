@@ -2,10 +2,11 @@
   <div>
     <va-aside v-model="asideOpened" :title="asideTitle">
       <users-show v-if="show" :item="item"></users-show>
-      <users-form v-else :id="id" :item="item"></users-form>
+      <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside>
     <base-material-card icon="mdi-account" :title="title">
       <va-list
+        ref="list"
         :fields="[
           'name',
           'email',
@@ -29,7 +30,7 @@
         v-model="selected"
         :options.sync="options"
         disable-create-route
-        @create="onCreate"
+        @create="onAction('create')"
       >
         <template v-slot:bulk.actions>
           <va-bulk-action-button
@@ -76,9 +77,9 @@
             :options.sync="options"
             disable-show-route
             disable-edit-route
-            @show="onShow"
-            @edit="onEdit"
-            @clone="onClone"
+            @show="(item) => onAction('show', item)"
+            @edit="(item) => onAction('edit', item)"
+            @clone="(item) => onAction('create', item)"
           >
             <template v-slot:name="{ item, value }">
               {{ value }}
@@ -117,6 +118,7 @@
 import UsersShow from "./Show";
 import UsersForm from "./Form";
 import ImpersonateButton from "@/components/Buttons/ImpersonateButton";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -137,37 +139,33 @@ export default {
     };
   },
   methods: {
-    onCreate() {
+    ...mapActions({
+      getOne: "api/getOne",
+    }),
+    async onAction(action, item = null) {
+      let titleKey = `resources.users.titles.${action}`;
+      let hasItem = ["show", "edit"].includes(action);
+
+      this.asideTitle = hasItem
+        ? `${this.$t(titleKey, item)} #${item.id}`
+        : this.$t(titleKey);
+      this.id = hasItem ? item.id : null;
+      this.show = action === "show";
+
+      if (item) {
+        let { data } = await this.getOne({
+          resource: "users",
+          params: { id: item.id },
+        });
+        this.item = data;
+      } else {
+        this.item = null;
+      }
       this.asideOpened = true;
-      this.asideTitle = this.$t("resources.users.titles.create");
-      this.id = null;
-      this.show = false;
-      this.item = null;
     },
-    onShow(item) {
-      this.asideOpened = true;
-      this.asideTitle = `${this.$t("resources.users.titles.show", item)} #${
-        item.id
-      }`;
-      this.id = item.id;
-      this.show = true;
-      this.item = item;
-    },
-    onEdit(item) {
-      this.asideOpened = true;
-      this.asideTitle = `${this.$t("resources.users.titles.edit", item)} #${
-        item.id
-      }`;
-      this.id = item.id;
-      this.show = false;
-      this.item = { ...item };
-    },
-    onClone(item) {
-      this.asideOpened = true;
-      this.asideTitle = this.$t("resources.users.titles.create");
-      this.id = null;
-      this.show = false;
-      this.item = item;
+    onSaved() {
+      this.asideOpened = false;
+      this.$refs.list.fetchData();
     },
   },
 };

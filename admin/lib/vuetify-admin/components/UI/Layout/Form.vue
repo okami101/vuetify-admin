@@ -36,6 +36,7 @@ export default {
       type: String,
       default: "list",
     },
+    disableRedirect: Boolean,
   },
   data() {
     return {
@@ -87,17 +88,20 @@ export default {
             });
 
         this.$emit("update:saving", false);
+        this.$emit("saved");
 
-        switch (this.redirect) {
-          case "list":
-            this.$router.push(`/${this.resource}`);
-            break;
-          case "show":
-            this.$router.push(`/${this.resource}/${data.id}`);
-            break;
-          case "edit":
-            this.$router.push(`/${this.resource}/${data.id}/edit`);
-            break;
+        if (!this.disableRedirect) {
+          switch (this.redirect) {
+            case "list":
+              this.$router.push(`/${this.resource}`);
+              break;
+            case "show":
+              this.$router.push(`/${this.resource}/${data.id}`);
+              break;
+            case "edit":
+              this.$router.push(`/${this.resource}/${data.id}/edit`);
+              break;
+          }
         }
       } catch (e) {
         this.$emit("update:saving", false);

@@ -25,9 +25,10 @@ class StoreUser extends FormRequest
     {
         return [
             'name' => 'required',
+            'password' => 'required|confirmed|min:8|strong_password',
             'email' => 'required|email|unique:users,email',
             'active' => 'boolean',
-            'roles.*' => 'array|in:admin,editor,author',
+            'roles.*' => 'in:admin,editor,author',
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 use App\Http\Resources\User as UserResource;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -56,7 +57,9 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        $user = User::create($request->all());
+        $user = User::make($request->all());
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
         $user->publishers()->sync($request->input('publisher_ids'));
         $user->authors()->sync($request->input('author_ids'));
         return new UserResource($user);
@@ -72,6 +75,9 @@ class UserController extends Controller
     public function update(UpdateUser $request, User $user)
     {
         $user->update($request->all());
+        if ($password = $request->input('password')) {
+            $user->password = Hash::make($password);
+        }
         $user->publishers()->sync($request->input('publisher_ids'));
         $user->authors()->sync($request->input('author_ids'));
         return new UserResource($user);

@@ -225,6 +225,8 @@
         "id": "ID",
         "name": "Nom",
         "email": "Email",
+        "password": "Mot de passe",
+        "password_confirmation": "Confirmation du Mot de passe",
         "active": "Actif",
         "roles": "Rôles",
         "publishers": "Editeurs",
