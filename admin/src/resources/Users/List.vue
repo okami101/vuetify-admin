@@ -160,7 +160,7 @@ export default {
       }`;
       this.id = item.id;
       this.show = false;
-      this.item = item;
+      this.item = { ...item };
     },
     onClone(item) {
       this.asideOpened = true;

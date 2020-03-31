@@ -14,9 +14,7 @@ export default {
   mixins: [Resource],
   provide() {
     return {
-      formName: this.name,
-      formEdit: !!this.id,
-      formItem: this.item,
+      formData: this.formData,
     };
   },
   props: {
@@ -42,6 +40,11 @@ export default {
   data() {
     return {
       model: {},
+      formData: {
+        name: this.name,
+        edit: !!this.id,
+        item: this.item,
+      },
     };
   },
   created() {
@@ -53,6 +56,17 @@ export default {
   },
   beforeDestroy() {
     EventBus.$off("update-model");
+  },
+  watch: {
+    name(val) {
+      this.formData.name = val;
+    },
+    id(val) {
+      this.formData.edit = !!this.id;
+    },
+    item(val) {
+      this.formData.item = val;
+    },
   },
   methods: {
     async onSave() {

@@ -6,9 +6,7 @@ import { mapActions } from "vuex";
 export default {
   mixins: [Item],
   inject: {
-    formName: { default: undefined },
-    formEdit: { default: undefined },
-    formItem: { default: undefined },
+    formData: { default: undefined },
   },
   props: {
     parentSource: String,
@@ -63,19 +61,26 @@ export default {
       },
       immediate: true,
     },
-    formItem: {
+    formData: {
       handler(val) {
-        if (val) {
+        if (val && val.item) {
           /**
            * Initialize from parent form context
            */
-          this.updateForm(get(val, this.uniqueFormId));
+          this.updateForm(get(val.item, this.uniqueFormId));
         }
       },
       immediate: true,
+      deep: true,
     },
   },
   computed: {
+    formName() {
+      return get(this.formData, "name");
+    },
+    formEdit() {
+      return get(this.formData, "edit");
+    },
     uniqueFormId() {
       return [this.parentSource, this.index, this.model || this.source]
         .filter((s) => s !== undefined)
