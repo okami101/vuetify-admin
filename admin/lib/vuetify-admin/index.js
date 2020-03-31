@@ -48,7 +48,7 @@ export default class VuetifyAdmin {
       .map((r) => {
         return {
           ...r,
-          actions: ["list", "show", "create", "edit", "delete"].filter((a) => {
+          routes: ["list", "show", "create", "edit"].filter((a) => {
             if ((r.only || []).length) {
               return r.only.includes(a);
             }
@@ -64,15 +64,13 @@ export default class VuetifyAdmin {
 
     if (resourcesPath) {
       this.resources.forEach((r) => {
-        r.actions
-          .filter((a) => a !== "delete")
-          .forEach((a) => {
-            let componentPath = `${capitalize(r.name)}/${capitalize(a)}`;
+        r.routes.forEach((a) => {
+          let componentPath = `${capitalize(r.name)}/${capitalize(a)}`;
 
-            Vue.component(componentPath.replace("/", ""), () =>
-              import(`@/${resourcesPath}/${componentPath}.vue`)
-            );
-          });
+          Vue.component(componentPath.replace("/", ""), () =>
+            import(`@/${resourcesPath}/${componentPath}.vue`)
+          );
+        });
       });
     }
 

@@ -1,8 +1,7 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
+  <v-tooltip bottom :disabled="!icon" v-if="hasRoute('list')">
     <template v-slot:activator="{ on }">
       <v-btn
-        v-if="hasAction('list')"
         :icon="icon"
         text
         exact

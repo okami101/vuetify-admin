@@ -1,14 +1,7 @@
 <template>
   <v-tooltip bottom :disabled="!icon">
     <template v-slot:activator="{ on }">
-      <v-btn
-        v-if="hasAction('delete')"
-        :icon="icon"
-        text
-        @click.stop="onDelete"
-        :color="color"
-        v-on="on"
-      >
+      <v-btn :icon="icon" text @click.stop="onDelete" :color="color" v-on="on">
         <v-icon small>mdi-trash-can</v-icon>
         <span v-if="!icon" class="ml-2">
           {{ $t("va.actions.delete") }}

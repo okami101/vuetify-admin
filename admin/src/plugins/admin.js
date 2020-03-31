@@ -48,7 +48,7 @@ export default new VuetifyAdmin({
       translatable: true,
     },
     "reviews",
-    { name: "users", only: ["list", "delete"] },
+    { name: "users", only: ["list"] },
   ],
   resourcesPath: "resources",
 });

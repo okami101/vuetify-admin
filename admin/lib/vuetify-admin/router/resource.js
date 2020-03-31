@@ -1,5 +1,5 @@
 export default ({ store, i18n, resource, title }) => {
-  let { name, actions, translatable } = resource;
+  let { name, routes, translatable } = resource;
 
   const setTitle = (to, action, item = null) => {
     let nameKey = `resources.${name}.name`;
@@ -91,7 +91,7 @@ export default ({ store, i18n, resource, title }) => {
       meta: {
         resource: name,
         translatable,
-        actions,
+        routes,
       },
     };
   };
@@ -110,12 +110,12 @@ export default ({ store, i18n, resource, title }) => {
       title: i18n.tc(`resources.${name}.name`, 10),
     },
     children: [
-      { action: "list", path: "/" },
-      { action: "create", path: "create" },
-      { action: "show", path: ":id" },
-      { action: "edit", path: ":id/edit" },
+      { name: "list", path: "/" },
+      { name: "create", path: "create" },
+      { name: "show", path: ":id" },
+      { name: "edit", path: ":id/edit" },
     ]
-      .filter(({ action }) => actions.includes(action))
-      .map(({ action, path }) => buildRoute(action, path)),
+      .filter(({ name }) => routes.includes(name))
+      .map(({ name, path }) => buildRoute(name, path)),
   };
 };

@@ -143,7 +143,7 @@
 
 <script>
 import List from "vuetify-admin/mixins/list";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 import capitalize from "lodash/capitalize";
 
 export default {
@@ -276,9 +276,9 @@ export default {
         resource: "users",
         params: { id: item.id },
       });
-      this.item = data;
+      this.$store.commit(`${this.resource}/setItem`, data);
 
-      this.$emit("item-action", { action, title, id, item });
+      this.$emit("item-action", { action, title, id, item: data });
     },
   },
 };

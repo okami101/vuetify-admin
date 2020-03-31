@@ -1,9 +1,5 @@
 <template>
-  <v-tooltip
-    bottom
-    :disabled="!icon"
-    v-if="disableRoute || hasAction('create')"
-  >
+  <v-tooltip bottom :disabled="!icon" v-if="disableRoute || hasRoute('create')">
     <template v-slot:activator="{ on }">
       <v-btn
         text

@@ -1,14 +1,7 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
+  <v-tooltip bottom :disabled="!icon" v-if="hasRoute('list')">
     <template v-slot:activator="{ on }">
-      <v-btn
-        v-if="hasAction('list')"
-        :icon="icon"
-        text
-        @click="onExport"
-        :color="color"
-        v-on="on"
-      >
+      <v-btn :icon="icon" text @click="onExport" :color="color" v-on="on">
         <v-icon small>mdi-download</v-icon>
         <span v-if="!icon" class="ml-2">
           {{ $t("va.actions.export") }}

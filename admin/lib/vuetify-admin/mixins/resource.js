@@ -14,8 +14,8 @@ export default {
     },
   },
   methods: {
-    hasAction(action) {
-      return this.$route.meta.actions.includes(action);
+    hasRoute(action) {
+      return this.$route.meta.routes.includes(action);
     },
   },
 };
