@@ -4,7 +4,7 @@ import get from "lodash/get";
 
 export default {
   inject: {
-    formData: { default: undefined },
+    formState: { default: undefined },
   },
   mixins: [Field],
   props: {
@@ -52,7 +52,7 @@ export default {
       /**
        * Only used on edit form
        */
-      if (!this.value || (this.formData && !this.formData.edit)) {
+      if (!this.value || (this.formState && !this.formState.edit)) {
         return [];
       }
 
@@ -67,9 +67,9 @@ export default {
     clear(id) {
       this.deleted = [...(this.deleted || []), id];
 
-      if (this.formName) {
+      if (this.formState) {
         EventBus.$emit("update-model", {
-          name: this.formName,
+          name: this.formState.name,
           source: this.model || this.source,
           value: this.isMultiple ? this.deleted : this.deleted[0],
         });

@@ -14,10 +14,14 @@ export default {
   mixins: [Resource],
   provide() {
     return {
-      formData: this.formData,
+      formState: this.formState,
     };
   },
   props: {
+    value: {
+      type: Object,
+      default: () => {},
+    },
     id: [String, Number],
     item: {
       type: Object,
@@ -40,18 +44,21 @@ export default {
   },
   data() {
     return {
-      model: {},
-      formData: {
+      formState: {
         name: this.name,
         edit: !!this.id,
         item: this.item,
+        model: this.value,
+        errors: [],
       },
     };
   },
   created() {
     EventBus.$on("update-model", ({ name, source, value }) => {
       if (name === this.name) {
-        set(this.model, source, value === undefined ? "" : value);
+        let model = { ...this.value };
+        set(model, source, value === undefined ? "" : value);
+        this.$emit("input", model);
       }
     });
   },
@@ -59,14 +66,8 @@ export default {
     EventBus.$off("update-model");
   },
   watch: {
-    name(val) {
-      this.formData.name = val;
-    },
-    id(val) {
-      this.formData.edit = !!this.id;
-    },
     item(val) {
-      this.formData.item = val;
+      this.formState.item = val;
     },
   },
   methods: {
@@ -81,10 +82,10 @@ export default {
         let { data } = this.id
           ? await this.$store.dispatch(`${this.resource}/update`, {
               id: this.id,
-              data: this.model,
+              data: this.value,
             })
           : await this.$store.dispatch(`${this.resource}/create`, {
-              data: this.model,
+              data: this.value,
             });
 
         this.$emit("update:saving", false);
@@ -107,10 +108,7 @@ export default {
         this.$emit("update:saving", false);
 
         if (e.response) {
-          EventBus.$emit("form-errors", {
-            name: this.name,
-            errors: e.response.data.errors,
-          });
+          this.formState.errors = e.response.data.errors;
         }
       }
     },

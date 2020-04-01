@@ -6,7 +6,7 @@ import { mapActions } from "vuex";
 export default {
   mixins: [Item],
   inject: {
-    formData: { default: undefined },
+    formState: { default: undefined },
   },
   props: {
     parentSource: String,
@@ -44,16 +44,6 @@ export default {
       errorMessages: [],
     };
   },
-  mounted() {
-    EventBus.$on("form-errors", ({ name, errors }) => {
-      if (name === this.formName && errors) {
-        this.errorMessages = errors[this.uniqueFormId] || [];
-      }
-    });
-  },
-  beforeDestroy() {
-    EventBus.$off("form-errors");
-  },
   watch: {
     value: {
       handler(val) {
@@ -61,14 +51,14 @@ export default {
       },
       immediate: true,
     },
-    formData: {
+    formState: {
       handler(val) {
         if (val) {
           /**
-           * Initialize from parent form context
+           * Initialize value & errors
            */
-          this.updateForm(val.item ? get(val.item, this.uniqueFormId) : null);
-          this.errorMessages = [];
+          this.update(get(val.item || val.model, this.uniqueFormId));
+          this.errorMessages = val.errors[this.uniqueFormId] || [];
         }
       },
       immediate: true,
@@ -76,12 +66,6 @@ export default {
     },
   },
   computed: {
-    formName() {
-      return get(this.formData, "name");
-    },
-    formEdit() {
-      return get(this.formData, "edit");
-    },
     uniqueFormId() {
       return [this.parentSource, this.index, this.model || this.source]
         .filter((s) => s !== undefined)
@@ -144,19 +128,13 @@ export default {
       /**
        * Update model in the injected form if available
        */
-      if (this.formName) {
-        return this.updateForm(value);
+      if (this.formState) {
+        EventBus.$emit("update-model", {
+          name: this.formState.name,
+          source: this.uniqueFormId,
+          value,
+        });
       }
-
-      this.input = value;
-      this.$emit("input", value);
-    },
-    updateForm(value) {
-      EventBus.$emit("update-model", {
-        name: this.formName,
-        source: this.uniqueFormId,
-        value,
-      });
 
       this.input = value;
       this.$emit("input", value);

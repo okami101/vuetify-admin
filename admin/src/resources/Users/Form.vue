@@ -5,6 +5,7 @@
     :saving.sync="saving"
     disable-redirect
     @saved="$emit('saved')"
+    v-model="model"
   >
     <va-text-input source="name"></va-text-input>
     <va-text-input source="email" type="email"></va-text-input>
@@ -44,6 +45,9 @@ export default {
     return {
       roles: [],
       saving: false,
+      model: {
+        active: true,
+      },
     };
   },
 };

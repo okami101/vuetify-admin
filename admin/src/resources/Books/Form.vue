@@ -1,5 +1,5 @@
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
     <v-row justify="center">
       <v-col lg="8">
         <base-material-tabs-card
@@ -71,6 +71,7 @@ export default {
   data() {
     return {
       saving: false,
+      model: {},
     };
   },
 };
