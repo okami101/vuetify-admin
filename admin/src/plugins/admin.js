@@ -1,11 +1,11 @@
 import Vue from "vue";
-import VuetifyAdmin from "vuetify-admin";
+import VuetifyAdmin from "vue-relay-admin";
 
-import sanctumAuthProvider from "vuetify-admin/providers/sanctumAuthProvider";
-import laravelDataProvider from "vuetify-admin/providers/laravelDataProvider";
+import sanctumAuthProvider from "vue-relay-admin/providers/sanctumAuthProvider";
+import laravelDataProvider from "vue-relay-admin/providers/laravelDataProvider";
 
-import en from "vuetify-admin/locales/en.json";
-import fr from "vuetify-admin/locales/fr.json";
+import en from "vue-relay-admin/locales/en.json";
+import fr from "vue-relay-admin/locales/fr.json";
 
 import router from "@/router";
 import store from "@/store";
