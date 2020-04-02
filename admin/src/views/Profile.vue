@@ -24,10 +24,10 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-btn :loading="accountUpdating" color="primary" type="submit">{{
-                $t("profile.update")
-              }}</v-btn>
             </v-card-text>
+            <v-btn :loading="accountUpdating" color="primary" type="submit">{{
+              $t("profile.update")
+            }}</v-btn>
           </base-material-card>
         </form>
       </v-col>
@@ -68,13 +68,10 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-btn
-                :loading="passwordChanging"
-                color="warning"
-                type="submit"
-                >{{ $t("profile.update") }}</v-btn
-              >
             </v-card-text>
+            <v-btn :loading="passwordChanging" color="warning" type="submit">{{
+              $t("profile.update")
+            }}</v-btn>
           </base-material-card>
         </form>
       </v-col>

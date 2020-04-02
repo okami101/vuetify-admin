@@ -13,8 +13,8 @@
       slot="sidebar"
       :menu="sidebarMenu"
       dark
-      bg="/login.jpg"
-      :bg-opacity="0.4"
+      bg="/splash.jpg"
+      :bg-opacity="0"
       :mini="mini"
     ></va-sidebar>
     <va-footer slot="footer" :menu="footerMenu">
