@@ -1,4 +1,6 @@
 import Vue from "vue";
+import upperFirst from "lodash/upperFirst";
+import camelCase from "lodash/camelCase";
 import VuetifyAdmin from "vue-relay-admin";
 
 import sanctumAuthProvider from "vue-relay-admin/providers/sanctumAuthProvider";
@@ -11,6 +13,21 @@ import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
 import axios from "@/plugins/axios";
+
+/**
+ * Load view resources
+ */
+const requireComponent = require.context("@/resources", true, /\.vue$/);
+
+requireComponent.keys().forEach((fileName) => {
+  const componentConfig = requireComponent(fileName);
+
+  const componentName = upperFirst(
+    camelCase(fileName.replace(/^\.\//, "").replace(/\.\w+$/, ""))
+  );
+
+  Vue.component(componentName, componentConfig.default || componentConfig);
+});
 
 /**
  * Load UI components
@@ -50,5 +67,4 @@ export default new VuetifyAdmin({
     "reviews",
     { name: "users", only: ["list"] },
   ],
-  resourcesPath: "resources",
 });
