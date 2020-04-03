@@ -3,11 +3,11 @@ import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 import VuetifyAdmin from "vue-relay-admin";
 
-import sanctumAuthProvider from "vue-relay-admin/providers/sanctumAuthProvider";
-import laravelDataProvider from "vue-relay-admin/providers/laravelDataProvider";
+import sanctumAuthProvider from "vue-relay-admin/src/providers/sanctumAuthProvider";
+import laravelDataProvider from "vue-relay-admin/src/providers/laravelDataProvider";
 
-import en from "vue-relay-admin/locales/en.json";
-import fr from "vue-relay-admin/locales/fr.json";
+import en from "vue-relay-admin/src/locales/en.json";
+import fr from "vue-relay-admin/src/locales/fr.json";
 
 import router from "@/router";
 import store from "@/store";
