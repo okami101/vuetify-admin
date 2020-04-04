@@ -2,6 +2,7 @@ import Vue from "vue";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 import VuetifyAdmin from "vue-relay-admin";
+import "vue-relay-admin/src/utils/loadVuetifyComponents";
 import "vue-relay-admin/dist/vue-relay-admin.css";
 
 import sanctumAuthProvider from "vue-relay-admin/src/providers/sanctumAuthProvider";
