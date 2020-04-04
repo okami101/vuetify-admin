@@ -1,14 +1,10 @@
 import Vue from "vue";
-import VuetifyAdmin from "vue-relay-admin";
-import "vue-relay-admin/dist/vue-relay-admin.css";
+import "@vtec/vuetify";
+import VtecAdmin from "@vtec/admin";
+import "@vtec/admin/dist/admin.css";
 
-import "vue-relay-admin/src/utils/loadVuetifyComponents";
-
-import sanctumAuthProvider from "vue-relay-admin/src/providers/sanctumAuthProvider";
-import laravelDataProvider from "vue-relay-admin/src/providers/laravelDataProvider";
-
-import en from "vue-relay-admin/src/locales/en.json";
-import fr from "vue-relay-admin/src/locales/fr.json";
+import { laravelDataProvider, sanctumAuthProvider } from "@vtec/providers";
+import { en, fr } from "@vtec/locales";
 
 import router from "@/router";
 import store from "@/store";
@@ -34,9 +30,9 @@ requireComponent.keys().forEach((fileName) => {
 /**
  * Load UI components
  */
-Vue.use(VuetifyAdmin);
+Vue.use(VtecAdmin);
 
-export default new VuetifyAdmin({
+export default new VtecAdmin({
   router,
   store,
   i18n,
