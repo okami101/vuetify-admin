@@ -1,9 +1,8 @@
 import Vue from "vue";
-import upperFirst from "lodash/upperFirst";
-import camelCase from "lodash/camelCase";
 import VuetifyAdmin from "vue-relay-admin";
-import "vue-relay-admin/src/utils/loadVuetifyComponents";
 import "vue-relay-admin/dist/vue-relay-admin.css";
+
+import "vue-relay-admin/src/utils/loadVuetifyComponents";
 
 import sanctumAuthProvider from "vue-relay-admin/src/providers/sanctumAuthProvider";
 import laravelDataProvider from "vue-relay-admin/src/providers/laravelDataProvider";
@@ -24,9 +23,10 @@ const requireComponent = require.context("@/resources", true, /\.vue$/);
 requireComponent.keys().forEach((fileName) => {
   const componentConfig = requireComponent(fileName);
 
-  const componentName = upperFirst(
-    camelCase(fileName.replace(/^\.\//, "").replace(/\.\w+$/, ""))
-  );
+  const componentName = fileName
+    .replace(/^\.\//, "")
+    .replace(/\//, "")
+    .replace(/\.\w+$/, "");
 
   Vue.component(componentName, componentConfig.default || componentConfig);
 });
