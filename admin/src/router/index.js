@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 import Login from "@/views/Login";
 import Profile from "@/views/Profile";
 import Dashboard from "@/views/Dashboard";
+import Feedback from "@/views/Feedback";
+import Settings from "@/views/Settings";
+import Help from "@/views/Help";
 import i18n from "@/i18n";
 
 Vue.use(VueRouter);
@@ -40,7 +43,7 @@ const routes = [
   {
     path: "/help",
     name: "help",
-    component: () => import("@/views/Help"),
+    component: Help,
     meta: {
       title: i18n.t("routes.help"),
     },
@@ -48,7 +51,7 @@ const routes = [
   {
     path: "/settings",
     name: "settings",
-    component: () => import("@/views/Settings"),
+    component: Settings,
     meta: {
       title: i18n.t("routes.settings"),
     },
@@ -56,7 +59,7 @@ const routes = [
   {
     path: "/feedback",
     name: "feedback",
-    component: () => import("@/views/Feedback"),
+    component: Feedback,
     meta: {
       title: i18n.t("routes.feedback"),
     },
