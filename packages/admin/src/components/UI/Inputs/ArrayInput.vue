@@ -1,5 +1,5 @@
 <template>
-  <va-input v-bind="$props" class="va-array-input">
+  <va-input v-bind="$props" class="va-array-input" v-if="input">
     <draggable
       v-if="input.length"
       :value="input"

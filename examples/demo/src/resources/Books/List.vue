@@ -1,5 +1,5 @@
 <template>
-  <base-material-card icon="mdi-book" :title="title">
+  <base-material-card :icon="resource.icon" :title="title">
     <va-list
       :fields="[
         'isbn',
@@ -139,7 +139,7 @@
 
 <script>
 export default {
-  props: ["title"],
+  props: ["resource", "title"],
   data() {
     return {
       options: {},

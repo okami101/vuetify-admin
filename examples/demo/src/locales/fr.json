@@ -53,14 +53,7 @@
     "settings": "Paramètres",
     "feedback": "Feedback",
     "other": "Autre",
-    "bookstore": "Bookstore",
-    "list": "Liste",
-    "create": "Créer",
-    "publishers": "Éditeurs",
-    "authors": "Auteurs",
-    "books": "Livres",
-    "reviews": "Commentaires",
-    "users": "Utilisateurs"
+    "bookstore": "Bookstore"
   },
   "authors": {
     "last_books": "Derniers livres",
@@ -190,7 +183,7 @@
       "titles": {
         "list": "Liste des commentaires",
         "show": "Détail du commentaire {author}",
-        "create": "Créer un nouveu commentaire",
+        "create": "Créer un nouveau commentaire",
         "edit": "Edition du commentaire {author}"
       },
       "fields": {

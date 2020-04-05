@@ -1,5 +1,5 @@
 <template>
-  <base-material-card icon="mdi-account" :title="title">
+  <base-material-card :icon="resource.icon" :title="title">
     <va-list
       :fields="['name', 'description']"
       :filters="[
@@ -63,6 +63,6 @@
 
 <script>
 export default {
-  props: ["title"],
+  props: ["resource", "title"],
 };
 </script>

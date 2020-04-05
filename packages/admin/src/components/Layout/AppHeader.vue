@@ -30,7 +30,7 @@
     </v-row>
     <v-spacer />
     <div>
-      <v-menu offset-y>
+      <v-menu offset-y v-if="resources.length">
         <template v-slot:activator="{ on }">
           <v-btn icon small class="mr-5" v-on="on">
             <v-icon>mdi-plus</v-icon>
@@ -39,28 +39,19 @@
 
         <v-list nav dense>
           <v-list-item
-            v-for="(item, index) in profileMenu.filter((i) =>
-              $admin.can(i.permissions)
-            )"
+            v-for="(item, index) in resources"
             :key="index"
             link
-            :to="item.link"
+            :to="`/${item.name}/create`"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item @click="logout()">
-            <v-list-item-icon>
-              <v-icon>mdi-logout</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ $t("va.logout") }}</v-list-item-title>
+              <v-list-item-title>{{
+                $t(`resources.${item.name}.titles.create`)
+              }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -143,6 +134,11 @@ export default {
       loading: (state) => state.api.loading,
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
+    resources() {
+      return this.$admin.resources.filter(
+        (r) => r.routes.includes("create") && this.$admin.can(r.permissions)
+      );
+    },
   },
   methods: {
     ...mapActions({

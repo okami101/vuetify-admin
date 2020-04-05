@@ -41,6 +41,7 @@ export default class VtecAdmin {
       .map((r) => {
         return {
           ...r,
+          icon: r.icon || "mdi-view-grid",
           routes: ["list", "show", "create", "edit"].filter((a) => {
             if ((r.only || []).length) {
               return r.only.includes(a);
@@ -121,6 +122,20 @@ export default class VtecAdmin {
           (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
         )
       );
+
+    /**
+     * Link resource helper
+     */
+    this.getResourceLink = (name) => {
+      let { icon, permissions } = this.resources.find((r) => r.name === name);
+
+      return {
+        icon,
+        text: i18n.tc(`resources.${name}.name`, 10),
+        link: `/${name}`,
+        permissions,
+      };
+    };
 
     /**
      * Check Auth after each navigation

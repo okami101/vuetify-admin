@@ -66,14 +66,30 @@ export default new VtecAdmin({
       icon: "mdi-globe-model",
       name: "publishers",
       translatable: true,
+      permissions: ["admin", "editor"],
     },
-    { icon: "mdi-book", name: "books", translatable: true },
+    {
+      icon: "mdi-book",
+      name: "books",
+      translatable: true,
+      permissions: ["admin", "editor", "author"],
+    },
     {
       icon: "mdi-account",
       name: "authors",
       translatable: true,
+      permissions: ["admin", "author"],
     },
-    { icon: "mdi-comment", name: "reviews" },
-    { icon: "mdi-account", name: "users", only: ["list"] },
+    {
+      icon: "mdi-comment",
+      name: "reviews",
+      permissions: ["admin", "editor", "author"],
+    },
+    {
+      icon: "mdi-account",
+      name: "users",
+      only: ["list"],
+      permissions: ["admin"],
+    },
   ],
 });

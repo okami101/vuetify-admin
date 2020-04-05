@@ -4,7 +4,7 @@
       <users-show v-if="show" :item="item"></users-show>
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside>
-    <base-material-card icon="mdi-account" :title="title">
+    <base-material-card :icon="resource.icon" :title="title">
       <va-list
         ref="list"
         :fields="[
@@ -123,7 +123,7 @@ export default {
     UsersForm,
     ImpersonateButton,
   },
-  props: ["title"],
+  props: ["resource", "title"],
   data() {
     return {
       asideOpened: false,

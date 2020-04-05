@@ -51,6 +51,7 @@ export default ({ store, i18n, resource, title }) => {
             props: {
               id: this.id,
               title: this.$route.meta.title,
+              resource,
               item: store.state[name].item,
             },
           });
