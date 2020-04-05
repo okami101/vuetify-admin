@@ -1,0 +1,21 @@
+<template>
+  <va-show :title="title">
+    <v-row justify="center">
+      <v-col sm="6">
+        <v-card>
+          <v-card-text>
+            {{ #foreach input }}
+            <va-field source="{{ field.name }}" type="{{ field.type }}"></va-field>
+            {{ #endforeach }}
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </va-show>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>

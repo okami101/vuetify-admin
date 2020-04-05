@@ -1,0 +1,49 @@
+{
+  "home": "Accueil",
+  "logout": "Se déconnecter",
+  "close": "Fermer",
+  "datagrid": {
+    "search": "Rechercher",
+    "add_filter": "Ajouter un filtre",
+    "selected_items": "1 élément sélectionné | {count} éléments sélectionnés"
+  },
+  "pages": {
+    "list": "Liste {resource}",
+    "create": "Création {resource}",
+    "show": "Détail {resource} #{id}",
+    "edit": "Édition {resource} #{id}"
+  },
+  "actions": {
+    "list": "Liste",
+    "create": "Créer",
+    "show": "Afficher",
+    "edit": "Éditer",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "export": "Exporter",
+    "clone": "Dupliquer",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "move": "Déplacer",
+    "locale": "Langue"
+  },
+  "messages": {
+    "created": "{resource} créé avec succès !",
+    "updated": "{resource} #{id} mis à jour avec succès !",
+    "deleted": "{resource} #{id} supprimé avec succès !",
+    "updated_many": "{count} {resource} mis à jour avec succès !",
+    "deleted_many": "{count} {resource} supprimé avec succès !"
+  },
+  "confirm": {
+    "yes": "Oui",
+    "no": "Non",
+    "delete_title": "Supprimer {resource} #{id} ?",
+    "delete_message": "Vous êtes sur le point de supprimer {resource} #{id}. Cette opération est irréversible !",
+    "delete_many_title": "Supprimer {count} {resource} ?",
+    "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !"
+  },
+  "forms": {
+    "none": "Aucun",
+    "required_field": "Le champ {field} est requis"
+  }
+}

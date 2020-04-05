@@ -1,0 +1,36 @@
+<template>
+  <v-card>
+    <v-card-title>
+      <h1>{{ title }}</h1>
+    </v-card-title>
+    <va-list
+      :fields="{{ fields }}"
+      :filters="{{ filters }}"
+      :include="{{ include }}"
+      flat
+      v-slot="props"
+      v-model="selected"
+      :options.sync="options"
+    >
+      <va-datagrid
+        :fields="{{ datagrid_fields }}"
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+      </va-datagrid>
+    </va-list>
+  </v-card>
+</template>
+
+<script>
+export default {
+  props: ["title"],
+  data() {
+    return {
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>

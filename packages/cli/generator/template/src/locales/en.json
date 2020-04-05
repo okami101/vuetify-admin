@@ -1,0 +1,8 @@
+{
+  "routes": {
+    "login": "Login",
+    "profile": "Profile",
+    "dashboard": "Dashboard"
+  },
+  "resources": {}
+}

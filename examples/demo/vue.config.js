@@ -1,3 +1,5 @@
+let path = require("path");
+
 module.exports = {
   publicPath: process.env.BASE_URL,
 
@@ -14,6 +16,21 @@ module.exports = {
 
   devServer: {
     disableHostCheck: true,
+  },
+
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "@vtec/admin": path.resolve(
+          __dirname,
+          "..",
+          "..",
+          "packages",
+          "admin",
+          "src"
+        ),
+      },
+    },
   },
 
   chainWebpack: (config) => {
