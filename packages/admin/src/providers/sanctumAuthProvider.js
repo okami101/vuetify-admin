@@ -6,7 +6,7 @@ import {
   GET_NAME,
   GET_EMAIL,
   GET_PERMISSIONS,
-} from "@/utils/authActions";
+} from "../utils/authActions";
 
 export default (axios, options = {}) => {
   options = {

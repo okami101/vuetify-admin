@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import EventBus from "@/utils/eventBus";
-import Resource from "@/mixins/resource";
+import EventBus from "../../../utils/eventBus";
+import Resource from "../../../mixins/resource";
 import set from "lodash/set";
 
 export default {

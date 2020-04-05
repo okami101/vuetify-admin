@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Item from "@/mixins/item";
+import Item from "../../../mixins/item";
 
 export default {
   name: "EditButton",

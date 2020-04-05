@@ -7,8 +7,8 @@ import {
   UPDATE_MANY,
   DELETE,
   DELETE_MANY,
-} from "@/utils/dataActions";
-import objectToFormData from "@/utils/objectToFormData";
+} from "../utils/dataActions";
+import objectToFormData from "../utils/objectToFormData";
 
 export default (axios, base = "/api") => {
   const getRequest = (type, resource, params = {}) => {

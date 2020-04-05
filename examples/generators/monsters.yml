@@ -1,5 +1,6 @@
 monsters:
   model: Monster
+  icon: mdi-alien
   label: Monstre | Monstres
   to_string: name
   translatable: true

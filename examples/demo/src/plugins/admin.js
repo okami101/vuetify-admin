@@ -1,8 +1,16 @@
 import Vue from "vue";
 import VtecAdmin from "@vtec/admin";
 
-import "@vtec/admin/dist/components.js";
-import "@vtec/admin/dist/admin.css";
+/**
+ * Local demo only
+ */
+import "@vtec/admin/components.js";
+
+/**
+ * On external project
+ */
+//import "@vtec/admin/dist/components.js";
+//import "@vtec/admin/dist/admin.css";
 
 import { laravelDataProvider, sanctumAuthProvider } from "@vtec/admin";
 import { en, fr } from "@vtec/admin";
@@ -55,15 +63,17 @@ export default new VtecAdmin({
   dataProvider: laravelDataProvider(axios),
   resources: [
     {
+      icon: "mdi-globe-model",
       name: "publishers",
       translatable: true,
     },
-    { name: "books", translatable: true },
+    { icon: "mdi-book", name: "books", translatable: true },
     {
+      icon: "mdi-account",
       name: "authors",
       translatable: true,
     },
-    "reviews",
-    { name: "users", only: ["list"] },
+    { icon: "mdi-comment", name: "reviews" },
+    { icon: "mdi-account", name: "users", only: ["list"] },
   ],
 });

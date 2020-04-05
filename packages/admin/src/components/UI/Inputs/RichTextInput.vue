@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Input from "@/mixins/input";
+import Input from "../../../mixins/input";
 import Editor from "@tinymce/tinymce-vue";
 
 export default {

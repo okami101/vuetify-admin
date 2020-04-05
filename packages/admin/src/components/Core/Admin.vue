@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import AppAside from "@/components/Layout/AppAside";
-import AppMessages from "@/components/Layout/AppMessages";
-import AppBreadcrumbs from "@/components/Layout/AppBreadcrumbs";
+import AppAside from "../Layout/AppAside";
+import AppMessages from "../Layout/AppMessages";
+import AppBreadcrumbs from "../Layout/AppBreadcrumbs";
 import { mapState } from "vuex";
 
 export default {

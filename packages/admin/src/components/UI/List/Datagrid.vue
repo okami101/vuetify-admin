@@ -142,7 +142,7 @@
 </template>
 
 <script>
-import List from "@/mixins/list";
+import List from "../../../mixins/list";
 import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
 

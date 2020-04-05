@@ -1,4 +1,4 @@
-import * as methods from "@/utils/dataActions";
+import * as methods from "../utils/dataActions";
 
 let storeActions = {};
 

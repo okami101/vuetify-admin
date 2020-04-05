@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Field from "@/mixins/field";
+import Field from "../../../mixins/field";
 
 export default {
   name: "DateField",

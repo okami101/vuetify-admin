@@ -1,4 +1,4 @@
-import Item from "@/mixins/item";
+import Item from "../mixins/item";
 import get from "lodash/get";
 
 export default {

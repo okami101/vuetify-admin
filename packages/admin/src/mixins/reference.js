@@ -1,5 +1,5 @@
 import { mapActions } from "vuex";
-import Choices from "@/mixins/choices";
+import Choices from "../mixins/choices";
 
 export default {
   mixins: [Choices],

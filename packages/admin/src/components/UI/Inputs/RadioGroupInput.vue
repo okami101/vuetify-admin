@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Input from "@/mixins/input";
-import Reference from "@/mixins/reference";
+import Input from "../../../mixins/input";
+import Reference from "../../../mixins/reference";
 
 export default {
   name: "RadioGroupInput",

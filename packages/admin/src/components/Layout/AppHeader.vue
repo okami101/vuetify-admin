@@ -30,6 +30,41 @@
     </v-row>
     <v-spacer />
     <div>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon small class="mr-5" v-on="on">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list nav dense>
+          <v-list-item
+            v-for="(item, index) in profileMenu.filter((i) =>
+              $admin.can(i.permissions)
+            )"
+            :key="index"
+            link
+            :to="item.link"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="logout()">
+            <v-list-item-icon>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("va.logout") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-btn
         icon
         small

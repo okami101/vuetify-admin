@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Input from "@/mixins/input";
+import Input from "../../../mixins/input";
 
 export default {
   name: "ArrayInput",

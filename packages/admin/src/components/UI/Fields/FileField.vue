@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Files from "@/mixins/files";
+import Files from "../../../mixins/files";
 
 export default {
   name: "FileField",

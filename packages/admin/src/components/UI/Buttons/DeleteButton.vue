@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Item from "@/mixins/item";
+import Item from "../../../mixins/item";
 import { mapActions } from "vuex";
 
 export default {

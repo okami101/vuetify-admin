@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Resource from "@/mixins/resource";
+import Resource from "../../../mixins/resource";
 import { mapActions } from "vuex";
 
 export default {

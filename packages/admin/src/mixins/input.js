@@ -1,5 +1,5 @@
-import EventBus from "@/utils/eventBus";
-import Item from "@/mixins/item";
+import EventBus from "../utils/eventBus";
+import Item from "../mixins/item";
 import get from "lodash/get";
 import { mapActions } from "vuex";
 

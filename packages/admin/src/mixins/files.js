@@ -1,5 +1,5 @@
-import EventBus from "@/utils/eventBus";
-import Field from "@/mixins/field";
+import EventBus from "../utils/eventBus";
+import Field from "../mixins/field";
 import get from "lodash/get";
 
 export default {

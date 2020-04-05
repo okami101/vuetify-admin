@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import Input from "@/mixins/input";
-import Reference from "@/mixins/reference";
+import Input from "../../../mixins/input";
+import Reference from "../../../mixins/reference";
 import get from "lodash/get";
 
 export default {

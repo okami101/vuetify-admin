@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import Field from "@/mixins/field";
-import Choices from "@/mixins/choices";
+import Field from "../../../mixins/field";
+import Choices from "../../../mixins/choices";
 
 export default {
   name: "SelectField",
