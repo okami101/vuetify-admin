@@ -15,4 +15,8 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
   },
+
+  chainWebpack: (config) => {
+    config.resolve.symlinks(false);
+  },
 };
