@@ -1,8 +1,7 @@
 import Vue from "vue";
-
 import VtecAdmin from "@vtec/admin";
 
-import "@vtec/admin/dist/load-dependencies.esm.js";
+import "@vtec/admin/dist/components.js";
 import "@vtec/admin/dist/admin.css";
 
 import { laravelDataProvider, sanctumAuthProvider } from "@vtec/admin";
