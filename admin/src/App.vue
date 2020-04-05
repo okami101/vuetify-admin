@@ -51,7 +51,7 @@ export default {
           text: this.$t("menu.dashboard"),
         },
         {
-          href: "www.google.fr",
+          link: "/publishers",
           text: this.$t("menu.publishers"),
         },
         {
