@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VtecAdmin from "@vtec/admin";
 
-import "@vtec/admin/dist/components.js";
+import "@vtec/admin/dist/vuetify.js";
 import "@vtec/admin/dist/admin.css";
 
 import { laravelDataProvider, sanctumAuthProvider } from "@vtec/admin";
@@ -11,6 +11,23 @@ import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
 import axios from "@/plugins/axios";
+
+/**
+ * Load external libs
+ */
+import PortalVue from "portal-vue";
+import draggable from "vuedraggable";
+
+/**
+ * Load Admin UI components
+ */
+Vue.use(VtecAdmin);
+
+/**
+ * Register portal and draggable
+ */
+Vue.use(PortalVue);
+Vue.component("draggable", draggable);
 
 /**
  * Load view resources
@@ -29,15 +46,13 @@ requireComponent.keys().forEach((fileName) => {
 });
 
 /**
- * Load UI components
+ * Init admin
  */
-Vue.use(VtecAdmin);
-
 export default new VtecAdmin({
   router,
   store,
   i18n,
-  title: "Bookstore Admin",
+  title: "My Awesome Admin",
   locales: {
     ui: { en, fr },
     translations: {
@@ -53,17 +68,5 @@ export default new VtecAdmin({
     },
   }),
   dataProvider: laravelDataProvider(axios),
-  resources: [
-    {
-      name: "publishers",
-      translatable: true,
-    },
-    { name: "books", translatable: true },
-    {
-      name: "authors",
-      translatable: true,
-    },
-    "reviews",
-    { name: "users", only: ["list"] },
-  ],
+  resources: [],
 });

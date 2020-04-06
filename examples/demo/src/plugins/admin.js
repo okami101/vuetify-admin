@@ -2,14 +2,9 @@ import Vue from "vue";
 import VtecAdmin from "@vtec/admin";
 
 /**
- * Local demo only
- */
-import "@vtec/admin/components.js";
-
-/**
  * On external project
  */
-//import "@vtec/admin/dist/components.js";
+//import "@vtec/admin/dist/vuetify.js";
 //import "@vtec/admin/dist/admin.css";
 
 import { laravelDataProvider, sanctumAuthProvider } from "@vtec/admin";
@@ -19,6 +14,23 @@ import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
 import axios from "@/plugins/axios";
+
+/**
+ * Load external libs
+ */
+import PortalVue from "portal-vue";
+import draggable from "vuedraggable";
+
+/**
+ * Load Admin UI components
+ */
+Vue.use(VtecAdmin);
+
+/**
+ * Register portal and draggable
+ */
+Vue.use(PortalVue);
+Vue.component("draggable", draggable);
 
 /**
  * Load view resources
@@ -35,11 +47,6 @@ requireComponent.keys().forEach((fileName) => {
 
   Vue.component(componentName, componentConfig.default || componentConfig);
 });
-
-/**
- * Load UI components
- */
-Vue.use(VtecAdmin);
 
 export default new VtecAdmin({
   router,

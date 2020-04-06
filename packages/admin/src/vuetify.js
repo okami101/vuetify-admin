@@ -60,18 +60,6 @@ import {
 } from "vuetify/lib";
 
 /**
- * External libs
- */
-import PortalVue from "portal-vue";
-import draggable from "vuedraggable";
-
-/**
- * Register portal and draggable
- */
-Vue.use(PortalVue);
-Vue.component("draggable", draggable);
-
-/**
  * Register vuetify components
  */
 Vue.use(Vuetify, {

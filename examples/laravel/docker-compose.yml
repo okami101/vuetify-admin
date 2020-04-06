@@ -60,6 +60,6 @@ services:
   ### Admin UI build ################################################
   admin:
     build:
-      context: ./admin
+      context: ../demo
     volumes:
-      - ./admin:/srv/api/admin
+      - ../demo:/srv/api/admin
