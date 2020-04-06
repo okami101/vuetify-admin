@@ -1,5 +1,5 @@
 {
-  "name": "@vtec/admin",
+  "name": "vtec-admin",
   "version": "0.1.0",
   "main": "dist/admin.common.js",
   "keywords": [

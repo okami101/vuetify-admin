@@ -1,11 +1,11 @@
 import Vue from "vue";
-import VtecAdmin from "@vtec/admin";
+import VtecAdmin from "vtec-admin";
 
-import "@vtec/admin/dist/vuetify.js";
-import "@vtec/admin/dist/admin.css";
+import "vtec-admin/dist/vuetify.js";
+import "vtec-admin/dist/admin.css";
 
-import { laravelDataProvider, sanctumAuthProvider } from "@vtec/admin";
-import { en, fr } from "@vtec/admin";
+import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
+import { en, fr } from "vtec-admin";
 
 import router from "@/router";
 import store from "@/store";

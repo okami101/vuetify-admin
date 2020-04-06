@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.0",
-    "@vtec/admin": "~0.1.0",
     "axios": "^0.19.2",
     "core-js": "^3.4.4",
     "portal-vue": "^2.1.7",
+    "vtec-admin": "~0.1.0",
     "vue": "^2.6.10",
     "vue-chartist": "^2.2.1",
     "vue-i18n": "^8.16.0",

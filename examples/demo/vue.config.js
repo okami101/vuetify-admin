@@ -21,7 +21,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        "@vtec/admin": path.resolve(
+        "vtec-admin": path.resolve(
           __dirname,
           "..",
           "..",
