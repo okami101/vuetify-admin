@@ -87,7 +87,7 @@ export default {
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ),
-    url(/splash.jpg);
+    url(../assets/splash.jpg);
   background-position: center;
   background-size: cover;
 }

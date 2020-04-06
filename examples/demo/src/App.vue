@@ -9,14 +9,15 @@
       dark
       @mini="mini = !mini"
     ></va-header>
-    <va-sidebar
-      slot="sidebar"
-      :menu="sidebarMenu"
-      dark
-      bg="/splash.jpg"
-      :bg-opacity="0"
-      :mini="mini"
-    ></va-sidebar>
+    <va-sidebar slot="sidebar" :menu="sidebarMenu" dark :mini="mini">
+      <template v-slot:img="props">
+        <v-img
+          src="./assets/splash.jpg"
+          gradient="to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)"
+          v-bind="props"
+        />
+      </template>
+    </va-sidebar>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
       <v-icon size="18">
@@ -46,26 +47,10 @@ export default {
     return {
       mini: false,
       headerMenu: [
-        {
-          link: "/",
-          text: this.$t("menu.dashboard"),
-        },
-        {
-          link: "/publishers",
-          text: this.$t("menu.publishers"),
-        },
-        {
-          link: "/authors",
-          text: this.$t("menu.authors"),
-        },
-        {
-          link: "/books",
-          text: this.$t("menu.books"),
-        },
-        {
-          link: "/reviews",
-          text: this.$t("menu.reviews"),
-        },
+        this.$admin.getResourceLink("publishers"),
+        this.$admin.getResourceLink("authors"),
+        this.$admin.getResourceLink("books"),
+        this.$admin.getResourceLink("reviews"),
       ],
       footerMenu: [
         {

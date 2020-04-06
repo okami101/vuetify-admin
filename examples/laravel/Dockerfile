@@ -22,7 +22,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 RUN docker-php-ext-enable opcache
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
+COPY docker/laravel/php.ini /usr/local/etc/php/php.ini
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -45,9 +45,9 @@ COPY artisan ./
 RUN composer install --no-dev
 
 # copy init script
-COPY docker/php/init.sh /usr/local/bin/init
+COPY docker/laravel/init.sh /usr/local/bin/init
 RUN chmod +x /usr/local/bin/init
-COPY docker/php/seed.sh /usr/local/bin/seed
+COPY docker/laravel/seed.sh /usr/local/bin/seed
 RUN chmod +x /usr/local/bin/seed
 
 CMD ["php-fpm"]

@@ -3,15 +3,11 @@
     :mini-variant="mini"
     :clipped="$vuetify.breakpoint.lgAndUp"
     app
-    :src="bg"
     :dark="dark"
     :color="color"
   >
     <template v-slot:img="props">
-      <v-img
-        :gradient="`to bottom, rgba(0, 0, 0, ${bgOpacity}), rgba(0, 0, 0, ${bgOpacity})`"
-        v-bind="props"
-      />
+      <slot name="img" v-bind="props"></slot>
     </template>
     <v-list dense>
       <template v-for="(item, index) in menu">
@@ -80,11 +76,6 @@ export default {
     color: {
       type: String,
       default: "white",
-    },
-    bg: String,
-    bgOpacity: {
-      type: Number,
-      default: 0.5,
     },
     dark: Boolean,
   },
