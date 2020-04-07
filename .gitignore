@@ -2,6 +2,7 @@
 node_modules
 lib
 dist
+laravel-skeleton
 
 # Log files
 npm-debug.log*
