@@ -34,6 +34,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use ImpersonateTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -72,21 +73,6 @@ class User extends Authenticatable
     public function scopeRole(Builder $query, $role): Builder
     {
         return $query->where('roles', 'like', "%$role%");
-    }
-
-    public function setImpersonating($id)
-    {
-        session()->put('impersonate', $id);
-    }
-
-    public function stopImpersonating()
-    {
-        session()->forget('impersonate');
-    }
-
-    public function isImpersonating()
-    {
-        return session()->has('impersonate');
     }
 
     public function publishers()
