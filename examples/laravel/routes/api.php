@@ -39,6 +39,6 @@ Route::group(['middleware' => ['impersonate']], function () {
         'authors' => 'AuthorController',
         'books' => 'BookController',
         'reviews' => 'ReviewController',
-        'publishers' => 'PublisherController'
+        'publishers' => 'PublisherController',
     ]);
 });

@@ -60,7 +60,7 @@ class Publisher extends Model implements HasMedia
     protected $casts = [
         'active' => 'boolean',
         'address' => 'object',
-        'opening_date' => 'date'
+        'opening_date' => 'date',
     ];
 
     public $translatable = ['description'];

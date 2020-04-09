@@ -28,7 +28,7 @@ class BookController extends Controller
     public function index()
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
 
@@ -109,6 +109,7 @@ class BookController extends Controller
     {
         $book = Book::create($request->all());
         $book->authors()->sync($request->input('author_ids'));
+
         return new BookResource($book);
     }
 
@@ -123,6 +124,7 @@ class BookController extends Controller
     {
         $book->update($request->all());
         $book->authors()->sync($request->input('author_ids'));
+
         return new BookResource($book);
     }
 
@@ -136,6 +138,7 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
+
         return response()->noContent();
     }
 }

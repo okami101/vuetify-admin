@@ -16,7 +16,7 @@ class AuthorPolicy
             return true;
         }
 
-        if (!$user->hasRole('author')) {
+        if (! $user->hasRole('author')) {
             return false;
         }
     }

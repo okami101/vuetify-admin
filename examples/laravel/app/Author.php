@@ -44,7 +44,7 @@ class Author extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'backlinks' => 'array'
+        'backlinks' => 'array',
     ];
 
     public $translatable = ['description'];

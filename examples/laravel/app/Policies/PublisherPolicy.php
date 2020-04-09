@@ -16,7 +16,7 @@ class PublisherPolicy
             return true;
         }
 
-        if (!$user->hasRole('editor')) {
+        if (! $user->hasRole('editor')) {
             return false;
         }
     }

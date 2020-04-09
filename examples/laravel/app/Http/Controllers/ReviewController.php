@@ -27,7 +27,7 @@ class ReviewController extends Controller
     public function index()
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
 
@@ -82,6 +82,7 @@ class ReviewController extends Controller
     public function store(StoreReview $request)
     {
         $review = Review::create($request->all());
+
         return new ReviewResource($review);
     }
 
@@ -95,6 +96,7 @@ class ReviewController extends Controller
     public function update(UpdateReview $request, Review $review)
     {
         $review->update($request->all());
+
         return new ReviewResource($review);
     }
 
@@ -108,6 +110,7 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $review->delete();
+
         return response()->noContent();
     }
 }

@@ -70,7 +70,7 @@ class Book extends Model implements HasMedia
         'commentable' => 'boolean',
         'formats' => 'array',
         'tags' => 'array',
-        'publication_date' => 'date'
+        'publication_date' => 'date',
     ];
 
     public $translatable = ['title', 'description', 'summary'];
@@ -146,6 +146,7 @@ class Book extends Model implements HasMedia
         if ($user->hasRole('author')) {
             return $this->authors->filter->canAccess($user)->isNotEmpty();
         }
+
         return false;
     }
 }

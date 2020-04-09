@@ -70,6 +70,7 @@ class AuthorController extends Controller
     {
         $author = Author::create($request->all());
         $author->users()->sync($request->input('user_ids'));
+
         return new AuthorResource($author);
     }
 
@@ -84,6 +85,7 @@ class AuthorController extends Controller
     {
         $author->update($request->all());
         $author->users()->sync($request->input('user_ids'));
+
         return new AuthorResource($author);
     }
 
@@ -97,6 +99,7 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         $author->delete();
+
         return response()->noContent();
     }
 }

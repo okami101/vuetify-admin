@@ -62,6 +62,7 @@ class UserController extends Controller
         $user->save();
         $user->publishers()->sync($request->input('publisher_ids'));
         $user->authors()->sync($request->input('author_ids'));
+
         return new UserResource($user);
     }
 
@@ -80,6 +81,7 @@ class UserController extends Controller
         }
         $user->publishers()->sync($request->input('publisher_ids'));
         $user->authors()->sync($request->input('author_ids'));
+
         return new UserResource($user);
     }
 
@@ -93,18 +95,21 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return response()->noContent();
     }
 
     public function impersonate(User $user)
     {
         auth()->user()->setImpersonating($user->id);
+
         return new UserResource($user);
     }
 
     public function stopImpersonate()
     {
         auth()->user()->stopImpersonating();
+
         return response()->noContent();
     }
 }

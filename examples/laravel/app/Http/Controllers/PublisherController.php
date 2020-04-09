@@ -70,6 +70,7 @@ class PublisherController extends Controller
     {
         $publisher = Publisher::create($request->all());
         $publisher->users()->sync($request->input('user_ids'));
+
         return new PublisherResource($publisher);
     }
 
@@ -84,6 +85,7 @@ class PublisherController extends Controller
     {
         $publisher->update($request->all());
         $publisher->users()->sync($request->input('user_ids'));
+
         return new PublisherResource($publisher);
     }
 
@@ -97,6 +99,7 @@ class PublisherController extends Controller
     public function destroy(Publisher $publisher)
     {
         $publisher->delete();
+
         return response()->noContent();
     }
 }
