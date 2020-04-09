@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd /srv/api || exit
+cd /srv/api/laravel || exit
 
 php artisan db:seed

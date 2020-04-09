@@ -19,7 +19,8 @@
         "laravel/sanctum": "^2.0",
         "laravel/tinker": "^2.1",
         "laravel/ui": "^2.0",
-        "symfony/yaml": "^5.0"
+        "symfony/yaml": "^5.0",
+        "vtec/crud": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

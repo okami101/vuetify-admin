@@ -5043,11 +5043,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../vtec-crud",
-                "reference": "fdadc5f2783dcb40a7fec81394943c181800bf83"
+                "reference": "0175c94586e14401ed669fc8e47cff1b3bfef7d3"
             },
             "require": {
                 "illuminate/routing": "^7.5",
                 "illuminate/support": "^7.5",
+                "illuminate/validation": "^7.5",
                 "php": "^7.4",
                 "spatie/laravel-medialibrary": "^8.1",
                 "spatie/laravel-query-builder": "^2.8",

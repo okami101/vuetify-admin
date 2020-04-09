@@ -27,22 +27,7 @@ COPY docker/laravel/php.ini /usr/local/etc/php/php.ini
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /srv/api
-
-# prevent the reinstallation of vendors at every changes in the source code
-COPY composer.json composer.lock ./
-
-# copy only specifically what we need
-COPY app app/
-COPY bootstrap bootstrap/
-COPY config config/
-COPY database database/
-COPY public public/
-COPY resources resources/
-COPY routes routes/
-COPY artisan ./
-
-RUN composer install --no-dev
+WORKDIR /srv/api/laravel
 
 # copy init script
 COPY docker/laravel/init.sh /usr/local/bin/init

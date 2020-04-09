@@ -6,7 +6,9 @@ services:
     build:
       context: ./
     volumes:
-      - ./:/srv/api
+      - ${COMPOSER_HOME}:/root/.composer
+      - ./:/srv/api/laravel
+      - ../../vtec-crud:/srv/vtec-crud
     depends_on:
       - mysql
 
@@ -17,7 +19,7 @@ services:
       args:
         - APP_ENV=${APP_ENV}
     volumes:
-      - ./:/srv/api
+      - ./:/srv/api/laravel
       - ./docker/nginx/logs:/var/log/nginx
     ports:
       - "${NGINX_HTTP_PORT}:80"
