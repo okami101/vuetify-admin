@@ -4,9 +4,10 @@
 
 use App\Book;
 use Faker\Generator as Faker;
+use Vtec\Crud\Faker\Provider\Html;
 
 $factory->define(Book::class, function (Faker $faker) {
-    $faker->addProvider(new \App\Faker\Provider\Html($faker));
+    $faker->addProvider(new Html($faker));
 
     return [
         'isbn' => $faker->isbn13,
