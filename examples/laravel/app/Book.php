@@ -2,14 +2,14 @@
 
 namespace App;
 
-use App\ModelTraits\RequestMediaTrait;
-use App\ModelTraits\RequestTranslatableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Vtec\Crud\Traits\RequestMediaTrait;
+use Vtec\Crud\Traits\RequestTranslatableTrait;
 
 /**
  * App\Book

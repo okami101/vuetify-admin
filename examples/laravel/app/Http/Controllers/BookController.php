@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
@@ -12,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Vtec\Crud\Filters\SearchFilter;
 
 class BookController extends Controller
 {

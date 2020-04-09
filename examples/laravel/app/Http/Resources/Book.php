@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use Vtec\Crud\Http\Resources\BaseResource;
+
 class Book extends BaseResource
 {
     /**

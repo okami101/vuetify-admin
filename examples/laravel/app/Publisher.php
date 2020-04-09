@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\ModelTraits\RequestMediaTrait;
-use App\ModelTraits\RequestTranslatableTrait;
 use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Vtec\Crud\Traits\RequestMediaTrait;
+use Vtec\Crud\Traits\RequestTranslatableTrait;
 
 /**
  * App\Publisher

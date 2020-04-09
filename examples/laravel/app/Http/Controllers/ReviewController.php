@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
 use App\Review;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Vtec\Crud\Filters\SearchFilter;
 
 class ReviewController extends Controller
 {

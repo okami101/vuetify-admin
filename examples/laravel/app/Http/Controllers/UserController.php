@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 use App\Http\Resources\User as UserResource;
@@ -10,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Vtec\Crud\Filters\SearchFilter;
 
 class UserController extends Controller
 {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\SearchFilter;
 use App\Http\Requests\StorePublisher;
 use App\Http\Requests\UpdatePublisher;
 use App\Http\Resources\Publisher as PublisherResource;
@@ -11,6 +10,7 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedInclude;
 use Spatie\QueryBuilder\QueryBuilder;
+use Vtec\Crud\Filters\SearchFilter;
 
 class PublisherController extends Controller
 {
