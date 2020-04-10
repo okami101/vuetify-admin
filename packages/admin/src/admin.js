@@ -42,7 +42,7 @@ export default class VtecAdmin {
         return {
           ...r,
           icon: r.icon || "mdi-view-grid",
-          routes: ["list", "show", "create", "edit"].filter((a) => {
+          actions: ["list", "show", "create", "edit", "delete"].filter((a) => {
             if ((r.only || []).length) {
               return r.only.includes(a);
             }

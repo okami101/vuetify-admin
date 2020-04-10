@@ -117,12 +117,6 @@
             @click="(item) => onAction('edit', item)"
           ></va-edit-button>
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
-          <va-delete-button
-            :resource="resource"
-            :item="item"
-            icon
-            @deleted="$emit('deleted', item)"
-          ></va-delete-button>
           <va-clone-button
             :resource="resource"
             :item="item"
@@ -130,6 +124,12 @@
             :disable-route="disableEditRoute"
             @click="(item) => onAction('create', item)"
           ></va-clone-button>
+          <va-delete-button
+            :resource="resource"
+            :item="item"
+            icon
+            @deleted="$emit('deleted', item)"
+          ></va-delete-button>
         </slot>
       </div>
     </template>

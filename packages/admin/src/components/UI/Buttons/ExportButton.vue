@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip bottom :disabled="!icon" v-if="hasRoute('list')">
+  <v-tooltip bottom :disabled="!icon" v-if="hasAction('list')">
     <template v-slot:activator="{ on }">
       <v-btn :icon="icon" text @click="onExport" :color="color" v-on="on">
         <v-icon small>mdi-download</v-icon>

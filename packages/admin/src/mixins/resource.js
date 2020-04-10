@@ -13,9 +13,14 @@ export default {
       },
     },
   },
+  computed: {
+    resourceInfos() {
+      return this.$admin.resources.find((r) => r.name === this.resource);
+    },
+  },
   methods: {
-    hasRoute(action) {
-      return this.$route.meta.routes.includes(action);
+    hasAction(action) {
+      return this.resourceInfos.actions.includes(action);
     },
   },
 };

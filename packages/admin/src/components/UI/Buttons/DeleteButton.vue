@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
+  <v-tooltip bottom :disabled="!icon" v-if="hasAction('delete')">
     <template v-slot:activator="{ on }">
       <v-btn :icon="icon" text @click.stop="onDelete" :color="color" v-on="on">
         <v-icon small>mdi-trash-can</v-icon>

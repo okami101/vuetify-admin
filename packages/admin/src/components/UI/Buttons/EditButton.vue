@@ -2,7 +2,7 @@
   <v-tooltip
     bottom
     :disabled="!icon"
-    v-if="item && (disableRoute || hasRoute('edit'))"
+    v-if="item && (disableRoute || hasAction('edit'))"
   >
     <template v-slot:activator="{ on }">
       <v-btn

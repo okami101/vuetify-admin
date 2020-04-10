@@ -136,7 +136,7 @@ export default {
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
     resources() {
       return this.$admin.resources.filter(
-        (r) => r.routes.includes("create") && this.$admin.can(r.permissions)
+        (r) => r.actions.includes("create") && this.$admin.can(r.permissions)
       );
     },
   },
