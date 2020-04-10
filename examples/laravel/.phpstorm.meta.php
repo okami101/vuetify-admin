@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-04-09 21:39:45.
+    * Generated on 2020-04-10 17:55:39.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -97,6 +97,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -276,6 +279,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -455,6 +461,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -634,6 +643,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -813,6 +825,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -992,6 +1007,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -1171,6 +1189,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -1350,6 +1371,9 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.laracasts.migrate' => \Laracasts\Generators\Commands\MigrationMakeCommand::class,
+        'command.laracasts.migrate.pivot' => \Laracasts\Generators\Commands\PivotMigrationMakeCommand::class,
+        'command.laracasts.seed' => \Laracasts\Generators\Commands\SeedMakeCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
