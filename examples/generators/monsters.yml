@@ -10,6 +10,7 @@ monsters:
     - show
     - create
     - edit
+    - delete
   fields:
     name:
       label: Nom
@@ -21,6 +22,8 @@ monsters:
       label: Email
       field: email
       required: true
+      db:
+        - unique
     label:
       label: Libellé traduisible
       translatable: true
@@ -32,12 +35,17 @@ monsters:
       label: Booléen
       type: boolean
       filterable: true
+      db:
+        - default(0)
     level:
       label: Niveau
       type: integer
       field: number
       sortable: true
       filterable: true
+      db:
+        - unsigned
+        - default(0)
     rating:
       label: Puissance
       type: integer
@@ -45,6 +53,9 @@ monsters:
       filterable: true
       sortable: true
       required: true
+      db:
+        - unsigned
+        - default(0)
     price:
       label: Prix
       type: float
@@ -70,7 +81,7 @@ monsters:
         comics: BD
     tags:
       label: Choix multiple
-      type: array
+      type: json
       field: array
       input: combobox
       multiple: true
