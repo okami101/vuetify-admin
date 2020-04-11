@@ -2795,7 +2795,7 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-browserslist@^4.0.0, browserslist@^4.11.1, browserslist@^4.8.3, browserslist@^4.9.1:
+browserslist@^4.0.0, browserslist@^4.11.1, browserslist@^4.8.5, browserslist@^4.9.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.11.1.tgz#92f855ee88d6e050e7e7311d987992014f1a1f1b"
   integrity sha512-DCTr3kDrKEYNw6Jb9HFxVLQNaue8z+0ZfRBRjmCunKDEXEBajKDj2Y+Uelg+Pi29OnvaSGwjOsnRyNEkXzHg5g==
@@ -3603,11 +3603,11 @@ copy-webpack-plugin@^5.1.1:
     webpack-log "^2.0.0"
 
 core-js-compat@^3.6.2, core-js-compat@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.6.4.tgz#938476569ebb6cda80d339bcf199fae4f16fff17"
-  integrity sha512-zAa3IZPvsJ0slViBQ2z+vgyyTuhd3MFn1rBQjZSKVEgB0UMYhUkCj9jJUVPgGTGqWvsBVmfnruXgTcNyTlEiSA==
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.6.5.tgz#2a51d9a4e25dfd6e690251aa81f99e3c05481f1c"
+  integrity sha512-7ItTKOhOZbznhXAQ2g/slGg1PJV5zDO/WdkTwi7UEOJmkvsE32PWvx6mKtDjiMpjnR2CNf6BAD6sSxIlv7ptng==
   dependencies:
-    browserslist "^4.8.3"
+    browserslist "^4.8.5"
     semver "7.0.0"
 
 core-js@^3.4.4, core-js@^3.6.4:
@@ -3721,9 +3721,9 @@ css-declaration-sorter@^4.0.1:
     timsort "^0.3.0"
 
 css-loader@^3.4.2:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.5.1.tgz#db2b2336f4169edb68e6a829ad4fd36552647b77"
-  integrity sha512-0G4CbcZzQ9D1Q6ndOfjFuMDo8uLYMu5vc9Abs5ztyHcKvmil6GJrMiNjzzi3tQvUF+mVRuDg7bE6Oc0Prolgig==
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.5.2.tgz#6483ae56f48a7f901fbe07dde2fc96b01eafab3c"
+  integrity sha512-hDL0DPopg6zQQSRlZm0hyeaqIRnL0wbWjay9BZxoiJBpbfOW4WHfbaYQhwnDmEa0kZUc1CJ3IFo15ot1yULMIQ==
   dependencies:
     camelcase "^5.3.1"
     cssesc "^3.0.0"
@@ -4293,9 +4293,9 @@ ejs@^2.6.1:
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
 electron-to-chromium@^1.3.390:
-  version "1.3.401"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.401.tgz#4b84f80c68af9d23cebb8f2cc97b1479197ebffa"
-  integrity sha512-9tvSOS1++0EQP0tkgyD8KJergVZsld1/UqOusZVTbx9MWZHw5NCezkOjIQ5YWeB45jKdQerDfRrt28HwidI9Ow==
+  version "1.3.403"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.403.tgz#c8bab4e2e72bf78bc28bad1cc355c061f9cc1918"
+  integrity sha512-JaoxV4RzdBAZOnsF4dAlZ2ijJW72MbqO5lNfOBHUWiBQl3Rwe+mk2RCUMrRI3rSClLJ8HSNQNqcry12H+0ZjFw==
 
 elliptic@^6.0.0:
   version "6.5.2"
@@ -5538,9 +5538,9 @@ html-comment-regex@^1.1.0:
   integrity sha512-P+M65QY2JQ5Y0G9KKdlDpo0zK+/OHptU5AaBwUfAIDJZk1MYf32Frm84EcOytfJE0t5JvkAnKlmjsXDnWzCJmQ==
 
 html-entities@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
-  integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.3.1.tgz#fb9a1a4b5b14c5daba82d3e34c6ae4fe701a0e44"
+  integrity sha512-rhE/4Z3hIhzHAUKbW8jVcCyuT5oJCXXqhN/6mXXVCpzTmvJnoH2HL/bt3EZ6p55jbFJBeAe1ZNpL5BugLujxNA==
 
 html-minifier@^3.2.3:
   version "3.5.21"
@@ -9212,9 +9212,9 @@ semver@^6.0.0, semver@^6.1.0, semver@^6.1.2, semver@^6.2.0, semver@^6.3.0:
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
 semver@^7.1.2:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.2.1.tgz#d997aa36bdbb00b501ae4ac4c7d17e9f7a587ae5"
-  integrity sha512-aHhm1pD02jXXkyIpq25qBZjr3CQgg8KST8uX0OWXch3xE6jw+1bfbWnCjzMwojsTquroUmKFHNzU6x26mEiRxw==
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.2.2.tgz#d01432d74ed3010a20ffaf909d63a691520521cd"
+  integrity sha512-Zo84u6o2PebMSK3zjJ6Zp5wi8VnQZnEaCP13Ul/lt1ANsLACxnJxq4EEm1PY94/por1Hm9+7xpIswdS5AkieMA==
 
 send@0.17.1:
   version "0.17.1"
@@ -9717,9 +9717,9 @@ string-width@^4.1.0, string-width@^4.2.0:
     strip-ansi "^6.0.0"
 
 string.prototype.trimend@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/string.prototype.trimend/-/string.prototype.trimend-1.0.0.tgz#ee497fd29768646d84be2c9b819e292439614373"
-  integrity sha512-EEJnGqa/xNfIg05SxiPSqRS7S9qwDhYts1TSLR1BQfYUfPe1stofgGKvwERK9+9yf+PpfBMlpBaCHucXGPQfUA==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/string.prototype.trimend/-/string.prototype.trimend-1.0.1.tgz#85812a6b847ac002270f5808146064c995fb6913"
+  integrity sha512-LRPxFUaTtpqYsTeNKaFOw3R4bxIzWOnbQ837QfBylo8jIxtcbK/A/sMV7Q+OAV/vWo+7s25pOE10KYSjaSO06g==
   dependencies:
     define-properties "^1.1.3"
     es-abstract "^1.17.5"
@@ -9743,9 +9743,9 @@ string.prototype.trimright@^2.1.1:
     string.prototype.trimend "^1.0.0"
 
 string.prototype.trimstart@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/string.prototype.trimstart/-/string.prototype.trimstart-1.0.0.tgz#afe596a7ce9de905496919406c9734845f01a2f2"
-  integrity sha512-iCP8g01NFYiiBOnwG1Xc3WZLyoo+RuBymwIlWncShXDDJYWN6DbnM3odslBJdgCdRlq94B5s63NWAZlcn2CS4w==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/string.prototype.trimstart/-/string.prototype.trimstart-1.0.1.tgz#14af6d9f34b053f7cfc89b72f8f2ee14b9039a54"
+  integrity sha512-XxZn+QpvrBI1FOcg6dIpxUPgWCPuNXvMD72aaRaUQv1eD4e/Qy8i/hFTe0BUmD60p/QA6bh1avmuPTfNjqVWRw==
   dependencies:
     define-properties "^1.1.3"
     es-abstract "^1.17.5"
@@ -10559,9 +10559,9 @@ vue-i18n-extract@^1.0.2:
     yargs "^13.2.2"
 
 vue-i18n@^8.0.0, vue-i18n@^8.16.0:
-  version "8.16.0"
-  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.16.0.tgz#f84188a36a4cc3c876427b869c7c5a82d6696080"
-  integrity sha512-cp9JOsx4ETzlCsnD22FE8ZhAmD8kcyNLRKV0DPsS7bBNTCdIlOKuyTGonWKYcGCUtNMtwemDWRBevRm8eevBVg==
+  version "8.17.0"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.17.0.tgz#0e9d80afe8a6706e3327fbc30537a5d450200096"
+  integrity sha512-A6FlYeZtB9YOLNv+XRcu9xdVXDbIx1j6IprJC7mZ7nubLvXprRjQizauH8UrgGZI0KddoLJpA0UG3Dk87TIcnQ==
 
 vue-loader@^15.9.1:
   version "15.9.1"
