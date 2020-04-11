@@ -35,10 +35,7 @@
     "repositories": {
         "vtec-crud": {
             "type": "path",
-            "url": "../../vtec-crud",
-            "options": {
-                "symlink": true
-            }
+            "url": "../../vtec-crud"
         }
     },
     "config": {
