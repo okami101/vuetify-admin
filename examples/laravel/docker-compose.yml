@@ -6,7 +6,6 @@ services:
     build:
       context: ./
     volumes:
-      - ${COMPOSER_HOME}:/root/.composer
       - ./:/srv/api/laravel
       - ../../vtec-laravel-crud:/srv/vtec-laravel-crud
     depends_on:
