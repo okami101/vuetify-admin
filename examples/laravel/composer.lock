@@ -4719,7 +4719,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../vtec-crud",
-                "reference": "9c1b6f413a8ddf197b06bec02061440ab7af3322"
+                "reference": "1c563117bb396016559c8ee019eba1fe0f86dba2"
             },
             "require": {
                 "illuminate/routing": "^7.5",
@@ -4772,12 +4772,15 @@
                 {
                     "name": "Adrien Beaudouin",
                     "email": "adrien.beaudouin@outlook.com",
-                    "homepage": "https://okami101.io",
+                    "homepage": "https://vtec.okami101.io",
                     "role": "Developer"
                 }
             ],
+            "description": "Api based crud generator for Laravel.",
             "homepage": "https://github.com/adr1enbe4udou1n/vtec-crud",
             "keywords": [
+                "admin",
+                "laravel",
                 "vtec",
                 "vtec-crud"
             ],
