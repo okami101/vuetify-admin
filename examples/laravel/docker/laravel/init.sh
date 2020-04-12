@@ -2,6 +2,9 @@
 
 cd /srv/api/laravel || exit
 
+setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX storage
+setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX storage
+
 composer install
 php artisan key:generate
 php artisan storage:link
