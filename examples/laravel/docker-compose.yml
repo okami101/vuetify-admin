@@ -8,7 +8,7 @@ services:
     volumes:
       - ${COMPOSER_HOME}:/root/.composer
       - ./:/srv/api/laravel
-      - ../../vtec-crud:/srv/vtec-crud
+      - ../../vtec-laravel-crud:/srv/vtec-laravel-crud
     depends_on:
       - mysql
 

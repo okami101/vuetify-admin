@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "defd434a6fe15c8673ad306c351725b3",
+    "content-hash": "b16a5452bddffa45828ea658ba7e4ec6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4714,12 +4714,12 @@
             "time": "2020-03-13T01:23:26+00:00"
         },
         {
-            "name": "vtec/crud",
+            "name": "vtec/laravel-crud",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "../../vtec-crud",
-                "reference": "1c563117bb396016559c8ee019eba1fe0f86dba2"
+                "url": "../../vtec-laravel-crud",
+                "reference": "d2bc5e2b9fb658910c5f642bc46d4e57dca1369b"
             },
             "require": {
                 "illuminate/routing": "^7.5",
@@ -4756,13 +4756,13 @@
             },
             "scripts": {
                 "test": [
-                    "vendor/bin/phpunit"
+                    "phpunit"
                 ],
                 "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
+                    "phpunit --coverage-html coverage"
                 ],
                 "format": [
-                    "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+                    "php-cs-fixer fix --allow-risky=yes"
                 ]
             },
             "license": [
@@ -4777,7 +4777,7 @@
                 }
             ],
             "description": "Api based crud generator for Laravel.",
-            "homepage": "https://github.com/adr1enbe4udou1n/vtec-crud",
+            "homepage": "https://github.com/adr1enbe4udou1n/vtec-laravel-crud",
             "keywords": [
                 "admin",
                 "laravel",
@@ -8084,7 +8084,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "vtec/crud": 20
+        "vtec/laravel-crud": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
