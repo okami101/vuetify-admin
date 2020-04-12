@@ -1,7 +1,3 @@
-[submodule "vtec-crud"]
-	path = vtec-crud
-	url = git@github.com:adr1enbe4udou1n/vtec-crud.git
-	branch = master
 [submodule "vtec-laravel-crud"]
 	path = vtec-laravel-crud
 	url = https://github.com/adr1enbe4udou1n/vtec-laravel-crud
