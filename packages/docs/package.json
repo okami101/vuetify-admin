@@ -1,0 +1,16 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Docs of Vtec Admin",
+  "repository": "https://github.com/adr1enbe4udou1n/vtec-admin",
+  "author": "Adrien Beaudouin",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.4.0"
+  }
+}
