@@ -65,6 +65,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "format": "php-cs-fixer fix --allow-risky=yes",
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
