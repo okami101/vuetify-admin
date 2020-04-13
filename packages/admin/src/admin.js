@@ -140,26 +140,44 @@ export default class VtecAdmin {
     /**
      * Check Auth after each navigation
      */
-    router.beforeEach((to, from, next) => {
+    router.beforeEach(async (to, from, next) => {
+      let go = () => {
+        /**
+         * Auto close aside
+         */
+        store.commit("aside/close");
+
+        /**
+         * Set main and document title
+         */
+        document.title = to.meta.title
+          ? `${to.meta.title} | ${this.title}`
+          : this.title;
+
+        next();
+      };
+
       /**
        * Check and reload authenticated user with permissions
        * after each navigation
        */
-      store.dispatch("auth/checkAuth");
+      let authenticated = await store.dispatch("auth/checkAuth");
 
       /**
-       * Auto close aside
+       * Redirect to home if login page and connected
        */
-      store.commit("aside/close");
+      if (to.name === "login") {
+        return authenticated ? next("/") : go();
+      }
+
+      if (authenticated) {
+        return go();
+      }
 
       /**
-       * Set main and document title
+       * Fallback to login if not authenticated
        */
-      document.title = to.meta.title
-        ? `${to.meta.title} | ${this.title}`
-        : this.title;
-
-      next();
+      next("/login");
     });
 
     /**

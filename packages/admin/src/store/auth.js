@@ -53,29 +53,20 @@ export default (provider, router) => {
           await provider.logout();
           commit("setUser", null);
         }
-
-        router.push("/login").catch(() => {});
+        router.push("/login");
       },
       /**
        * Check valid auth on server by retrieving user infos
        * Set fresh user infos on store
        * Called after each URL navigation
        */
-      [CHECK_AUTH]: async ({ commit, dispatch }) => {
+      [CHECK_AUTH]: async ({ commit }) => {
         try {
           let { data } = await provider.checkAuth();
           commit("setUser", data);
-
-          /**
-           * Redirect to home if login page and connected
-           */
-          if (router.currentRoute.name === "login") {
-            router.push("/");
-          }
           return true;
         } catch (e) {
           commit("setUser", null);
-          dispatch("logout");
           return false;
         }
       },
