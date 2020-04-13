@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
+import en from "vuetify/es5/locale/en";
 import fr from "vuetify/es5/locale/fr";
 import "@/sass/overrides.sass";
 
@@ -7,8 +8,8 @@ Vue.use(Vuetify);
 
 const vuetify = new Vuetify({
   lang: {
-    locales: { fr },
-    current: process.env.VUE_APP_I18N_LOCALE,
+    locales: { en, fr },
+    current: process.env.VUE_APP_I18N_LOCALE || navigator.language.substr(0, 2),
   },
   theme: {
     options: {

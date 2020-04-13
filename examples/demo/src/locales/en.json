@@ -36,13 +36,46 @@
       "name": "Author | Authors"
     },
     "books": {
-      "name": "Book | Books"
+      "name": "Book | Books",
+      "enums": {
+        "category": {
+          "novel": "Novel",
+          "comic": "Comic",
+          "cook": "Cook",
+          "economy": "Economy",
+          "politics": "Politics",
+          "history": "History",
+          "fantasy": "Fantasy",
+          "biography": "Biography"
+        },
+        "formats": {
+          "pocket": "Pocket",
+          "paperback": "Paperback",
+          "pdf": "PDF",
+          "epub": "Epub",
+          "kindle": "Kindle"
+        }
+      }
     },
     "reviews": {
-      "name": "Review | Reviews"
+      "name": "Review | Reviews",
+      "enums": {
+        "status": {
+          "published": "Published",
+          "pending": "Pending",
+          "denied": "Denied"
+        }
+      }
     },
     "users": {
-      "name": "User | Users"
+      "name": "User | Users",
+      "enums": {
+        "roles": {
+          "admin": "Admin",
+          "editor": "Editor",
+          "author": "Author"
+        }
+      }
     }
   }
 }
