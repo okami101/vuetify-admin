@@ -60,7 +60,7 @@ import {
 } from "vuetify/lib";
 
 /**
- * Register vuetify components
+ * Register all used vuetify components by admin
  */
 Vue.use(Vuetify, {
   components: {
