@@ -14,7 +14,10 @@ build-demo: ## compile the demo example to static js
 	@cd ./examples/laravel && docker-compose restart
 
 install-laravel: ## install laravel demo
-	@cd ./examples/laravel && composer install && docker-compose exec laravel php artisan migrate --force
+	@cd ./examples/laravel && composer install
+
+migrate-laravel-database: ## migrate database laravel demo
+	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force
 
 run-laravel: ## run laravel demo
 	@cd ./examples/laravel && docker-compose up
