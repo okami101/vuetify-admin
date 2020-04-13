@@ -50,8 +50,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: null,
-      password: null,
+      username: "demo@example.com",
+      password: "password",
       errorMessages: {},
       loading: false,
     };
