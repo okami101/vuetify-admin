@@ -16,7 +16,6 @@
                 v-model="username"
                 required
                 :error-messages="errorMessages.email"
-                autofocus
               ></v-text-field>
 
               <v-text-field
