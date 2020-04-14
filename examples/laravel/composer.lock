@@ -1124,16 +1124,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.5.2",
+            "version": "v7.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3a3b3f7fea69813f5a03449c6314bfb42c3ccf78"
+                "reference": "8299b6dc0ff00b94d15f3d305b577addbb0d359f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3a3b3f7fea69813f5a03449c6314bfb42c3ccf78",
-                "reference": "3a3b3f7fea69813f5a03449c6314bfb42c3ccf78",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/8299b6dc0ff00b94d15f3d305b577addbb0d359f",
+                "reference": "8299b6dc0ff00b94d15f3d305b577addbb0d359f",
                 "shasum": ""
             },
             "require": {
@@ -1271,20 +1271,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-08T15:54:18+00:00"
+            "time": "2020-04-14T14:21:25+00:00"
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.1.2",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "f4248c837eb3e2571a20416cd00f5aca5ce5bb40"
+                "reference": "3615d39ecd7c609660413e80f5d051f6f0fccf3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/f4248c837eb3e2571a20416cd00f5aca5ce5bb40",
-                "reference": "f4248c837eb3e2571a20416cd00f5aca5ce5bb40",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/3615d39ecd7c609660413e80f5d051f6f0fccf3d",
+                "reference": "3615d39ecd7c609660413e80f5d051f6f0fccf3d",
                 "shasum": ""
             },
             "require": {
@@ -1331,7 +1331,7 @@
                 "laravel",
                 "sanctum"
             ],
-            "time": "2020-04-09T20:14:14+00:00"
+            "time": "2020-04-14T15:29:04+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1454,16 +1454,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.3.3",
+            "version": "1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "5a67afc2572ec6d430526cdc9c637ef124812389"
+                "reference": "dd3261eb9a322e009fa5d96d19b9ae19708ce04b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/5a67afc2572ec6d430526cdc9c637ef124812389",
-                "reference": "5a67afc2572ec6d430526cdc9c637ef124812389",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/dd3261eb9a322e009fa5d96d19b9ae19708ce04b",
+                "reference": "dd3261eb9a322e009fa5d96d19b9ae19708ce04b",
                 "shasum": ""
             },
             "require": {
@@ -1524,7 +1524,7 @@
                 "md",
                 "parser"
             ],
-            "time": "2020-04-05T16:01:48+00:00"
+            "time": "2020-04-13T20:52:18+00:00"
         },
         {
             "name": "league/flysystem",
@@ -2791,16 +2791,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "8.1.0",
+            "version": "8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "447e8b59000ef731a2af96e4cf575341485acfeb"
+                "reference": "ac2e10ed99ad610b3dc697c478a5e4c8a4551436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/447e8b59000ef731a2af96e4cf575341485acfeb",
-                "reference": "447e8b59000ef731a2af96e4cf575341485acfeb",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/ac2e10ed99ad610b3dc697c478a5e4c8a4551436",
+                "reference": "ac2e10ed99ad610b3dc697c478a5e4c8a4551436",
                 "shasum": ""
             },
             "require": {
@@ -2877,7 +2877,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2020-04-07T07:26:33+00:00"
+            "time": "2020-04-14T14:59:09+00:00"
         },
         {
             "name": "spatie/laravel-query-builder",
@@ -7187,16 +7187,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "5.0.2",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "c39c1db0a5cffc98173f3de5a17d489d1043fd7b"
+                "reference": "c753f04d68cd489b6973cf9b4e505e191af3b05c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/c39c1db0a5cffc98173f3de5a17d489d1043fd7b",
-                "reference": "c39c1db0a5cffc98173f3de5a17d489d1043fd7b",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/c753f04d68cd489b6973cf9b4e505e191af3b05c",
+                "reference": "c753f04d68cd489b6973cf9b4e505e191af3b05c",
                 "shasum": ""
             },
             "require": {
@@ -7236,13 +7236,7 @@
                 "environment",
                 "hhvm"
             ],
-            "funding": [
-                {
-                    "url": "https://github.com/sebastianbergmann",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-03-31T12:14:15+00:00"
+            "time": "2020-04-14T13:36:52+00:00"
         },
         {
             "name": "sebastian/exporter",
