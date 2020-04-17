@@ -25,17 +25,12 @@ By this way, HMR from this demo to the library is fully functional for quick vis
 
 ## How to run
 
+Install all repo dependencies by `yarn`
+
 Before following steps you must launch the [API demo](../laravel).\
 If API different than default localhost:8000 then adapt your environment variables after `cp .env .env.local`
 
-Then just :
-
-```bash
-yarn
-yarn serve
-```
-
-And it should be working seamlessly !
+Then just `yarn serve --open` and it should be autostart !
 
 ## License
 
