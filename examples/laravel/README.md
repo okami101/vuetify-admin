@@ -22,10 +22,9 @@ So direct live package development is fully working, even inside docker !
 
 ### The coolest way via docker
 
-First adapt last docker environment variables for your own available free host port inside .env file.  
-By default, it runs at port 8000.
-
 ```bash
+cp .env.example .env
+# adapt docker environment variables for your own available free host port  
 docker-compose up
 # initialize laravel app and db schema
 docker-compose exec laravel init

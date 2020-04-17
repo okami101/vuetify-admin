@@ -20,7 +20,7 @@ migrate-laravel-db: ## migrate database laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force
 
 run-laravel: ## run laravel demo
-	@cd ./examples/laravel && docker-compose up
+	@cd ./examples/laravel && cp -n .env.example .env && docker-compose up
 
 init-laravel: ## initialize laravel
 	@cd ./examples/laravel && docker-compose exec laravel init
