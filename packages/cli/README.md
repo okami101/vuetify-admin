@@ -1,20 +1,14 @@
 # Vue cli plugin for Vtec Admin
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/vue-cli-plugin-vtec-admin.svg?style=flat-square)](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin)
-[![Total Downloads](https://img.shields.io/npm/dt/vue-cli-plugin-vtec-admin.svg?style=flat-square)](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin)
-[![License](https://img.shields.io/npm/l/vue-cli-plugin-vtec-admin.svg?style=flat-square)](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin)
+Vue CLI plugin of main [Vtec Admin](../admin) library which allow quick start on fresh Vue CLI app. Use [Material Theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) with sass overrides and some specific components as base for Vuetify UI.
 
-SPA admin builder running on top of REST APIs, based on Vuetify with Vue CLI plugin. Ready to use with Laravel thanks to [separate crud generator package](https://github.com/okami101/vtec-laravel-crud), but can used on every backend of your choice with your own data and authentication providers.
+Include some scripts for generate crud pages of a specific resource.
 
-[separate crud generator package](packages/vtec-admin)
+> See [full documentation](https://vtec.okami101.io).
 
 ## Configuration
 
 ## Injected Commands
-
-## Full documentation
-
-Full documentation can be found on the [Vtec docs website](https://vtec.okami101.io).
 
 ## License
 
