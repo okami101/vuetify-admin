@@ -10,7 +10,7 @@
     "vuetify-admin",
     "vtec-admin"
   ],
-  "repository": "https://github.com/adr1enbe4udou1n/vtec-admin.git",
+  "repository": "https://github.com/okami101/vtec-admin.git",
   "author": "Adrien Beaudouin",
   "license": "MIT",
   "dependencies": {
