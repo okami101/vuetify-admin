@@ -8,6 +8,12 @@ Include some scripts for generate crud pages of a specific resource.
 
 ## Configuration
 
+Start with a fresh Vue CLI project with all necessary plugins :
+
+```bash
+vue create admin
+```
+
 ## Injected Commands
 
 ## License

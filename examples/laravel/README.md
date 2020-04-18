@@ -43,7 +43,8 @@ For full DB reset + dummy data : `docker-compose exec laravel php artisan migrat
 
 ```bash
 cp .env.example .env
-# adapt environment variables to your local settings, check Laravel documentation
+# remove DB_HOST,REDIS_HOST,CACHE_DRIVER,SESSION_DRIVER variables which ar default setted for docker
+# adapt other environment variables to your local settings, check Laravel documentation
 composer install
 php artisan key:generate
 php artisan storage:link

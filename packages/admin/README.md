@@ -1,3 +1,7 @@
+<p align="center">
+<a href="https://laravel.com" target="_blank" rel="noopener"><img src="https://user-images.githubusercontent.com/3679080/79393326-6758de80-7f75-11ea-9196-8ecf990b40fd.png" width="300"></a>
+</p>
+
 # Vtec Admin
 
 SPA admin builder running on top of REST APIs, based on Vuetify with Vue CLI plugin. Can be used on every backend of your choice with your own data and authentication providers.
@@ -19,7 +23,29 @@ Even if this package can be used as-is, the recommended way is to use dedicated 
 It takes care of prepare of all minimal boilerplate code for quick start admin development and include material theme and UI CRUD generators commands.\
 See [separate readme](https://github.com/okami101/vtec-admin/tree/master/packages/cli) of this plugin for installation detail.
 
-## Included components
+In order to operate, VtecAdmin constructor needs all of this instances :
+
+* Vue Router, which can contains all your custom routes
+* Vue Store, which can contains all your custom modules
+* Vue I18n
+* At least one provided locale
+* One auth provider (see detail after)
+* One data provider (see detail after)
+* A resources array which contain all resources to administer. Each resource can have :
+  * A mandatory slug name which will be used for api url calls
+  * An icon for identify it in sidebar or list page
+  * Indicator if this resource can be translated, in this case, a new query string with locale will be added on each api calls, it's up to you to handle it on backend
+  * List of available actions for this resource. By default all 5 operations are active (list / show / create / edit / delete). You can use `except` or `only` properties for blacklist or whitelist few actions. All removed actions will reflected on all crud pages and Vue Router will be adapted accordingly.
+  * Permissions for which user can access to this resource
+
+## Included auth and data Providers
+
+* [Laravel Sanctum auth provider](src/providers/sanctumAuthProvider.js) which use full state cookies authentication. You are free to replace it by your own provider by implementing [auth actions methods](src/utils/authActions.js). JWT is a more common way for SPA app but also is sensitive to XSS attacks, contrary to standard cookies if set to http only. If admin is on the same domain, it's often preferable to stay with cookies.
+* [Laravel data provider](src/providers/laravelDataProvider.js) which has full compatibility with Laravel resource API and work with [Spatie query builder](https://github.com/spatie/laravel-query-builder) for browsing resources. You can use your own provider for any type of backend simply by implementing [data actions methods](src/utils/dataActions.js) which allow full compatibility with Vtec Admin.
+
+> Both providers needs axios in order to work, you can simply add it by `vue add axios`
+
+## Included cmponents
 
 ### Layout
 
@@ -27,14 +53,16 @@ Standard admin layout with :
 
 * App header bar with customizable links and profile links
 * Sidebar for advanced menu, with hierarchy and icons
+* Breadcrumbs
 * Aside panel where you can put anything you want
 * App footer with customizable links and corporate message
+* Multi UI language (en and fr), takes browser language as default
 
 ### CRUD
 
 Classic crud pages that can be generated :
 
-* List : classic resource browser, paginable, filtrable and maulti-sortable. Has global SQL Like search filter and use dumb datagrid component by default that can be replaced by your own custom data-iterable layout list component.
+* List : classic resource browser, paginable, filtrable, multi-sortable and exportable. Has global SQL Like search filter and use dumb datagrid component by default that can be replaced by your own custom data-iterable layout list component.
 * Show : entirely customizable layout show page. Use fields components as formatted show for each resource properties.
 * Create : form page for new resource creation. Can use an other existing resource as source for input prefilling (clone).
 * Edit : customizable form page for an existing resource. Ideal place (as show page) for add other related resources with prefiltred datagrid list.

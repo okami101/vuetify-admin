@@ -19,7 +19,8 @@ By this way, HMR from this demo to the library is fully functional for quick vis
   * Authors (custom paginable data iterator)
   * Books (custom tabbed layout and wysiwyg)
   * Reviews
-* Almoste all supported fields used from main admin library
+* Almoste all supported fields used from main admin library, with Wysiwyg (TinyMCE 5) and file media uploading
+* Publisher, authors and books entities are translatable
 * Advanced filters
 * Bulk actions
 
