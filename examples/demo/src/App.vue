@@ -28,8 +28,13 @@
         mdi-heart
       </v-icon>
       by
-      <a href="https://www.my-awesome-company.com">My Awesome Company</a> for a
-      better web.
+      <a
+        href="https://vtec.okami101.io"
+        target="_blank"
+        class="font-weight-bold"
+        >Okami 101</a
+      >
+      for a better web.
     </va-footer>
     <impersonate-message slot="message"></impersonate-message>
   </va-admin>
@@ -51,19 +56,23 @@ export default {
         this.$admin.getResourceLink("authors"),
         this.$admin.getResourceLink("books"),
         this.$admin.getResourceLink("reviews"),
+        {
+          href: "https://github.com/okami101/vtec-admin",
+          text: "Github",
+        },
       ],
       footerMenu: [
         {
-          href: "#",
-          text: "About Us",
+          href: "https://github.com/okami101/vtec-admin",
+          text: "Github",
         },
         {
-          href: "#",
-          text: "Blog",
+          href: "https://vtec.okami101.io",
+          text: "Documentation",
         },
         {
-          href: "#",
-          text: "Licenses",
+          href: "https://adr1enbe4udou1n.mit-license.org",
+          text: "License",
         },
       ],
       profileMenu: [
