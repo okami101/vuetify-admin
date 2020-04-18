@@ -2,12 +2,12 @@
 
 SPA admin builder running on top of REST APIs, based on Vuetify with Vue CLI plugin. Can be used on every backend of your choice with your own data and authentication providers.
 
+> See [full documentation](https://vtec.okami101.io)\
+> Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) and use prefilled login (read only)
+
 <p align="center">
 <a href="https://laravel.com" target="_blank" rel="noopener"><img src="https://user-images.githubusercontent.com/3679080/79634627-ec0d4d80-816b-11ea-8db5-63b8f54c9aeb.png" width="800"></a>
 </p>
-
-> See [full documentation](https://vtec.okami101.io)\
-> Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) and use prefilled login (read only)
 
 ## Features
 
