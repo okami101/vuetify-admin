@@ -14,13 +14,19 @@ run-demo: ## run the demo example
 
 build-demo: ## compile the demo example to static js
 	@cd ./examples/demo && yarn -s build
-	@cd ./examples/laravel && docker-compose restart
+	@make restart-laravel
 
 migrate-laravel-db: ## migrate database laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force
 
 run-laravel: ## run laravel demo
 	@cd ./examples/laravel && cp -n .env.example .env && docker-compose up
+
+stop-laravel: ## stop laravel demo
+	@cd ./examples/laravel && docker-compose stop
+
+restart-laravel: ## restart laravel demo
+	@cd ./examples/laravel && docker-compose restart
 
 init-laravel: ## initialize laravel
 	@cd ./examples/laravel && docker-compose exec laravel init
