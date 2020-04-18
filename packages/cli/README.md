@@ -1,6 +1,6 @@
 # Vue cli plugin for Vtec Admin
 
-Vue CLI plugin of main [Vtec Admin](../admin) library which allow quick start on fresh Vue CLI app. Use [Material Theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) with sass overrides and some specific components as base for Vuetify UI.
+Vue CLI plugin of main [Vtec Admin](https://github.com/okami101/vtec-admin/tree/master/packages/admin) library which allow quick start on fresh Vue CLI app. Use [Material Theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) with sass overrides and some specific components as base for Vuetify UI.
 
 Include some scripts for generate crud pages of a specific resource.
 
