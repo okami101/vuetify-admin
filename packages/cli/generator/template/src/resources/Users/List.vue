@@ -7,60 +7,18 @@
     <base-material-card :icon="resource.icon" :title="title">
       <va-list
         ref="list"
-        :fields="[
-          'name',
-          'email',
-          'active',
-          'roles',
-          'created_at',
-          'updated_at',
-        ]"
-        :filters="[
-          'q',
-          { source: 'active', type: 'boolean' },
-          {
-            source: 'roles',
-            type: 'select',
-            options: {
-              multiple: true,
-              enum: true,
-            },
-          },
-        ]"
+        :fields="['name', 'email', 'created_at', 'updated_at']"
+        :filters="['q']"
         v-model="selected"
         :options.sync="options"
         disable-create-route
         @action="onAction"
       >
-        <template v-slot:bulk.actions>
-          <va-bulk-action-button
-            resource="users"
-            v-model="selected"
-            :label="$t('users.enable')"
-            icon="mdi-publish"
-            color="success"
-            :action="{ active: true }"
-            show-label
-            text
-          ></va-bulk-action-button>
-          <va-bulk-action-button
-            resource="users"
-            v-model="selected"
-            :label="$t('users.disable')"
-            icon="mdi-download"
-            color="orange"
-            :action="{ active: false }"
-            show-label
-            text
-          ></va-bulk-action-button>
-        </template>
         <template v-slot="props">
           <va-datagrid
             :fields="[
               'name',
               { source: 'email', type: 'email' },
-              { source: 'active', type: 'boolean', editable: true },
-              'roles',
               {
                 source: 'created_at',
                 type: 'date',
@@ -79,22 +37,6 @@
             disable-edit-route
             @item-action="onAction"
           >
-            <template v-slot:roles="{ value }">
-              <v-chip-group column>
-                <v-chip
-                  color="yellow"
-                  small
-                  v-for="(item, i) in value"
-                  :key="i"
-                >
-                  <va-select-field
-                    source="roles"
-                    :item="item"
-                    enum
-                  ></va-select-field>
-                </v-chip>
-              </v-chip-group>
-            </template>
             <template v-slot:item.actions="{ resource, item }">
               <impersonate-button
                 :resource="resource"

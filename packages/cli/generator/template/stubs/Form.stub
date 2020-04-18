@@ -1,17 +1,20 @@
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
     <v-row justify="center">
       <v-col sm="6">
-        <v-card>
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
           <v-card-text>
             {{ #foreach input }}
             <va-{{ input.type }}-input source="{{ input.name }}"></va-{{ input.type }}-input>
             {{ #endforeach }}
           </v-card-text>
-          <v-toolbar flat color="grey lighten-4">
-            <va-save-button :saving="saving"></va-save-button>
-          </v-toolbar>
-        </v-card>
+          <va-save-button :saving="saving"></va-save-button>
+        </base-material-card>
       </v-col>
     </v-row>
   </va-form>
@@ -19,10 +22,11 @@
 
 <script>
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   data() {
     return {
       saving: false,
+      model: {},
     };
   },
 };

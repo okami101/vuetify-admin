@@ -16,6 +16,9 @@ build-demo: ## compile the demo example to static js
 	@cd ./examples/demo && yarn -s build
 	@make restart-laravel
 
+serve-laravel: ## serve laravel demo
+	@cd ./examples/laravel && php artisan serve
+
 migrate-laravel-db: ## migrate database laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force
 

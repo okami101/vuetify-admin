@@ -68,5 +68,11 @@ export default new VtecAdmin({
     },
   }),
   dataProvider: laravelDataProvider(axios),
-  resources: [],
+  resources: [
+    {
+      icon: "mdi-account",
+      name: "users",
+      only: ["list"],
+    },
+  ],
 });

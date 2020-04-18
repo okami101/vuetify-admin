@@ -19,8 +19,7 @@
         mdi-heart
       </v-icon>
       by
-      <a href="https://www.my-awesome-company.com">My Awesome Company</a> for a
-      better web.
+      <a href="https://www.company.com">My Awesome Company</a> for a better web.
     </va-footer>
   </va-admin>
 </template>
@@ -48,7 +47,7 @@ export default {
         },
         {
           href: "#",
-          text: "Licenses",
+          text: "License",
         },
       ],
       profileMenu: [

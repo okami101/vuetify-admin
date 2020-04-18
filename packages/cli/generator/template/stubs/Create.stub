@@ -1,6 +1,6 @@
 <template>
-  <va-create :title="title">
-    <{{ resource|lower }}-form :item="item"></{{ resource|lower }}-form>
+  <va-create>
+    <{{ resource|lower }}-form :title="title" :item="item"></{{ resource|lower }}-form>
   </va-create>
 </template>
 

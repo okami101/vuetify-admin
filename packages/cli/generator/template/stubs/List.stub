@@ -1,8 +1,5 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h1>{{ title }}</h1>
-    </v-card-title>
+  <base-material-card :icon="resource.icon" :title="title">
     <va-list
       :fields="{{ fields }}"
       :filters="{{ filters }}"
@@ -20,12 +17,12 @@
       >
       </va-datagrid>
     </va-list>
-  </v-card>
+  </base-material-card>
 </template>
 
 <script>
 export default {
-  props: ["title"],
+  props: ["resource", "title"],
   data() {
     return {
       options: {},

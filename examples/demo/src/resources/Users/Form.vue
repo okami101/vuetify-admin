@@ -9,7 +9,7 @@
   >
     <va-text-input source="name"></va-text-input>
     <va-text-input source="email" type="email"></va-text-input>
-    <va-password-input source="password" type="email"></va-password-input>
+    <va-password-input source="password"></va-password-input>
     <va-password-input source="password_confirmation"></va-password-input>
     <va-boolean-input source="active"></va-boolean-input>
     <va-select-input
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  props: ["id", "title", "item"],
+  props: ["id", "item"],
   data() {
     return {
       roles: [],
