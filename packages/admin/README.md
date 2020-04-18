@@ -26,7 +26,9 @@ See [separate readme](https://github.com/okami101/vtec-admin/tree/master/package
 Standard admin layout with :
 
 * App header bar with customizable links and profile links
-* App
+* Sidebar for advanced menu, with hierarchy and icons
+* Aside panel where you can put anything you want
+* App footer with customizable links and corporate message
 
 ### Supported fields
 
