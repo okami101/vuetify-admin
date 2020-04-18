@@ -30,6 +30,15 @@ Standard admin layout with :
 * Aside panel where you can put anything you want
 * App footer with customizable links and corporate message
 
+### CRUD
+
+Classic crud pages that can be generated :
+
+* List : classic resource browser, paginable, filtrable and maulti-sortable. Has global SQL Like search filter and use dumb datagrid component by default that can be replaced by your own custom data-iterable layout list component.
+* Show : entirely customizable layout show page. Use fields components as formatted show for each resource properties.
+* Create : form page for new resource creation. Can use an other existing resource as source for input prefilling (clone).
+* Edit : customizable form page for an existing resource. Ideal place (as show page) for add other related resources with prefiltred datagrid list.
+
 ### Supported fields
 
 Fields is a custom show formatter of a given data, generally a property of a resource.
