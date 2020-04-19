@@ -21,12 +21,18 @@
       by
       <a href="https://www.company.com">My Awesome Company</a> for a better web.
     </va-footer>
+    <impersonate-message slot="message"></impersonate-message>
   </va-admin>
 </template>
 
 <script>
+import ImpersonateMessage from "@/components/ImpersonateMessage";
+
 export default {
   name: "App",
+  components: {
+    ImpersonateMessage,
+  },
   data() {
     return {
       mini: false,
