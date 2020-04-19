@@ -22,7 +22,6 @@ vue add router # if not already selected at project init
 vue add vuex # if not already selected at project init
 vue add vuetify # the main UI framework
 vue add i18n # the internationalisation plugin
-vue add axios # the http client used by providers
 ```
 
 ## Usage

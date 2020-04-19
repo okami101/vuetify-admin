@@ -19,6 +19,7 @@ module.exports = (api) => {
         "vue-cli-service crud:generate --output './src/resources'",
     },
     dependencies: {
+      axios: "^0.19.2",
       "portal-vue": "^2.1.0",
       "vtec-admin": "../../vtec-admin/packages/admin",
       "vue-chartist": "^2.2.0",
@@ -30,8 +31,9 @@ module.exports = (api) => {
 
   api.onCreateComplete(() => {
     /**
-     * Cleanup unused views files
+     * Cleanup unused component and views files
      */
+    fs.unlinkSync("src/components/HelloWorld.vue");
     fs.unlinkSync("src/views/Home.vue");
     fs.unlinkSync("src/views/About.vue");
   });

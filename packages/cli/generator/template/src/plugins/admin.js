@@ -10,7 +10,7 @@ import { en, fr } from "vtec-admin";
 import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
-import axios from "@/plugins/axios";
+import axios from "axios";
 
 /**
  * Load external libs
@@ -19,11 +19,13 @@ import PortalVue from "portal-vue";
 import draggable from "vuedraggable";
 
 /**
- * Axios global config
+ * Axios instance
  */
-axios.defaults.baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
-axios.defaults.withCredentials = true;
-axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+const http = axios.create({
+  baseURL: process.env.VUE_APP_API_URL || "http://localhost:8000",
+  withCredentials: true,
+  headers: { "X-Requested-With": "XMLHttpRequest" },
+});
 
 /**
  * Load Admin UI components
@@ -67,14 +69,14 @@ export default new VtecAdmin({
       fr: i18n.t("locales.french"),
     },
   },
-  authProvider: sanctumAuthProvider(axios, {
+  authProvider: sanctumAuthProvider(http, {
     routes: {
       login: "/auth/login",
       logout: "/auth/logout",
       user: "/api/user",
     },
   }),
-  dataProvider: laravelDataProvider(axios),
+  dataProvider: laravelDataProvider(http),
   resources: [
     {
       icon: "mdi-account",
