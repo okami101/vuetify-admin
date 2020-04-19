@@ -81,7 +81,7 @@ export default new VtecAdmin({
     {
       icon: "mdi-account",
       name: "users",
-      only: ["list"],
+      only: ["list", "delete"],
     },
   ],
 });
