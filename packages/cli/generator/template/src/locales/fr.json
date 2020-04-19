@@ -1,0 +1,58 @@
+{
+  "locales": {
+    "english": "Anglais",
+    "french": "Français"
+  },
+  "routes": {
+    "login": "Login",
+    "profile": "Compte",
+    "dashboard": "Tableau de bord"
+  },
+  "login": {
+    "username": "Utilisateur",
+    "password": "Mot de passe",
+    "sign_in": "Se connecter"
+  },
+  "profile": {
+    "account": "Mon compte",
+    "password": "Mot de passe",
+    "name": "Nom",
+    "email": "Email",
+    "old_password": "Ancien mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirmation du mot de passe",
+    "update": "Mettre à jour",
+    "account_updated": "Compte mis à jour",
+    "password_changed": "Mot de passe changé"
+  },
+  "users": {
+    "impersonate": "Usurper",
+    "stop_impersonate": "Arrêter usurpation",
+    "logged_as": "Vous êtes actuellement connecté en tant que {0}, cliquer {1} pour arrêter le mode d'usurpation."
+  },
+  "menu": {
+    "login": "Login",
+    "profile": "Compte",
+    "dashboard": "Tableau de bord"
+  },
+  "resources": {
+    "users": {
+      "name": "Utilisateur | Utilisateurs",
+      "titles": {
+        "list": "Liste des utilisateurs",
+        "show": "Détail de l'utilisateur {name}",
+        "create": "Créer un nouvel utilisateur",
+        "edit": "Edition de l'utilisateur {name}"
+      },
+      "fields": {
+        "id": "ID",
+        "name": "Nom",
+        "email": "Email",
+        "password": "Mot de passe",
+        "password_confirmation": "Confirmation du Mot de passe",
+        "created_at": "Date de création",
+        "updated_at": "Date de modification"
+      }
+    }
+  }
+}

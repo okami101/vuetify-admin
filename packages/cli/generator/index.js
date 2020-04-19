@@ -1,10 +1,6 @@
 const fs = require("fs");
 
 module.exports = (api) => {
-  api.injectImports(
-    "src/plugins/vuetify.js",
-    `import "@/sass/overrides.sass";`
-  );
   api.injectImports(api.entryFile, [
     `import admin from "./plugins/admin";`,
     `import "./plugins/base";`,

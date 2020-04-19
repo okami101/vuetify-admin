@@ -1,17 +1,6 @@
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
-/**
- * On local demo only
- */
-import "vtec-admin/vuetify.js";
-
-/**
- * On external project
- */
-//import "vtec-admin/dist/vuetify.js";
-//import "vtec-admin/dist/admin.css";
-
 import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
 import { en, fr } from "vtec-admin";
 

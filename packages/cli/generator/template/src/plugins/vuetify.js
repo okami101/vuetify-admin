@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
+import en from "vuetify/es5/locale/en";
+import fr from "vuetify/es5/locale/fr";
+import "@/sass/overrides.sass";
 
-/**
- * Vuetify
- */
 import {
   VApp,
   VContent,
@@ -60,7 +60,7 @@ import {
 } from "vuetify/lib";
 
 /**
- * Register all used vuetify components by admin
+ * Register all used vuetify components by Vtec Admin
  */
 Vue.use(Vuetify, {
   components: {
@@ -116,5 +116,25 @@ Vue.use(Vuetify, {
     VAutocomplete,
     VCombobox,
     VImg,
+  },
+});
+
+export default new Vuetify({
+  lang: {
+    locales: { en, fr },
+    current: process.env.VUE_APP_I18N_LOCALE,
+  },
+  theme: {
+    options: {
+      customProperties: true,
+    },
+    themes: {
+      light: {
+        primary: "#4CAF50",
+        secondary: "#9C27b0",
+        accent: "#9C27b0",
+        info: "#00CAE3",
+      },
+    },
   },
 });

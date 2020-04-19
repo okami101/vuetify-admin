@@ -32,6 +32,7 @@ The you can finally launch `vue add vtec-admin` which will do all this steps :
 * Install other required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 * Prepare inside your projects all minimal boilerplate code to quickly start, default it includes :
   * Nice material theme as superset on Vuetify
+  * Explicit preload of all Vuetify components used by Vtec Admin (a-la-carte can't obviously work on precompiled libs)
   * Initialize admin plugin with automatic crud pages webpack context preload and prepare admin layout page on your App.vue entry file
   * Login page plugged with default Laravel Sanctum auth provider (totally replaceable)
   * Static dashboard sample with usage of [Chartist.js](https://gionkunz.github.io/chartist-js/)

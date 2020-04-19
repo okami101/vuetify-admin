@@ -6,7 +6,7 @@
           <base-material-card class="text-center">
             <template v-slot:heading>
               <div class="display-3 text-center">
-                {{ $t("login.title") }}
+                {{ $admin.title }}
               </div>
             </template>
             <v-card-text>

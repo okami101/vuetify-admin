@@ -1,7 +1,5 @@
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
-
-import "vtec-admin/dist/vuetify.js";
 import "vtec-admin/dist/admin.css";
 
 import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
@@ -61,7 +59,7 @@ export default new VtecAdmin({
   router,
   store,
   i18n,
-  title: "My Awesome Admin",
+  title: "Vtec Admin",
   locales: {
     ui: { en, fr },
     translations: {

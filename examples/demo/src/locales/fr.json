@@ -17,7 +17,6 @@
     "feedback": "Feedback"
   },
   "login": {
-    "title": "Bookstore Admin",
     "username": "Utilisateur",
     "password": "Mot de passe",
     "sign_in": "Se connecter"
