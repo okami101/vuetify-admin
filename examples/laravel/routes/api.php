@@ -20,17 +20,8 @@ Route::group(['middleware' => Impersonate::class], function () {
         return new UserResource($request->user());
     });
 
-    /**
-     * Profile management routes
-     */
-    Route::patch('account/update', 'AccountController@update')->name('account.update');
-    Route::patch('account/password', 'AccountController@password')->name('account.password');
-
-    /**
-     * Impersonation routes
-     */
-    Route::post('/users/{user}/impersonate', 'UserController@impersonate');
-    Route::post('/users/stopImpersonate', 'UserController@stopImpersonate');
+    Route::account();
+    Route::impersonate();
 
     /**
      * API resources controllers
