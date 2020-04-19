@@ -19,8 +19,8 @@ module.exports = (api) => {
         "vue-cli-service crud:generate --output './src/resources'",
     },
     dependencies: {
-      "vtec-admin": "../../vtec-admin/packages/admin",
       "portal-vue": "^2.1.0",
+      "vtec-admin": "../../vtec-admin/packages/admin",
       "vue-chartist": "^2.2.0",
       vuedraggable: "^2.23.0",
     },

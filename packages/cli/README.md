@@ -30,20 +30,38 @@ vue add axios # the http client used by providers
 The you can finally launch `vue add vtec-admin` which will do all this steps :
 
 * Install main Vtec Admin library
-* Install other required dependencies as [portal-vue](https://portal-vue.linusb.org/) and [vuedraggable](https://github.com/SortableJS/Vue.Draggable)
-* Prepare inside your projects all minimal boilerplate code to quickly start
+* Install other required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
+* Prepare inside your projects all minimal boilerplate code to quickly start, default it includes :
+  * Nice material theme as superset on Vuetify
+  * Initialize admin plugin with automatic crud pages webpack context preload and prepare admin layout page on your App.vue entry file
+  * Login page plugged with default Laravel Sanctum auth provider (totally replaceable)
+  * Static dashboard sample with usage of [Chartist.js](https://gionkunz.github.io/chartist-js/)
+  * Functional profile edition page
+  * Generate user page list with direct aside creation / show / edition
 * Add UI CRUD generators scripts
 
-> On production, don't forget to adapt BASE_URL and VUE_APP_API_URL variables. The general use case is :
+If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
+
+> On production, don't forget to adapt BASE_URL and VUE_APP_API_URL variables. The general use case is to put this inside `.env.local` :
 
 ```env
 VUE_APP_API_URL=/
 BASE_URL=/admin
 ```
 
-VUE_APP_API_URL=
-VUE_APP_TINYMCE_API_KEY=
-VUE_APP_TINYMCE_LANGUAGE=
+> For TinyMCE 5 usage, you should have your own api key :
+
+```env
+VUE_APP_TINYMCE_API_KEY=my_api_key
+VUE_APP_TINYMCE_LANGUAGE=my_default_locale
+```
+
+Finally start your backend and admin panel. From backend root project :
+
+```bash
+php artisan serve # should be http://localhost:8000 by default
+cd admin && yarn serve
+```
 
 ## Injected Commands
 

@@ -9,7 +9,6 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "@tinymce/tinymce-vue": "^3.2.0",
     "axios": "^0.19.2",
     "core-js": "^3.4.4",
     "portal-vue": "^2.1.7",
