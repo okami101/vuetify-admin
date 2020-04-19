@@ -2,6 +2,7 @@ import isEmpty from "lodash/isEmpty";
 import upperFirst from "lodash/upperFirst";
 
 import aside from "./store/aside";
+import messages from "./store/messages";
 import auth from "./store/auth";
 import api from "./store/api";
 
@@ -78,9 +79,74 @@ export default class VtecAdmin {
     };
 
     /**
+     * I18n date format
+     */
+    i18n.setDateTimeFormat("en", {
+      short: {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      },
+      long: {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+      },
+      longWithTime: {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+        hour: "numeric",
+        minute: "numeric",
+      },
+    });
+
+    i18n.setDateTimeFormat("fr", {
+      short: {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      },
+      long: {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+      },
+      longWithTime: {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+        hour: "numeric",
+        minute: "numeric",
+      },
+    });
+
+    /**
+     * I18n number format
+     */
+    i18n.setNumberFormat("en", {
+      currency: {
+        style: "currency",
+        currency: "USD",
+      },
+    });
+
+    i18n.setNumberFormat("fr", {
+      currency: {
+        style: "currency",
+        currency: "EUR",
+      },
+    });
+
+    /**
      * Auth store & api dispatcher module injection
      */
     store.registerModule("aside", aside);
+    store.registerModule("messages", messages);
     store.registerModule("api", api);
     store.registerModule("auth", auth(this.authProvider, router));
 
@@ -136,6 +202,27 @@ export default class VtecAdmin {
         permissions,
       };
     };
+
+    /**
+     * Global confirm dialog function
+     */
+    this.confirm = (title, message) =>
+      store.dispatch("messages/confirm", { title, message });
+
+    /**
+     * Global toaster object
+     */
+    this.toast = ["success", "error", "info", "warning", "message"].reduce(
+      (o, action) => ({
+        ...o,
+        [action]: (message) =>
+          store.commit("messages/showToast", {
+            color: action !== "message" ? action : null,
+            message,
+          }),
+      }),
+      {}
+    );
 
     /**
      * Check Auth after each navigation

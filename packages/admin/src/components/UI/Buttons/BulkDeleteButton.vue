@@ -22,7 +22,7 @@ export default {
     }),
     async onBlukDelete() {
       if (
-        await this.$confirm(
+        await this.$admin.confirm(
           this.$t("va.confirm.delete_many_title", {
             resource: this.$tc(
               `resources.${this.resource}.name`,

@@ -30,7 +30,7 @@ export default {
          */
         location.href = process.env.BASE_URL;
       } catch ({ response }) {
-        this.$snackbar.error(response.data.message);
+        this.$admin.toast.error(response.data.message);
       }
     },
   },

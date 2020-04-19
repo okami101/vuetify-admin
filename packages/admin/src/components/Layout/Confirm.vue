@@ -21,33 +21,37 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "Confirm",
   data: () => ({
     dialog: false,
-    resolve: null,
-    reject: null,
     title: null,
     message: null,
   }),
+  computed: {
+    ...mapState({
+      confirm: (state) => state.messages.confirm,
+    }),
+  },
+  watch: {
+    confirm(newVal) {
+      if (newVal) {
+        this.dialog = true;
+        this.title = newVal.title;
+        this.message = newVal.message;
+        return;
+      }
+
+      this.dialog = false;
+    },
+  },
   methods: {
-    open(title, message) {
-      this.dialog = true;
-      this.title = title;
-      this.message = message;
-      return new Promise((resolve, reject) => {
-        this.resolve = resolve;
-        this.reject = reject;
-      });
-    },
-    agree() {
-      this.resolve(true);
-      this.dialog = false;
-    },
-    cancel() {
-      this.resolve(false);
-      this.dialog = false;
-    },
+    ...mapActions({
+      agree: "messages/agree",
+      cancel: "messages/cancel",
+    }),
   },
 };
 </script>

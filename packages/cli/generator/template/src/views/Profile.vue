@@ -127,7 +127,7 @@ export default {
         this.errorMessages = {};
         return true;
       } catch ({ response }) {
-        this.$snackbar.error(response.data.message);
+        this.$admin.toast.error(response.data.message);
 
         if (response.data.errors) {
           this.errorMessages = response.data.errors;
@@ -142,7 +142,7 @@ export default {
          * Recheck auth
          */
         this.checkAuth();
-        this.$snackbar.success(this.$t("profile.account_updated"));
+        this.$admin.toast.success(this.$t("profile.account_updated"));
       }
       this.accountUpdating = false;
     },
@@ -159,7 +159,7 @@ export default {
           newPassword: null,
           newPasswordConfirmation: null,
         };
-        this.$snackbar.success(this.$t("profile.password_changed"));
+        this.$admin.toast.success(this.$t("profile.password_changed"));
       }
       this.passwordChanging = false;
     },

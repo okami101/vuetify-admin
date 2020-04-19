@@ -96,7 +96,7 @@ export default ({ provider, resource, i18n }) => {
         commit("setLocale", code);
         dispatch("refresh");
       },
-      showSuccess({}, { action, params }) {
+      showSuccess({ commit }, { action, params }) {
         let messages = {
           [CREATE]: () =>
             i18n.t("va.messages.created", {
@@ -129,11 +129,23 @@ export default ({ provider, resource, i18n }) => {
         };
 
         if (messages[action]) {
-          this._vm.$snackbar.success(messages[action]());
+          commit(
+            "messages/showToast",
+            { color: "success", message: messages[action]() },
+            {
+              root: true,
+            }
+          );
         }
       },
-      showError({}, message) {
-        this._vm.$snackbar.error(message);
+      showError({ commit }, message) {
+        commit(
+          "messages/showToast",
+          { color: "error", message },
+          {
+            root: true,
+          }
+        );
       },
     },
   };

@@ -42,7 +42,7 @@ export default {
       }
 
       if (
-        await this.$confirm(
+        await this.$admin.confirm(
           this.$t("va.confirm.delete_title", {
             resource: this.$tc(
               `resources.${this.resource}.name`,
@@ -71,6 +71,7 @@ export default {
 
         this.refresh(this.resource);
         this.$emit("deleted");
+        return;
       }
     },
   },
