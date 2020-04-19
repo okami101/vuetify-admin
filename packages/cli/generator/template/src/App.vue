@@ -63,6 +63,8 @@ export default {
           text: this.$t("menu.dashboard"),
           link: "/",
         },
+        { divider: true },
+        this.$admin.getResourceLink("users"),
       ],
     };
   },

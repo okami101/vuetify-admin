@@ -25,6 +25,8 @@ const http = axios.create({
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
+Vue.prototype.$axios = http;
+
 /**
  * Load Admin UI components
  */
