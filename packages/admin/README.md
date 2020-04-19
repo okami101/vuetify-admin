@@ -40,7 +40,7 @@ In order to operate, VtecAdmin constructor needs all of this instances :
 
 ## Included auth and data Providers
 
-* [Laravel Sanctum auth provider](src/providers/sanctumAuthProvider.js) which use full state cookies authentication. You are free to replace it by your own provider by implementing [auth actions methods](src/utils/authActions.js). JWT is a more common way for SPA app but also is sensitive to XSS attacks, contrary to standard cookies if set to http only. If admin is on the same domain, it's often preferable to stay with cookies.
+* [Laravel Sanctum auth provider](src/providers/sanctumAuthProvider.js) which use good old full state cookies authentication. You are free to replace it by your own provider by implementing [auth actions methods](src/utils/authActions.js). JWT is a more common way for SPA app but is also sensitive to XSS attacks, contrary to standard cookies if set to http only. If admin is on the same domain, it's often preferable to stay with cookies. Besides, by this way, elFinder (best known of PHP files manager) can be seamlessly integrated to admin with sanctum auth.
 * [Laravel data provider](src/providers/laravelDataProvider.js) which has full compatibility with Laravel resource API and work with [Spatie query builder](https://github.com/spatie/laravel-query-builder) for browsing resources. You can use your own provider for any type of backend simply by implementing [data actions methods](src/utils/dataActions.js) which allow full compatibility with Vtec Admin.
 
 > Both providers needs axios in order to work, you can simply add it by `vue add axios`
