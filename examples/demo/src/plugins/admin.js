@@ -29,7 +29,7 @@ import draggable from "vuedraggable";
 /**
  * Axios global config
  */
-axios.defaults.baseURL = process.env.API_URL || "http://localhost:8000";
+axios.defaults.baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 

@@ -34,8 +34,14 @@ The you can finally launch `vue add vtec-admin` which will do all this steps :
 * Prepare inside your projects all minimal boilerplate code to quickly start
 * Add UI CRUD generators scripts
 
-> On production, don't forget to adapt BASE_URL router variable to base path (i.e. /admin if admin must be accessed under /admin).
+> On production, don't forget to adapt BASE_URL and VUE_APP_API_URL variables. The general use case is :
 
+```env
+VUE_APP_API_URL=/
+BASE_URL=/admin
+```
+
+VUE_APP_API_URL=
 VUE_APP_TINYMCE_API_KEY=
 VUE_APP_TINYMCE_LANGUAGE=
 
