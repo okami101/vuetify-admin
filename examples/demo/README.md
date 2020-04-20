@@ -6,7 +6,7 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 
 ## Note on Vtec Admin library
 
-The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.\
+The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
 By this way, HMR from this demo to the library is fully functional for quick visual development !
 
 ## Features
@@ -28,7 +28,7 @@ By this way, HMR from this demo to the library is fully functional for quick vis
 
 Install all repo dependencies by `yarn`
 
-Before following steps you must launch the [API demo](../laravel).\
+Before following steps you must launch the [API demo](../laravel).  
 If API different than default localhost:8000 then adapt your environment variables after `cp .env .env.local`
 
 Then just `yarn serve --open` and it should be autostart !

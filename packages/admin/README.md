@@ -6,7 +6,7 @@
 
 SPA admin builder running on top of REST APIs, based on Vuetify with Vue CLI plugin. Can be used on every backend of your choice with your own data and authentication providers.
 
-> See [full documentation](https://vtec.okami101.io)\
+> See [full documentation](https://vtec.okami101.io)  
 > Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) and use prefilled login (read only)
 
 <p align="center">
@@ -19,8 +19,8 @@ See [main readme](https://github.com/okami101/vtec-admin#features) of this repo 
 
 ## Usage
 
-Even if this package can be used as-is, the recommended way is to use dedicated Vue CLI plugin on fresh Vuetify app project.\
-It takes care of prepare of all minimal boilerplate code for quick start admin development and include material theme and UI CRUD generators commands.\
+Even if this package can be used as-is, the recommended way is to use dedicated Vue CLI plugin on fresh Vuetify app project.  
+It takes care of prepare of all minimal boilerplate code for quick start admin development and include material theme and UI CRUD generators commands.  
 See [separate readme](https://github.com/okami101/vtec-admin/tree/master/packages/cli) of this plugin for installation detail.
 
 In order to operate, VtecAdmin constructor needs all of this instances :
