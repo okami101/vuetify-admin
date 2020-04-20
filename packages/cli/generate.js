@@ -1,6 +1,8 @@
 const { chalk } = require(require.resolve("@vue/cli-shared-utils"));
 const { resolve } = require("path");
 const fs = require("fs");
+const yaml = require("js-yaml");
+const make = require("./make");
 
 const options = {
   description: "resource ui crud generator",
@@ -17,11 +19,19 @@ async function service(args = {}, api) {
     return;
   }
 
-  const targetDir = resolve(process.cwd(), args.output);
-
   /**
    * Generate crud views
    */
+  const resources = yaml.safeLoad(fs.readFileSync(args.file, "utf8"));
+
+  Object.keys(resources).forEach((name) => {
+    let resource = resources[name];
+
+    make.service({
+      output: args.output,
+      name,
+    });
+  });
 }
 
 module.exports = {

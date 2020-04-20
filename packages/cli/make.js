@@ -23,6 +23,7 @@ async function service(args = {}, api) {
   /**
    * Generate crud views
    */
+  console.log(args.name);
 }
 
 module.exports = {
