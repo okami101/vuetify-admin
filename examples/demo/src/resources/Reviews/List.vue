@@ -58,6 +58,7 @@
             options: { format: 'long' },
           },
         ]"
+        :sortables="['rating', 'author', 'publication_date']"
         v-bind="props"
         show-expand
         v-model="selected"
