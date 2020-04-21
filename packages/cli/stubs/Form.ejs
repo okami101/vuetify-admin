@@ -9,9 +9,9 @@
             </div>
           </template>
           <v-card-text>
-            {{ #foreach input }}
-            <va-{{ input.type }}-input source="{{ input.name }}"></va-{{ input.type }}-input>
-            {{ #endforeach }}
+            <%_ for (field of fields) { _%>
+            <va-<%- field.type %>-input source="<%- field.name %>"></va-<%- field.type %>-input>
+            <%_ } _%>
           </v-card-text>
           <va-save-button :saving="saving"></va-save-button>
         </base-material-card>

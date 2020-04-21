@@ -1,5 +1,4 @@
 const { chalk } = require(require.resolve("@vue/cli-shared-utils"));
-const { resolve } = require("path");
 const fs = require("fs");
 const yaml = require("js-yaml");
 const make = require("./make");
@@ -27,9 +26,22 @@ async function service(args = {}, api) {
   Object.keys(resources).forEach((name) => {
     let resource = resources[name];
 
+    const fields = Object.keys(resource.fields).map((name) => {
+      return {
+        name,
+        ...resource.fields[name],
+      };
+    });
+
     make.service({
       output: args.output,
       name,
+      fields: fields.map((field) => {
+        return {
+          ...field,
+          type: field.type || "text",
+        };
+      }),
     });
   });
 }

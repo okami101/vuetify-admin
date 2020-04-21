@@ -9,9 +9,9 @@
             </div>
           </template>
           <v-card-text>
-            {{ #foreach input }}
-            <va-field source="{{ field.name }}" type="{{ field.type }}"></va-field>
-            {{ #endforeach }}
+            <%_ for (field of fields) { _%>
+            <va-field source="<%- field.name %>" type="<%- field.type %>"></va-field>
+            <%_ } _%>
           </v-card-text>
         </base-material-card>
       </v-col>

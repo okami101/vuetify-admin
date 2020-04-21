@@ -1,16 +1,15 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
-      :fields="{{ fields }}"
-      :filters="{{ filters }}"
-      :include="{{ include }}"
+      :fields="[<%- fields.map(f => `'${f}'`).join(', ') %>]"
+      :filters="[<%- [`'q'`, ...filters.map(f => f.type === 'text' ? `'${f.name}'` : `{ source: '${f.name}', type: '${f.type}' }`)].join(', ') %>]"
       flat
       v-slot="props"
       v-model="selected"
       :options.sync="options"
     >
       <va-datagrid
-        :fields="{{ datagrid_fields }}"
+        :fields="[<%- columns.map(c => c.sortable && c.type === 'text' ? `'${c.name}'` : `{ source: '${c.name}'${ c.type !== 'text' ? `, type: '${c.type}'` : '' }${ !c.sortable ? `, sortable: false` : '' } }`).join(', ') %>]"
         v-bind="props"
         v-model="selected"
         :options.sync="options"

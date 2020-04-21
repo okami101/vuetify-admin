@@ -18,10 +18,12 @@ monsters:
       searchable: true
       sortable: true
       required: true
+      column: true
     email:
       label: Email
       field: email
       required: true
+      column: true
       db:
         - unique
     label:
@@ -31,6 +33,7 @@ monsters:
       searchable: true
       sortable: true
       required: true
+      column: true
     active:
       label: Booléen
       type: boolean
@@ -43,6 +46,7 @@ monsters:
       field: number
       sortable: true
       filterable: true
+      column: true
       db:
         - unsigned
         - default(0)
@@ -53,6 +57,7 @@ monsters:
       filterable: true
       sortable: true
       required: true
+      column: true
       db:
         - unsigned
         - default(0)
@@ -61,6 +66,7 @@ monsters:
       type: float
       sortable: true
       required: true
+      column: true
     description:
       label: Texte long
       field: textarea
@@ -75,6 +81,7 @@ monsters:
       field: select
       filterable: true
       required: true
+      column: true
       enum:
         history: Histoire
         novel: Roman
@@ -90,6 +97,7 @@ monsters:
       type: date
       sortable: true
       required: true
+      column: true
     avatar:
       label: Avatar
       type: image

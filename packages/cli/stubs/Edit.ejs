@@ -1,0 +1,16 @@
+<template>
+  <va-edit>
+    <<%- resource.toLowerCase() %>-form :id="id" :title="title" :item="item"></<%- resource.toLowerCase() %>-form>
+  </va-edit>
+</template>
+
+<script>
+import <%- resource %>Form from "./Form";
+
+export default {
+  props: ["id", "title", "item"],
+  components: {
+    <%- resource %>Form,
+  },
+};
+</script>
