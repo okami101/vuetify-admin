@@ -43,6 +43,9 @@ async function service(args = {}, api) {
     let data = { ...entries };
     if (template === "List") {
       data.fields = entries.fields.map(({ name }) => name);
+      data.sortables = entries.fields
+        .filter((f) => f.sortable)
+        .map(({ name }) => name);
       data.filters = entries.fields
         .filter((f) => f.filterable)
         .map(({ name, type }) => {
