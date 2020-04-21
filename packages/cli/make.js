@@ -50,8 +50,8 @@ async function service(args = {}, api) {
         });
       data.columns = entries.fields
         .filter((f) => f.column)
-        .map(({ name, type, sortable }) => {
-          return { name, type, sortable };
+        .map(({ name, type }) => {
+          return { name, type };
         });
     }
 

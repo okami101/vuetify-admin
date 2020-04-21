@@ -163,6 +163,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    sortables: {
+      type: Array,
+      default: () => [],
+    },
     dense: Boolean,
     loading: Boolean,
     itemsPerPage: Number,
@@ -195,10 +199,7 @@ export default {
         return {
           text: field.label,
           value: field.source,
-          sortable:
-            field.sortable === undefined
-              ? this.getDefaultSort(field)
-              : field.sortable,
+          sortable: this.getDefaultSort(field),
           align: field.align || this.getDefaultAlign(field),
         };
       });
@@ -236,9 +237,10 @@ export default {
       getOne: "api/getOne",
     }),
     getDefaultSort(field) {
-      return !["boolean", "function", "reference", "select", "image"].includes(
-        field.type
-      );
+      if (this.sortables.length) {
+        return this.sortables.includes(field.source);
+      }
+      return !field.type || ["text", "date", "number"].includes(field.type);
     },
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {

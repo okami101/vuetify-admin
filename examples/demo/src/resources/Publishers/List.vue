@@ -37,14 +37,20 @@
           'headquarter',
           { source: 'url', type: 'url' },
           { source: 'active', type: 'boolean' },
-          { source: 'address.street', sortable: false },
+          'address.street',
           {
             source: 'address',
             label: $t('address'),
-            sortable: false,
           },
           { source: 'opening_date', type: 'date', options: { format: 'long' } },
           { source: 'books_count', type: 'number' },
+        ]"
+        :sortables="[
+          'name',
+          'founder',
+          'headquarter',
+          'opening_date',
+          'books_count',
         ]"
         v-bind="props"
         v-model="selected"
