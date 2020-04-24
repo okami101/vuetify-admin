@@ -79,8 +79,8 @@ export default new VtecAdmin({
   dataProvider: laravelDataProvider(http),
   resources: [
     {
-      icon: "mdi-account",
       name: "users",
+      icon: "mdi-account",
       only: ["list", "delete"],
     },
   ],

@@ -63,7 +63,12 @@ php artisan serve # should be http://localhost:8000 by default
 cd admin && yarn serve
 ```
 
-## Injected Commands
+## Available generators commands
+
+You'll got 2 new npm scripts :
+
+* `yarn crud:make` : Use `yarn vue-cli-service help crud:make` for all options detail
+* `yarn crud:generate` :
 
 ## License
 

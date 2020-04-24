@@ -9,6 +9,7 @@ const options = {
   usage: "vue-cli-service crud:make [options]",
   options: {
     name: "Resource name",
+    icon: "Resource MDI",
     output: "Output of resource generated files",
   },
 };
@@ -29,9 +30,6 @@ async function service(args = {}, api) {
    */
   let entries = { resource, fields: args.fields };
 
-  /**
-   * Let's generate crud files
-   */
   const sourceDir = resolve(__dirname, "stubs");
   const targetDir = resolve(process.cwd(), args.output, resource);
 
@@ -39,7 +37,23 @@ async function service(args = {}, api) {
     fs.mkdirSync(targetDir);
   }
 
+  /**
+   * Let's generate crud files
+   */
   ["Create", "Edit", "Form", "List", "Show"].forEach((template) => {
+    if (args.actions) {
+      if (template === "Form") {
+        if (
+          !args.actions.includes("create") &&
+          !args.actions.includes("edit")
+        ) {
+          return;
+        }
+      } else if (!args.actions.includes(template.toLowerCase())) {
+        return;
+      }
+    }
+
     let data = { ...entries };
     if (template === "List") {
       data.fields = entries.fields.map(({ name }) => name);
@@ -65,6 +79,59 @@ async function service(args = {}, api) {
       fs.writeFileSync(resolve(targetDir, `${template}.vue`), str);
     });
   });
+
+  /**
+   * Edit JSON locale file
+   */
+  let localFilePath = resolve(
+    process.cwd(),
+    `./src/locales/${args.locale || "en"}.json`
+  );
+  let locale = JSON.parse(fs.readFileSync(localFilePath));
+
+  locale.resources[args.name] = {
+    name: args.label,
+    fields: args.fields.reduce(
+      (o, field) => ({
+        ...o,
+        [field.name]: field.label,
+      }),
+      {}
+    ),
+  };
+
+  fs.writeFileSync(localFilePath, JSON.stringify(locale, null, 2) + "\n");
+
+  /**
+   * Add resource entry into admin.js
+   */
+  const adminFile = resolve(process.cwd(), "./src/plugins/admin.js");
+  let content = fs.readFileSync(adminFile);
+
+  let startOffset = content.indexOf("  ],", content.indexOf("resources: ["));
+  let code = `    {
+      name: "${args.name}",`;
+
+  if (args.icon) {
+    code += `
+      icon: "${args.icon}",`;
+  }
+
+  if (args.actions) {
+    code += `
+      only: ["${args.actions.join('", "')}"],`;
+  }
+
+  code += `
+    },
+`;
+
+  content =
+    content.toString().substring(0, startOffset) +
+    code +
+    content.toString().substring(startOffset);
+
+  fs.writeFileSync(adminFile, content);
 }
 
 module.exports = {

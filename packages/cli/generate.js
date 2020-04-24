@@ -36,6 +36,10 @@ async function service(args = {}, api) {
     make.service({
       output: args.output,
       name,
+      label: resource.label,
+      icon: resource.icon,
+      actions: resource.actions,
+      locale: args.locale || "en",
       fields: fields.map((field) => {
         return {
           ...field,
