@@ -28,8 +28,14 @@ module.exports = (api) => {
     /**
      * Cleanup unused component and views files
      */
-    fs.unlinkSync("src/components/HelloWorld.vue");
-    fs.unlinkSync("src/views/Home.vue");
-    fs.unlinkSync("src/views/About.vue");
+    [
+      "src/components/HelloWorld.vue",
+      "src/views/Home.vue",
+      "src/views/About.vue",
+    ].forEach((file) => {
+      if (fs.existsSync(file)) {
+        fs.unlinkSync(file);
+      }
+    });
   });
 };

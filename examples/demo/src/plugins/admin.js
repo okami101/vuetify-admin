@@ -7,6 +7,7 @@ import { en, fr } from "vtec-admin";
 import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
+import resources from "@/resources";
 import axios from "axios";
 
 /**
@@ -73,35 +74,5 @@ export default new VtecAdmin({
     },
   }),
   dataProvider: laravelDataProvider(http),
-  resources: [
-    {
-      icon: "mdi-globe-model",
-      name: "publishers",
-      translatable: true,
-      permissions: ["admin", "editor"],
-    },
-    {
-      icon: "mdi-book",
-      name: "books",
-      translatable: true,
-      permissions: ["admin", "editor", "author"],
-    },
-    {
-      icon: "mdi-account",
-      name: "authors",
-      translatable: true,
-      permissions: ["admin", "author"],
-    },
-    {
-      icon: "mdi-comment",
-      name: "reviews",
-      permissions: ["admin", "editor", "author"],
-    },
-    {
-      icon: "mdi-account",
-      name: "users",
-      only: ["list", "delete"],
-      permissions: ["admin"],
-    },
-  ],
+  resources,
 });

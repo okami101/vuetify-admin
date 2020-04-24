@@ -2,6 +2,7 @@ const { chalk } = require(require.resolve("@vue/cli-shared-utils"));
 const { resolve } = require("path");
 const fs = require("fs");
 const ejs = require("ejs");
+const util = require("util");
 const upperFirst = require("lodash/upperFirst");
 
 const options = {
@@ -103,35 +104,41 @@ async function service(args = {}, api) {
   fs.writeFileSync(localFilePath, JSON.stringify(locale, null, 2) + "\n");
 
   /**
-   * Add resource entry into admin.js
+   * Add resource entry into resources
    */
-  const adminFile = resolve(process.cwd(), "./src/plugins/admin.js");
-  let content = fs.readFileSync(adminFile);
+  let resourceFile = resolve(process.cwd(), "./src/resources/index.js");
+  let resources = require(resourceFile);
+  let descriptor = {};
+  ["icon", "actions", "permissions", "translatable"].forEach((prop) => {
+    if (args[prop]) {
+      descriptor[prop] = args[prop];
+    }
+  });
+  resources[args.name] = descriptor;
 
-  let startOffset = content.indexOf("  ],", content.indexOf("resources: ["));
-  let code = `    {
-      name: "${args.name}",`;
+  fs.writeFileSync(
+    resourceFile,
+    `module.exports = ${util.inspect(resources)}` + "\n"
+  );
 
-  if (args.icon) {
-    code += `
-      icon: "${args.icon}",`;
-  }
+  /**
+   * Add entry to sidebar
+   */
+  const appFile = resolve(process.cwd(), "./src/App.vue");
+  let content = fs.readFileSync(appFile);
 
-  if (args.actions) {
-    code += `
-      only: ["${args.actions.join('", "')}"],`;
-  }
-
-  code += `
-    },
-`;
+  let startOffset = content.indexOf(
+    "      ],",
+    content.indexOf("sidebarMenu: [")
+  );
+  let code = `        this.$admin.getResourceLink("${args.name}"),\n`;
 
   content =
     content.toString().substring(0, startOffset) +
     code +
     content.toString().substring(startOffset);
 
-  fs.writeFileSync(adminFile, content);
+  fs.writeFileSync(appFile, content);
 }
 
 module.exports = {

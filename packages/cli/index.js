@@ -1,6 +1,3 @@
-const make = require("./make");
-const generate = require("./generate");
-
 module.exports = (api) => {
   const make = require("./make");
   const generate = require("./generate");
