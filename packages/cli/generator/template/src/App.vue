@@ -27,6 +27,7 @@
 
 <script>
 import ImpersonateMessage from "@/components/ImpersonateMessage";
+import nav from "./_nav";
 
 export default {
   name: "App",
@@ -63,15 +64,7 @@ export default {
           link: "/profile",
         },
       ],
-      sidebarMenu: [
-        {
-          icon: "mdi-view-dashboard",
-          text: this.$t("menu.dashboard"),
-          link: "/",
-        },
-        { divider: true },
-        this.$admin.getResourceLink("users"),
-      ],
+      sidebarMenu: nav(this.$i18n, this.$admin.getResourceLink),
     };
   },
 };

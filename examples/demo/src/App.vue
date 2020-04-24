@@ -42,6 +42,7 @@
 
 <script>
 import ImpersonateMessage from "@/components/ImpersonateMessage";
+import nav from "./_nav";
 
 export default {
   name: "App",
@@ -82,35 +83,7 @@ export default {
           link: "/profile",
         },
       ],
-      sidebarMenu: [
-        {
-          icon: "mdi-view-dashboard",
-          text: this.$t("menu.dashboard"),
-          link: "/",
-        },
-        { divider: true },
-        { heading: this.$t("menu.bookstore") },
-        this.$admin.getResourceLink("publishers"),
-        this.$admin.getResourceLink("authors"),
-        this.$admin.getResourceLink("books"),
-        this.$admin.getResourceLink("reviews"),
-        { divider: true },
-        { heading: this.$t("menu.other") },
-        this.$admin.getResourceLink("users"),
-        {
-          icon: "mdi-settings",
-          text: this.$t("menu.settings"),
-          link: "/settings",
-          permissions: ["admin"],
-        },
-        {
-          icon: "mdi-message",
-          text: this.$t("menu.feedback"),
-          link: "/feedback",
-          permissions: ["admin", "editor"],
-        },
-        { icon: "mdi-help-circle", text: this.$t("menu.help"), link: "/help" },
-      ],
+      sidebarMenu: nav(this.$i18n, this.$admin.getResourceLink),
     };
   },
 };

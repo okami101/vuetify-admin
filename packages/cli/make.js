@@ -124,21 +124,18 @@ async function service(args = {}, api) {
   /**
    * Add entry to sidebar
    */
-  const appFile = resolve(process.cwd(), "./src/App.vue");
-  let content = fs.readFileSync(appFile);
+  const navFile = resolve(process.cwd(), "./src/_nav.js");
+  let content = fs.readFileSync(navFile);
 
-  let startOffset = content.indexOf(
-    "      ],",
-    content.indexOf("sidebarMenu: [")
-  );
-  let code = `        this.$admin.getResourceLink("${args.name}"),\n`;
+  let startOffset = content.indexOf("];");
+  let code = `  resourceLink("${args.name}"),\n`;
 
   content =
     content.toString().substring(0, startOffset) +
     code +
     content.toString().substring(startOffset);
 
-  fs.writeFileSync(appFile, content);
+  fs.writeFileSync(navFile, content);
 }
 
 module.exports = {
