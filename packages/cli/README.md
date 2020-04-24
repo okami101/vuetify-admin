@@ -67,7 +67,7 @@ cd admin && yarn serve
 
 You'll got 2 new npm scripts :
 
-* `yarn crud:make` : Use `yarn vue-cli-service help crud:make` for all options detail
+* `yarn crud:make` : Generic crud views command generator. Register resource into `src/plugins/admin.js`. Use `yarn vue-cli-service help crud:make` for all options detail
 * `yarn crud:generate` :
 
 ## License
