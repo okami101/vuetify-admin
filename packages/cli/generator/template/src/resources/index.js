@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   users: {
     icon: "mdi-account",
     only: ["list", "delete"],

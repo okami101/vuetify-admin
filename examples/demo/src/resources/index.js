@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   publishers: {
     icon: "mdi-globe-model",
     translatable: true,

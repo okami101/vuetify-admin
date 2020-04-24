@@ -49,8 +49,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: null,
-      password: null,
+      username: "demo@example.com",
+      password: "password",
       errorMessages: {},
       loading: false,
     };
@@ -67,9 +67,11 @@ export default {
             username: this.username,
             password: this.password,
           });
-        } catch ({ response }) {
-          if (response.data.errors) {
-            this.errorMessages = response.data.errors;
+        } catch (e) {
+          if (!e.response) {
+            this.errorMessages.email = [e.message];
+          } else if (e.response.data.errors) {
+            this.errorMessages = e.response.data.errors;
           }
         }
         this.loading = false;

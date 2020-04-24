@@ -107,18 +107,18 @@ async function service(args = {}, api) {
    * Add resource entry into resources
    */
   let resourceFile = resolve(process.cwd(), "./src/resources/index.js");
-  let resources = require(resourceFile);
+  let resources = require("esm")(module)(resourceFile);
   let descriptor = {};
   ["icon", "actions", "permissions", "translatable"].forEach((prop) => {
     if (args[prop]) {
       descriptor[prop] = args[prop];
     }
   });
-  resources[args.name] = descriptor;
+  resources.default[args.name] = descriptor;
 
   fs.writeFileSync(
     resourceFile,
-    `module.exports = ${util.inspect(resources)}` + "\n"
+    `export default ${util.inspect(resources.default)}` + "\n"
   );
 
   /**

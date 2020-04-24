@@ -13,7 +13,9 @@
   "repository": "https://github.com/okami101/vtec-admin.git",
   "author": "Adrien Beaudouin",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "esm": "^3.2.25"
+  },
   "peerDependencies": {
     "@vue/cli-service": "^3.0.0 || ^4.0.0-0"
   },
