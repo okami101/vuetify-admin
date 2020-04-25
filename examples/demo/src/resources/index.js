@@ -1,26 +1,31 @@
-export default {
-  publishers: {
+export default [
+  {
+    name: "publishers",
     icon: "mdi-globe-model",
     translatable: true,
     permissions: ["admin", "editor"],
   },
-  books: {
+  {
+    name: "books",
     icon: "mdi-book",
     translatable: true,
     permissions: ["admin", "editor", "author"],
   },
-  authors: {
+  {
+    name: "authors",
     icon: "mdi-account",
     translatable: true,
     permissions: ["admin", "author"],
   },
-  reviews: {
+  {
+    name: "reviews",
     icon: "mdi-comment",
     permissions: ["admin", "editor", "author"],
   },
-  users: {
+  {
+    name: "users",
     icon: "mdi-account",
     only: ["list", "delete"],
     permissions: ["admin"],
   },
-};
+];

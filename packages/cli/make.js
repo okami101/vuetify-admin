@@ -114,7 +114,10 @@ async function service(args = {}, api) {
       descriptor[prop] = args[prop];
     }
   });
-  resources.default[args.name] = descriptor;
+  resources.default.push({
+    name: args.name,
+    ...descriptor,
+  });
 
   fs.writeFileSync(
     resourceFile,

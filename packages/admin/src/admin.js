@@ -31,12 +31,13 @@ export default class VtecAdmin {
     /**
      * Format usable resources object
      */
-    this.resources = Object.keys(resources)
-      .map((name) => {
-        return {
-          name,
-          ...resources[name],
-        };
+    this.resources = resources
+      .map((r) => {
+        return typeof r === "string"
+          ? {
+              name: r,
+            }
+          : r;
       })
       .map((r) => {
         return {
