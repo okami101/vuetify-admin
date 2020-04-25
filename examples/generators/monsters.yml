@@ -21,7 +21,7 @@ monsters:
       column: true
     email:
       label: Email
-      field: email
+      type: email
       required: true
       column: true
       db:
@@ -38,47 +38,57 @@ monsters:
       label: Booléen
       type: boolean
       filterable: true
+      required: true
       db:
-        - default(0)
+        type: boolean
+        options:
+          - default(0)
     level:
       label: Niveau
-      type: integer
-      field: number
+      type: number
       sortable: true
       filterable: true
       column: true
+      required: true
       db:
-        - unsigned
-        - default(0)
+        type: integer
+        options:
+          - unsigned
+          - default(0)
     rating:
       label: Puissance
-      type: integer
-      field: rating
+      type: rating
       filterable: true
       sortable: true
       required: true
       column: true
       db:
-        - unsigned
-        - default(0)
+        type: integer
+        options:
+          - unsigned
+          - default(0)
     price:
       label: Prix
-      type: float
+      type: number
+      options:
+        format: 'currency'
       sortable: true
       required: true
       column: true
+      db:
+        type: float
     description:
       label: Texte long
-      field: textarea
+      multiline: true
       translatable: true
       searchable: true
     body:
       label: Texte riche
-      field: rich_text
+      html: true
       translatable: true
     category:
       label: Choix (enum)
-      field: select
+      type: select
       filterable: true
       required: true
       column: true
@@ -88,27 +98,33 @@ monsters:
         comics: BD
     tags:
       label: Choix multiple
-      type: json
-      field: array
+      type: array
       input: combobox
       multiple: true
+      db:
+        type: json
     publication_date:
       label: Date
       type: date
+      options:
+        format: 'long'
       sortable: true
       required: true
       column: true
     avatar:
       label: Avatar
       type: image
+      excluded: true
     images:
       label: Photos
       type: image
       multiple: true
+      excluded: true
     files:
       label: Fichiers
       type: file
       multiple: true
+      excluded: true
 #    embedded:
 #      label: Objets embarqués
 #      type: array

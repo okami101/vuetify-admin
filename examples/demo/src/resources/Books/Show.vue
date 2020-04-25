@@ -80,10 +80,7 @@
                 </va-field>
               </v-col>
             </v-row>
-            <va-field
-              source="description"
-              :options="{ multiline: true }"
-            ></va-field>
+            <va-field source="description"></va-field>
             <va-field source="reviews" v-slot="{ value }">
               <v-chip-group column>
                 <v-chip

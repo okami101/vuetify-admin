@@ -67,9 +67,10 @@ cd admin && yarn serve
 
 You'll got 2 new npm scripts :
 
-* `yarn crud:make` : Main crud views command maker which :
-  * Generate all necessary basic crud views with separate form component inside dedicated resource folder under `src/resources/`. You can even generate all basic fields and inputs by passing complex object into "fields" options
+* `yarn crud:make` : Main crud command maker which :
+  * Generate all necessary basic crud views with separate form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing complex object into "fields" options
   * Register new resource to `src/resources/index.js` file
+  * Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option
   * Add new sidebar entry to `src/_nav.js` file
 
 > Use `yarn vue-cli-service help crud:make` for all options detail

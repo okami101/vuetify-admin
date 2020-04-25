@@ -8,7 +8,7 @@ const options = {
   usage: "vue-cli-service crud:generate [options]",
   options: {
     file: "Yaml file descriptor",
-    output: "Output of resource generated files",
+    output: "Output directory of resource generated crud pages",
   },
 };
 

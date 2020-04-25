@@ -30,10 +30,7 @@
                 <va-field source="headquarter"></va-field>
               </v-col>
             </v-row>
-            <va-field
-              source="description"
-              :options="{ multiline: true }"
-            ></va-field>
+            <va-field source="description"></va-field>
             <v-row>
               <v-col lg="6">
                 <va-field source="url" type="url"></va-field>

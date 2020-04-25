@@ -10,7 +10,17 @@
           </template>
           <v-card-text>
             <%_ for (field of fields) { _%>
-            <va-field source="<%- field.name %>" type="<%- field.type %>"></va-field>
+            <%_ if (field.type === 'array') { _%>
+            <va-field source="<%- field.name %>" v-slot="{ value }">
+              <v-chip-group>
+                <v-chip v-for="(item, i) in value" :key="i">
+                  {{ item }}
+                </v-chip>
+              </v-chip-group>
+            </va-field>
+            <%_ } else { _%>
+            <va-field source="<%- field.name %>" type="<%- field.html ? 'rich-text' : field.type %>"></va-field>
+            <%_ } _%>
             <%_ } _%>
           </v-card-text>
         </base-material-card>

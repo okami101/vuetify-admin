@@ -9,9 +9,20 @@ const options = {
   description: "resource ui crud maker",
   usage: "vue-cli-service crud:make [options]",
   options: {
-    name: "Resource name",
+    name:
+      "Required resource name. Should be on url slug format, used for client-side routes and identify api calls",
+    output: "Output directory of resource generated crud pages",
     icon: "Resource MDI",
-    output: "Output of resource generated files",
+    label:
+      "Main localized label which identify resource. Will be used inside titles, menus, etc.",
+    locale:
+      "Default vue-i18n locale used for register resource labels (name and fields)",
+    translatable:
+      "Activate if resource has translatable fields. If setted, a contextual locale selector will be available in order to select used language on each translatable field. A locale query parameter will be send to backend.",
+    actions:
+      "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'",
+    fields:
+      "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, column (will be shown in datagrid page list), sortable, required, filterable",
   },
 };
 
@@ -25,11 +36,7 @@ async function service(args = {}, api) {
    * Generate crud views
    */
   let resource = upperFirst(args.name);
-
-  /**
-   * Prepare EJS variables
-   */
-  let entries = { resource, fields: args.fields };
+  let fields = args.fields || [];
 
   const sourceDir = resolve(__dirname, "stubs");
   const targetDir = resolve(process.cwd(), args.output, resource);
@@ -55,18 +62,19 @@ async function service(args = {}, api) {
       }
     }
 
-    let data = { ...entries };
+    /**
+     * Prepare EJS variables
+     */
+    let data = { resource, fields };
     if (template === "List") {
-      data.fields = entries.fields.map(({ name }) => name);
-      data.sortables = entries.fields
-        .filter((f) => f.sortable)
-        .map(({ name }) => name);
-      data.filters = entries.fields
+      data.fields = fields.filter((f) => !f.excluded).map(({ name }) => name);
+      data.sortables = fields.filter((f) => f.sortable).map(({ name }) => name);
+      data.filters = fields
         .filter((f) => f.filterable)
         .map(({ name, type }) => {
           return { name, type };
         });
-      data.columns = entries.fields
+      data.columns = fields
         .filter((f) => f.column)
         .map(({ name, type }) => {
           return { name, type };
@@ -92,13 +100,22 @@ async function service(args = {}, api) {
 
   locale.resources[args.name] = {
     name: args.label,
-    fields: args.fields.reduce(
+    fields: fields.reduce(
       (o, field) => ({
         ...o,
         [field.name]: field.label,
       }),
       {}
     ),
+    enums: fields
+      .filter((f) => f.enum)
+      .reduce(
+        (o, field) => ({
+          ...o,
+          [field.name]: field.enum,
+        }),
+        {}
+      ),
   };
 
   fs.writeFileSync(localFilePath, JSON.stringify(locale, null, 2) + "\n");
