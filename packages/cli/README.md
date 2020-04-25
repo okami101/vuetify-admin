@@ -74,7 +74,9 @@ You'll got 2 new npm scripts :
 
 > Use `yarn vue-cli-service help crud:make` for all options detail
 
-* `yarn crud:generate` :
+* `yarn crud:generate` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure.
+
+> For supported YAML schema, see [full documentation](https://vtec.okami101.io).
 
 ## License
 

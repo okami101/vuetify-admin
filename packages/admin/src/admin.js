@@ -185,7 +185,7 @@ export default class VtecAdmin {
       isEmpty(permissions) ||
       !isEmpty(
         (Array.isArray(permissions) ? permissions : [permissions]).filter(
-          (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
+          (p) => -1 !== (store.getters["auth/getPermissions"] || []).indexOf(p)
         )
       );
 
