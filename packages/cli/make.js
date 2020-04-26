@@ -67,18 +67,40 @@ async function service(args = {}, api) {
      */
     let data = { resource, fields };
     if (template === "List") {
-      data.fields = fields.filter((f) => !f.excluded).map(({ name }) => name);
-      data.sortables = fields.filter((f) => f.sortable).map(({ name }) => name);
-      data.filters = fields
-        .filter((f) => f.filterable)
-        .map(({ name, type }) => {
-          return { name, type };
-        });
-      data.columns = fields
-        .filter((f) => f.column)
-        .map(({ name, type }) => {
-          return { name, type };
-        });
+      data.fields = util.inspect(
+        fields.filter((f) => !f.excluded).map(({ name }) => name)
+      );
+      data.sortables = util.inspect(
+        fields.filter((f) => f.sortable).map(({ name }) => name)
+      );
+      data.filters = util.inspect([
+        "q",
+        ...fields
+          .filter((f) => f.filterable)
+          .map(({ name, type }) => {
+            if (type === "text") {
+              return name;
+            }
+
+            return { source: name, type };
+          }),
+      ]);
+      data.columns = util.inspect(
+        fields
+          .filter((f) => f.column)
+          .map(({ name, type, options }) => {
+            if (type === "text") {
+              return name;
+            }
+
+            let column = { source: name, type };
+
+            if (options) {
+              column.options = options;
+            }
+            return column;
+          })
+      );
     }
 
     ejs.renderFile(resolve(sourceDir, `${template}.ejs`), data, {}, function (
