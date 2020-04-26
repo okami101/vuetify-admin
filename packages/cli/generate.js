@@ -39,7 +39,10 @@ async function service(args = {}, api) {
       label: resource.label,
       icon: resource.icon,
       actions: resource.actions,
-      translatable: resource.translatable,
+      translatable: !!resource.translatable,
+      columns: resource.columns,
+      filterable: resource.filterable,
+      sortable: resource.sortable,
       locale: args.locale || "en",
       fields: fields.map((field) => {
         return {

@@ -22,7 +22,10 @@ const options = {
     actions:
       "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'",
     fields:
-      "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, column (will be shown in datagrid page list), sortable, required, filterable",
+      "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, and specific field widget options",
+    columns: "Fields that should be shown on datagrid list",
+    sortable: "Fields that can be sortable",
+    filterable: "Fields that can be filtered",
   },
 };
 
@@ -70,53 +73,51 @@ async function service(args = {}, api) {
       data.fields = util.inspect(
         fields.filter((f) => !f.excluded).map(({ name }) => name)
       );
-      data.sortables = util.inspect(
-        fields.filter((f) => f.sortable).map(({ name }) => name)
-      );
+      data.sortables = util.inspect(args.sortable);
       data.filters = util.inspect([
         "q",
-        ...fields
-          .filter((f) => f.filterable)
-          .map((f) => {
-            if (f.type === "text") {
-              return f.name;
-            }
+        ...args.filterable.map((name) => {
+          let field = args.fields.find((f) => f.name === name);
 
-            let filter = { source: f.name, type: f.type };
+          if (field.type === "text") {
+            return name;
+          }
 
-            if (f.enum) {
-              filter.options = {
-                enum: true,
-                // Multiple choices by default for filters
-                multiple: true,
-              };
-            }
-            return filter;
-          }),
+          let filter = { source: field.name, type: field.type };
+
+          if (field.enum) {
+            filter.options = {
+              enum: true,
+              // Multiple choices by default for filters
+              multiple: true,
+            };
+          }
+          return filter;
+        }),
       ]);
       data.columns = util.inspect(
-        fields
-          .filter((f) => f.column)
-          .map((f) => {
-            if (f.type === "text") {
-              return f.name;
-            }
+        args.columns.map((name) => {
+          let field = args.fields.find((f) => f.name === name);
 
-            let column = { source: f.name, type: f.type };
+          if (field.type === "text") {
+            return name;
+          }
 
-            if (f.enum) {
-              column.options = {
-                enum: true,
-              };
-            }
-            if (f.options) {
-              column.options = {
-                ...column.options,
-                ...f.options,
-              };
-            }
-            return column;
-          })
+          let column = { source: field.name, type: field.type };
+
+          if (field.enum) {
+            column.options = {
+              enum: true,
+            };
+          }
+          if (field.options) {
+            column.options = {
+              ...column.options,
+              ...field.options,
+            };
+          }
+          return column;
+        })
       );
     }
 

@@ -3,42 +3,64 @@ monsters:
   icon: mdi-alien
   label: Monstre | Monstres
   to_string: name
-  translatable: true
-  mediable: true
   actions:
     - list
     - show
     - create
     - edit
     - delete
+  columns:
+    - name
+    - email
+    - label
+    - active
+    - level
+    - rating
+    - price
+    - category
+    - publication_date
+  searchable:
+    - name
+    - label
+    - description
+  filterable:
+    - name
+    - label
+    - active
+    - level
+    - rating
+    - category
+  sortable:
+    - name
+    - label
+    - level
+    - rating
+    - price
+    - publication_date
+  translatable:
+    - label
+    - description
+    - body
+  mediable:
+    - avatar
+    - images
+    - files
   fields:
     name:
       label: Nom
-      filterable: true
-      searchable: true
-      sortable: true
       required: true
-      column: true
     email:
       label: Email
       type: email
       required: true
-      column: true
       db:
         - unique
     label:
       label: Libellé traduisible
-      translatable: true
-      filterable: true
-      searchable: true
-      sortable: true
       required: true
-      column: true
     active:
       label: Booléen
       type: boolean
-      filterable: true
-      column: true
       required: true
       db:
         type: boolean
@@ -47,9 +69,6 @@ monsters:
     level:
       label: Niveau
       type: number
-      sortable: true
-      filterable: true
-      column: true
       required: true
       db:
         type: integer
@@ -59,10 +78,7 @@ monsters:
     rating:
       label: Puissance
       type: rating
-      filterable: true
-      sortable: true
       required: true
-      column: true
       db:
         type: integer
         options:
@@ -73,26 +89,19 @@ monsters:
       type: number
       options:
         format: 'currency'
-      sortable: true
       required: true
-      column: true
       db:
         type: float
     description:
       label: Texte long
       multiline: true
-      translatable: true
-      searchable: true
     body:
       label: Texte riche
       html: true
-      translatable: true
     category:
       label: Choix (enum)
       type: select
-      filterable: true
       required: true
-      column: true
       enum:
         history: Histoire
         novel: Roman
@@ -109,9 +118,7 @@ monsters:
       type: date
       options:
         format: 'long'
-      sortable: true
       required: true
-      column: true
     avatar:
       label: Avatar
       type: image
