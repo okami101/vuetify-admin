@@ -69,6 +69,15 @@ async function service(args = {}, api) {
      * Prepare EJS variables
      */
     let data = { resource, fields };
+
+    data.fields.forEach((f) => {
+      if (f.options || f.enum) {
+        f.options_object = util.inspect(
+          f.enum ? { ...f.options, enum: true } : f.options
+        );
+      }
+    });
+
     if (template === "List") {
       data.fields = util.inspect(
         fields.filter((f) => !f.excluded).map(({ name }) => name)

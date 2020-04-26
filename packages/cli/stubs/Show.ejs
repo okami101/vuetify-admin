@@ -19,7 +19,7 @@
               </v-chip-group>
             </va-field>
             <%_ } else { _%>
-            <va-field source="<%- field.name %>" type="<%- field.html ? 'rich-text' : field.type %>"></va-field>
+            <va-field source="<%- field.name %>" type="<%- field.html ? 'rich-text' : field.type %>"<%- field.options_object ? ` :options="${field.options_object}"` : '' %>></va-field>
             <%_ } _%>
             <%_ } _%>
           </v-card-text>
