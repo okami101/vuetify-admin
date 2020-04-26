@@ -171,31 +171,36 @@ async function service(args = {}, api) {
       descriptor[prop] = args[prop];
     }
   });
-  resources.default.push({
-    name: args.name,
-    ...descriptor,
-  });
 
-  fs.writeFileSync(
-    resourceFile,
-    `export default ${util.inspect(resources.default)}` + "\n"
-  );
+  if (!resources.default.find(({ name }) => args.name === name)) {
+    resources.default.push({
+      name: args.name,
+      ...descriptor,
+    });
+
+    fs.writeFileSync(
+      resourceFile,
+      `export default ${util.inspect(resources.default)}` + "\n"
+    );
+  }
 
   /**
    * Add entry to sidebar
    */
   const navFile = resolve(process.cwd(), "./src/_nav.js");
-  let content = fs.readFileSync(navFile);
+  let content = fs.readFileSync(navFile).toString();
 
-  let startOffset = content.indexOf("];");
-  let code = `  resourceLink("${args.name}"),\n`;
+  let code = `resourceLink("${args.name}")`;
 
-  content =
-    content.toString().substring(0, startOffset) +
-    code +
-    content.toString().substring(startOffset);
+  if (content.indexOf(code) === -1) {
+    let startOffset = content.indexOf("];");
+    content =
+      content.substring(0, startOffset) +
+      `  ${code},\n` +
+      content.substring(startOffset);
 
-  fs.writeFileSync(navFile, content);
+    fs.writeFileSync(navFile, content);
+  }
 }
 
 module.exports = {
