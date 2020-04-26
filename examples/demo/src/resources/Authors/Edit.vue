@@ -38,13 +38,13 @@
             {
               source: 'price',
               type: 'number',
-              options: { format: 'currency' },
+              format: 'currency',
             },
             { source: 'commentable', type: 'boolean' },
             {
               source: 'publication_date',
               type: 'date',
-              options: { format: 'long' },
+              format: 'long',
             },
             'reviews',
           ]"

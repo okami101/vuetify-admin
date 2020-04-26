@@ -70,10 +70,25 @@ async function service(args = {}, api) {
      */
     let data = { resource, fields };
 
+    /**
+     * Build field props
+     */
     data.fields.forEach((f) => {
-      if (f.options) {
-        f.options_object = util.inspect(f.options);
-      }
+      f.attributes = Object.keys(f)
+        .filter((f) => ["format"].includes(f))
+        .map((p) => {
+          let value = f[p];
+
+          if (value === true) {
+            return p;
+          }
+
+          if (typeof value === "string") {
+            return `${p}="${f[p]}"`;
+          }
+          return `:${p}="${f[p]}"`;
+        })
+        .join(" ");
     });
 
     if (template === "List") {
@@ -93,10 +108,8 @@ async function service(args = {}, api) {
           let filter = { source: field.name, type: field.type };
 
           if (field.type === "select") {
-            filter.options = {
-              // Multiple choices by default for filters
-              multiple: true,
-            };
+            // Multiple choices by default for filters
+            filter.multiple = true;
           }
           return filter;
         }),
@@ -111,8 +124,8 @@ async function service(args = {}, api) {
 
           let column = { source: field.name, type: field.type };
 
-          if (field.options) {
-            column.options = field.options;
+          if (field.format) {
+            column.format = field.format;
           }
           return column;
         })

@@ -8,11 +8,9 @@
         {
           source: 'books',
           type: 'autocomplete',
-          options: {
-            optionText: 'title',
-            multiple: true,
-            reference: 'books',
-          },
+          optionText: 'title',
+          multiple: true,
+          reference: 'books',
         },
       ]"
       :items-per-page="8"

@@ -29,11 +29,9 @@
           {
             source: 'authors',
             type: 'autocomplete',
-            options: {
-              optionText: 'name',
-              multiple: true,
-              reference: 'authors',
-            },
+            optionText: 'name',
+            multiple: true,
+            reference: 'authors',
           },
           { source: 'pricier_than', type: 'number' },
           { source: 'cheaper_than', type: 'number' },
@@ -41,12 +39,12 @@
           {
             source: 'published_before',
             type: 'date',
-            options: { format: 'long' },
+            format: 'long',
           },
           {
             source: 'published_after',
             type: 'date',
-            options: { format: 'long' },
+            format: 'long',
           },
         ]"
         :include="['authors']"
@@ -63,13 +61,13 @@
             {
               source: 'price',
               type: 'number',
-              options: { format: 'currency' },
+              format: 'currency',
             },
             { source: 'commentable', type: 'boolean' },
             {
               source: 'publication_date',
               type: 'date',
-              options: { format: 'long' },
+              format: 'long',
             },
             'authors',
           ]"

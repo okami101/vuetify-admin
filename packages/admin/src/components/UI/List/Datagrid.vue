@@ -40,14 +40,13 @@
         v-if="field.editable"
         :key="field.source"
         :is="`va-${field.type || 'text'}-input`"
-        :source="field.source"
         :resource="resource"
         editable
         :item="item"
         :value="value"
         dense
         label=""
-        v-bind="field.options"
+        v-bind="getAttributes(field)"
       ></component>
       <router-link
         v-else-if="field.link"
@@ -61,10 +60,9 @@
           v-if="field.type"
           :key="field.source"
           :is="`va-${field.type}-field`"
-          :source="field.source"
           :resource="resource"
           :item="item"
-          v-bind="field.options"
+          v-bind="getAttributes(field)"
           v-slot="props"
         >
           <slot
@@ -81,10 +79,9 @@
         v-else-if="field.type"
         :key="field.source"
         :is="`va-${field.type}-field`"
-        :source="field.source"
         :resource="resource"
         :item="item"
-        v-bind="field.options"
+        v-bind="getAttributes(field)"
         v-slot="props"
       >
         <slot
@@ -236,6 +233,10 @@ export default {
     ...mapActions({
       getOne: "api/getOne",
     }),
+    getAttributes(field) {
+      let { type, link, ...attributes } = field;
+      return attributes;
+    },
     getDefaultSort(field) {
       if (this.sortables.length) {
         return this.sortables.includes(field.source);

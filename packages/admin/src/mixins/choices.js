@@ -11,7 +11,12 @@ export default {
     choices: {
       type: Array,
       default() {
-        let enums = this.$t(`resources.${this.resource}.enums.${this.source}`);
+        let enumKey = `resources.${this.resource}.enums.${this.source}`;
+        if (!this.$te(enumKey)) {
+          return;
+        }
+
+        let enums = this.$t(enumKey);
 
         return Object.keys(enums).map((key) => {
           return {

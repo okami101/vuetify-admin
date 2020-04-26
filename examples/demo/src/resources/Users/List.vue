@@ -21,9 +21,7 @@
           {
             source: 'roles',
             type: 'select',
-            options: {
-              multiple: true,
-            },
+            multiple: true,
           },
         ]"
         v-model="selected"
@@ -63,12 +61,12 @@
               {
                 source: 'created_at',
                 type: 'date',
-                options: { format: 'long' },
+                format: 'long',
               },
               {
                 source: 'updated_at',
                 type: 'date',
-                options: { format: 'long' },
+                format: 'long',
               },
             ]"
             :sortables="['name', 'created_at', 'updated_at']"

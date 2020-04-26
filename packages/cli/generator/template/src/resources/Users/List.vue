@@ -22,12 +22,12 @@
               {
                 source: 'created_at',
                 type: 'date',
-                options: { format: 'long' },
+                format: 'long',
               },
               {
                 source: 'updated_at',
                 type: 'date',
-                options: { format: 'long' },
+                format: 'long',
               },
             ]"
             v-bind="props"

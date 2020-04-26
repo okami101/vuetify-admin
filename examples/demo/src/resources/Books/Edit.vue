@@ -19,18 +19,18 @@
           {
             source: 'status',
             type: 'select',
-            options: { multiple: true },
+            multiple: true,
           },
           'author',
           {
             source: 'published_before',
             type: 'date',
-            options: { format: 'long' },
+            format: 'long',
           },
           {
             source: 'published_after',
             type: 'date',
-            options: { format: 'long' },
+            format: 'long',
           },
         ]"
         flat
@@ -47,7 +47,7 @@
             {
               source: 'publication_date',
               type: 'date',
-              options: { format: 'long' },
+              format: 'long',
             },
           ]"
           v-bind="props"

@@ -29,7 +29,8 @@
             source: 'logo',
             type: 'image',
             link: 'show',
-            options: { src: 'thumbnails.small', contain: true },
+            src: 'thumbnails.small',
+            contain: true,
           },
           { source: 'name', link: 'show' },
           { source: 'type', type: 'select' },
@@ -42,7 +43,7 @@
             source: 'address',
             label: $t('address'),
           },
-          { source: 'opening_date', type: 'date', options: { format: 'long' } },
+          { source: 'opening_date', type: 'date', format: 'long' },
           { source: 'books_count', type: 'number' },
         ]"
         :sortables="[

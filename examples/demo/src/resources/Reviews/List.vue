@@ -15,28 +15,26 @@
         {
           source: 'book',
           type: 'autocomplete',
-          options: {
-            optionText: 'title',
-            multiple: true,
-            reference: 'books',
-          },
+          optionText: 'title',
+          multiple: true,
+          reference: 'books',
         },
         { source: 'rating', type: 'rating' },
         {
           source: 'status',
           type: 'select',
-          options: { multiple: true },
+          multiple: true,
         },
         'author',
         {
           source: 'published_before',
           type: 'date',
-          options: { format: 'long' },
+          format: 'long',
         },
         {
           source: 'published_after',
           type: 'date',
-          options: { format: 'long' },
+          format: 'long',
         },
       ]"
       :include="['book']"
@@ -55,7 +53,7 @@
           {
             source: 'publication_date',
             type: 'date',
-            options: { format: 'long' },
+            format: 'long',
           },
         ]"
         :sortables="['rating', 'author', 'publication_date']"

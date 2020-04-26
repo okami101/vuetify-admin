@@ -87,8 +87,7 @@ monsters:
     price:
       label: Prix
       type: number
-      options:
-        format: 'currency'
+      format: 'currency'
       required: true
       db:
         type: float
@@ -116,8 +115,7 @@ monsters:
     publication_date:
       label: Date
       type: date
-      options:
-        format: 'long'
+      format: 'long'
       required: true
     avatar:
       label: Avatar

@@ -14,11 +14,8 @@
         </v-btn>
         <component
           :is="`va-${item.type}-input`"
-          :source="item.source"
-          :model="item.model"
-          :label="item.label"
           filterable
-          v-bind="item.options"
+          v-bind="getAttributes(item)"
           :value="value[item.source]"
           hide-details
           :filled="false"
@@ -51,6 +48,10 @@ export default {
     };
   },
   methods: {
+    getAttributes(filter) {
+      let { type, ...attributes } = filter;
+      return attributes;
+    },
     remove(filter) {
       let value = { ...this.value };
       delete value[filter.source];
