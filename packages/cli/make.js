@@ -77,26 +77,43 @@ async function service(args = {}, api) {
         "q",
         ...fields
           .filter((f) => f.filterable)
-          .map(({ name, type }) => {
-            if (type === "text") {
-              return name;
+          .map((f) => {
+            if (f.type === "text") {
+              return f.name;
             }
 
-            return { source: name, type };
+            let filter = { source: f.name, type: f.type };
+
+            if (f.enum) {
+              filter.options = {
+                enum: true,
+                // Multiple choices by default for filters
+                multiple: true,
+              };
+            }
+            return filter;
           }),
       ]);
       data.columns = util.inspect(
         fields
           .filter((f) => f.column)
-          .map(({ name, type, options }) => {
-            if (type === "text") {
-              return name;
+          .map((f) => {
+            if (f.type === "text") {
+              return f.name;
             }
 
-            let column = { source: name, type };
+            let column = { source: f.name, type: f.type };
 
-            if (options) {
-              column.options = options;
+            if (f.enum) {
+              column.options = {
+                enum: true,
+              };
+            }
+            if (f.options) {
+              column.options = {
+                ...column.options,
+                ...f.options,
+              };
             }
             return column;
           })

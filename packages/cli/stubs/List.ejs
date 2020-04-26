@@ -2,7 +2,7 @@
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
       :fields="<%- fields %>"
-      :filters="[<%- filters %>]"
+      :filters="<%- filters %>"
       flat
       v-slot="props"
       v-model="selected"

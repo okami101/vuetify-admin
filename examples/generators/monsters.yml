@@ -38,6 +38,7 @@ monsters:
       label: Booléen
       type: boolean
       filterable: true
+      column: true
       required: true
       db:
         type: boolean
