@@ -9,13 +9,12 @@
             </div>
           </template>
           <v-card-text>
-            <va-field source="logo">
-              <va-image-field
-                source="logo"
-                src="thumbnails.large"
-                contain
-              ></va-image-field>
-            </va-field>
+            <va-field
+              source="logo"
+              type="image"
+              src="thumbnails.large"
+              contain
+            ></va-field>
             <v-row>
               <v-col>
                 <va-field source="name"></va-field>
@@ -49,12 +48,11 @@
                 <va-field source="books_count" type="number"></va-field>
               </v-col>
             </v-row>
-            <va-field source="local">
-              <va-image-field
-                source="local"
-                src="thumbnails.medium"
-              ></va-image-field>
-            </va-field>
+            <va-field
+              source="local"
+              type="image"
+              src="thumbnails.medium"
+            ></va-field>
           </v-card-text>
         </base-material-card>
       </v-col>

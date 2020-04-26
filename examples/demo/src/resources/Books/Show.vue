@@ -12,12 +12,11 @@
             <v-row>
               <v-col>
                 <va-field source="isbn"></va-field>
-                <va-field source="cover">
-                  <va-image-field
-                    source="cover"
-                    src="thumbnails.medium"
-                  ></va-image-field>
-                </va-field>
+                <va-field
+                  source="cover"
+                  type="image"
+                  src="thumbnails.large"
+                ></va-field>
                 <va-field source="publisher" v-slot="{ value }">
                   <v-chip
                     color="orange"
@@ -96,9 +95,7 @@
           </template>
           <template v-slot:summary>
             <va-rich-text-field source="summary"></va-rich-text-field>
-            <va-field source="extract">
-              <va-file-field source="extract"></va-file-field>
-            </va-field>
+            <va-field source="extract" type="file"></va-field>
           </template>
         </base-material-tabs-card>
       </v-col>
