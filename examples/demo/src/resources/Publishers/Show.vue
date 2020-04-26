@@ -19,11 +19,7 @@
             <v-row>
               <v-col>
                 <va-field source="name"></va-field>
-                <va-field
-                  source="type"
-                  type="select"
-                  :options="{ enum: true }"
-                ></va-field>
+                <va-field source="type" type="select"></va-field>
               </v-col>
               <v-col>
                 <va-field source="founder"></va-field>
@@ -48,7 +44,7 @@
                 <va-field
                   source="opening_date"
                   type="date"
-                  :options="{ format: 'long' }"
+                  format="long"
                 ></va-field>
                 <va-field source="books_count" type="number"></va-field>
               </v-col>

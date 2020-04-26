@@ -32,7 +32,7 @@
             options: { src: 'thumbnails.small', contain: true },
           },
           { source: 'name', link: 'show' },
-          { source: 'type', type: 'select', options: { enum: true } },
+          { source: 'type', type: 'select' },
           'founder',
           'headquarter',
           { source: 'url', type: 'url' },

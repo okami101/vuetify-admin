@@ -71,10 +71,8 @@ async function service(args = {}, api) {
     let data = { resource, fields };
 
     data.fields.forEach((f) => {
-      if (f.options || f.enum) {
-        f.options_object = util.inspect(
-          f.enum ? { ...f.options, enum: true } : f.options
-        );
+      if (f.options) {
+        f.options_object = util.inspect(f.options);
       }
     });
 
@@ -94,9 +92,8 @@ async function service(args = {}, api) {
 
           let filter = { source: field.name, type: field.type };
 
-          if (field.enum) {
+          if (field.type === "select") {
             filter.options = {
-              enum: true,
               // Multiple choices by default for filters
               multiple: true,
             };
@@ -114,16 +111,8 @@ async function service(args = {}, api) {
 
           let column = { source: field.name, type: field.type };
 
-          if (field.enum) {
-            column.options = {
-              enum: true,
-            };
-          }
           if (field.options) {
-            column.options = {
-              ...column.options,
-              ...field.options,
-            };
+            column.options = field.options;
           }
           return column;
         })

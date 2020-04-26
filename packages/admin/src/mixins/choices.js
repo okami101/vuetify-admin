@@ -8,14 +8,9 @@ export default {
       type: [String, Array, Function],
       default: "id",
     },
-    enum: Boolean,
     choices: {
       type: Array,
       default() {
-        if (!this.enum) {
-          return [];
-        }
-
         let enums = this.$t(`resources.${this.resource}.enums.${this.source}`);
 
         return Object.keys(enums).map((key) => {

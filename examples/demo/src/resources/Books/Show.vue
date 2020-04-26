@@ -58,13 +58,13 @@
                 <va-field
                   source="price"
                   type="number"
-                  :options="{ format: 'currency' }"
+                  format="currency"
                 ></va-field>
                 <va-field source="commentable" type="boolean"></va-field>
                 <va-field
                   source="publication_date"
                   type="date"
-                  :options="{ format: 'long' }"
+                  format="long"
                 ></va-field>
                 <va-field source="authors" v-slot="{ value }">
                   <v-chip-group>

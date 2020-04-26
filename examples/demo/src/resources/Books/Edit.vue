@@ -19,7 +19,7 @@
           {
             source: 'status',
             type: 'select',
-            options: { enum: true, multiple: true },
+            options: { multiple: true },
           },
           'author',
           {

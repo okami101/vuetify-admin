@@ -7,7 +7,7 @@
           :source="source"
           :resource="resource"
           :item="record"
-          v-bind="options"
+          v-bind="$attrs"
         ></component>
       </slot>
     </div>
@@ -34,7 +34,6 @@ export default {
       type: String,
       default: "text",
     },
-    options: Object,
   },
 };
 </script>

@@ -30,7 +30,7 @@
             <va-field
               source="publication_date"
               type="date"
-              :options="{ format: 'long' }"
+              format="long"
             ></va-field>
           </v-card-text>
         </base-material-card>

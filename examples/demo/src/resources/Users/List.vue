@@ -23,7 +23,6 @@
             type: 'select',
             options: {
               multiple: true,
-              enum: true,
             },
           },
         ]"
