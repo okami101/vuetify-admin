@@ -41,6 +41,7 @@ async function service(args = {}, api) {
       actions: resource.actions,
       translatable: !!resource.translatable,
       columns: resource.columns,
+      include: resource.include,
       filterable: resource.filterable,
       sortable: resource.sortable,
       locale: args.locale || "en",

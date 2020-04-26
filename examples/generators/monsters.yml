@@ -19,6 +19,8 @@ monsters:
     - price
     - category
     - publication_date
+  include:
+    - media
   searchable:
     - name
     - label

@@ -69,7 +69,7 @@
                 format: 'long',
               },
             ]"
-            :sortables="['name', 'created_at', 'updated_at']"
+            :sortable="['name', 'created_at', 'updated_at']"
             v-bind="props"
             v-model="selected"
             :options.sync="options"

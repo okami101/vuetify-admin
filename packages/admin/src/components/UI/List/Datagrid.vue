@@ -160,7 +160,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    sortables: {
+    sortable: {
       type: Array,
       default: () => [],
     },
@@ -238,8 +238,8 @@ export default {
       return attributes;
     },
     getDefaultSort(field) {
-      if (this.sortables.length) {
-        return this.sortables.includes(field.source);
+      if (this.sortable.length) {
+        return this.sortable.includes(field.source);
       }
       return !field.type || ["text", "date", "number"].includes(field.type);
     },

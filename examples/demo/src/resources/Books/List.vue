@@ -79,7 +79,7 @@
           },
           'authors',
         ]"
-        :sortables="['title', 'price', 'publication_date']"
+        :sortable="['title', 'price', 'publication_date']"
         show-expand
         v-bind="props"
         v-model="selected"

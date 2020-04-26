@@ -46,7 +46,7 @@
           { source: 'opening_date', type: 'date', format: 'long' },
           { source: 'books_count', type: 'number' },
         ]"
-        :sortables="[
+        :sortable="[
           'name',
           'founder',
           'headquarter',
