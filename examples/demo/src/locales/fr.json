@@ -21,10 +21,6 @@
     "password": "Mot de passe",
     "sign_in": "Se connecter"
   },
-  "pages": {
-    "authors_show": "Auteur {name} #{id}",
-    "authors_edit": "Edition auteur {name} #{id}"
-  },
   "profile": {
     "account": "Mon compte",
     "password": "Mot de passe",
@@ -69,7 +65,7 @@
         "list": "Liste des éditeurs",
         "show": "Détail de l'éditeur {name}",
         "create": "Créer un nouvel éditeur",
-        "edit": "Edition de l'éditeur {name}"
+        "edit": "Editer l'éditeur {name}"
       },
       "fields": {
         "id": "ID",
@@ -111,7 +107,7 @@
         "list": "Liste des auteurs",
         "show": "Détail de l'auteur {name}",
         "create": "Créer un nouvel auteur",
-        "edit": "Edition de l'auteur {name}"
+        "edit": "Editer l'auteur {name}"
       },
       "fields": {
         "id": "ID",
@@ -133,7 +129,7 @@
         "list": "Liste des livres",
         "show": "Détail du livre {title}",
         "create": "Créer un nouveau livre",
-        "edit": "Edition du livre {title}"
+        "edit": "Editer le livre {title}"
       },
       "fields": {
         "id": "ID",
@@ -183,7 +179,7 @@
         "list": "Liste des commentaires",
         "show": "Détail du commentaire {author}",
         "create": "Créer un nouveau commentaire",
-        "edit": "Edition du commentaire {author}"
+        "edit": "Editer le commentaire {author}"
       },
       "fields": {
         "id": "ID",
@@ -211,7 +207,7 @@
         "list": "Liste des utilisateurs",
         "show": "Détail de l'utilisateur {name}",
         "create": "Créer un nouvel utilisateur",
-        "edit": "Edition de l'utilisateur {name}"
+        "edit": "Editer l'utilisateur {name}"
       },
       "fields": {
         "id": "ID",

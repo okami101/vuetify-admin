@@ -6,7 +6,7 @@
     "list": "List of {resource}",
     "create": "Create new {resource}",
     "show": "Detail of {resource} #{id}",
-    "edit": "Modification of {resource} #{id}"
+    "edit": "Edit {resource} #{id}"
   },
   "messages": {
     "created": "New {resource} successfully created !",

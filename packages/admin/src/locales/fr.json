@@ -9,9 +9,9 @@
   },
   "pages": {
     "list": "Liste {resource}",
-    "create": "Création {resource}",
+    "create": "Créer {resource}",
     "show": "Détail {resource} #{id}",
-    "edit": "Édition {resource} #{id}"
+    "edit": "Editer {resource} #{id}"
   },
   "actions": {
     "list": "Liste",

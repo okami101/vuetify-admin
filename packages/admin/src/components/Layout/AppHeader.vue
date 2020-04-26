@@ -53,7 +53,10 @@
                 $te(`resources.${item.name}.titles.create`)
                   ? $t(`resources.${item.name}.titles.create`)
                   : $t("va.pages.create", {
-                      resource: $tc(item.name, 1).toLowerCase(),
+                      resource: $tc(
+                        `resources.${item.name}.name`,
+                        1
+                      ).toLowerCase(),
                     })
               }}</v-list-item-title>
             </v-list-item-content>
