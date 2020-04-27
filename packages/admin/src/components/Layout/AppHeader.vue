@@ -42,7 +42,7 @@
             v-for="(item, index) in resources"
             :key="index"
             link
-            :to="`/${item.name}/create`"
+            :to="{ name: `${item.name}_create` }"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>

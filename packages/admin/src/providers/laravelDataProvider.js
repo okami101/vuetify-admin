@@ -13,8 +13,8 @@ import objectToFormData from "../utils/objectToFormData";
 export default (axios, base = "/api") => {
   const getRequest = (type, resource, params = {}) => {
     const searchParams = new URLSearchParams();
-    const resourceUrl = `${base}/${resource}`;
-    const itemUrl = `${base}/${resource}/${params.id}`;
+    const resourceUrl = `${base}/${resource.replace("_", "-")}`;
+    const itemUrl = `${resourceUrl}/${params.id}`;
 
     if (params.locale) {
       searchParams.append("locale", params.locale);

@@ -4,6 +4,7 @@ const fs = require("fs");
 const ejs = require("ejs");
 const util = require("util");
 const upperFirst = require("lodash/upperFirst");
+const camelCase = require("lodash/camelCase");
 
 const options = {
   description: "resource ui crud maker",
@@ -39,7 +40,7 @@ async function service(args = {}, api) {
   /**
    * Generate crud views
    */
-  let resource = upperFirst(args.name);
+  let resource = upperFirst(camelCase(args.name));
   let fields = args.fields || [];
 
   const sourceDir = resolve(__dirname, "stubs");
@@ -113,14 +114,14 @@ async function service(args = {}, api) {
       data.fields = util.inspect(
         fields.filter((f) => !f.excluded).map(({ name }) => name)
       );
-      data.sortable = util.inspect(args.sortable);
-      data.include = util.inspect(args.include);
+      data.sortable = util.inspect(args.sortable || []);
+      data.include = util.inspect(args.include || []);
       data.filters = util.inspect([
         "q",
-        ...args.filterable.map((name) => {
-          let field = args.fields.find((f) => f.name === name);
+        ...(args.filterable || []).map((name) => {
+          let field = fields.find((f) => f.name === name);
 
-          if (field.type === "text") {
+          if (!field || field.type === "text") {
             return name;
           }
 
@@ -134,8 +135,8 @@ async function service(args = {}, api) {
         }),
       ]);
       data.columns = util.inspect(
-        args.columns.map((name) => {
-          let field = args.fields.find((f) => f.name === name);
+        (args.columns || []).map((name) => {
+          let field = fields.find((f) => f.name === name);
 
           if (field.type === "text") {
             return name;

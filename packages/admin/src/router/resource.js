@@ -47,7 +47,7 @@ export default ({ store, i18n, resource, title }) => {
       component: {
         props: ["id"],
         render(c) {
-          return c(`${name}-${action}`, {
+          return c(`${name.replace("_", "-")}-${action}`, {
             props: {
               id: this.id,
               title: this.$route.meta.title,
@@ -100,7 +100,7 @@ export default ({ store, i18n, resource, title }) => {
    * Return crud routes for this resource
    */
   return {
-    path: `/${name}`,
+    path: `/${name.replace("_", "-")}`,
     component: {
       render(c) {
         return c("router-view");

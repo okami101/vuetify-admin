@@ -194,13 +194,13 @@ export default class VtecAdmin {
     /**
      * Link resource helper
      */
-    this.getResourceLink = (name) => {
+    this.getResourceLink = (name, action = "list") => {
       let { icon, permissions } = this.resources.find((r) => r.name === name);
 
       return {
         icon,
         text: i18n.tc(`resources.${name}.name`, 10),
-        link: `/${name}`,
+        link: { name: `${name}_${action}` },
         permissions,
       };
     };

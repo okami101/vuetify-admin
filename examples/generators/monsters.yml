@@ -2,7 +2,6 @@ monsters:
   model: Monster
   icon: mdi-alien
   label: Monstre | Monstres
-  to_string: name
   actions:
     - list
     - show
@@ -150,18 +149,11 @@ monsters:
 #      relation: one_to_many
 #      multiple: true
 
-#children_monsters:
-#  name: child_monster
-#  label: Monstre enfant | Monstres enfants
-#  to_string: name
-#  fields:
-#    name:
-#      label: Nom
-#      filterable: true
-#      required: true
-#    parent:
-#      label: Monstre parent
-#      type: reference
-#      relation: many_to_one
-#      input: autocomplete
-#      filterable: true
+monster_children:
+  model: MonsterChild
+  icon: mdi-baby-carriage
+  label: Bébé monstre | Bébés monstres
+  fields:
+    name:
+      label: Nom
+      required: true
