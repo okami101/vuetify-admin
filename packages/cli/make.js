@@ -82,8 +82,8 @@ async function service(args = {}, api) {
     };
 
     let attributes = {
-      show: ["format"],
-      form: ["required", "multiline", "multiple", "taggable"],
+      show: ["format", "reference", "text", "action", "chip", "color", "small"],
+      form: ["required", "reference", "multiline", "multiple", "taggable"],
     };
 
     /**
@@ -150,9 +150,12 @@ async function service(args = {}, api) {
 
           let column = { source: field.name, type: field.type };
 
-          if (field.format) {
-            column.format = field.format;
-          }
+          attributes.show.forEach((p) => {
+            if (field[p]) {
+              column[p] = field[p];
+            }
+          });
+
           return column;
         })
       );

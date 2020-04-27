@@ -51,8 +51,9 @@
           {
             source: 'publisher',
             type: 'reference',
-            chip: true,
+            reference: 'publishers',
             text: 'name',
+            chip: true,
             color: 'orange',
           },
           'title',
@@ -99,7 +100,7 @@
         <template v-slot:authors="{ value }">
           <v-chip-group column>
             <va-reference-field
-              resource="authors"
+              reference="authors"
               v-for="(item, i) in value"
               :key="i"
               color="primary"

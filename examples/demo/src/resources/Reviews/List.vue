@@ -36,7 +36,12 @@
     >
       <va-datagrid
         :fields="[
-          { source: 'book', type: 'reference', text: 'title' },
+          {
+            source: 'book',
+            type: 'reference',
+            text: 'title',
+            reference: 'books',
+          },
           'status',
           { source: 'rating', type: 'rating' },
           'quality',

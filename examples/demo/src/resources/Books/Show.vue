@@ -20,9 +20,10 @@
                 <va-field
                   source="publisher"
                   type="reference"
+                  reference="publishers"
+                  text="name"
                   chip
                   color="orange"
-                  text="name"
                 ></va-field>
                 <va-field source="title"></va-field>
                 <va-field source="category">
@@ -64,7 +65,7 @@
                 <va-field source="authors" v-slot="{ value }">
                   <v-chip-group>
                     <va-reference-field
-                      resource="authors"
+                      reference="authors"
                       v-for="(item, i) in value"
                       :key="i"
                       color="orange"
@@ -81,7 +82,7 @@
             <va-field source="reviews" v-slot="{ value }">
               <v-chip-group column>
                 <va-reference-field
-                  resource="reviews"
+                  reference="reviews"
                   v-for="(item, i) in value"
                   :key="i"
                   color="green"

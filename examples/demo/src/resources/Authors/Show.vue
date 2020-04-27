@@ -20,7 +20,7 @@
               <h3>{{ $t("authors.all_books") }}</h3>
               <v-chip-group column>
                 <va-reference-field
-                  resource="books"
+                  reference="books"
                   v-for="book in item.books"
                   :key="book.id"
                   chip

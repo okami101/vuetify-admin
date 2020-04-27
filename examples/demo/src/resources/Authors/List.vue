@@ -42,7 +42,7 @@
                   <h3>{{ $t("authors.last_books") }}</h3>
                   <v-chip-group column>
                     <va-reference-field
-                      resource="books"
+                      reference="books"
                       v-for="book in item.books.slice(0, 2)"
                       :key="book.id"
                       chip

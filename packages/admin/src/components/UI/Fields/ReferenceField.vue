@@ -1,8 +1,8 @@
 <template>
-  <v-chip v-if="chip" :color="color" :small="small" :to="reference">
+  <v-chip v-if="chip" :color="color" :small="small" :to="link">
     <slot>{{ text ? value[text] : value }}</slot>
   </v-chip>
-  <router-link v-else :to="reference">
+  <router-link v-else :to="link">
     <slot>{{ text ? value[text] : value }}</slot>
   </router-link>
 </template>
@@ -19,15 +19,16 @@ export default {
       validator: (v) => ["show", "edit"].includes(v),
       default: "show",
     },
+    reference: String,
     text: String,
     chip: Boolean,
     color: String,
     small: Boolean,
   },
   computed: {
-    reference() {
+    link() {
       return {
-        name: `${this.resource}_${this.action}`,
+        name: `${this.reference}_${this.action}`,
         params: { id: this.value.id },
       };
     },
