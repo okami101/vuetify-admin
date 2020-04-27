@@ -94,13 +94,19 @@ export default {
         if (!this.disableRedirect) {
           switch (this.redirect) {
             case "list":
-              this.$router.push(`/${this.resource}`);
+              this.$router.push({ name: `${this.resource}_list` });
               break;
             case "show":
-              this.$router.push(`/${this.resource}/${data.id}`);
+              this.$router.push({
+                name: `${this.resource}_show`,
+                params: { id: data.id },
+              });
               break;
             case "edit":
-              this.$router.push(`/${this.resource}/${data.id}/edit`);
+              this.$router.push({
+                name: `${this.resource}_edit`,
+                params: { id: data.id },
+              });
               break;
           }
         }

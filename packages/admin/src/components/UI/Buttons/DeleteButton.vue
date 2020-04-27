@@ -65,7 +65,7 @@ export default {
         });
 
         if (this.redirect) {
-          this.$router.push(`/${this.resource}`);
+          this.$router.push({ name: `${this.resource}_list` });
           return;
         }
 

@@ -252,10 +252,16 @@ export default {
     onRowClick(item) {
       switch (this.rowClick) {
         case "show":
-          this.$router.push(`/${this.resource}/${item.id}`);
+          this.$router.push({
+            name: `${this.resource}_show`,
+            params: { id: item.id },
+          });
           break;
         case "edit":
-          this.$router.push(`/${this.resource}/${item.id}/edit`);
+          this.$router.push({
+            name: `${this.resource}_edit`,
+            params: { id: item.id },
+          });
           break;
       }
     },
