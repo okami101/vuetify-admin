@@ -9,6 +9,7 @@ import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
 import axios from "axios";
+import trimEnd from "lodash/trimEnd";
 
 /**
  * Load external libs
@@ -76,6 +77,6 @@ export default new VtecAdmin({
     },
   }),
   dataProvider: laravelDataProvider(http),
-  fileBrowserUrl: `${baseURL}/elfinder/tinymce5`,
+  fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
   resources,
 });
