@@ -42,7 +42,7 @@ export default {
       if (this.disableRoute) {
         return null;
       }
-      return `/${this.resource}/create`;
+      return { name: `${this.resource}_create` };
     },
   },
 };

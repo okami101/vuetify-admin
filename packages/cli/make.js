@@ -56,6 +56,7 @@ async function service(args = {}, api) {
   ["create", "edit", "form", "list", "show"].forEach((template) => {
     if (args.actions) {
       if (template === "form") {
+        // Form only if at least create or edit action
         if (
           !args.actions.includes("create") &&
           !args.actions.includes("edit")
@@ -70,7 +71,14 @@ async function service(args = {}, api) {
     /**
      * Prepare EJS variables
      */
-    let data = { resource, fields };
+    let data = {
+      name: args.name,
+      slug: args.name.replace("_", "-"),
+      resource,
+      fields: fields.filter((f) => {
+        return template !== "form" || !f.readonly;
+      }),
+    };
 
     let attributes = {
       show: ["format"],
@@ -111,9 +119,6 @@ async function service(args = {}, api) {
     });
 
     if (template === "list") {
-      data.fields = util.inspect(
-        fields.filter((f) => !f.excluded).map(({ name }) => name)
-      );
       data.sortable = util.inspect(args.sortable || []);
       data.include = util.inspect(args.include || []);
       data.filters = util.inspect([
@@ -134,11 +139,12 @@ async function service(args = {}, api) {
           return filter;
         }),
       ]);
+      data.fields = util.inspect(args.columns || []);
       data.columns = util.inspect(
         (args.columns || []).map((name) => {
           let field = fields.find((f) => f.name === name);
 
-          if (field.type === "text") {
+          if (!field || field.type === "text") {
             return name;
           }
 

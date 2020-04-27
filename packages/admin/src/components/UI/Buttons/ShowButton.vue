@@ -43,7 +43,8 @@ export default {
       if (this.disableRoute) {
         return null;
       }
-      return `/${this.resource}/${this.item.id}`;
+
+      return { name: `${this.resource}_show`, params: { id: this.item.id } };
     },
   },
 };

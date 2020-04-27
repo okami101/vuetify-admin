@@ -5,7 +5,7 @@
         :icon="icon"
         text
         exact
-        :to="`/${resource}`"
+        :to="{ name: `${resource}_list` }"
         :color="color"
         v-on="on"
       >

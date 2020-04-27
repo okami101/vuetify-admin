@@ -153,7 +153,23 @@ monster_children:
   model: MonsterChild
   icon: mdi-baby-carriage
   label: Bébé monstre | Bébés monstres
+  columns:
+    - name
+    - created_at
+    - updated_at
   fields:
     name:
       label: Nom
       required: true
+    created_at:
+      label: Date de création
+      type: date
+      format: 'long'
+      timestamp: true
+      readonly: true
+    updated_at:
+      label: Date de mise à jour
+      type: date
+      format: 'long'
+      timestamp: true
+      readonly: true
