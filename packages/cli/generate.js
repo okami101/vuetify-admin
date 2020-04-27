@@ -30,12 +30,19 @@ async function service(args = {}, api) {
     .forEach((name) => {
       let resource = resources[name];
 
-      const fields = Object.keys(resource.fields).map((name) => {
-        return {
-          name,
-          ...resource.fields[name],
-        };
-      });
+      const fields = Object.keys(resource.fields)
+        .map((name) => {
+          return {
+            name,
+            ...resource.fields[name],
+          };
+        })
+        .map((field) => {
+          return {
+            ...field,
+            type: field.type || "text",
+          };
+        });
 
       make.service({
         output: args.output,
@@ -50,12 +57,7 @@ async function service(args = {}, api) {
         sortable: resource.sortable,
         searchable: !isEmpty(resource.searchable),
         locale: args.locale || "en",
-        fields: fields.map((field) => {
-          return {
-            ...field,
-            type: field.type || "text",
-          };
-        }),
+        fields,
       });
     });
 }

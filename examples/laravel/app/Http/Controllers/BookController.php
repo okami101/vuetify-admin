@@ -6,6 +6,7 @@ use App\Book;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
+use App\Http\Resources\BookCollection;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return BookCollection
      */
     public function index()
     {
@@ -32,28 +33,9 @@ class BookController extends Controller
          */
         $user = auth()->user();
 
-        return BookResource::collection(
+        return new BookCollection(
             QueryBuilder::for(Book::class)
-                ->allowedFields([
-                    'id',
-                    'publisher_id',
-                    'publisher.id',
-                    'publisher.name',
-                    'isbn',
-                    'title',
-                    'category',
-                    'description',
-                    'formats',
-                    'price',
-                    'commentable',
-                    'tags',
-                    'publication_date',
-                    'authors.id',
-                    'authors.name',
-                    'reviews.id',
-                    'reviews.book_id',
-                    'reviews.author',
-                ])
+                ->allowedFields(['id', 'isbn', 'title'])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['isbn', 'title', 'description'])),
                     AllowedFilter::exact('id'),

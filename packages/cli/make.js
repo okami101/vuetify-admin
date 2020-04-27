@@ -140,8 +140,7 @@ async function service(args = {}, api) {
           return filter;
         }),
       ]);
-      data.fields = util.inspect(args.columns || []);
-      data.columns = util.inspect(
+      data.fields = util.inspect(
         (args.columns || []).map((name) => {
           let field = fields.find((f) => f.name === name);
 

@@ -1,21 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
-      :fields="[
-        'isbn',
-        'category',
-        'publisher_id',
-        'publisher.name',
-        'title',
-        'price',
-        'commentable',
-        'formats',
-        'description',
-        'publication_date',
-        'description',
-        'publication_date',
-        'authors.name',
-      ]"
       :filters="[
         'q',
         'title',

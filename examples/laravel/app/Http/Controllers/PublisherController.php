@@ -28,7 +28,7 @@ class PublisherController extends Controller
     {
         return PublisherResource::collection(
             QueryBuilder::for(Publisher::class)
-                ->allowedFields(['id', 'type', 'name', 'description', 'founder', 'headquarter', 'url', 'email', 'active', 'address', 'opening_date'])
+                ->allowedFields(['id', 'name'])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['name', 'founder', 'headquarter', 'description'])),
                     AllowedFilter::exact('id'),

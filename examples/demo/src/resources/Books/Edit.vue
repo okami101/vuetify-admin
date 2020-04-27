@@ -9,7 +9,6 @@
         resource="reviews"
         disable-query-string
         :items-per-page="10"
-        :fields="['status', 'rating', 'author', 'publication_date']"
         :filter="{
           book: id,
         }"

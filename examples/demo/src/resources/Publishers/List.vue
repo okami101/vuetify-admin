@@ -1,16 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
-      :fields="[
-        'name',
-        'type',
-        'founder',
-        'headquarter',
-        'url',
-        'active',
-        'address',
-        'opening_date',
-      ]"
       :filters="[
         'q',
         'name',

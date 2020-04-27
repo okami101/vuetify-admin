@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Vtec\Crud\Http\Resources\BaseResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class Book extends BaseResource
+class BookCollection extends ResourceCollection
 {
     /**
      * Transform the resource into an array.
@@ -14,18 +14,12 @@ class Book extends BaseResource
      */
     public function toArray($request)
     {
-        $attributes = parent::toArray($request);
+        return [
+            'data' => $this->collection->transform(function (Book $book) {
+                $book->resource->makeHidden('summary');
 
-        $attributes['publisher'] = Publisher::make($this->whenLoaded('publisher'));
-        $attributes['authors'] = Author::collection($this->whenLoaded('authors'));
-        $attributes['reviews'] = Review::collection($this->whenLoaded('reviews'));
-
-        $attributes += [
-            'links' => [
-                'self' => route('books.show', $this->id),
-            ],
+                return $book;
+            }),
         ];
-
-        return $attributes;
     }
 }

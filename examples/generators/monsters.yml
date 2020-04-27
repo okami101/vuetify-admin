@@ -38,6 +38,8 @@ monsters:
     - rating
     - price
     - publication_date
+    - created_at
+    - updated_at
   translatable:
     - label
     - description
@@ -139,7 +141,6 @@ monster_children:
   icon: mdi-baby-carriage
   label: Bébé monstre | Bébés monstres
   columns:
-    - id
     - monster
     - name
     - created_at
@@ -148,6 +149,10 @@ monster_children:
     - name
   include:
     - monster
+  sortable:
+    - name
+    - created_at
+    - updated_at
   fields:
     monster:
       label: Parent

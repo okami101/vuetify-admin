@@ -1,7 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
-      :fields="<%- fields %>"
       :filters="<%- filters %>"
       :include="<%- include %>"
       flat
@@ -10,7 +9,7 @@
       :options.sync="options"
     >
       <va-datagrid
-        :fields="<%- columns %>"
+        :fields="<%- fields %>"
         :sortable="<%- sortable %>"
         v-bind="props"
         v-model="selected"

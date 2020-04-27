@@ -1,7 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
-      :fields="['name', 'description']"
       :filters="[
         'q',
         'name',

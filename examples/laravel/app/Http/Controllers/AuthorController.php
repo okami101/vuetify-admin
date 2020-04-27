@@ -27,11 +27,7 @@ class AuthorController extends Controller
     {
         return AuthorResource::collection(
             QueryBuilder::for(Author::class)
-                ->allowedFields([
-                    'id',
-                    'name',
-                    'description',
-                ])
+                ->allowedFields(['id', 'name'])
                 ->allowedFilters([
                     AllowedFilter::custom('q', new SearchFilter(['name', 'description'])),
                     AllowedFilter::exact('id'),

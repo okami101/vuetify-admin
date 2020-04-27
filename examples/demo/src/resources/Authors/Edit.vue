@@ -10,16 +10,6 @@
         disable-pagination
         disable-query-string
         hide-header
-        :fields="[
-          'isbn',
-          'category',
-          'title',
-          'price',
-          'commentable',
-          'publication_date',
-          'description',
-          'publication_date',
-        ]"
         :filter="{
           authors: id,
         }"

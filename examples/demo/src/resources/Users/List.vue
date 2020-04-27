@@ -7,14 +7,6 @@
     <base-material-card :icon="resource.icon" :title="title">
       <va-list
         ref="list"
-        :fields="[
-          'name',
-          'email',
-          'active',
-          'roles',
-          'created_at',
-          'updated_at',
-        ]"
         :filters="[
           'q',
           { source: 'active', type: 'boolean' },

@@ -9,17 +9,6 @@
         resource="books"
         disable-query-string
         :items-per-page="10"
-        :fields="[
-          'isbn',
-          'category',
-          'title',
-          'price',
-          'commentable',
-          'publication_date',
-          'description',
-          'publication_date',
-          'authors.name',
-        ]"
         :filter="{
           publisher: id,
         }"
