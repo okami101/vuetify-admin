@@ -133,21 +133,6 @@ monsters:
       type: file
       multiple: true
       excluded: true
-#    embedded:
-#      label: Objets embarqués
-#      type: array
-#      fields:
-#        url:
-#          label: URL
-#          field: url
-#        date:
-#          label: Date
-#          type: date
-#    children:
-#      label: Enfants
-#      type: reference
-#      relation: one_to_many
-#      multiple: true
 
 monster_children:
   model: MonsterChild
@@ -160,6 +145,16 @@ monster_children:
   searchable:
     - name
   fields:
+    monster:
+      label: Parent
+      type: foreign
+      required: true
+      db:
+        name: monster_id
+        type: integer
+        options:
+          - unsigned
+          - foreign
     name:
       label: Nom
       required: true
