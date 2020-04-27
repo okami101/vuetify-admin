@@ -61,8 +61,8 @@ export default {
   methods: {
     elFinderBrowser(callback, value, meta) {
       tinymce.activeEditor.windowManager.openUrl({
-        title: "File Manager",
-        url: "/elfinder/tinymce5",
+        title: this.$t("va.file_manager"),
+        url: this.$admin.fileBrowserUrl,
         /**
          * On message will be triggered by the child window
          *

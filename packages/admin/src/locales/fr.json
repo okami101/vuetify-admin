@@ -2,6 +2,7 @@
   "home": "Accueil",
   "logout": "Se déconnecter",
   "close": "Fermer",
+  "file_manager": "Gestionnaire de fichiers",
   "datagrid": {
     "search": "Rechercher",
     "add_filter": "Ajouter un filtre",

@@ -18,6 +18,7 @@ export default class VtecAdmin {
     locales,
     authProvider,
     dataProvider,
+    fileBrowserUrl,
     resources,
   }) {
     /**
@@ -27,6 +28,7 @@ export default class VtecAdmin {
     this.locales = locales;
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
+    this.fileBrowserUrl = fileBrowserUrl;
 
     /**
      * Format usable resources object

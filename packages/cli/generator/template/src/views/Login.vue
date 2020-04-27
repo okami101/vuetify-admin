@@ -49,8 +49,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: "demo@example.com",
-      password: "password",
+      username: null,
+      password: null,
       errorMessages: {},
       loading: false,
     };

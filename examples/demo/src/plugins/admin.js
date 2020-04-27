@@ -19,8 +19,10 @@ import draggable from "vuedraggable";
 /**
  * Axios instance
  */
+const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
+
 const http = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || "http://localhost:8000",
+  baseURL,
   withCredentials: true,
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
@@ -74,5 +76,6 @@ export default new VtecAdmin({
     },
   }),
   dataProvider: laravelDataProvider(http),
+  fileBrowserUrl: `${baseURL}/elfinder/tinymce5`,
   resources,
 });
