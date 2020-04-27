@@ -157,6 +157,7 @@ monster_children:
     monster:
       label: Parent
       type: reference
+      reference: monsters
       text: name
       required: true
       db:

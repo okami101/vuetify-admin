@@ -19,7 +19,10 @@ export default {
       validator: (v) => ["show", "edit"].includes(v),
       default: "show",
     },
-    reference: String,
+    reference: {
+      type: String,
+      required: true,
+    },
     text: String,
     chip: Boolean,
     color: String,
