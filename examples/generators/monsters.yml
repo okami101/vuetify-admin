@@ -139,15 +139,19 @@ monster_children:
   icon: mdi-baby-carriage
   label: Bébé monstre | Bébés monstres
   columns:
+    - id
+    - monster
     - name
     - created_at
     - updated_at
   searchable:
     - name
+  include:
+    - monster
   fields:
     monster:
       label: Parent
-      type: foreign
+      type: reference
       required: true
       db:
         name: monster_id
