@@ -19,12 +19,15 @@
             <div v-if="item.books.length">
               <h3>{{ $t("authors.all_books") }}</h3>
               <v-chip-group column>
-                <v-chip
+                <va-reference-field
+                  resource="books"
                   v-for="book in item.books"
                   :key="book.id"
-                  :to="{ name: 'books_show', params: { id: book.id } }"
-                  >{{ book.title }}</v-chip
+                  chip
+                  text="title"
+                  :item="book"
                 >
+                </va-reference-field>
               </v-chip-group>
             </div>
           </v-card-text>

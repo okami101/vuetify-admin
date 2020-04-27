@@ -8,7 +8,7 @@ export default {
   },
   computed: {
     value() {
-      return typeof this.record === "string"
+      return typeof this.record === "string" || !this.source
         ? this.record
         : get(this.record, this.source);
     },

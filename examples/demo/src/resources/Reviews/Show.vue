@@ -9,13 +9,7 @@
             </div>
           </template>
           <v-card-text>
-            <va-field source="book" v-slot="{ value }">
-              <router-link
-                :to="{ name: 'books_show', params: { id: value.id } }"
-              >
-                {{ value.title }}
-              </router-link>
-            </va-field>
+            <va-field source="book" type="reference" text="title"></va-field>
             <va-field source="status" v-slot="{ value }">
               <v-chip :color="$statusColor(value)">
                 <va-select-field source="status" enum></va-select-field>

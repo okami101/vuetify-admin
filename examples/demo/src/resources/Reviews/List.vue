@@ -36,7 +36,7 @@
     >
       <va-datagrid
         :fields="[
-          'book',
+          { source: 'book', type: 'reference', text: 'title' },
           'status',
           { source: 'rating', type: 'rating' },
           'quality',
@@ -55,11 +55,6 @@
       >
         <template v-slot:expanded-item="{ item }">
           {{ item.body }}
-        </template>
-        <template v-slot:book="{ value }">
-          <router-link :to="{ name: 'books_show', params: { id: value.id } }">
-            {{ value.title }}
-          </router-link>
         </template>
         <template v-slot:quality="{ item }">
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}

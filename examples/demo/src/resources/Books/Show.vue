@@ -17,17 +17,13 @@
                   type="image"
                   src="thumbnails.large"
                 ></va-field>
-                <va-field source="publisher" v-slot="{ value }">
-                  <v-chip
-                    color="orange"
-                    :to="{
-                      name: 'publishers_show',
-                      params: { id: value.id },
-                    }"
-                  >
-                    {{ value.name }}
-                  </v-chip>
-                </va-field>
+                <va-field
+                  source="publisher"
+                  type="reference"
+                  chip
+                  color="orange"
+                  text="name"
+                ></va-field>
                 <va-field source="title"></va-field>
                 <va-field source="category">
                   <v-chip>
@@ -67,14 +63,16 @@
                 ></va-field>
                 <va-field source="authors" v-slot="{ value }">
                   <v-chip-group>
-                    <v-chip
-                      color="primary"
+                    <va-reference-field
+                      resource="authors"
                       v-for="(item, i) in value"
                       :key="i"
-                      :to="{ name: 'authors_show', params: { id: item.id } }"
+                      color="orange"
+                      chip
+                      text="name"
+                      :item="item"
                     >
-                      {{ item.name }}
-                    </v-chip>
+                    </va-reference-field>
                   </v-chip-group>
                 </va-field>
               </v-col>
@@ -82,14 +80,16 @@
             <va-field source="description"></va-field>
             <va-field source="reviews" v-slot="{ value }">
               <v-chip-group column>
-                <v-chip
-                  color="green"
+                <va-reference-field
+                  resource="reviews"
                   v-for="(item, i) in value"
                   :key="i"
-                  :to="{ name: 'reviews_show', params: { id: item.id } }"
+                  color="green"
+                  chip
+                  text="author"
+                  :item="item"
                 >
-                  {{ item.author }}
-                </v-chip>
+                </va-reference-field>
               </v-chip-group>
             </va-field>
           </template>

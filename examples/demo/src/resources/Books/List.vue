@@ -48,7 +48,13 @@
             src: 'thumbnails.small',
           },
           'category',
-          'publisher',
+          {
+            source: 'publisher',
+            type: 'reference',
+            chip: true,
+            text: 'name',
+            color: 'orange',
+          },
           'title',
           {
             source: 'price',
@@ -70,14 +76,6 @@
         v-model="selected"
         :options.sync="options"
       >
-        <template v-slot:publisher="{ value }">
-          <v-chip
-            color="orange"
-            :to="{ name: 'publishers_show', params: { id: value.id } }"
-          >
-            {{ value.name }}
-          </v-chip>
-        </template>
         <template v-slot:category="{ item }">
           <v-chip>
             <va-select-field
@@ -100,15 +98,17 @@
         </template>
         <template v-slot:authors="{ value }">
           <v-chip-group column>
-            <v-chip
-              color="primary"
-              small
+            <va-reference-field
+              resource="authors"
               v-for="(item, i) in value"
               :key="i"
-              :to="{ name: 'authors_show', params: { id: item.id } }"
+              color="primary"
+              small
+              chip
+              text="name"
+              :item="item"
             >
-              {{ item.name }}
-            </v-chip>
+            </va-reference-field>
           </v-chip-group>
         </template>
         <template v-slot:expanded-item="{ item }">
