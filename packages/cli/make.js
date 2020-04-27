@@ -52,16 +52,16 @@ async function service(args = {}, api) {
   /**
    * Let's generate crud files
    */
-  ["Create", "Edit", "Form", "List", "Show"].forEach((template) => {
+  ["create", "edit", "form", "list", "show"].forEach((template) => {
     if (args.actions) {
-      if (template === "Form") {
+      if (template === "form") {
         if (
           !args.actions.includes("create") &&
           !args.actions.includes("edit")
         ) {
           return;
         }
-      } else if (!args.actions.includes(template.toLowerCase())) {
+      } else if (!args.actions.includes(template)) {
         return;
       }
     }
@@ -71,28 +71,45 @@ async function service(args = {}, api) {
      */
     let data = { resource, fields };
 
+    let attributes = {
+      show: ["format"],
+      form: ["required", "multiline", "multiple", "taggable"],
+    };
+
     /**
      * Build field props
      */
     data.fields.forEach((f) => {
-      f.attributes = Object.keys(f)
-        .filter((f) => ["format"].includes(f))
-        .map((p) => {
-          let value = f[p];
+      /**
+       * Best suitable default input for few field types
+       */
+      if (!f.input && ["email", "url"].includes(f.type)) {
+        f.input = "text";
+      }
 
-          if (value === true) {
-            return p;
-          }
+      /**
+       * Additional props for field or input component formatter
+       */
+      if (attributes[template]) {
+        f.attributes = Object.keys(f)
+          .filter((f) => attributes[template].includes(f))
+          .map((p) => {
+            let value = f[p];
 
-          if (typeof value === "string") {
-            return `${p}="${f[p]}"`;
-          }
-          return `:${p}="${f[p]}"`;
-        })
-        .join(" ");
+            if (value === true) {
+              return p;
+            }
+
+            if (typeof value === "string") {
+              return `${p}="${f[p]}"`;
+            }
+            return `:${p}="${f[p]}"`;
+          })
+          .join(" ");
+      }
     });
 
-    if (template === "List") {
+    if (template === "list") {
       data.fields = util.inspect(
         fields.filter((f) => !f.excluded).map(({ name }) => name)
       );
@@ -134,12 +151,17 @@ async function service(args = {}, api) {
       );
     }
 
-    ejs.renderFile(resolve(sourceDir, `${template}.ejs`), data, {}, function (
-      err,
-      str
-    ) {
-      fs.writeFileSync(resolve(targetDir, `${template}.vue`), str);
-    });
+    ejs.renderFile(
+      resolve(sourceDir, `${upperFirst(template)}.ejs`),
+      data,
+      {},
+      function (err, str) {
+        fs.writeFileSync(
+          resolve(targetDir, `${upperFirst(template)}.vue`),
+          str
+        );
+      }
+    );
   });
 
   /**

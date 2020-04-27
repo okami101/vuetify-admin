@@ -56,14 +56,15 @@ monsters:
       type: email
       required: true
       db:
-        - unique
+        type: string
+        options:
+          - unique
     label:
       label: Libellé traduisible
       required: true
     active:
       label: Booléen
       type: boolean
-      required: true
       db:
         type: boolean
         options:
@@ -80,7 +81,6 @@ monsters:
     rating:
       label: Puissance
       type: rating
-      required: true
       db:
         type: integer
         options:
@@ -98,7 +98,7 @@ monsters:
       multiline: true
     body:
       label: Texte riche
-      html: true
+      type: rich-text
     category:
       label: Choix (enum)
       type: select
@@ -110,8 +110,9 @@ monsters:
     tags:
       label: Choix multiple
       type: array
-      input: combobox
+      input: autocomplete
       multiple: true
+      taggable: true
       db:
         type: json
     publication_date:

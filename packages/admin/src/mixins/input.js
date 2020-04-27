@@ -58,7 +58,10 @@ export default {
            * Initialize value & errors
            */
           this.update(get(val.item || val.model, this.uniqueFormId));
-          this.errorMessages = val.errors[this.uniqueFormId] || [];
+
+          if (val.errors) {
+            this.errorMessages = val.errors[this.uniqueFormId] || [];
+          }
         }
       },
       immediate: true,
