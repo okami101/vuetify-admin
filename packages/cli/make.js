@@ -26,6 +26,7 @@ const options = {
       "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, and specific field widget options",
     columns: "Fields that should be shown on datagrid list",
     include: "Related resources to include on list page with eager-loading",
+    searchable: "Enable datagrid global search",
     sortable: "Fields that can be sortable",
     filterable: "Fields that can be filtered",
   },
@@ -122,7 +123,7 @@ async function service(args = {}, api) {
       data.sortable = util.inspect(args.sortable || []);
       data.include = util.inspect(args.include || []);
       data.filters = util.inspect([
-        "q",
+        ...(args.searchable ? ["q"] : []),
         ...(args.filterable || []).map((name) => {
           let field = fields.find((f) => f.name === name);
 

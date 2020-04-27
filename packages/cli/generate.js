@@ -2,6 +2,7 @@ const { chalk } = require(require.resolve("@vue/cli-shared-utils"));
 const fs = require("fs");
 const yaml = require("js-yaml");
 const make = require("./make");
+const isEmpty = require("lodash/isEmpty");
 
 const options = {
   description: "resource ui crud generator",
@@ -47,6 +48,7 @@ async function service(args = {}, api) {
         include: resource.include,
         filterable: resource.filterable,
         sortable: resource.sortable,
+        searchable: !isEmpty(resource.searchable),
         locale: args.locale || "en",
         fields: fields.map((field) => {
           return {

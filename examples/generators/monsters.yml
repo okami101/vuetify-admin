@@ -157,6 +157,8 @@ monster_children:
     - name
     - created_at
     - updated_at
+  searchable:
+    - name
   fields:
     name:
       label: Nom
