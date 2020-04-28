@@ -43,13 +43,7 @@
                     </v-chip>
                   </v-chip-group>
                 </va-field>
-                <va-field source="tags" v-slot="{ value }">
-                  <v-chip-group>
-                    <v-chip v-for="(item, i) in value" :key="i">
-                      {{ item }}
-                    </v-chip>
-                  </v-chip-group>
-                </va-field>
+                <va-field source="tags" type="array"></va-field>
                 <va-field
                   source="price"
                   type="number"

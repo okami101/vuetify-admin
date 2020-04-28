@@ -29,6 +29,7 @@ import UrlField from "./Fields/UrlField";
 import FileField from "./Fields/FileField";
 import ImageField from "./Fields/ImageField";
 import ReferenceField from "./Fields/ReferenceField";
+import ArrayField from "./Fields/ArrayField";
 
 import TextInput from "./Inputs/TextInput";
 import PasswordInput from "./Inputs/PasswordInput";
@@ -72,6 +73,7 @@ export {
   FileField,
   ImageField,
   ReferenceField,
+  ArrayField,
   TextInput,
   PasswordInput,
   NumberInput,

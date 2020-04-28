@@ -83,6 +83,7 @@ Fields is a custom show formatter of a given data, generally a property of a res
 * UrlField
 * FileField
 * ImageField
+* ArrayField
 * ReferenceField
 
 > You can of course create you custom fields by creating your own vue component and using this specific mixin "vtec-admin/mixins/field";
