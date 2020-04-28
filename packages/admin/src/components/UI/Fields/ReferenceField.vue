@@ -1,9 +1,9 @@
 <template>
   <v-chip v-if="chip" :color="color" :small="small" :to="link">
-    <slot>{{ text ? value[text] : value }}</slot>
+    <slot :value="value">{{ text ? value[text] : value }}</slot>
   </v-chip>
   <router-link v-else :to="link">
-    <slot>{{ text ? value[text] : value }}</slot>
+    <slot :value="value">{{ text ? value[text] : value }}</slot>
   </router-link>
 </template>
 
