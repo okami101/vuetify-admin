@@ -81,9 +81,16 @@ async function service(args = {}, api) {
       }),
     };
 
-    let attributes = {
+    let allowedAttributes = {
       show: ["format", "reference", "text", "action", "chip", "color", "small"],
-      form: ["required", "reference", "multiline", "multiple", "taggable"],
+      form: [
+        "required",
+        "format",
+        "reference",
+        "multiline",
+        "multiple",
+        "taggable",
+      ],
     };
 
     /**
@@ -97,23 +104,47 @@ async function service(args = {}, api) {
         f.input = "text";
       }
 
-      /**
-       * Additional props for field or input component formatter
-       */
-      if (attributes[template]) {
-        f.attributes = Object.keys(f)
-          .filter((f) => attributes[template].includes(f))
+      if (allowedAttributes[template]) {
+        /**
+         * Prepare all attributes for fields and inputs component
+         */
+        let attributes = Object.keys(f)
+          .filter((f) => allowedAttributes[template].includes(f))
+          .reduce(
+            (o, p) => ({
+              ...o,
+              [p]: f[p],
+            }),
+            {}
+          );
+
+        /**
+         * Add specific autocomplete attributes for reference
+         */
+        if (
+          template === "form" &&
+          f.input === "autocomplete" &&
+          f.type === "reference"
+        ) {
+          attributes["option-text"] = f.text;
+          attributes.model = `${f.name}_id`;
+        }
+
+        /**
+         * Format as string for EJS
+         */
+        f.attributes = Object.keys(attributes)
           .map((p) => {
-            let value = f[p];
+            let value = attributes[p];
 
             if (value === true) {
               return p;
             }
 
             if (typeof value === "string") {
-              return `${p}="${f[p]}"`;
+              return `${p}="${attributes[p]}"`;
             }
-            return `:${p}="${f[p]}"`;
+            return `:${p}="${util.inspect(attributes[p])}"`;
           })
           .join(" ");
       }
@@ -133,9 +164,25 @@ async function service(args = {}, api) {
 
           let filter = { source: field.name, type: field.type };
 
+          /**
+           * Set input attributes
+           */
+          Object.keys(field)
+            .filter((a) => a !== "required")
+            .filter((a) => allowedAttributes["form"].includes(a))
+            .forEach((a) => {
+              filter[a] = field[a];
+            });
+
           if (field.type === "select") {
             // Multiple choices by default for filters
             filter.multiple = true;
+          }
+          if (field.type === "reference") {
+            // Multiple choices by default and add specific autocompletes
+            filter.multiple = true;
+            filter.optionText = field.text;
+            filter.type = field.input;
           }
           return filter;
         }),
@@ -150,7 +197,7 @@ async function service(args = {}, api) {
 
           let column = { source: field.name, type: field.type };
 
-          attributes.show.forEach((p) => {
+          allowedAttributes.show.forEach((p) => {
             if (field[p]) {
               column[p] = field[p];
             }

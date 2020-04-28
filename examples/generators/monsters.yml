@@ -145,6 +145,8 @@ monster_children:
     - name
     - created_at
     - updated_at
+  filterable:
+    - monster
   searchable:
     - name
   include:
@@ -157,6 +159,7 @@ monster_children:
     monster:
       label: Parent
       type: reference
+      input: autocomplete
       reference: monsters
       text: name
       required: true
