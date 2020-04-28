@@ -15,20 +15,7 @@
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
-    @update:sort-by="
-      (sortBy) =>
-        $emit('update:options', {
-          ...options,
-          sortBy,
-        })
-    "
-    @update:sort-desc="
-      (sortDesc) =>
-        $emit('update:options', {
-          ...options,
-          sortDesc,
-        })
-    "
+    @update:options="(options) => $emit('update:options', options)"
     @input="(selected) => $emit('input', selected)"
     :class="{ 'clickable-rows': rowClick }"
   >

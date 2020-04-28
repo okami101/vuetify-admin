@@ -36,17 +36,33 @@
                 "type": "string"
               }
             },
+            "sortable": {
+              "description": "Fields that can be sortable on list page.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
             "searchable": {
               "description": "List of searchable fields for global list search. Disabled if not setted.",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "filterable": {
               "description": "Fields that can be filtered individualy. Will appear on advanced filter on list page. Input will be adapted according to field type (cf 'fields' property section).",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "include": {
               "description": "Related resources to include on list page with eager-loading.",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         }

@@ -18,8 +18,15 @@ resources:
       - price
       - category
       - publication_date
-    include:
-      - media
+    sortable:
+      - name
+      - label
+      - level
+      - rating
+      - price
+      - publication_date
+      - created_at
+      - updated_at
     searchable:
       - name
       - label
@@ -31,15 +38,8 @@ resources:
       - level
       - rating
       - category
-    sortable:
-      - name
-      - label
-      - level
-      - rating
-      - price
-      - publication_date
-      - created_at
-      - updated_at
+    include:
+      - media
     translatable:
       - label
       - description
@@ -144,16 +144,16 @@ resources:
       - name
       - created_at
       - updated_at
-    filterable:
-      - monster
-    searchable:
-      - name
-    include:
-      - monster
     sortable:
       - name
       - created_at
       - updated_at
+    searchable:
+      - name
+    filterable:
+      - monster
+    include:
+      - monster
     fields:
       monster:
         label: Parent
