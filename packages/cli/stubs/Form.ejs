@@ -12,10 +12,10 @@
             <%_ for (field of fields) { _%>
             <%_ if (["file", "image"].includes(field.type)) { _%>
             <va-file-input source="<%- field.name %>">
-              <va-<%- field.type %>-field source="<%- field.name %>"<%- field.attributes ? ' ' + field.attributes : '' %> clearable></va-<%- field.type %>-field>
+              <va-<%- field.type %>-field source="<%- field.name %>"<%- field.attrs ? ' ' + field.attrs : '' %> clearable></va-<%- field.type %>-field>
             </va-file-input>
             <%_ } else { _%>
-            <va-<%- field.input || field.type %>-input source="<%- field.name %>"<%- field.attributes ? ' ' + field.attributes : '' %>></va-<%- field.input || field.type %>-input>
+            <va-<%- field.type %>-input source="<%- field.name %>"<%- field.attrs ? ' ' + field.attrs : '' %>></va-<%- field.type %>-input>
             <%_ } _%>
             <%_ } _%>
           </v-card-text>

@@ -51,18 +51,22 @@ resources:
     fields:
       name:
         label: Nom
-        required: true
+        form:
+          required: true
       email:
         label: Email
         type: email
-        required: true
+        form:
+          type: text
+          required: true
         db:
           type: string
           options:
             - unique
       label:
         label: Libellé traduisible
-        required: true
+        form:
+          required: true
       active:
         label: Booléen
         type: boolean
@@ -73,7 +77,8 @@ resources:
       level:
         label: Niveau
         type: number
-        required: true
+        form:
+          required: true
         db:
           type: integer
           options:
@@ -90,20 +95,26 @@ resources:
       price:
         label: Prix
         type: number
-        format: 'currency'
-        required: true
+        attributes:
+          format: 'currency'
+        form:
+          required: true
         db:
           type: float
       description:
         label: Texte long
-        multiline: true
+        form:
+          multiline: true
       body:
         label: Texte riche
         type: rich-text
       category:
         label: Choix (enum)
         type: select
-        required: true
+        form:
+          required: true
+        filter:
+          multiple: true
         enum:
           history: Histoire
           novel: Roman
@@ -111,30 +122,35 @@ resources:
       tags:
         label: Choix multiple
         type: array
-        input: autocomplete
-        multiple: true
-        taggable: true
+        form:
+          type: autocomplete
+          multiple: true
+          taggable: true
         db:
           type: json
       publication_date:
         label: Date
         type: date
-        format: 'long'
-        required: true
+        attributes:
+          format: 'long'
+        form:
+          required: true
       avatar:
         label: Avatar
         type: image
-        excluded: true
+        db: false
       images:
         label: Photos
         type: image
-        multiple: true
-        excluded: true
+        form:
+          multiple: true
+        db: false
       files:
         label: Fichiers
         type: file
-        multiple: true
-        excluded: true
+        form:
+          multiple: true
+        db: false
 
   monster_children:
     label: Bébé monstre | Bébés monstres
@@ -158,10 +174,15 @@ resources:
       monster:
         label: Parent
         type: reference
-        input: autocomplete
-        reference: monsters
-        text: name
-        required: true
+        attributes:
+          reference: monsters
+          optionText: name
+        form:
+          type: autocomplete
+          required: true
+          model: monster_id
+        filter:
+          multiple: true
         db:
           name: monster_id
           type: integer
@@ -170,16 +191,17 @@ resources:
             - foreign
       name:
         label: Nom
-        required: true
+        form:
+          required: true
       created_at:
         label: Date de création
         type: date
-        format: 'long'
-        timestamp: true
-        readonly: true
+        attributes:
+          format: 'long'
+        form: false
       updated_at:
         label: Date de mise à jour
         type: date
-        format: 'long'
-        timestamp: true
-        readonly: true
+        attributes:
+          format: 'long'
+        form: false

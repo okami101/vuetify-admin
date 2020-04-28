@@ -3,68 +3,245 @@
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"type": "object",
   "additionalProperties": false,
+  "definitions": {
+    "resource": {
+      "description": "This unique name will be used inside API URL calls and ui client router slug.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "description": "Localized label of resource. Will be shown on menus and page titles.",
+          "type": "string"
+        },
+        "icon": {
+          "description": "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
+          "type": "string"
+        },
+        "actions": {
+          "description": "Optional supported crud operations, do not set if you want all by default.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["list", "show", "create", "edit", "delete"]
+          }
+        },
+        "columns": {
+          "description": "Fields that should be shown on datagrid list. Cell format will be adapted according to field type (cf 'fields' property section).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "sortable": {
+          "description": "Fields that can be sortable on list page.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "searchable": {
+          "description": "List of searchable fields for global list search. Disabled if not setted.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "filterable": {
+          "description": "Fields that can be filtered individualy. Will appear on advanced filter on list page. Input will be adapted according to field type (cf 'fields' property section).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "include": {
+          "description": "Related resources to include on list page with eager loading.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "translatable": {
+          "description": "List all translatable fields for backend. On UI side, if setted, a contextual locale selector will be available in order to select used language on each translatable field. A locale query parameter will be send to backend.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "mediable": {
+          "description": "List all mediable fields for backend. A mediable field correspond to an uploadable image or file.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "fields": {
+          "description": "Specify all fields used by this resource, identified by key name on snake_case format, ex. 'price', 'publication_date', etc.",
+          "type": "object",
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/field"
+            }
+          }
+        }
+      }
+    },
+    "field": {
+      "description": "Field of resource. Will be generated on each crud views.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "description": "Localized label of field.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of field or widget on UI side. Do not confuse with final primitive type on backend side.",
+          "type": "string",
+          "enum": [
+            "text",
+            "number",
+            "rating",
+            "date",
+            "boolean",
+            "rich-text",
+            "chip",
+            "select",
+            "email",
+            "url",
+            "file",
+            "image",
+            "reference",
+            "array"
+          ]
+        },
+        "enum": {
+          "description": "List of key-value localized enums as select choices.",
+          "type": "object"
+        },
+        "attributes": {
+          "description": "Various attributes that will be setted on fields, columns and form inputs",
+          "type": "object",
+          "properties": {
+            "format": {
+              "description": "Output human readable format for date and number fields.",
+              "type": "string"
+            },
+            "reference": {
+              "description": "Existing resource referenced by this field. Allow to build direct router-link for readable field and to search into targetted entities type on backend in case of input form",
+              "type": "string"
+            },
+            "optionText": {
+              "description": "Readable targetted resource property.",
+              "type": "string"
+            }
+          }
+        },
+        "form": {
+          "description": "Specific input form attributes. Set explicitly as false if you don't want it to be generated in form",
+          "type": ["object", "boolean"],
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/formType"
+            },
+            "required": {
+              "description": "Set required on client side.",
+              "type": "boolean"
+            },
+            "multiline": {
+              "description": "Set text input as textarea.",
+              "type": "boolean"
+            },
+            "taggable": {
+              "description": "Allow direct tag creation inside autocomplete.",
+              "type": "boolean"
+            },
+            "model": {
+              "description": "Targetted model property for autocomplete.",
+              "type": "string"
+            },
+            "multiple": {
+              "$ref": "#/definitions/multiple"
+            }
+          }
+        },
+        "filter": {
+          "description": "Specific filter form attributes.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/formType"
+            },
+            "multiple": {
+              "$ref": "#/definitions/multiple"
+            }
+          }
+        },
+        "db": {
+          "$ref": "#/definitions/db"
+        }
+      }
+    },
+    "formType": {
+      "description": "Supported type of input form.",
+      "type": "string",
+      "enum": [
+        "text",
+        "password",
+        "number",
+        "rating",
+        "date",
+        "boolean",
+        "rich-text",
+        "array",
+        "select",
+        "radio-group",
+        "autocomplete",
+        "file"
+      ]
+    },
+    "multiple": {
+      "description": "Allow multiple inputs on supported inputs, i.e. select, autocomplete, files.",
+      "type": "boolean"
+    },
+    "db": {
+      "description": "Optional specific database information of given field. Set explicitly to false if this field do no not correspond to a valid SQL field.",
+      "type": ["object", "boolean"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Final SQL column name of field, default as name of field.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Final SQL column type of field, string as default. Be aware that in case of Laravel, JSON will be forced if field is translatable.",
+          "type": "string"
+        },
+        "options": {
+          "description": "All supported options of SQL field.",
+          "type": "array",
+          "examples": ["unique", "unsigned", "default(0)", "foreign"],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
   "properties": {
     "resources": {
-      "description": "List of resources identified by unique name.",
+      "description": "List of resources identified by key name. Each key must be on plural snake_case format, ex. 'monsters', 'monster_children', etc.",
       "type": "object",
       "patternProperties": {
         ".*": {
-          "description": "Unique resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "label": {
-              "description": "Localized label of resource. Will be shown on menus and page titles.",
-              "type": "string"
-            },
-            "icon": {
-              "description": "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
-              "type": "string"
-            },
-            "actions": {
-              "description": "Optional supported crud operations, do not set if you want all by default.",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["list", "show", "create", "edit", "delete"]
-              }
-            },
-            "columns": {
-              "description": "Fields that should be shown on datagrid list. Cell format will be adapted according to field type (cf 'fields' property section).",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "sortable": {
-              "description": "Fields that can be sortable on list page.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "searchable": {
-              "description": "List of searchable fields for global list search. Disabled if not setted.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "filterable": {
-              "description": "Fields that can be filtered individualy. Will appear on advanced filter on list page. Input will be adapted according to field type (cf 'fields' property section).",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "include": {
-              "description": "Related resources to include on list page with eager-loading.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "#/definitions/resource"
         }
       }
     }

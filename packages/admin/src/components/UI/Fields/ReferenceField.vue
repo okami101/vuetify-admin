@@ -1,9 +1,9 @@
 <template>
   <v-chip v-if="chip" :color="color" :small="small" :to="link">
-    <slot :value="value">{{ text ? value[text] : value }}</slot>
+    <slot :value="value">{{ optionText ? value[optionText] : value }}</slot>
   </v-chip>
   <router-link v-else :to="link">
-    <slot :value="value">{{ text ? value[text] : value }}</slot>
+    <slot :value="value">{{ optionText ? value[optionText] : value }}</slot>
   </router-link>
 </template>
 
@@ -23,7 +23,10 @@ export default {
       type: String,
       required: true,
     },
-    text: String,
+    optionText: {
+      type: [String, Array, Function],
+      default: "name",
+    },
     chip: Boolean,
     color: String,
     small: Boolean,

@@ -13,7 +13,7 @@
               source="book"
               type="reference"
               reference="books"
-              text="title"
+              option-text="title"
             ></va-field>
             <va-field source="status" v-slot="{ value }">
               <v-chip :color="$statusColor(value)">

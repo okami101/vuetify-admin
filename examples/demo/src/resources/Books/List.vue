@@ -106,7 +106,6 @@
               color="primary"
               small
               chip
-              text="name"
               :item="item"
             >
             </va-reference-field>

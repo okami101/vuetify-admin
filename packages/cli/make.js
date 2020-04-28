@@ -5,6 +5,7 @@ const ejs = require("ejs");
 const util = require("util");
 const upperFirst = require("lodash/upperFirst");
 const camelCase = require("lodash/camelCase");
+const kebabCase = require("lodash/kebabCase");
 
 const options = {
   description: "resource ui crud maker",
@@ -24,13 +25,13 @@ const options = {
     actions:
       "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'.",
     fields:
-      "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, and specific field widget options.",
+      "For more advanced generation, you can even specify all fields used by this resource. This fields will be generated on each crud views. Each field can specify name (required), localized label, and specific field widget options.",
     columns: "Fields that should be shown on datagrid list.",
-    include: "Related resources to include on list page with eager-loading.",
-    searchable: "Enable datagrid global search.",
     sortable: "Fields that can be sortable.",
+    searchable: "Enable datagrid global search.",
     filterable:
       "Fields that can be filtered individualy. Will appear on advanced filter on list page.",
+    include: "Related resources to include on list page with eager loading.",
   },
 };
 
@@ -78,21 +79,13 @@ async function service(args = {}, api) {
       name: args.name,
       slug: args.name.replace("_", "-"),
       resource,
-      fields: fields.filter((f) => {
-        return template !== "form" || !f.readonly;
-      }),
-    };
-
-    let allowedAttributes = {
-      show: ["format", "reference", "text", "action", "chip", "color", "small"],
-      form: [
-        "required",
-        "format",
-        "reference",
-        "multiline",
-        "multiple",
-        "taggable",
-      ],
+      fields: fields
+        .filter((f) => {
+          return template !== "form" || f.form !== false;
+        })
+        .map((f) => {
+          return { ...f };
+        }),
     };
 
     /**
@@ -100,56 +93,40 @@ async function service(args = {}, api) {
      */
     data.fields.forEach((f) => {
       /**
-       * Best suitable default input for few field types
+       * Prepare all attributes for fields and inputs component
        */
-      if (!f.input && ["email", "url"].includes(f.type)) {
-        f.input = "text";
-      }
+      let attributes = f.attributes || {};
 
-      if (allowedAttributes[template]) {
-        /**
-         * Prepare all attributes for fields and inputs component
-         */
-        let attributes = Object.keys(f)
-          .filter((f) => allowedAttributes[template].includes(f))
-          .reduce(
-            (o, p) => ({
-              ...o,
-              [p]: f[p],
-            }),
-            {}
-          );
+      if (template === "form" && f.form) {
+        let { type, ...form } = f.form;
 
-        /**
-         * Add specific autocomplete attributes for reference
-         */
-        if (
-          template === "form" &&
-          f.input === "autocomplete" &&
-          f.type === "reference"
-        ) {
-          attributes["option-text"] = f.text;
-          attributes.model = `${f.name}_id`;
+        if (type) {
+          f.type = type;
         }
 
-        /**
-         * Format as string for EJS
-         */
-        f.attributes = Object.keys(attributes)
-          .map((p) => {
-            let value = attributes[p];
-
-            if (value === true) {
-              return p;
-            }
-
-            if (typeof value === "string") {
-              return `${p}="${attributes[p]}"`;
-            }
-            return `:${p}="${util.inspect(attributes[p])}"`;
-          })
-          .join(" ");
+        attributes = {
+          ...attributes,
+          ...form,
+        };
       }
+
+      /**
+       * Format as string for EJS
+       */
+      f.attrs = Object.keys(attributes)
+        .map((p) => {
+          let value = attributes[p];
+
+          if (value === true) {
+            return p;
+          }
+
+          if (typeof value === "string") {
+            return `${kebabCase(p)}="${attributes[p]}"`;
+          }
+          return `:${kebabCase(p)}="${util.inspect(attributes[p])}"`;
+        })
+        .join(" ");
     });
 
     if (template === "list") {
@@ -164,28 +141,12 @@ async function service(args = {}, api) {
             return name;
           }
 
-          let filter = { source: field.name, type: field.type };
-
-          /**
-           * Set input attributes
-           */
-          Object.keys(field)
-            .filter((a) => a !== "required")
-            .filter((a) => allowedAttributes["form"].includes(a))
-            .forEach((a) => {
-              filter[a] = field[a];
-            });
-
-          if (field.type === "select") {
-            // Multiple choices by default for filters
-            filter.multiple = true;
-          }
-          if (field.type === "reference") {
-            // Multiple choices by default and add specific autocompletes
-            filter.multiple = true;
-            filter.optionText = field.text;
-            filter.type = field.input;
-          }
+          let filter = {
+            source: field.name,
+            type: field.form && field.form.type ? field.form.type : field.type,
+            ...(field.attributes || {}),
+            ...(field.filter || {}),
+          };
           return filter;
         }),
       ]);
@@ -197,13 +158,11 @@ async function service(args = {}, api) {
             return name;
           }
 
-          let column = { source: field.name, type: field.type };
-
-          allowedAttributes.show.forEach((p) => {
-            if (field[p]) {
-              column[p] = field[p];
-            }
-          });
+          let column = {
+            source: field.name,
+            type: field.type,
+            ...(field.attributes || {}),
+          };
 
           return column;
         })

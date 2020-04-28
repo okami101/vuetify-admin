@@ -21,7 +21,6 @@
                   source="publisher"
                   type="reference"
                   reference="publishers"
-                  text="name"
                   chip
                   color="orange"
                 ></va-field>
@@ -70,7 +69,6 @@
                       :key="i"
                       color="orange"
                       chip
-                      text="name"
                       :item="item"
                     >
                     </va-reference-field>
@@ -87,7 +85,7 @@
                   :key="i"
                   color="green"
                   chip
-                  text="author"
+                  option-text="author"
                   :item="item"
                 >
                 </va-reference-field>

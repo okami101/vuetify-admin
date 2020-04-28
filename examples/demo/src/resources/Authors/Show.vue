@@ -24,7 +24,7 @@
                   v-for="book in item.books"
                   :key="book.id"
                   chip
-                  text="title"
+                  option-text="title"
                   :item="book"
                 >
                 </va-reference-field>
