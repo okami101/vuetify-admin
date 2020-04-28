@@ -1,0 +1,185 @@
+resources:
+  monsters:
+    label: Monstre | Monstres
+    icon: mdi-alien
+    actions:
+      - list
+      - show
+      - create
+      - edit
+      - delete
+    columns:
+      - name
+      - email
+      - label
+      - active
+      - level
+      - rating
+      - price
+      - category
+      - publication_date
+    include:
+      - media
+    searchable:
+      - name
+      - label
+      - description
+    filterable:
+      - name
+      - label
+      - active
+      - level
+      - rating
+      - category
+    sortable:
+      - name
+      - label
+      - level
+      - rating
+      - price
+      - publication_date
+      - created_at
+      - updated_at
+    translatable:
+      - label
+      - description
+      - body
+    mediable:
+      - avatar
+      - images
+      - files
+    fields:
+      name:
+        label: Nom
+        required: true
+      email:
+        label: Email
+        type: email
+        required: true
+        db:
+          type: string
+          options:
+            - unique
+      label:
+        label: Libellé traduisible
+        required: true
+      active:
+        label: Booléen
+        type: boolean
+        db:
+          type: boolean
+          options:
+            - default(0)
+      level:
+        label: Niveau
+        type: number
+        required: true
+        db:
+          type: integer
+          options:
+            - unsigned
+            - default(0)
+      rating:
+        label: Puissance
+        type: rating
+        db:
+          type: integer
+          options:
+            - unsigned
+            - default(0)
+      price:
+        label: Prix
+        type: number
+        format: 'currency'
+        required: true
+        db:
+          type: float
+      description:
+        label: Texte long
+        multiline: true
+      body:
+        label: Texte riche
+        type: rich-text
+      category:
+        label: Choix (enum)
+        type: select
+        required: true
+        enum:
+          history: Histoire
+          novel: Roman
+          comics: BD
+      tags:
+        label: Choix multiple
+        type: array
+        input: autocomplete
+        multiple: true
+        taggable: true
+        db:
+          type: json
+      publication_date:
+        label: Date
+        type: date
+        format: 'long'
+        required: true
+      avatar:
+        label: Avatar
+        type: image
+        excluded: true
+      images:
+        label: Photos
+        type: image
+        multiple: true
+        excluded: true
+      files:
+        label: Fichiers
+        type: file
+        multiple: true
+        excluded: true
+
+  monster_children:
+    label: Bébé monstre | Bébés monstres
+    icon: mdi-baby-carriage
+    columns:
+      - monster
+      - name
+      - created_at
+      - updated_at
+    filterable:
+      - monster
+    searchable:
+      - name
+    include:
+      - monster
+    sortable:
+      - name
+      - created_at
+      - updated_at
+    fields:
+      monster:
+        label: Parent
+        type: reference
+        input: autocomplete
+        reference: monsters
+        text: name
+        required: true
+        db:
+          name: monster_id
+          type: integer
+          options:
+            - unsigned
+            - foreign
+      name:
+        label: Nom
+        required: true
+      created_at:
+        label: Date de création
+        type: date
+        format: 'long'
+        timestamp: true
+        readonly: true
+      updated_at:
+        label: Date de mise à jour
+        type: date
+        format: 'long'
+        timestamp: true
+        readonly: true

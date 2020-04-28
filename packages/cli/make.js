@@ -11,24 +11,26 @@ const options = {
   usage: "vue-cli-service crud:make [options]",
   options: {
     name:
-      "Required resource name. Should be on url slug format, used for client-side routes and identify api calls",
-    output: "Output directory of resource generated crud pages",
-    icon: "Resource MDI",
-    label:
-      "Main localized label which identify resource. Will be used inside titles, menus, etc.",
+      "Unique resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
+    output: "Output directory of resource generated crud pages.",
     locale:
-      "Default vue-i18n locale used for register resource labels (name and fields)",
+      "Default vue-i18n locale used for register resource labels (name and fields).",
+    label:
+      "Localized label of resource. Will be shown on menus and page titles.",
+    icon:
+      "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
     translatable:
       "Activate if resource has translatable fields. If setted, a contextual locale selector will be available in order to select used language on each translatable field. A locale query parameter will be send to backend.",
     actions:
-      "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'",
+      "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'.",
     fields:
-      "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, and specific field widget options",
-    columns: "Fields that should be shown on datagrid list",
-    include: "Related resources to include on list page with eager-loading",
-    searchable: "Enable datagrid global search",
-    sortable: "Fields that can be sortable",
-    filterable: "Fields that can be filtered",
+      "For more advanced generation, you can even specify all fields used by this resource. This fields will be inserted on each crud views. Each field can specify name (required), localized label, and specific field widget options.",
+    columns: "Fields that should be shown on datagrid list.",
+    include: "Related resources to include on list page with eager-loading.",
+    searchable: "Enable datagrid global search.",
+    sortable: "Fields that can be sortable.",
+    filterable:
+      "Fields that can be filtered individualy. Will appear on advanced filter on list page.",
   },
 };
 

@@ -1,0 +1,56 @@
+{
+	"title": "JSON schema for Vtec generator files",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "resources": {
+      "description": "List of resources identified by unique name.",
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "description": "Unique resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "description": "Localized label of resource. Will be shown on menus and page titles.",
+              "type": "string"
+            },
+            "icon": {
+              "description": "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
+              "type": "string"
+            },
+            "actions": {
+              "description": "Optional supported crud operations, do not set if you want all by default.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["list", "show", "create", "edit", "delete"]
+              }
+            },
+            "columns": {
+              "description": "Fields that should be shown on datagrid list. Cell format will be adapted according to field type (cf 'fields' property section).",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "searchable": {
+              "description": "List of searchable fields for global list search. Disabled if not setted.",
+              "type": "array"
+            },
+            "filterable": {
+              "description": "Fields that can be filtered individualy. Will appear on advanced filter on list page. Input will be adapted according to field type (cf 'fields' property section).",
+              "type": "array"
+            },
+            "include": {
+              "description": "Related resources to include on list page with eager-loading.",
+              "type": "array"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,9 +8,9 @@ const options = {
   description: "resource ui crud generator",
   usage: "vue-cli-service crud:generate [options]",
   options: {
-    file: "Yaml file descriptor",
-    name: "Optional name of model to import, if not set, all will be imported",
-    output: "Output directory of resource generated crud pages",
+    file: "Yaml file descriptor.",
+    name: "Optional name of model to import, if not set, all will be imported.",
+    output: "Output directory of resource generated crud pages.",
   },
 };
 
@@ -23,12 +23,12 @@ async function service(args = {}, api) {
   /**
    * Generate crud views
    */
-  const resources = yaml.safeLoad(fs.readFileSync(args.file, "utf8"));
+  const descriptor = yaml.safeLoad(fs.readFileSync(args.file, "utf8"));
 
-  Object.keys(resources)
+  Object.keys(descriptor.resources)
     .filter((n) => (args.name ? args.name === n : true))
     .forEach((name) => {
-      let resource = resources[name];
+      let resource = descriptor.resources[name];
 
       const fields = Object.keys(resource.fields)
         .map((name) => {

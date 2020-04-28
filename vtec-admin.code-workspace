@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "examples\\demo"
+		},
+		{
+			"path": "examples\\generators"
+		},
+		{
+			"path": "packages\\admin"
+		},
+		{
+			"path": "packages\\cli"
+		},
+		{
+			"path": "packages\\docs"
+		}
+	],
+	"settings": {
+		"yaml.schemas": {
+			"../../packages/docs/docs/.vuepress/public/vtec-generator.json": ["examples/generators/*"],
+		}
+	}
+}
