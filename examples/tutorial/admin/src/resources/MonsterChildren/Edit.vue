@@ -1,20 +1,20 @@
 <template>
-  <va-edit>
-    <monster-children-form
-      :id="id"
-      :title="title"
-      :item="item"
-    ></monster-children-form>
-  </va-edit>
+    <va-edit>
+        <monster-children-form
+            :id="id"
+            :title="title"
+            :item="item"
+        ></monster-children-form>
+    </va-edit>
 </template>
 
 <script>
 import MonsterChildrenForm from "./Form";
 
 export default {
-  props: ["id", "title", "item"],
-  components: {
-    MonsterChildrenForm,
-  },
+    props: ["id", "title", "item"],
+    components: {
+        MonsterChildrenForm,
+    },
 };
 </script>

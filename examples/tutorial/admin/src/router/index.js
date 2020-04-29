@@ -8,39 +8,39 @@ import i18n from "@/i18n";
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "home",
-    redirect: "/dashboard",
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: Login,
-    meta: {
-      title: i18n.t("routes.login"),
+    {
+        path: "/",
+        name: "home",
+        redirect: "/dashboard",
     },
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    component: Profile,
-    meta: {
-      title: i18n.t("routes.profile"),
+    {
+        path: "/login",
+        name: "login",
+        component: Login,
+        meta: {
+            title: i18n.t("routes.login"),
+        },
     },
-  },
-  {
-    path: "/dashboard",
-    name: "dashboard",
-    component: Dashboard,
-    meta: {
-      title: i18n.t("routes.dashboard"),
+    {
+        path: "/profile",
+        name: "profile",
+        component: Profile,
+        meta: {
+            title: i18n.t("routes.profile"),
+        },
     },
-  },
+    {
+        path: "/dashboard",
+        name: "dashboard",
+        component: Dashboard,
+        meta: {
+            title: i18n.t("routes.dashboard"),
+        },
+    },
 ];
 
 export default new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes,
 });

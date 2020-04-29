@@ -24,9 +24,9 @@ import draggable from "vuedraggable";
 const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
 
 const http = axios.create({
-  baseURL,
-  withCredentials: true,
-  headers: { "X-Requested-With": "XMLHttpRequest" },
+    baseURL,
+    withCredentials: true,
+    headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
 Vue.prototype.$axios = http;
@@ -48,39 +48,39 @@ Vue.component("draggable", draggable);
 const requireComponent = require.context("@/resources", true, /\.vue$/);
 
 requireComponent.keys().forEach((fileName) => {
-  const componentConfig = requireComponent(fileName);
+    const componentConfig = requireComponent(fileName);
 
-  const componentName = fileName
-    .replace(/^\.\//, "")
-    .replace(/\//, "")
-    .replace(/\.\w+$/, "");
+    const componentName = fileName
+        .replace(/^\.\//, "")
+        .replace(/\//, "")
+        .replace(/\.\w+$/, "");
 
-  Vue.component(componentName, componentConfig.default || componentConfig);
+    Vue.component(componentName, componentConfig.default || componentConfig);
 });
 
 /**
  * Init admin
  */
 export default new VtecAdmin({
-  router,
-  store,
-  i18n,
-  title: "Vtec Admin",
-  locales: {
-    ui: { en, fr },
-    translations: {
-      en: i18n.t("locales.english"),
-      fr: i18n.t("locales.french"),
+    router,
+    store,
+    i18n,
+    title: "Vtec Admin",
+    locales: {
+        ui: { en, fr },
+        translations: {
+            en: i18n.t("locales.english"),
+            fr: i18n.t("locales.french"),
+        },
     },
-  },
-  authProvider: sanctumAuthProvider(http, {
-    routes: {
-      login: "/auth/login",
-      logout: "/auth/logout",
-      user: "/api/user",
-    },
-  }),
-  dataProvider: laravelDataProvider(http),
-  fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
-  resources,
+    authProvider: sanctumAuthProvider(http, {
+        routes: {
+            login: "/auth/login",
+            logout: "/auth/logout",
+            user: "/api/user",
+        },
+    }),
+    dataProvider: laravelDataProvider(http),
+    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    resources,
 });

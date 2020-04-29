@@ -11,10 +11,10 @@ import "./plugins/chartist";
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  vuetify,
-  i18n,
-  admin,
-  render: (h) => h(App),
+    router,
+    store,
+    vuetify,
+    i18n,
+    admin,
+    render: (h) => h(App),
 }).$mount("#app");
