@@ -13,7 +13,7 @@ export default {
       default() {
         let enumKey = `resources.${this.resource}.enums.${this.source}`;
         if (!this.$te(enumKey)) {
-          return;
+          return [];
         }
 
         let enums = this.$t(enumKey);

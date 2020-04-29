@@ -39,7 +39,12 @@
       >
         <va-datagrid
           :fields="[
-            'status',
+            {
+              source: 'status',
+              type: 'select',
+              chip: true,
+              color: (v) => $statusColor(v),
+            },
             { source: 'rating', type: 'rating' },
             'quality',
             'author',
@@ -55,16 +60,6 @@
         >
           <template v-slot:quality="{ item }">
             {{ item.rating >= 3 ? $t("good") : $t("bad") }}
-          </template>
-          <template v-slot:status="{ item, value }">
-            <v-chip :color="$statusColor(value)">
-              <va-select-field
-                resource="reviews"
-                source="status"
-                :item="item"
-                enum
-              ></va-select-field>
-            </v-chip>
           </template>
         </va-datagrid>
       </va-list>

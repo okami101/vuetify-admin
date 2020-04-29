@@ -23,7 +23,7 @@
           disable-select
           :fields="[
             { source: 'isbn', link: 'show' },
-            'category',
+            { source: 'category', type: 'select', chip: true },
             'title',
             {
               source: 'price',
@@ -41,27 +41,19 @@
           v-bind="props"
           :options.sync="options"
         >
-          <template v-slot:category="{ item }">
-            <v-chip>
-              <va-select-field
-                resource="books"
-                source="category"
-                :item="item"
-                enum
-              ></va-select-field>
-            </v-chip>
-          </template>
           <template v-slot:reviews="{ value }">
             <v-chip-group column>
-              <v-chip
-                color="green"
-                small
+              <va-reference-field
+                reference="reviews"
                 v-for="(item, i) in value"
                 :key="i"
-                :to="{ name: 'reviews_show', params: { id: item.id } }"
+                color="green"
+                small
+                chip
+                :item="item"
+                option-text="author"
               >
-                {{ item.author }}
-              </v-chip>
+              </va-reference-field>
             </v-chip-group>
           </template>
         </va-datagrid>

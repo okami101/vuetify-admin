@@ -47,7 +47,7 @@
             link: 'show',
             src: 'thumbnails.small',
           },
-          'category',
+          { source: 'category', type: 'select', chip: true },
           {
             source: 'publisher',
             type: 'reference',
@@ -63,7 +63,14 @@
             format: 'currency',
           },
           { source: 'commentable', type: 'boolean', editable: true },
-          'formats',
+          {
+            source: 'formats',
+            type: 'array',
+            select: true,
+            color: 'yellow',
+            small: true,
+            column: true,
+          },
           {
             source: 'publication_date',
             type: 'date',
@@ -77,26 +84,6 @@
         v-model="selected"
         :options.sync="options"
       >
-        <template v-slot:category="{ item }">
-          <v-chip>
-            <va-select-field
-              source="category"
-              :item="item"
-              enum
-            ></va-select-field>
-          </v-chip>
-        </template>
-        <template v-slot:formats="{ value }">
-          <v-chip-group column>
-            <v-chip color="yellow" small v-for="(item, i) in value" :key="i">
-              <va-select-field
-                source="formats"
-                :item="item"
-                enum
-              ></va-select-field>
-            </v-chip>
-          </v-chip-group>
-        </template>
         <template v-slot:authors="{ value }">
           <v-chip-group column>
             <va-reference-field

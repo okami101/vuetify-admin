@@ -6,7 +6,7 @@
     <va-field source="roles" v-slot="{ value }">
       <v-chip-group>
         <v-chip v-for="(item, i) in value" :key="i">
-          <va-select-field source="roles" enum :item="item"></va-select-field>
+          <va-select-field source="roles" :item="item"></va-select-field>
         </v-chip>
       </v-chip-group>
     </va-field>

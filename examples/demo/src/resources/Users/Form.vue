@@ -12,12 +12,7 @@
     <va-password-input source="password"></va-password-input>
     <va-password-input source="password_confirmation"></va-password-input>
     <va-boolean-input source="active"></va-boolean-input>
-    <va-select-input
-      source="roles"
-      enum
-      multiple
-      v-model="roles"
-    ></va-select-input>
+    <va-select-input source="roles" multiple v-model="roles"></va-select-input>
     <va-autocomplete-input
       source="publishers"
       model="publisher_ids"

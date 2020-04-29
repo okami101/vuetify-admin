@@ -26,7 +26,7 @@
                 <va-text-input source="name"></va-text-input>
               </v-col>
               <v-col sm="6">
-                <va-select-input source="type" enum></va-select-input>
+                <va-select-input source="type"></va-select-input>
               </v-col>
             </v-row>
             <v-row>

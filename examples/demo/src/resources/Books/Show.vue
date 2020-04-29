@@ -25,24 +25,10 @@
                   color="orange"
                 ></va-field>
                 <va-field source="title"></va-field>
-                <va-field source="category">
-                  <v-chip>
-                    <va-select-field source="category" enum></va-select-field>
-                  </v-chip>
-                </va-field>
+                <va-field source="category" type="select" chip></va-field>
               </v-col>
               <v-col>
-                <va-field source="formats" v-slot="{ value }">
-                  <v-chip-group>
-                    <v-chip color="yellow" v-for="(item, i) in value" :key="i">
-                      <va-select-field
-                        source="formats"
-                        :item="item"
-                        enum
-                      ></va-select-field>
-                    </v-chip>
-                  </v-chip-group>
-                </va-field>
+                <va-field source="formats" type="array" select></va-field>
                 <va-field source="tags" type="array"></va-field>
                 <va-field
                   source="price"

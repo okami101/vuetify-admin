@@ -80,7 +80,6 @@
                   <va-select-field
                     source="roles"
                     :item="item"
-                    enum
                   ></va-select-field>
                 </v-chip>
               </v-chip-group>

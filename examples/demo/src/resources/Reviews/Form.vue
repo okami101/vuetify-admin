@@ -9,11 +9,7 @@
             </div>
           </template>
           <v-card-text>
-            <va-radio-group-input
-              source="status"
-              enum
-              row
-            ></va-radio-group-input>
+            <va-radio-group-input source="status" row></va-radio-group-input>
             <v-row>
               <v-col lg="6">
                 <va-autocomplete-input

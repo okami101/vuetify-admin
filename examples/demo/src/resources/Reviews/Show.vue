@@ -15,11 +15,12 @@
               reference="books"
               option-text="title"
             ></va-field>
-            <va-field source="status" v-slot="{ value }">
-              <v-chip :color="$statusColor(value)">
-                <va-select-field source="status" enum></va-select-field>
-              </v-chip>
-            </va-field>
+            <va-field
+              source="status"
+              type="select"
+              chip
+              :color="$statusColor"
+            ></va-field>
             <va-field source="quality" v-if="item">
               {{ item.rating >= 3 ? $t("good") : $t("bad") }}
             </va-field>

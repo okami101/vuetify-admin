@@ -1,9 +1,17 @@
 <template>
-  <v-chip-group>
+  <v-chip-group :column="column">
     <v-chip v-for="(item, i) in value" :key="i" :color="color" :small="small">
-      <slot :value="item">{{
-        optionText && item[optionText] ? item[optionText] : item
-      }}</slot>
+      <slot :value="item">
+        <va-select-field
+          v-if="select"
+          :resource="resource"
+          :source="source"
+          :item="item"
+        ></va-select-field>
+        <span v-else>
+          {{ optionText && item[optionText] ? item[optionText] : item }}
+        </span>
+      </slot>
     </v-chip>
   </v-chip-group>
 </template>
@@ -21,6 +29,12 @@ export default {
     },
     color: String,
     small: Boolean,
+    select: Boolean,
+    column: Boolean,
+    choices: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

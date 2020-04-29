@@ -45,7 +45,7 @@
         <va-datagrid
           :fields="[
             { source: 'isbn', link: 'show' },
-            'category',
+            { source: 'category', type: 'select', chip: true },
             'title',
             {
               source: 'price',
@@ -64,27 +64,18 @@
           v-model="selected"
           :options.sync="options"
         >
-          <template v-slot:category="{ item }">
-            <v-chip>
-              <va-select-field
-                resource="books"
-                source="category"
-                :item="item"
-                enum
-              ></va-select-field>
-            </v-chip>
-          </template>
           <template v-slot:authors="{ value }">
             <v-chip-group column>
-              <v-chip
-                color="primary"
-                small
+              <va-reference-field
+                reference="authors"
                 v-for="(item, i) in value"
                 :key="i"
-                :to="{ name: 'authors_show', params: { id: item.id } }"
+                color="primary"
+                small
+                chip
+                :item="item"
               >
-                {{ item.name }}
-              </v-chip>
+              </va-reference-field>
             </v-chip-group>
           </template>
         </va-datagrid>

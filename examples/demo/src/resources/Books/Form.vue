@@ -18,7 +18,7 @@
                   option-text="name"
                 ></va-select-input>
                 <va-text-input source="isbn"></va-text-input>
-                <va-select-input source="category" enum></va-select-input>
+                <va-select-input source="category"></va-select-input>
                 <va-text-input source="title"></va-text-input>
                 <va-number-input
                   source="price"
@@ -26,11 +26,7 @@
                 ></va-number-input>
               </v-col>
               <v-col>
-                <va-select-input
-                  source="formats"
-                  multiple
-                  enum
-                ></va-select-input>
+                <va-select-input source="formats" multiple></va-select-input>
                 <va-boolean-input source="commentable"></va-boolean-input>
                 <va-date-input
                   source="publication_date"
