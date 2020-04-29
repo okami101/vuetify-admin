@@ -1164,16 +1164,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "cacae405a781e4dc6956b9db96aedbc2fc0d404e"
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/cacae405a781e4dc6956b9db96aedbc2fc0d404e",
-                "reference": "cacae405a781e4dc6956b9db96aedbc2fc0d404e",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1",
                 "shasum": ""
             },
             "require": {
@@ -1215,7 +1215,7 @@
                 "laravel",
                 "ui"
             ],
-            "time": "2020-04-28T16:06:57+00:00"
+            "time": "2020-04-29T15:06:45+00:00"
         },
         {
             "name": "league/commonmark",
@@ -2582,16 +2582,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "8.2.2",
+            "version": "8.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "ca03590f076b08b6061337729e39d4dc3f4a6443"
+                "reference": "4d1177d1925e3f7e5bc96ee020b6610bb1d67d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/ca03590f076b08b6061337729e39d4dc3f4a6443",
-                "reference": "ca03590f076b08b6061337729e39d4dc3f4a6443",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/4d1177d1925e3f7e5bc96ee020b6610bb1d67d45",
+                "reference": "4d1177d1925e3f7e5bc96ee020b6610bb1d67d45",
                 "shasum": ""
             },
             "require": {
@@ -2678,7 +2678,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-04-29T11:14:34+00:00"
+            "time": "2020-04-29T14:47:55+00:00"
         },
         {
             "name": "spatie/laravel-query-builder",

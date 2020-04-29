@@ -1,0 +1,15 @@
+{
+  "routes": {
+    "login": "Login",
+    "profile": "Profile",
+    "dashboard": "Dashboard"
+  },
+  "users": {
+    "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
+  },
+  "resources": {
+    "users": {
+      "name": "User | Users"
+    }
+  }
+}

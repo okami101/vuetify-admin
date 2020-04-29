@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  ### PHP-FPM ##############################################
+  laravel:
+    build:
+      context: ./
+    volumes:
+      - ./:/srv/api
+    depends_on:
+      - mysql
+
+  ### NGINX Server #########################################
+  nginx:
+    build:
+      context: ./docker/nginx
+      args:
+        - APP_ENV=${APP_ENV}
+    volumes:
+      - ./:/srv/api
+      - ./docker/nginx/logs:/var/log/nginx
+    ports:
+      - "${NGINX_HTTP_PORT}:80"
+    depends_on:
+      - laravel
+
+  ### MySQL ################################################
+  mysql:
+    build:
+      context: ./docker/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - TZ=${APP_TIMEZONE}
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+
+  ### phpMyAdmin ###########################################
+  phpmyadmin:
+    build:
+      context: ./docker/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_USER=pma
+      - MYSQL_PASSWORD=pmapass
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${PMA_PORT}:80"
+    depends_on:
+      - mysql
+
+  ### Redis ################################################
+  redis:
+    build:
+      context: ./docker/redis

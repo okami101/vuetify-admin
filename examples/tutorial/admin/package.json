@@ -1,0 +1,47 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "crud:generate": "vue-cli-service crud:generate --output ./src/resources",
+    "crud:make": "vue-cli-service crud:make --output ./src/resources",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.4",
+    "portal-vue": "^2.1.7",
+    "vtec-admin": "./packages/admin",
+    "vue": "^2.6.11",
+    "vue-chartist": "^2.2.1",
+    "vue-i18n": "^8.17.4",
+    "vue-router": "^3.1.6",
+    "vuedraggable": "^2.23.2",
+    "vuetify": "^2.2.25",
+    "vuex": "^3.3.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^2.0.5",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-editorconfig": "~0.2.1",
+    "vue-cli-plugin-i18n": "~1.0.1",
+    "vue-cli-plugin-vtec-admin": "./packages/cli",
+    "vue-cli-plugin-vuetify": "~2.0.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
+  }
+}
