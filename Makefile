@@ -6,45 +6,54 @@ help:
 install: package.json ## install dependencies
 	@yarn
 
-install-laravel: ## install laravel demo dependencies
+install-laravel-demo: ## install laravel demo dependencies
 	@cd ./examples/laravel && composer install
+
+install-laravel-tutorial: ## install laravel tutorial dependencies
+	@cd ./examples/tutorial && composer install
 
 run-demo: ## run the demo example
 	@cd ./examples/demo && yarn serve --open
+
+run-tutorial: ## run the tutorial example
+	@cd ./examples/tutorial/admin && yarn serve --open
 
 build-demo: ## compile the demo example to static js
 	@cd ./examples/demo && yarn -s build
 	@make restart-laravel
 
-serve-laravel: ## serve laravel demo
+serve-laravel-demo: ## serve laravel demo
 	@cd ./examples/laravel && php artisan serve
 
-migrate-laravel-db: ## migrate database laravel demo
+serve-laravel-tutorial: ## serve laravel tutorial
+	@cd ./examples/tutorial && php artisan serve
+
+migrate-laravel-demo: ## migrate database laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force
 
-run-laravel: ## run laravel demo
+run-laravel-demo: ## run laravel demo through Docker
 	@cd ./examples/laravel && cp -n .env.example .env && docker-compose up -d
 
-stop-laravel: ## stop laravel demo
+stop-laravel-demo: ## stop laravel demo
 	@cd ./examples/laravel && docker-compose stop
 
-restart-laravel: ## restart laravel demo
+restart-laravel-demo: ## restart laravel demo
 	@cd ./examples/laravel && docker-compose restart
 
-init-laravel: ## initialize laravel
+init-laravel-demo: ## initialize laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel init
 
-seed-laravel: ## seed laravel with dummy data
+seed-laravel-demo: ## seed laravel demo with dummy data
 	@cd ./examples/laravel && docker-compose exec laravel seed
 
-prepare-laravel: ## initialize laravel with dummy data
+prepare-laravel-demo: ## initialize laravel with dummy data
 	@make init-laravel
 	@make seed-laravel
 
-reset-laravel: ## reset laravel with dummy data
+reset-laravel-demo: ## reset laravel with dummy data
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate:fresh --seed
 
-tinker-laravel: ## access laravel console
+tinker-laravel-demo: ## access laravel console
 	@cd ./examples/laravel && docker-compose exec laravel php artisan tinker
 
 build-lib: ## compile the admin library to static js

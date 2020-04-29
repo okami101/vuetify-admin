@@ -1,32 +1,29 @@
 {
 	"folders": [
 		{
-      "name": "demo",
-			"path": "examples\\demo"
+      "name": "root",
+			"path": "."
 		},
 		{
-			"path": "examples\\tutorial\\generators"
+			"path": "examples\\demo"
 		},
 		{
       "name": "tutorial",
 			"path": "examples\\tutorial\\admin"
 		},
 		{
-      "name": "library",
 			"path": "packages\\admin"
 		},
 		{
-      "name": "cli",
 			"path": "packages\\cli"
 		},
 		{
-      "name": "docs",
 			"path": "packages\\docs"
 		}
 	],
 	"settings": {
 		"yaml.schemas": {
-			"../../packages/docs/docs/.vuepress/public/schemas/generator.json": ["examples/tutorial/generators/*"],
+			"packages/docs/docs/.vuepress/public/schemas/generator.json": ["examples/tutorial/admin/generators/*"],
 		}
 	}
 }
