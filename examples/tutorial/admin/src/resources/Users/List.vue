@@ -12,7 +12,6 @@
         <base-material-card :icon="resource.icon" :title="title">
             <va-list
                 ref="list"
-                :fields="['name', 'email', 'created_at', 'updated_at']"
                 :filters="['q']"
                 v-model="selected"
                 :options.sync="options"
