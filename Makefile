@@ -56,7 +56,7 @@ reset-laravel-demo: ## reset laravel with dummy data
 tinker-laravel-demo: ## access laravel console
 	@cd ./examples/laravel && docker-compose exec laravel php artisan tinker
 
-build-lib: ## compile the admin library to static js
+build-admin: ## compile the admin library to static js
 	@cd ./packages/admin && yarn -s build
 
 run-docs: ## run the docs
