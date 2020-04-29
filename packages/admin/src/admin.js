@@ -272,9 +272,11 @@ export default class VtecAdmin {
     /**
      * Recheck auth on app visible (switching tabs,...)
      */
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) {
-        store.dispatch("auth/checkAuth");
+    document.addEventListener("visibilitychange", async () => {
+      if (!document.hidden && router.currentRoute.name !== "login") {
+        if (!(await store.dispatch("auth/checkAuth"))) {
+          router.push("/login");
+        }
       }
     });
   }

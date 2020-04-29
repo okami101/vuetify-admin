@@ -58,8 +58,8 @@ export default (axios, options = {}) => {
 
       return response.data;
     },
-    [CHECK_ERROR]: ({ status }) => {
-      if (status === 401 || status === 403) {
+    [CHECK_ERROR]: ({ response }) => {
+      if (response && response.status === 401) {
         return Promise.reject();
       }
       return Promise.resolve();

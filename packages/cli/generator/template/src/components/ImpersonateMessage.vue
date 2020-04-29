@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "ImpersonateMessage",
@@ -18,9 +18,6 @@ export default {
     }),
   },
   methods: {
-    ...mapActions({
-      checkAuth: "auth/checkAuth",
-    }),
     async stopImpersonate() {
       try {
         await this.$axios.post("/api/users/stopImpersonate");
