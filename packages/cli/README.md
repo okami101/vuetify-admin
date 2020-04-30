@@ -64,12 +64,12 @@ Finally start your admin panel by `yarn serve`. Don't forget to have your backen
 
 You'll got 2 new npm scripts :
 
-* `yarn crud:make` : Main UI crud command maker which :
+* `yarn crud:make [options]` : Main UI crud command maker which :
   * Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into "fields" options.
   * Register new resource to `src/resources/index.js` file.
   * Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option.
   * Add new sidebar entry to `src/_nav.js` file.
-* `yarn crud:yaml` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure following [this schema](https://vtec.okami101.io/schemas/generator.json).
+* `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure following [this schema](https://vtec.okami101.io/schemas/generator.json).
 
 > Use `yarn vue-cli-service help crud:make` for all options documentation  
 > For best explanation of YAML usage, follow [this tutorial guide](https://vtec.okami101.io/tutorial).
