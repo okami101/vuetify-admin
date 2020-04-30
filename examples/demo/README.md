@@ -1,13 +1,15 @@
 # Bookstore Admin
 
-This demo project is the admin UI part of [this online demo](https://vtec-bookstore-demo.okami101.io/admin), written in Vue.js and based on Vuetify.
-The backend side API is served by other included [separate Laravel API demo](../laravel) project.
+This demo project is the best showcase of what [Vtec Admin](../../packages/admin) has to offer, a admin library written in Vue.js and based on Vuetify.
+The backend side API is served by other included [Laravel API demo](../laravel) project.
 This project is also a perfect way for developing main [Vtec Admin](../../packages/admin) lib of this repo.
 
-## Note on Vtec Admin library
+[Access to online demo](https://vtec-bookstore-demo.okami101.io/admin)
 
-The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
-By this way, HMR from this demo to the library is fully functional for quick visual development !
+[![sc](https://user-images.githubusercontent.com/3679080/80732263-58913080-8b0c-11ea-9074-56668c44a876.png)](https://vtec-bookstore-demo.okami101.io/admin)
+
+> The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
+> By this way, HMR from this demo to the library is fully functional which is ideal for quick visual development !
 
 ## Features
 
@@ -24,11 +26,11 @@ By this way, HMR from this demo to the library is fully functional for quick vis
 * Advanced filters
 * Bulk actions
 
-## How to run
+## [How to run](#run)
 
 Install all repo dependencies by `yarn`
 
-Before following steps you must launch the [API demo](../laravel).  
+Before following steps you must prepare the API demo by following [this steps](../laravel#run).  
 If API different than default localhost:8000 then adapt your environment variables after `cp .env .env.local`
 
 Then just `yarn serve --open` and it should be autostart !

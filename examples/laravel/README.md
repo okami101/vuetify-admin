@@ -1,13 +1,12 @@
 # Bookstore API Demo
 
-This demo project is the API backend part of [this online demo](https://vtec-bookstore-demo.okami101.io).
-It is intended for showcase of Vue CLI separated [bookstore admin demo](../demo) project.
-This project is also a good platform for developing external [separate crud generator](https://github.com/okami101/vtec-laravel-crud) composer package.
+This demo project is the API backend used by separate Vue CLI [bookstore admin demo](../demo) project, and is a good showcase for backend-side development.
+It's also a good platform for developing external [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package.
 
-## Note on crud package
+[Access to online demo](https://vtec-bookstore-demo.okami101.io)
 
-The [vtec/laravel-crud](https://github.com/okami101/vtec-laravel-crud) composer package is directly symlinked to `vtec-laravel-crud` root git submodule folder of this repo.  
-So direct live package development is fully working, even inside docker !
+> The [vtec/laravel-crud](https://github.com/okami101/vtec-laravel-crud) composer package is directly symlinked to `vtec-laravel-crud` root git submodule folder of this repo.  
+> So direct live package development is fully working, even inside docker !
 
 ## Features
 
@@ -16,9 +15,9 @@ So direct live package development is fully working, even inside docker !
   * Authors
   * Books
   * Reviews
-* All Vtec Crud features (account profile, sanctum auth, impersonation, docker files, etc.)
+* All [Vtec Crud features](https://github.com/okami101/vtec-laravel-crud#features) (account profile, sanctum auth, impersonation, docker files, etc.)
 
-## How to run
+## [How to run](#run)
 
 ### The coolest way via docker
 
@@ -36,7 +35,7 @@ Laravel app should be loaded at default [http://localhost:8000](http://localhost
 You can access phpMyAdmin via default [http://localhost:9000](http://localhost:9000).
 
 For artisan commands, just use `docker-compose exec laravel php artisan my:command`.  
-So to access tinker : `docker-compose exec laravel php artisan tinker`  
+Access to tinker : `docker-compose exec laravel php artisan tinker`  
 For full DB reset + dummy data : `docker-compose exec laravel php artisan migrate:fresh --seed`
 
 ### The boring way
