@@ -17,18 +17,40 @@ See [main readme](https://github.com/okami101/vtec-admin#features) of this repo 
 
 ## Usage
 
-Even if this package can be used as-is, the recommended way is to use dedicated Vue CLI plugin on fresh Vuetify app project.  
-It takes care of prepare of all minimal boilerplate code for quick start admin development and include material theme and UI CRUD generators commands.  
-See [separate readme](https://github.com/okami101/vtec-admin/tree/master/packages/cli) of this plugin for installation detail.
+Even if this package can be used as standalone NPM package, the recommended way is to use dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) on fresh Vuetify app project.  
+It takes care of all minimal boilerplate code generation for quick start admin development as well as including material theme and UI CRUD generators scripts.  
+See [separate readme](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) of this plugin for installation detail.
+
+### Bare metal installation
+
+If you want install it as-is, you'll need to add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then you can import and register them by :
+
+```js
+import Vue from "vue";
+import VtecAdmin from "vtec-admin";
+
+// Register all used Vuetify components
+import "vtec-admin/dist/vuetify";
+// Import custom admin CSS
+import "vtec-admin/dist/admin.css";
+
+import PortalVue from "portal-vue";
+import draggable from "vuedraggable";
+
+Vue.use(VtecAdmin);
+Vue.use(PortalVue);
+Vue.component("draggable", draggable);
+```
+
+### Instanciation
 
 In order to operate, VtecAdmin constructor needs all of this instances :
 
-* Vue Router, which can contains all your custom routes
-* Vue Store, which can contains all your custom modules
-* Vue I18n
-* At least one provided locale
-* One auth provider (see detail after)
-* One data provider (see detail after)
+* Vue Router, which can contains all your custom routes, for automatic resource URL Crud pages registering.
+* Vue Store, which can contains all your custom modules, for automatic resource API modules bridge registering.
+* Vue I18n, which can contains all your custom localized labels, for full internationalization support.
+* At least one provided locale, only `en` and `fr` are 100% supported, but you can easily add your own by following [this model](src/locales/fr.json).
+* Auth and data providers (see detail after).
 * A resources array which contain all resources to administer. Each resource can have :
   * A mandatory slug name which will be used for api url calls
   * An icon for identify it in sidebar or list page
@@ -104,6 +126,8 @@ Inputs are obviously intended to be used on any form in order to either edit spe
 * FileInput
 
 > You can of course create you own input by creating your own vue component and using this specific mixin "vtec-admin/mixins/input";
+
+## Internationalization
 
 ## Full documentation
 
