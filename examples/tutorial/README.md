@@ -34,12 +34,12 @@ Almost all code of this project has been fully generated, mainly thanks to boile
 1. `laravel new tutorial && cd tutorial`, initial Laravel skeleton
 2. `composer install vtec/crud-laravel`
 3. `php artisan crud:install`, which prepare initial minimal boilerplate on your new fresh Laravel API project. Install all needed dependencies and base user controllers with impersonation and auth by [Laravel Sanctum](https://github.com/laravel/sanctum).
-4. `php artisan crud:generate admin/generators/monsters.fr.yml -mfs`, which generate all API based backend files (see [docs](https://github.com/okami101/vtec-laravel-crud#scaffolding) for all detail).
+4. `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`, which generate all API based backend files (see [docs](https://github.com/okami101/vtec-laravel-crud#scaffolding) for all detail).
 5. `vue create admin && cd admin` with Vuex and Vue Router installed
 6. `vue add vuetify`
 7. `vue add i18n`
 8. `vue add vtec-admin`, this will install main Vtec Admin library, prepare admin plugin with auth and data providers, and generate minimal boilerplate code with already full functional basic admin panel (auth, sample dashboard, profile editor, users management and impersonation)
-9. `yarn crud:generate --file .\generators\monsters.fr.yml --locale fr` (for french sample), generate all crud pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. The used sample yaml generator include 2 entities, monsters (with many different types of fields) and child monsters for reource relationship purpose.
+9. `yarn crud:yaml --file .\generators\monsters.en.yml --locale en` (for english sample), generate all crud pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. The used sample yaml generator include 2 entities, monsters (with many different types of fields) and child monsters for reource relationship purpose.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.
 

@@ -4,7 +4,7 @@ module.exports = (api) => {
   api.registerCommand("crud:make", make.options, (args) =>
     make.service(args, api)
   );
-  api.registerCommand("crud:generate", generate.options, (args) =>
+  api.registerCommand("crud:yaml", generate.options, (args) =>
     generate.service(args, api)
   );
 };

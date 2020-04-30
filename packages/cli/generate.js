@@ -6,7 +6,7 @@ const isEmpty = require("lodash/isEmpty");
 
 const options = {
   description: "resource ui crud generator",
-  usage: "vue-cli-service crud:generate [options]",
+  usage: "vue-cli-service crud:yaml [options]",
   options: {
     file: "Yaml file descriptor.",
     name: "Optional name of model to import, if not set, all will be imported.",
