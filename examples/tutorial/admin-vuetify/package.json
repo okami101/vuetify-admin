@@ -1,0 +1,15 @@
+{
+  "name": "admin-vuetify",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "vue-cli-plugin-i18n": "latest",
+    "vue-cli-plugin-vuetify": "latest",
+    "vue-cli-plugin-vtec-admin": "latest",
+    "@vue/cli-service": "~4.3.0"
+  }
+}

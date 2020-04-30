@@ -34,15 +34,7 @@ Almost all code of this project has been fully generated, mainly thanks to boile
 1. `laravel new tutorial && cd tutorial`, initial Laravel skeleton
 2. `composer install vtec/crud-laravel`
 3. `php artisan crud:install`, which prepare initial minimal boilerplate on your new fresh Laravel API project. Install all needed dependencies and base user controllers with impersonation and auth by [Laravel Sanctum](https://github.com/laravel/sanctum).
-4. `php artisan crud:generate admin/generators/monsters.fr.yml -mfs`, which generate all API based backend files, notably :
-   * Model (for eloquent relationship, you must add code by hand)
-   * Controller with all crud operations (routes are also presaved inside `routes/api.php`)
-   * Policy for authorization
-   * Store and update requests for validation rules (empty by default, so don't forget to add your own rules)
-   * Resource for API data transformer
-   * Migration with all pre-generated fields (including foreigns !)
-   * Factory and seeder (empty by default)
-
+4. `php artisan crud:generate admin/generators/monsters.fr.yml -mfs`, which generate all API based backend files (see [docs](https://github.com/okami101/vtec-laravel-crud#scaffolding) for all detail).
 5. `vue create admin && cd admin` with Vuex and Vue Router installed
 6. `vue add vuetify`
 7. `vue add i18n`
