@@ -2,7 +2,7 @@
   <div>
     <slot>
       <component
-        :is="`va-${type}-field`"
+        :is="`va-${preview ? 'image' : 'file'}-field`"
         :source="source"
         v-bind="$attrs"
         clearable
@@ -27,10 +27,9 @@ export default {
   name: "FileInput",
   mixins: [Input],
   props: {
-    type: {
-      type: String,
-      required: true,
-      validator: (v) => ["file", "image"].includes(v),
+    preview: {
+      type: Boolean,
+      default: false,
     },
     multiple: Boolean,
     filled: Boolean,

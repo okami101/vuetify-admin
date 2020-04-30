@@ -13,7 +13,7 @@
               <v-col lg="6">
                 <va-file-input
                   source="logo"
-                  type="image"
+                  preview
                   src="thumbnails.medium"
                   contain
                 ></va-file-input>
@@ -40,7 +40,7 @@
                 <va-text-input source="description" multiline></va-text-input>
                 <va-file-input
                   source="local"
-                  type="image"
+                  preview
                   multiple
                   src="thumbnails.medium"
                   lg="4"

@@ -138,11 +138,16 @@ resources:
       avatar:
         label: Avatar
         type: image
+        form:
+          type: file
+          preview: true
         db: false
       images:
         label: Photos
         type: image
         form:
+          type: file
+          preview: true
           multiple: true
         db: false
       files:

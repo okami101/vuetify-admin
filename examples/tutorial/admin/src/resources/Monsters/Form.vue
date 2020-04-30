@@ -42,26 +42,13 @@
                             format="long"
                             required
                         ></va-date-input>
-                        <va-file-input source="avatar">
-                            <va-image-field
-                                source="avatar"
-                                clearable
-                            ></va-image-field>
-                        </va-file-input>
-                        <va-file-input source="images">
-                            <va-image-field
-                                source="images"
-                                multiple
-                                clearable
-                            ></va-image-field>
-                        </va-file-input>
-                        <va-file-input source="files">
-                            <va-file-field
-                                source="files"
-                                multiple
-                                clearable
-                            ></va-file-field>
-                        </va-file-input>
+                        <va-file-input source="avatar" preview></va-file-input>
+                        <va-file-input
+                            source="images"
+                            preview
+                            multiple
+                        ></va-file-input>
+                        <va-file-input source="files" multiple></va-file-input>
                     </v-card-text>
                     <va-save-button :saving="saving"></va-save-button>
                 </base-material-card>

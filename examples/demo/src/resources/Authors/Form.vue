@@ -11,7 +11,7 @@
           <v-card-text>
             <v-row>
               <v-col lg="6">
-                <va-file-input source="photo" type="image"></va-file-input>
+                <va-file-input source="photo" preview></va-file-input>
               </v-col>
             </v-row>
             <v-row>
