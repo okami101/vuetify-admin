@@ -10,13 +10,7 @@
           </template>
           <v-card-text>
             <%_ for (field of fields) { _%>
-            <%_ if (["file", "image"].includes(field.type)) { _%>
-            <va-file-input source="<%- field.name %>">
-              <va-<%- field.type %>-field source="<%- field.name %>"<%- field.attrs ? ' ' + field.attrs : '' %> clearable></va-<%- field.type %>-field>
-            </va-file-input>
-            <%_ } else { _%>
             <va-<%- field.type %>-input source="<%- field.name %>"<%- field.attrs ? ' ' + field.attrs : '' %>></va-<%- field.type %>-input>
-            <%_ } _%>
             <%_ } _%>
           </v-card-text>
           <va-save-button :saving="saving"></va-save-button>

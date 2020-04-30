@@ -11,13 +11,7 @@
           <v-card-text>
             <v-row>
               <v-col lg="6">
-                <va-file-input source="photo">
-                  <va-image-field
-                    source="photo"
-                    src="thumbnails.medium"
-                    clearable
-                  ></va-image-field>
-                </va-file-input>
+                <va-file-input source="photo" type="image"></va-file-input>
               </v-col>
             </v-row>
             <v-row>

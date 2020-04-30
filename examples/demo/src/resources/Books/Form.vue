@@ -51,6 +51,7 @@
           </template>
           <template v-slot:summary>
             <va-rich-text-input source="summary"></va-rich-text-input>
+            <va-file-input source="extract" type="file"></va-file-input>
           </template>
           <template v-slot:footer>
             <va-save-button :saving="saving"></va-save-button>

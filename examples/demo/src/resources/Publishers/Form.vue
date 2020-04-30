@@ -11,14 +11,12 @@
           <v-card-text>
             <v-row>
               <v-col lg="6">
-                <va-file-input source="logo">
-                  <va-image-field
-                    source="logo"
-                    src="thumbnails.medium"
-                    contain
-                    clearable
-                  ></va-image-field>
-                </va-file-input>
+                <va-file-input
+                  source="logo"
+                  type="image"
+                  src="thumbnails.medium"
+                  contain
+                ></va-file-input>
               </v-col>
             </v-row>
             <v-row>
@@ -40,13 +38,13 @@
             <v-row>
               <v-col sm="12">
                 <va-text-input source="description" multiline></va-text-input>
-                <va-file-input source="local" multiple>
-                  <va-image-field
-                    source="local"
-                    src="thumbnails.medium"
-                    lg="4"
-                    clearable
-                  ></va-image-field>
+                <va-file-input
+                  source="local"
+                  type="image"
+                  multiple
+                  src="thumbnails.medium"
+                  lg="4"
+                >
                 </va-file-input>
               </v-col>
             </v-row>

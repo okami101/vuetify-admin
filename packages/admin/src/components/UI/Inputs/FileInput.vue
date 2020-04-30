@@ -1,6 +1,13 @@
 <template>
   <div>
-    <slot></slot>
+    <slot>
+      <component
+        :is="`va-${type}-field`"
+        :source="source"
+        v-bind="$attrs"
+        clearable
+      ></component>
+    </slot>
     <!-- multiple as v-bind because of vuetify v-model bug forced to array -->
     <v-file-input
       v-bind="multiple ? { ...commonProps, multiple: true } : commonProps"
@@ -20,6 +27,11 @@ export default {
   name: "FileInput",
   mixins: [Input],
   props: {
+    type: {
+      type: String,
+      required: true,
+      validator: (v) => ["file", "image"].includes(v),
+    },
     multiple: Boolean,
     filled: Boolean,
     chips: {
