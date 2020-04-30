@@ -32,9 +32,9 @@
       },
       "enums": {
         "category": {
-          "history": "Histoire",
-          "novel": "Roman",
-          "comics": "BD"
+          "history": "History",
+          "novel": "Novel",
+          "comics": "Commics"
         }
       }
     },

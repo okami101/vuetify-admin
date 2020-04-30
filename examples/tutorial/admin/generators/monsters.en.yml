@@ -116,9 +116,9 @@ resources:
         filter:
           multiple: true
         enum:
-          history: Histoire
-          novel: Roman
-          comics: BD
+          history: History
+          novel: Novel
+          comics: Comics
       tags:
         label: Tags
         type: array
