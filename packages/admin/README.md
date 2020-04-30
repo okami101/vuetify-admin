@@ -4,7 +4,7 @@
 
 # Vtec Admin
 
-SPA admin library for Vue.js running on top of REST APIs, based on Vuetify with Vue CLI plugin. Can be used on every backend of your choice with your own data and authentication providers.
+SPA admin library for Vue.js running on top of REST APIs, built on top of Vuetify and come with dedicated Vue CLI plugin. Can be used on every backend of your choice with your own data and authentication providers.
 
 > See [full documentation](https://vtec.okami101.io)  
 > Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) and use prefilled login (read only)
