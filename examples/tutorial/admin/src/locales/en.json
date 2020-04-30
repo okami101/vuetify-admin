@@ -10,6 +10,43 @@
   "resources": {
     "users": {
       "name": "User | Users"
+    },
+    "monsters": {
+      "name": "Monster | Monsters",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "label": "Translatable label",
+        "active": "Active",
+        "level": "Level",
+        "rating": "Rating",
+        "price": "Price",
+        "description": "Description",
+        "body": "History",
+        "category": "Category",
+        "tags": "Tags",
+        "publication_date": "Date",
+        "avatar": "Avatar",
+        "images": "Photos",
+        "files": "Files"
+      },
+      "enums": {
+        "category": {
+          "history": "Histoire",
+          "novel": "Roman",
+          "comics": "BD"
+        }
+      }
+    },
+    "monster_children": {
+      "name": "Child monster | Child monsters",
+      "fields": {
+        "monster": "Parent",
+        "name": "Name",
+        "created_at": "Creation date",
+        "updated_at": "Modification date"
+      },
+      "enums": {}
     }
   }
 }

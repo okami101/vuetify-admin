@@ -1,6 +1,6 @@
 resources:
   monsters:
-    label: Monstre | Monstres
+    label: Monster | Monsters
     icon: mdi-alien
     actions:
       - list
@@ -50,7 +50,7 @@ resources:
       - files
     fields:
       name:
-        label: Nom
+        label: Name
         form:
           required: true
       email:
@@ -64,18 +64,18 @@ resources:
           options:
             - unique
       label:
-        label: Libellé traduisible
+        label: Translatable label
         form:
           required: true
       active:
-        label: Actif
+        label: Active
         type: boolean
         db:
           type: boolean
           options:
             - default(0)
       level:
-        label: Niveau
+        label: Level
         type: number
         form:
           required: true
@@ -85,7 +85,7 @@ resources:
             - unsigned
             - default(0)
       rating:
-        label: Puissance
+        label: Rating
         type: rating
         db:
           type: integer
@@ -93,7 +93,7 @@ resources:
             - unsigned
             - default(0)
       price:
-        label: Prix
+        label: Price
         type: number
         attributes:
           format: 'currency'
@@ -106,10 +106,10 @@ resources:
         form:
           multiline: true
       body:
-        label: Histoire
+        label: History
         type: rich-text
       category:
-        label: Catégorie
+        label: Category
         type: select
         form:
           required: true
@@ -120,7 +120,7 @@ resources:
           novel: Roman
           comics: BD
       tags:
-        label: Etiquettes
+        label: Tags
         type: array
         form:
           type: autocomplete
@@ -146,14 +146,14 @@ resources:
           multiple: true
         db: false
       files:
-        label: Fichiers
+        label: Files
         type: file
         form:
           multiple: true
         db: false
 
   monster_children:
-    label: Bébé monstre | Bébés monstres
+    label: Child monster | Child monsters
     icon: mdi-baby-carriage
     columns:
       - monster
@@ -190,17 +190,17 @@ resources:
             - unsigned
             - foreign
       name:
-        label: Nom
+        label: Name
         form:
           required: true
       created_at:
-        label: Date de création
+        label: Creation date
         type: date
         attributes:
           format: 'long'
         form: false
       updated_at:
-        label: Date de mise à jour
+        label: Modification date
         type: date
         attributes:
           format: 'long'

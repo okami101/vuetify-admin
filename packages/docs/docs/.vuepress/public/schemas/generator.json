@@ -10,8 +10,9 @@
       "additionalProperties": false,
       "properties": {
         "label": {
-          "description": "Localized label of resource. Will be shown on menus and page titles.",
-          "type": "string"
+          "description": "Localized label of resource. Will be shown on menus and page titles. Put both singular and plural format separated by a pipe.",
+          "type": "string",
+          "examples": ["Monster | Monsters"]
         },
         "icon": {
           "description": "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
