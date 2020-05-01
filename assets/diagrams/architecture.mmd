@@ -5,9 +5,9 @@ stateDiagram
       Fields
       Inputs
     }
-    Vuetify --> VtecAdmin: Dependency
-    Vuetify --> UserCodeLand: Dependency
-    VtecAdmin --> UserCodeLand: Dependency
+    Vuetify --> VtecAdmin: Components
+    Vuetify --> UserCodeLand: Components
+    VtecAdmin --> UserCodeLand: Components
     state UserCodeLand {
       Resources --> VueRouter: VABuilder
       Resources --> Vuex: VABuilder
@@ -23,7 +23,7 @@ stateDiagram
       }
       VueRouter --> Vuex: Dispatch
     }
-    UserCodeLand --> Server: HTTP Rest call
+    UserCodeLand --> Server: HTTP Rest calls
     state Server {
       API
     }

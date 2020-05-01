@@ -17,9 +17,9 @@ It's also a good platform for developing external [Vtec Laravel Crud](https://gi
   * Reviews
 * All [Vtec Crud features](https://github.com/okami101/vtec-laravel-crud#features) (account profile, sanctum auth, impersonation, docker files, etc.)
 
-## [How to run](#run)
+## How to run
 
-### The coolest way via docker
+### [The coolest way via docker](#docker)
 
 ```bash
 cp .env.example .env
@@ -38,7 +38,7 @@ For artisan commands, just use `docker-compose exec laravel php artisan my:comma
 Access to tinker : `docker-compose exec laravel php artisan tinker`  
 For full DB reset + dummy data : `docker-compose exec laravel php artisan migrate:fresh --seed`
 
-### [The boring way](#docker)
+### [The boring way](#classic)
 
 ```bash
 cp .env.example .env
