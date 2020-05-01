@@ -20,7 +20,7 @@ run-tutorial: ## run the tutorial example
 
 build-demo: ## compile the demo example to static js
 	@cd ./examples/demo && yarn -s build
-	@make restart-laravel
+	@make restart-laravel-demo
 
 serve-laravel-demo: ## serve laravel demo
 	@cd ./examples/laravel && php artisan serve
