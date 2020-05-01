@@ -4,14 +4,14 @@ Vue CLI plugin of main [Vtec Admin](https://github.com/okami101/vtec-admin/tree/
 
 Include scripts for quick scaffolding crud pages of specific resource.
 
-## Requirements
+## [Requirements](#requirements)
 
 This CLI plugin is intended be installed on a fresh new Vue CLI project.
 
 * As a CLI projet, you must obviously have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html)
 * You should have a prepared separate API backend project for real development. Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. Just follow the dedicated [installation section](https://github.com/okami101/vtec-laravel-crud#installation) steps.
 
-## Prepare
+## [Prepare](#prepare)
 
 > If you choose Laravel as backend API, it's recommended to follow [this dedicated installation guide](https://github.com/okami101/vtec-laravel-crud#installation) instead which is more integrated. Besides it used an included Vue CLI preset for even less install steps.
 
@@ -26,7 +26,7 @@ vue add vuetify # the main UI framework
 vue add i18n # the internationalization plugin
 ```
 
-## Installation
+## [Installation](#installation)
 
 Then you can finally launch `vue add vtec-admin` which will do all this steps :
 
