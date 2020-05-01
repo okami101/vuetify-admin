@@ -6,7 +6,7 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 
 [Access to online demo](https://vtec-bookstore-demo.okami101.io/admin)
 
-[![sc](https://user-images.githubusercontent.com/3679080/80732263-58913080-8b0c-11ea-9074-56668c44a876.png)](https://vtec-bookstore-demo.okami101.io/admin)
+[![demo](../../assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io/admin)
 
 > The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
 > By this way, HMR from this demo to the library is fully functional which is ideal for quick visual development !

@@ -1,7 +1,3 @@
-<p align="center">
-<a href="https://laravel.com" target="_blank" rel="noopener"><img src="https://user-images.githubusercontent.com/3679080/79393326-6758de80-7f75-11ea-9196-8ecf990b40fd.png" width="300"></a>
-</p>
-
 # Vtec Admin
 
 SPA admin library for Vue.js running on top of REST APIs, built on top of Vuetify and come with dedicated Vue CLI plugin. Can be used on every backend of your choice with your own data and authentication providers.
