@@ -1,0 +1,30 @@
+stateDiagram
+  state Architecture {
+    state VtecAdmin {
+      Layout
+      Fields
+      Inputs
+    }
+    Vuetify --> VtecAdmin: Dependency
+    Vuetify --> UserCodeLand: Dependency
+    VtecAdmin --> UserCodeLand: Dependency
+    state UserCodeLand {
+      Resources --> VueRouter: VABuilder
+      Resources --> Vuex: VABuilder
+      state VueRouter {
+        List
+        Show
+        Create
+        Edit
+      }
+      state Vuex {
+        AuthProvider
+        DataProvider
+      }
+      VueRouter --> Vuex: Dispatch
+    }
+    UserCodeLand --> Server: HTTP Rest call
+    state Server {
+      API
+    }
+  }
