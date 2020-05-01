@@ -38,7 +38,7 @@ For artisan commands, just use `docker-compose exec laravel php artisan my:comma
 Access to tinker : `docker-compose exec laravel php artisan tinker`  
 For full DB reset + dummy data : `docker-compose exec laravel php artisan migrate:fresh --seed`
 
-### The boring way
+### [The boring way](#docker)
 
 ```bash
 cp .env.example .env
