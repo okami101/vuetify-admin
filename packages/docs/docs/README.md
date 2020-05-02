@@ -11,7 +11,7 @@ Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) -> use prefil
 Note : this project is heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
 :::
 
-![demo](https://github.com/okami101/vtec-admin/raw/master/assets/screenshot.png)
+![demo](/screenshot.png)
 
 <div class="features">
   <div class="feature">
