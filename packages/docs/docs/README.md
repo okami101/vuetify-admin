@@ -3,7 +3,7 @@ home: true
 heroImage: /hero.png
 actionText: Get Started →
 actionLink: /guide/
-footer: MIT Licensed | Copyright © 2018-present Evan You
+footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 ---
 
 <div style="text-align: center">

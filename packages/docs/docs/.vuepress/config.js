@@ -4,12 +4,12 @@ module.exports = ctx => ({
     '/': {
       lang: 'en-US',
       title: 'Vtec Admin',
-      description: 'SPA admin panel generator'
+      description: 'SPA Admin Library'
     },
     '/fr/': {
       lang: 'fr-FR',
       title: 'Vtec Admin',
-      description: 'Générateur admin SPA'
+      description: 'Librairie Admin SPA'
     }
   },
   head: [
@@ -19,7 +19,7 @@ module.exports = ctx => ({
   ],
   theme: '@vuepress/vue',
   themeConfig: {
-    repo: 'vuejs/vuepress',
+    repo: 'okami101/vtec-admin',
     editLinks: true,
     docsDir: 'packages/docs/docs',
     // #697 Provided by the official algolia team.
