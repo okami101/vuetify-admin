@@ -5,12 +5,12 @@ module.exports = ctx => ({
       lang: 'en-US',
       title: 'Vtec Admin',
       description: 'SPA Admin Library'
-    },
-    '/fr/': {
+    }
+    /*'/fr/': {
       lang: 'fr-FR',
       title: 'Vtec Admin',
       description: 'Librairie Admin SPA'
-    }
+    }*/
   },
   head: [
     ['link', { rel: 'icon', href: `/logo.png` }],
