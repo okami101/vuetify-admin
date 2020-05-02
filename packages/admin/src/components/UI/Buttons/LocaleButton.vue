@@ -1,17 +1,17 @@
 <template>
-  <v-menu offset-y>
+  <v-menu offset-y v-if="$admin.translations">
     <template v-slot:activator="{ on }">
       <v-btn v-if="translatable" :icon="icon" text :color="color" v-on="on">
         <v-icon small>mdi-translate</v-icon>
         <span v-if="!icon" class="ml-2">
           {{ $t("va.actions.locale") }} :
-          {{ $admin.locales.translations[$store.state[resource].locale] }}
+          {{ $admin.translations[$store.state[resource].locale] }}
         </span>
       </v-btn>
     </template>
     <v-list>
       <v-list-item
-        v-for="(label, code) in $admin.locales.translations"
+        v-for="(label, code) in $admin.translations"
         :key="code"
         @click="changeLocale(code)"
       >

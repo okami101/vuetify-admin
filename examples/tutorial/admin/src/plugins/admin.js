@@ -66,12 +66,10 @@ export default new VtecAdmin({
     store,
     i18n,
     title: "Vtec Admin",
-    locales: {
-        ui: { en, fr },
-        translations: {
-            en: i18n.t("locales.english"),
-            fr: i18n.t("locales.french"),
-        },
+    locales: { en, fr },
+    translations: {
+        en: i18n.t("locales.english"),
+        fr: i18n.t("locales.french"),
     },
     authProvider: sanctumAuthProvider(http, {
         routes: {

@@ -16,6 +16,7 @@ export default class VtecAdmin {
     i18n,
     title,
     locales,
+    translations,
     authProvider,
     dataProvider,
     fileBrowserUrl,
@@ -26,6 +27,7 @@ export default class VtecAdmin {
      */
     this.title = title;
     this.locales = locales;
+    this.translations = translations;
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
     this.fileBrowserUrl = fileBrowserUrl;
@@ -62,8 +64,8 @@ export default class VtecAdmin {
     /**
      * Load i18n locales
      */
-    Object.keys(this.locales.ui).forEach((locale) => {
-      i18n.mergeLocaleMessage(locale, { va: this.locales.ui[locale] });
+    Object.keys(this.locales).forEach((locale) => {
+      i18n.mergeLocaleMessage(locale, { va: this.locales[locale] });
     });
 
     /**
