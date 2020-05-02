@@ -17,7 +17,6 @@ module.exports = ctx => ({
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['meta', { name: 'theme-color', content: '#41b883' }]
   ],
-  theme: '@vuepress/vue',
   themeConfig: {
     repo: 'okami101/vtec-admin',
     editLinks: true,
