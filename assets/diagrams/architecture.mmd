@@ -1,29 +1,35 @@
 stateDiagram
   state Architecture {
+    Modules --> VtecAdmin: Import
+    state Modules {
+      AuthProvider
+      DataProvider
+      Resources
+    }
     state VtecAdmin {
       Layout
-      Fields
-      Inputs
+      RouteBuilder
+      ModuleBuilder
+      FieldComponents
+      InputComponents
     }
-    Vuetify --> VtecAdmin: Components
-    Vuetify --> UserCodeLand: Components
-    VtecAdmin --> UserCodeLand: Components
-    state UserCodeLand {
-      Resources --> VueRouter: VABuilder
-      Resources --> Vuex: VABuilder
-      state VueRouter {
-        List
-        Show
-        Create
-        Edit
-      }
-      state Vuex {
-        AuthProvider
-        DataProvider
-      }
-      VueRouter --> Vuex: Dispatch
+    Vuetify --> VtecAdmin: VComponents
+    Vuetify --> VueRouter: VComponents
+    VtecAdmin --> VueRouter: CRUD routes
+    VtecAdmin --> VueRouter: VAComponents
+    VtecAdmin --> Vuex: Resources modules
+    state VueRouter {
+      List
+      Show
+      Create
+      Edit
     }
-    UserCodeLand --> Server: HTTP Rest calls
+    state Vuex {
+      AuthModule
+      ResourceModules
+    }
+    VueRouter --> Vuex: Dispatch
+    Vuex --> Server: HTTP Rest calls
     state Server {
       API
     }
