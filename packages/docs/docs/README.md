@@ -69,6 +69,192 @@ Note : this project is heavily inspired by [React Admin](https://github.com/marm
   </div>
 </div>
 
+### LIST
+
+```vue
+<template>
+  <!-- src/resources/Reviews/List.vue -->
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-list
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+      flat
+    >
+      <va-datagrid
+        :fields="fields"
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+        <template v-slot:quality="{ item }">
+          {{ item.rating >= 3 ? $t("good") : $t("bad") }}
+        </template>
+      </va-datagrid>
+    </va-list>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        {
+          source: 'status',
+          type: 'select',
+        },
+        { source: 'rating', type: 'rating' },
+        'quality',
+        'author',
+        {
+          source: 'publication_date',
+          type: 'date',
+          format: 'long',
+        },
+      ]
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
+```
+
+### SHOW
+
+```vue
+<template>
+  <!-- src/resources/Reviews/Show.vue -->
+  <va-show>
+    <v-row justify="center">
+      <v-col lg="4">
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
+          <v-card-text>
+            <va-field
+              source="status"
+              type="select"
+              chip
+            ></va-field>
+            <va-field source="quality" v-if="item">
+              {{ item.rating >= 3 ? $t("good") : $t("bad") }}
+            </va-field>
+            <va-field source="rating" type="rating"></va-field>
+            <va-field source="body"></va-field>
+            <va-field source="author"></va-field>
+            <va-field
+              source="publication_date"
+              type="date"
+              format="long"
+            ></va-field>
+          </v-card-text>
+        </base-material-card>
+      </v-col>
+    </v-row>
+  </va-show>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
+
+### CREATE
+
+```vue
+<template>
+  <!-- src/resources/Reviews/Create.vue -->
+  <va-create>
+    <reviews-form :title="title" :item="item"></reviews-form>
+  </va-create>
+</template>
+
+<script>
+import ReviewsForm from "./Form";
+
+export default {
+  props: ["title", "item"],
+  components: {
+    ReviewsForm,
+  },
+};
+</script>
+```
+
+### EDIT
+
+```vue
+<template>
+  <!-- src/resources/Reviews/Edit.vue -->
+  <va-edit>
+    <reviews-form :id="id" :title="title" :item="item"></reviews-form>
+  </va-edit>
+</template>
+
+<script>
+import ReviewsForm from "./Form";
+
+export default {
+  props: ["id", "title", "item"],
+  components: {
+    ReviewsForm,
+  },
+};
+</script>
+```
+
+### FORM
+
+```vue
+<template>
+  <!-- src/resources/Reviews/Form.vue -->
+  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
+    <v-row justify="center">
+      <v-col lg="6">
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
+          <v-card-text>
+            <va-radio-group-input source="status" row></va-radio-group-input>
+            <va-rating-input source="rating"></va-rating-input>
+            <va-text-input source="body" multiline></va-text-input>
+            <va-text-input source="author"></va-text-input>
+            <va-date-input
+              source="publication_date"
+              format="long"
+            ></va-date-input>
+          </v-card-text>
+          <va-save-button :saving="saving"></va-save-button>
+        </base-material-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+  data() {
+    return {
+      saving: false,
+      model: {},
+    };
+  },
+};
+</script>
+```
+
 ### TL;DR
 
 Select your most suitable guide :

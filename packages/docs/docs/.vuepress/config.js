@@ -41,10 +41,10 @@ module.exports = ctx => ({
           }
         ],
         sidebar: {
-          '/guide/': getGuideSidebar('Guide', 'Advanced')
+          '/guide/': getGuideSidebar('Guide', 'Components', 'Advanced')
         }
-      },
-      '/fr/': {
+      }
+      /*'/fr/': {
         label: 'Français',
         selectText: 'Langues',
         ariaLabel: 'Sélectionner une langue',
@@ -59,7 +59,7 @@ module.exports = ctx => ({
         sidebar: {
           '/fr/guide/': getGuideSidebar('Guide', 'Avancé')
         }
-      }
+      }*/
     }
   },
   plugins: [
@@ -72,7 +72,7 @@ module.exports = ctx => ({
   ]
 })
 
-function getGuideSidebar (groupA, groupB) {
+function getGuideSidebar (groupA, groupB, groupC) {
   return [
     {
       title: groupA,
@@ -80,23 +80,34 @@ function getGuideSidebar (groupA, groupB) {
       children: [
         '',
         'getting-started',
+        'laravel',
+        'tutorial',
         'directory-structure',
         'basic-config',
-        'assets',
-        'markdown',
-        'using-vue',
-        'i18n',
-        'deploy'
+        'data-providers',
+        'admin',
+        'resources'
       ]
     },
     {
       title: groupB,
       collapsable: false,
       children: [
-        'frontmatter',
-        'permalinks',
-        'markdown-slot',
-        'global-computed'
+        'components/list',
+        'components/show',
+        'components/create-edit',
+        'components/fields',
+        'components/inputs'
+      ]
+    },
+    {
+      title: groupC,
+      collapsable: false,
+      children: [
+        'auth-providers',
+        'authorization',
+        'generators',
+        'i18n'
       ]
     }
   ]
