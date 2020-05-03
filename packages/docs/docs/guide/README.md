@@ -80,11 +80,16 @@ RA has a more extreme [DSL](https://en.wikipedia.org/wiki/Domain-specific_langua
 
 - [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), opensourced and free admin builder for Symfony with good old Bootstrap / jQuery and configuration-oriented development. Not many widgets by default but efficient and heavily configurable by YML config files and extendable with twig templates.
 
-| Features               | Vtec Admin | React Admin | EasyAdmin | Nova | Backpack |
-| ---------------------- | ---------- | ----------- | --------- | ---- | -------- |
-| SPA                    |            |             |           |      |          |
-| Backend coupled        |            |             |           |      |          |
-| Backend helpers        |            |             |           |      |          |
-| Configuration oriented |            |             |           |      |          |
-| Developer oriented     |            |             |           |      |          |
-| Licence                |            |             |           |      |          |
+#### A very subjective comparison
+
+| Features               | Vtec Admin | React Admin  | EasyAdmin | Nova | Backpack |
+| ---------------------- | ---------- | ------------ | --------- | ---- | -------- |
+| SPA                    | X          | X            |           | X    |          |
+| Backend independency   | X          | X            |           |      |          |
+| Backend helpers        | X          | Api Platform | X         | X    | X        |
+| Fun                    | +++        | +++          | +         | ++   | -        |
+| Code generators        | X          |              |           |      |          |
+| Ready-to-go features   | ++         | -            | +         | +++  | +++      |
+| Edge case managment    | ++         | +++          | -         | ++   | +        |
+| Maturity / Community   | ---        | +++          | +         | ++   | +        |
+| Free Licence           | X          | X            | X         |      |          |

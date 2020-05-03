@@ -35,7 +35,7 @@ Almost all code of this project has been fully generated, mainly thanks to insta
 2. `composer install vtec/crud-laravel && php artisan admin:install`, see [this installation](https://github.com/okami101/vtec-laravel-crud#installation) for explanation.
 3. Develop generators inside admin/generators directory (see [YAML section](#yaml))
 4. `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`, which generate all API based backend files (see [docs](https://github.com/okami101/vtec-laravel-crud#scaffolding) for all detail).
-5. `cd admin && vue add vtec-admin`, see [Vue CLI plugin installation section](../../packages/cli#installation) for more detail of what this plugin do.
+5. `cd admin && vue add vtec-admin`, see [Getting Started docs](https://vtec.okami101.io/getting-started#installation) for more detail of what this plugin do.
 6. `yarn crud:yaml --file .\generators\monsters.en.yml --locale en` (for english sample), generate all crud pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. The sample yaml generator includes 2 entities, monsters (with many different types of fields) and child monsters for resource relationship purpose.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.

@@ -28,19 +28,7 @@ vue add i18n # the internationalization plugin
 
 ## [Installation](#installation)
 
-Then you can finally launch `vue add vtec-admin` which will do all this steps :
-
-* Install main Vtec Admin library
-* Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
-* Prepare inside your projects all minimal boilerplate code to quickly start :
-  * Nice material theme as superset on Vuetify
-  * Explicit preload of all Vuetify components used by Vtec Admin (because a-la-carte mode can't work on precompiled libs)
-  * Initialize admin plugin with automatic crud pages webpack context preload and create base admin layout page on your App.vue entry file
-  * Login page plugged with default [Laravel Sanctum](https://github.com/laravel/sanctum) auth provider (totally replaceable by your own provider)
-  * Static dashboard sample with usage of [Chartist.js](https://gionkunz.github.io/chartist-js/)
-  * Functional basic profile edition page
-  * Comme with user management page list with direct aside creation / show / edition
-* Add UI CRUD generators scripts
+Then you can finally launch `vue add vtec-admin`.
 
 If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
 
