@@ -1,11 +1,11 @@
-module.exports = ctx => ({
-  dest: '../../docs',
+module.exports = (ctx) => ({
+  dest: "../../docs",
   locales: {
-    '/': {
-      lang: 'en-US',
-      title: 'Vtec Admin',
-      description: 'SPA Admin Library'
-    }
+    "/": {
+      lang: "en-US",
+      title: "Vtec Admin",
+      description: "SPA Admin Library",
+    },
     /*'/fr/': {
       lang: 'fr-FR',
       title: 'Vtec Admin',
@@ -13,37 +13,39 @@ module.exports = ctx => ({
     }*/
   },
   head: [
-    ['link', { rel: 'icon', href: `/logo.png` }],
-    ['link', { rel: 'manifest', href: '/manifest.json' }],
-    ['meta', { name: 'theme-color', content: '#41b883' }]
+    ["link", { rel: "icon", href: `/logo.png` }],
+    ["link", { rel: "manifest", href: "/manifest.json" }],
+    ["meta", { name: "theme-color", content: "#41b883" }],
   ],
   themeConfig: {
-    repo: 'okami101/vtec-admin',
+    repo: "okami101/vtec-admin",
     editLinks: true,
-    docsDir: 'packages/docs/docs',
+    docsDir: "packages/docs/docs",
     // #697 Provided by the official algolia team.
-    algolia: ctx.isProd ? ({
-      apiKey: 'd12d25e8d8e68781b4f2cff49aea7645',
-      indexName: 'docs_vtec'
-    }) : null,
+    algolia: ctx.isProd
+      ? {
+          apiKey: "d12d25e8d8e68781b4f2cff49aea7645",
+          indexName: "docs_vtec",
+        }
+      : null,
     smoothScroll: true,
     locales: {
-      '/': {
-        label: 'English',
-        selectText: 'Languages',
-        ariaLabel: 'Select language',
-        editLinkText: 'Edit this page on GitHub',
-        lastUpdated: 'Last Updated',
+      "/": {
+        label: "English",
+        selectText: "Languages",
+        ariaLabel: "Select language",
+        editLinkText: "Edit this page on GitHub",
+        lastUpdated: "Last Updated",
         nav: [
           {
-            text: 'Guide',
-            link: '/guide/'
-          }
+            text: "Guide",
+            link: "/guide/",
+          },
         ],
         sidebar: {
-          '/guide/': getGuideSidebar('Guide', 'Components', 'Advanced')
-        }
-      }
+          "/guide/": getGuideSidebar("Guide", "Components", "Advanced"),
+        },
+      },
       /*'/fr/': {
         label: 'Français',
         selectText: 'Langues',
@@ -60,53 +62,57 @@ module.exports = ctx => ({
           '/fr/guide/': getGuideSidebar('Guide', 'Avancé')
         }
       }*/
-    }
+    },
   },
   plugins: [
-    ['@vuepress/back-to-top', true],
-    ['@vuepress/pwa', {
-      serviceWorker: true,
-      updatePopup: true
-    }],
-    ['@vuepress/medium-zoom', true]
-  ]
-})
+    ["@vuepress/back-to-top", true],
+    [
+      "@vuepress/pwa",
+      {
+        serviceWorker: true,
+        updatePopup: true,
+      },
+    ],
+    ["@vuepress/medium-zoom", true],
+    ['one-click-copy']
+  ],
+});
 
-function getGuideSidebar (groupA, groupB, groupC) {
+function getGuideSidebar(groupA, groupB, groupC) {
   return [
     {
       title: groupA,
       collapsable: false,
       children: [
-        '',
-        'getting-started',
-        'laravel',
-        'tutorial',
-        'admin',
-        'resources',
-        'i18n',
-        'layout'
-      ]
+        "",
+        "getting-started",
+        "laravel",
+        "tutorial",
+        "admin",
+        "resources",
+        "i18n",
+        "layout",
+      ],
     },
     {
       title: groupB,
       collapsable: false,
       children: [
-        'components/list',
-        'components/crud',
-        'components/fields',
-        'components/inputs'
-      ]
+        "components/list",
+        "components/crud",
+        "components/fields",
+        "components/inputs",
+      ],
     },
     {
       title: groupC,
       collapsable: false,
       children: [
-        'data-providers',
-        'auth-providers',
-        'authorization',
-        'generators'
-      ]
-    }
-  ]
+        "data-providers",
+        "auth-providers",
+        "authorization",
+        "generators",
+      ],
+    },
+  ];
 }

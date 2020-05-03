@@ -71,9 +71,9 @@ Note : this project is heavily inspired by [React Admin](https://github.com/marm
 
 ### LIST
 
+<code-heading type="vue" path="src/resources/Reviews/List.vue"></code-heading>
 ```vue
 <template>
-  <!-- src/resources/Reviews/List.vue -->
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
       v-model="selected"
@@ -124,9 +124,9 @@ export default {
 
 ### SHOW
 
+<code-heading type="vue" path="src/resources/Reviews/Show.vue"></code-heading>
 ```vue
 <template>
-  <!-- src/resources/Reviews/Show.vue -->
   <va-show>
     <v-row justify="center">
       <v-col lg="4">
@@ -169,9 +169,9 @@ export default {
 
 ### CREATE
 
+<code-heading type="vue" path="src/resources/Reviews/Create.vue"></code-heading>
 ```vue
 <template>
-  <!-- src/resources/Reviews/Create.vue -->
   <va-create>
     <reviews-form :title="title" :item="item"></reviews-form>
   </va-create>
@@ -191,9 +191,9 @@ export default {
 
 ### EDIT
 
+<code-heading type="vue" path="src/resources/Reviews/Edit.vue"></code-heading>
 ```vue
 <template>
-  <!-- src/resources/Reviews/Edit.vue -->
   <va-edit>
     <reviews-form :id="id" :title="title" :item="item"></reviews-form>
   </va-edit>
@@ -213,9 +213,9 @@ export default {
 
 ### FORM
 
+<code-heading type="vue" path="src/resources/Reviews/Form.vue"></code-heading>
 ```vue
 <template>
-  <!-- src/resources/Reviews/Form.vue -->
   <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
     <v-row justify="center">
       <v-col lg="6">
