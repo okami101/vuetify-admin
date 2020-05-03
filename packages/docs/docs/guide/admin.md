@@ -1,6 +1,6 @@
 # Admin
 
-### Instanciation
+## Instantiation
 
 In order to operate, VtecAdmin constructor needs all of this options :
 
@@ -17,8 +17,6 @@ In order to operate, VtecAdmin constructor needs all of this options :
   * Indicator if this resource can be translated, in this case, a new query string with locale will be added on each api calls, it's up to you to handle it on backend.
   * List of available actions for this resource. By default all 5 operations are active (list / show / create / edit / delete). You can use `except` or `only` properties for blacklist or whitelist few actions. All removed actions will reflected on all crud pages and Vue Router will be adapted accordingly.
   * Permissions for user resource operations filtering.
-
-> Check code sample on [main readme](https://github.com/okami101/vtec-admin#code)
 
 ## Included auth and data Providers
 
