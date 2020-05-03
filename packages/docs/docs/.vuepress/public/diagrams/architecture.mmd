@@ -1,15 +1,11 @@
 stateDiagram
   state Architecture {
-    Modules --> VtecAdmin: Import
-    state Modules {
-      AuthProvider
-      DataProvider
-      Resources
-    }
+    Resources --> VtecAdmin: Import
     state VtecAdmin {
       Layout
       RouteBuilder
       ModuleBuilder
+      PageComponents
       FieldComponents
       InputComponents
     }
@@ -29,7 +25,12 @@ stateDiagram
       ResourceModules
     }
     VueRouter --> Vuex: Dispatch
-    Vuex --> Server: HTTP Rest calls
+    state Providers {
+      AuthProvider
+      DataProvider
+    }
+    Vuex --> Providers
+    Providers --> Server: Request
     state Server {
       API
     }

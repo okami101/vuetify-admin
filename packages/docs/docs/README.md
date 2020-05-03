@@ -31,7 +31,7 @@ Note : this project is heavily inspired by [React Admin](https://github.com/marm
   <div class="feature">
     <h2>High productivity</h2>
     <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vtec-admin">Vue CLI plugin</a>
-    with additional UI CRUD code generators for quick init basic functional CRUD pages.</p>
+    with additional UI CRUD code generators for quick init basic functional CRUD pages. YAML driven code generation given a JSON schema available !</p>
   </div>
   <div class="feature">
     <h2>Keep control</h2>

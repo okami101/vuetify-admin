@@ -82,11 +82,10 @@ function getGuideSidebar (groupA, groupB, groupC) {
         'getting-started',
         'laravel',
         'tutorial',
-        'directory-structure',
-        'basic-config',
-        'data-providers',
         'admin',
-        'resources'
+        'resources',
+        'i18n',
+        'layout'
       ]
     },
     {
@@ -94,8 +93,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
       collapsable: false,
       children: [
         'components/list',
-        'components/show',
-        'components/create-edit',
+        'components/crud',
         'components/fields',
         'components/inputs'
       ]
@@ -104,10 +102,10 @@ function getGuideSidebar (groupA, groupB, groupC) {
       title: groupC,
       collapsable: false,
       children: [
+        'data-providers',
         'auth-providers',
         'authorization',
-        'generators',
-        'i18n'
+        'generators'
       ]
     }
   ]
