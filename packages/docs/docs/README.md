@@ -259,12 +259,12 @@ export default {
 
 Select your most suitable guide :
 
-* If you choose Laravel as backend, follow [this optimized guide](https://github.com/okami101/vtec-laravel-crud#requirements).
-* For all other cases, follow [the standard Vue CLI path](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin#requirements).
+* If you choose Laravel as backend, follow [this optimized guide](/guide/laravel).
+* For all other cases, follow [the standard Vue CLI path](/guide/getting-started).
 
 ### CRUD code generators
 
-For best explanation of this feature, follow [this tutorial](/tutorial).
+For best explanation of this feature, follow [this tutorial](/guide/tutorial).
 
 ### All related projects
 

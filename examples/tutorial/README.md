@@ -1,6 +1,6 @@
 # Vtec Admin Tutorial
 
-Tutorial project with both Laravel backend and admin Vue CLI. This should be the final state after following the [dedicated docs](https://vtec.okami101.io/tutorial).  
+Tutorial project with both Laravel backend and admin Vue CLI. This should be the final state after following the [dedicated docs](https://vtec.okami101.io/guide/tutorial).  
 This is the perfect way to show the power of both backend and client generators. Ideal place for code generation testing by using [included YAML sample generators]("admin/generators").
 
 ## How to run
@@ -32,10 +32,10 @@ yarn serve
 Almost all code of this project has been fully generated, mainly thanks to installers and use of [this YAML descriptor files]("admin/generators") which is used by generator commands. To summary, here are the main steps :
 
 1. `laravel new tutorial && cd tutorial`, initial Laravel skeleton
-2. `composer install vtec/crud-laravel && php artisan admin:install`, see [this installation](https://github.com/okami101/vtec-laravel-crud#installation) for explanation.
+2. `composer install vtec/crud-laravel && php artisan admin:install`, see [this installation](https://vtec.okami101.io/guide/laravel#installation) for explanation.
 3. Develop generators inside admin/generators directory (see [YAML section](#yaml))
-4. `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`, which generate all API based backend files (see [docs](https://github.com/okami101/vtec-laravel-crud#scaffolding) for all detail).
-5. `cd admin && vue add vtec-admin`, see [Getting Started docs](https://vtec.okami101.io/getting-started#installation) for more detail of what this plugin do.
+4. `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`, which generate all API based backend files (see [docs](https://vtec.okami101.io/guide/generators#api) for all detail).
+5. `cd admin && vue add vtec-admin`, see [Getting Started docs](https://vtec.okami101.io/guide/getting-started#installation) for more detail of what this plugin do.
 6. `yarn crud:yaml --file .\generators\monsters.en.yml --locale en` (for english sample), generate all crud pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. The sample yaml generator includes 2 entities, monsters (with many different types of fields) and child monsters for resource relationship purpose.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.

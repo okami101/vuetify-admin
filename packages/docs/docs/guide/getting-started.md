@@ -9,12 +9,15 @@ If you choose to start with a Laravel backend, go directly to [laravel guide sec
 
 ## Use Vue CLI Plugin
 
+:::warning REQUIREMENTS
+As a CLI projet, you must obviously have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
+:::
+
 ### [Requirements](#requirements)
 
 This CLI plugin is intended be installed on a fresh new Vue CLI project.
 
-* As a CLI projet, you must obviously have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html)
-* You should have a prepared separate API backend project for real development. Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. Just follow the dedicated [installation section](laravel) steps.
+You should have a prepared separate API backend project for real development. Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. Just follow the dedicated [installation section](laravel) steps.
 
 :::warning But I don't want Laravel
 As of today, only Laravel providers are available.  
@@ -67,6 +70,8 @@ VUE_APP_TINYMCE_LANGUAGE=my_default_locale
 ```
 
 Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
+
+This plugin will also add 2 new npm generator scripts, [see dedicated section](generators) for more detail.
 
 ## Bare metal installation
 

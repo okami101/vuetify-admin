@@ -4,16 +4,9 @@ Vue CLI plugin of main [Vtec Admin](https://github.com/okami101/vtec-admin/tree/
 
 Include scripts for quick scaffolding crud pages of specific resource.
 
-## [Requirements](#requirements)
-
-This CLI plugin is intended be installed on a fresh new Vue CLI project.
-
-* As a CLI projet, you must obviously have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html)
-* You should have a prepared separate API backend project for real development. Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. Just follow the dedicated [installation section](https://github.com/okami101/vtec-laravel-crud#installation) steps.
+> See [dedicated guide](https://vtec.okami101.io/guide/getting-started)
 
 ## [Prepare](#prepare)
-
-> If you choose Laravel as backend API, it's recommended to follow [this dedicated installation guide](https://github.com/okami101/vtec-laravel-crud#installation) instead which is more integrated. Besides it used an included Vue CLI preset for even less install steps.
 
 Initialize your brand new Vue CLI admin project by `vue create admin` and go enter by `cd admin`.
 
@@ -28,7 +21,7 @@ vue add i18n # the internationalization plugin
 
 ## [Installation](#installation)
 
-Then you can finally launch `vue add vtec-admin`.
+Then you can finally launch `vue add vtec-admin`. [Check here](https://vtec.okami101.io/guide/getting-started#installation) for explanation of what this plugin does.
 
 If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
 
@@ -48,19 +41,15 @@ VUE_APP_TINYMCE_LANGUAGE=my_default_locale
 
 Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
 
-## [Available generators commands](#scaffolding)
+## Available generators commands
 
 You'll got 2 new npm scripts :
 
-* `yarn crud:make [options]` : Main UI crud command maker which :
-  * Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into "fields" options.
-  * Register new resource to `src/resources/index.js` file.
-  * Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option.
-  * Add new sidebar entry to `src/_nav.js` file.
-* `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure following [this schema](https://vtec.okami101.io/schemas/generator.json).
+* `yarn crud:make [options]` : Main UI crud command maker.
+* `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor.
 
 > Use `yarn vue-cli-service help crud:make` for all options documentation  
-> For best explanation of YAML usage, follow [this tutorial guide](https://vtec.okami101.io/tutorial).
+> See [dedicated guide](https://vtec.okami101.io/guide/generators)
 
 ## Full documentation
 

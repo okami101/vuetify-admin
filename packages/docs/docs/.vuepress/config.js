@@ -91,13 +91,13 @@ function getGuideSidebar(groupA, groupB, groupC) {
         "admin",
         "resources",
         "i18n",
-        "layout",
       ],
     },
     {
       title: groupB,
       collapsable: false,
       children: [
+        "components/layout",
         "components/list",
         "components/crud",
         "components/fields",

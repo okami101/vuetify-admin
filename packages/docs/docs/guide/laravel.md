@@ -1,35 +1,26 @@
 # Laravel
 
-For Laravel case, we will use official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) in a spirit of simplicity.  
-This package will install all needed packages, as many essential dev tools and API resources code generators. [Vtec Admin Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin)
+For Laravel case, we will use official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) in a spirit of simplicity.
 
-## Features
-
-* On-asking installer for quick start by optional packages selection, including associated Vue CLI admin project !
-* Many optional dev packages proposed by the installer as [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), PHP CS Fixer with Laravel preset, [Clockwork](https://github.com/itsgoingd/clockwork), [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended).
-* [Laravel Sanctum](https://github.com/laravel/sanctum) for admin SPA auth.
-* [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for direct disk file management with Wysiwyg bridges.
-* Media support thanks to [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary).
-* Translatable model support thanks to [spatie/laravel-translatable](https://github.com/dimsav/laravel-translatable).
-* Simple account controller for profile editing and password change.
-* User impersonation with dedicated middleware.
-* Quick resource api generator commands including direct YAML descriptor file !
-* Preconfigured docker files included with ready to use MySQL, phpMyadmin, Nginx and Redis !
-
-## [Requirements](#requirements)
-
+:::warning REQUIREMENTS
 * You must have at least PHP 7.4 (required by spatie media library package).
-* Install [Vue CLI](https://cli.vuejs.org/guide/installation.html).
+* [Laravel installer](https://laravel.com/docs#installing-laravel).
+* [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 * Should be installed on fresh laravel 7 installation.
+:::
 
 ## [Installation](#installation)
 
-Simply init your project by this simple 2 steps :
+Simply init your project by this simple 3 steps :
 
 ```bash
+laravel new my-brand-new-project && cd my-brand-new-project
 composer require vtec/laravel-crud
 php artisan admin:install
 ```
+
+The installer will suggest you to install all of this packages :
+
 
 Simply follow wizard. The installer will preconfigure all asked packages for you and generate all minimal boilerplate code for quick start, including auth, users controller with impersonation.  
 Laravel Sanctum is ready to use for [Vtec Admin](https://github.com/okami101/vtec-admin).
@@ -65,7 +56,7 @@ yarn serve
 
 > See [Vue CLI plugin installation section](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin#installation) for more detail of what this plugin do.
 
-## [Scaffold API crud resources](#scaffolding)
+## Scaffold API crud resources
 
 Use `php artisan crud:make [MyNewResource] [options]` with many as option as possible. This will scaffold following files :
 
@@ -89,13 +80,25 @@ Route::apiResources([
 ]);
 ```
 
-### [YAML based generation](#yaml)
 
-For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml`.  
-You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
 
-Follow [tutorial](https://vtec.okami101.io/tutorial) for more details on what based YAML generation can offer.
 
-> For both generator commands, you may add `-mfs` options to generate full migration file with all pre-generated fields, in addition to factory and seeder files.  
-> In case of model relation, even if foreign keys can be generated in migration file by `foreign` on schema, you must manually add related eloquent relation in you model.  
-> For server-side validation, you must manually add rules inside store and update generated request files.
+
+
+
+
+This package will install all needed packages, as many essential dev tools and API resources code generators. If needed some docker files can be included. Finally, installer [Vtec Admin Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin)
+
+
+## Features
+
+* On-asking installer for quick start by optional packages selection, including associated Vue CLI admin project !
+* Many optional dev packages proposed by the installer as [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), PHP CS Fixer with Laravel preset, [Clockwork](https://github.com/itsgoingd/clockwork), [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended).
+* [Laravel Sanctum](https://github.com/laravel/sanctum) for admin SPA auth.
+* [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for direct disk file management with Wysiwyg bridges.
+* Media support thanks to [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary).
+* Translatable model support thanks to [spatie/laravel-translatable](https://github.com/dimsav/laravel-translatable).
+* Simple account controller for profile editing and password change.
+* User impersonation with dedicated middleware.
+* Quick resource api generator commands including direct YAML descriptor file !
+* Preconfigured docker files included with ready to use MySQL, phpMyadmin, Nginx and Redis !
