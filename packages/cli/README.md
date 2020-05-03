@@ -6,7 +6,7 @@ Include scripts for quick scaffolding crud pages of specific resource.
 
 > See [dedicated guide](https://vtec.okami101.io/guide/getting-started)
 
-## [Prepare](#prepare)
+## Prepare
 
 Initialize your brand new Vue CLI admin project by `vue create admin` and go enter by `cd admin`.
 
@@ -19,7 +19,7 @@ vue add vuetify # the main UI framework
 vue add i18n # the internationalization plugin
 ```
 
-## [Installation](#installation)
+## Installation
 
 Then you can finally launch `vue add vtec-admin`. [Check here](https://vtec.okami101.io/guide/getting-started#installation) for explanation of what this plugin does.
 
