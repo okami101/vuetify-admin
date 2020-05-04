@@ -8,12 +8,11 @@ You will find complete source code of this tutorial [in the main repo](https://g
 
 ## YAML based code generation
 
-Before we start, let's take a look to [YAML file descriptor](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial/admin/generators) which will serve as a basis for resources code generation.
+Before we start, take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial/admin/generators). This file will serve as a basis for next resources code generation.
 
-In order to facilitates your YAML generator creation, a [JSON Schema](https://json-schema.org/) is available on [this URL](https://vtec.okami101.io/schemas/generator.json).  
-Use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and set `https://vtec.okami101.io/schemas/generator.json` on your workspace by link it in `yaml.schemas` settings, which is already done in this project if you open the workspace in the root of this main repo. Now You have autocompletion with full documention !
-
-It means that you can simply initiate structure of your new web site or new resource directly by create your YAML file instead of writing base boilerplate code by hand !
+:::warning SOURCE CODE
+This file follow a particular Vtec Generator [JSON Schema](https://json-schema.org/). More detail one [dedicated section](generators#yaml).
+:::
 
 ## Installation
 
