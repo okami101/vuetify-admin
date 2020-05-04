@@ -6,12 +6,12 @@ In this tutorial, we will show you how to start as quickly as possible from top 
 You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial).
 :::
 
-## YAML based code generation
+## Get YAML based code generation
 
-Before we start, take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial/admin/generators). This file will serve as a basis for next resources code generation.
+Before we start, take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial/admin/generators) on your prefered locale. This file will serve as a basis for next resources code generation.
 
-:::warning SOURCE CODE
-This file follow a particular Vtec Generator [JSON Schema](https://json-schema.org/). More detail one [dedicated section](generators#yaml).
+:::warning JSON SCHEMA
+This file follow a particular Vtec Generator [JSON Schema](https://json-schema.org/). More detail on file creation in [dedicated section](generators#yaml).
 :::
 
 ## Installation
