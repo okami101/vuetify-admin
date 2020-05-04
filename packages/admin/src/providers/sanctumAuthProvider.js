@@ -11,9 +11,9 @@ import {
 export default (axios, options = {}) => {
   options = {
     routes: {
-      login: "/login",
-      logout: "/logout",
-      user: "/user",
+      login: "/auth/login",
+      logout: "/auth/logout",
+      user: "/api/user",
     },
     credentials: ({ username, password }) => {
       return {

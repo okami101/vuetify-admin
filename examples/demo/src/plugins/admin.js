@@ -67,13 +67,7 @@ export default new VtecAdmin({
     en: i18n.t("locales.english"),
     fr: i18n.t("locales.french"),
   },
-  authProvider: sanctumAuthProvider(http, {
-    routes: {
-      login: "/auth/login",
-      logout: "/auth/logout",
-      user: "/api/user",
-    },
-  }),
+  authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
   resources,

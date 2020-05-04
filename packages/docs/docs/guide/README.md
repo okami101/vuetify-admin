@@ -6,16 +6,19 @@ Actually only Laravel providers are included but it's not that complicated to cr
 
 ## How It Works
 
-![Simplified architecture](/diagrams/architecture.svg)
+![Architecture](/diagrams/architecture.svg)
+
+> Legend
 
 VA is composed of this basic elements :
 
-- All Layout specific components built on top of Vuetify with App Bar, Navigation Drawer with hierarchical sidebar, Aside, Footer, User account menu.
-- Route and Module builders which takes your resources (a simple JS array of resources object) and :
-  - Register all necessary CRUD routes into existing Vue Router instance. Each route will use your defined CRUD page by following a naming convention.
-  - Register data fetching modules into Vuex for each imported resources. All of this modules will be bridged to your own data provider.
-- Pages components which should be used as root components for your cruds pages. We will find here all contextualised CRUD buttons, as well as Data Iterator which can be associated to a datagrid or any custom layout.
-- Fields and inputs components which are superset of existing Vuetify components that will be mainly used on show and create/edit pages. Their functions is to heavily simplify the amount of code needed to made a functional CRUD page. All of this components shares a mixin which can be used for create your own VA compatible components.
+- **Route and Module builders** which takes your resources (a simple JS array of resources object) and :
+  - Register all necessary **CRUD routes** into existing Vue Router instance. Each route will use your defined CRUD page by following a naming convention.
+  - Register **resources modules** into Vuex for data fetching. All of this modules will be bridged to your own data provider.
+- **Contextual aware components**, that we can group into 3 categories :
+  - **Layout components** built on top of Vuetify with App Bar, Navigation Drawer with hierarchical sidebar, Aside, Footer, User account menu.
+  - **Pages components** which should be used as root components for your cruds pages. We will find here all contextualised CRUD buttons, as well as Data Iterator which can be associated to a datagrid or any custom layout.
+  - **Fields and inputs components** which are superset of existing Vuetify components that will be mainly used on show and create/edit pages. Their functions is to heavily simplify the amount of code needed to made a functional CRUD page. All of this components shares a mixin which can be used for create your own VA compatible components.
 
 To summary, VA will do this steps :
 
