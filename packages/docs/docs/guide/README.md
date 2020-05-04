@@ -6,9 +6,18 @@ Actually only Laravel providers are included but it's not that complicated to cr
 
 ## How It Works
 
-![Architecture](/diagrams/architecture.svg)
+> Vtec Admin
+>
+> * VAConstructor : resources builder of Vtec Admin, transform resources object ino CRUD VueRoutes and Vuex modules
+> * VAComponents : contextual aware components
+>
+> Your codebase
+>
+> * Resources : simple JS array of resources descriptor object
+> * VueRouter : CRUD pages which uses VAComponents and API translated resources
+> * Providers : Bridge between resources modules and your API which ensure compatibility within VA
 
-> Legend
+![Architecture](/diagrams/architecture.svg)
 
 VA is composed of this basic elements :
 
