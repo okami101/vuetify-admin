@@ -1,28 +1,10 @@
 # Generators
 
-## [Available API crud generators commands](#api)
+## [API crud generators commands](#api)
 
-Use `php artisan crud:make [MyNewResource] [options]` with many as option as possible. This will scaffold following files :
+See specific section of each server's package :
 
-* Model
-* Controller with all crud operations
-* Policy for authorization
-* Store and update requests for validation rules (empty by default, so don't forget to add your own rules)
-* Http Resource for API data transformer
-* Migration with all pre-generated fields (including foreigns !)
-* Factory and seeder (empty by default)
-
-Launch `php artisan crud:make --help` for all options documentation.  
-Don't hesitate to use `php artisan ide-helper:models` after in order to have all fields Model autocompletion enabled !
-
-In addition, api routes should be registered automatically at `routes/api.php` file in this place :
-
-```php
-Route::apiResources([
-    /** previous entities */
-    'my_new_resource' => 'MyNewResourceController',
-]);
-```
+* [Laravel](guide/laravel#crud)
 
 ## [Available UI generators commands](#ui)
 

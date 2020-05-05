@@ -1,8 +1,24 @@
 # Introduction
 
-Vtec Admin (VA) is an standalone SPA admin library for Vue.js designed for running on top of REST APIs. It's built on Vuetify and comes with dedicated Vue CLI plugin for RAD. It relies on replaceable low-level data and auth providers which allows you to choose your favorite backend framework.
+Vtec Admin (VA) is an standalone [SPA](https://en.wikipedia.org/wiki/Single-page_application) admin library for Vue.js designed for managing server resources and running on top of REST APIs. It's built on Vuetify and comes with dedicated Vue CLI plugin for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development). It relies on replaceable low-level data and auth providers which allows you to choose your favorite backend framework.
 
 Actually only Laravel providers are included but it's not that complicated to create your own by implementing specific contract which will ensure compatibility within VA. Follow [dedicated guide](data-providers.md) to know how it works.
+
+> For next guide, a "resource" means a given server entity which can be managed by Vtec Admin, aka created/read/updated/deleted.
+
+## Purpose
+
+His main purpose is to accelerate SPA resources management development, aka CRUD RAD, on both API and UI side, while allowing full customization on UI by delivering full Vue.js power at hand. This is possible by reducing most of CRUD code boilerplate by following a [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) approach and using powerful code generators. To summary :
+
+* Nice ready-to-go Vuetify UI theme.
+* SPA admin which delivers complete Vue.js power for admin UI development.
+* Full backend independence by relying on low-level and replaceable auth and data providers.
+* [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) approach, minimal boilerplate code for best development experience.
+* Powerful API (Laravel only) and UI code generators for highest productivity.
+* Best balance between productivity and customization.
+* Maximize usage of many other opensource projects.
+
+This is a sort of Vue.js little brother equivalent to well known [React Admin](https://github.com/marmelab/react-admin/), which uses even more extensive DSL approach.
 
 ## How It Works
 

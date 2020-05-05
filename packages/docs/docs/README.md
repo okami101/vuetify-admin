@@ -69,8 +69,9 @@ Note : this project is heavily inspired by [React Admin](https://github.com/marm
   </div>
 </div>
 
-### LIST
+### At a glance
 
+:::details LIST
 <code-heading type="vue" path="src/resources/Reviews/List.vue"></code-heading>
 ```vue
 <template>
@@ -121,9 +122,9 @@ export default {
 };
 </script>
 ```
+:::
 
-### SHOW
-
+:::details SHOW
 <code-heading type="vue" path="src/resources/Reviews/Show.vue"></code-heading>
 ```vue
 <template>
@@ -166,9 +167,9 @@ export default {
 };
 </script>
 ```
+:::
 
-### CREATE
-
+:::details CREATE
 <code-heading type="vue" path="src/resources/Reviews/Create.vue"></code-heading>
 ```vue
 <template>
@@ -188,9 +189,9 @@ export default {
 };
 </script>
 ```
+:::
 
-### EDIT
-
+:::details EDIT
 <code-heading type="vue" path="src/resources/Reviews/Edit.vue"></code-heading>
 ```vue
 <template>
@@ -210,9 +211,9 @@ export default {
 };
 </script>
 ```
+:::
 
-### FORM
-
+:::details FORM
 <code-heading type="vue" path="src/resources/Reviews/Form.vue"></code-heading>
 ```vue
 <template>
@@ -254,8 +255,9 @@ export default {
 };
 </script>
 ```
+:::
 
-### TL;DR
+### How to get started
 
 Select your most suitable guide :
 
@@ -266,7 +268,7 @@ Select your most suitable guide :
 
 For best explanation of this feature, follow [this tutorial](/guide/tutorial).
 
-### All related projects
+### All Vtec Admin related projects
 
 * [Vtec Admin Library](https://www.npmjs.com/package/vtec-admin), the main admin library.
 * [Vtec Admin Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), the associated Vue CLI plugin which contains all base code boilerplate for quick install and UI commands code generator.

@@ -68,3 +68,30 @@ yarn serve
 ```
 
 > See [Vue CLI plugin installation section](https://vtec.okami101.io/guide/getting-started#installation) for more detail of what this plugin do.
+
+## [API crud generators commands](#crud)
+
+This package provides 2 specific crud commands. Use `php artisan crud:make [MyNewResource] [options]` with many as option as possible. This will scaffold following files :
+
+* Model
+* Controller with all crud operations
+* Policy for authorization
+* Store and update requests for validation rules (empty by default, so don't forget to add your own rules)
+* Http Resource for API data transformer
+* Migration with all pre-generated fields (including foreigns !)
+* Factory and seeder (empty by default)
+
+In addition, api routes should be registered automatically at `routes/api.php` file in this place :
+
+```php
+Route::apiResources([
+    /** previous entities */
+    'my_new_resource' => 'MyNewResourceController',
+]);
+```
+
+> Launch `php artisan crud:make --help` for all options documentation.  
+
+:::tip IDE Autocompletion
+Use `php artisan ide-helper:models` after in order to have full model autocompletion !
+:::
