@@ -56,10 +56,54 @@ This file contains 2 simple resources :
 * Monsters : sample for show all different type of fields.
 * Child monsters : essentialy for resource relationship purpose.
 
-### Use provided generator commands
+### API generator commands
 
-Finally it's time to generate our basic CRUD boilerplate code. First we begin with server-side commands, so use `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](guide/laravel#crud) for all detail of what's going on.
+:::tip DOCKER
+For all next artisan commands, don't forget to add `docker-compose exec laravel` before
+:::
 
-1. `yarn crud:yaml --file .\generators\monsters.en.yml --locale en` (for english sample), generate all crud pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms.
+Finally it's time to generate our basic CRUD boilerplate code.
+
+First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](guide/laravel#crud) for all detail of what's going on.
+
+This migrate your database by `php artisan migrate`.
+
+#### Add specific model relations
+
+Then add all needed eloquent relationship for each model.
+
+<code-heading type="php" path="app/Monster.php"></code-heading>
+```php
+public function children()
+{
+    return $this->hasMany(MonsterChild::class);
+}
+```
+
+<code-heading type="php" path="app/MonsterChild.php"></code-heading>
+```php
+public function monster()
+{
+    return $this->belongsTo(Monster::class);
+}
+```
+
+#### Dummy data
+
+The next step is to write you seed data. Use generated factory and seeder for that. For get quicker start, pick this files from tutorial source code :
+
+* [MonsterFactory](https://github.com/okami101/vtec-admin/blob/master/examples/tutorial/database/factories/MonsterFactory.php)
+* [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/tutorial/database/factories/MonsterChildFactory.php)
+* [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/tutorial/database/seeds/MonsterSeeder.php)
+
+Then inject test data by `php artisan db:seed --class MonsterSeeder`.
+
+#### Server-side data validation
+
+We will not use them for this tutorial, but for real app it's heavily recommended to write your server-side validations on both store and update form requests for each resource (generated inside `app/Http/Requests`).
+
+### UI generator commands
+
+Finally you can simply launch `yarn crud:yaml --file generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. See [generators specific section](guide/generators#ui) for how it works.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.

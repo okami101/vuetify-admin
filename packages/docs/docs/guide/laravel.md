@@ -83,6 +83,7 @@ This package provides 2 specific crud commands. Use `php artisan crud:make [MyNe
 
 In addition, api routes should be registered automatically at `routes/api.php` file in this place :
 
+<code-heading type="php" path="routes/api.php"></code-heading>
 ```php
 Route::apiResources([
     /** previous entities */
@@ -95,3 +96,5 @@ Route::apiResources([
 :::tip IDE Autocompletion
 Use `php artisan ide-helper:models` after in order to have full model autocompletion !
 :::
+
+## TODO Explain generated code and traits
