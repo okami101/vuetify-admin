@@ -43,7 +43,7 @@ module.exports = (ctx) => ({
           },
         ],
         sidebar: {
-          "/guide/": getGuideSidebar("Guide", "Components", "Advanced"),
+          "/guide/": getGuideSidebar("Guide", "Initialization", "Components", "Advanced"),
         },
       },
       /*'/fr/': {
@@ -80,7 +80,7 @@ module.exports = (ctx) => ({
   ],
 });
 
-function getGuideSidebar(groupA, groupB, groupC) {
+function getGuideSidebar(groupA, groupB, groupC, groupD) {
   return [
     {
       title: groupA,
@@ -90,13 +90,20 @@ function getGuideSidebar(groupA, groupB, groupC) {
         "getting-started",
         "laravel",
         "tutorial",
+      ],
+    },
+    {
+      title: groupB,
+      collapsable: false,
+      children: [
+        "data-providers",
         "admin",
         "resources",
         "i18n",
       ],
     },
     {
-      title: groupB,
+      title: groupC,
       collapsable: false,
       children: [
         "components/layout",
@@ -107,10 +114,9 @@ function getGuideSidebar(groupA, groupB, groupC) {
       ],
     },
     {
-      title: groupC,
+      title: groupD,
       collapsable: false,
       children: [
-        "data-providers",
         "auth-providers",
         "authorization",
         "generators",
