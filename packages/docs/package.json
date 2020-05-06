@@ -15,7 +15,7 @@
     "@vuepress/plugin-medium-zoom": "^1.4.0",
     "@vuepress/plugin-pwa": "^1.4.0",
     "vuepress": "^1.4.0",
-    "vuepress-plugin-one-click-copy": "^1.0.2"
+    "vuepress-plugin-code-copy": "^1.0.6"
   },
   "dependencies": {}
 }

@@ -136,11 +136,11 @@
               "type": "string"
             },
             "reference": {
-              "description": "Existing resource referenced by this field. Allow to build direct router-link for readable field and to search into targetted entities type on backend in case of input form",
+              "description": "Existing resource referenced by this field. Allow to build direct router-link for readable field and to search into targeted entities type on backend in case of input form",
               "type": "string"
             },
             "optionText": {
-              "description": "Readable targetted resource property.",
+              "description": "Readable targeted resource property.",
               "type": "string"
             }
           }
@@ -165,7 +165,7 @@
               "type": "boolean"
             },
             "model": {
-              "description": "Targetted model property for autocomplete.",
+              "description": "Targeted model property for autocomplete.",
               "type": "string"
             },
             "multiple": {

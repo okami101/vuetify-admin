@@ -74,7 +74,9 @@ module.exports = (ctx) => ({
       },
     ],
     ["@vuepress/medium-zoom", true],
-    ['one-click-copy']
+    ['vuepress-plugin-code-copy', {
+      color: '#41b883'
+    }]
   ],
 });
 
