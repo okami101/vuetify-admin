@@ -96,7 +96,6 @@ This package provides 2 specific crud commands. Use `php artisan crud:make [MyNe
 
 In addition, api routes should be registered automatically at `routes/api.php` file in this place :
 
-<code-heading type="php" path="routes/api.php"></code-heading>
 ```php
 Route::apiResources([
     /** previous entities */
@@ -132,7 +131,6 @@ This trait will be responsible for taking all valid request files that correspon
 
 Let's take this model media registration :
 
-<code-heading type="php" path="app/Publisher.php"></code-heading>
 ```php
 public function registerMediaCollections(): void
 {
@@ -155,7 +153,6 @@ It should be used in conjunction with Vtec Admin resource translation feature as
 
 If you need to add global search support in [Vtec Admin Iterator](components/list), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields as a specific filter inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
-<code-heading type="php" path="app/Http/Controllers/BookController.php"></code-heading>
 ```php{4}
 return new BookCollection(
   QueryBuilder::for(Book::class)
@@ -174,7 +171,6 @@ Use `exportOrPaginate` specific macro after end of each QueryBuilder in order to
 
 You can use `Vtec\Crud\Faker\Provider\Html` for easy html generation your factories :
 
-<code-heading type="php" path="database/factories/BookFactory.php"></code-heading>
 ```php{6,15,16}
 use App\Book;
 use Faker\Generator as Faker;

@@ -18,7 +18,8 @@ In order to operate, VtecAdmin constructor needs all of this options :
   * List of available actions for this resource. By default all 5 operations are active (list / show / create / edit / delete). You can use `except` or `only` properties for blacklist or whitelist few actions. All removed actions will reflected on all crud pages and Vue Router will be adapted accordingly.
   * Permissions for user resource operations filtering.
 
-<code-heading type="js" path="src/plugins/admin.js"></code-heading>
+**`src/plugins/admin.js`**
+
 ```js
 import VtecAdmin from "vtec-admin";
 import "vtec-admin/dist/vuetify";

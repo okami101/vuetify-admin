@@ -1,0 +1,7 @@
+stateDiagram
+  state DataTransfer {
+    VtecAdmin --> DataProvider: Data query
+    DataProvider --> API: HTTP
+    API --> DataProvider: Response
+    DataProvider --> VtecAdmin: JSON Data
+  }

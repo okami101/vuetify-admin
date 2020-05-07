@@ -72,7 +72,8 @@ This migrate your database by `php artisan migrate`.
 
 Then add all needed eloquent relationship for each model.
 
-<code-heading type="php" path="app/Monster.php"></code-heading>
+**`app/Monster.php`**
+
 ```php
 public function children()
 {
@@ -80,7 +81,8 @@ public function children()
 }
 ```
 
-<code-heading type="php" path="app/MonsterChild.php"></code-heading>
+**`app/MonsterChild.php`**
+
 ```php
 public function monster()
 {

@@ -77,7 +77,8 @@ This plugin will also add 2 new npm code generator scripts, [see dedicated secti
 
 If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin library as-is. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then you import and register them as following.
 
-<code-heading type="js" path="src/plugins/admin.js"></code-heading>
+**`src/plugins/admin.js`**
+
 ```js
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
@@ -101,7 +102,8 @@ Next you must instantiate Vtec Admin as [explained here](admin).
 
 The 1st step is to describe backend resources you want to administer.
 
-<code-heading type="js" path="src/resources/index.js"></code-heading>
+**`src/resources/index.js`**
+
 ```js
 export default [
   {
@@ -129,7 +131,8 @@ export default [
 Then next step is to define CRUD pages for each resource.
 
 :::details LIST
-<code-heading type="vue" path="src/resources/Reviews/List.vue"></code-heading>
+**`src/resources/Reviews/List.vue`**
+
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
@@ -179,10 +182,12 @@ export default {
 };
 </script>
 ```
+
 :::
 
 :::details SHOW
-<code-heading type="vue" path="src/resources/Reviews/Show.vue"></code-heading>
+**`src/resources/Reviews/Show.vue`**
+
 ```vue
 <template>
   <va-show>
@@ -224,10 +229,12 @@ export default {
 };
 </script>
 ```
+
 :::
 
 :::details CREATE
-<code-heading type="vue" path="src/resources/Reviews/Create.vue"></code-heading>
+**`src/resources/Reviews/Create.vue`**
+
 ```vue
 <template>
   <va-create>
@@ -246,10 +253,12 @@ export default {
 };
 </script>
 ```
+
 :::
 
 :::details EDIT
-<code-heading type="vue" path="src/resources/Reviews/Edit.vue"></code-heading>
+**`src/resources/Reviews/Edit.vue`**
+
 ```vue
 <template>
   <va-edit>
@@ -268,10 +277,12 @@ export default {
 };
 </script>
 ```
+
 :::
 
 :::details FORM
-<code-heading type="vue" path="src/resources/Reviews/Form.vue"></code-heading>
+**`src/resources/Reviews/Form.vue`**
+
 ```vue
 <template>
   <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
@@ -312,6 +323,7 @@ export default {
 };
 </script>
 ```
+
 :::
 
 > More detail on CRUD page development on separate guides :
