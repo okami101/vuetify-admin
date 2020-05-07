@@ -4,6 +4,7 @@ import upperFirst from "lodash/upperFirst";
 import aside from "./store/aside";
 import messages from "./store/messages";
 import auth from "./store/auth";
+import guest from "./store/guest";
 import api from "./store/api";
 
 import resourceCrudModule from "./store/resource";
@@ -152,7 +153,10 @@ export default class VtecAdmin {
     store.registerModule("aside", aside);
     store.registerModule("messages", messages);
     store.registerModule("api", api);
-    store.registerModule("auth", auth(this.authProvider, router));
+    store.registerModule(
+      "auth",
+      this.authProvider ? auth(this.authProvider, router) : guest
+    );
 
     /**
      * Add API resources modules dynamically
@@ -186,6 +190,7 @@ export default class VtecAdmin {
      * Permissions helper & directive
      */
     this.can = (permissions) =>
+      !authProvider ||
       isEmpty(permissions) ||
       !isEmpty(
         (Array.isArray(permissions) ? permissions : [permissions]).filter(

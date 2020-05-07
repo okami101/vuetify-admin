@@ -1,6 +1,6 @@
 <template>
   <v-app v-if="loaded">
-    <template v-if="user">
+    <template v-if="isLoggedIn">
       <slot name="header"></slot>
       <slot name="sidebar"></slot>
 
@@ -31,7 +31,7 @@
 import AppAside from "../Layout/AppAside";
 import AppMessages from "../Layout/AppMessages";
 import AppBreadcrumbs from "../Layout/AppBreadcrumbs";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "Admin",
@@ -42,9 +42,9 @@ export default {
   },
   computed: {
     ...mapState({
-      user: (state) => state.auth.user,
       loaded: (state) => state.auth.loaded,
     }),
+    ...mapGetters({ isLoggedIn: "auth/isLoggedIn" }),
   },
 };
 </script>

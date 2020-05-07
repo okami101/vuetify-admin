@@ -72,7 +72,7 @@
       >
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
-      <v-menu offset-y>
+      <v-menu offset-y v-if="name">
         <template v-slot:activator="{ on }">
           <v-btn icon small v-on="on">
             <v-icon>mdi-account-circle</v-icon>
@@ -83,7 +83,9 @@
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title class="title">{{ name }}</v-list-item-title>
-              <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
+              <v-list-item-subtitle v-if="email">{{
+                email
+              }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 

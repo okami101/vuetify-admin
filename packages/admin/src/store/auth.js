@@ -35,6 +35,9 @@ export default (provider, router) => {
         }
         return [];
       },
+      isLoggedIn(state) {
+        return state.user !== null;
+      },
     },
     actions: {
       /**
