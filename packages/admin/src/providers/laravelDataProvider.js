@@ -10,10 +10,10 @@ import {
 } from "../utils/dataActions";
 import objectToFormData from "../utils/objectToFormData";
 
-export default (axios, base = "/api") => {
+export default (axios, baseUrl = "/api") => {
   const getRequest = (type, resource, params = {}) => {
     const searchParams = new URLSearchParams();
-    const resourceUrl = `${base}/${resource}`;
+    const resourceUrl = `${baseUrl}/${resource}`;
     const itemUrl = `${resourceUrl}/${params.id}`;
 
     if (params.locale) {

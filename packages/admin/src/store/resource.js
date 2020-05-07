@@ -19,6 +19,14 @@ export default ({ provider, resource, i18n }) => {
     (action) =>
       (storeActions[action] = async ({ state, commit, dispatch }, params) => {
         try {
+          if (!provider) {
+            throw new Error("No data provider defined");
+          }
+
+          if (!provider[action]) {
+            throw new Error(`Data provider action '${action}' not implemented`);
+          }
+
           /**
            * Only set global loading when read actions
            */
@@ -48,6 +56,8 @@ export default ({ provider, resource, i18n }) => {
           });
           if (e.response) {
             dispatch("showError", e.response.data.message);
+          } else {
+            dispatch("showError", e.message);
           }
           dispatch("auth/checkError", e, {
             root: true,

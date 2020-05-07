@@ -43,7 +43,7 @@ module.exports = (ctx) => ({
           },
         ],
         sidebar: {
-          "/guide/": getGuideSidebar("Guide", "Initialization", "Components", "Advanced"),
+          "/guide/": getGuideSidebar("Guide", "Zero to One", "Components", "Advanced"),
         },
       },
       /*'/fr/': {
