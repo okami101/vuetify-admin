@@ -117,7 +117,7 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
       title: groupD,
       collapsable: false,
       children: [
-        "auth-providers",
+        "authentication",
         "authorization",
         "generators",
       ],

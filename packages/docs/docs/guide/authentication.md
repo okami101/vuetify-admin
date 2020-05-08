@@ -1,4 +1,4 @@
-# Auth Providers
+# Authentication
 
 ![demo](/assets/login.jpg)
 
