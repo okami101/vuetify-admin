@@ -194,7 +194,7 @@ As showed here, in order to make [data iterator](components/list) aware of pager
 
 In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is injected into [auth provider](auth-provider#check-error) in order to allows you specific auth action according to a given status code.
 
-For best error message explanation, it's common to take the message inside the body response in order to get the real server exception. If no any data, we fallback to the generic statusText response.
+For best error message explanation, it's common to take the message inside the body response in order to get the real server exception. If case of empty message or empty response from server, we fallback to the generic statusText response.
 
 ```js
 try {
