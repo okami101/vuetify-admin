@@ -132,9 +132,12 @@ export default (axios, baseURL = "/api") => {
         case GET_MANY:
           let { data, meta } = response.data;
 
-          return Promise.resolve({ data, meta });
+          return Promise.resolve({
+            data,
+            total: meta ? meta.total : data.length,
+          });
         case DELETE:
-          return Promise.resolve({ data: { id: null } });
+          return Promise.resolve();
 
         case GET_ONE:
         case CREATE:
@@ -157,11 +160,11 @@ export default (axios, baseURL = "/api") => {
         params.ids.map((id) =>
           fetchApi(UPDATE, resource, { id, data: params.data })
         )
-      ).then(() => Promise.resolve({ data: { id: null } })),
+      ).then(() => Promise.resolve()),
     [DELETE]: (resource, params) => fetchApi(DELETE, resource, params),
     [DELETE_MANY]: (resource, params) =>
       Promise.all(
         params.ids.map((id) => fetchApi(DELETE, resource, { id }))
-      ).then(() => Promise.resolve({ data: { id: null } })),
+      ).then(() => Promise.resolve()),
   };
 };

@@ -34,12 +34,6 @@ export default {
       default: "primary",
     },
   },
-  created() {
-    /**
-     * Force to current locale
-     */
-    this.changeLocale(this.$i18n.locale);
-  },
   methods: {
     changeLocale(code) {
       this.$store.dispatch(`${this.resource}/changeLocale`, code);

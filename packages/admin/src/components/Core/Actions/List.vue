@@ -361,14 +361,14 @@ export default {
       /**
        * Load paginated and sortad data list
        */
-      let { data, meta } = await this.getList({
+      let { data, total } = await this.getList({
         resource: this.resource,
         params,
       });
 
       this.loading = false;
       this.items = data;
-      this.total = meta ? meta.total : data.length;
+      this.total = total;
     },
     getFieldsQuery(resource, sources, fields = {}) {
       sources.forEach((s) => {

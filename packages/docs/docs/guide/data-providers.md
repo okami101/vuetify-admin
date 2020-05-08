@@ -44,22 +44,7 @@ const dataProvider = {
 }
 ```
 
-> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/dataActions.js) all fetching methods that will be used by Vtec Admin.  
-
-Note : for getList operation, VA expects this response format :
-
-```json
-{
-  "data": [...],
-  "meta": {
-    "total": 1234
-  }
-}
-```
-
-:::warning Paging count
-As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset on server-side on separated meta JSON object.
-:::
+> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/dataActions.js) all fetching methods that will be used by Vtec Admin.
 
 ### Supported API operation methods
 
@@ -152,6 +137,8 @@ As seen [previously](#contract), each provider method takes 2 arguments :
 * `resource` : represents the string name of concerned resource, should be the resource API URL base for each call.
 * `params` : a given object adapted for each type of API call.
 
+#### Method calls signature
+
 Next board represents what object format you should expects as second `params` function arguments for each provider method.
 
 | Method       | Usage                          | Parameters format                                                                                                                                                  |
@@ -164,3 +151,41 @@ Next board represents what object format you should expects as second `params` f
 | `updateMany` | Update multiple resources      | `{ ids: Array, data: Object }`                                                                                                                                     |
 | `delete`     | Delete existing resource       | `{ id: Any }`                                                                                                                                                      |
 | `deleteMany` | Delete multiple resources      | `{ ids: Array }`                                                                                                                                                   |
+
+Some calls examples of Vtec Admin inside each resource store module :
+
+```js
+dataProvider.getList("books", {
+  pagination: { page: 1, perPage: 15 },
+  sort: [{ by: "publication_date", desc: true }, { by: "title", desc: false }],
+  filter: { author: "Cassandra" },
+  include: ["media", "reviews"],
+  fields: { books: ["isbn", "title"], reviews: ["status", "author"] }
+});
+dataProvider.getOne("books", { id: 1 });
+dataProvider.getMany("books", { ids: [1, 2, 3] });
+dataProvider.create("books", { data: { title: "Lorem ipsum" } });
+dataProvider.update("books", { id: 1, data: { title: "New title" } });
+dataProvider.updateMany("books", { ids: [1, 2, 3], data: { commentable: true } });
+dataProvider.delete("books", { id: 1 });
+dataProvider.deleteMany("books", { ids: [1, 2, 3] });
+```
+
+#### Method response format
+
+Each provider's method must return a Provider on given format.
+
+| Operation    | Response format                       |
+| ------------ | ------------------------------------- |
+| `getList`    | `{ data: Resource[], total: Number }` |
+| `getOne`     | `{ data: Resource }`                  |
+| `getMany`    | `{ data: Resource[] }`                |
+| `create`     | `{ data: Resource }`                  |
+| `update`     | `{ data: Resource }`                  |
+| `updateMany` | `empty`                               |
+| `delete`     | `empty`                               |
+| `deleteMany` | `empty`                               |
+
+:::warning Paging count
+As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset on server-side within resources data array.
+:::

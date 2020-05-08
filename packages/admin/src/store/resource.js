@@ -71,7 +71,7 @@ export default ({ provider, resource, i18n }) => {
     namespaced: true,
     state: {
       item: null,
-      locale: null,
+      locale: i18n.locale,
     },
     mutations: {
       setItem(state, item) {
