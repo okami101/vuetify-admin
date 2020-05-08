@@ -137,7 +137,7 @@ As seen [previously](#contract), each provider method takes 2 arguments :
 * `resource` : represents the string name of concerned resource, should be the resource API URL base for each call.
 * `params` : a given object adapted for each type of API call.
 
-#### Method calls signature
+#### Method call signatures
 
 Next board represents what object format you should expects as second `params` function arguments for each provider method.
 
@@ -171,7 +171,7 @@ dataProvider.delete("books", { id: 1 });
 dataProvider.deleteMany("books", { ids: [1, 2, 3] });
 ```
 
-#### Method response format
+#### Method response formats
 
 Each provider's method must return a Provider on given format.
 
@@ -187,5 +187,24 @@ Each provider's method must return a Provider on given format.
 | `deleteMany` | `empty`                               |
 
 :::warning Paging count
-As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset on server-side within resources data array.
+As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset from server-side.
 :::
+
+#### Errors handling
+
+In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is injected into [auth provider](auth-provider#check-error) in order to allows you specific auth action according to a given status code.
+
+For best error message explanation, it's common to take the message inside the body response in order to get the real server exception. If no any data, we fallback to the generic statusText response.
+
+```js
+try {
+  let response = await axios.post(url, data);
+} catch ({ response }) {
+  let { data, status, statusText } = response;
+  return Promise.reject({
+    message: (data && data.message) || statusText,
+    status,
+    data,
+  });
+}
+```

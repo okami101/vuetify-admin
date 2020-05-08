@@ -54,11 +54,8 @@ export default ({ provider, resource, i18n }) => {
           commit("api/setLoading", false, {
             root: true,
           });
-          if (e.response) {
-            dispatch("showError", e.response.data.message);
-          } else {
-            dispatch("showError", e.message);
-          }
+
+          dispatch("showError", e.message);
           dispatch("auth/checkError", e, {
             root: true,
           });

@@ -115,38 +115,44 @@ export default (axios, baseURL = "/api") => {
   };
 
   const fetchApi = async (type, resource, params) => {
+    let response = null;
     let { url, query, method, data } = getRequest(type, resource, params);
 
     if (query) {
       url += `?${query}`;
     }
 
-    let response = await axios[method || "get"](url, data);
-
-    if (response.status >= 200 && response.status < 400) {
-      /**
-       * Get compatible response for Admin
-       */
-      switch (type) {
-        case GET_LIST:
-        case GET_MANY:
-          let { data, meta } = response.data;
-
-          return Promise.resolve({
-            data,
-            total: meta ? meta.total : data.length,
-          });
-        case DELETE:
-          return Promise.resolve();
-
-        case GET_ONE:
-        case CREATE:
-        case UPDATE:
-          return Promise.resolve(response.data);
-      }
+    try {
+      response = await axios[method || "get"](url, data);
+    } catch ({ response }) {
+      let { data, status, statusText } = response;
+      return Promise.reject({
+        message: (data && data.message) || statusText,
+        status,
+        data,
+      });
     }
 
-    return Promise.reject(response);
+    /**
+     * Get compatible response for Admin
+     */
+    switch (type) {
+      case GET_LIST:
+      case GET_MANY:
+        let { data, meta } = response.data;
+
+        return Promise.resolve({
+          data,
+          total: meta ? meta.total : data.length,
+        });
+      case DELETE:
+        return Promise.resolve();
+
+      case GET_ONE:
+      case CREATE:
+      case UPDATE:
+        return Promise.resolve(response.data);
+    }
   };
 
   return {
