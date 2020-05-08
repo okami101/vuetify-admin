@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.1",
         "laravel/ui": "^2.0",
         "symfony/yaml": "^5.0",
+        "tymon/jwt-auth": "^1.0",
         "vtec/laravel-crud": "dev-master"
     },
     "require-dev": {

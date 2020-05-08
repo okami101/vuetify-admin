@@ -241,30 +241,23 @@ export default class VtecAdmin {
        * Check and reload authenticated user with permissions
        * after each navigation
        */
-      await store.dispatch("auth/checkAuth", to);
+      if (to.name !== from.name) {
+        await store.dispatch("auth/checkAuth", to);
 
-      /**
-       * Auto close aside
-       */
-      store.commit("aside/close");
+        /**
+         * Auto close aside
+         */
+        store.commit("aside/close");
 
-      /**
-       * Set main and document title
-       */
-      document.title = to.meta.title
-        ? `${to.meta.title} | ${this.title}`
-        : this.title;
+        /**
+         * Set main and document title
+         */
+        document.title = to.meta.title
+          ? `${to.meta.title} | ${this.title}`
+          : this.title;
+      }
 
       next();
-    });
-
-    /**
-     * Recheck auth on app visible (switching tabs,...)
-     */
-    document.addEventListener("visibilitychange", async () => {
-      if (!document.hidden) {
-        store.dispatch("auth/checkAuth");
-      }
     });
   }
 }

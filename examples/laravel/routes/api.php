@@ -15,6 +15,13 @@ use Vtec\Crud\Http\Middleware\Impersonate;
 |
 */
 
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+});
+
 Route::group(['middleware' => Impersonate::class], function () {
     Route::get('/user', function (Request $request) {
         return new UserResource($request->user());

@@ -2,15 +2,7 @@
   <va-input v-bind="$props" class="va-rich-text-input">
     <editor
       :api-key="apiKey"
-      :init="{
-        language,
-        height,
-        menubar,
-        plugins,
-        toolbar,
-        inline,
-        file_picker_callback: elFinderBrowser,
-      }"
+      :init="init"
       :value="input"
       @change="change"
       @input="update"
@@ -58,44 +50,59 @@ export default {
       apiKey: process.env.VUE_APP_TINYMCE_API_KEY,
     };
   },
-  methods: {
-    elFinderBrowser(callback, value, meta) {
-      tinymce.activeEditor.windowManager.openUrl({
-        title: this.$t("va.file_manager"),
-        url: this.$admin.fileBrowserUrl,
-        /**
-         * On message will be triggered by the child window
-         *
-         * @param dialogApi
-         * @param details
-         * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
-         */
-        onMessage: function (dialogApi, details) {
-          if (details.mceAction === "fileSelected") {
-            const file = details.data.file;
+  computed: {
+    init() {
+      let init = {
+        language: this.language,
+        height: this.height,
+        menubar: this.menubar,
+        plugins: this.plugins,
+        toolbar: this.toolbar,
+        inline: this.inline,
+      };
 
-            // Make file info
-            const info = file.name;
+      if (this.$admin.fileBrowserUrl) {
+        init.file_picker_callback = (callback, value, meta) => {
+          tinymce.activeEditor.windowManager.openUrl({
+            title: this.$t("va.file_manager"),
+            url: this.$admin.fileBrowserUrl,
+            /**
+             * On message will be triggered by the child window
+             *
+             * @param dialogApi
+             * @param details
+             * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
+             */
+            onMessage: function (dialogApi, details) {
+              if (details.mceAction === "fileSelected") {
+                const file = details.data.file;
 
-            // Provide file and text for the link dialog
-            if (meta.filetype === "file") {
-              callback(file.url, { text: info, title: info });
-            }
+                // Make file info
+                const info = file.name;
 
-            // Provide image and alt text for the image dialog
-            if (meta.filetype === "image") {
-              callback(file.url, { alt: info });
-            }
+                // Provide file and text for the link dialog
+                if (meta.filetype === "file") {
+                  callback(file.url, { text: info, title: info });
+                }
 
-            // Provide alternative source and posted for the media dialog
-            if (meta.filetype === "media") {
-              callback(file.url);
-            }
+                // Provide image and alt text for the image dialog
+                if (meta.filetype === "image") {
+                  callback(file.url, { alt: info });
+                }
 
-            dialogApi.close();
-          }
-        },
-      });
+                // Provide alternative source and posted for the media dialog
+                if (meta.filetype === "media") {
+                  callback(file.url);
+                }
+
+                dialogApi.close();
+              }
+            },
+          });
+        };
+      }
+
+      return init;
     },
   },
 };

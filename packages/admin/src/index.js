@@ -10,7 +10,11 @@ import * as ui from "./components/UI";
  */
 import VtecAdmin from "./admin";
 import objectToFormData from "./utils/objectToFormData";
-import { laravelDataProvider, sanctumAuthProvider } from "./providers";
+import {
+  laravelDataProvider,
+  sanctumAuthProvider,
+  jwtAuthProvider,
+} from "./providers";
 import { en, fr } from "./locales";
 
 /**
@@ -26,7 +30,7 @@ export { objectToFormData };
 /**
  * All providers
  */
-export { laravelDataProvider, sanctumAuthProvider };
+export { laravelDataProvider, sanctumAuthProvider, jwtAuthProvider };
 
 /**
  * All locales
