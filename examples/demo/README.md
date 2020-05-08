@@ -14,6 +14,7 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 ## Features
 
 * Usage of sanctum auth provider and laravel data providers
+* Can be easily switched to JWT stateless authentication
 * Profile edition
 * User management with simple roles and impersonation support
 * Common list/create/show/edit bookstore resources views with :
@@ -34,6 +35,53 @@ Before following steps you must prepare the API demo by following [this steps](.
 If API different than default localhost:8000 then adapt your environment variables after `cp .env .env.local`
 
 Then just `yarn serve --open` and it should be autostart !
+
+### Stateless authentication
+
+For JWT provider testing purpose, the [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package is already preconfigured for this project. In order to switch auth mode, simply follow following steps.
+
+#### Laravel demo
+
+First, change default guard to `api` :
+
+```php
+// app/auth.php
+'defaults' => [
+    'guard' => 'api',
+    'passwords' => 'users',
+],
+```
+
+Next, comment `EnsureFrontendRequestsAreStateful` middleware :
+
+```php
+// src/Http/Kernel.php
+'api' => [
+    //\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    'throttle:300,1',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    \Vtec\Crud\Http\Middleware\ReadOnly::class,
+],
+```
+
+#### Vue CLI demo
+
+Replace `sanctumAuthProvider` by `jwtAuthProvider` :
+
+```js
+// src/plugins/admin.js
+import { laravelDataProvider, jwtAuthProvider } from "vtec-admin";
+//...
+export default new VtecAdmin({
+  //...
+  authProvider: jwtAuthProvider(http),
+  //...
+});
+```
+
+It should be now already fully working as a real stateless app ! JWT will be saved inside localStorage.
+
+> Note that in this mode, you lose few features which needs statefull session in order to work, as impersonation and elFinder for file management.
 
 ## License
 

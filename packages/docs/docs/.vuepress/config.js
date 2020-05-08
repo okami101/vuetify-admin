@@ -6,10 +6,10 @@ module.exports = (ctx) => ({
       title: "Vtec Admin",
       description: "SPA Admin Library",
     },
-    /*'/fr/': {
-      lang: 'fr-FR',
-      title: 'Vtec Admin',
-      description: 'Librairie Admin SPA'
+    /*"/fr/": {
+      lang: "fr-FR",
+      title: "Vtec Admin",
+      description: "Librairie Admin SPA"
     }*/
   },
   head: [
@@ -43,23 +43,23 @@ module.exports = (ctx) => ({
           },
         ],
         sidebar: {
-          "/guide/": getGuideSidebar("Guide", "Zero to One", "Components", "Advanced"),
+          "/guide/": getGuideSidebar("Guide", "Zero to One", "Components"),
         },
       },
-      /*'/fr/': {
-        label: 'Français',
-        selectText: 'Langues',
-        ariaLabel: 'Sélectionner une langue',
-        editLinkText: 'Editer cette page sur Github',
-        lastUpdated: 'Dernière mise à jour',
+      /*"/fr/": {
+        label: "Français",
+        selectText: "Langues",
+        ariaLabel: "Sélectionner une langue",
+        editLinkText: "Editer cette page sur Github",
+        lastUpdated: "Dernière mise à jour",
         nav: [
           {
-            text: 'Guide',
-            link: '/fr/guide/'
+            text: "Guide",
+            link: "/fr/guide/"
           }
         ],
         sidebar: {
-          '/fr/guide/': getGuideSidebar('Guide', 'Avancé')
+          "/fr/guide/": getGuideSidebar("Guide", "Zéro à Un", "Composants")
         }
       }*/
     },
@@ -74,13 +74,13 @@ module.exports = (ctx) => ({
       },
     ],
     ["@vuepress/medium-zoom", true],
-    ['vuepress-plugin-code-copy', {
-      color: '#41b883'
+    ["vuepress-plugin-code-copy", {
+      color: "#41b883"
     }]
   ],
 });
 
-function getGuideSidebar(groupA, groupB, groupC, groupD) {
+function getGuideSidebar(groupA, groupB, groupC) {
   return [
     {
       title: groupA,
@@ -97,9 +97,12 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
       collapsable: false,
       children: [
         "data-providers",
+        "authentication",
         "admin",
         "resources",
         "i18n",
+        "authorization",
+        "generators",
       ],
     },
     {
@@ -111,15 +114,6 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
         "components/crud",
         "components/fields",
         "components/inputs",
-      ],
-    },
-    {
-      title: groupD,
-      collapsable: false,
-      children: [
-        "authentication",
-        "authorization",
-        "generators",
       ],
     },
   ];
