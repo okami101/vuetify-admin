@@ -27,7 +27,7 @@ All fetching methods of a data provider is standardized in order to ensure compa
 
 In order to give to Vtec Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin).
 
-## API Contract
+## [API Contract](#contract)
 
 As always for any adapter pattern approach, all data providers must respect a given contract in order to allow communication with Vtec Admin. Next object represents the minimal contract that must be implemented :
 
@@ -107,16 +107,16 @@ You even can use it easily without official package if you use [Laravel Query Bu
 
 ### Methods to API call
 
-| Operation  | API Call Format                                                                                          |
-| ---------- | -------------------------------------------------------------------------------------------------------- |
-| getList    | GET /books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=-name&filter={"q":"douglas"} |
-| getOne     | GET /books/1                                                                                             |
-| getMany    | GET /books?filter={"id":[1,2,3]}                                                                         |
-| create     | POST /books                                                                                              |
-| update     | PUT /books/1                                                                                             |
-| updateMany | Multiple calls to PUT /books/{id}                                                                        |
-| delete     | DELETE /books/1                                                                                          |
-| deleteMany | Multiple calls to DELETE /books/{id}                                                                     |
+| Operation    | API Call Format                                                                                                |
+| ------------ | -------------------------------------------------------------------------------------------------------------- |
+| `getList`    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=-name&filter={"q":"douglas"}` |
+| `getOne`     | **GET** `/books/1`                                                                                             |
+| `getMany`    | **GET** `/books?filter={"id":[1,2,3]}`                                                                         |
+| `create`     | **POST** `/books`                                                                                              |
+| `update`     | **PUT** `/books/1`                                                                                             |
+| `updateMany` | Multiple calls to **PUT** `/books/{id}`                                                                        |
+| `delete`     | **DELETE** `/books/1`                                                                                          |
+| `deleteMany` | Multiple calls to **DELETE** `/books/{id}`                                                                     |
 
 > For `DESC` sorting, we use a simple dash before the sortable field. Multiple sort is supported by simply adding more sortable fields separated by comma.
 > The `include` parameter is used for eager loading relation.
@@ -147,13 +147,20 @@ For better reusability, a dedicated converter is available [here](https://github
 
 ### Writing your own provider
 
-| Method     | Usage                          | Parameters format                                                                                                  |
-| ---------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| getList    | Search for resources           | `{ pagination: { page: Number , perPage: Number }, sort: [ field: {string}, order: {string} ], filter: {Object} }` |
-| getOne     | Fetch one resource by id       | `{ id: Any }`                                                                                                      |
-| getMany    | Fetch multiple resource by ids | `{ ids: Array }`                                                                                                   |
-| create     | Create new resource            | `{ data: Object }`                                                                                                 |
-| update     | Update existing resource       | `{ id: Any, data: Object }`                                                                                        |
-| updateMany | Update multiple resources      | `{ ids: Array, data: Object }`                                                                                     |
-| delete     | Delete existing resource       | `{ id: Any }`                                                                                                      |
-| deleteMany | Delete multiple resources      | `{ ids: Array }`                                                                                                   |
+As seen [previously](#contract), each provider method takes 2 arguments :
+
+* `resource` : represents the string name of concerned resource, should be the resource API URL base for each call.
+* `params` : a given object adapted for each type of API call.
+
+Next board represents what object format you should expects as second `params` function arguments for each provider method.
+
+| Method       | Usage                          | Parameters format                                                                                                                                                  |
+| ------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `getList`    | Search for resources           | `{ pagination: { page: Number , perPage: Number }, sort: [{ by: String, desc: Boolean }], filter: Object }, include: String[], fields: { [resource]: String[] } }` |
+| `getOne`     | Fetch one resource by id       | `{ id: Any }`                                                                                                                                                      |
+| `getMany`    | Fetch multiple resource by ids | `{ ids: Array, include: String[], fields: { [resource]: String[] } }`                                                                                              |
+| `create`     | Create new resource            | `{ data: Object }`                                                                                                                                                 |
+| `update`     | Update existing resource       | `{ id: Any, data: Object }`                                                                                                                                        |
+| `updateMany` | Update multiple resources      | `{ ids: Array, data: Object }`                                                                                                                                     |
+| `delete`     | Delete existing resource       | `{ id: Any }`                                                                                                                                                      |
+| `deleteMany` | Delete multiple resources      | `{ ids: Array }`                                                                                                                                                   |
