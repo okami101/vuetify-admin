@@ -9,7 +9,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 > Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) -> use prefilled login (read only)  
 > Note : this project is heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
 
-![demo](/screenshot.png)
+![demo](/assets/screenshot.png)
 
 <div class="features">
   <div class="feature">
