@@ -9,6 +9,7 @@ import * as ui from "./components/UI";
  * Main JS App
  */
 import VtecAdmin from "./admin";
+import objectToFormData from "./utils/objectToFormData";
 import { laravelDataProvider, sanctumAuthProvider } from "./providers";
 import { en, fr } from "./locales";
 
@@ -16,6 +17,11 @@ import { en, fr } from "./locales";
  * Main admin entry
  */
 export default VtecAdmin;
+
+/**
+ * Some utils
+ */
+export { objectToFormData };
 
 /**
  * All providers

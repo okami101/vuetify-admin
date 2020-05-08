@@ -10,11 +10,11 @@ import {
 } from "../utils/dataActions";
 import objectToFormData from "../utils/objectToFormData";
 
-export default (axios, baseUrl = "/api") => {
+export default (axios, baseURL = "/api") => {
   const getRequest = (type, resource, params = {}) => {
     const searchParams = new URLSearchParams();
-    const resourceUrl = `${baseUrl}/${resource}`;
-    const itemUrl = `${resourceUrl}/${params.id}`;
+    const resourceURL = `${baseURL}/${resource}`;
+    const itemURL = `${resourceURL}/${params.id}`;
 
     if (params.locale) {
       searchParams.append("locale", params.locale);
@@ -44,7 +44,7 @@ export default (axios, baseUrl = "/api") => {
           if ((params.ids || []).length) {
             searchParams.append("filter[id]", params.ids.join(","));
           }
-          return { url: `${resourceUrl}?${searchParams.toString()}` };
+          return { url: `${resourceURL}?${searchParams.toString()}` };
         }
 
         if (pagination) {
@@ -79,14 +79,14 @@ export default (axios, baseUrl = "/api") => {
           });
         }
 
-        return { url: resourceUrl, query: searchParams.toString() };
+        return { url: resourceURL, query: searchParams.toString() };
 
       case GET_ONE:
-        return { url: itemUrl, query: searchParams.toString() };
+        return { url: itemURL, query: searchParams.toString() };
 
       case CREATE:
         return {
-          url: resourceUrl,
+          url: resourceURL,
           query: searchParams.toString(),
           method: "post",
           data: objectToFormData(params.data),
@@ -97,7 +97,7 @@ export default (axios, baseUrl = "/api") => {
         form.append("_method", "PUT");
 
         return {
-          url: itemUrl,
+          url: itemURL,
           query: searchParams.toString(),
           method: "post",
           data: form,
@@ -105,7 +105,7 @@ export default (axios, baseUrl = "/api") => {
 
       case DELETE:
         return {
-          url: itemUrl,
+          url: itemURL,
           method: "delete",
         };
 
@@ -132,10 +132,7 @@ export default (axios, baseUrl = "/api") => {
         case GET_MANY:
           let { data, meta } = response.data;
 
-          return Promise.resolve({
-            data,
-            total: meta ? meta.total : data.length,
-          });
+          return Promise.resolve({ data, meta });
         case DELETE:
           return Promise.resolve({ data: { id: null } });
 
