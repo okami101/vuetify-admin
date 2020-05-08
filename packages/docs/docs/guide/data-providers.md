@@ -44,5 +44,23 @@ const dataProvider = {
 }
 ```
 
-[dataActions contract](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/dataActions.js)
-[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/laravelDataProvider.js)
+> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/dataActions.js) all fetching methods that will be used by Vtec Admin.  
+
+### Supported API operation methods
+
+* getList : Used for all resources browsing context, as
+  * [Data iterator component](components/list) for showing list of resources inside datagrid or any custom list layout component.
+  * [Export button](components/list#export) for filtred CSV resources exporting.
+  * Entity referable choices component as [Autocomplete](components/inputs#autocomplete), [Select](components/inputs#select), or [RadioGroup](components/inputs#radio-group).
+* getOne : For showing detail of resource, mainly for [Show page](components/crud#show) or datagrid show actions.
+* getMany : Only used for [Autocomplete](components/inputs#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](components/crud#edit) or [query context filtering](components/list#filter). As opposed to React Admin, Vtec Admin does'nt actually have a [Reference field](https://marmelab.com/react-admin/Fields.html#referencefield) which the main purpose of getMany operation.
+
+### Laravel Data Provider
+
+[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/laravelDataProvider.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing your's. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
+
+This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel).
+
+:::tip Existing Laravel Project
+You even can use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel implementations.
+:::

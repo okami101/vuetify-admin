@@ -1,5 +1,7 @@
 stateDiagram
   state DataTransfer {
+    CRUDPages --> VtecAdmin: Interaction
+    VtecAdmin --> CRUDPages: Show / Message
     VtecAdmin --> DataProvider: Data query
     DataProvider --> API: HTTP
     API --> DataProvider: Response

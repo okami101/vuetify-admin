@@ -257,7 +257,7 @@ export default {
         return;
       }
 
-      let titleKey = `resources.users.titles.${action}`;
+      let titleKey = `resources.${this.resource}.titles.${action}`;
       let hasItem = action !== "create";
 
       let title = hasItem
@@ -269,7 +269,7 @@ export default {
        * Get freshed item
        */
       let { data } = await this.getOne({
-        resource: "users",
+        resource: this.resource,
         params: { id: item.id },
       });
       this.$store.commit(`${this.resource}/setItem`, data);
