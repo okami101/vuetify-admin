@@ -147,4 +147,13 @@ For better reusability, a dedicated converter is available [here](https://github
 
 ### Writing your own provider
 
-// TODO
+| Method     | Usage                          | Parameters format                                                                                                  |
+| ---------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| getList    | Search for resources           | `{ pagination: { page: Number , perPage: Number }, sort: [ field: {string}, order: {string} ], filter: {Object} }` |
+| getOne     | Fetch one resource by id       | `{ id: Any }`                                                                                                      |
+| getMany    | Fetch multiple resource by ids | `{ ids: Array }`                                                                                                   |
+| create     | Create new resource            | `{ data: Object }`                                                                                                 |
+| update     | Update existing resource       | `{ id: Any, data: Object }`                                                                                        |
+| updateMany | Update multiple resources      | `{ ids: Array, data: Object }`                                                                                     |
+| delete     | Delete existing resource       | `{ id: Any }`                                                                                                      |
+| deleteMany | Delete multiple resources      | `{ ids: Array }`                                                                                                   |
