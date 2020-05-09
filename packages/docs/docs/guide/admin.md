@@ -1,22 +1,74 @@
 # Admin
 
+## Initial Project Directory Structure
+
+Once installed Vtec Admin by his Vue CLI Plugin as shown in [Getting Started](getting-started), you should get this following `src` directory structure :
+
+:::vue
+src
+├── assets
+├── components
+│   ├── Base
+│   ├── Buttons
+│   │   └── ImpersonateButton.vue
+│   └── ImpersonateMessage.vue
+│
+├── layouts
+│   └── Admin.vue
+│
+├── locales
+│   ├── en.json
+│   └── fr.json
+│
+├── plugins
+│   ├── admin.js
+│   ├── base.js
+│   ├── chartist.js
+│   └── vuetify.js
+│
+├── resources
+│   ├── Users
+│   │   ├── Form.vue
+│   │   ├── List.vue
+│   │   └── Show.vue
+│   └── index.js
+│
+├── router
+│   ├── admin.js
+│   └── index.js
+│
+├── sass
+│   ├── vuetify-material
+│   ├── overrides.sass
+│   └── variables.scss
+│
+├── store
+│   └── index.js
+│
+├── views
+│   ├── Dashboard.vue _(**Static Dashboard Sample**)_
+│   ├── [Login.vue](authentication#login-page)
+│   └── [Profile.vue](authentication#profile-page)
+│
+├── `_nav.js` _(**Main Sidebar Menu**)_
+├── App.vue
+├── `i18n.js` _(**Vue I18n Plugin**)_
+└── main.js
+:::
+
 ## Instantiation
 
-In order to operate, VtecAdmin constructor needs all of this options :
+In order to operate, VtecAdmin constructor needs all of this parameters :
 
 * Vue Router instance, which can contains all your custom routes, for automatic resource URL Crud pages registering.
 * Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.
 * Vue I18n instance, which can contains all your custom localized labels, for full internationalization support.
 * Title of your admin app.
+* List of authenticated routes, which will inherit from all admin layout.
 * At least one provided locale, only `en` and `fr` are 100% supported, but you can easily add your own by following [this model](src/locales/fr.json).
 * Auth and data providers (see next section).
 * Optional file browser URL, which will appear on included TinyMCE file picker.
-* A resources array which contain all resources to administer. Each resource can have :
-  * A mandatory slug name which will be used for api url calls.
-  * An icon for identify it in sidebar or list page.
-  * Indicator if this resource can be translated, in this case, a new query string with locale will be added on each api calls, it's up to you to handle it on backend.
-  * List of available actions for this resource. By default all 5 operations are active (list / show / create / edit / delete). You can use `except` or `only` properties for blacklist or whitelist few actions. All removed actions will reflected on all crud pages and Vue Router will be adapted accordingly.
-  * Permissions for user resource operations filtering.
+* A resources array which contain all resources to administer. More detail of resource object structure [here](resources).
 
 **`src/plugins/admin.js`**
 

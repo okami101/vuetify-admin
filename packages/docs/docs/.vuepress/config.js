@@ -76,7 +76,12 @@ module.exports = (ctx) => ({
     ["@vuepress/medium-zoom", true],
     ["vuepress-plugin-code-copy", {
       color: "#41b883"
-    }]
+    }],
+    ["container", {
+      type: "vue",
+      before: "<pre class=\"vue-container\"><code>",
+      after: "</code></pre>"
+    }],
   ],
 });
 
