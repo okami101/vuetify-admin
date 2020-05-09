@@ -19,7 +19,8 @@ If your API don't need auth at all, simply don't set the `authProvider` option i
 
 ### Full state cookies authentication
 
-with [Laravel Sanctum](https://github.com/laravel/sanctum). This is still the recommended way if your app is on the same main domain (which is 99% use cases), because it's more secure (no sensible to XSS attacks with HTTP only cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
+The [Laravel Sanctum Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/sanctum.js) offers full integration with [Laravel Sanctum](https://github.com/laravel/sanctum), the ideal official package for full state SPA authentication support.  
+This is actually the recommended provider if your app is on the same main domain (which is 99% use cases), because it's more secure (no sensible to XSS attacks with HTTP only cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
 
 ### JWT for stateless authentication
 

@@ -6,20 +6,12 @@ import {
   GET_NAME,
   GET_EMAIL,
   GET_PERMISSIONS,
-} from "../utils/authActions";
+} from "../../utils/authActions";
 
 export default (axios, options = {}) => {
   options = {
     routes: {
-      login: "/auth/login",
-      logout: "/auth/logout",
       user: "/api/user",
-    },
-    credentials: ({ username, password }) => {
-      return {
-        email: username,
-        password,
-      };
     },
     getName: (u) => u.name,
     getEmail: (u) => u.email,
@@ -27,29 +19,24 @@ export default (axios, options = {}) => {
     ...options,
   };
 
-  let { routes, credentials, getName, getEmail, getPermissions } = options;
+  let { routes, getName, getEmail, getPermissions } = options;
 
   return {
     [LOGIN]: async ({ username, password }) => {
-      /**
-       * Get CSRF cookie
-       */
-      await axios.get("/sanctum/csrf-cookie");
-
-      let response = await axios.post(
-        routes.login,
-        credentials({ username, password })
-      );
-
-      if (response.status < 200 || response.status >= 300) {
-        throw new Error(response.statusText);
-      }
+      axios.defaults.auth = {
+        username,
+        password,
+      };
     },
-    [LOGOUT]: async () => {
-      await axios.post(routes.logout);
+    [LOGOUT]: () => {
+      delete axios.defaults.auth;
       return Promise.resolve();
     },
     [CHECK_AUTH]: async () => {
+      if (!axios.defaults.auth) {
+        throw new Error("Unauthenticated");
+      }
+
       let response = await axios.get(routes.user);
 
       if (response.status < 200 || response.status >= 300) {
@@ -60,6 +47,7 @@ export default (axios, options = {}) => {
     },
     [CHECK_ERROR]: ({ status }) => {
       if (status === 401 || status === 403) {
+        delete axios.defaults.auth;
         return Promise.reject();
       }
       return Promise.resolve();

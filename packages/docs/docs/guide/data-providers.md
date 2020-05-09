@@ -82,7 +82,7 @@ In case of a [translatable resource](i18n#translatable), Vtec Admin will add an 
 
 ## Laravel Data Provider
 
-[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/laravelDataProvider.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing your's. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
+[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing your's. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
 
 This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel).
 
