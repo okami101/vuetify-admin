@@ -8,7 +8,6 @@ import {
 
 export default {
   namespaced: true,
-  state: { loaded: true },
   getters: {
     [GET_NAME]() {
       return null;
@@ -18,9 +17,6 @@ export default {
     },
     [GET_PERMISSIONS]() {
       return [];
-    },
-    isLoggedIn() {
-      return true;
     },
   },
   actions: {

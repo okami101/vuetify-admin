@@ -29,6 +29,7 @@ import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
 import { en, fr } from "vtec-admin";
 
 import router from "@/router";
+import routes from "@/router/admin";
 import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
@@ -41,6 +42,7 @@ export default new VtecAdmin({
   store,
   i18n,
   title: "My Admin App",
+  routes,
   locales: { en, fr },
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),

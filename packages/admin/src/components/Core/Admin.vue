@@ -1,5 +1,5 @@
 <template>
-  <v-app v-if="loaded">
+  <v-app>
     <template>
       <slot name="header"></slot>
       <slot name="sidebar"></slot>
@@ -36,11 +36,6 @@ export default {
     AppAside,
     AppMessages,
     AppBreadcrumbs,
-  },
-  computed: {
-    ...mapState({
-      loaded: (state) => state.auth.loaded,
-    }),
   },
 };
 </script>

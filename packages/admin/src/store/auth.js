@@ -11,11 +11,10 @@ import {
 export default (provider, router) => {
   return {
     namespaced: true,
-    state: { user: null, loaded: false },
+    state: { user: null },
     mutations: {
       setUser(state, user) {
         state.user = user;
-        state.loaded = true;
       },
     },
     getters: {
