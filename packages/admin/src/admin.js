@@ -240,12 +240,13 @@ export default class VtecAdmin {
      * Check Auth after each navigation
      */
     router.beforeEach(async (to, from, next) => {
-      /**
-       * Check and reload authenticated user with permissions
-       * after each navigation
-       */
       if (to.name !== from.name) {
-        await store.dispatch("auth/checkAuth", to);
+        /**
+         * Set main and document title
+         */
+        document.title = to.meta.title
+          ? `${to.meta.title} | ${this.title}`
+          : this.title;
 
         /**
          * Auto close aside
@@ -253,11 +254,10 @@ export default class VtecAdmin {
         store.commit("aside/close");
 
         /**
-         * Set main and document title
+         * Check and refresh authenticated user with last permissions
+         * after each navigation
          */
-        document.title = to.meta.title
-          ? `${to.meta.title} | ${this.title}`
-          : this.title;
+        await store.dispatch("auth/checkAuth", to);
       }
 
       next();
