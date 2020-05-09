@@ -11,7 +11,7 @@ import {
 export default (axios, params = {}) => {
   params = {
     routes: {
-      user: "/api/user",
+      user: null,
     },
     getName: (u) => u.name,
     getEmail: (u) => u.email,
@@ -35,6 +35,14 @@ export default (axios, params = {}) => {
     [CHECK_AUTH]: async () => {
       if (!axios.defaults.auth) {
         throw new Error("Unauthenticated");
+      }
+
+      if (!routes.user) {
+        return {
+          data: {
+            name: axios.defaults.auth.username,
+          },
+        };
       }
 
       let response = await axios.get(routes.user);

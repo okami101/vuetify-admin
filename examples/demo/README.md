@@ -97,7 +97,7 @@ On server-side, replace `EnsureFrontendRequestsAreStateful` middleware by `auth.
 ],
 ```
 
-Finally, replace `sanctumAuthProvider` by `basicAuthProvider` :
+Finally, replace `sanctumAuthProvider` by `basicAuthProvider` as following :
 
 ```js
 // src/plugins/admin.js
@@ -105,7 +105,11 @@ import { laravelDataProvider, basicAuthProvider } from "vtec-admin";
 //...
 export default new VtecAdmin({
   //...
-  authProvider: basicAuthProvider(http),
+  authProvider: basicAuthProvider(http, {
+    routes: {
+      user: "/api/user",
+    }
+  }),
   //...
 });
 ```

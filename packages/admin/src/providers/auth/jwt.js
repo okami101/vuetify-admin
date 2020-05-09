@@ -16,7 +16,8 @@ export default (axios, params = {}) => {
       refresh: "api/auth/refresh",
       user: "api/auth/me",
     },
-    tokenProp: "access_token",
+    storageKey: "jwt_token",
+    getToken: (r) => r.access_token,
     getCredentials: ({ username, password }) => {
       return {
         email: username,
@@ -31,11 +32,12 @@ export default (axios, params = {}) => {
 
   let {
     routes,
+    storageKey,
     getCredentials,
     getName,
     getEmail,
     getPermissions,
-    tokenProp,
+    getToken,
   } = params;
 
   /**
@@ -43,7 +45,7 @@ export default (axios, params = {}) => {
    */
   const updateToken = () => {
     delete axios.defaults.headers.common["Authorization"];
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem(storageKey);
 
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -63,13 +65,13 @@ export default (axios, params = {}) => {
         throw new Error(response.statusText);
       }
 
-      localStorage.setItem("token", response.data[tokenProp]);
+      localStorage.setItem(storageKey, getToken(response.data));
       updateToken();
     },
     [LOGOUT]: async () => {
       await axios.post(routes.logout);
 
-      localStorage.removeItem("token");
+      localStorage.removeItem(storageKey);
       updateToken();
       return Promise.resolve();
     },
@@ -85,7 +87,7 @@ export default (axios, params = {}) => {
        */
       if (routes.refresh) {
         let response = await axios.post(routes.refresh);
-        localStorage.setItem("token", response.data[tokenProp]);
+        localStorage.setItem(storageKey, getToken(response.data));
         updateToken();
       }
 
@@ -93,7 +95,7 @@ export default (axios, params = {}) => {
     },
     [CHECK_ERROR]: ({ status }) => {
       if (status === 401 || status === 403) {
-        localStorage.removeItem("token");
+        localStorage.removeItem(storageKey);
         updateToken();
         return Promise.reject();
       }

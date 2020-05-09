@@ -4,11 +4,11 @@ Vtec Admin is first of all an admin app, so it obviously offers few batteries he
 
 ![login](/assets/login.jpg)
 
-As explained on next chapiter, VA provides 3 auth providers :
+As explained on next chapiter, VA provides 3 configurable auth providers :
 
-* Basic HTTP authentication.
-* JWT for stateless authentication.
-* Full state cookie authentication which is the recommended way.
+* `basicAuthProvider` : Basic HTTP authentication.
+* `jwtAuthProvider` : JWT for stateless authentication.
+* `sanctumAuthProvider` : Full state cookie authentication which is the recommended way.
 
 :::tip GUEST MODE
 Note that the auth provider is of course totally optional !  
@@ -48,34 +48,52 @@ export default new VtecAdmin({
 });
 ```
 
+All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
+
 :::tip GLOBAL AXIOS
 Pass axios instance into global Vue prototype in order to access it everywhere on your custom Vue components by `this.$axios...`. You just have to write `Vue.prototype.$axios = http;` for that.  
 Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusivly use providers for API communication.
 :::
 
-All providers accept a second params argument for various optional parameters as authentication routes, credentials format, etc.
+In addition to axios, a second `params` optional argument can be used for various parameters as authentication routes, credentials format, etc.
 
-| Option           | Description                                                                              |
-| ---------------- | ---------------------------------------------------------------------------------------- |
-| `routes`         | Object containing all auth routes baseURL, aka login, logout, refresh (JWT), user infos  |
-| `getCredentials` | Function mapper for credentials that return a compatible credentials format for your API |
-| `getName`        | Function which return name of a given user (taken from user infos API endpoint)          |
-| `getEmail`       | Function which return email of a given user                                              |
-| `getPermissions` | Function which return roles or permissions of a given user                               |
+| Option           | Description                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------------------- |
+| `routes`         | Object containing all auth routes baseURL, aka login, logout, refresh (JWT), user infos               |
+| `storageKey`     | JWT only, key name of local storage which will store the token, default to `jwt_token`                |
+| `getToken`       | JWT only, function which return token from a successful login API response, default to `access_token` |
+| `getCredentials` | Function mapper for credentials that return a compatible credentials format for your API              |
+| `getName`        | Function which return name of a given user (taken from user infos API endpoint), default to `name`    |
+| `getEmail`       | Function which return email of a given user, , default to `email`                                     |
+| `getPermissions` | Function which return roles or permissions of a given user, default to `roles`                        |
 
 ### Full state cookies authentication
 
 The [Laravel Sanctum Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/sanctum.js) offers full integration with [Laravel Sanctum](https://github.com/laravel/sanctum), the ideal official package for full state SPA authentication support.  
-This is actually the recommended provider for Laravel if your app is on the same main domain (which is 99% use cases), because it's more secure (no sensible to XSS attacks with HTTP only cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
+This is actually the recommended provider for Laravel if your app is on the same main domain (which is 99% use cases), because it's more secure (insensitive to XSS attacks thanks to HttpOnly cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
 
 :::warning CSRF
-As always with all based-cookies authentication system, you'll need a specific csrf route in order to get the XSRF token. Default is setted to `/sanctum/csrf-cookie` so you have not to do anything if you use Laravel Sanctum with default config.  
-This token will be setted on local cookies and used on every axios header request via `XSRF-COOKIE`.
+As always with all based-cookies authentication system, you'll need a specific `csrf` route in order to get the XSRF token. Default is setted to `/sanctum/csrf-cookie` so you have not to do anything if you use Laravel Sanctum with default config.  
+By calling this URL, a local `XSRF-TOKEN` cookies will be stored with HttpOnly setted to `false`. This allows axios to fetch it and set it as header request via `X-XSRF-TOKEN` for every next requests.  
+Don't forget to set `withCredentials` axios config to `true` order to include session cookies on ever XHR request.
 :::
+
+In order to work on fresh Laravel project, simply run `composer require laravel/sanctum` and be sure to add the middleware for `api` routes :
+
+```php{3}
+// app/Http/Kernel.php
+'api' => [
+    \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    'throttle:300,1',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
+],
+```
 
 ### JWT for stateless authentication
 
-The [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/jwt.js) is fully tested on Laravel with [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package. It should work with official [Laravel Passwort](https://github.com/laravel/passport) as well.
+Use the [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/jwt.js) for HTTP stateless authentication. It was fully tested on Laravel with [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package. It should work with official [Laravel Passwort](https://github.com/laravel/passport) as well.
+
+With this provider, a simple bearer token will be injected on `Authorization` header for every next XHR requests. The JWT will be stored inside user localStorage under a configurable key. A specific `refresh` routes can be used if you want auto refresh token on every page change.
 
 :::danger LESS FEATURES
 If you prefer to use JWT (or even basic...) authentication mode instead of Sanctum, you'll lose elFinder integration as well as impersonation feature.
@@ -83,7 +101,24 @@ If you prefer to use JWT (or even basic...) authentication mode instead of Sanct
 
 ### Basic HTTP authentication
 
-The [Basic HTTP Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/basic.js) is to use only on basic cases.
+The [Basic HTTP Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/basic.js) can be used for basic cases. The full basic auth credentials will be simply sent to every XHR requests.
+
+By default, basic auth will just return the username used for credentials. If you prefer use a specific API endpoint in order to give to VA more user informations, which is recommended if you need functional profile editing, you must set the user route as follow :
+
+```js{7-9}
+// src/plugins/admin.js
+import { laravelDataProvider, basicAuthProvider } from "vtec-admin";
+//...
+export default new VtecAdmin({
+  //...
+  authProvider: basicAuthProvider(http, {
+    routes: {
+      user: "/api/user",
+    }
+  }),
+  //...
+});
+```
 
 ## Profile management
 
