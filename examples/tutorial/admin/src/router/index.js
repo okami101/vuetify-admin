@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import AdminLayout from "@/layouts/Admin";
 import Login from "@/views/Login";
 import Profile from "@/views/Profile";
 import Dashboard from "@/views/Dashboard";
@@ -9,11 +10,6 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/",
-        name: "home",
-        redirect: "/dashboard",
-    },
-    {
         path: "/login",
         name: "login",
         component: Login,
@@ -22,20 +18,28 @@ const routes = [
         },
     },
     {
-        path: "/profile",
-        name: "profile",
-        component: Profile,
-        meta: {
-            title: i18n.t("routes.profile"),
-        },
-    },
-    {
-        path: "/dashboard",
-        name: "dashboard",
-        component: Dashboard,
-        meta: {
-            title: i18n.t("routes.dashboard"),
-        },
+        path: "/",
+        name: "home",
+        redirect: "/dashboard",
+        component: AdminLayout,
+        children: [
+            {
+                path: "/profile",
+                name: "profile",
+                component: Profile,
+                meta: {
+                    title: i18n.t("routes.profile"),
+                },
+            },
+            {
+                path: "/dashboard",
+                name: "dashboard",
+                component: Dashboard,
+                meta: {
+                    title: i18n.t("routes.dashboard"),
+                },
+            },
+        ],
     },
 ];
 

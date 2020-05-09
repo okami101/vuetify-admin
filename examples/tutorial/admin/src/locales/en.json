@@ -1,5 +1,6 @@
 {
   "routes": {
+    "home": "Home",
     "login": "Login",
     "profile": "Profile",
     "dashboard": "Dashboard"

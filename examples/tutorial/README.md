@@ -5,7 +5,7 @@ This is the perfect way to show the power of both backend and client generators.
 
 ## How to run
 
-For backend :
+### Laravel
 
 ```bash
 cp .env.example .env
@@ -17,7 +17,9 @@ php artisan migrate:fresh --seed # configurate DB according to your local before
 php artisan serve # Should run at localhost:8000 as default
 ```
 
-For admin :
+### Admin UI
+
+Before use following commands, you must build main Vtec Admin library. Run `make build-admin` from root of this repo for that.
 
 ```bash
 cd admin

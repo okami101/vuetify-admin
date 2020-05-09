@@ -7,20 +7,13 @@ export default {
   name: "AppBreadcrumbs",
   computed: {
     items() {
-      return [
-        {
-          text: this.$t("va.home"),
+      return this.$route.matched.map((route) => {
+        return {
+          text: route.meta ? route.meta.title : route.name,
           exact: true,
-          to: "/",
-        },
-        ...this.$route.matched.map((route) => {
-          return {
-            text: route.meta ? route.meta.title : route.name,
-            exact: true,
-            to: route,
-          };
-        }),
-      ];
+          to: route,
+        };
+      });
     },
   },
 };

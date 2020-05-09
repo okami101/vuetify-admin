@@ -4,6 +4,7 @@
     "french": "Français"
   },
   "routes": {
+    "home": "Accueil",
     "login": "Login",
     "profile": "Compte",
     "dashboard": "Tableau de bord"

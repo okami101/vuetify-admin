@@ -16,6 +16,7 @@ export default class VtecAdmin {
     store,
     i18n,
     title,
+    routes,
     locales,
     translations,
     authProvider,
@@ -175,8 +176,8 @@ export default class VtecAdmin {
     /**
      * Add resources routes dynamically
      */
-    router.addRoutes(
-      this.resources.map((resource) =>
+    routes.children.push(
+      ...this.resources.map((resource) =>
         resourceCrudRoutes({
           store,
           i18n,
@@ -185,6 +186,8 @@ export default class VtecAdmin {
         })
       )
     );
+
+    router.addRoutes([routes]);
 
     /**
      * Permissions helper & directive
