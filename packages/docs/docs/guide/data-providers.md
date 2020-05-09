@@ -130,14 +130,14 @@ Laravel Data Provider use classic FormData for all api calls instead of simple J
 For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/objectToFormData.js). To use it for your own provider, simply import it by `import { objectToFormData } from "vtec-admin";`
 :::
 
-### Writing your own data provider
+## Writing your own data provider
 
 As seen [previously](#api-contract), each provider method takes 2 arguments :
 
 * `resource` : represents the string name of concerned resource, should be the resource API URL base for each call.
 * `params` : a given object adapted for each type of API call.
 
-#### Method call signatures
+### Method call signatures
 
 Next board represents what object format you should expects as second `params` function arguments for each provider method.
 
@@ -171,7 +171,7 @@ dataProvider.delete("books", { id: 1 });
 dataProvider.deleteMany("books", { ids: [1, 2, 3] });
 ```
 
-#### Method response formats
+### Method response formats
 
 Each provider's method must return a Provider on given format.
 
@@ -190,7 +190,7 @@ Each provider's method must return a Provider on given format.
 As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset from server-side.
 :::
 
-#### Errors handling
+### Errors handling
 
 In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is injected into [auth provider](auth-provider#check-error) in order to allows you specific auth action according to a given status code.
 

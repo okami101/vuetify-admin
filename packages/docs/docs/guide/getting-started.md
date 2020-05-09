@@ -98,7 +98,7 @@ Vue.component("draggable", draggable);
 
 Next you must instantiate Vtec Admin as [explained here](admin).
 
-### At a glance
+## At a glance
 
 The 1st step is to describe backend resources you want to administer.
 
