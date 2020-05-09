@@ -27,7 +27,7 @@ All fetching methods of a data provider is standardized in order to ensure compa
 
 In order to give to Vtec Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin).
 
-## [API Contract](#contract)
+## API Contract
 
 As always for any adapter pattern approach, all data providers must respect a given contract in order to allow communication with Vtec Admin. Next object represents the minimal contract that must be implemented :
 
@@ -130,9 +130,9 @@ Laravel Data Provider use classic FormData for all api calls instead of simple J
 For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/objectToFormData.js). To use it for your own provider, simply import it by `import { objectToFormData } from "vtec-admin";`
 :::
 
-### Writing your own provider
+### Writing your own data provider
 
-As seen [previously](#contract), each provider method takes 2 arguments :
+As seen [previously](#api-contract), each provider method takes 2 arguments :
 
 * `resource` : represents the string name of concerned resource, should be the resource API URL base for each call.
 * `params` : a given object adapted for each type of API call.
