@@ -14,6 +14,7 @@ import {
   laravelDataProvider,
   sanctumAuthProvider,
   jwtAuthProvider,
+  basicAuthProvider,
 } from "./providers";
 import { en, fr } from "./locales";
 
@@ -30,7 +31,12 @@ export { objectToFormData };
 /**
  * All providers
  */
-export { laravelDataProvider, sanctumAuthProvider, jwtAuthProvider };
+export {
+  laravelDataProvider,
+  basicAuthProvider,
+  jwtAuthProvider,
+  sanctumAuthProvider,
+};
 
 /**
  * All locales

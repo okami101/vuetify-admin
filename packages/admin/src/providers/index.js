@@ -1,5 +1,11 @@
 import laravelDataProvider from "./laravelDataProvider";
-import sanctumAuthProvider from "./sanctumAuthProvider";
+import basicAuthProvider from "./basicAuthProvider";
 import jwtAuthProvider from "./jwtAuthProvider";
+import sanctumAuthProvider from "./sanctumAuthProvider";
 
-export { laravelDataProvider, sanctumAuthProvider, jwtAuthProvider };
+export {
+  laravelDataProvider,
+  basicAuthProvider,
+  jwtAuthProvider,
+  sanctumAuthProvider,
+};

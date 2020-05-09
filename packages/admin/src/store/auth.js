@@ -44,17 +44,17 @@ export default (provider, router) => {
        * Server login with given credentials
        * checkAuth action will set fresh user infos on store automatically
        */
-      [LOGIN]: async ({}, credentials) => {
+      [LOGIN]: async ({ dispatch }, credentials) => {
         await provider.login(credentials);
-        router.push("/");
+        dispatch("checkAuth");
       },
       /**
        * Explicit logout action, remove user from storage
        */
-      [LOGOUT]: async ({ state }) => {
+      [LOGOUT]: async ({ state, dispatch }) => {
         if (state.user) {
           await provider.logout();
-          router.push("/login");
+          dispatch("checkAuth");
         }
       },
       /**
@@ -67,17 +67,16 @@ export default (provider, router) => {
 
         try {
           let { data } = await provider.checkAuth();
-          commit("setUser", data);
 
           if (isLoginPage) {
-            router.push("/");
+            await router.push("/");
           }
+          commit("setUser", data);
         } catch (e) {
-          commit("setUser", null);
-
           if (!isLoginPage) {
-            router.push("/login");
+            await router.push("/login");
           }
+          commit("setUser", null);
         }
       },
       /**
