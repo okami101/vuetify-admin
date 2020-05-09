@@ -2,8 +2,6 @@
 
 Vtec Admin is first of all an admin app, so it obviously offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
 
-![login](/assets/login.jpg)
-
 As explained on next chapiter, VA provides 3 configurable auth providers :
 
 * `basicAuthProvider` : Basic HTTP authentication.
@@ -120,6 +118,26 @@ export default new VtecAdmin({
 });
 ```
 
-## Profile management
+## Auth Pages
+
+This pages must be linked on your custom routes.
+
+### Login page
+
+![login](/assets/login.jpg)
+
+:::tip VUE CLI PLUGIN
+[Vue CLI VA Plugin](#getting-started) will generate for you all fully functionnal login page !  
+If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/template/src/views/Login.vue) for your own.
+:::
+
+In order to work, login page must have a classic login
+
+### Profile page
 
 ![profile](/assets/profile.png)
+
+:::tip VUE CLI PLUGIN
+[Vue CLI VA Plugin](#getting-started) will generate for you all fully functionnal profile page !
+If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/template/src/views/Profile.vue) for your own.
+:::
