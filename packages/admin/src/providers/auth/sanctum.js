@@ -8,14 +8,15 @@ import {
   GET_PERMISSIONS,
 } from "../../utils/authActions";
 
-export default (axios, options = {}) => {
-  options = {
+export default (axios, params = {}) => {
+  params = {
     routes: {
       login: "/auth/login",
       logout: "/auth/logout",
       user: "/api/user",
+      csrf: "/sanctum/csrf-cookie",
     },
-    credentials: ({ username, password }) => {
+    getCredentials: ({ username, password }) => {
       return {
         email: username,
         password,
@@ -24,21 +25,21 @@ export default (axios, options = {}) => {
     getName: (u) => u.name,
     getEmail: (u) => u.email,
     getPermissions: (u) => u.roles,
-    ...options,
+    ...params,
   };
 
-  let { routes, credentials, getName, getEmail, getPermissions } = options;
+  let { routes, getCredentials, getName, getEmail, getPermissions } = params;
 
   return {
     [LOGIN]: async ({ username, password }) => {
       /**
        * Get CSRF cookie
        */
-      await axios.get("/sanctum/csrf-cookie");
+      await axios.get(routes.csrf);
 
       let response = await axios.post(
         routes.login,
-        credentials({ username, password })
+        getCredentials({ username, password })
       );
 
       if (response.status < 200 || response.status >= 300) {

@@ -8,18 +8,18 @@ import {
   GET_PERMISSIONS,
 } from "../../utils/authActions";
 
-export default (axios, options = {}) => {
-  options = {
+export default (axios, params = {}) => {
+  params = {
     routes: {
       user: "/api/user",
     },
     getName: (u) => u.name,
     getEmail: (u) => u.email,
     getPermissions: (u) => u.roles,
-    ...options,
+    ...params,
   };
 
-  let { routes, getName, getEmail, getPermissions } = options;
+  let { routes, getName, getEmail, getPermissions } = params;
 
   return {
     [LOGIN]: async ({ username, password }) => {

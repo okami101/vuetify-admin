@@ -8,8 +8,8 @@ import {
   GET_PERMISSIONS,
 } from "../../utils/authActions";
 
-export default (axios, options = {}) => {
-  options = {
+export default (axios, params = {}) => {
+  params = {
     routes: {
       login: "api/auth/login",
       logout: "api/auth/logout",
@@ -17,7 +17,7 @@ export default (axios, options = {}) => {
       user: "api/auth/me",
     },
     tokenProp: "access_token",
-    credentials: ({ username, password }) => {
+    getCredentials: ({ username, password }) => {
       return {
         email: username,
         password,
@@ -26,17 +26,17 @@ export default (axios, options = {}) => {
     getName: (u) => u.name,
     getEmail: (u) => u.email,
     getPermissions: (u) => u.roles,
-    ...options,
+    ...params,
   };
 
   let {
     routes,
-    credentials,
+    getCredentials,
     getName,
     getEmail,
     getPermissions,
     tokenProp,
-  } = options;
+  } = params;
 
   /**
    * Set token from localStorage to axios authorization header
@@ -56,7 +56,7 @@ export default (axios, options = {}) => {
     [LOGIN]: async ({ username, password }) => {
       let response = await axios.post(
         routes.login,
-        credentials({ username, password })
+        getCredentials({ username, password })
       );
 
       if (response.status < 200 || response.status >= 300) {
