@@ -73,7 +73,7 @@ export default (provider, router) => {
           commit("setUser", data);
         } catch (e) {
           if (!isLoginPage) {
-            await router.push("/login");
+            await router.push({ name: "login" });
           }
           commit("setUser", null);
         }
