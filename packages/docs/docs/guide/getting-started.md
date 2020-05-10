@@ -83,17 +83,16 @@ If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin l
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
-// Register all used Vuetify components
-import "vtec-admin/dist/vuetify";
+/**
+ * Register all third-party components as Vuetify, Portal Vue, Vuedraggable
+ * Will automatically load all CRUD pages resources as well
+ */
+import "vtec-admin/dist/loader";
 // Import custom admin CSS
 import "vtec-admin/dist/admin.css";
 
-import PortalVue from "portal-vue";
-import draggable from "vuedraggable";
-
+// Load Admin UI components
 Vue.use(VtecAdmin);
-Vue.use(PortalVue);
-Vue.component("draggable", draggable);
 ```
 
 Next you must instantiate Vtec Admin as [explained here](admin).
