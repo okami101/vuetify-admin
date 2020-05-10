@@ -50,8 +50,8 @@ export default class VtecAdmin {
           ...r,
           icon: r.icon || "mdi-view-grid",
           actions: ["list", "show", "create", "edit", "delete"].filter((a) => {
-            if ((r.only || []).length) {
-              return r.only.includes(a);
+            if ((r.actions || []).length) {
+              return r.actions.includes(a);
             }
 
             if ((r.except || []).length) {

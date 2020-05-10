@@ -169,7 +169,7 @@ export default new VueRouter({
 ```
 
 :::tip
-Generally, you should have least a login page, which also can have any registration or password reset included. [Check here](authentication#login-page) for more info.
+Generally, you should have least a login page, which also can have any registration or password reset included. [Check here](authentication#login-page) for more info in his integration within your auth provider.
 :::
 
 ### Vuex
@@ -268,4 +268,8 @@ export default {
 
 :::tip PAGE TITLE
 Use title property inside meta route object for title page. This title will be appear on document title as well as admin breadcrumb.
+:::
+
+:::tip DEFAULT REDIRECT
+Add an automatic redirect on the main parent route towards authenticated home page, i.e. most of the time your dashboard page.
 :::
