@@ -9,12 +9,7 @@
 </template>
 
 <script>
-import MonsterChildrenForm from "./Form";
-
 export default {
     props: ["id", "title", "item"],
-    components: {
-        MonsterChildrenForm,
-    },
 };
 </script>

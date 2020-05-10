@@ -68,13 +68,8 @@
 </template>
 
 <script>
-import BooksForm from "./Form";
-
 export default {
   props: ["id", "title", "item"],
-  components: {
-    BooksForm,
-  },
   data() {
     return {
       options: {},

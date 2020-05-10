@@ -5,12 +5,7 @@
 </template>
 
 <script>
-import MonstersForm from "./Form";
-
 export default {
     props: ["id", "title", "item"],
-    components: {
-        MonstersForm,
-    },
 };
 </script>

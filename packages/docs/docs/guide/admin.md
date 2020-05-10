@@ -28,7 +28,7 @@ import routes from "@/router/admin";
 // Resources to register into VA
 import resources from "@/resources";
 
-// Main required Vue instance
+// Main required Vue libraries instances
 import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
@@ -73,15 +73,31 @@ All this boring stuf are already prepared for you by the offical [Vue CLI Plugin
 
 ## Components & resources loading
 
+In order to work, you need to load all Vuetify components used by VA manually. Indeed, as VA is precompiled as a standalone library, [a-la-carte](https://vuetifyjs.com/en/customization/a-la-carte/#a-la-carte-treeshaking) (the Vuetify treeshaking system) will not work as-is. All you have to do is to import `vtec-admin/dist/vuetify` which will load all necessary components inside `src/plugins/vuetify.js` file. You can remove `Vue.use(Vuetify)` line as it's already done by the import.
+
 **`src/plugins/vuetify.js`**
 
 ```js
 // ...
 /**
- * Register all Vuetify components
+ * Register all Vuetify components used by VA
  * This line should be in `src/plugins/vuetify` for avoiding CSS overrides issues
  */
 import "vtec-admin/dist/vuetify";
+// ...
+```
+
+Next, you have to import VA loader which import some external third-party components as well as all your CRUD pages, which will avoid us to immport theme manually.
+
+**`src/plugins/admin.js`**
+
+```js
+// ...
+/**
+ * Register all third-party components as Portal Vue, Vuedraggable
+ * Will automatically load all CRUD pages resources as well
+ */
+import "vtec-admin/dist/loader";
 // ...
 ```
 
@@ -89,6 +105,7 @@ import "vtec-admin/dist/vuetify";
 
 ```js
 // ...
+import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 // ...
 

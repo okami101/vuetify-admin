@@ -5,12 +5,7 @@
 </template>
 
 <script>
-import BooksForm from "./Form";
-
 export default {
   props: ["title", "item"],
-  components: {
-    BooksForm,
-  },
 };
 </script>

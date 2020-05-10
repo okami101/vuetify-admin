@@ -5,12 +5,7 @@
 </template>
 
 <script>
-import AuthorsForm from "./Form";
-
 export default {
   props: ["title", "item"],
-  components: {
-    AuthorsForm,
-  },
 };
 </script>

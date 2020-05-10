@@ -8,12 +8,7 @@
 </template>
 
 <script>
-import MonsterChildrenForm from "./Form";
-
 export default {
     props: ["title", "item"],
-    components: {
-        MonsterChildrenForm,
-    },
 };
 </script>

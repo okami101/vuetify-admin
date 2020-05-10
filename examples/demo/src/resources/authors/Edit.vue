@@ -63,13 +63,8 @@
 </template>
 
 <script>
-import AuthorsForm from "./Form";
-
 export default {
   props: ["id", "title", "item"],
-  components: {
-    AuthorsForm,
-  },
   data() {
     return {
       options: {},

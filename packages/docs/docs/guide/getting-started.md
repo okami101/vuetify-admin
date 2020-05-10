@@ -294,13 +294,8 @@ export default {
 </template>
 
 <script>
-import ReviewsForm from "./Form";
-
 export default {
   props: ["title", "item"],
-  components: {
-    ReviewsForm,
-  },
 };
 </script>
 ```
@@ -318,13 +313,8 @@ export default {
 </template>
 
 <script>
-import ReviewsForm from "./Form";
-
 export default {
   props: ["id", "title", "item"],
-  components: {
-    ReviewsForm,
-  },
 };
 </script>
 ```

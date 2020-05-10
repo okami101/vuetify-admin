@@ -85,13 +85,8 @@
 </template>
 
 <script>
-import PublishersForm from "./Form";
-
 export default {
   props: ["id", "title", "item"],
-  components: {
-    PublishersForm,
-  },
   data() {
     return {
       options: {},

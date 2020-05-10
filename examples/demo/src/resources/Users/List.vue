@@ -99,14 +99,10 @@
 </template>
 
 <script>
-import UsersShow from "./Show";
-import UsersForm from "./Form";
 import ImpersonateButton from "@/components/buttons/ImpersonateButton";
 
 export default {
   components: {
-    UsersShow,
-    UsersForm,
     ImpersonateButton,
   },
   props: ["resource", "title"],

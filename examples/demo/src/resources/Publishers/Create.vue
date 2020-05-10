@@ -5,12 +5,7 @@
 </template>
 
 <script>
-import PublishersForm from "./Form";
-
 export default {
   props: ["title", "item"],
-  components: {
-    PublishersForm,
-  },
 };
 </script>
