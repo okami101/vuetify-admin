@@ -1,9 +1,9 @@
 /**
  * All UI Vue Components
  */
-import * as core from "./components/Core";
-import * as layout from "./components/Layout";
-import * as ui from "./components/UI";
+import * as core from "./components/core";
+import * as layout from "./components/layout";
+import * as ui from "./components/ui";
 
 /**
  * Main JS App
