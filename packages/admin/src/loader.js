@@ -1,5 +1,4 @@
 import Vue from "vue";
-import "./vuetify";
 import "./resources";
 
 /**

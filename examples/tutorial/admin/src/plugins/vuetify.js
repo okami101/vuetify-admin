@@ -2,6 +2,7 @@ import Vuetify from "vuetify/lib";
 import en from "vuetify/es5/locale/en";
 import fr from "vuetify/es5/locale/fr";
 import "@/sass/overrides.sass";
+import "vtec-admin/dist/vuetify";
 
 export default new Vuetify({
     lang: {
