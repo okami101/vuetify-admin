@@ -11,6 +11,8 @@ import i18n from "@/i18n";
 import resources from "@/resources";
 import axios from "axios";
 import trimEnd from "lodash/trimEnd";
+import camelCase from "lodash/camelCase";
+import upperFirst from "lodash/upperFirst";
 
 /**
  * Load external libs
@@ -55,7 +57,10 @@ requireComponent.keys().forEach((fileName) => {
     .replace(/\//, "")
     .replace(/\.\w+$/, "");
 
-  Vue.component(componentName, componentConfig.default || componentConfig);
+  Vue.component(
+    upperFirst(camelCase(componentName)),
+    componentConfig.default || componentConfig
+  );
 });
 
 export default new VtecAdmin({
