@@ -1,6 +1,32 @@
 # Resources
 
-A "resource" means a given server entity which can be managed by Vtec Admin, aka created/read/updated/deleted.
+A "resource" means a given server entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted. It must correspond to a valid API endpoint that allows all of this CRUD operations.
+
+The next piece of code represent an example of expected structure that must be sended to Vtec Admin constructor [as seen previously](admin) :
+
+**`src/resources/index.js`**
+
+```js
+export default [
+  {
+    name: "users",
+    icon: "mdi-account",
+    actions: ["list", "delete"],
+    permissions: ["admin"]
+  },
+  {
+    name: "monsters",
+    icon: "mdi-alien",
+    translatable: true,,
+    permissions: ["admin", "parent"]
+  },
+  {
+    name: "monster_children",
+    icon: "mdi-baby-carriage",
+    except: ["delete"]
+  },
+];
+```
 
 ## Resource object structure
 
