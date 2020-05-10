@@ -15,7 +15,7 @@ See [main readme](https://github.com/okami101/vtec-admin#features) of this repo 
 
 See [dedicated guide](https://vtec.okami101.io/guide/getting-started).
 
-### Instanciation
+### Instantiation
 
 See [dedicated guide](https://vtec.okami101.io/guide/admin).
 

@@ -1,0 +1,22 @@
+stateDiagram
+  state Vue {
+    VueRouter
+    VueStore
+    VueI18n
+  }
+  state Data {
+    Title
+    CustomAdminRoutes
+    Locales
+    Translations
+    Resources
+  }
+  state Providers {
+    AuthProvider
+    DataProvider
+  }
+  Vue --> VtecAdmin
+  Data --> VtecAdmin
+  Providers --> VtecAdmin
+  VtecAdmin --> CRUDRoutes: Build
+  VtecAdmin --> ResourceModules: Build

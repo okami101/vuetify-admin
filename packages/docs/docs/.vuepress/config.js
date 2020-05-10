@@ -90,6 +90,7 @@ function getGuideSidebar(groupA, groupB, groupC) {
     {
       title: groupA,
       collapsable: false,
+      sidebarDepth: 2,
       children: [
         "",
         "getting-started",
@@ -100,6 +101,7 @@ function getGuideSidebar(groupA, groupB, groupC) {
     {
       title: groupB,
       collapsable: false,
+      sidebarDepth: 2,
       children: [
         "data-providers",
         "authentication",
@@ -113,6 +115,7 @@ function getGuideSidebar(groupA, groupB, groupC) {
     {
       title: groupC,
       collapsable: false,
+      sidebarDepth: 2,
       children: [
         "components/layout",
         "components/list",

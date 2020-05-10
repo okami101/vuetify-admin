@@ -65,17 +65,74 @@ VUE_APP_TINYMCE_LANGUAGE=my_default_locale
 ```
 
 Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.  
-Now you have a full basic admin working and are ready to start !  
-
-The next steps is to [register your backend resources and write your CRUD pages](#at-a-glance).
+Now you have a full basic admin working and are ready to start !
 
 :::tip NEW NPM SCRIPTS
 This plugin will also add 2 new npm code generator scripts, [see dedicated section](generators) for more detail.
 :::
 
-#### Bare metal installation
+### Directory structure
 
-If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin library as-is. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then you import and register them as following.
+Once installation finished, you should get this following `src` directory structure (main elements you should know are `highlighted`) :
+
+:::vue
+src
+├── assets
+├── components
+│   ├── base _(**Some material components taken from [Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard/tree/master/src/components/base)**)_
+│   ├── buttons
+│   │   └── ImpersonateButton.vue _(**Impersonate action button by user**)_
+│   └── ImpersonateMessage.vue _(**Impersonation alert which allows leaving**)_
+│
+├── layouts
+│   └── `Admin.vue` _(**Main admin layout, [see dedicated doc](components/layout)**)_
+│
+├── `locales` _(**I18n, localized resources label are here, [see dedicated doc](i18n)**)_
+│   ├── en.json
+│   └── fr.json
+│
+├── plugins
+│   ├── `admin.js` _(**Main admin plugin where VA is [instanciated](#instantiation)**)_
+│   ├── base.js _(**Material components loader from above components/base directory**)_
+│   ├── chartist.js _(**Chartist plugin for nice dashboard sample**)_
+│   └── vuetify.js _(**Vuetify plugin**)_
+│
+├── `resources` _(**Main resources directory, main workspace for admin development**)_
+│   ├── `users` _(**User CRUD pages location**)_
+│   │   ├── Form.vue
+│   │   ├── List.vue
+│   │   └── Show.vue
+│   └── `index.js` _(**Resources file descriptor, [see dedicated doc](resources)**)_
+│
+├── router
+│   ├── `admin.js` _(**Authenticated private routes**)_
+│   └── index.js _(**Vue Router instance with your custom public routes**)_
+│
+├── sass _(**Vuetify Material Theme taken from [Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard/tree/master/src/sass)**)_
+│   ├── vuetify-material _(**Components material CSS**)_
+│   ├── overrides.sass _(**Vuetify material overrides**)_
+│   └── variables.scss _(**Vuetify variables**)_
+│
+├── store
+│   └── index.js _(**Vue Store instance with your custom modules**)_
+│
+├── `views` _(**Best place for specific custom public or private pages**)_
+│   ├── Dashboard.vue _(**Static dashboard sample**)_
+│   ├── [Login.vue](authentication#login-page) _(**Public page**)_
+│   └── [Profile.vue](authentication#profile-page) _(**Private page**)_
+│
+├── `_nav.js` _(**Main Sidebar Menu**)_
+├── App.vue
+├── i18n.js _(**Vue I18n Plugin**)_
+└── main.js
+:::
+
+As you can guess, main working directory will be the `resources` folder. Use `views` for your custom public or private pages.  
+The next steps is to [register your backend resources and write your CRUD pages](#at-a-glance).
+
+## Bare metal installation
+
+If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin library as-is. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then import and register them as following :
 
 **`src/plugins/admin.js`**
 
@@ -83,15 +140,10 @@ If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin l
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
-/**
- * Register all third-party components as Vuetify, Portal Vue, Vuedraggable
- * Will automatically load all CRUD pages resources as well
- */
+import "vtec-admin/dist/vuetify";
 import "vtec-admin/dist/loader";
-// Import custom admin CSS
 import "vtec-admin/dist/admin.css";
 
-// Load Admin UI components
 Vue.use(VtecAdmin);
 ```
 

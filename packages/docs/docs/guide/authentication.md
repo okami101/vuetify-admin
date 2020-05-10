@@ -78,8 +78,9 @@ Don't forget to set `withCredentials` axios config to `true` order to include se
 
 In order to work on fresh Laravel project, simply run `composer require laravel/sanctum` and be sure to add the middleware for `api` routes :
 
-```php{3}
-// app/Http/Kernel.php
+**`app/Http/Kernel.php`**
+
+```php{2}
 'api' => [
     \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
     'throttle:300,1',
@@ -103,8 +104,9 @@ The [Basic HTTP Provider](https://github.com/okami101/vtec-admin/blob/master/pac
 
 By default, basic auth will just return the username used for credentials. If you prefer use a specific API endpoint in order to give to VA more user informations, which is recommended if you need functional profile editing, you must set the user route as follow :
 
-```js{7-9}
-// src/plugins/admin.js
+**`src/plugins/admin.js`**
+
+```js{6-8}
 import { laravelDataProvider, basicAuthProvider } from "vtec-admin";
 //...
 export default new VtecAdmin({

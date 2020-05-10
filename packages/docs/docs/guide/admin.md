@@ -1,94 +1,49 @@
 # Admin
 
-## Initial Vue CLI Project Base
-
-Once installed Vtec Admin by his Vue CLI Plugin as shown in [Getting Started](getting-started), you should get this following `src` directory structure (main elements you should know are `highlighted`) :
-
-:::vue
-src
-├── assets
-├── components
-│   ├── base _(**Some material components taken from [Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard/tree/master/src/components/base)**)_
-│   ├── buttons
-│   │   └── ImpersonateButton.vue _(**Impersonate action button by user**)_
-│   └── ImpersonateMessage.vue _(**Impersonation alert which allows leaving**)_
-│
-├── layouts
-│   └── `Admin.vue` _(**Main admin layout, [see dedicated doc](components/layout)**)_
-│
-├── `locales` _(**I18n, localized resources label are here, [see dedicated doc](i18n)**)_
-│   ├── en.json
-│   └── fr.json
-│
-├── plugins
-│   ├── `admin.js` _(**Main admin plugin where VA is [instanciated](#instantiation)**)_
-│   ├── base.js _(**Material components loader from above components/base directory**)_
-│   ├── chartist.js _(**Chartist plugin for nice dashboard sample**)_
-│   └── vuetify.js _(**Vuetify plugin**)_
-│
-├── `resources` _(**Main resources directory, main workspace for admin development**)_
-│   ├── `users` _(**User CRUD pages location**)_
-│   │   ├── Form.vue
-│   │   ├── List.vue
-│   │   └── Show.vue
-│   └── `index.js` _(**Resources file descriptor, [see dedicated doc](resources)**)_
-│
-├── router
-│   ├── `admin.js` _(**Authenticated private routes**)_
-│   └── index.js _(**Vue Router instance with your custom public routes**)_
-│
-├── sass _(**Vuetify Material Theme taken from [Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard/tree/master/src/sass)**)_
-│   ├── vuetify-material _(**Components material CSS**)_
-│   ├── overrides.sass _(**Vuetify material overrides**)_
-│   └── variables.scss _(**Vuetify variables**)_
-│
-├── store
-│   └── index.js _(**Vue Store instance with your custom modules**)_
-│
-├── `views` _(**Best place for specific custom public or private pages**)_
-│   ├── Dashboard.vue _(**Static dashboard sample**)_
-│   ├── [Login.vue](authentication#login-page) _(**Public page**)_
-│   └── [Profile.vue](authentication#profile-page) _(**Private page**)_
-│
-├── `_nav.js` _(**Main Sidebar Menu**)_
-├── App.vue
-├── i18n.js _(**Vue I18n Plugin**)_
-└── main.js
-:::
-
-## Instantiation
-
-In order to operate, VtecAdmin constructor needs all of this parameters :
-
-* Vue Router instance, which can contains all your custom routes, for automatic resource URL Crud pages registering.
-* Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.
-* Vue I18n instance, which can contains all your custom localized labels, for full internationalization support.
-* Title of your admin app.
-* List of authenticated routes, which will inherit from all admin layout.
-* At least one provided locale, only `en` and `fr` are 100% supported, but you can easily add your own by following [this model](src/locales/fr.json).
-* Auth and data providers (see next section).
-* Optional file browser URL, which will appear on included TinyMCE file picker.
-* A resources array which contain all resources to administer. More detail of resource object structure [here](resources).
+The next piece of code represent the bare minimal code in order to get VtecAdmin working :
 
 **`src/plugins/admin.js`**
 
 ```js
+import Vue from "vue";
 import VtecAdmin from "vtec-admin";
-import "vtec-admin/dist/vuetify";
+
+/**
+ * Register all third-party components as Portal Vue, Vuedraggable
+ * Will automatically load all CRUD pages resources as well
+ */
+import "vtec-admin/dist/loader";
+// Import custom admin CSS
 import "vtec-admin/dist/admin.css";
 
+// Load data and auth providers to use with your API
 import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
+
+// UI locales your want to support
 import { en, fr } from "vtec-admin";
 
-import router from "@/router";
+// Custom authenticated admin pages as dashboard, profile, etc.
 import routes from "@/router/admin";
+
+// Resources to register into VA
+import resources from "@/resources";
+
+// Main required Vue instance
+import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
-import resources from "@/resources";
+
+// Axios as default HTTP client
 import axios from "axios";
 
-const http = axios.create();
+// Load Admin UI components
+Vue.use(VtecAdmin);
 
+// Create global axios instance, it will bridged into above providers
+const http = axios.create();
+Vue.prototype.$axios = http;
+
+// Main VA constructor that will build resources routes and modules
 export default new VtecAdmin({
   router,
   store,
@@ -101,6 +56,68 @@ export default new VtecAdmin({
   resources,
 });
 ```
+
+The main steps are :
+
+* Register all third-party components as Portal Vue, Vuedraggable as well as CRUD pages resources from `resources` directory.
+* Import custom CSS.
+* Load providers, locales, admin routes.
+* Load resources you want to register.
+* Get current instances of Vue Route, Vuex and Vue I18n.
+* Load VA UI components.
+* Initiate VA by his constructor.
+
+:::tip BOILERPLATE
+All this boring stuf are already prepared for you by the offical [Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), go to [Getting Started](getting-started) in order to get in through.
+:::
+
+## Components & resources loading
+
+**`src/plugins/vuetify.js`**
+
+```js
+// ...
+/**
+ * Register all Vuetify components
+ * This line should be in `src/plugins/vuetify` for avoiding CSS overrides issues
+ */
+import "vtec-admin/dist/vuetify";
+// ...
+```
+
+**`src/main.js`**
+
+```js
+// ...
+import admin from "./plugins/admin";
+// ...
+
+new Vue({
+    router,
+    store,
+    i18n,
+    vuetify,
+    admin,
+    render: (h) => h(App),
+}).$mount("#app");
+```
+
+## Instantiation
+
+In order to operate, VtecAdmin constructor needs all of this parameters :
+
+* Vue Router instance, which can contains all your custom routes, for automatic resource URL Crud pages registering.
+* Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.
+* Vue I18n instance, which can contains all your custom localized labels, for full internationalization support.
+* Title of your admin app.
+* List of authenticated routes, which will inherit from all admin layout.
+* At least one provided locale, only `en` and `fr` are 100% supported, but you can easily add your own by following [this model](src/locales/fr.json).
+* All supported traductions for your resources.
+* Auth and data providers (see next section).
+* Optional file browser URL, which will appear on included TinyMCE file picker.
+* A resources array which contain all resources to administer. More detail of resource object structure [here](resources).
+
+![instantiation](/diagrams/instantiation.svg)
 
 > Vtec Admin will transform your resources into client-side CRUD routes and valid Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](guide/#how-it-works). More explanation in code initialization inside [admin guide section](guide/admin). This "boilerplate code" can be automatically pre-generated by [Vtec Admin Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin).
 
