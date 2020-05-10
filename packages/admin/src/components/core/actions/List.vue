@@ -93,7 +93,7 @@
 
 <script>
 import Resource from "../../../mixins/resource";
-import FormFilter from "../../Core/List/FormFilter";
+import FormFilter from "../../core/list/FormFilter";
 import EventBus from "../../../utils/eventBus";
 import isEmpty from "lodash/isEmpty";
 import { mapState, mapActions } from "vuex";
