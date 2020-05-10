@@ -4,7 +4,6 @@ const fs = require("fs");
 const ejs = require("ejs");
 const util = require("util");
 const upperFirst = require("lodash/upperFirst");
-const camelCase = require("lodash/camelCase");
 const kebabCase = require("lodash/kebabCase");
 
 const options = {
@@ -44,7 +43,7 @@ async function service(args = {}, api) {
   /**
    * Generate crud views
    */
-  let resource = upperFirst(camelCase(args.name));
+  let resource = kebabCase(args.name);
   let fields = args.fields || [];
 
   const sourceDir = resolve(__dirname, "stubs");

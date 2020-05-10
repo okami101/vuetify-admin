@@ -5,7 +5,7 @@ SPA admin library for Vue.js running on top of REST APIs, built on top of Vuetif
 > See [full documentation](https://vtec.okami101.io)  
 > Check [online demo](https://vtec-bookstore-demo.okami101.io/admin) and use prefilled login (read only)
 
-[![sc](https://user-images.githubusercontent.com/3679080/80732263-58913080-8b0c-11ea-9074-56668c44a876.png)](https://vtec-bookstore-demo.okami101.io/admin)
+[![demo](https://vtec.okami101.io/assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io/admin)
 
 ## Features
 
