@@ -13,19 +13,19 @@ export default {
   },
   children: [
     {
-      path: "/profile",
-      name: "profile",
-      component: Profile,
-      meta: {
-        title: i18n.t("routes.profile"),
-      },
-    },
-    {
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
       meta: {
         title: i18n.t("routes.dashboard"),
+      },
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile,
+      meta: {
+        title: i18n.t("routes.profile"),
       },
     },
   ],

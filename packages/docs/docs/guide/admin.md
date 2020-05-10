@@ -245,14 +245,6 @@ export default {
   },
   children: [
     {
-      path: "/profile",
-      name: "profile",
-      component: Profile,
-      meta: {
-        title: i18n.t("routes.profile"),
-      },
-    },
-    {
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
@@ -260,8 +252,20 @@ export default {
         title: i18n.t("routes.dashboard"),
       },
     },
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile,
+      meta: {
+        title: i18n.t("routes.profile"),
+      },
+    },
   ],
 };
 ```
 
 > As you can see here, this is a single route which use a fully customizable `AdminLayout` component which allows all children pages to inherit of all admin authenticated structure, with app bar header, sidebar menu, etc. More information [here](components/layout).
+
+:::tip PAGE TITLE
+Use title property inside meta route object for title page. This title will be appear on document title as well as admin breadcrumb.
+:::
