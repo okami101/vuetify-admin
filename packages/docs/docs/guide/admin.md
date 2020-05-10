@@ -1,58 +1,58 @@
 # Admin
 
-## Initial Project Directory Structure
+## Initial Vue CLI Project Base
 
-Once installed Vtec Admin by his Vue CLI Plugin as shown in [Getting Started](getting-started), you should get this following `src` directory structure :
+Once installed Vtec Admin by his Vue CLI Plugin as shown in [Getting Started](getting-started), you should get this following `src` directory structure (main elements you should know are `highlighted`) :
 
 :::vue
 src
 ├── assets
 ├── components
-│   ├── Base
-│   ├── Buttons
-│   │   └── ImpersonateButton.vue
-│   └── ImpersonateMessage.vue
+│   ├── base _(**Some material components taken from [Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard/tree/master/src/components/base)**)_
+│   ├── buttons
+│   │   └── ImpersonateButton.vue _(**Impersonate action button by user**)_
+│   └── ImpersonateMessage.vue _(**Impersonation alert which allows leaving**)_
 │
 ├── layouts
-│   └── Admin.vue
+│   └── `Admin.vue` _(**Main admin layout, [see dedicated doc](components/layout)**)_
 │
-├── locales
+├── `locales` _(**I18n, localized resources label are here, [see dedicated doc](i18n)**)_
 │   ├── en.json
 │   └── fr.json
 │
 ├── plugins
-│   ├── admin.js
-│   ├── base.js
-│   ├── chartist.js
-│   └── vuetify.js
+│   ├── `admin.js` _(**Main admin plugin where VA is [instanciated](#instantiation)**)_
+│   ├── base.js _(**Material components loader from above components/base directory**)_
+│   ├── chartist.js _(**Chartist plugin for nice dashboard sample**)_
+│   └── vuetify.js _(**Vuetify plugin**)_
 │
-├── resources
-│   ├── Users
+├── `resources` _(**Main resources directory, main workspace for admin development**)_
+│   ├── `users` _(**User CRUD pages location**)_
 │   │   ├── Form.vue
 │   │   ├── List.vue
 │   │   └── Show.vue
-│   └── index.js
+│   └── `index.js` _(**Resources file descriptor, [see dedicated doc](resources)**)_
 │
 ├── router
-│   ├── admin.js
-│   └── index.js
+│   ├── `admin.js` _(**Authenticated private routes**)_
+│   └── index.js _(**Vue Router instance with your custom public routes**)_
 │
-├── sass
-│   ├── vuetify-material
-│   ├── overrides.sass
-│   └── variables.scss
+├── sass _(**Vuetify Material Theme taken from [Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard/tree/master/src/sass)**)_
+│   ├── vuetify-material _(**Components material CSS**)_
+│   ├── overrides.sass _(**Vuetify material overrides**)_
+│   └── variables.scss _(**Vuetify variables**)_
 │
 ├── store
-│   └── index.js
+│   └── index.js _(**Vue Store instance with your custom modules**)_
 │
-├── views
-│   ├── Dashboard.vue _(**Static Dashboard Sample**)_
-│   ├── [Login.vue](authentication#login-page)
-│   └── [Profile.vue](authentication#profile-page)
+├── `views` _(**Best place for specific custom public or private pages**)_
+│   ├── Dashboard.vue _(**Static dashboard sample**)_
+│   ├── [Login.vue](authentication#login-page) _(**Public page**)_
+│   └── [Profile.vue](authentication#profile-page) _(**Private page**)_
 │
 ├── `_nav.js` _(**Main Sidebar Menu**)_
 ├── App.vue
-├── `i18n.js` _(**Vue I18n Plugin**)_
+├── i18n.js _(**Vue I18n Plugin**)_
 └── main.js
 :::
 
