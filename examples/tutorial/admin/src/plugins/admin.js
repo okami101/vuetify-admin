@@ -26,9 +26,9 @@ Vue.use(VtecAdmin);
 const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
 
 const http = axios.create({
-    baseURL,
-    withCredentials: true,
-    headers: { "X-Requested-With": "XMLHttpRequest" },
+  baseURL,
+  withCredentials: true,
+  headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
 Vue.prototype.$axios = http;
@@ -37,18 +37,18 @@ Vue.prototype.$axios = http;
  * Init admin
  */
 export default new VtecAdmin({
-    router,
-    store,
-    i18n,
-    title: "Vtec Admin",
-    routes,
-    locales: { en, fr },
-    translations: {
-        en: i18n.t("locales.english"),
-        fr: i18n.t("locales.french"),
-    },
-    authProvider: sanctumAuthProvider(http),
-    dataProvider: laravelDataProvider(http),
-    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
-    resources,
+  router,
+  store,
+  i18n,
+  title: "Vtec Admin",
+  routes,
+  locales: { en, fr },
+  translations: {
+    en: i18n.t("locales.english"),
+    fr: i18n.t("locales.french"),
+  },
+  authProvider: sanctumAuthProvider(http),
+  dataProvider: laravelDataProvider(http),
+  fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+  resources,
 });
