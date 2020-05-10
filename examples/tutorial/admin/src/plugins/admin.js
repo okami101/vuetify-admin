@@ -1,5 +1,7 @@
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
+
+import "vtec-admin/dist/loader";
 import "vtec-admin/dist/admin.css";
 
 import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
@@ -12,14 +14,11 @@ import i18n from "@/i18n";
 import resources from "@/resources";
 import axios from "axios";
 import trimEnd from "lodash/trimEnd";
-import camelCase from "lodash/camelCase";
-import upperFirst from "lodash/upperFirst";
 
 /**
- * Load external libs
+ * Load Admin UI components
  */
-import PortalVue from "portal-vue";
-import draggable from "vuedraggable";
+Vue.use(VtecAdmin);
 
 /**
  * Axios instance
@@ -33,36 +32,6 @@ const http = axios.create({
 });
 
 Vue.prototype.$axios = http;
-
-/**
- * Load Admin UI components
- */
-Vue.use(VtecAdmin);
-
-/**
- * Register portal and draggable
- */
-Vue.use(PortalVue);
-Vue.component("draggable", draggable);
-
-/**
- * Load view resources
- */
-const requireComponent = require.context("@/resources", true, /\.vue$/);
-
-requireComponent.keys().forEach((fileName) => {
-    const componentConfig = requireComponent(fileName);
-
-    const componentName = fileName
-        .replace(/^\.\//, "")
-        .replace(/\//, "")
-        .replace(/\.\w+$/, "");
-
-    Vue.component(
-        upperFirst(camelCase(componentName)),
-        componentConfig.default || componentConfig
-    );
-});
 
 /**
  * Init admin
