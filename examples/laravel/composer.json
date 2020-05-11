@@ -11,7 +11,7 @@
         "php": "^7.4",
         "barryvdh/laravel-elfinder": "^0.4.5",
         "fideloper/proxy": "^4.2",
-        "fruitcake/laravel-cors": "^1.0",
+        "fruitcake/laravel-cors": "^2.0",
         "intervention/validation": "^2.0",
         "itsgoingd/clockwork": "^4.0",
         "laravel/framework": "^7.0",
