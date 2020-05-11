@@ -250,7 +250,7 @@ const authProvider = {
 }
 ```
 
-> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/authActions.js) all fetching methods that will be used by Vtec Admin.
+> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/actions.js) all fetching methods that will be used by Vtec Admin.
 
 All of this methods can be described as following :
 

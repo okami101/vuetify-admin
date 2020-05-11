@@ -44,7 +44,7 @@ const dataProvider = {
 }
 ```
 
-> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/dataActions.js) all fetching methods that will be used by Vtec Admin.
+> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/actions.js) all fetching methods that will be used by Vtec Admin.
 
 ### Supported API operation methods
 
@@ -127,7 +127,7 @@ It allows you to have full control of request, by taking cookies credentials, se
 
 :::warning FormData
 Laravel Data Provider use classic FormData for all api calls instead of simple JSON. It providers better Laravel integration for file uploads with ready-to-go file validation as well as UploadedFile auto conversion object.  
-For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vtec-admin/dist/providers/utils/objectToFormData";`
+For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vtec-admin/dist/providers/utils/objectToFormData";`
 :::
 
 ## Writing your own data provider
