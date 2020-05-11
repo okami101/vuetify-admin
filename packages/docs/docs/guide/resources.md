@@ -88,7 +88,7 @@ Some quick tables to resume (we take `monster_children` resource name as example
 
 #### Action route and API mapping
 
-| Action   | Vue Route                     | API call                            |
+| Action   | Vue Route                     | API call format                     |
 | -------- | ----------------------------- | ----------------------------------- |
 | `list`   | `/monster-children`           | **GET** `/monster_children`         |
 | `show`   | `/monster-children/{id}`      | **GET** `/monster_children/{id}`    |
@@ -98,9 +98,9 @@ Some quick tables to resume (we take `monster_children` resource name as example
 
 #### Action component mapping
 
-| Action   | Page Component          | Path from `src/resources`     |
-| -------- | ----------------------- | ----------------------------- |
-| `list`   | `MonsterChildrenList`   | `monster-children/List.vue`   |
-| `show`   | `MonsterChildrenShow`   | `monster-children/Show.vue`   |
-| `create` | `MonsterChildrenCreate` | `monster-children/Create.vue` |
-| `edit`   | `MonsterChildrenEdit`   | `monster-children/Edit.vue`   |
+| Action   | Page Component          | Path from `src/resources`      |
+| -------- | ----------------------- | ------------------------------ |
+| `list`   | `MonsterChildrenList`   | `/monster-children/List.vue`   |
+| `show`   | `MonsterChildrenShow`   | `/monster-children/Show.vue`   |
+| `create` | `MonsterChildrenCreate` | `/monster-children/Create.vue` |
+| `edit`   | `MonsterChildrenEdit`   | `/monster-children/Edit.vue`   |

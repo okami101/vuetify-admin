@@ -7,6 +7,8 @@ module.exports = {
         { from: "src/loader.js" },
         { from: "src/resources.js" },
         { from: "src/vuetify.js" },
+        { from: "src/locales", to: "locales" },
+        { from: "src/providers", to: "providers" },
       ]),
     ],
   },

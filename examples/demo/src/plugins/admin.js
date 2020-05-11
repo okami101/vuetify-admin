@@ -3,8 +3,8 @@ import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/loader";
 
-import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
-import { en, fr } from "vtec-admin";
+import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin/providers";
+import { en, fr } from "vtec-admin/locales";
 
 import router from "@/router";
 import routes from "@/router/admin";

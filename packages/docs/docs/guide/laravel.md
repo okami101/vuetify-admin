@@ -66,9 +66,14 @@ php artisan migrate:fresh --seed
 
 Finally create your first user by `php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
 
-> If you use docker, use `docker-compose exec laravel` before each command.  
-> By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
-> Dont forget to edit it on production. Just edit ADMIN_URL environment variable for that.
+:::tip DOCKER
+If you use docker, use `docker-compose exec laravel` before each command.
+:::
+
+:::tip ADMIN URL
+By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
+Dont forget to edit it on production. Just edit ADMIN_URL environment variable for that.
+:::
 
 ### Run admin UI
   
@@ -80,7 +85,9 @@ vue add vtec-admin # Will generated all minimal admin boilerplate as well as UI 
 yarn serve
 ```
 
-> See [Vue CLI plugin installation section](https://vtec.okami101.io/guide/getting-started#installation) for more detail of what this plugin do.
+:::tip DIRECTORY STRUCTURE
+See [this getting started section](getting-started#directory-structure) for more detail of what you get inside the `admin` folder.
+:::
 
 ## [API crud generators commands](#crud)
 

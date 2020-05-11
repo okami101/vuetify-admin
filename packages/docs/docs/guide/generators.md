@@ -25,7 +25,7 @@ Vue CLI plugin will prepare for you 2 new npm scripts :
 For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml`.  
 You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
 
-Follow [tutorial](https://vtec.okami101.io/guide/tutorial) for more details on what based YAML generation can offer.
+Follow [tutorial](tutorial) for more details on what based YAML generation can offer.
 
 > For both generator commands, you may add `-mfs` options to generate full migration file with all pre-generated fields, in addition to factory and seeder files.  
 > In case of model relation, even if foreign keys can be generated in migration file by `foreign` on schema, you must manually add related eloquent relation in you model.  

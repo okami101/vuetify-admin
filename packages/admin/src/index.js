@@ -9,39 +9,11 @@ import * as ui from "./components/ui";
  * Main JS App
  */
 import VtecAdmin from "./admin";
-import objectToFormData from "./utils/objectToFormData";
-import {
-  laravelDataProvider,
-  sanctumAuthProvider,
-  jwtAuthProvider,
-  basicAuthProvider,
-} from "./providers";
-import { en, fr } from "./locales";
 
 /**
  * Main admin entry
  */
 export default VtecAdmin;
-
-/**
- * Some utils
- */
-export { objectToFormData };
-
-/**
- * All providers
- */
-export {
-  laravelDataProvider,
-  basicAuthProvider,
-  jwtAuthProvider,
-  sanctumAuthProvider,
-};
-
-/**
- * All locales
- */
-export { en, fr };
 
 /**
  * Vue install plugin

@@ -4,8 +4,11 @@ import VtecAdmin from "vtec-admin";
 import "vtec-admin/dist/loader";
 import "vtec-admin/dist/admin.css";
 
-import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
-import { en, fr } from "vtec-admin";
+import {
+  laravelDataProvider,
+  sanctumAuthProvider,
+} from "vtec-admin/dist/providers";
+import { en, fr } from "vtec-admin/dist/locales";
 
 import router from "@/router";
 import routes from "@/router/admin";

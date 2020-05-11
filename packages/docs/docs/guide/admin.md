@@ -21,10 +21,13 @@ import "vtec-admin/dist/loader";
 import "vtec-admin/dist/admin.css";
 
 // Load data and auth providers to use with your API
-import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
+import {
+  laravelDataProvider,
+  sanctumAuthProvider,
+} from "vtec-admin/dist/providers";
 
 // UI locales your want to support
-import { en, fr } from "vtec-admin";
+import { en, fr } from "vtec-admin/dist/locales";
 
 // Custom authenticated admin pages as dashboard, profile, etc.
 import routes from "@/router/admin";
@@ -120,11 +123,11 @@ In order to operate, VtecAdmin constructor needs all of this parameters :
 
 * Vue Router instance, which can contains all your public custom routes.
 * Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.
-* Vue I18n instance, which can contains all your custom localized labels, for full internationalization support.
+* Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n).
 * Title of your admin app, will be show on app bar header and document title after page title.
 * List of authenticated routes, which will inherit from all admin layout. All resources routes CRUD pages will be registered here as children.
-* At least one provided locale, only `en` and `fr` are 100% supported, but you can easily add your own by following [this model](src/locales/fr.json).
-* All supported traductions for your resources. More detail [here](i18n).
+* At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n#ui).
+* All supported traductions for your resources. More detail [here](i18n#resources).
 * [Auth](authentication) and [data](data-providers) providers.
 * Optional file browser URL, which will appear on included TinyMCE file picker.
 * A resources array which contain all resources to administer. More detail of resource object structure [here](resources).
@@ -193,33 +196,6 @@ export default new Vuex.Store({
   modules: {},
 });
 ```
-
-### Vue I18n
-
-VA needs a [Vue I18n](https://kazupon.github.io/vue-i18n/) instance for full internationalization support. You can simply add it to your project by `vue add i18n` that will pregenerate next file.
-
-`**src/i18n.js**`
-
-```js
-import Vue from "vue";
-import VueI18n from "vue-i18n";
-
-Vue.use(VueI18n);
-
-// ...locales autoloading...
-
-export default new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || "en",
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
-  messages: loadLocaleMessages(),
-});
-```
-
-:::tip DEFAULT LOCALE
-Set locale config at `navigator.language.substr(0, 2)` if you want dynamically taker user browser language.
-:::
-
-All locales will be stored inside `locales` directory by default, with one JSON for each language. Here will be stored notably all localized resources name and property labels under a specific format. More information [here](i18n).
 
 ### Authenticated routes
 

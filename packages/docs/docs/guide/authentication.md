@@ -19,10 +19,16 @@ All of this providers need an instance of axios in order to work. I prefer it to
 
 The best way is to create a global admin axios instance and passthrough it into both auth and data providers :
 
+**`src/plugins/admin.js`**
+
 ```js
 import VtecAdmin from "vtec-admin";
 
-import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin";
+import {
+  laravelDataProvider,
+  sanctumAuthProvider,
+} from "vtec-admin/dist/providers";
+
 import axios from "axios";
 
 /**
@@ -106,8 +112,11 @@ By default, basic auth will just return the username used for credentials. If yo
 
 **`src/plugins/admin.js`**
 
-```js{6-8}
-import { laravelDataProvider, basicAuthProvider } from "vtec-admin";
+```js{9-11}
+import {
+  laravelDataProvider,
+  basicAuthProvider,
+} from "vtec-admin/dist/providers";
 //...
 export default new VtecAdmin({
   //...

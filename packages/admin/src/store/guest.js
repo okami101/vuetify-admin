@@ -4,7 +4,7 @@ import {
   GET_NAME,
   GET_EMAIL,
   GET_PERMISSIONS,
-} from "../utils/authActions";
+} from "../providers/auth/actions";
 
 export default {
   namespaced: true,

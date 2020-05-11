@@ -111,7 +111,7 @@ You even can use it easily without official package if you use [Laravel Query Bu
 In order to work, this provider needs an specific `axios` instance :
 
 ```js
-import { laravelDataProvider } from "vtec-admin";
+import { laravelDataProvider } from "vtec-admin/dist/providers";
 import axios from "axios";
 
 const http = axios.create({
@@ -127,7 +127,7 @@ It allows you to have full control of request, by taking cookies credentials, se
 
 :::warning FormData
 Laravel Data Provider use classic FormData for all api calls instead of simple JSON. It providers better Laravel integration for file uploads with ready-to-go file validation as well as UploadedFile auto conversion object.  
-For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/objectToFormData.js). To use it for your own provider, simply import it by `import { objectToFormData } from "vtec-admin";`
+For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vtec-admin/dist/providers/utils/objectToFormData";`
 :::
 
 ## Writing your own data provider

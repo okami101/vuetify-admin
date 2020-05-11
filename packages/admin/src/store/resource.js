@@ -1,5 +1,5 @@
 import EventBus from "../utils/eventBus";
-import * as methods from "../utils/dataActions";
+import * as methods from "../providers/data/actions";
 
 let storeActions = {};
 let {
