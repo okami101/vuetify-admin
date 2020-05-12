@@ -20,7 +20,11 @@ export default [
   {
     name: "reviews",
     icon: "mdi-comment",
-    permissions: ["admin", "editor", "author"],
+    permissions: [
+      "admin",
+      "editor",
+      { name: "author", actions: ["list", "show"] },
+    ],
   },
   {
     name: "users",

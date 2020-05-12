@@ -30,12 +30,9 @@ export default (provider, router) => {
       },
       [GET_PERMISSIONS](state) {
         if (state.user) {
-          return provider.getPermissions(state.user);
+          return provider.getPermissions(state.user) || [];
         }
         return [];
-      },
-      isLoggedIn(state) {
-        return state.user !== null;
       },
     },
     actions: {

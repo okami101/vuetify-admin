@@ -60,6 +60,15 @@ export default class VtecAdmin {
 
             return true;
           }),
+          getPermissions: (action) => {
+            return r.permissions
+              .filter((p) => {
+                return typeof p === "string" || p.actions.includes(action);
+              })
+              .map((p) => {
+                return typeof p === "string" ? p : p.name;
+              });
+          },
         };
       });
 
@@ -197,7 +206,7 @@ export default class VtecAdmin {
       isEmpty(permissions) ||
       !isEmpty(
         (Array.isArray(permissions) ? permissions : [permissions]).filter(
-          (p) => -1 !== (store.getters["auth/getPermissions"] || []).indexOf(p)
+          (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
         )
       );
 
@@ -205,13 +214,18 @@ export default class VtecAdmin {
      * Link resource helper
      */
     this.getResourceLink = (name, action = "list") => {
-      let { icon, permissions } = this.resources.find((r) => r.name === name);
+      let { icon, getPermissions } = this.resources.find(
+        (r) => r.name === name
+      );
 
+      /**
+       * For permissions, if advanced object return name only if action is inlcuded into
+       */
       return {
         icon,
         text: i18n.tc(`resources.${name}.name`, 10),
         link: { name: `${name}_${action}` },
-        permissions,
+        permissions: getPermissions(action),
       };
     };
 

@@ -53,6 +53,7 @@ export default ({ store, i18n, resource, title }) => {
               title: this.$route.meta.title,
               resource,
               item: store.state[name].item,
+              permissions: store.getters["auth/getPermissions"],
             },
           });
         },
