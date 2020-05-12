@@ -152,7 +152,8 @@ The Vtec Admin file upload component `va-file-input` will take care of all of th
 
 #### RequestTranslatableTrait
 
-Import `HasTranslations` from [Spatie Translatable](https://github.com/spatie/laravel-translatable) with addition of default locale detection from request for translatable fields saving or fetching.  
+Import `HasTranslations` from [Spatie Translatable](https://github.com/spatie/laravel-translatable) with addition of default locale detection from request for translatable fields saving or fetching.
+
 This trait will intercept all `locale` request input and set his value as default locale for saving. If not set default locale will be the user browser language in case you use included `Locale` middleware, if not this will be the app default locale.
 It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n#translatable).
 
