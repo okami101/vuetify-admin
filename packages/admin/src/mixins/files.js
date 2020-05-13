@@ -1,4 +1,3 @@
-import EventBus from "../utils/eventBus";
 import Field from "../mixins/field";
 import get from "lodash/get";
 
@@ -68,8 +67,7 @@ export default {
       this.deleted = [...(this.deleted || []), id];
 
       if (this.formState) {
-        EventBus.$emit("update-model", {
-          name: this.formState.name,
+        this.formState.update({
           source: this.model || this.source,
           value: this.isMultiple ? this.deleted : this.deleted[0],
         });

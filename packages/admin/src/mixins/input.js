@@ -1,4 +1,3 @@
-import EventBus from "../utils/eventBus";
 import Item from "../mixins/item";
 import get from "lodash/get";
 import { mapActions } from "vuex";
@@ -132,8 +131,7 @@ export default {
        * Update model in the injected form if available
        */
       if (this.formState) {
-        EventBus.$emit("update-model", {
-          name: this.formState.name,
+        this.formState.update({
           source: this.uniqueFormId,
           value,
         });

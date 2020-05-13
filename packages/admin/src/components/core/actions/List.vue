@@ -94,7 +94,6 @@
 <script>
 import Resource from "../../../mixins/resource";
 import FormFilter from "../../core/list/FormFilter";
-import EventBus from "../../../utils/eventBus";
 import isEmpty from "lodash/isEmpty";
 import { mapState, mapActions } from "vuex";
 
@@ -175,15 +174,11 @@ export default {
     await this.initFiltersFromQuery();
     this.loaded = true;
     this.fetchData();
-
-    EventBus.$on("refresh", () => {
-      this.fetchData();
-    });
-  },
-  beforeDestroy() {
-    EventBus.$off("refresh");
   },
   computed: {
+    ...mapState({
+      refresh: (state) => state.api.refresh,
+    }),
     getFilters() {
       return this.filters
         .map((f) => {
@@ -226,6 +221,11 @@ export default {
     },
   },
   watch: {
+    refresh(newVal) {
+      if (newVal) {
+        this.fetchData();
+      }
+    },
     options: {
       handler(val) {
         this.currentOptions = val;

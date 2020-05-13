@@ -14,15 +14,25 @@ export default {
   namespaced: true,
   state: {
     loading: false,
+    refresh: false,
   },
   mutations: {
     setLoading(state, loading) {
       state.loading = loading;
+
+      if (!loading) {
+        state.refresh = false;
+      }
+    },
+    setRefresh(state, refresh) {
+      state.refresh = refresh;
     },
   },
   actions: {
     ...storeActions,
-    refresh({ dispatch }, resource) {
+    refresh({ commit, dispatch }, resource) {
+      commit("setRefresh", true);
+
       return dispatch(
         `${resource}/refresh`,
         {},

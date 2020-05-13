@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import EventBus from "../../../utils/eventBus";
 import Resource from "../../../mixins/resource";
 import set from "lodash/set";
 
@@ -31,10 +30,6 @@ export default {
       type: Object,
       default: () => {},
     },
-    name: {
-      type: String,
-      default: "VaForm",
-    },
     saving: Boolean,
     redirect: {
       type: String,
@@ -45,25 +40,17 @@ export default {
   data() {
     return {
       formState: {
-        name: this.name,
         edit: !!this.id,
         item: this.item,
         model: this.value,
         errors: [],
+        update: ({ source, value }) => {
+          let model = { ...this.value };
+          set(model, source, value === undefined ? "" : value);
+          this.$emit("input", model);
+        },
       },
     };
-  },
-  created() {
-    EventBus.$on("update-model", ({ name, source, value }) => {
-      if (name === this.name) {
-        let model = { ...this.value };
-        set(model, source, value === undefined ? "" : value);
-        this.$emit("input", model);
-      }
-    });
-  },
-  beforeDestroy() {
-    EventBus.$off("update-model");
   },
   watch: {
     item(val) {

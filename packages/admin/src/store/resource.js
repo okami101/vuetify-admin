@@ -1,4 +1,3 @@
-import EventBus from "../utils/eventBus";
 import * as methods from "../providers/data/actions";
 
 let storeActions = {};
@@ -94,7 +93,6 @@ export default ({ provider, resource, i18n }) => {
 
           commit("setItem", data);
         }
-        EventBus.$emit("refresh");
       },
       changeLocale({ commit, dispatch }, code) {
         /**
