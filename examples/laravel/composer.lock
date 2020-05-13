@@ -1066,16 +1066,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "0c76899fbee4b501a2ddbd39c84e691a56d4da4f"
+                "reference": "3a06f9950f22698b07c6b05052d33c5520ff22e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/0c76899fbee4b501a2ddbd39c84e691a56d4da4f",
-                "reference": "0c76899fbee4b501a2ddbd39c84e691a56d4da4f",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/3a06f9950f22698b07c6b05052d33c5520ff22e5",
+                "reference": "3a06f9950f22698b07c6b05052d33c5520ff22e5",
                 "shasum": ""
             },
             "require": {
@@ -1122,7 +1122,7 @@
                 "laravel",
                 "sanctum"
             ],
-            "time": "2020-05-05T18:20:44+00:00"
+            "time": "2020-05-12T20:49:41+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1400,16 +1400,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.67",
+            "version": "1.0.68",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e"
+                "reference": "3e4198372276ec99ac3409a21d7c9d1ced9026e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
-                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3e4198372276ec99ac3409a21d7c9d1ced9026e4",
+                "reference": "3e4198372276ec99ac3409a21d7c9d1ced9026e4",
                 "shasum": ""
             },
             "require": {
@@ -1480,7 +1480,13 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-04-16T13:21:26+00:00"
+            "funding": [
+                {
+                    "url": "https://offset.earth/frankdejonge",
+                    "type": "other"
+                }
+            ],
+            "time": "2020-05-12T20:33:44+00:00"
         },
         {
             "name": "league/flysystem-cached-adapter",
@@ -1843,16 +1849,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.33.0",
+            "version": "2.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b"
+                "reference": "52ea68aebbad8a3b27b5d24e4c66ebe1933f8399"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b",
-                "reference": "4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/52ea68aebbad8a3b27b5d24e4c66ebe1933f8399",
+                "reference": "52ea68aebbad8a3b27b5d24e4c66ebe1933f8399",
                 "shasum": ""
             },
             "require": {
@@ -1876,7 +1882,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "2.x-dev",
+                    "dev-3.x": "3.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -1921,7 +1928,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-04-20T15:05:43+00:00"
+            "time": "2020-05-12T19:53:34+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2737,16 +2744,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "8.2.6",
+            "version": "8.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "f1cf9f63c65156ec3b03f6224f0d13721db3b557"
+                "reference": "117852093c0e8b5390a6c7dd5f9109dbce969788"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/f1cf9f63c65156ec3b03f6224f0d13721db3b557",
-                "reference": "f1cf9f63c65156ec3b03f6224f0d13721db3b557",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/117852093c0e8b5390a6c7dd5f9109dbce969788",
+                "reference": "117852093c0e8b5390a6c7dd5f9109dbce969788",
                 "shasum": ""
             },
             "require": {
@@ -2833,7 +2840,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-10T20:39:19+00:00"
+            "time": "2020-05-13T12:04:55+00:00"
         },
         {
             "name": "spatie/laravel-query-builder",
