@@ -1,6 +1,6 @@
 import isEmpty from "lodash/isEmpty";
-import upperFirst from "lodash/upperFirst";
 
+import loadI18n from "./i18n";
 import aside from "./store/aside";
 import messages from "./store/messages";
 import auth from "./store/auth";
@@ -73,89 +73,9 @@ export default class VtecAdmin {
       });
 
     /**
-     * Load i18n locales
+     * Prepare Vue I18n
      */
-    Object.keys(this.locales).forEach((locale) => {
-      i18n.mergeLocaleMessage(locale, { va: this.locales[locale] });
-    });
-
-    /**
-     * Default try to humanize i18n locale
-     */
-    i18n.missing = (locale, key, vm, values) => {
-      let label = key;
-      let lastIndex = key.lastIndexOf(".");
-
-      if (lastIndex !== -1) {
-        label = key.substr(lastIndex + 1, key.length);
-      }
-
-      return upperFirst(label.replace("_", " "));
-    };
-
-    /**
-     * I18n date format
-     */
-    i18n.setDateTimeFormat("en", {
-      short: {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      },
-      long: {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long",
-      },
-      longWithTime: {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long",
-        hour: "numeric",
-        minute: "numeric",
-      },
-    });
-
-    i18n.setDateTimeFormat("fr", {
-      short: {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      },
-      long: {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long",
-      },
-      longWithTime: {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long",
-        hour: "numeric",
-        minute: "numeric",
-      },
-    });
-
-    /**
-     * I18n number format
-     */
-    i18n.setNumberFormat("en", {
-      currency: {
-        style: "currency",
-        currency: "USD",
-      },
-    });
-
-    i18n.setNumberFormat("fr", {
-      currency: {
-        style: "currency",
-        currency: "EUR",
-      },
-    });
+    loadI18n({ i18n, locales });
 
     /**
      * Auth store & api dispatcher module injection
