@@ -7,6 +7,7 @@ import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 import "./plugins/base";
 import "./plugins/chartist";
+import "./plugins/i18n";
 
 Vue.config.productionTip = false;
 

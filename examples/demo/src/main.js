@@ -5,6 +5,7 @@ import i18n from "./i18n";
 
 import "./plugins/base";
 import "./plugins/chartist";
+import "./plugins/i18n";
 import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 import App from "./App.vue";

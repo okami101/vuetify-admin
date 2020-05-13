@@ -1,6 +1,6 @@
+import upperFirst from "lodash/upperFirst";
 import isEmpty from "lodash/isEmpty";
 
-import loadI18n from "./i18n";
 import aside from "./store/aside";
 import messages from "./store/messages";
 import auth from "./store/auth";
@@ -73,9 +73,25 @@ export default class VtecAdmin {
       });
 
     /**
-     * Prepare Vue I18n
+     * Load i18n locales
      */
-    loadI18n({ i18n, locales });
+    Object.keys(locales).forEach((locale) => {
+      i18n.mergeLocaleMessage(locale, { va: locales[locale] });
+    });
+
+    /**
+     * Default try to humanize i18n locale
+     */
+    i18n.missing = (locale, key, vm, values) => {
+      let label = key;
+      let lastIndex = key.lastIndexOf(".");
+
+      if (lastIndex !== -1) {
+        label = key.substr(lastIndex + 1, key.length);
+      }
+
+      return upperFirst(label.replace("_", " "));
+    };
 
     /**
      * Auth store & api dispatcher module injection
