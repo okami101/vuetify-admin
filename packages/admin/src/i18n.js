@@ -25,7 +25,7 @@ export default ({ i18n, locales }) => {
     /**
      * Date format
      */
-    i18n.mergeDateTimeFormat("en", {
+    i18n.mergeDateTimeFormat(locale, {
       short: {
         year: "numeric",
         month: "short",
