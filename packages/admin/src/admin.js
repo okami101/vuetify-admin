@@ -99,12 +99,16 @@ export default class VtecAdmin {
               });
 
               /**
-               * If valid boolean return this value instead of default
+               * If valid boolean return this value instead of default next behavior
                */
               if (typeof result === "boolean") {
                 return result;
               }
             }
+
+            /**
+             * Get permissions for asked action
+             */
             let permissions = (r.permissions || [])
               .filter((p) => {
                 return typeof p === "string" || p.actions.includes(action);
@@ -112,6 +116,8 @@ export default class VtecAdmin {
               .map((p) => {
                 return typeof p === "string" ? p : p.name;
               });
+
+            // Test if current user can access
             return this.can(permissions);
           },
         };

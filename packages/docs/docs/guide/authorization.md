@@ -52,22 +52,125 @@ By default, if no permissions are setted, all authenticated users can access to 
 Global `actions` or `except` are prioritized to `permissions` option only for excluded actions. So if you use `actions` or `except` properties, then specific `permissions` for excluded actions will have no effect.
 :::
 
-## Menu
+### Advanced usage
 
-As you can see in this [dedicated layout section](components/layout), you can define all sort of menu for header, sidebar or footer. All this menu can support a specific `permissions` property that allow to show hide this link according to current user permissions. It uses a simple array a string that contains allowed permissions for access.
+In case of this resource permission API above is not enough for you, you can still pass to VtecAdmin options and specific `canAction` callback, which allows you to have more control for permission action filtering. It's executed on each resource link (if you use `$admin.getResourceLink` or `$admin.getResourceLinks`) or any resource CRUD action button in order to know if it must be active according the user permissions.
 
-:::tip DEFAULT BEHAVIOR
-By default, if no permissions are setted, this link is available for all users.
-:::
+This callback takes an `params` object with 3 properties :
 
-## Permissions helpers
+* `resource` : name of concerned resource.
+* `action` : asked action.
+* `can` : a helper function which allows direct permissions ability from authenticated user.
+
+**`src/plugins/admin.js`**
 
 ```js
-  canAction: ({ can }) => {
+export default new VtecAdmin({
+  // ...
+  canAction: ({ resource, action, can }) => {
     if (can(["admin"])) {
       return true;
     }
+
+    // any other custom actions on given resource and action...
   },
 ```
 
-## Permissions page props
+:::warning OVERRIDES OR DEFAULT
+If this callback return a valid boolean, the action will be considered as valid or not whatever the permissions value setted on the concerned resource.
+
+If nothing is returned, the default behavior is executed.
+:::
+
+## Access to permissions
+
+You can access to current user permissions everywhere in your apps, which allows you to make custom actions according to user rights, as hide some UI elements as component, entire section, etc. To access this permissions, the simplest way is to add `permissions` props if you are in CRUD page.
+
+```vue {2}
+<script>
+export default {
+  props: ["permissions"],
+  // ...
+},
+</script>
+```
+
+:::warning ONLY CRUD PAGE
+This prop is only available on CRUD pages, as this props is injected from VA routes.
+:::
+
+For any other cases, on any components apart from CRUD pages, you can get them from the `getPermissions` of `auth` store module as shown here :
+
+```vue {8}
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+  // ...
+  computed: {
+    ...mapGetters({
+      permissions: "auth/getPermissions",
+    }),
+  },
+};
+</script>
+```
+
+## Permissions helpers
+
+VA offers to you a global `$admin.can` helper that you can use anywhere which allows to quickly test if current user have given abilities. It takes a array of strings, which is the list of permissions you want to test and return `true` if the authenticated user owns one of them.
+
+```vue {3,12}
+<template>
+  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
+    <va-text-input source="isbn" v-if="$admin.can(['isbn_edit'])"></va-text-input>
+  </va-form>
+</template>
+
+<script>
+export default {
+  // ...
+  method() {
+    onSubmit() {
+      if (this.$admin.can(["book_edit"])) {
+        // ...
+      }
+    },
+  },
+};
+</script>
+```
+
+:::warning OR condition
+It test the list of abilities as a `OR` conditon, so if only one permission is owned by current user, then it return `true`.
+:::
+
+You can use it for easy hide or show links from the sidebar directly inside the array by using the `&&` combinator :
+
+**`src/_navs.js`**
+
+```js {8,13}
+export default (i18n, admin) => [
+  {
+    icon: "mdi-view-dashboard",
+    text: i18n.t("menu.dashboard"),
+    link: "/",
+  },
+  ...admin.getResourceLinks(["publishers", "authors", "books", "reviews"]),
+  admin.can(["admin"]) && {
+    icon: "mdi-settings",
+    text: i18n.t("menu.settings"),
+    link: "/settings",
+  },
+  admin.can(["admin", "editor"]) && {
+    icon: "mdi-message",
+    text: i18n.t("menu.feedback"),
+    link: "/feedback",
+  },
+  { icon: "mdi-help-circle", text: i18n.t("menu.help"), link: "/help" },
+];
+```
+
+:::warning ADMIN
+Don't forget to pass `this.$admin` on `nav` call inside `src/layouts/Admin.vue`
+:::
