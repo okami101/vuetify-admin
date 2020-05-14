@@ -99,7 +99,7 @@ export default {
 This prop is only available on CRUD pages, as this props is injected from VA routes.
 :::
 
-For any other cases, on any components apart from CRUD pages, you can get them from the `getPermissions` of `auth` store module as shown here :
+For any other cases, on any components apart from CRUD pages or custom pages as dashboard, you can get this permissions from the `getPermissions` of `auth` store module as shown here :
 
 ```vue {8}
 <script>
@@ -116,7 +116,11 @@ export default {
 </script>
 ```
 
-## Permissions helpers
+:::tip USE CAN HELPER
+It is often enough to use the [dedicated can helper](#helpers) which allows you to make quick permissions ability assertions againts the authenticated user.
+:::
+
+## Helpers
 
 VA offers to you a global `$admin.can` helper that you can use anywhere which allows to quickly test if current user have given abilities. It takes a array of strings, which is the list of permissions you want to test and return `true` if the authenticated user owns one of them.
 
