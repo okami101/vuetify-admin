@@ -39,7 +39,7 @@ A resource object must follow this structure :
 | `actions`      | Array   | List of all valid actions for this resource                                                          |
 | `except`       | Array   | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted                  |
 | `translatable` | Boolean | Indicate if this resource can be [translated](i18n#translation)                                      |
-| `permissions`  | Array   | Enable resource according to user permissions, as shown [here](authorization)                        |
+| `permissions`  | Array   | Enable resource according to user permissions, as shown [here](authorization#resource)               |
 
 :::tip ACTIONS
 For actions, you have to choose between `list` / `show` / `create` / `edit` / `delete`. If none `actions` or `except` is setted, all 5 operations are active by default.
