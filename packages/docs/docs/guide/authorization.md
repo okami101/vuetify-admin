@@ -62,4 +62,12 @@ By default, if no permissions are setted, this link is available for all users.
 
 ## Permissions helpers
 
+```js
+  canAction: ({ can }) => {
+    if (can(["admin"])) {
+      return true;
+    }
+  },
+```
+
 ## Permissions page props

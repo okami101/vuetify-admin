@@ -11,7 +11,7 @@
     <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
       <span class="hidden-sm-and-down">{{ $admin.title }}</span>
     </v-toolbar-title>
-    <v-row>
+    <v-row v-if="headerMenu.length">
       <v-col
         v-for="(item, i) in headerMenu"
         :key="i"
@@ -92,9 +92,7 @@
           <v-divider></v-divider>
 
           <v-list-item
-            v-for="(item, index) in profileMenu.filter((i) =>
-              $admin.can(i.permissions)
-            )"
+            v-for="(item, index) in profileMenu"
             :key="index"
             link
             :to="item.link"
@@ -144,9 +142,7 @@ export default {
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
     resources() {
-      return this.$admin.resources.filter(
-        (r) => r.actions.includes("create") && this.$admin.can(r.permissions)
-      );
+      return this.$admin.resources.filter((r) => r.canAction("create"));
     },
   },
   methods: {

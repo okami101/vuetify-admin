@@ -16,7 +16,7 @@
         </v-subheader>
         <v-divider v-else-if="item.divider" :key="index"></v-divider>
         <v-list-group
-          v-else-if="item.children && $admin.can(item.permissions)"
+          v-else-if="item.children"
           :key="index"
           v-model="item.expanded"
           :prepend-icon="item.icon"
@@ -30,9 +30,7 @@
             </v-list-item-content>
           </template>
           <v-list-item
-            v-for="(child, i) in item.children.filter((c) =>
-              $admin.can(c.permissions)
-            )"
+            v-for="(child, i) in item"
             :key="i"
             link
             :to="child.link"
@@ -47,12 +45,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-        <v-list-item
-          v-else-if="item.text && $admin.can(item.permissions)"
-          :key="index"
-          link
-          :to="item.link"
-        >
+        <v-list-item v-else-if="item.text" :key="index" link :to="item.link">
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>

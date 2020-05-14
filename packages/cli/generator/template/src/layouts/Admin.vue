@@ -64,7 +64,7 @@ export default {
           link: "/profile",
         },
       ],
-      sidebarMenu: nav(this.$i18n, this.$admin.getResourceLink),
+      sidebarMenu: nav(this.$i18n, this.$admin),
     };
   },
 };

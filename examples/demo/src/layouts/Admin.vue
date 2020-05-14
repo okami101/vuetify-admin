@@ -53,10 +53,12 @@ export default {
     return {
       mini: false,
       headerMenu: [
-        this.$admin.getResourceLink("publishers"),
-        this.$admin.getResourceLink("authors"),
-        this.$admin.getResourceLink("books"),
-        this.$admin.getResourceLink("reviews"),
+        ...this.$admin.getResourceLinks([
+          "publishers",
+          "authors",
+          "books",
+          "reviews",
+        ]),
         {
           href: "https://github.com/okami101/vtec-admin",
           text: "Github",
@@ -83,7 +85,7 @@ export default {
           link: "/profile",
         },
       ],
-      sidebarMenu: nav(this.$i18n, this.$admin.getResourceLink),
+      sidebarMenu: nav(this.$i18n, this.$admin),
     };
   },
 };

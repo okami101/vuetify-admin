@@ -23,6 +23,7 @@ export default class VtecAdmin {
     dataProvider,
     fileBrowserUrl,
     resources,
+    canAction,
   }) {
     /**
      * Options properties
@@ -33,6 +34,18 @@ export default class VtecAdmin {
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
     this.fileBrowserUrl = fileBrowserUrl;
+
+    /**
+     * Permissions helper & directive
+     */
+    this.can = (permissions) =>
+      !authProvider ||
+      isEmpty(permissions) ||
+      !isEmpty(
+        (Array.isArray(permissions) ? permissions : [permissions]).filter(
+          (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
+        )
+      );
 
     /**
      * Format usable resources object
@@ -46,10 +59,11 @@ export default class VtecAdmin {
           : r;
       })
       .map((r) => {
-        return {
-          ...r,
-          icon: r.icon || "mdi-view-grid",
-          actions: ["list", "show", "create", "edit", "delete"].filter((a) => {
+        /**
+         * Get valid actions by whitelist and blacklist
+         */
+        let actions = ["list", "show", "create", "edit", "delete"].filter(
+          (a) => {
             if ((r.actions || []).length) {
               return r.actions.includes(a);
             }
@@ -59,18 +73,77 @@ export default class VtecAdmin {
             }
 
             return true;
-          }),
-          getPermissions: (action) => {
-            return r.permissions
+          }
+        );
+
+        return {
+          ...r,
+          icon: r.icon || "mdi-view-grid",
+          actions,
+          canAction: (action) => {
+            /**
+             * Test if action exist for this resource
+             */
+            if (!actions.includes(action)) {
+              return false;
+            }
+
+            /**
+             * Use custom action if defined
+             */
+            if (canAction) {
+              let result = canAction({
+                resource: r,
+                action,
+                can: this.can,
+              });
+
+              /**
+               * If valid boolean return this value instead of default
+               */
+              if (typeof result === "boolean") {
+                return result;
+              }
+            }
+            let permissions = (r.permissions || [])
               .filter((p) => {
                 return typeof p === "string" || p.actions.includes(action);
               })
               .map((p) => {
                 return typeof p === "string" ? p : p.name;
               });
+            return this.can(permissions);
           },
         };
       });
+
+    /**
+     * Resource link helper with action permission test
+     */
+    this.getResourceLink = (name, action = "list") => {
+      let { icon, canAction } = this.resources.find((r) => r.name === name);
+
+      if (!canAction(action)) {
+        return null;
+      }
+
+      return {
+        icon,
+        text: i18n.tc(`resources.${name}.name`, 10),
+        link: { name: `${name}_${action}` },
+      };
+    };
+
+    /**
+     * Resource links list helper
+     */
+    this.getResourceLinks = (names, action = "list") => {
+      return names
+        .map((name) => {
+          return this.getResourceLink(name, action);
+        })
+        .filter((r) => r);
+    };
 
     /**
      * Load i18n locales
@@ -133,37 +206,6 @@ export default class VtecAdmin {
     );
 
     router.addRoutes([routes]);
-
-    /**
-     * Permissions helper & directive
-     */
-    this.can = (permissions) =>
-      !authProvider ||
-      isEmpty(permissions) ||
-      !isEmpty(
-        (Array.isArray(permissions) ? permissions : [permissions]).filter(
-          (p) => -1 !== store.getters["auth/getPermissions"].indexOf(p)
-        )
-      );
-
-    /**
-     * Link resource helper
-     */
-    this.getResourceLink = (name, action = "list") => {
-      let { icon, getPermissions } = this.resources.find(
-        (r) => r.name === name
-      );
-
-      /**
-       * For permissions, if advanced object return name only if action is inlcuded into
-       */
-      return {
-        icon,
-        text: i18n.tc(`resources.${name}.name`, 10),
-        link: { name: `${name}_${action}` },
-        permissions: getPermissions(action),
-      };
-    };
 
     /**
      * Global confirm dialog function

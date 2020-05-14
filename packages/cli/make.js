@@ -242,7 +242,7 @@ async function service(args = {}, api) {
   const navFile = resolve(process.cwd(), "./src/_nav.js");
   let content = fs.readFileSync(navFile).toString();
 
-  let code = `resourceLink("${args.name}")`;
+  let code = `admin.getResourceLink("${args.name}")`;
 
   if (content.indexOf(code) === -1) {
     let startOffset = content.indexOf("];");

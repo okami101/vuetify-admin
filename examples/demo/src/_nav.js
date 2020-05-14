@@ -1,4 +1,4 @@
-export default (i18n, resourceLink) => [
+export default (i18n, admin) => [
   {
     icon: "mdi-view-dashboard",
     text: i18n.t("menu.dashboard"),
@@ -6,24 +6,19 @@ export default (i18n, resourceLink) => [
   },
   { divider: true },
   { heading: i18n.t("menu.bookstore") },
-  resourceLink("publishers"),
-  resourceLink("authors"),
-  resourceLink("books"),
-  resourceLink("reviews"),
+  ...admin.getResourceLinks(["publishers", "authors", "books", "reviews"]),
   { divider: true },
   { heading: i18n.t("menu.other") },
-  resourceLink("users"),
-  {
+  ...[admin.getResourceLink("users") || []],
+  admin.can(["admin"]) && {
     icon: "mdi-settings",
     text: i18n.t("menu.settings"),
     link: "/settings",
-    permissions: ["admin"],
   },
-  {
+  admin.can(["admin", "editor"]) && {
     icon: "mdi-message",
     text: i18n.t("menu.feedback"),
     link: "/feedback",
-    permissions: ["admin", "editor"],
   },
   { icon: "mdi-help-circle", text: i18n.t("menu.help"), link: "/help" },
 ];
