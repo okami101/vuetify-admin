@@ -89,7 +89,7 @@ yarn serve
 See [this getting started section](getting-started#directory-structure) for more detail of what you get inside the `admin` folder.
 :::
 
-## [API crud generators commands](#crud)
+## Generators
 
 This package provides 2 specific crud commands. Use `php artisan crud:make [MyNewResource] [options]` with many as option as possible. This will scaffold following files :
 
@@ -112,8 +112,12 @@ Route::apiResources([
 
 > Launch `php artisan crud:make --help` for all options documentation.  
 
-:::tip IDE Autocompletion
+:::tip IDE AUTOCOMPLETION
 Use `php artisan ide-helper:models` after in order to have full model autocompletion !
+:::
+
+:::warning API ONLY
+This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators#ui).
 :::
 
 ## Other internal traits or services included

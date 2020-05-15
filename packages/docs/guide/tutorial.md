@@ -64,7 +64,7 @@ For all next artisan commands, don't forget to add `docker-compose exec laravel`
 
 Finally it's time to generate our basic CRUD boilerplate code.
 
-First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](guide/laravel#crud) for all detail of what's going on.
+First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](laravel#generators) for all detail of what's going on.
 
 This migrate your database by `php artisan migrate`.
 
@@ -106,6 +106,6 @@ We will not use them for this tutorial, but for real app it's heavily recommende
 
 ### UI generator commands
 
-Finally you can simply launch `yarn crud:yaml --file generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. See [generators specific section](guide/generators#ui) for how it works.
+Finally you can simply launch `yarn crud:yaml --file generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable datagrid list, show, create and edit forms. See [generators specific section](generators#ui) for how it works.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.

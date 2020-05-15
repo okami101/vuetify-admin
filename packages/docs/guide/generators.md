@@ -1,12 +1,12 @@
 # Generators
 
-## [API crud generators commands](#api)
+## API
 
 See specific section of each server's package :
 
-* [Laravel](guide/laravel#crud)
+* [Laravel](laravel#generators)
 
-## [Available UI generators commands](#ui)
+## UI
 
 Vue CLI plugin will prepare for you 2 new npm scripts :
 
@@ -20,7 +20,7 @@ Vue CLI plugin will prepare for you 2 new npm scripts :
 > Use `yarn vue-cli-service help crud:make` for all options documentation  
 > For best explanation of YAML usage, follow [this tutorial guide](tutorial).
 
-### [YAML based generation](#yaml)
+### YAML
 
 For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml`.  
 You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
