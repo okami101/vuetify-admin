@@ -39,15 +39,14 @@ export default {
   },
   data() {
     return {
+      model: this.value,
       formState: {
         edit: !!this.id,
         item: this.item,
-        model: this.value,
         errors: [],
         update: ({ source, value }) => {
-          let model = { ...this.value };
-          set(model, source, value === undefined ? "" : value);
-          this.$emit("input", model);
+          set(this.model, source, value === undefined ? "" : value);
+          this.$emit("input", this.model);
         },
       },
     };

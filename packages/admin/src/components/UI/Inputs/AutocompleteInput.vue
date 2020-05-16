@@ -68,11 +68,11 @@ export default {
   },
   methods: {
     fillInputFromSource() {
-      if (!this.reference || !this.formItem) {
+      if (!this.reference || !this.formState || !this.formState.item) {
         return;
       }
 
-      let value = this.formItem[this.source];
+      let value = this.formState.item[this.source];
       let input = this.multiple
         ? value.map((v) => v[this.optionValue])
         : value[this.optionValue];
