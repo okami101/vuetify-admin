@@ -110,14 +110,14 @@ RA has a more extreme [DSL](https://en.wikipedia.org/wiki/Domain-specific_langua
 
 #### A very subjective comparison
 
-| Features               | Vtec Admin | React Admin  | EasyAdmin | Nova | Backpack |
-| ---------------------* | ---------* | -----------* | --------* | ---* | -------* |
-| SPA                    | X          | X            |           | X    |          |
-| Backend independency   | X          | X            |           |      |          |
-| Backend helpers        | X          | Api Platform | X         | X    | X        |
-| Fun                    | +++        | +++          | +         | ++   | *        |
-| Code generators        | X          |              |           |      |          |
-| Ready-to-go features   | ++         | *            | +         | +++  | +++      |
-| Edge case managment    | ++         | +++          | *         | ++   | +        |
-| Maturity / Community   | --*        | +++          | +         | ++   | +        |
-| Free Licence           | X          | X            | X         |      |          |
+| Features             | Vtec Admin | React Admin  | EasyAdmin | Nova | Backpack |
+| -------------------- | ---------- | ------------ | --------- | ---- | -------- |
+| SPA                  | X          | X            |           | X    |          |
+| Backend independency | X          | X            |           |      |          |
+| Backend helpers      | X          | Api Platform | X         | X    | X        |
+| Fun                  | +++        | +++          | +         | ++   | -        |
+| Code generators      | X          |              |           |      |          |
+| Ready-to-go features | ++         | *            | +         | +++  | +++      |
+| Edge case managment  | ++         | +++          | *         | ++   | +        |
+| Maturity / Community | ---        | +++          | +         | ++   | +        |
+| Free Licence         | X          | X            | X         |      |          |
