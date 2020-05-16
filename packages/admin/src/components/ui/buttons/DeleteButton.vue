@@ -71,7 +71,6 @@ export default {
 
         this.refresh(this.resource);
         this.$emit("deleted");
-        return;
       }
     },
   },

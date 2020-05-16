@@ -25,6 +25,8 @@
     "add": "Add",
     "remove": "Remove",
     "move": "Move",
+    "associate": "Associate",
+    "dissociate": "Dissociate",
     "locale": "Locale"
   },
   "messages": {
@@ -40,7 +42,9 @@
     "delete_title": "Delete {resource} #{id} ?",
     "delete_message": "You are about deleting {resource} #{id}. This operation is irreversible !",
     "delete_many_title": "Delete {count} {resource} ?",
-    "delete_many_message": "You are about deleting {count} {resource}. This operation is irreversible !"
+    "delete_many_message": "You are about deleting {count} {resource}. This operation is irreversible !",
+    "dissociate_title": "Dissociate from {targetResource} #{targetId} ?",
+    "dissociate_message": "You are about dissociate {targetResource} #{targetId} from {sourceResource} #{sourceId}."
   },
   "forms": {
     "none": "None",

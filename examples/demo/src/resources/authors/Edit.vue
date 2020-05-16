@@ -9,7 +9,10 @@
         resource="books"
         disable-pagination
         disable-query-string
-        hide-header
+        disable-create
+        disable-export
+        :association="association"
+        association-option-text="title"
         :filter="{
           authors: id,
         }"
@@ -19,8 +22,12 @@
         v-slot="props"
       >
         <va-datagrid
+          resource="books"
           disable-sort
           disable-select
+          disable-clone
+          disable-delete
+          :association="association"
           :fields="[
             { source: 'isbn', link: 'show' },
             { source: 'category', type: 'select', chip: true },
@@ -68,6 +75,11 @@ export default {
   data() {
     return {
       options: {},
+      association: {
+        resource: "authors",
+        source: "author_id",
+        id: this.id,
+      },
     };
   },
 };

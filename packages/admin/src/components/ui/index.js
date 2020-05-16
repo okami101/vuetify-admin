@@ -11,6 +11,8 @@ import DeleteButton from "./buttons/DeleteButton";
 import SaveButton from "./buttons/SaveButton";
 import ExportButton from "./buttons/ExportButton";
 import CloneButton from "./buttons/CloneButton";
+import AssociateButton from "./buttons/AssociateButton";
+import DissociateButton from "./buttons/DissociateButton";
 import LocaleButton from "./buttons/LocaleButton";
 import ActionButton from "./buttons/ActionButton";
 import BulkActionButton from "./buttons/BulkActionButton";
@@ -56,6 +58,8 @@ export {
   SaveButton,
   ExportButton,
   CloneButton,
+  AssociateButton,
+  DissociateButton,
   LocaleButton,
   ActionButton,
   BulkActionButton,

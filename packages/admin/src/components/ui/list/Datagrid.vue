@@ -109,6 +109,16 @@
             :disable-route="disableEditRoute"
             @click="(item) => onAction('create', item)"
           ></va-clone-button>
+          <va-dissociate-button
+            v-if="association"
+            :resource="resource"
+            :item="item"
+            :source-resource="association.resource"
+            :source="association.source"
+            :source-id="association.id"
+            icon
+            @deleted="$emit('dissociated', item)"
+          ></va-dissociate-button>
           <va-delete-button
             v-if="!disableDelete"
             :resource="resource"
@@ -183,6 +193,10 @@ export default {
     disableClone: Boolean,
     disableDelete: Boolean,
     disableRowActions: Boolean,
+    association: {
+      type: Object,
+      default: () => {},
+    },
   },
   computed: {
     headers() {

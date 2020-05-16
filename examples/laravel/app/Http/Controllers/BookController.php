@@ -105,7 +105,18 @@ class BookController extends Controller
     public function update(UpdateBook $request, Book $book)
     {
         $book->update($request->all());
-        $book->authors()->sync($request->input('author_ids'));
+
+        if ($request->has('author_ids')) {
+            $book->authors()->sync($request->input('author_ids'));
+        }
+
+        if ($id = $request->input('attach_author_id')) {
+            $book->authors()->attach($id);
+        }
+
+        if ($id = $request->input('detach_author_id')) {
+            $book->authors()->detach($id);
+        }
 
         return new BookResource($book);
     }

@@ -25,6 +25,8 @@
     "add": "Ajouter",
     "remove": "Retirer",
     "move": "Déplacer",
+    "associate": "Associer",
+    "dissociate": "Dissocier",
     "locale": "Langue"
   },
   "messages": {
@@ -40,7 +42,9 @@
     "delete_title": "Supprimer {resource} #{id} ?",
     "delete_message": "Vous êtes sur le point de supprimer {resource} #{id}. Cette opération est irréversible !",
     "delete_many_title": "Supprimer {count} {resource} ?",
-    "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !"
+    "delete_many_message": "Vous êtes sur le point de supprimer {count} {resource}. Cette opération est irréversible !",
+    "dissociate_title": "Dissocier {targetResource} #{targetId} ?",
+    "dissociate_message": "Vous êtes sur le point de dissocier {targetResource} #{targetId} de {sourceResource} #{sourceId}."
   },
   "forms": {
     "none": "Aucun",

@@ -80,7 +80,7 @@ export default {
       this.update(input);
     },
     async loadCurrentChoices(value) {
-      if (this.reference) {
+      if (this.reference && value) {
         this.items = await this.fetchCurrentChoices(
           this.multiple ? value : [value]
         );

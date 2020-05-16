@@ -27,6 +27,22 @@
         </div>
       </v-toolbar>
       <v-toolbar flat v-else>
+        <form
+          class="d-flex align-center"
+          v-if="association"
+          @submit.prevent="onAssociate"
+        >
+          <va-autocomplete-input
+            :label="$tc(`resources.${resource}.name`, 1)"
+            :resource="resource"
+            :reference="resource"
+            :option-text="associationOptionText"
+            v-model="associationId"
+            hide-details
+            :filled="false"
+          ></va-autocomplete-input>
+          <va-associate-button type="submit"></va-associate-button>
+        </form>
         <form-filter
           :filters="getEnabledFilters"
           @remove="disableFilter"
@@ -157,6 +173,14 @@ export default {
     hideHeader: Boolean,
     disableCreate: Boolean,
     disableExport: Boolean,
+    associationOptionText: {
+      type: [String, Array, Function],
+      default: "name",
+    },
+    association: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -167,6 +191,7 @@ export default {
       currentOptions: {},
       currentFilter: {},
       enabledFilters: [],
+      associationId: null,
     };
   },
   async mounted() {
@@ -244,6 +269,7 @@ export default {
   methods: {
     ...mapActions({
       getList: "api/getList",
+      update: "api/update",
     }),
     async initFiltersFromQuery() {
       let options = {
@@ -403,6 +429,21 @@ export default {
       let title = this.$t("resources.users.titles.create");
 
       this.$emit("action", { action: "create", title });
+    },
+    async onAssociate() {
+      await this.update({
+        resource: this.resource,
+        params: {
+          id: this.associationId,
+          data: {
+            [`attach_${this.association.source}`]: this.association.id,
+          },
+        },
+      });
+
+      this.fetchData();
+      this.$emit("associated", this.associationId);
+      this.associationId = null;
     },
   },
 };

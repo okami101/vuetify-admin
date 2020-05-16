@@ -1,4 +1,5 @@
 import { mapActions } from "vuex";
+import isEmpty from "lodash/isEmpty";
 import Choices from "../mixins/choices";
 
 export default {
@@ -82,7 +83,7 @@ export default {
       return data;
     },
     async fetchCurrentChoices(ids) {
-      if (!this.reference || !ids || !ids.length) {
+      if (!this.reference || isEmpty(ids)) {
         return;
       }
 
