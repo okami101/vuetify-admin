@@ -2,15 +2,15 @@ export default [
   {
     name: "users",
     icon: "mdi-account",
-    actions: ["list", "delete"],
     label: "name",
+    actions: ["list", "delete"],
   },
   {
     name: "monsters",
     icon: "mdi-alien",
+    label: "name",
     actions: ["list", "show", "create", "edit", "delete"],
     translatable: true,
-    label: "name",
   },
   {
     name: "monster_children",

@@ -10,8 +10,8 @@
   "pages": {
     "list": "Liste {resource}",
     "create": "Créer {resource}",
-    "show": "Détail {resource} #{id}",
-    "edit": "Editer {resource} #{id}"
+    "show": "Détail {resource} {label}",
+    "edit": "Editer {resource} {label}"
   },
   "actions": {
     "list": "Liste",

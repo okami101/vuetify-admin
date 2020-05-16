@@ -39,12 +39,6 @@
   "resources": {
     "users": {
       "name": "Utilisateur | Utilisateurs",
-      "titles": {
-        "list": "Liste des utilisateurs",
-        "show": "Détail de l'utilisateur {name}",
-        "create": "Créer un nouvel utilisateur",
-        "edit": "Edition de l'utilisateur {name}"
-      },
       "fields": {
         "id": "ID",
         "name": "Nom",

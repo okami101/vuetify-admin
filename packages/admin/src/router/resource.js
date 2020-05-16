@@ -1,5 +1,5 @@
 export default ({ store, i18n, resource, title }) => {
-  let { name, actions, translatable } = resource;
+  let { name, actions, translatable, label } = resource;
 
   const setTitle = (to, action, item = null) => {
     let nameKey = `resources.${name}.name`;
@@ -9,12 +9,13 @@ export default ({ store, i18n, resource, title }) => {
       /**
        * Build default main title with item
        */
-      to.meta.title = i18n.te(titleKey)
-        ? `${i18n.t(titleKey, item)} #${to.params.id}`
-        : i18n.t(`va.pages.${action}`, {
-            resource: i18n.tc(nameKey, 1).toLowerCase(),
-            id: to.params.id,
-          });
+      to.meta.title =
+        (i18n.te(titleKey)
+          ? i18n.t(titleKey, item)
+          : i18n.t(`va.pages.${action}`, {
+              resource: i18n.tc(nameKey, 1).toLowerCase(),
+              label: typeof label === "function" ? label(item) : item[label],
+            })) + ` #${to.params.id}`;
     } else {
       /**
        * Build default main title

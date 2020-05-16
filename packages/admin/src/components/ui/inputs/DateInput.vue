@@ -18,7 +18,11 @@
         @click:clear="input = null"
       ></v-text-field>
     </template>
-    <v-date-picker @change="change" @input="updateDate"></v-date-picker>
+    <v-date-picker
+      :value="getDate"
+      @change="change"
+      @input="updateDate"
+    ></v-date-picker>
   </v-menu>
 </template>
 
@@ -44,15 +48,21 @@ export default {
     dateFormatted() {
       return this.input ? this.$d(new Date(this.input), this.format) : "";
     },
-  },
-  watch: {
-    input: {
-      handler(val) {
-        if (val) {
-          this.input = val.substring(0, 10);
-        }
-      },
-      immediate: true,
+    getDate() {
+      /**
+       * Return ISO 8601
+       */
+      let date = new Date(this.input);
+
+      let month = 1 + date.getMonth();
+      if (month < 10) {
+        month = `0${month}`;
+      }
+      let day = date.getDate();
+      if (day < 10) {
+        day = `0${day}`;
+      }
+      return `${date.getFullYear()}-${month}-${day}`;
     },
   },
   methods: {

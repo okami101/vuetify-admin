@@ -3,8 +3,7 @@
     v-bind="commonProps"
     :column="column"
     :row="row"
-    @change="change"
-    @input="update"
+    @change="update"
   >
     <v-radio v-if="clearable" :label="$t('va.forms.none')"></v-radio>
     <v-radio

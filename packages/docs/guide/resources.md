@@ -11,18 +11,21 @@ export default [
   {
     name: "users",
     icon: "mdi-account",
+    label: "name",
     actions: ["list", "delete"],
     permissions: ["admin"],
   },
   {
     name: "monsters",
     icon: "mdi-alien",
+    label: "name",
     translatable: true,
     permissions: ["admin", "parent"],
   },
   {
     name: "monster_children",
     icon: "mdi-baby-carriage",
+    label: "name",
     except: ["delete"],
   },
 ];
@@ -32,14 +35,22 @@ export default [
 
 A resource object must follow this structure :
 
-| Property       | Type    | Description                                                                                          |
-| -------------- | ------- | ---------------------------------------------------------------------------------------------------- |
-| `name`         | String  | A mandatory slug name which will be used for api base URL calls                                      |
-| `icon`         | String  | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/) |
-| `actions`      | Array   | List of all valid actions for this resource                                                          |
-| `except`       | Array   | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted                  |
-| `translatable` | Boolean | Indicate if this resource can be [translated](i18n#translation)                                      |
-| `permissions`  | Array   | Enable resource according to user permissions, as shown [here](authorization#resource)               |
+| Property             | Type             | Description                                                                                          |
+| -------------------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
+| `name`               | String           | A mandatory slug name which will be used for api base URL calls                                      |
+| `icon`               | String           | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/) |
+| `label`              | String, Function | Return an identifiable label of resource                                                             |
+| `actions`            | Array            | List of all valid actions for this resource                                                          |
+| `except`             | Array            | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted                  |
+| `translatable`       | Boolean          | Indicate if this resource can be [translated](i18n#translation)                                      |
+| `permissions`        | Array            | Enable resource according to user permissions, as shown [here](authorization#resource)               |
+| `autocompleteFields` | Array            | List of resource fields to return from API from autocomplete for avoiding over-fetching              |
+
+:::tip LABEL
+The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targetted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
+
+This label will be used for default page title for every show and edit CRUD pages as well as every reference-based fields and inputs (`ReferenceField`, `AutocompleteInput`, `SelectInput`, `RadioGroupInput`).
+:::
 
 :::tip ACTIONS
 For actions, you have to choose between `list` / `show` / `create` / `edit` / `delete`. If none `actions` or `except` is setted, all 5 operations are active by default.
