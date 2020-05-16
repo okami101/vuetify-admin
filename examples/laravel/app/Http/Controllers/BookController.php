@@ -110,11 +110,11 @@ class BookController extends Controller
             $book->authors()->sync($request->input('author_ids'));
         }
 
-        if ($id = $request->input('attach_author_id')) {
+        if ($id = $request->input('add_author_id')) {
             $book->authors()->attach($id);
         }
 
-        if ($id = $request->input('detach_author_id')) {
+        if ($id = $request->input('remove_author_id')) {
             $book->authors()->detach($id);
         }
 

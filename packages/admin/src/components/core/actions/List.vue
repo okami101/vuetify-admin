@@ -431,7 +431,7 @@ export default {
         params: {
           id: this.associationId,
           data: {
-            [`attach_${this.association.source}`]: this.association.id,
+            [`add_${this.association.source}`]: this.association.id,
           },
         },
       });

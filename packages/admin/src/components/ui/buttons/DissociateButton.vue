@@ -68,7 +68,7 @@ export default {
           resource: this.resource,
           params: {
             id: this.item.id,
-            data: { [`detach_${this.source}`]: this.sourceId },
+            data: { [`remove_${this.source}`]: this.sourceId },
           },
         });
 
