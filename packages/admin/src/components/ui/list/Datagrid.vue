@@ -81,11 +81,11 @@
         {{ value }}
       </slot>
     </template>
-    <template v-slot:item.actions="{ item }">
+    <template v-if="!disableRowActions" v-slot:item.actions="{ item }">
       <div class="item-actions">
         <slot name="cell.actions" v-bind="{ resource, item }">
           <va-show-button
-            v-if="rowClick !== 'show'"
+            v-if="!disableShow"
             :resource="resource"
             :item="item"
             icon
@@ -93,7 +93,7 @@
             @click="(item) => onAction('show', item)"
           ></va-show-button>
           <va-edit-button
-            v-if="rowClick !== 'edit'"
+            v-if="!disableEdit"
             :resource="resource"
             :item="item"
             icon
@@ -102,6 +102,7 @@
           ></va-edit-button>
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
           <va-clone-button
+            v-if="!disableClone"
             :resource="resource"
             :item="item"
             icon
@@ -109,6 +110,7 @@
             @click="(item) => onAction('create', item)"
           ></va-clone-button>
           <va-delete-button
+            v-if="!disableDelete"
             :resource="resource"
             :item="item"
             icon
@@ -176,6 +178,11 @@ export default {
     disableSort: Boolean,
     disableShowRoute: Boolean,
     disableEditRoute: Boolean,
+    disableShow: Boolean,
+    disableEdit: Boolean,
+    disableClone: Boolean,
+    disableDelete: Boolean,
+    disableRowActions: Boolean,
   },
   computed: {
     headers() {

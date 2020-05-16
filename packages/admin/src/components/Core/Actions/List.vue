@@ -58,14 +58,15 @@
           </v-list>
         </v-menu>
         <va-create-button
+          v-if="!disableCreate"
           :resource="resource"
           :disable-route="disableCreateRoute"
           @click="onCreate"
         ></va-create-button>
         <slot name="actions"></slot>
         <va-export-button
+          v-if="!disableExport"
           :resource="resource"
-          v-if="exporter"
           text
           :options="options"
           :filter="{ ...filter, ...currentFilter }"
@@ -150,14 +151,12 @@ export default {
       type: Object,
       default: () => {},
     },
-    exporter: {
-      type: Boolean,
-      default: true,
-    },
     disableQueryString: Boolean,
     disablePagination: Boolean,
-    hideHeader: Boolean,
     disableCreateRoute: Boolean,
+    hideHeader: Boolean,
+    disableCreate: Boolean,
+    disableExport: Boolean,
   },
   data() {
     return {
