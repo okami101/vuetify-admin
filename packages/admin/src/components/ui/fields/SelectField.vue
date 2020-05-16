@@ -1,12 +1,12 @@
 <template>
   <v-chip v-if="chip" :color="getColor" :small="small">
     <slot :value="selected">
-      <span>{{ selected ? selected[optionText] : "" }}</span>
+      <span>{{ selected ? selected[itemText] : "" }}</span>
     </slot>
   </v-chip>
   <span v-else>
     <slot :value="selected">
-      <span>{{ selected ? selected[optionText] : "" }}</span>
+      <span>{{ selected ? selected[itemText] : "" }}</span>
     </slot>
   </span>
 </template>
@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     selected() {
-      return this.choices.find((c) => c[this.optionValue] === this.value);
+      return this.choices.find((c) => c[this.itemValue] === this.value);
     },
     getColor() {
       return typeof this.color === "function"

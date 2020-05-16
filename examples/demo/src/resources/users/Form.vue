@@ -18,7 +18,6 @@
       model="publisher_ids"
       multiple
       reference="publishers"
-      option-text="name"
       v-if="roles && roles.includes('editor')"
     ></va-autocomplete-input>
     <va-autocomplete-input
@@ -26,7 +25,6 @@
       model="author_ids"
       multiple
       reference="authors"
-      option-text="name"
       v-if="roles && roles.includes('author')"
     ></va-autocomplete-input>
     <va-save-button :saving="saving"></va-save-button>

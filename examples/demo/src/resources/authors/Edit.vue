@@ -12,7 +12,6 @@
         disable-create
         disable-export
         :association="association"
-        association-option-text="title"
         :filter="{
           authors: id,
         }"
@@ -58,7 +57,6 @@
                 small
                 chip
                 :item="item"
-                option-text="author"
               >
               </va-reference-field>
             </v-chip-group>

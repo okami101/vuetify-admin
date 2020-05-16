@@ -9,7 +9,7 @@
           :item="item"
         ></va-select-field>
         <span v-else>
-          {{ optionText && item[optionText] ? item[optionText] : item }}
+          {{ itemText && item[itemText] ? item[itemText] : item }}
         </span>
       </slot>
     </v-chip>
@@ -23,7 +23,7 @@ export default {
   name: "ArrayField",
   mixins: [Field],
   props: {
-    optionText: {
+    itemText: {
       type: [String, Array, Function],
       default: "name",
     },

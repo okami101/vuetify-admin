@@ -7,8 +7,8 @@
     :chips="chips"
     :small-chips="smallChips"
     :loading="loading"
-    :item-text="optionText"
-    :item-value="optionValue"
+    :item-text="getItemText"
+    :item-value="getItemValue"
     :items="items || choices"
     :search-input.sync="search"
     @change="change"
@@ -74,8 +74,8 @@ export default {
 
       let value = this.formState.item[this.source];
       let input = this.multiple
-        ? value.map((v) => v[this.optionValue])
-        : value[this.optionValue];
+        ? value.map((v) => v[this.getItemValue])
+        : value[this.getItemValue];
 
       this.update(input);
     },

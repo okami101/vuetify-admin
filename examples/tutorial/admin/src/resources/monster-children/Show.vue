@@ -13,7 +13,6 @@
               source="monster"
               type="reference"
               reference="monsters"
-              option-text="name"
             ></va-field>
             <va-field source="name" type="text"></va-field>
             <va-field source="created_at" type="date" format="long"></va-field>

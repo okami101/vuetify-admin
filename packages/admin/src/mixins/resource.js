@@ -13,17 +13,13 @@ export default {
       },
     },
   },
-  computed: {
-    resourceInfos() {
-      return this.$admin.resources.find((r) => r.name === this.resource);
-    },
-  },
   methods: {
     hasAction(action) {
       /**
        * Check if access with user permissions for this specific action
        */
-      return this.resourceInfos.canAction(action);
+      let resource = this.$admin.getResource(this.resource);
+      return resource.canAction(action);
     },
   },
 };

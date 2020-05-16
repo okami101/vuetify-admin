@@ -41,6 +41,38 @@ export default {
       items: null,
     };
   },
+  computed: {
+    getItemText() {
+      if (this.itemText !== "text") {
+        return this.itemText;
+      }
+      if (this.reference) {
+        let resource = this.$admin.getResource(this.reference);
+        return resource.label || "label";
+      }
+      return this.itemText;
+    },
+    getItemValue() {
+      if (this.itemValue !== "value") {
+        return this.itemValue;
+      }
+      if (this.reference) {
+        return "id";
+      }
+      return this.itemValue;
+    },
+    getFields() {
+      if (!isEmpty(this.fields)) {
+        return this.fields;
+      }
+
+      let resource = this.$admin.getResource(this.reference);
+      return (
+        resource.autocompleteFields ||
+        (typeof this.getItemText === "string" ? [this.getItemText] : [])
+      );
+    },
+  },
   methods: {
     ...mapActions({
       getList: "api/getList",
@@ -60,9 +92,7 @@ export default {
         resource: this.reference,
         params: {
           fields: {
-            [this.reference]: this.fields.length
-              ? this.fields
-              : [this.optionText],
+            [this.reference]: this.getFields,
           },
           include: this.include,
           pagination: {

@@ -46,7 +46,6 @@
                       v-for="book in item.books.slice(0, 2)"
                       :key="book.id"
                       chip
-                      option-text="title"
                       :item="book"
                     >
                     </va-reference-field>

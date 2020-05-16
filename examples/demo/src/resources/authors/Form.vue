@@ -25,7 +25,6 @@
                   model="user_ids"
                   multiple
                   reference="users"
-                  option-text="name"
                 ></va-autocomplete-input>
               </v-col>
             </v-row>

@@ -10,8 +10,8 @@
     <v-radio
       v-for="(c, i) in items || choices"
       :key="i"
-      :label="c[optionText]"
-      :value="c[optionValue]"
+      :label="c[getItemText]"
+      :value="c[getItemValue]"
     ></v-radio>
   </v-radio-group>
 </template>

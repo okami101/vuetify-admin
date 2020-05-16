@@ -65,7 +65,6 @@
                   :key="i"
                   color="green"
                   chip
-                  option-text="author"
                   :item="item"
                 >
                 </va-reference-field>

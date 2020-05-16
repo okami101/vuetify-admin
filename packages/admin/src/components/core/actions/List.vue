@@ -36,7 +36,6 @@
             :label="$tc(`resources.${resource}.name`, 1)"
             :resource="resource"
             :reference="resource"
-            :option-text="associationOptionText"
             v-model="associationId"
             hide-details
             :filled="false"
@@ -173,10 +172,6 @@ export default {
     hideHeader: Boolean,
     disableCreate: Boolean,
     disableExport: Boolean,
-    associationOptionText: {
-      type: [String, Array, Function],
-      default: "name",
-    },
     association: {
       type: Object,
       default: () => {},

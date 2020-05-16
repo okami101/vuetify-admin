@@ -1,12 +1,12 @@
 export default {
   props: {
-    optionText: {
+    itemText: {
       type: [String, Array, Function],
-      default: "name",
+      default: "text",
     },
-    optionValue: {
+    itemValue: {
       type: [String, Array, Function],
-      default: "id",
+      default: "value",
     },
     choices: {
       type: Array,
@@ -20,8 +20,8 @@ export default {
 
         return Object.keys(enums).map((key) => {
           return {
-            id: key,
-            name: enums[key],
+            value: key,
+            text: enums[key],
           };
         });
       },

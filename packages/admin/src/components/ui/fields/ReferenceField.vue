@@ -1,9 +1,9 @@
 <template>
   <v-chip v-if="chip" :color="color" :small="small" :to="link">
-    <slot :value="value">{{ optionText ? value[optionText] : value }}</slot>
+    <slot :value="value">{{ getItemText }}</slot>
   </v-chip>
   <router-link v-else :to="link">
-    <slot :value="value">{{ optionText ? value[optionText] : value }}</slot>
+    <slot :value="value">{{ getItemText }}</slot>
   </router-link>
 </template>
 
@@ -23,10 +23,7 @@ export default {
       type: String,
       required: true,
     },
-    optionText: {
-      type: [String, Array, Function],
-      default: "name",
-    },
+    itemText: [String, Array, Function],
     chip: Boolean,
     color: String,
     small: Boolean,
@@ -37,6 +34,15 @@ export default {
         name: `${this.reference}_${this.action}`,
         params: { id: this.value.id },
       };
+    },
+    getItemText() {
+      let resource = this.$admin.getResource(this.reference);
+      let text = this.itemText || resource.label;
+
+      if (typeof text === "function") {
+        return text(this.value);
+      }
+      return this.value[text];
     },
   },
 };

@@ -124,10 +124,15 @@ export default class VtecAdmin {
       });
 
     /**
+     * Get full resource object meta from name
+     */
+    this.getResource = (name) => this.resources.find((r) => r.name === name);
+
+    /**
      * Resource link helper with action permission test
      */
     this.getResourceLink = (name, action = "list") => {
-      let { icon, canAction } = this.resources.find((r) => r.name === name);
+      let { icon, canAction } = this.getResource(name);
 
       if (!canAction(action)) {
         return null;

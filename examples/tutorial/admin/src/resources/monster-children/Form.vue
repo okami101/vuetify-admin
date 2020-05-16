@@ -12,7 +12,6 @@
             <va-autocomplete-input
               source="monster"
               reference="monsters"
-              option-text="name"
               required
               model="monster_id"
             ></va-autocomplete-input>

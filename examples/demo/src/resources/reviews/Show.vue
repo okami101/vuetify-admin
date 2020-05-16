@@ -13,7 +13,6 @@
               source="book"
               type="reference"
               reference="books"
-              option-text="title"
             ></va-field>
             <va-field
               source="status"
