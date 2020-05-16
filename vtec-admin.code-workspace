@@ -23,7 +23,7 @@
 	],
 	"settings": {
 		"yaml.schemas": {
-			"packages/docs/docs/.vuepress/public/schemas/generator.json": ["examples/tutorial/admin/generators/*"],
+			"packages/docs/.vuepress/public/schemas/generator.json": ["examples/tutorial/admin/generators/*"],
 		}
 	}
 }

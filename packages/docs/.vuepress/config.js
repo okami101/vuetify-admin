@@ -20,7 +20,7 @@ module.exports = (ctx) => ({
   themeConfig: {
     repo: "okami101/vtec-admin",
     editLinks: true,
-    docsDir: "packages/docs/docs",
+    docsDir: "packages/docs",
     // #697 Provided by the official algolia team.
     algolia: ctx.isProd
       ? {
