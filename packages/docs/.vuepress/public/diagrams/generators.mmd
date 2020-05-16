@@ -1,0 +1,7 @@
+stateDiagram
+  state Generators {
+    YAML --> Commands
+    state Commands {
+      CrudYaml --> CrudMake
+    }
+  }

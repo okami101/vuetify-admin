@@ -1,5 +1,11 @@
 # Generators
 
+Vtec Admin offers powerful generators commands that can considerably accelerate admin development. That is particulary useful as VA uses a highly customizable Vue templating development approach rather than configuration oriented development (i.e. develop UI on a full JSON or YAML file as [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle) do) which tends to be harder to extend.
+
+Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development while **maintaining full template customization** at hand.
+
+![generators](/diagrams/generators.svg)
+
 ## API
 
 See specific section of each server's package :
@@ -7,6 +13,10 @@ See specific section of each server's package :
 * [Laravel](laravel#generators)
 
 ## UI
+
+:::warning Vue CLI Plugin
+Nexts commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started).
+:::
 
 Vue CLI plugin will prepare for you 2 new npm scripts :
 
