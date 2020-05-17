@@ -4,15 +4,17 @@ Vtec Admin offers powerful generators commands that can considerably accelerate 
 
 Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development while **maintaining full template customization** at hand.
 
-![generators](/diagrams/generators.svg)
+:::danger CUSTOMIZATION
+Consequently, this file will mainly be used for your first resource code generation. After each each generation, all customization made inside targetted resource templates will be lost.
+:::
 
 ## API
 
-See specific section of each server's package :
+See specific section of each supported API package :
 
 * [Laravel](laravel#generators)
 
-## UI
+## Admin UI
 
 :::warning Vue CLI Plugin
 Nexts commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started).
@@ -21,16 +23,23 @@ Nexts commands are only available if you install Vtec Admin by his Vue CLI plugi
 Vue CLI plugin will prepare for you 2 new npm scripts :
 
 * `yarn crud:make [options]` : Main UI crud command maker which :
-  * Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into "fields" options.
+  * Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into `fields` options.
   * Register new resource to `src/resources/index.js` file.
   * Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option.
   * Add new sidebar entry to `src/_nav.js` file.
 * `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure following [this schema](/schemas/generator.json).
 
-> Use `yarn vue-cli-service help crud:make` for all options documentation  
-> For best explanation of YAML usage, follow [this tutorial guide](tutorial).
+![generators](/diagrams/generators.svg)
+
+:::tip HELP COMMAND
+Use `yarn vue-cli-service help crud:make` for all options documentation.
+:::
 
 ### YAML
+
+:::tip TUTORIAL
+For best explanation of YAML usage, follow [this tutorial guide](tutorial).
+:::
 
 For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml`.  
 You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.

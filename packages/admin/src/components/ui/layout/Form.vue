@@ -39,14 +39,14 @@ export default {
   },
   data() {
     return {
-      model: this.value,
       formState: {
         edit: !!this.id,
         item: this.item,
+        model: {},
         errors: [],
         update: ({ source, value }) => {
-          set(this.model, source, value === undefined ? "" : value);
-          this.$emit("input", this.model);
+          set(this.formState.model, source, value);
+          this.$emit("input", this.formState.model);
         },
       },
     };
@@ -54,6 +54,13 @@ export default {
   watch: {
     item(val) {
       this.formState.item = val;
+    },
+    value: {
+      handler(val) {
+        this.formState.model = val;
+      },
+      deep: true,
+      immediate: true,
     },
   },
   methods: {
@@ -99,8 +106,8 @@ export default {
       } catch (e) {
         this.$emit("update:saving", false);
 
-        if (e.response) {
-          this.formState.errors = e.response.data.errors;
+        if (e.data) {
+          this.formState.errors = e.data.errors;
         }
       }
     },

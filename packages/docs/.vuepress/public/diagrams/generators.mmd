@@ -1,7 +1,16 @@
 stateDiagram
-  state Generators {
-    YAML --> Commands
-    state Commands {
-      CrudYaml --> CrudMake
-    }
+  state GenerationProcess {
+  [*] --> YAML
+  YAML --> GeneratorCommands
+  state GeneratorCommands {
+    CrudYaml --> CrudMake
   }
+  GeneratorCommands --> Templates
+  GeneratorCommands --> Register
+  state Templates {
+    List,Show,Create,Edit,Form
+  }
+  state Register {
+    Resources,Locales,Nav
+  }
+}

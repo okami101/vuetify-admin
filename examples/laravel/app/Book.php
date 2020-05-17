@@ -70,7 +70,7 @@ class Book extends Model implements HasMedia
         'commentable' => 'boolean',
         'formats' => 'array',
         'tags' => 'array',
-        'publication_date' => 'date',
+        'publication_date' => 'datetime:Y-m-d',
     ];
 
     public $translatable = ['title', 'description', 'summary'];

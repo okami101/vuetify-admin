@@ -133,7 +133,7 @@ export default {
       if (this.formState) {
         this.formState.update({
           source: this.uniqueFormId,
-          value,
+          value: value || this.value,
         });
       }
 

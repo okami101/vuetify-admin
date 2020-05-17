@@ -117,7 +117,7 @@ Use `php artisan ide-helper:models` after in order to have full model autocomple
 :::
 
 :::warning API ONLY
-This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators#ui).
+This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators#admin-ui).
 :::
 
 ## Other internal traits or services included
