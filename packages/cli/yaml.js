@@ -6,24 +6,25 @@ const isEmpty = require("lodash/isEmpty");
 
 const options = {
   description: "resource ui crud generator",
-  usage: "vue-cli-service crud:yaml [options]",
+  usage: "vue-cli-service crud:yaml [file] [options]",
   options: {
-    file: "Yaml file descriptor.",
+    file: "Required Yaml file descriptor.",
     name: "Optional name of model to import, if not set, all will be imported.",
-    output: "Output directory of resource generated crud pages.",
+    output:
+      "Output directory of resource generated crud pages. Default is 'src/resources'",
   },
 };
 
-async function service(args = {}, api) {
-  if (!args.file) {
-    console.log(chalk.red(`not specified descriptor 'file' argument.`));
+async function service(file, args = {}, api) {
+  if (!file) {
+    console.log(chalk.red(`not specified 'file' argument.`));
     return;
   }
 
   /**
    * Generate crud views
    */
-  const descriptor = yaml.safeLoad(fs.readFileSync(args.file, "utf8"));
+  const descriptor = yaml.safeLoad(fs.readFileSync(file, "utf8"));
 
   Object.keys(descriptor.resources)
     .filter((n) => (args.name ? args.name === n : true))
@@ -45,7 +46,7 @@ async function service(args = {}, api) {
         });
 
       make.service({
-        output: args.output,
+        output: args.output || "./src/resources",
         name,
         label: resource.label,
         icon: resource.icon,

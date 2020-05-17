@@ -10,8 +10,8 @@ module.exports = (api) => {
 
   api.extendPackage({
     scripts: {
-      "crud:make": "vue-cli-service crud:make --output ./src/resources",
-      "crud:yaml": "vue-cli-service crud:yaml --output ./src/resources",
+      "crud:make": "vue-cli-service crud:make",
+      "crud:yaml": "vue-cli-service crud:yaml",
     },
     dependencies: {
       axios: "^0.19.2",

@@ -20,16 +20,12 @@ See specific section of each supported API package :
 Nexts commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started).
 :::
 
-Vue CLI plugin will prepare for you 2 new npm scripts :
+Vue CLI plugin will provide to you a new npm command `yarn crud:make [options]`, which helps for generated initial resources CRUD pages boilerplate :
 
-* `yarn crud:make [options]` : Main UI crud command maker which :
-  * Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into `fields` options.
-  * Register new resource to `src/resources/index.js` file.
-  * Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option.
-  * Add new sidebar entry to `src/_nav.js` file.
-* `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure following [this schema](/schemas/generator.json).
-
-![generators](/diagrams/generators.svg)
+* Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into `fields` options.
+* Register new resource to `src/resources/index.js` file.
+* Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option.
+* Add new sidebar entry to `src/_nav.js` file.
 
 :::tip HELP COMMAND
 Use `yarn vue-cli-service help crud:make` for all options documentation.
@@ -38,13 +34,14 @@ Use `yarn vue-cli-service help crud:make` for all options documentation.
 ### YAML
 
 :::tip TUTORIAL
-For best explanation of YAML usage, follow [this tutorial guide](tutorial).
+For best showcase of YAML driven development, follow [this tutorial guide](tutorial).
 :::
 
-For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml`.  
-You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
+* `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor for crud generation, which can be very useful for quick start by simply describe your initial resources structure following [this schema](/schemas/generator.json).
 
-Follow [tutorial](tutorial) for more details on what based YAML generation can offer.
+This is how it works :
+
+![generators](/diagrams/generators.svg)
 
 > For both generator commands, you may add `-mfs` options to generate full migration file with all pre-generated fields, in addition to factory and seeder files.  
 > In case of model relation, even if foreign keys can be generated in migration file by `foreign` on schema, you must manually add related eloquent relation in you model.  

@@ -12,7 +12,8 @@ const options = {
   options: {
     name:
       "Unique resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
-    output: "Output directory of resource generated crud pages.",
+    output:
+      "Output directory of resource generated crud pages. Default is 'src/resources'",
     locale:
       "Default vue-i18n locale used for register resource labels (name and fields).",
     label:
@@ -45,9 +46,10 @@ async function service(args = {}, api) {
    */
   let resource = kebabCase(args.name);
   let fields = args.fields || [];
+  let output = args.output || "./src/resources";
 
   const sourceDir = resolve(__dirname, "stubs");
-  const targetDir = resolve(process.cwd(), args.output, resource);
+  const targetDir = resolve(process.cwd(), output, resource);
 
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir);
@@ -215,7 +217,7 @@ async function service(args = {}, api) {
   /**
    * Add resource entry into resources
    */
-  let resourceFile = resolve(process.cwd(), "./src/resources/index.js");
+  let resourceFile = resolve(process.cwd(), output, "index.js");
   let resources = require("esm")(module)(resourceFile);
   let descriptor = {};
   ["icon", "actions", "permissions", "translatable"].forEach((prop) => {

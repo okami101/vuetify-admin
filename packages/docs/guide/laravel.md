@@ -91,7 +91,7 @@ See [this getting started section](getting-started#directory-structure) for more
 
 ## Generators
 
-This package provides 2 specific crud commands. Use `php artisan crud:make [MyNewResource] [options]` with many as option as possible. This will scaffold following files :
+This package provides 2 specific crud generator commands. Use `php artisan crud:make [MyNewResource] [options]` with many as options as possible in order to scaffolding following files :
 
 * Model
 * Controller with all crud operations
@@ -110,10 +110,30 @@ Route::apiResources([
 ]);
 ```
 
-> Launch `php artisan crud:make --help` for all options documentation.  
+:::tip HELP COMMAND
+Launch `php artisan crud:make --help` for all options documentation.
+:::
 
 :::tip IDE AUTOCOMPLETION
 Use `php artisan ide-helper:models` after in order to have full model autocompletion !
+:::
+
+:::tip OVERRIDES
+Use `--force` option for overwrite existing files.
+:::
+
+:::tip DATABASE RELATED FILES
+By default, migrations, factories and seeds are not generated, use `-mfs` to include them.
+:::
+
+### YAML
+
+For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml [options]`. You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
+
+Use `name` option in order to import only targetted resource.
+
+:::tip FULL YAML STUDY
+Go to [dedicated YAML section](generators#yaml) for full explanation.
 :::
 
 :::warning API ONLY
