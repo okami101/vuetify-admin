@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import get from "lodash/get";
 
 export default {
@@ -35,10 +36,8 @@ export default {
     }
   },
   async mounted() {
-    let response = await fetch(`/schemas/${this.type}.json`);
-    let json = await response.json();
-
-    let def = get(json.definitions, this.definition);
+    let { data } = await axios.get(`/schemas/${this.type}.json`);
+    let def = get(data.definitions, this.definition);
 
     if (!def) {
       console.warn(`Def ${this.definition} not existing for this schema`);
@@ -49,7 +48,7 @@ export default {
       let props = def.properties[key];
 
       if (props.$ref) {
-        props = json.definitions[props.$ref.substr(props.$ref.lastIndexOf('/') + 1)];
+        props = data.definitions[props.$ref.substr(props.$ref.lastIndexOf('/') + 1)];
       }
       return {
         name: key,
