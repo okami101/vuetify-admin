@@ -161,7 +161,7 @@ resources:
   monster_children:
     name: Bébé monstre | Bébés monstres
     icon: mdi-baby-carriage
-    label: name,
+    label: name
     columns:
       - monster
       - name

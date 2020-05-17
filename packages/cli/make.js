@@ -220,26 +220,31 @@ async function service(resourceName, args = {}, api) {
    */
   let resourceFile = resolve(process.cwd(), output, "index.js");
   let resources = require("esm")(module)(resourceFile);
-  let descriptor = {};
+
+  let resourceObject = resources.default.find(
+    ({ name }) => resourceName === name
+  );
+
+  if (!resourceObject) {
+    resourceObject = {
+      name: resourceName,
+    };
+
+    resources.default.push(resourceObject);
+  }
+
   ["icon", "label", "actions", "permissions", "translatable"].forEach(
     (prop) => {
       if (args[prop]) {
-        descriptor[prop] = args[prop];
+        resourceObject[prop] = args[prop];
       }
     }
   );
 
-  if (!resources.default.find(({ name }) => resourceName === name)) {
-    resources.default.push({
-      name: resourceName,
-      ...descriptor,
-    });
-
-    fs.writeFileSync(
-      resourceFile,
-      `export default ${util.inspect(resources.default)}` + "\n"
-    );
-  }
+  fs.writeFileSync(
+    resourceFile,
+    `export default ${util.inspect(resources.default)}` + "\n"
+  );
 
   /**
    * Add entry to sidebar
