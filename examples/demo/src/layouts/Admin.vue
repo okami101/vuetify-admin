@@ -1,5 +1,5 @@
 <template>
-  <va-admin>
+  <va-layout>
     <va-header
       slot="header"
       :header-menu="headerMenu"
@@ -18,6 +18,8 @@
         />
       </template>
     </va-sidebar>
+    <va-breadcrumbs slot="breadcrumbs"></va-breadcrumbs>
+    <impersonate-message slot="message"></impersonate-message>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
       <v-icon size="18">
@@ -36,8 +38,7 @@
       >
       for a better web.
     </va-footer>
-    <impersonate-message slot="message"></impersonate-message>
-  </va-admin>
+  </va-layout>
 </template>
 
 <script>

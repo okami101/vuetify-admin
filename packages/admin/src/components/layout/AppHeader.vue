@@ -127,8 +127,14 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "AppHeader",
   props: {
-    headerMenu: Array,
-    profileMenu: Array,
+    headerMenu: {
+      type: Array,
+      default: () => [],
+    },
+    profileMenu: {
+      type: Array,
+      default: () => [],
+    },
     color: {
       type: String,
       default: "primary",

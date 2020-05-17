@@ -6,9 +6,9 @@
 
       <v-content>
         <div class="d-flex flex-column fill-height">
-          <app-breadcrumbs></app-breadcrumbs>
+          <slot name="breadcrumbs"></slot>
           <slot name="message"></slot>
-          <app-messages></app-messages>
+          <va-messages></va-messages>
           <v-container fluid>
             <router-view />
           </v-container>
@@ -19,24 +19,18 @@
         </div>
       </v-content>
 
-      <app-aside></app-aside>
+      <slot name="aside">
+        <va-aside></va-aside>
+      </slot>
     </template>
   </v-app>
 </template>
 
 <script>
-import AppAside from "../layout/AppAside";
-import AppMessages from "../layout/AppMessages";
-import AppBreadcrumbs from "../layout/AppBreadcrumbs";
 import { mapState } from "vuex";
 
 export default {
   name: "Admin",
-  components: {
-    AppAside,
-    AppMessages,
-    AppBreadcrumbs,
-  },
 };
 </script>
 

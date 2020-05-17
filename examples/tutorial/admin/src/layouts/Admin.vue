@@ -1,5 +1,5 @@
 <template>
-  <va-admin>
+  <va-layout>
     <va-header
       slot="header"
       :header-menu="headerMenu"
@@ -9,6 +9,8 @@
       @mini="mini = !mini"
     ></va-header>
     <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
+    <va-breadcrumbs slot="breadcrumbs"></va-breadcrumbs>
+    <impersonate-message slot="message"></impersonate-message>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
       <v-icon size="18">
@@ -21,8 +23,7 @@
       by
       <a href="https://www.company.com">My Awesome Company</a> for a better web.
     </va-footer>
-    <impersonate-message slot="message"></impersonate-message>
-  </va-admin>
+  </va-layout>
 </template>
 
 <script>

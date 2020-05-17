@@ -64,7 +64,10 @@
 export default {
   name: "AppSidebar",
   props: {
-    menu: Array,
+    menu: {
+      type: Array,
+      default: () => [],
+    },
     mini: Boolean,
     color: {
       type: String,

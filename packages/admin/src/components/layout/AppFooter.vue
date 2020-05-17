@@ -33,7 +33,10 @@
 export default {
   name: "AppFooter",
   props: {
-    menu: Array,
+    menu: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

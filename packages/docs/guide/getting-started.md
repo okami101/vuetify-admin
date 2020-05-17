@@ -11,6 +11,8 @@ If you choose Laravel as API backend, jump to the more optimized [Laravel instal
 
 ## Use Vue CLI Plugin
 
+![demo](/assets/dashboard.png)
+
 > As a CLI projet, be sure to have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 
 ### Prepare

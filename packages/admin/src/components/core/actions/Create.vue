@@ -1,12 +1,12 @@
 <template>
-  <va-page :title="title">
+  <va-action-page :title="title">
     <template slot="actions">
       <va-list-button :resource="resource"></va-list-button>
       <slot name="actions"></slot>
       <va-locale-button :resource="resource"></va-locale-button>
     </template>
     <slot></slot>
-  </va-page>
+  </va-action-page>
 </template>
 
 <script>

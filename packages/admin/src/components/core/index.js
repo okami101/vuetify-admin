@@ -1,4 +1,4 @@
-import Admin from "./Admin";
+import Layout from "./Layout";
 import Field from "./Field";
 import Input from "./Input";
 
@@ -7,4 +7,4 @@ import Show from "./actions/Show";
 import Create from "./actions/Create";
 import Edit from "./actions/Edit";
 
-export { Admin, Field, Input, List, Show, Create, Edit };
+export { Layout, Field, Input, List, Show, Create, Edit };

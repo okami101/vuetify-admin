@@ -1,5 +1,5 @@
 <template>
-  <va-page :title="title">
+  <va-action-page :title="title">
     <template slot="actions">
       <va-list-button :resource="resource" :item="record"></va-list-button>
       <va-show-button :resource="resource" :item="record"></va-show-button>
@@ -13,7 +13,7 @@
       <va-locale-button :resource="resource"></va-locale-button>
     </template>
     <slot v-if="record"></slot>
-  </va-page>
+  </va-action-page>
 </template>
 
 <script>
