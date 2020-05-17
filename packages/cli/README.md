@@ -45,8 +45,8 @@ Finally start your admin panel by `yarn serve`. Don't forget to have your backen
 
 You'll got 2 new npm scripts :
 
-* `yarn crud:make [options]` : Main UI crud command maker.
-* `yarn crud:yaml --file my-new-resource.yml` : Superset of previous command which use a YAML file descriptor.
+* `yarn crud:make monsters [options]` : Main UI crud command maker. Main resource name is required.
+* `yarn crud:yaml my-new-resource.yml` : Superset of previous command which use a YAML file descriptor.
 
 > Use `yarn vue-cli-service help crud:make` for all options documentation  
 > See [dedicated guide](https://vtec.okami101.io/guide/generators)

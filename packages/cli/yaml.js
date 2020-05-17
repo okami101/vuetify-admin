@@ -6,9 +6,9 @@ const isEmpty = require("lodash/isEmpty");
 
 const options = {
   description: "resource ui crud generator",
-  usage: "vue-cli-service crud:yaml [file] [options]",
+  usage: "vue-cli-service crud:yaml [file_path] [options]",
   options: {
-    file: "Required Yaml file descriptor.",
+    file_path: "Required path of YAML file descriptor.",
     name: "Optional name of model to import, if not set, all will be imported.",
     output:
       "Output directory of resource generated crud pages. Default is 'src/resources'",
@@ -45,11 +45,11 @@ async function service(file, args = {}, api) {
           };
         });
 
-      make.service({
+      make.service(name, {
         output: args.output || "./src/resources",
-        name,
-        label: resource.label,
+        name: resource.name,
         icon: resource.icon,
+        label: resource.label,
         actions: resource.actions,
         translatable: !!resource.translatable,
         columns: resource.columns,

@@ -9,14 +9,19 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "label": {
-          "description": "Localized label of resource. Will be shown on menus and page titles. Put both singular and plural format separated by a pipe.",
+        "name": {
+          "description": "Localized name of resource. Will be shown on menus and page titles. Put both singular and plural format separated by a pipe.",
           "type": "string",
           "examples": ["Monster | Monsters"]
         },
         "icon": {
           "description": "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
           "type": "string"
+        },
+        "label": {
+          "description": "Property that define an existing resource, see it as a stringify or toString function. Will be shown on show/edit default page titles and reference-based fields and inputs.",
+          "type": "string",
+          "examples": ["name", "label", "title"]
         },
         "actions": {
           "description": "Optional supported crud operations, do not set if you want all by default.",

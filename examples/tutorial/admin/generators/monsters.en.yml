@@ -1,7 +1,8 @@
 resources:
   monsters:
-    label: Monster | Monsters
+    name: Monster | Monsters
     icon: mdi-alien
+    label: name
     actions:
       - list
       - show
@@ -158,8 +159,9 @@ resources:
         db: false
 
   monster_children:
-    label: Child monster | Child monsters
+    name: Child monster | Child monsters
     icon: mdi-baby-carriage
+    label: name
     columns:
       - monster
       - name

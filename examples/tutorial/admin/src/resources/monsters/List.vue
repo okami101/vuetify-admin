@@ -26,11 +26,7 @@
           { source: 'rating', type: 'rating' },
           { source: 'price', type: 'number', format: 'currency' },
           { source: 'category', type: 'select' },
-          {
-            source: 'publication_date',
-            type: 'date',
-            format: 'long',
-          },
+          { source: 'publication_date', type: 'date', format: 'long' },
         ]"
         :sortable="[
           'name',

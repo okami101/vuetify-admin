@@ -123,7 +123,15 @@ Use `--force` option for overwrite existing files.
 :::
 
 :::tip DATABASE RELATED FILES
-By default, migrations, factories and seeds are not generated, use `-mfs` to include them.
+For both generator commands, you may add `-mfs` options to generate full migration file with all pre-generated fields, in addition to factory and seeder files.
+:::
+
+:::warning RELATIONSHIP
+In case of model relation, even if foreign keys can be generated in migration file by `foreign` on schema, you must manually add related eloquent relation in you model.
+:::
+
+:::warning VALIDATION
+For server-side validation, you must manually add rules to generated store and update request files inside `app/Http/Requests` directory.
 :::
 
 ### YAML

@@ -8,18 +8,19 @@ const kebabCase = require("lodash/kebabCase");
 
 const options = {
   description: "resource ui crud maker",
-  usage: "vue-cli-service crud:make [options]",
+  usage: "vue-cli-service crud:make [resource_name] [options]",
   options: {
-    name:
-      "Unique resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
+    resource_name:
+      "Required resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
     output:
       "Output directory of resource generated crud pages. Default is 'src/resources'",
     locale:
       "Default vue-i18n locale used for register resource labels (name and fields).",
-    label:
-      "Localized label of resource. Will be shown on menus and page titles.",
+    name: "Localized name of resource. Will be shown on menus and page titles.",
     icon:
       "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
+    label:
+      "Property that define an existing resource, see it as a stringify or toString function.",
     translatable:
       "Activate if resource has translatable fields. If setted, a contextual locale selector will be available in order to select used language on each translatable field. A locale query parameter will be send to backend.",
     actions:
@@ -35,8 +36,8 @@ const options = {
   },
 };
 
-async function service(args = {}, api) {
-  if (!args.name) {
+async function service(resourceName, args = {}, api) {
+  if (!resourceName) {
     console.log(chalk.red(`not specified resource 'name' argument.`));
     return;
   }
@@ -44,7 +45,7 @@ async function service(args = {}, api) {
   /**
    * Generate crud views
    */
-  let resource = kebabCase(args.name);
+  let resource = kebabCase(resourceName);
   let fields = args.fields || [];
   let output = args.output || "./src/resources";
 
@@ -77,8 +78,8 @@ async function service(args = {}, api) {
      * Prepare EJS variables
      */
     let data = {
-      name: args.name,
-      slug: args.name.replace("_", "-"),
+      name: resourceName,
+      slug: resourceName.replace("_", "-"),
       resource,
       fields: fields
         .filter((f) => {
@@ -192,8 +193,8 @@ async function service(args = {}, api) {
   );
   let locale = JSON.parse(fs.readFileSync(localFilePath));
 
-  locale.resources[args.name] = {
-    name: args.label,
+  locale.resources[resourceName] = {
+    name: args.name,
     fields: fields.reduce(
       (o, field) => ({
         ...o,
@@ -220,15 +221,17 @@ async function service(args = {}, api) {
   let resourceFile = resolve(process.cwd(), output, "index.js");
   let resources = require("esm")(module)(resourceFile);
   let descriptor = {};
-  ["icon", "actions", "permissions", "translatable"].forEach((prop) => {
-    if (args[prop]) {
-      descriptor[prop] = args[prop];
+  ["icon", "label", "actions", "permissions", "translatable"].forEach(
+    (prop) => {
+      if (args[prop]) {
+        descriptor[prop] = args[prop];
+      }
     }
-  });
+  );
 
-  if (!resources.default.find(({ name }) => args.name === name)) {
+  if (!resources.default.find(({ name }) => resourceName === name)) {
     resources.default.push({
-      name: args.name,
+      name: resourceName,
       ...descriptor,
     });
 
@@ -244,7 +247,7 @@ async function service(args = {}, api) {
   const navFile = resolve(process.cwd(), "./src/_nav.js");
   let content = fs.readFileSync(navFile).toString();
 
-  let code = `admin.getResourceLink("${args.name}")`;
+  let code = `admin.getResourceLink("${resourceName}")`;
 
   if (content.indexOf(code) === -1) {
     let startOffset = content.indexOf("];");

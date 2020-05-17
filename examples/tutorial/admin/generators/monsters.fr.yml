@@ -1,7 +1,8 @@
 resources:
   monsters:
-    label: Monstre | Monstres
+    name: Monstre | Monstres
     icon: mdi-alien
+    label: name
     actions:
       - list
       - show
@@ -158,8 +159,9 @@ resources:
         db: false
 
   monster_children:
-    label: Bébé monstre | Bébés monstres
+    name: Bébé monstre | Bébés monstres
     icon: mdi-baby-carriage
+    label: name,
     columns:
       - monster
       - name
@@ -181,7 +183,6 @@ resources:
         type: reference
         attributes:
           reference: monsters
-          optionText: name
         form:
           type: autocomplete
           required: true

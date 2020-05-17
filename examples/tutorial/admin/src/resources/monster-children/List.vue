@@ -7,7 +7,6 @@
           source: 'monster',
           type: 'autocomplete',
           reference: 'monsters',
-          optionText: 'name',
           multiple: true,
         },
       ]"
@@ -19,12 +18,7 @@
     >
       <va-datagrid
         :fields="[
-          {
-            source: 'monster',
-            type: 'reference',
-            reference: 'monsters',
-            optionText: 'name',
-          },
+          { source: 'monster', type: 'reference', reference: 'monsters' },
           'name',
           { source: 'created_at', type: 'date', format: 'long' },
           { source: 'updated_at', type: 'date', format: 'long' },
