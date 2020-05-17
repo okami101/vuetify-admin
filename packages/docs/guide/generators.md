@@ -51,6 +51,32 @@ Each YAML file can contain a list of resources identified by a slug name on `sna
 
 <json-schema-table type="generator" definition="resource"></json-schema-table>
 
+You can even to generate all fields as needed thanks to `fields` properties. Here is the expected structure :
+
+<json-schema-table type="generator" definition="field"></json-schema-table>
+
+:::tip FIELD TYPE
+The `type` must correspond to a valid UI field widget you will find [here](components/fields). At this time it can be `text`, `number`, `rating`, `date`, `boolean`, `rich-text`, `chip`, `select`, `email`, `url`, `file`, `image`, `reference`, `array`.
+
+For primitive type on API side, use the below `db` option.
+:::
+
+For database API, each field can contain a specific `db` property which will precise DB related attributes :
+
+<json-schema-table type="generator" definition="db"></json-schema-table>
+
+The `attributes` property define all valid attributes for UI field widget :
+
+<json-schema-table type="generator" definition="field.properties.attributes"></json-schema-table>
+
+The `form` property allows you advanced control on UI input widget :
+
+<json-schema-table type="generator" definition="field.properties.form"></json-schema-table>
+
+Same for advanced `filter` property :
+
+<json-schema-table type="generator" definition="field.properties.filter"></json-schema-table>
+
 :::tip YAML DEVELOMENT
 For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have autocompletion with full documentation !
 :::

@@ -6,8 +6,8 @@
       <th>Description</th>
     </thead>
     <tbody>
-      <tr v-for="(property, name) in properties">
-        <td><strong>{{ name }}</strong></td>
+      <tr v-for="property in properties" :key="property.name">
+        <td><strong>{{ property.name }}</strong></td>
         <td><code>{{ property.type }}</code></td>
         <td>{{ property.description }}</td>
       </tr>
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import get from "lodash/get";
+
 export default {
   props: {
     type: {
@@ -36,14 +38,25 @@ export default {
     let response = await fetch(`/schemas/${this.type}.json`);
     let json = await response.json();
 
-    let def = json.definitions[this.definition];
+    let def = get(json.definitions, this.definition);
 
     if (!def) {
       console.warn(`Def ${this.definition} not existing for this schema`);
       return;
     }
 
-    this.properties = def.properties;
+    this.properties = Object.keys(def.properties).map((key) => {
+      let props = def.properties[key];
+
+      if (props.$ref) {
+        props = json.definitions[props.$ref.substr(props.$ref.lastIndexOf('/') + 1)];
+      }
+      return {
+        name: key,
+        type: props.type,
+        description: props.description,
+      };
+    });
   }
 }
 </script>

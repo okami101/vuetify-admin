@@ -133,7 +133,7 @@
           "type": "object"
         },
         "attributes": {
-          "description": "Various attributes that will be setted on fields, columns and form inputs",
+          "description": "Various attributes that will be setted on fields, columns and form inputs.",
           "type": "object",
           "properties": {
             "format": {
@@ -141,17 +141,13 @@
               "type": "string"
             },
             "reference": {
-              "description": "Existing resource referenced by this field. Allow to build direct router-link for readable field and to search into targeted entities type on backend in case of input form",
-              "type": "string"
-            },
-            "optionText": {
-              "description": "Readable targeted resource property.",
+              "description": "Existing resource referenced by this field. Allow to build direct router-link for readable field and to search into targeted entities type on backend in case of input form.",
               "type": "string"
             }
           }
         },
         "form": {
-          "description": "Specific input form attributes. Set explicitly as false if you don't want it to be generated in form",
+          "description": "Specific input form attributes. Set explicitly as false if you don't want it to be generated in form.",
           "type": ["object", "boolean"],
           "properties": {
             "type": {
