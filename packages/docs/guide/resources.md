@@ -35,16 +35,16 @@ export default [
 
 A resource object must follow this structure :
 
-| Property             | Type             | Description                                                                                          |
-| -------------------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
-| `name`               | String           | A mandatory slug name which will be used for api base URL calls                                      |
-| `icon`               | String           | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/) |
-| `label`              | String, Function | Return an identifiable label of resource                                                             |
-| `actions`            | Array            | List of all valid actions for this resource                                                          |
-| `except`             | Array            | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted                  |
-| `translatable`       | Boolean          | Indicate if this resource can be [translated](i18n#translation)                                      |
-| `permissions`        | Array            | Enable resource according to user permissions, as shown [here](authorization#resource)               |
-| `autocompleteFields` | Array            | List of resource fields to return from API from autocomplete for avoiding over-fetching              |
+| Property               | Type             | Description                                                                                          |
+| ---------------------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
+| **name**               | String           | A mandatory slug name which will be used for api base URL calls                                      |
+| **icon**               | String           | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/) |
+| **label**              | String, Function | Return an identifiable label of resource                                                             |
+| **actions**            | Array            | List of all valid actions for this resource                                                          |
+| **except**             | Array            | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted                  |
+| **translatable**       | Boolean          | Indicate if this resource can be [translated](i18n#translation)                                      |
+| **permissions**        | Array            | Enable resource according to user permissions, as shown [here](authorization#resource)               |
+| **autocompleteFields** | Array            | List of resource fields to return from API from autocomplete for avoiding over-fetching              |
 
 :::tip LABEL
 The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targetted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
@@ -99,19 +99,19 @@ Some quick tables to resume (we take `monster_children` resource name as example
 
 #### Action route and API mapping
 
-| Action   | Vue Route                     | API call format                     |
-| -------- | ----------------------------- | ----------------------------------- |
-| `list`   | `/monster-children`           | **GET** `/monster_children`         |
-| `show`   | `/monster-children/{id}`      | **GET** `/monster_children/{id}`    |
-| `create` | `/monster-children/create`    | **POST** `/monster_children`        |
-| `edit`   | `/monster-children/{id}/edit` | **PUT** `/monster_children/{id}`    |
-| `delete` | -                             | **DELETE** `/monster_children/{id}` |
+| Action     | Vue Route                     | API call format                     |
+| ---------- | ----------------------------- | ----------------------------------- |
+| **list**   | `/monster-children`           | **GET** `/monster_children`         |
+| **show**   | `/monster-children/{id}`      | **GET** `/monster_children/{id}`    |
+| **create** | `/monster-children/create`    | **POST** `/monster_children`        |
+| **edit**   | `/monster-children/{id}/edit` | **PUT** `/monster_children/{id}`    |
+| **delete** | -                             | **DELETE** `/monster_children/{id}` |
 
 #### Action component mapping
 
-| Action   | Page Component          | Path from `src/resources`      |
-| -------- | ----------------------- | ------------------------------ |
-| `list`   | `MonsterChildrenList`   | `/monster-children/List.vue`   |
-| `show`   | `MonsterChildrenShow`   | `/monster-children/Show.vue`   |
-| `create` | `MonsterChildrenCreate` | `/monster-children/Create.vue` |
-| `edit`   | `MonsterChildrenEdit`   | `/monster-children/Edit.vue`   |
+| Action     | Page Component          | Path from `src/resources`      |
+| ---------- | ----------------------- | ------------------------------ |
+| **list**   | `MonsterChildrenList`   | `/monster-children/List.vue`   |
+| **show**   | `MonsterChildrenShow`   | `/monster-children/Show.vue`   |
+| **create** | `MonsterChildrenCreate` | `/monster-children/Create.vue` |
+| **edit**   | `MonsterChildrenEdit`   | `/monster-children/Edit.vue`   |

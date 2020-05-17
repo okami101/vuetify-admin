@@ -92,16 +92,16 @@ You even can use it easily without official package if you use [Laravel Query Bu
 
 ### Methods to API call
 
-| Operation    | API Call Format                                                                                                |
-| ------------ | -------------------------------------------------------------------------------------------------------------- |
-| `getList`    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=-name&filter={"q":"douglas"}` |
-| `getOne`     | **GET** `/books/1`                                                                                             |
-| `getMany`    | **GET** `/books?filter={"id":[1,2,3]}`                                                                         |
-| `create`     | **POST** `/books`                                                                                              |
-| `update`     | **PUT** `/books/1`                                                                                             |
-| `updateMany` | Multiple calls to **PUT** `/books/{id}`                                                                        |
-| `delete`     | **DELETE** `/books/1`                                                                                          |
-| `deleteMany` | Multiple calls to **DELETE** `/books/{id}`                                                                     |
+| Operation      | API Call Format                                                                                                |
+| -------------- | -------------------------------------------------------------------------------------------------------------- |
+| **getList**    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=-name&filter={"q":"douglas"}` |
+| **getOne**     | **GET** `/books/1`                                                                                             |
+| **getMany**    | **GET** `/books?filter={"id":[1,2,3]}`                                                                         |
+| **create**     | **POST** `/books`                                                                                              |
+| **update**     | **PUT** `/books/1`                                                                                             |
+| **updateMany** | Multiple calls to **PUT** `/books/{id}`                                                                        |
+| **delete**     | **DELETE** `/books/1`                                                                                          |
+| **deleteMany** | Multiple calls to **DELETE** `/books/{id}`                                                                     |
 
 > For `DESC` sorting, we use a simple dash before the sortable field. Multiple sort is supported by simply adding more sortable fields separated by comma.
 > The `include` parameter is used for eager loading relation.
@@ -141,16 +141,16 @@ As seen [previously](#api-contract), each provider method takes 2 arguments :
 
 Next board represents what object format you should expects as second `params` function arguments for each provider method.
 
-| Method       | Usage                          | Parameters format                                                                                                                                                  |
-| ------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `getList`    | Search for resources           | `{ pagination: { page: Number , perPage: Number }, sort: [{ by: String, desc: Boolean }], filter: Object }, include: String[], fields: { [resource]: String[] } }` |
-| `getOne`     | Fetch one resource by id       | `{ id: Any }`                                                                                                                                                      |
-| `getMany`    | Fetch multiple resource by ids | `{ ids: Array, include: String[], fields: { [resource]: String[] } }`                                                                                              |
-| `create`     | Create new resource            | `{ data: Object }`                                                                                                                                                 |
-| `update`     | Update existing resource       | `{ id: Any, data: Object }`                                                                                                                                        |
-| `updateMany` | Update multiple resources      | `{ ids: Array, data: Object }`                                                                                                                                     |
-| `delete`     | Delete existing resource       | `{ id: Any }`                                                                                                                                                      |
-| `deleteMany` | Delete multiple resources      | `{ ids: Array }`                                                                                                                                                   |
+| Method         | Usage                          | Parameters format                                                                                                                                                  |
+| -------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **getList**    | Search for resources           | `{ pagination: { page: Number , perPage: Number }, sort: [{ by: String, desc: Boolean }], filter: Object }, include: String[], fields: { [resource]: String[] } }` |
+| **getOne**     | Fetch one resource by id       | `{ id: Any }`                                                                                                                                                      |
+| **getMany**    | Fetch multiple resource by ids | `{ ids: Array, include: String[], fields: { [resource]: String[] } }`                                                                                              |
+| **create**     | Create new resource            | `{ data: Object }`                                                                                                                                                 |
+| **update**     | Update existing resource       | `{ id: Any, data: Object }`                                                                                                                                        |
+| **updateMany** | Update multiple resources      | `{ ids: Array, data: Object }`                                                                                                                                     |
+| **delete**     | Delete existing resource       | `{ id: Any }`                                                                                                                                                      |
+| **deleteMany** | Delete multiple resources      | `{ ids: Array }`                                                                                                                                                   |
 
 Some calls examples of Vtec Admin inside each resource store module :
 
@@ -175,16 +175,16 @@ dataProvider.deleteMany("books", { ids: [1, 2, 3] });
 
 Each provider's method must return a Provider on given format.
 
-| Operation    | Response format                       |
-| ------------ | ------------------------------------- |
-| `getList`    | `{ data: Resource[], total: Number }` |
-| `getOne`     | `{ data: Resource }`                  |
-| `getMany`    | `{ data: Resource[] }`                |
-| `create`     | `{ data: Resource }`                  |
-| `update`     | `{ data: Resource }`                  |
-| `updateMany` | `empty`                               |
-| `delete`     | `empty`                               |
-| `deleteMany` | `empty`                               |
+| Operation      | Response format                       |
+| -------------- | ------------------------------------- |
+| **getList**    | `{ data: Resource[], total: Number }` |
+| **getOne**     | `{ data: Resource }`                  |
+| **getMany**    | `{ data: Resource[] }`                |
+| **create**     | `{ data: Resource }`                  |
+| **update**     | `{ data: Resource }`                  |
+| **updateMany** | `empty`                               |
+| **delete**     | `empty`                               |
+| **deleteMany** | `empty`                               |
 
 :::warning Paging count
 As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset from server-side.

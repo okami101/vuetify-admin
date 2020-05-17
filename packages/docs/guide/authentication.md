@@ -61,15 +61,15 @@ Don't forget that only providers are aware of this axios instance, Vtec Admin do
 
 In addition to axios, a second `params` optional argument can be used for various parameters as authentication routes, credentials format, etc.
 
-| Option           | Description                                                                                           |
-| ---------------- | ----------------------------------------------------------------------------------------------------- |
-| `routes`         | Object containing all auth routes baseURL, aka login, logout, refresh (JWT), user infos               |
-| `storageKey`     | JWT only, key name of local storage which will store the token, default to `jwt_token`                |
-| `getToken`       | JWT only, function which return token from a successful login API response, default to `access_token` |
-| `getCredentials` | Function mapper for credentials that return a compatible credentials format for your API              |
-| `getName`        | Function which return name of a given user (taken from user infos API endpoint), default to `name`    |
-| `getEmail`       | Function which return email of a given user, , default to `email`                                     |
-| `getPermissions` | Function which return roles or permissions of a given user, default to `roles`                        |
+| Option             | Description                                                                                           |
+| ------------------ | ----------------------------------------------------------------------------------------------------- |
+| **routes**         | Object containing all auth routes baseURL, aka login, logout, refresh (JWT), user infos               |
+| **storageKey**     | JWT only, key name of local storage which will store the token, default to `jwt_token`                |
+| **getToken**       | JWT only, function which return token from a successful login API response, default to `access_token` |
+| **getCredentials** | Function mapper for credentials that return a compatible credentials format for your API              |
+| **getName**        | Function which return name of a given user (taken from user infos API endpoint), default to `name`    |
+| **getEmail**       | Function which return email of a given user, , default to `email`                                     |
+| **getPermissions** | Function which return roles or permissions of a given user, default to `roles`                        |
 
 ### Full state cookies authentication
 
@@ -254,10 +254,12 @@ const authProvider = {
 
 All of this methods can be described as following :
 
-* **login** : Send credentials information to your API. Should return a rejected promise if response status code is out of 2xx range. If success, `checkAuth` is called.
-* **logout** : Explicit logout from your API. If success, `checkAuth` is called.
-* **checkAuth** : Check current auth validity by retrieving user infos from a specific API endpoint. Called after each client-side route navigation. If success, refresh user infos on global auth store. If failed, cleanup auth store informations and redirect to login page.
-* **checkError** : Called after each API error (4xx, 5xx), allows you to make custom actions depending on the API error status. Do automatic logout if reject promise is returned. The most common use case is to force automatic logout in case of API return 401 or 403 status code.
-* **getName** : Return the fullname of user from authenticated user object. Used for showing username inside user header dropdown.
-* **getEmail** : Return the email of user from authenticated user object. Used for showing email inside user header dropdown.
-* **getPermissions** : Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization).
+| Operation          | Description                                                                                                                                                                                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **login**          | Send credentials information to your API. Should return a rejected promise if response status code is out of 2xx range. If success, `checkAuth` is called                                                                                                          |
+| **logout**         | Explicit logout from your API. If success, `checkAuth` is called                                                                                                                                                                                                   |
+| **checkAuth**      | Check current auth validity by retrieving user infos from a specific API endpoint. Called after each client-side route navigation. If success, refresh user infos on global auth store. If failed, cleanup auth store informations and redirect to login page      |
+| **checkError**     | Called after each API error (4xx, 5xx), allows you to make custom actions depending on the API error status. Do automatic logout if reject promise is returned. The most common use case is to force automatic logout in case of API return 401 or 403 status code |
+| **getName**        | Return the fullname of user from authenticated user object. Used for showing username inside user header dropdown                                                                                                                                                  |
+| **getEmail**       | Return the email of user from authenticated user object. Used for showing email inside user header dropdown                                                                                                                                                        |
+| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization)                                                                                                                                             |

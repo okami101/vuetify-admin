@@ -45,6 +45,12 @@ This is how it works :
 
 #### JSON Schema
 
-This file must to validate against a [particular JSON schema](/schemas/generator.json).
+This file must to validate against a [particular JSON schema](/schemas/generator.json) in order to ensure compatibility.
 
-Use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and set `https://vtec.okami101.io/schemas/generator.json` on your workspace by link it in `yaml.schemas` settings, which is already done in this project if you open the workspace in the root of this main repo. Now You have autocompletion with full documention !
+Each YAML file can contain a list of resources identified by a slug name on `snake_case` format. Each resource can contain many properties that will help for code generation on both API and UI sides.
+
+<json-schema-table type="generator" definition="resource"></json-schema-table>
+
+:::tip YAML DEVELOMENT
+For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have autocompletion with full documentation !
+:::
