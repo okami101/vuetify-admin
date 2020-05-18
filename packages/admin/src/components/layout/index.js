@@ -1,9 +1,9 @@
-import Header from "./AppHeader";
-import Footer from "./AppFooter";
-import Sidebar from "./AppSidebar";
-import Aside from "./AppAside";
-import Breadcrumbs from "./AppBreadcrumbs";
-import Messages from "./AppMessages";
-import ActionPage from "./AppActionPage";
+import Header from "./Header";
+import Footer from "./Footer";
+import Sidebar from "./Sidebar";
+import Aside from "./Aside";
+import Breadcrumbs from "./Breadcrumbs";
+import Messages from "./Messages";
+import ActionPage from "./ActionPage";
 
 export { Header, Footer, Sidebar, Aside, Breadcrumbs, Messages, ActionPage };

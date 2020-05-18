@@ -23,7 +23,6 @@
 import Item from "../../../mixins/item";
 
 export default {
-  name: "ActionButton",
   mixins: [Item],
   props: {
     icon: String,

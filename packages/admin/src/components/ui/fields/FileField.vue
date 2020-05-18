@@ -21,8 +21,7 @@
 import Files from "../../../mixins/files";
 
 export default {
-  name: "FileField",
-  mixins: [Files],
+    mixins: [Files],
 };
 </script>
 

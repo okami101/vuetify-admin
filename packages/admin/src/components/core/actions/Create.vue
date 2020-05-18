@@ -13,8 +13,7 @@
 import Resource from "../../../mixins/resource";
 
 export default {
-  name: "Create",
-  mixins: [Resource],
+    mixins: [Resource],
   props: {
     title: String,
   },

@@ -27,8 +27,7 @@
 import Resource from "../../../mixins/resource";
 
 export default {
-  name: "CreateButton",
-  mixins: [Resource],
+    mixins: [Resource],
   props: {
     icon: Boolean,
     disableRoute: Boolean,

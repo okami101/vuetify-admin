@@ -12,8 +12,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "BooleanField",
-  mixins: [Field],
+    mixins: [Field],
   props: {
     labelTrue: {
       type: String,

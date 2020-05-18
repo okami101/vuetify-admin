@@ -26,7 +26,6 @@
 import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: "AppAside",
   computed: {
     ...mapState({
       opened: (state) => state.aside.opened,

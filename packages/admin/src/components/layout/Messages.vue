@@ -15,7 +15,6 @@ import Confirm from "./Confirm";
 import { mapState } from "vuex";
 
 export default {
-  name: "AppMessages",
   components: {
     Confirm,
   },

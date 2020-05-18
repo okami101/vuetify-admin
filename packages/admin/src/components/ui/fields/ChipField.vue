@@ -8,8 +8,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "ChipField",
-  mixins: [Field],
+    mixins: [Field],
   props: {
     color: [String, Function],
     small: Boolean,

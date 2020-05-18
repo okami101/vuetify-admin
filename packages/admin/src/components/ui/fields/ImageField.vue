@@ -42,8 +42,7 @@
 import Files from "../../../mixins/files";
 
 export default {
-  name: "ImageField",
-  mixins: [Files],
+    mixins: [Files],
   props: {
     contain: Boolean,
     height: String,

@@ -17,8 +17,7 @@ import Item from "../../../mixins/item";
 import { mapActions } from "vuex";
 
 export default {
-  name: "DeleteButton",
-  mixins: [Item],
+    mixins: [Item],
   props: {
     icon: Boolean,
     redirect: Boolean,

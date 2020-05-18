@@ -23,8 +23,7 @@ import Resource from "../../../mixins/resource";
 import { mapActions } from "vuex";
 
 export default {
-  name: "BulkActionButton",
-  mixins: [Resource],
+    mixins: [Resource],
   props: {
     value: Array,
     action: {

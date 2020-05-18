@@ -125,7 +125,6 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "AppHeader",
   props: {
     headerMenu: {
       type: Array,

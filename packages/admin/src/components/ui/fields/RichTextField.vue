@@ -6,7 +6,6 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "RichTextField",
-  mixins: [Field],
+    mixins: [Field],
 };
 </script>

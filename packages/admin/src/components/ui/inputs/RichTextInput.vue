@@ -15,8 +15,7 @@ import Input from "../../../mixins/input";
 import Editor from "@tinymce/tinymce-vue";
 
 export default {
-  name: "RichTextInput",
-  components: { Editor },
+    components: { Editor },
   mixins: [Input],
   props: {
     language: {

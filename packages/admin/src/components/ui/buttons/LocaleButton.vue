@@ -25,8 +25,7 @@
 import Resource from "../../../mixins/resource";
 
 export default {
-  name: "LocaleButton",
-  mixins: [Resource],
+    mixins: [Resource],
   props: {
     icon: Boolean,
     color: {

@@ -31,7 +31,6 @@
 
 <script>
 export default {
-  name: "AppFooter",
   props: {
     menu: {
       type: Array,

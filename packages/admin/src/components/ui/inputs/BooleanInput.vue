@@ -12,8 +12,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-  name: "BooleanInput",
-  mixins: [Input],
+    mixins: [Input],
   props: {
     value: {
       type: Boolean,

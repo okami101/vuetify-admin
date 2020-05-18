@@ -15,8 +15,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-  name: "RatingInput",
-  mixins: [Input],
+    mixins: [Input],
   props: {
     color: {
       type: String,

@@ -6,7 +6,6 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "UrlField",
-  mixins: [Field],
+    mixins: [Field],
 };
 </script>

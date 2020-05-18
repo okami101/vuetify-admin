@@ -15,7 +15,6 @@
 
 <script>
 export default {
-  name: "AppActionPage",
   props: {
     title: String,
   },

@@ -20,8 +20,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "ArrayField",
-  mixins: [Field],
+    mixins: [Field],
   props: {
     itemText: {
       type: [String, Array, Function],

@@ -28,8 +28,7 @@
 import Item from "../../../mixins/item";
 
 export default {
-  name: "EditButton",
-  mixins: [Item],
+    mixins: [Item],
   props: {
     icon: Boolean,
     disableRoute: Boolean,

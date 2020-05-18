@@ -20,8 +20,7 @@
 
 <script>
 export default {
-  name: "AssociateButton",
-  props: {
+    props: {
     icon: Boolean,
     color: {
       type: String,

@@ -28,8 +28,7 @@
 import Item from "../../../mixins/item";
 
 export default {
-  name: "CloneButton",
-  mixins: [Item],
+    mixins: [Item],
   props: {
     icon: Boolean,
     disableRoute: Boolean,

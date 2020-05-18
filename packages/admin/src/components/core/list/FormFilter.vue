@@ -31,8 +31,7 @@
 import debounce from "lodash/debounce";
 
 export default {
-  name: "FormFilter",
-  props: {
+    props: {
     value: {
       type: Object,
       default: () => {},

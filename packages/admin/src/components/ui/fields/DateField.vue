@@ -6,8 +6,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "DateField",
-  mixins: [Field],
+    mixins: [Field],
   props: {
     format: String,
   },

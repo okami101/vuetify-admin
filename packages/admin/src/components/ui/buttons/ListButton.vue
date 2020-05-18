@@ -23,7 +23,6 @@
 import Resource from "../../../mixins/resource";
 
 export default {
-  name: "ListButton",
   mixins: [Resource],
   props: {
     icon: Boolean,

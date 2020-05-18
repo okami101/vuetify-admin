@@ -12,8 +12,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "RatingField",
-  mixins: [Field],
+    mixins: [Field],
   props: {
     color: {
       type: String,

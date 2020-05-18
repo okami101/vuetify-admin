@@ -62,7 +62,6 @@
 
 <script>
 export default {
-  name: "AppSidebar",
   props: {
     menu: {
       type: Array,

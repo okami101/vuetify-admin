@@ -19,8 +19,7 @@ import Input from "../../../mixins/input";
 import Reference from "../../../mixins/reference";
 
 export default {
-  name: "SelectInput",
-  mixins: [Input, Reference],
+    mixins: [Input, Reference],
   props: {
     multiple: Boolean,
     filled: {

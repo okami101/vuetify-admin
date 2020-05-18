@@ -18,7 +18,6 @@
 import Field from "../../mixins/field";
 
 export default {
-  name: "Field",
   mixins: [Field],
   props: {
     source: String,

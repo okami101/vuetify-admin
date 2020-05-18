@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: "Input",
   props: {
     source: String,
     label: String,

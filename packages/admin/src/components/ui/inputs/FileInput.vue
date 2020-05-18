@@ -24,8 +24,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-  name: "FileInput",
-  mixins: [Input],
+    mixins: [Input],
   props: {
     preview: {
       type: Boolean,

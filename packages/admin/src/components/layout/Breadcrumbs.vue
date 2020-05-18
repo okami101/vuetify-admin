@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: "AppBreadcrumbs",
   computed: {
     items() {
       return this.$route.matched.map((route) => {

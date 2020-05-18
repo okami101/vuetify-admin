@@ -9,8 +9,7 @@ import Resource from "../../../mixins/resource";
 import set from "lodash/set";
 
 export default {
-  name: "Form",
-  mixins: [Resource],
+    mixins: [Resource],
   provide() {
     return {
       formState: this.formState,

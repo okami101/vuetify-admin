@@ -24,7 +24,6 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  name: "Confirm",
   data: () => ({
     dialog: false,
     title: null,

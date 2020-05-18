@@ -20,8 +20,7 @@ import Input from "../../../mixins/input";
 import Reference from "../../../mixins/reference";
 
 export default {
-  name: "RadioGroupInput",
-  mixins: [Input, Reference],
+    mixins: [Input, Reference],
   props: {
     column: {
       type: Boolean,

@@ -20,8 +20,7 @@
 import Item from "../../../mixins/item";
 
 export default {
-  name: "Edit",
-  mixins: [Item],
+    mixins: [Item],
   props: {
     title: String,
   },

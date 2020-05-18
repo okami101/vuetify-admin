@@ -42,8 +42,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-  name: "ArrayInput",
-  mixins: [Input],
+    mixins: [Input],
   props: {
     trackedBy: {
       type: String,

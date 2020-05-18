@@ -11,8 +11,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-  name: "ReferenceField",
-  mixins: [Field],
+    mixins: [Field],
   props: {
     action: {
       type: String,

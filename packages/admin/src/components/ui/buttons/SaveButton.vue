@@ -22,8 +22,7 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "SaveButton",
-  props: {
+    props: {
     icon: Boolean,
     color: {
       type: String,

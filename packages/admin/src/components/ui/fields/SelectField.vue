@@ -16,8 +16,7 @@ import Field from "../../../mixins/field";
 import Choices from "../../../mixins/choices";
 
 export default {
-  name: "SelectField",
-  mixins: [Field, Choices],
+    mixins: [Field, Choices],
   props: {
     chip: Boolean,
     color: [String, Function],
