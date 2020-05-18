@@ -30,7 +30,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-    mixins: [Input],
+  mixins: [Input],
   props: {
     filled: {
       type: Boolean,

@@ -25,7 +25,7 @@
 import Resource from "../../../mixins/resource";
 
 export default {
-    mixins: [Resource],
+  mixins: [Resource],
   props: {
     icon: Boolean,
     color: {

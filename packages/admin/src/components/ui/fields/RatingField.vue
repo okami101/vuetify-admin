@@ -12,7 +12,7 @@
 import Field from "../../../mixins/field";
 
 export default {
-    mixins: [Field],
+  mixins: [Field],
   props: {
     color: {
       type: String,

@@ -29,7 +29,7 @@ import Reference from "../../../mixins/reference";
 import get from "lodash/get";
 
 export default {
-    mixins: [Input, Reference],
+  mixins: [Input, Reference],
   props: {
     multiple: Boolean,
     filled: {

@@ -143,7 +143,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 export default {
-    mixins: [List],
+  mixins: [List],
   props: {
     rowClick: {
       type: String,

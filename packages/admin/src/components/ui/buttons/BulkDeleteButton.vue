@@ -10,7 +10,7 @@ import Resource from "../../../mixins/resource";
 import { mapActions } from "vuex";
 
 export default {
-    mixins: [Resource],
+  mixins: [Resource],
   props: {
     value: Array,
   },

@@ -11,7 +11,7 @@
 import { mapState, mapMutations } from "vuex";
 
 export default {
-    props: {
+  props: {
     title: String,
     value: Boolean,
   },

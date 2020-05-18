@@ -22,7 +22,7 @@
 import { mapState } from "vuex";
 
 export default {
-    props: {
+  props: {
     icon: Boolean,
     color: {
       type: String,

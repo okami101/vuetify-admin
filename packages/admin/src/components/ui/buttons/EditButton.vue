@@ -28,7 +28,7 @@
 import Item from "../../../mixins/item";
 
 export default {
-    mixins: [Item],
+  mixins: [Item],
   props: {
     icon: Boolean,
     disableRoute: Boolean,

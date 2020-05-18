@@ -21,7 +21,7 @@
 import Files from "../../../mixins/files";
 
 export default {
-    mixins: [Files],
+  mixins: [Files],
 };
 </script>
 

@@ -23,7 +23,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-    mixins: [Input],
+  mixins: [Input],
   props: {
     multiline: Boolean,
     icon: String,

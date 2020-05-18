@@ -114,7 +114,7 @@ import isEmpty from "lodash/isEmpty";
 import { mapState, mapActions } from "vuex";
 
 export default {
-    mixins: [Resource],
+  mixins: [Resource],
   components: {
     FormFilter,
   },

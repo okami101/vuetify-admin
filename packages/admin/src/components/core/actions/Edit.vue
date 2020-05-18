@@ -20,7 +20,7 @@
 import Item from "../../../mixins/item";
 
 export default {
-    mixins: [Item],
+  mixins: [Item],
   props: {
     title: String,
   },

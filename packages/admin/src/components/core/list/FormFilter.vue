@@ -31,7 +31,7 @@
 import debounce from "lodash/debounce";
 
 export default {
-    props: {
+  props: {
     value: {
       type: Object,
       default: () => {},

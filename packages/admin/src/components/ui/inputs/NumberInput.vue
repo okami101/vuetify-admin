@@ -14,7 +14,7 @@
 import Input from "../../../mixins/input";
 
 export default {
-    mixins: [Input],
+  mixins: [Input],
   props: {
     icon: String,
     filled: {

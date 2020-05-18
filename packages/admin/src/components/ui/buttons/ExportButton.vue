@@ -18,7 +18,7 @@ import Papa from "papaparse";
 import { mapActions } from "vuex";
 
 export default {
-    mixins: [Resource],
+  mixins: [Resource],
   props: {
     icon: Boolean,
     color: {

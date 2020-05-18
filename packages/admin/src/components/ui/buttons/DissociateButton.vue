@@ -23,7 +23,7 @@ import Item from "../../../mixins/item";
 import { mapActions } from "vuex";
 
 export default {
-    mixins: [Item],
+  mixins: [Item],
   props: {
     icon: Boolean,
     source: String,

@@ -20,7 +20,7 @@ import Input from "../../../mixins/input";
 import Reference from "../../../mixins/reference";
 
 export default {
-    mixins: [Input, Reference],
+  mixins: [Input, Reference],
   props: {
     column: {
       type: Boolean,
