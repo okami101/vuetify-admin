@@ -11,6 +11,7 @@
     <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
     <va-breadcrumbs slot="breadcrumbs"></va-breadcrumbs>
     <impersonate-message slot="message"></impersonate-message>
+    <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
       <v-icon size="18">

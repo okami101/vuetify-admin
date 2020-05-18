@@ -1,21 +1,28 @@
 <template>
   <div>
-    <slot name="header">
-      <div class="d-flex align-center mb-2">
-        <h1 class="display-2">
-          {{ title }}
-        </h1>
-        <v-spacer></v-spacer>
-        <slot name="actions"></slot>
-      </div>
-    </slot>
+    <div class="d-flex align-center mb-2">
+      <h1 class="display-2">
+        {{ title }}
+      </h1>
+      <v-spacer></v-spacer>
+      <!-- @slot Slot for action buttons. -->
+      <slot name="actions"></slot>
+    </div>
+    <!-- @slot Default slot for page content. -->
     <slot></slot>
   </div>
 </template>
 
 <script>
+/**
+ * Main CRUD action page layout used for Show, Create end Edit views components.
+ * @displayName VaActionPage
+ */
 export default {
   props: {
+    /**
+     * H1 title of the page
+     */
     title: String,
   },
 };

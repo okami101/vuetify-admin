@@ -4,7 +4,7 @@
     :clipped="$vuetify.breakpoint.lgAndUp"
     right
     app
-    :width="400"
+    :width="width"
   >
     <div class="pa-4">
       <div class="d-flex align-center">
@@ -25,7 +25,20 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 
+/**
+ * Customizable admin aside component where you put some contextualized additional informations.
+ * @displayName VaAside
+ */
 export default {
+  props: {
+    /**
+     * Width of the aside
+     */
+    width: {
+      type: Number,
+      default: 400,
+    },
+  },
   computed: {
     ...mapState({
       opened: (state) => state.aside.opened,

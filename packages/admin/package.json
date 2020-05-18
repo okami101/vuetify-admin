@@ -15,6 +15,11 @@
   "scripts": {
     "build": "vue-cli-service build --name admin --target lib src/index.js --report"
   },
+  "vetur": {
+    "tags": "dist/json/tags.json",
+    "attributes": "dist/json/attributes.json"
+  },
+  "web-types": "dist/json/web-types.json",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.3.0",
     "@vue/cli-service": "^4.3.0",

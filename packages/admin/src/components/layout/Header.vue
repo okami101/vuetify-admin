@@ -7,6 +7,10 @@
     :color="color"
     :dense="dense"
   >
+    <!--
+      Trigered on VAppBar icon click, use it with VaSidebar for minimize it.
+      @event mini
+    -->
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />
     <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
       <span class="hidden-sm-and-down">{{ $admin.title }}</span>
@@ -124,21 +128,40 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 
+/**
+ * Default customizable admin VAppBar with header and profile menu, as well as some create actions.
+ * @displayName VaHeader
+ */
 export default {
   props: {
+    /**
+     * Header links visible on left side.
+     */
     headerMenu: {
       type: Array,
       default: () => [],
     },
+    /**
+     * Profile related links, visible inside authenticated dropdown menu.
+     */
     profileMenu: {
       type: Array,
       default: () => [],
     },
+    /**
+     * Color for the VAppBar.
+     */
     color: {
       type: String,
       default: "primary",
     },
+    /**
+     * Reduce height of VAppBar
+     */
     dense: Boolean,
+    /**
+     * Apply dark theme variant for VAppBar
+     */
     dark: Boolean,
   },
   computed: {

@@ -7,6 +7,7 @@
     :color="color"
   >
     <template v-slot:img="props">
+      <!-- @slot Slot for full customizable image background. -->
       <slot name="img" v-bind="props"></slot>
     </template>
     <v-list dense>
@@ -61,17 +62,34 @@
 </template>
 
 <script>
+/**
+ * Default customizable admin VNavigationDrawer with full hierarchical menu and minimizable.
+ * @displayName VaSidebar
+ */
 export default {
   props: {
+    /**
+     * Main place for side menu, support hierarchical structure, MDI icons, heading and dividers.
+     * Best place for `src/_navs.js` file import.
+     */
     menu: {
       type: Array,
       default: () => [],
     },
+    /**
+     * Minimize the sidebar and show only icons.
+     */
     mini: Boolean,
+    /**
+     * Main color of VNavigationDrawer.
+     */
     color: {
       type: String,
       default: "white",
     },
+    /**
+     * Apply dark theme variant for VNavigationDrawer
+     */
     dark: Boolean,
   },
 };

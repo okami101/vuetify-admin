@@ -21,6 +21,7 @@
 
         <v-col cols="12" md="auto">
           <div class="font-weight-light pt-6 pt-md-0 text-center">
+            <!-- @slot Default slot for short right side informations. -->
             <slot></slot>
           </div>
         </v-col>
@@ -30,8 +31,15 @@
 </template>
 
 <script>
+/**
+ * Default customizable admin VFooter with possibility of corporate related links and infos.
+ * @displayName VaFooter
+ */
 export default {
   props: {
+    /**
+     * Corporate related links.
+     */
     menu: {
       type: Array,
       default: () => [],

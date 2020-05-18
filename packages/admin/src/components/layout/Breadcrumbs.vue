@@ -3,6 +3,11 @@
 </template>
 
 <script>
+/**
+ * Default admin component for breadcrumbs, will generate automatically hierarchical links from router.
+ * Support hierarchical CRUD structure.
+ * @displayName VaBreadcrumbs
+ */
 export default {
   computed: {
     items() {

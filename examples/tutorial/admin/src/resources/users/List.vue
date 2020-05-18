@@ -1,9 +1,9 @@
 <template>
   <div>
-    <va-aside v-model="asideOpened" :title="asideTitle">
+    <va-aside-content v-model="asideOpened" :title="asideTitle">
       <users-show v-if="show" :item="item"></users-show>
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
-    </va-aside>
+    </va-aside-content>
     <base-material-card :icon="resource.icon" :title="title">
       <va-list
         ref="list"
