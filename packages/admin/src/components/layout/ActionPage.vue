@@ -21,7 +21,7 @@
 export default {
   props: {
     /**
-     * H1 title of the page
+     * Optional H1 title of the page shown on the left of top header
      */
     title: String,
   },
