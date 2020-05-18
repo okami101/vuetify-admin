@@ -2,7 +2,6 @@
   <v-text-field
     v-bind="commonProps"
     :filled="filled"
-    :append-icon="icon"
     type="number"
     :step="step"
     @change="change"

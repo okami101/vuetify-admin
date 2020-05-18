@@ -1,35 +1,22 @@
-import Item from "../mixins/item";
+import Source from "./source";
+import Item from "./item";
+import InputWrapper from "./input-wrapper";
 import get from "lodash/get";
 import { mapActions } from "vuex";
 
 export default {
-  mixins: [Item],
+  mixins: [Source, Item, InputWrapper],
   inject: {
     formState: { default: undefined },
   },
   props: {
-    parentSource: String,
-    source: String,
     index: Number,
     model: String,
-    label: {
-      type: String,
-      default() {
-        let base = `resources.${this.resource}.fields`;
-
-        if (this.parentSource) {
-          return this.$t(`${base}.${this.parentSource}.${this.source}`);
-        }
-        return this.$t(`${base}.${this.source}`);
-      },
-    },
     hint: String,
-    icon: String,
     hideDetails: Boolean,
     dense: Boolean,
     placeholder: String,
     clearable: Boolean,
-    required: Boolean,
     alwaysOn: Boolean,
     filterable: Boolean,
     editable: Boolean,
@@ -77,6 +64,7 @@ export default {
       return {
         label: this.label,
         value: this.input,
+        appendIcon: this.appendIcon,
         hint: this.hint,
         rules: this.rules,
         errorMessages: this.errorMessages,
@@ -85,17 +73,6 @@ export default {
         placeholder: this.placeholder,
         clearable: this.clearable,
       };
-    },
-    rules() {
-      let rules = [];
-
-      if (this.required) {
-        rules.push(
-          (v) =>
-            !!v || this.$t("va.forms.required_field", { field: this.label })
-        );
-      }
-      return rules;
     },
   },
   methods: {

@@ -1,4 +1,4 @@
-import Field from "../mixins/field";
+import Field from "./field";
 import get from "lodash/get";
 
 export default {

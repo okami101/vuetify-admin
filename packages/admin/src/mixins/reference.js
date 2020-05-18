@@ -1,6 +1,6 @@
 import { mapActions } from "vuex";
 import isEmpty from "lodash/isEmpty";
-import Choices from "../mixins/choices";
+import Choices from "./choices";
 
 export default {
   mixins: [Choices],

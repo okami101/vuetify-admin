@@ -1,4 +1,4 @@
-import Resource from "../mixins/resource";
+import Resource from "./resource";
 
 export default {
   mixins: [Resource],

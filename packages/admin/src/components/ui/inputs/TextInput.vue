@@ -4,7 +4,6 @@
     v-bind="commonProps"
     auto-grow
     :filled="filled"
-    :append-icon="icon"
     @change="change"
     @input="update"
   ></v-textarea>
@@ -12,7 +11,6 @@
     v-else
     v-bind="commonProps"
     :filled="filled"
-    :append-icon="icon"
     @change="change"
     @input="update"
     :type="type"

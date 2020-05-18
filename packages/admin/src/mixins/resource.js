@@ -1,16 +1,20 @@
 export default {
   props: {
+    /**
+     * Name of the resource to use.
+     * Required for good localized labelization and context action activators.
+     * Default behavior is to fetch it from router context.
+     */
     resource: {
       type: String,
       default() {
         return this.$route.meta.resource;
       },
     },
-    translatable: {
-      type: Boolean,
-      default() {
-        return this.$route.meta.translatable;
-      },
+  },
+  computed: {
+    translatable() {
+      return this.$route.meta.translatable;
     },
   },
   methods: {

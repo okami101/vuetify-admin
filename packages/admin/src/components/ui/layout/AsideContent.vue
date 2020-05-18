@@ -10,9 +10,21 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 
+/**
+ * Component to use for showing information on aside from any components.
+ * Use Portal Vue plugin internally for this.
+ * @displayName VaAsideContent
+ */
 export default {
   props: {
+    /**
+     * Title of aside.
+     */
     title: String,
+    /**
+     * State of aside, opened or closed.
+     * @model
+     */
     value: Boolean,
   },
   watch: {
@@ -27,6 +39,9 @@ export default {
       immediate: true,
     },
     opened(newVal) {
+      /**
+       * Send value update, called after each aside open/close state change.
+       */
       this.$emit("input", newVal);
     },
   },

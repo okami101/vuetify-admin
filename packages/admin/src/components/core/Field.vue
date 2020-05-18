@@ -1,6 +1,9 @@
 <template>
   <v-input v-if="record" :label="label" class="va-input">
     <div>
+      <!--
+        @slot Default slot for showing field. By default use field component according to `type` props.
+      -->
       <slot v-bind="{ item: record, value }">
         <component
           :is="`va-${type}-field`"
@@ -17,10 +20,19 @@
 <script>
 import Field from "../../mixins/field";
 
+/**
+ * Wrapper component for field, mainly used for show page.
+ * Use default slot for custom needs or use `type` property for quick usage of valid existing field component.
+ * All attributes of this component will be merged into child slot.
+ * @displayName VaField
+ */
 export default {
   mixins: [Field],
   props: {
-    source: String,
+    /**
+     * Override default label behavior.
+     * Default is to get the localized VueI18n label from both ressource and property source.
+     */
     label: {
       type: String,
       default() {
@@ -29,6 +41,9 @@ export default {
           : "";
       },
     },
+    /**
+     * Type of field to use. Not used if you use default slot for advanced custom needs.
+     */
     type: {
       type: String,
       default: "text",

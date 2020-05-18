@@ -4,38 +4,30 @@
     :hint="hint"
     :rules="rules"
     :error-messages="errorMessages"
-    :append-icon="icon"
+    :append-icon="appendIcon"
     :hide-details="hideDetails"
     :dense="dense"
   >
+    <!-- @slot Default slot for custom input which handles value editing -->
     <slot></slot>
   </v-input>
 </template>
 
 <script>
-export default {
-  props: {
-    source: String,
-    label: String,
-    hint: String,
-    icon: String,
-    hideDetails: Boolean,
-    dense: Boolean,
-    errorMessages: Array,
-    required: Boolean,
-  },
-  computed: {
-    rules() {
-      let rules = [];
+import Source from "../../mixins/source";
+import InputWrapper from "../../mixins/input-wrapper";
 
-      if (this.required) {
-        rules.push(
-          (v) =>
-            !!v || this.$t("va.forms.required_field", { field: this.label })
-        );
-      }
-      return rules;
-    },
+/**
+ * Dumb input wrapper for custom input components that don't manage natively error states.
+ * @displayName VaInput
+ */
+export default {
+  mixins: [Source, InputWrapper],
+  props: {
+    /**
+     * Puts the input in an error state and passes through custom error messages.
+     */
+    errorMessages: Array,
   },
 };
 </script>
