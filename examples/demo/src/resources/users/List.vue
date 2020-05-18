@@ -18,8 +18,7 @@
         ]"
         v-model="selected"
         :options.sync="options"
-        disable-create-route
-        @action="onAction"
+        @create="(e) => onAction('create', e)"
       >
         <template v-slot:bulk.actions>
           <va-bulk-action-button
@@ -65,9 +64,9 @@
             v-bind="props"
             v-model="selected"
             :options.sync="options"
-            disable-show-route
-            disable-edit-route
-            @item-action="onAction"
+            @show="(e) => onAction('show', e)"
+            @edit="(e) => onAction('edit', e)"
+            @create="(e) => onAction('create', e)"
           >
             <template v-slot:roles="{ value }">
               <v-chip-group column>
@@ -118,7 +117,7 @@ export default {
     };
   },
   methods: {
-    async onAction({ action, title, id, item }) {
+    async onAction(action, { title, id, item }) {
       this.asideTitle = title;
       this.id = id;
       this.show = action === "show";

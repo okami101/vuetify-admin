@@ -17,7 +17,7 @@
     @click:row="onRowClick"
     @update:options="(options) => $emit('update:options', options)"
     @input="(selected) => $emit('input', selected)"
-    :class="{ 'clickable-rows': rowClick }"
+    :class="{ 'clickable-rows': rowClick || !!$listeners['row-click'] }"
   >
     <template
       v-for="field in getFields"
@@ -86,27 +86,27 @@
         <slot name="cell.actions" v-bind="{ resource, item }">
           <va-show-button
             v-if="!disableShow"
+            :show="!!$listeners.show"
             :resource="resource"
             :item="item"
             icon
-            :disable-route="disableShowRoute"
             @click="(item) => onAction('show', item)"
           ></va-show-button>
           <va-edit-button
             v-if="!disableEdit"
+            :show="!!$listeners.edit"
             :resource="resource"
             :item="item"
             icon
-            :disable-route="disableEditRoute"
             @click="(item) => onAction('edit', item)"
           ></va-edit-button>
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
           <va-clone-button
             v-if="!disableClone"
+            :show="!!$listeners.create"
             :resource="resource"
             :item="item"
             icon
-            :disable-route="disableEditRoute"
             @click="(item) => onAction('create', item)"
           ></va-clone-button>
           <va-dissociate-button
@@ -142,11 +142,20 @@ import List from "../../../mixins/list";
 import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
+/**
+ * Dumb datagrid component, you will need data iterator as VaList in order to make it usable.
+ * This component allows you to template all fields columns.
+ * @displayName VaDatagrid
+ */
 export default {
   mixins: [List],
   props: {
+    /**
+     * Make each row clickable. Use predefined function as edit or show.
+     * @values show, edit
+     */
     rowClick: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator: (v) => ["show", "edit"].includes(v),
     },
@@ -185,8 +194,6 @@ export default {
     serverItemsLength: Number,
     disableSelect: Boolean,
     disableSort: Boolean,
-    disableShowRoute: Boolean,
-    disableEditRoute: Boolean,
     disableShow: Boolean,
     disableEdit: Boolean,
     disableClone: Boolean,
@@ -270,10 +277,16 @@ export default {
             params: { id: item.id },
           });
           break;
+        default:
+          /**
+           * Generic `row-click` event if you set rowClick on `true` with selected item.
+           */
+          this.$emit("row-click", item);
+          break;
       }
     },
     async onAction(action, item) {
-      if (!this[`disable${upperFirst(action)}Route`]) {
+      if (!this.$listeners[action]) {
         return;
       }
 
@@ -294,7 +307,25 @@ export default {
       });
       this.$store.commit(`${this.resource}/setItem`, data);
 
-      this.$emit("item-action", { action, title, id, item: data });
+      /**
+       * Allows you to use `show` event for custom action on your side.
+       * If event subscribed, it will force showing of `show` button even if no create action available for this resource.
+       * This event will return a freshed item Object from your API.
+       * @event show
+       */
+      /**
+       * Allows you to use `edit` event for custom action on your side.
+       * If event subscribed, it will force showing of `edit` button even if no create action available for this resource.
+       * This event will return a freshed item Object from your API.
+       * @event edit
+       */
+      /**
+       * Allows you to use `create` event for custom action on your side.
+       * If event subscribed, it will force showing of `clone` button even if no create action available for this resource.
+       * This event will return a freshed item Object from your API for allowing prefill form create data.
+       * @event create
+       */
+      this.$emit(action, { title, id, item: data });
     },
   },
 };

@@ -74,8 +74,8 @@
         </v-menu>
         <va-create-button
           v-if="!disableCreate"
+          :show="!!$listeners.create"
           :resource="resource"
-          :disable-route="disableCreateRoute"
           @click="onCreate"
         ></va-create-button>
         <slot name="actions"></slot>
@@ -211,12 +211,22 @@ export default {
      */
     disablePagination: Boolean,
     /**
-     * Do not redirect to create route on create button and only use `create` event.
+     * Hide all header toolbar, so neither filters nor any create or export actions.
      */
-    disableCreateRoute: Boolean,
     hideHeader: Boolean,
+    /**
+     * Force disabling of create button, shown by default if create resource action available.
+     */
     disableCreate: Boolean,
+    /**
+     * Force disabling of export button, shown by default.
+     * The export allows client-side CSV download and keep active filters while disabling pagination.
+     */
     disableExport: Boolean,
+    /**
+     * Association infos object in case of this list is related to a current show or edit resource page.
+     * Enable the association between resources directly by an autocomplete an associate action.
+     */
     association: {
       type: Object,
       default: () => {},
@@ -466,9 +476,17 @@ export default {
       this.fetchData();
     },
     onCreate() {
-      let title = this.$t("resources.users.titles.create");
+      if (!this.$listeners.create) {
+        return;
+      }
 
-      this.$emit("action", { action: "create", title });
+      let title = this.$t(`resources.${this.resource}.titles.create`);
+
+      /**
+       * Allows you to use `create` event for custom action on your side.
+       * If event subscribed, it will force showing of `create` button even if no create action available for this resource.
+       */
+      this.$emit("create", { title });
     },
     async onAssociate() {
       await this.update({

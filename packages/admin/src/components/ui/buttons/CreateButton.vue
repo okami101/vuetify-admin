@@ -1,9 +1,5 @@
 <template>
-  <v-tooltip
-    bottom
-    :disabled="!icon"
-    v-if="disableRoute || hasAction('create')"
-  >
+  <v-tooltip bottom :disabled="!icon" v-if="show || hasAction('create')">
     <template v-slot:activator="{ on }">
       <v-btn
         text
@@ -30,7 +26,7 @@ export default {
   mixins: [Resource],
   props: {
     icon: Boolean,
-    disableRoute: Boolean,
+    show: Boolean,
     color: {
       type: String,
       default: "success",
@@ -38,10 +34,10 @@ export default {
   },
   computed: {
     route() {
-      if (this.disableRoute) {
-        return null;
+      if (this.hasAction("create")) {
+        return { name: `${this.resource}_create` };
       }
-      return { name: `${this.resource}_create` };
+      return null;
     },
   },
 };

@@ -2,7 +2,7 @@
   <v-tooltip
     bottom
     :disabled="!icon"
-    v-if="item && (disableRoute || hasAction('edit'))"
+    v-if="item && (show || hasAction('edit'))"
   >
     <template v-slot:activator="{ on }">
       <v-btn
@@ -31,7 +31,7 @@ export default {
   mixins: [Item],
   props: {
     icon: Boolean,
-    disableRoute: Boolean,
+    show: Boolean,
     color: {
       type: String,
       default: "blue",
@@ -39,10 +39,10 @@ export default {
   },
   computed: {
     route() {
-      if (this.disableRoute) {
-        return null;
+      if (this.hasAction("edit")) {
+        return { name: `${this.resource}_edit`, params: { id: this.item.id } };
       }
-      return { name: `${this.resource}_edit`, params: { id: this.item.id } };
+      return null;
     },
   },
 };
