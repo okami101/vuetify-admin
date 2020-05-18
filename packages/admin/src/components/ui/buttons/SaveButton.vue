@@ -1,33 +1,29 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :icon="icon"
-        :loading="saving"
-        color="primary"
-        type="submit"
-        v-on="on"
-      >
-        <v-icon>mdi-floppy</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.save") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.save") }}</span>
-  </v-tooltip>
+  <va-action-button
+    :show-label="!icon"
+    :label="$t('va.actions.save')"
+    icon="mdi-floppy"
+    :color="color || 'primary'"
+    type="submit"
+    :loading="saving"
+  ></va-action-button>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import Button from "../../../mixins/button";
 
+/**
+ * Default saving button that can be used for VaForm component.
+ * Dumb component, just a submit button, VaForm do the real work.
+ * @displayName VaSaveButton
+ */
 export default {
+  mixins: [Button],
   props: {
-    icon: Boolean,
-    color: {
-      type: String,
-      default: "primary",
-    },
+    /**
+     * Will provoke a spinner if active.
+     * Should be synced with `saving` VaForm prop.
+     */
     saving: Boolean,
   },
 };

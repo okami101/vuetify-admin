@@ -1,35 +1,26 @@
 <template>
-  <v-tooltip bottom :disabled="!icon" v-if="hasAction('list')">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :icon="icon"
-        text
-        exact
-        :to="{ name: `${resource}_list` }"
-        :color="color"
-        v-on="on"
-      >
-        <v-icon small>mdi-view-list</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.list") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.list") }}</span>
-  </v-tooltip>
+  <va-action-button
+    v-if="hasAction('list')"
+    :show-label="!icon"
+    :label="$t('va.actions.list')"
+    icon="mdi-view-list"
+    :color="color || 'success'"
+    text
+    exact
+    :to="{ name: `${resource}_list` }"
+  ></va-action-button>
 </template>
 
 <script>
 import Resource from "../../../mixins/resource";
+import Button from "../../../mixins/button";
 
+/**
+ * Button for all list resource action. Redirect to list page by default.
+ * Shown on internal CRUD page at top header.
+ * @displayName VaListButton
+ */
 export default {
-  mixins: [Resource],
-  props: {
-    icon: Boolean,
-    color: {
-      type: String,
-      default: "green",
-    },
-  },
+  mixins: [Resource, Button],
 };
 </script>

@@ -1,38 +1,39 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :icon="icon"
-        text
-        @click.stop="onDissociate"
-        :color="color"
-        v-on="on"
-      >
-        <v-icon small>mdi-link-off</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.dissociate") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.dissociate") }}</span>
-  </v-tooltip>
+  <va-action-button
+    :show-label="!icon"
+    :label="$t('va.actions.dissociate')"
+    icon="mdi-link-off"
+    :color="color || 'red'"
+    text
+    @click="onDissociate"
+  ></va-action-button>
 </template>
 
 <script>
 import Item from "../../../mixins/item";
+import Button from "../../../mixins/button";
 import { mapActions } from "vuex";
 
+/**
+ * Action button for resource dissociation. Used on datagrids with association enabled.
+ * Comes with confirm dialog.
+ * @displayName VaDissociateButton
+ */
 export default {
-  mixins: [Item],
+  mixins: [Item, Button],
   props: {
-    icon: Boolean,
+    /**
+     * POST Request property name for update.
+     */
     source: String,
+    /**
+     * Id of resource to unlink.
+     */
     sourceId: [Number, String],
+    /**
+     * Name of resource to be unlinked.
+     */
     sourceResource: String,
-    color: {
-      type: String,
-      default: "red",
-    },
   },
   methods: {
     ...mapActions({

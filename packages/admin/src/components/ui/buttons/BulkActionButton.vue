@@ -1,21 +1,12 @@
 <template>
-  <v-tooltip bottom :disabled="showLabel">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :icon="!showLabel"
-        :text="text"
-        :color="color"
-        v-on="on"
-        @click="onBlukUpdate"
-      >
-        <v-icon small>{{ icon }}</v-icon>
-        <span v-if="showLabel" class="ml-2">
-          {{ label }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ label }}</span>
-  </v-tooltip>
+  <va-action-button
+    :show-label="showLabel"
+    :label="label"
+    :icon="!showLabel"
+    :text="text"
+    :color="color || 'primary'"
+    @click="onBlukUpdate"
+  ></va-action-button>
 </template>
 
 <script>
@@ -36,10 +27,7 @@ export default {
       required: true,
     },
     showLabel: Boolean,
-    color: {
-      type: String,
-      default: "primary",
-    },
+    color: String,
     text: Boolean,
   },
   methods: {

@@ -1,37 +1,27 @@
 <template>
-  <v-tooltip bottom :disabled="!icon" v-if="show || hasAction('create')">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        text
-        exact
-        :to="route"
-        @click.stop="$emit('click')"
-        :color="color"
-        v-on="on"
-      >
-        <v-icon small>mdi-plus</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.create") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.create") }}</span>
-  </v-tooltip>
+  <va-action-button
+    v-if="show || hasAction('create')"
+    :show-label="!icon"
+    :label="$t('va.actions.create')"
+    icon="mdi-plus"
+    :color="color || 'success'"
+    text
+    :to="route"
+    @click="$emit('click')"
+  ></va-action-button>
 </template>
 
 <script>
 import Resource from "../../../mixins/resource";
+import Button from "../../../mixins/button";
 
+/**
+ * Button for all create resource action. Redirect to create page by default.
+ * Autohide if no create action available unless show prop is active.
+ * @displayName VaCreateButton
+ */
 export default {
-  mixins: [Resource],
-  props: {
-    icon: Boolean,
-    show: Boolean,
-    color: {
-      type: String,
-      default: "success",
-    },
-  },
+  mixins: [Resource, Button],
   computed: {
     route() {
       if (this.hasAction("create")) {

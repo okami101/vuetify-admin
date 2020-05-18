@@ -1,45 +1,31 @@
 <template>
-  <v-tooltip
-    bottom
-    :disabled="!icon"
-    v-if="item && (show || hasAction('show'))"
-  >
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :icon="icon"
-        text
-        exact
-        :to="route"
-        @click.stop="$emit('click', item)"
-        :color="color"
-        v-on="on"
-      >
-        <v-icon small>mdi-eye</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.show") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.show") }}</span>
-  </v-tooltip>
+  <va-action-button
+    v-if="show || hasAction('show')"
+    :show-label="!icon"
+    :label="$t('va.actions.show')"
+    icon="mdi-eye"
+    :color="color || 'info'"
+    text
+    exact
+    :to="route"
+    @click="$emit('click', item)"
+  ></va-action-button>
 </template>
 
 <script>
 import Item from "../../../mixins/item";
+import Button from "../../../mixins/button";
 
+/**
+ * Button for all show resource action. Redirect to show page by default.
+ * Autohide if no show action available unless show prop is active.
+ * @displayName VaShowButton
+ */
 export default {
-  mixins: [Item],
-  props: {
-    icon: Boolean,
-    show: Boolean,
-    color: {
-      type: String,
-      default: "info",
-    },
-  },
+  mixins: [Item, Button],
   computed: {
     route() {
-      if (this.hasAction("show")) {
+      if (this.item && this.hasAction("show")) {
         return { name: `${this.resource}_show`, params: { id: this.item.id } };
       }
       return null;

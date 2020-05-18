@@ -1,34 +1,40 @@
 <template>
-  <v-tooltip bottom :disabled="!icon" v-if="hasAction('list')">
-    <template v-slot:activator="{ on }">
-      <v-btn :icon="icon" text @click="onExport" :color="color" v-on="on">
-        <v-icon small>mdi-download</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.export") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.export") }}</span>
-  </v-tooltip>
+  <va-action-button
+    v-if="hasAction('list')"
+    :show-label="!icon"
+    :label="$t('va.actions.export')"
+    icon="mdi-download"
+    :color="color || 'success'"
+    text
+    @click="onExport"
+  ></va-action-button>
 </template>
 
 <script>
 import Resource from "../../../mixins/resource";
+import Button from "../../../mixins/button";
 import Papa from "papaparse";
 import { mapActions } from "vuex";
 
+/**
+ * Action button for export all data from a list iterator, aka VaList.
+ * Use current state of VaList, i.e. keep current filters and sorts while removing pagination limitation.
+ * Will provoke a download of a CSV file generated on client side thanks to papaparse library.
+ * @displayName VaExportButton
+ */
 export default {
-  mixins: [Resource],
+  mixins: [Resource, Button],
   props: {
-    icon: Boolean,
-    color: {
-      type: String,
-      default: "success",
-    },
+    /**
+     * Current state of list, with mainly current sorting.
+     */
     options: {
       type: Object,
       default: () => {},
     },
+    /**
+     * Current filter state of the list.
+     */
     filter: {
       type: Object,
       default: () => {},

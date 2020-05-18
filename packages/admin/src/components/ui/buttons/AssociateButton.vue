@@ -1,35 +1,24 @@
 <template>
-  <v-tooltip bottom :disabled="!icon">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        :type="type"
-        text
-        @click.stop="$emit('click')"
-        :color="color"
-        v-on="on"
-      >
-        <v-icon small>mdi-link-plus</v-icon>
-        <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.associate") }}
-        </span>
-      </v-btn>
-    </template>
-    <span>{{ $t("va.actions.associate") }}</span>
-  </v-tooltip>
+  <va-action-button
+    :show-label="!icon"
+    :label="$t('va.actions.associate')"
+    icon="mdi-link-plus"
+    :color="color || 'success'"
+    text
+    type="submit"
+    @click="$emit('click')"
+  ></va-action-button>
 </template>
 
 <script>
+import Button from "../../../mixins/button";
+
+/**
+ * Action button for resource association. Used on lists with association enabled.
+ * Dumb component, just a submit button.
+ * @displayName VaAssociateButton
+ */
 export default {
-  props: {
-    icon: Boolean,
-    color: {
-      type: String,
-      default: "success",
-    },
-    type: {
-      type: String,
-      default: "button",
-    },
-  },
+  mixins: [Button],
 };
 </script>
