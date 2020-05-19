@@ -89,10 +89,7 @@
       </v-toolbar>
     </template>
     <template v-slot:default>
-      <slot
-        v-bind="{ resource, items, loading, itemsPerPage }"
-        :server-items-length="total"
-      >
+      <slot v-bind="{ resource, items, loading }" :server-items-length="total">
       </slot>
     </template>
     <template v-slot:loading>

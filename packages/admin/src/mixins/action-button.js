@@ -27,4 +27,12 @@ export default {
      */
     text: Boolean,
   },
+  methods: {
+    onClick() {
+      /**
+       * Trigered on click, send related item if available.
+       */
+      this.$emit("click", this.item);
+    },
+  },
 };

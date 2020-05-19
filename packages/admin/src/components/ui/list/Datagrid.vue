@@ -7,15 +7,14 @@
     :value="value"
     :dense="dense"
     hide-default-footer
-    :options="options"
+    :options.sync="currentOptions"
     :loading="loading"
-    :items-per-page="itemsPerPage"
     :multi-sort="multiSort"
     :server-items-length="serverItemsLength"
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
-    @update:options="(options) => $emit('update:options', options)"
+    @update:sort-desc="updateOptions"
     @input="(selected) => $emit('input', selected)"
     :class="{ 'clickable-rows': rowClick || !!$listeners['row-click'] }"
   >
@@ -167,21 +166,39 @@ export default {
       default: null,
       validator: (v) => ["show", "edit"].includes(v),
     },
+    /**
+     * List of current selected items.
+     */
     value: {
       type: Array,
       default: () => [],
     },
+    /**
+     * List of columns for each property of resource data.
+     * Each column can be a simple string or a full object with advanced field properties.
+     * A specific `align` property can be setted with "left", "center", "right".
+     * By default all number fields are aligned to right.
+     */
     fields: {
       type: Array,
       default: () => [],
     },
+    /**
+     * List of sortable columns.
+     * If empty, datagrid will use a default behavior where all "text", "date" and "number" are sortable.
+     */
     sortable: {
       type: Array,
       default: () => [],
     },
+    /**
+     * Reduce height of each row.
+     */
     dense: Boolean,
+    /**
+     * Put the datagrid on a loading state. Used by VaList while loading data.
+     */
     loading: Boolean,
-    itemsPerPage: Number,
     multiSort: {
       type: Boolean,
       default: true,
@@ -211,6 +228,11 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return {
+      currentOptions: {},
+    };
   },
   computed: {
     headers() {
@@ -251,10 +273,24 @@ export default {
         });
     },
   },
+  watch: {
+    options: {
+      handler(val) {
+        this.currentOptions = {
+          ...val,
+          multiSort: this.multiSort,
+        };
+      },
+      immediate: true,
+    },
+  },
   methods: {
     ...mapActions({
       getOne: "api/getOne",
     }),
+    updateOptions() {
+      this.$emit("update:options", this.currentOptions);
+    },
     getAttributes(field) {
       let { type, link, ...attributes } = field;
       return attributes;
