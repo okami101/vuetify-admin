@@ -1,13 +1,23 @@
 export default {
   props: {
+    /**
+     * Attribute for showing text.
+     */
     itemText: {
       type: [String, Array, Function],
       default: "text",
     },
+    /**
+     * Attribute where taking the value from.
+     */
     itemValue: {
       type: [String, Array, Function],
       default: "value",
     },
+    /**
+     * List of choices for select.
+     * Takes localized enums from your VueI18n resources locales by default.
+     */
     choices: {
       type: Array,
       default() {

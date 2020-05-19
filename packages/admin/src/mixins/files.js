@@ -7,27 +7,41 @@ export default {
   },
   mixins: [Field],
   props: {
+    /**
+     * Source property of file object, link through original file.
+     */
     src: {
       type: String,
       default: "url",
     },
+    /**
+     * Title attribute of file object, used for title and alt attributes.
+     */
     title: {
       type: String,
       default: "name",
     },
+    /**
+     * Filename property of file object, shown as anchor text for files.
+     */
     fileName: {
       type: String,
       default: "file_name",
     },
+    /**
+     * Target value for anchor, default to external.
+     */
     target: {
       type: String,
       default: "_blank",
     },
-    link: {
-      type: Boolean,
-      default: true,
-    },
+    /**
+     * Mainly use for VaFileInput, allow files or image to be removed.
+     */
     clearable: Boolean,
+    /**
+     * Name of property sent to API which contains ids of file to delete.
+     */
     model: {
       type: String,
       default() {

@@ -20,6 +20,10 @@
 <script>
 import Files from "../../../mixins/files";
 
+/**
+ * Show a list of file links that points to original files.
+ * @displayName VaFileField
+ */
 export default {
   mixins: [Files],
 };

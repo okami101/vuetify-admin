@@ -24,9 +24,7 @@
                     color="transparent"
                     @click="clear(file.id)"
                   >
-                    <v-icon :class="{ 'show-btns': hover }" color="transparent"
-                      >mdi-close</v-icon
-                    >
+                    <v-icon :class="{ 'show-btns': hover }">mdi-close</v-icon>
                   </v-btn>
                 </div>
               </v-row>
@@ -41,23 +39,37 @@
 <script>
 import Files from "../../../mixins/files";
 
+/**
+ * Show list of images as gallery with preview support for thumbnails.
+ * @displayName VaImageField
+ */
 export default {
   mixins: [Files],
   props: {
+    /**
+     * Constraint image to full width instead of cover.
+     * Ideal for logos.
+     */
     contain: Boolean,
+    /**
+     * Max height of image.
+     */
     height: String,
+    /**
+     * Max column width for image gallery.
+     */
     lg: [String, Number],
   },
 };
 </script>
 
 <style scoped>
-.v-card {
+/deep/ .v-card .v-image__image {
   transition: opacity 0.4s ease-in-out;
 }
 
-.v-card.on-hover {
-  opacity: 0.4;
+/deep/ .v-card.on-hover .v-image__image {
+  opacity: 0.2;
 }
 
 .show-btns {
