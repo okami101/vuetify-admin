@@ -42,14 +42,15 @@ export default {
   async created() {
     let file = `/schemas/${this.type}.json`;
 
+    if (Vue.config.devtools) {
+      let { data } = await axios.get(file);
+      this.generateTable(data);
+    }
+
     if (this.$ssrContext) {
       let data = JSON.parse(fs.readFileSync(`.vuepress/public${file}`));
       this.generateTable(data);
-      return;
     }
-
-    let { data } = await axios.get(file);
-    this.generateTable(data);
   },
   methods: {
     generateTable(data) {
