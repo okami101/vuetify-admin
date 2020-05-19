@@ -194,6 +194,7 @@ export default {
     },
     /**
      * Vuetify context state of the list with current page and sorting.
+     * VaList manage only pagination here.
      */
     options: {
       type: Object,

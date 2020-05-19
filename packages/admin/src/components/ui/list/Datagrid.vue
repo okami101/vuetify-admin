@@ -80,7 +80,7 @@
         {{ value }}
       </slot>
     </template>
-    <template v-if="!disableRowActions" v-slot:item.actions="{ item }">
+    <template v-slot:item.actions="{ item }">
       <div class="item-actions">
         <slot name="cell.actions" v-bind="{ resource, item }">
           <va-show-button
@@ -199,31 +199,71 @@ export default {
      * Put the datagrid on a loading state. Used by VaList while loading data.
      */
     loading: Boolean,
+    /**
+     * Enable multisort feature, enabled by default.
+     */
     multiSort: {
       type: Boolean,
       default: true,
     },
+    /**
+     * Enable row expand mode.
+     * Use it for quick detail view.
+     */
+    showExpand: Boolean,
+    /**
+     * Only one row can expanded at once
+     */
     singleExpand: {
       type: Boolean,
       default: true,
     },
-    showExpand: Boolean,
+    /**
+     * Vuetify context state of the list with current page and sorting.
+     * Should by synchronized with VaList.
+     * Datagrid manage only sorting here.
+     */
     options: {
       type: Object,
       default: () => {},
     },
-    rowActions: {
-      type: Boolean,
-      default: true,
-    },
+    /**
+     * Total of items on server side, prefilled from VaList by `total` return by data provider.
+     * Disable client-side sorting if setted.
+     */
     serverItemsLength: Number,
+    /**
+     * Disable select feature.
+     */
     disableSelect: Boolean,
+    /**
+     * Disable sorting.
+     */
     disableSort: Boolean,
+    /**
+     * Disable show action row.
+     */
     disableShow: Boolean,
+    /**
+     * Disable show action row.
+     */
     disableEdit: Boolean,
+    /**
+     * Disable clone action row.
+     */
     disableClone: Boolean,
+    /**
+     * Disable delete action row.
+     */
     disableDelete: Boolean,
-    disableRowActions: Boolean,
+    /**
+     * Disable actions column.
+     */
+    disableActions: Boolean,
+    /**
+     * Association infos object in case of this list is related to a current show or edit resource page.
+     * Enable the dissociation between resources directly by an additional dissociation action.
+     */
     association: {
       type: Object,
       default: () => {},
@@ -245,7 +285,7 @@ export default {
         };
       });
 
-      if (this.rowActions) {
+      if (!this.disableActions) {
         fields.push({
           value: "actions",
           sortable: false,
