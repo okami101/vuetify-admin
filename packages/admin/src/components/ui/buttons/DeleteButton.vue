@@ -37,7 +37,8 @@ export default {
     async onDelete() {
       if (!this.item) {
         /**
-         * Used on bulk delete
+         * Custom delete action if no item.
+         * Used for bulk delete button which has his custom logic.
          */
         this.$emit("delete");
         return;
@@ -72,6 +73,10 @@ export default {
         }
 
         this.refresh(this.resource);
+
+        /**
+         * Trigered on successful deletetion of ressource item.
+         */
         this.$emit("deleted");
       }
     },

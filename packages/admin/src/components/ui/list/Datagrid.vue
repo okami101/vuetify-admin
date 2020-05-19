@@ -109,6 +109,10 @@
             icon
             @click="(item) => onAction('create', item)"
           ></va-clone-button>
+          <!--
+            Trigered on successful dissociation of resource item.
+            @event dissociated
+          -->
           <va-dissociate-button
             v-if="association"
             :resource="resource"
@@ -117,8 +121,12 @@
             :source="association.source"
             :source-id="association.id"
             icon
-            @deleted="$emit('dissociated', item)"
+            @dissociated="$emit('dissociated', item)"
           ></va-dissociate-button>
+          <!--
+            Trigered on successful deletetion of ressource item.
+            @event deleted
+          -->
           <va-delete-button
             v-if="!disableDelete"
             :resource="resource"

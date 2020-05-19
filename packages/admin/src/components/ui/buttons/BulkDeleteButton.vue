@@ -9,9 +9,17 @@
 import Resource from "../../../mixins/resource";
 import { mapActions } from "vuex";
 
+/**
+ * Button for delete bulk actions for VaList. Shown after items selections.
+ * Keep all VaDeleteButton feature and use `deleteMany` data provider method under the hood.
+ * @displayName VaBulkDeleteButton
+ */
 export default {
   mixins: [Resource],
   props: {
+    /**
+     * Selected resources items.
+     */
     value: Array,
   },
   methods: {
@@ -42,6 +50,10 @@ export default {
           resource: this.resource,
           params: { ids: this.value.map(({ id }) => id) },
         });
+
+        /**
+         * Cleanup selected elements
+         */
         this.$emit("input", []);
         this.refresh(this.resource);
       }

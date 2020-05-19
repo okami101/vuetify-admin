@@ -8,7 +8,7 @@
     text
     exact
     :to="route"
-    @click="$emit('click', item)"
+    @click="onClick"
   ></va-action-button>
 </template>
 

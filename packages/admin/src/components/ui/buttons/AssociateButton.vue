@@ -6,7 +6,7 @@
     :color="color || 'success'"
     text
     type="submit"
-    @click="$emit('click')"
+    @click="onClick"
   ></va-action-button>
 </template>
 

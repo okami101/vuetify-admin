@@ -7,7 +7,7 @@
     :color="color || 'success'"
     text
     :to="route"
-    @click="$emit('click')"
+    @click="onClick"
   ></va-action-button>
 </template>
 
