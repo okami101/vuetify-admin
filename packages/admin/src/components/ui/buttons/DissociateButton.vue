@@ -75,7 +75,7 @@ export default {
         this.refresh(this.resource);
 
         /**
-         * Trigered on successful dissociation of resource item.
+         * Triggered on successful dissociation of resource item.
          */
         this.$emit("dissociated");
       }

@@ -15,7 +15,7 @@
     :show-expand="showExpand"
     @click:row="onRowClick"
     @update:sort-desc="updateOptions"
-    @input="(selected) => $emit('input', selected)"
+    @input="onSelect"
     :class="{ 'clickable-rows': rowClick || !!$listeners['row-click'] }"
   >
     <template
@@ -109,7 +109,7 @@
             @click="(item) => onAction('create', item)"
           ></va-clone-button>
           <!--
-            Trigered on successful dissociation of resource item.
+            Triggered on successful dissociation of resource item.
             @event dissociated
           -->
           <va-dissociate-button
@@ -123,7 +123,7 @@
             @dissociated="$emit('dissociated', item)"
           ></va-dissociate-button>
           <!--
-            Trigered on successful deletetion of ressource item.
+            Triggered on successful deletetion of ressource item.
             @event deleted
           -->
           <va-delete-button
@@ -328,7 +328,17 @@ export default {
     ...mapActions({
       getOne: "api/getOne",
     }),
+    onSelect(selected) {
+      /**
+       * Triggered where item is selected via checkbox selection.
+       * Synchronize it with VaList for enabling bulk action context.
+       */
+      this.$emit("input", selected);
+    },
     updateOptions() {
+      /**
+       * Triggered on sorting change
+       */
       this.$emit("update:options", this.currentOptions);
     },
     getAttributes(field) {

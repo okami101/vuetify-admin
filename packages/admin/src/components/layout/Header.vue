@@ -8,7 +8,7 @@
     :dense="dense"
   >
     <!--
-      Trigered on VAppBar icon click, use it with VaSidebar for minimize it.
+      Triggered on VAppBar icon click, use it with VaSidebar for minimize it.
       @event mini
     -->
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />

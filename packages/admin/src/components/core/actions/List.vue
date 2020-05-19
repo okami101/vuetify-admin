@@ -11,7 +11,7 @@
       'items-per-page-options': rowsPerPage,
       showFirstLastPage: true,
     }"
-    @input="(selected) => $emit('input', selected)"
+    @input="onSelect"
   >
     <template v-slot:header v-if="!hideHeader">
       <v-toolbar flat color="blue lighten-5" v-if="value.length">
@@ -307,6 +307,10 @@ export default {
     currentOptions(val) {
       this.fetchData();
       this.updateQuery();
+
+      /**
+       * Triggered on pagination change
+       */
       this.$emit("update:options", val);
     },
     currentFilter() {
@@ -319,6 +323,13 @@ export default {
       getList: "api/getList",
       update: "api/update",
     }),
+    onSelect(selected) {
+      /**
+       * Triggered where item is selected via checkbox selection.
+       * Synchronize it with VaList for enabling bulk action context.
+       */
+      this.$emit("input", selected);
+    },
     async initFiltersFromQuery() {
       let options = {
         page: 1,
@@ -498,6 +509,10 @@ export default {
       });
 
       this.fetchData();
+
+      /**
+       * Triggered on successful association of resource item.
+       */
       this.$emit("associated", this.associationId);
       this.associationId = null;
     },

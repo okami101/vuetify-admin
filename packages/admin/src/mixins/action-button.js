@@ -30,7 +30,7 @@ export default {
   methods: {
     onClick() {
       /**
-       * Trigered on click, send related item if available.
+       * Triggered on click, send related item if available.
        */
       this.$emit("click", this.item);
     },

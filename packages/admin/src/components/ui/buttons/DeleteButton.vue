@@ -75,7 +75,7 @@ export default {
         this.refresh(this.resource);
 
         /**
-         * Trigered on successful deletetion of ressource item.
+         * Triggered on successful deletetion of ressource item.
          */
         this.$emit("deleted");
       }
