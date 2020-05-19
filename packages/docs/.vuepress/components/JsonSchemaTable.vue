@@ -1,9 +1,11 @@
 <template>
   <table>
     <thead>
-      <th>Property</th>
-      <th>Type</th>
-      <th>Description</th>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
     </thead>
     <tbody>
       <tr v-for="property in properties" :key="property.name">
