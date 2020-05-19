@@ -1,5 +1,3 @@
-const webpack = require("webpack");
-
 module.exports = (ctx) => ({
   dest: "../../docs",
   locales: {
@@ -19,13 +17,6 @@ module.exports = (ctx) => ({
     ["link", { rel: "manifest", href: "/manifest.json" }],
     ["meta", { name: "theme-color", content: "#41b883" }],
   ],
-  configureWebpack: () => {
-    return {
-      plugins: [
-        new webpack.EnvironmentPlugin({ ...process.env }),
-      ]
-    };
-  },
   themeConfig: {
     repo: "okami101/vtec-admin",
     editLinks: true,
@@ -83,14 +74,20 @@ module.exports = (ctx) => ({
       },
     ],
     ["@vuepress/medium-zoom", true],
-    ["vuepress-plugin-code-copy", {
-      color: "#41b883"
-    }],
-    ["container", {
-      type: "vue",
-      before: "<pre class=\"vue-container\"><code>",
-      after: "</code></pre>"
-    }],
+    [
+      "vuepress-plugin-code-copy",
+      {
+        color: "#41b883",
+      },
+    ],
+    [
+      "container",
+      {
+        type: "vue",
+        before: '<pre class="vue-container"><code>',
+        after: "</code></pre>",
+      },
+    ],
   ],
 });
 
@@ -100,12 +97,7 @@ function getGuideSidebar(groupA, groupB, groupC) {
       title: groupA,
       collapsable: false,
       sidebarDepth: 2,
-      children: [
-        "",
-        "getting-started",
-        "laravel",
-        "tutorial",
-      ],
+      children: ["", "getting-started", "laravel", "tutorial"],
     },
     {
       title: groupB,

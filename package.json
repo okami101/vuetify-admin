@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue packages"
+    "lint": "eslint --ext .js,.vue packages packages/docs/.vuepress"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",
