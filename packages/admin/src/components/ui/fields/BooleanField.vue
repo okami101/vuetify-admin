@@ -11,21 +11,37 @@
 <script>
 import Field from "../../../mixins/field";
 
+/**
+ * Show value as identifiable true/false icon.
+ * @displayName VaBooleanField
+ */
 export default {
   mixins: [Field],
   props: {
+    /**
+     * True text for tooltip.
+     */
     labelTrue: {
       type: String,
       default: "va.confirm.yes",
     },
+    /**
+     * False text for tooltip.
+     */
     labelFalse: {
       type: String,
       default: "va.confirm.no",
     },
+    /**
+     * Icon for true value. Must be a valid MDI.
+     */
     iconTrue: {
       type: String,
       default: "mdi-check",
     },
+    /**
+     * Icon for false value. Must be a valid MDI.
+     */
     iconFalse: {
       type: String,
       default: "mdi-close",
