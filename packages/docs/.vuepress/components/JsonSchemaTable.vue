@@ -42,7 +42,7 @@ export default {
   async created() {
     let file = `/schemas/${this.type}.json`;
 
-    if (Vue.config.devtools) {
+    if (webpackHotUpdate) {
       let { data } = await axios.get(file);
       this.generateTable(data);
     }
