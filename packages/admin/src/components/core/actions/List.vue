@@ -18,11 +18,12 @@
         {{ $tc("va.datagrid.selected_items", value.length) }}
         <v-spacer></v-spacer>
         <div>
+          <!-- @slot Custom bulk actions, ideal place for VaBulkActionButton -->
           <slot name="bulk.actions"></slot>
           <va-bulk-delete-button
             :resource="resource"
             :value="value"
-            @input="(value) => $emit('input', value)"
+            @input="onSelect"
           ></va-bulk-delete-button>
         </div>
       </v-toolbar>
@@ -51,6 +52,7 @@
             v-for="filter in getEnabledFilters"
             v-slot:[filter.source]="props"
           >
+            <!-- @slot Custom component filters. -->
             <slot :name="`filter.${filter.source}`" v-bind="props"></slot>
           </template>
         </form-filter>
@@ -78,6 +80,7 @@
           :resource="resource"
           @click="onCreate"
         ></va-create-button>
+        <!-- @slot Put here some global action with components based on VaActionButton. -->
         <slot name="actions"></slot>
         <va-export-button
           v-if="!disableExport"
@@ -89,17 +92,26 @@
       </v-toolbar>
     </template>
     <template v-slot:default>
-      <slot v-bind="{ resource, items, loading }" :server-items-length="total">
-      </slot>
+      <!--
+        @slot Default slot for main list layout. Mainly for VaDatagrid but can be anything else.
+        @binding {string} resource Name of resource.
+        @binding {array} items Result of data fetched from API.
+        @binding {boolean} loading Loading indicator.
+        @binding {number} total Total count from server-side.
+      -->
+      <slot
+        v-bind="{ resource, items, loading }"
+        :server-items-length="total"
+      ></slot>
     </template>
     <template v-slot:loading>
-      <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+      <slot :resource="resource" :loading="loading"></slot>
     </template>
     <template v-slot:no-data>
-      <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+      <slot :resource="resource"></slot>
     </template>
     <template v-slot:no-results>
-      <slot :resource="resource" :items-per-page="itemsPerPage"></slot>
+      <slot :resource="resource"></slot>
     </template>
   </v-data-iterator>
 </template>
@@ -325,8 +337,8 @@ export default {
     }),
     onSelect(selected) {
       /**
-       * Triggered where item is selected via checkbox selection.
-       * Synchronize it with VaList for enabling bulk action context.
+       * Triggered when item is selected.
+       * Synchronize it with VaDatagrid for selection clearing.
        */
       this.$emit("input", selected);
     },

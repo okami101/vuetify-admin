@@ -82,6 +82,7 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <div class="item-actions">
+        <!-- @slot Full cell template which contains all row actions -->
         <slot name="cell.actions" v-bind="{ resource, item }">
           <va-show-button
             v-if="!disableShow"
@@ -99,6 +100,7 @@
             icon
             @click="(item) => onAction('edit', item)"
           ></va-edit-button>
+          <!-- @slot Use it for additional custom row actions with components based on VaActionButton. -->
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
           <va-clone-button
             v-if="!disableClone"
@@ -138,6 +140,7 @@
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
+        <!-- @slot Place for full width cell which contains additional item infos. Visible when row is expanded. -->
         <slot name="expanded-item" v-bind="{ item }"></slot>
       </td>
     </template>
@@ -330,7 +333,7 @@ export default {
     }),
     onSelect(selected) {
       /**
-       * Triggered where item is selected via checkbox selection.
+       * Triggered when item is selected via checkbox selection.
        * Synchronize it with VaList for enabling bulk action context.
        */
       this.$emit("input", selected);
