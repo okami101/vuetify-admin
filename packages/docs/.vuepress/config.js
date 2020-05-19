@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 module.exports = (ctx) => ({
   dest: "../../docs",
   locales: {
@@ -17,6 +19,13 @@ module.exports = (ctx) => ({
     ["link", { rel: "manifest", href: "/manifest.json" }],
     ["meta", { name: "theme-color", content: "#41b883" }],
   ],
+  configureWebpack: () => {
+    return {
+      plugins: [
+        new webpack.EnvironmentPlugin({ ...process.env }),
+      ]
+    };
+  },
   themeConfig: {
     repo: "okami101/vtec-admin",
     editLinks: true,

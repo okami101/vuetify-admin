@@ -42,7 +42,8 @@ export default {
   async created() {
     let file = `/schemas/${this.type}.json`;
 
-    if (webpackHotUpdate !== undefined) {
+    console.log(process.env.NODE_ENV)
+    if (process.env.NODE_ENV === "development") {
       let { data } = await axios.get(file);
       this.generateTable(data);
     }
