@@ -18,6 +18,8 @@
 <script>
 import axios from "axios";
 import get from "lodash/get";
+import fs from 'fs';
+import Vue from 'vue';
 
 export default {
   props: {
@@ -35,27 +37,40 @@ export default {
       properties: [],
     }
   },
-  async mounted() {
-    let { data } = await axios.get(`/schemas/${this.type}.json`);
-    let def = get(data.definitions, this.definition);
+  async created() {
+    let file = `/schemas/${this.type}.json`;
 
-    if (!def) {
-      console.warn(`Def ${this.definition} not existing for this schema`);
+    if (this.$ssrContext) {
+      let data = JSON.parse(fs.readFileSync(`.vuepress/public${file}`));
+      this.generateTable(data);
       return;
     }
 
-    this.properties = Object.keys(def.properties).map((key) => {
-      let props = def.properties[key];
+    let { data } = await axios.get(file);
+    this.generateTable(data);
+  },
+  methods: {
+    generateTable(data) {
+      let def = get(data.definitions, this.definition);
 
-      if (props.$ref) {
-        props = data.definitions[props.$ref.substr(props.$ref.lastIndexOf('/') + 1)];
+      if (!def) {
+        console.warn(`Def ${this.definition} not existing for this schema`);
+        return;
       }
-      return {
-        name: key,
-        type: props.type,
-        description: props.description,
-      };
-    });
+
+      this.properties = Object.keys(def.properties).map((key) => {
+        let props = def.properties[key];
+
+        if (props.$ref) {
+          props = data.definitions[props.$ref.substr(props.$ref.lastIndexOf('/') + 1)];
+        }
+        return {
+          name: key,
+          type: props.type,
+          description: props.description,
+        };
+      });
+    }
   }
 }
 </script>
