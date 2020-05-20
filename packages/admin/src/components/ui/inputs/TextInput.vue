@@ -20,12 +20,28 @@
 <script>
 import Input from "../../../mixins/input";
 
+/**
+ * Text editing for text value type via a basic text input.
+ * Support textarea mode for long text via `multiline` prop.
+ * @displayName VaTextInput
+ */
 export default {
   mixins: [Input],
   props: {
+    /**
+     * Type of text input. All HTML type allowed.
+     */
+    type: {
+      type: String,
+      default: "text",
+    },
+    /**
+     * Transform text input into textarea.
+     */
     multiline: Boolean,
-    icon: String,
-    type: String,
+    /**
+     * Use full filled background color style.
+     */
     filled: {
       type: Boolean,
       default: true,

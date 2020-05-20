@@ -10,7 +10,6 @@ export default {
     formState: { default: undefined },
   },
   props: {
-    index: Number,
     model: String,
     hint: String,
     hideDetails: Boolean,
@@ -20,6 +19,15 @@ export default {
     alwaysOn: Boolean,
     filterable: Boolean,
     editable: Boolean,
+    /**
+     * Specific index of field in case of inside array.
+     */
+    index: Number,
+    /**
+     * Main value being edited.
+     * His type should be correspond to a valid input type that can handle it.
+     * @model
+     */
     value: {
       default: null,
     },

@@ -44,6 +44,9 @@ import Input from "../../../mixins/input";
 export default {
   mixins: [Input],
   props: {
+    /**
+     * Object property to use as key tracking.
+     */
     trackedBy: {
       type: String,
       default: "id",

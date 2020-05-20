@@ -31,6 +31,9 @@ export default {
       default: false,
     },
     multiple: Boolean,
+    /**
+     * Use full filled background color style.
+     */
     filled: Boolean,
     chips: {
       type: Boolean,
