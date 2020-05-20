@@ -9,17 +9,24 @@ export default {
     formState: { default: undefined },
   },
   props: {
-    model: String,
-    hint: String,
-    hideDetails: Boolean,
-    dense: Boolean,
+    /**
+     * Placeholder if input support it.
+     */
     placeholder: String,
+    /**
+     * Mark this input as clearable.
+     */
     clearable: Boolean,
     /**
      * Specific index of field in case of inside array of inputs, aka VaArrayInput.
      * Use it with `parentSource` prop in order to update the value at a good place in the form model.
      */
     index: Number,
+    /**
+     * By default, the source will be the final name that will be sent to the API for create/update.
+     * This prop allows you to override this default behavior.
+     */
+    model: String,
     /**
      * Main value being edited.
      * His type should be correspond to a valid input type that can handle it.
