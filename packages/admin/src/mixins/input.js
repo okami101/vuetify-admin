@@ -2,7 +2,6 @@ import Source from "./source";
 import Item from "./item";
 import InputWrapper from "./input-wrapper";
 import get from "lodash/get";
-import { mapActions } from "vuex";
 
 export default {
   mixins: [Source, Item, InputWrapper],
@@ -18,9 +17,9 @@ export default {
     clearable: Boolean,
     alwaysOn: Boolean,
     filterable: Boolean,
-    editable: Boolean,
     /**
-     * Specific index of field in case of inside array.
+     * Specific index of field in case of inside array of inputs, aka VaArrayInput.
+     * Use it with `parentSource` prop in order to update the value at a good place in the form model.
      */
     index: Number,
     /**
@@ -84,33 +83,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      updateItem: "api/update",
-    }),
-    /**
-     * Interaction event
-     */
     change(value) {
+      /**
+       * Triggered on any user input interaction.
+       */
       this.$emit("change", value);
-
-      if (this.editable) {
-        /**
-         * Quick update model on server
-         */
-        this.updateItem({
-          resource: this.resource,
-          params: {
-            id: this.item.id,
-            data: {
-              [this.uniqueFormId]: value,
-            },
-          },
-        });
-      }
     },
-    /**
-     * Input event
-     */
     update(value) {
       /**
        * Update model in the injected form if available
@@ -123,6 +101,10 @@ export default {
       }
 
       this.input = value;
+
+      /**
+       * Triggered if value updated.
+       */
       this.$emit("input", value);
     },
   },

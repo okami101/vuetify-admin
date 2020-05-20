@@ -16,10 +16,11 @@
 
 <script>
 import Input from "../../../mixins/input";
+import Editable from "../../../mixins/editable";
 import Reference from "../../../mixins/reference";
 
 export default {
-  mixins: [Input, Reference],
+  mixins: [Input, Editable, Reference],
   props: {
     multiple: Boolean,
     filled: {

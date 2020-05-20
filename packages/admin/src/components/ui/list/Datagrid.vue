@@ -181,6 +181,8 @@ export default {
      * Each column can be a simple string or a full object with advanced field properties.
      * A specific `align` property can be setted with "left", "center", "right".
      * By default all number fields are aligned to right.
+     * If you set `editable`, the input version will be rendered instead of field.
+     * That will allow quick live edit on fly.
      */
     fields: {
       type: Array,

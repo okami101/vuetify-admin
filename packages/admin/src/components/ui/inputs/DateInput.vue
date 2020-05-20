@@ -28,9 +28,10 @@
 
 <script>
 import Input from "../../../mixins/input";
+import Editable from "../../../mixins/editable";
 
 export default {
-  mixins: [Input],
+  mixins: [Input, Editable],
   props: {
     filled: {
       type: Boolean,
