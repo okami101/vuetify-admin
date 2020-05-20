@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Messages from "../layout/Messages";
+import Messages from "../internal/Messages";
 
 /**
  * Admin composable component layout with one slot for each region.

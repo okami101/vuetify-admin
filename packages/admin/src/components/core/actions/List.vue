@@ -119,7 +119,7 @@
 <script>
 import Resource from "../../../mixins/resource";
 import Search from "../../../mixins/search";
-import FormFilter from "../../core/list/FormFilter";
+import FormFilter from "../../internal/FormFilter";
 import isEmpty from "lodash/isEmpty";
 import { mapState, mapActions } from "vuex";
 
