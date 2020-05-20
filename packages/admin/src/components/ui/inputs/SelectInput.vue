@@ -18,11 +18,10 @@
 import Input from "../../../mixins/input";
 import Multiple from "../../../mixins/multiple";
 import Editable from "../../../mixins/editable";
-import Filterable from "../../../mixins/filterable";
 import Reference from "../../../mixins/reference";
 
 export default {
-  mixins: [Input, Multiple, Editable, Filterable, Reference],
+  mixins: [Input, Multiple, Editable, Reference],
   async created() {
     this.items = await this.fetchChoices();
   },

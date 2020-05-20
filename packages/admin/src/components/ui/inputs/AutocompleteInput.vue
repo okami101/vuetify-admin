@@ -26,12 +26,11 @@
 <script>
 import Input from "../../../mixins/input";
 import Multiple from "../../../mixins/multiple";
-import Filterable from "../../../mixins/filterable";
 import Reference from "../../../mixins/reference";
 import get from "lodash/get";
 
 export default {
-  mixins: [Input, Multiple, Filterable, Reference],
+  mixins: [Input, Multiple, Reference],
   props: {
     minChars: {
       type: Number,
