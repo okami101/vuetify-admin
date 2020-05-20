@@ -14,11 +14,11 @@
         </v-btn>
         <component
           :is="`va-${item.type}-input`"
-          filterable
           v-bind="getAttributes(item)"
           :value="value[item.source]"
           hide-details
           :filled="false"
+          small-chips
           @input="(val) => update(item.source, val)"
         >
         </component>

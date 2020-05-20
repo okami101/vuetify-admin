@@ -20,6 +20,7 @@
 <script>
 import Input from "../../../mixins/input";
 import Editable from "../../../mixins/editable";
+import Filterable from "../../../mixins/filterable";
 
 /**
  * Text editing for text value type via a basic text input.
@@ -27,7 +28,7 @@ import Editable from "../../../mixins/editable";
  * @displayName VaTextInput
  */
 export default {
-  mixins: [Input, Editable],
+  mixins: [Input, Editable, Filterable],
   props: {
     /**
      * Type of text input. All HTML type allowed.

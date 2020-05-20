@@ -22,26 +22,15 @@
 
 <script>
 import Input from "../../../mixins/input";
+import Multiple from "../../../mixins/multiple";
 
 export default {
-  mixins: [Input],
+  mixins: [Input, Multiple],
   props: {
     preview: {
       type: Boolean,
       default: false,
     },
-    multiple: Boolean,
-    /**
-     * Use full filled background color style.
-     */
-    filled: Boolean,
-    chips: {
-      type: Boolean,
-      default() {
-        return this.multiple;
-      },
-    },
-    smallChips: Boolean,
     model: {
       type: String,
       default() {

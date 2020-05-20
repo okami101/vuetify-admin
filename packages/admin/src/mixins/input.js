@@ -15,8 +15,6 @@ export default {
     dense: Boolean,
     placeholder: String,
     clearable: Boolean,
-    alwaysOn: Boolean,
-    filterable: Boolean,
     /**
      * Specific index of field in case of inside array of inputs, aka VaArrayInput.
      * Use it with `parentSource` prop in order to update the value at a good place in the form model.

@@ -25,31 +25,14 @@
 
 <script>
 import Input from "../../../mixins/input";
+import Multiple from "../../../mixins/multiple";
+import Filterable from "../../../mixins/filterable";
 import Reference from "../../../mixins/reference";
 import get from "lodash/get";
 
 export default {
-  mixins: [Input, Reference],
+  mixins: [Input, Multiple, Filterable, Reference],
   props: {
-    multiple: Boolean,
-    filled: {
-      type: Boolean,
-      default() {
-        return !this.multiple;
-      },
-    },
-    chips: {
-      type: Boolean,
-      default() {
-        return this.multiple;
-      },
-    },
-    smallChips: {
-      type: Boolean,
-      default() {
-        return this.multiple && this.filterable;
-      },
-    },
     minChars: {
       type: Number,
       default: 3,
