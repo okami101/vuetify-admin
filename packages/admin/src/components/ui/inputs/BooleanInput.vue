@@ -12,9 +12,17 @@
 import Input from "../../../mixins/input";
 import Editable from "../../../mixins/editable";
 
+/**
+ * Edit value as boolean. Rendered as a switch.
+ * @displayNumber VaBooleanInput
+ */
 export default {
   mixins: [Input, Editable],
   props: {
+    /**
+     * Boolean to be edited.
+     * @model
+     */
     value: {
       type: Boolean,
       default: false,

@@ -30,13 +30,33 @@
 import Input from "../../../mixins/input";
 import Editable from "../../../mixins/editable";
 
+/**
+ * Use for date type value editing. Is composed of a readonly textfield associated to a vuetify datepicker.
+ * Do not support time, use classic VaTextInput in that case.
+ * @displayName VaDateInput
+ */
 export default {
   mixins: [Input, Editable],
   props: {
+    /**
+     * Date on ISO format to be edited.
+     * @model
+     */
+    value: {
+      type: String,
+      default: null,
+    },
+    /**
+     * Use full filled background color style.
+     */
     filled: {
       type: Boolean,
       default: true,
     },
+    /**
+     * Name of date format to use for textfield input.
+     * Must be predefined on your VueI18n plugin.
+     */
     format: String,
   },
   data() {

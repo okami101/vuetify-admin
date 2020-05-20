@@ -45,6 +45,13 @@ export default {
   mixins: [Input],
   props: {
     /**
+     * @model
+     */
+    value: {
+      type: Array,
+      default: () => [],
+    },
+    /**
      * Object property to use as key tracking.
      */
     trackedBy: {

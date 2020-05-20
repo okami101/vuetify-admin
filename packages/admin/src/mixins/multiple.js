@@ -1,6 +1,15 @@
 export default {
   props: {
     /**
+     * @model
+     */
+    value: {
+      type: [String, Array],
+      default() {
+        return this.multiple ? [] : null;
+      },
+    },
+    /**
      * Allow input to accept multiple value as array.
      */
     multiple: Boolean,

@@ -14,20 +14,41 @@
 import Input from "../../../mixins/input";
 import Editor from "@tinymce/tinymce-vue";
 
+/**
+ * Full Wysiwyg HTML editor by using TinyMCE 5.
+ * Can be bridged to any file browser as elFinder if you use PHP on the backend.
+ * @displayName VaRichTextInput
+ */
 export default {
   components: { Editor },
   mixins: [Input],
   props: {
-    language: {
+    /**
+     * HTML text to be edited.
+     * @model
+     */
+    value: {
       type: String,
-      default: process.env.VUE_APP_TINYMCE_LANGUAGE,
+      default: null,
     },
+    /**
+     * Initial height of editor.
+     */
     height: {
       type: Number,
       default: 500,
     },
+    /**
+     * Activate wysiwyg menu bar.
+     */
     menubar: Boolean,
+    /**
+     * Activate inline mode of wysiwyg.
+     */
     inline: Boolean,
+    /**
+     * Full available plugins for editing, see TinyMCE docs.
+     */
     plugins: {
       type: Array,
       default: () => [
@@ -36,6 +57,9 @@ export default {
         "insertdatetime media table paste code help wordcount",
       ],
     },
+    /**
+     * Toolbar config, see TinyMCE docs.
+     */
     toolbar: {
       type: String,
       default:
@@ -47,6 +71,7 @@ export default {
   data() {
     return {
       apiKey: process.env.VUE_APP_TINYMCE_API_KEY,
+      language: process.env.VUE_APP_TINYMCE_LANGUAGE,
     };
   },
   computed: {

@@ -22,6 +22,13 @@ import Reference from "../../../mixins/reference";
 export default {
   mixins: [Input, Reference],
   props: {
+    /**
+     * @model
+     */
+    value: {
+      type: [String, Number],
+      default: null,
+    },
     column: {
       type: Boolean,
       default: true,

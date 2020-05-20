@@ -5,6 +5,13 @@ import Choices from "./choices";
 export default {
   mixins: [Choices],
   props: {
+    /**
+     * @model
+     */
+    value: {
+      type: [String, Array],
+      default: null,
+    },
     filter: {
       type: Object,
       default: () => {},

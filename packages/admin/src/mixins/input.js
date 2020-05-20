@@ -27,14 +27,6 @@ export default {
      * This prop allows you to override this default behavior.
      */
     model: String,
-    /**
-     * Main value being edited.
-     * His type should be correspond to a valid input type that can handle it.
-     * @model
-     */
-    value: {
-      default: null,
-    },
   },
   data() {
     return {
