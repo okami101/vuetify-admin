@@ -9,6 +9,11 @@
             </div>
           </template>
           <v-card-text>
+            <va-autocomplete-input
+              source="book"
+              reference="books"
+              model="book_id"
+            ></va-autocomplete-input>
             <va-radio-group-input source="status" row></va-radio-group-input>
             <va-rating-input source="rating"></va-rating-input>
             <va-text-input source="body" multiline></va-text-input>

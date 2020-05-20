@@ -19,20 +19,21 @@
 import Input from "../../../mixins/input";
 import Reference from "../../../mixins/reference";
 
+/**
+ * Value editing from a fixed choices. Referenceable input.
+ * If no choices, by default, takes localized enums with source as value from your VueI18n resources locales.
+ * @displayName VaRadioGroupInput
+ */
 export default {
   mixins: [Input, Reference],
   props: {
     /**
-     * @model
+     * Show radios as a column.
      */
-    value: {
-      type: [String, Number],
-      default: null,
-    },
-    column: {
-      type: Boolean,
-      default: true,
-    },
+    column: Boolean,
+    /**
+     * Show radios as a row.
+     */
     row: Boolean,
   },
   async created() {

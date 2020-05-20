@@ -8,6 +8,13 @@
       @input="update"
     >
       <div v-for="(item, i) in input" :key="item[trackedBy]" class="item">
+        <!--
+          @slot Required default slot for your own inputs components.
+          @binding {string} resource Name of resource.
+          @binding {object} item Object item of array.
+          @binding {string} parentSource Original array source.
+          @binding {number} index Index of item inside array.
+        -->
         <slot
           :resource="resource"
           :item="item"
@@ -41,10 +48,16 @@
 <script>
 import Input from "../../../mixins/input";
 
+/**
+ * Allow multiple inputs as array. See it as a repeater.
+ * Support adding, removing, as well as moving via drag thanks to VueDraggable.
+ * @displayName VaArrayInput
+ */
 export default {
   mixins: [Input],
   props: {
     /**
+     * List of object to edit.
      * @model
      */
     value: {
@@ -52,7 +65,8 @@ export default {
       default: () => [],
     },
     /**
-     * Object property to use as key tracking.
+     * Object property to use as key tracking for list.
+     * Needed for make drag move working.
      */
     trackedBy: {
       type: String,

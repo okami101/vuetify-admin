@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- @slot Default slot if you need to replace default VaFileField or VaImageField. -->
     <slot>
       <component
         :is="`va-${preview ? 'image' : 'file'}-field`"
@@ -24,19 +25,36 @@
 import Input from "../../../mixins/input";
 import Multiple from "../../../mixins/multiple";
 
+/**
+ * Allow row file uploads. Can be multiple.
+ * Current files will be shown as simple link or thumbnail image and can be deleted.
+ * Use VaFileField or VaImageField under the hood.
+ * No Ajax support.
+ * @displayName VaFileInput
+ */
 export default {
   mixins: [Input, Multiple],
   props: {
+    /**
+     * Show file thumbnail image instead of simple link.
+     */
     preview: {
       type: Boolean,
       default: false,
     },
+    /**
+     * By default, the raw file will be send to the API under `[source]_file` property name.
+     * This prop allows you to override this default behavior.
+     */
     model: {
       type: String,
       default() {
         return `${this.source}_file`;
       },
     },
+    /**
+     * Add HTML5 `accept` attribute for simple client-side validation.
+     */
     accept: String,
   },
 };

@@ -1,42 +1,26 @@
 import { mapActions } from "vuex";
 import isEmpty from "lodash/isEmpty";
 import Choices from "./choices";
+import Search from "./search";
 
 export default {
-  mixins: [Choices],
+  mixins: [Choices, Search],
   props: {
     /**
+     * Value to be selected, array if multiple.
      * @model
      */
     value: {
       type: [String, Array],
       default: null,
     },
-    filter: {
-      type: Object,
-      default: () => {},
-    },
+    /**
+     * Name of resource to search into.
+     */
     reference: String,
-    fields: {
-      type: Array,
-      default: () => [],
-    },
-    sortBy: {
-      type: Array,
-      default: () => [],
-    },
-    sortDesc: {
-      type: Array,
-      default: () => [],
-    },
-    include: {
-      type: Array,
-      default: () => [],
-    },
-    itemsPerPage: {
-      type: Number,
-      default: 15,
-    },
+    /**
+     * Name of request query for searching into your API.
+     */
     searchQuery: {
       type: String,
       default: "q",

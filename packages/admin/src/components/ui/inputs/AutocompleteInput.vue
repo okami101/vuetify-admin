@@ -15,9 +15,11 @@
     @input="update"
   >
     <template v-slot:selection="data" v-if="$scopedSlots.selection">
+      <!-- @slot Define a custom selection appearance -->
       <slot name="selection" v-bind="data"></slot>
     </template>
     <template v-slot:item="data" v-if="$scopedSlots.item">
+      <!-- @slot Define a custom item appearance -->
       <slot name="item" v-bind="data"></slot>
     </template>
   </component>
@@ -29,13 +31,24 @@ import Multiple from "../../../mixins/multiple";
 import Reference from "../../../mixins/reference";
 import get from "lodash/get";
 
+/**
+ * Value editing from a searchable choices. Referenceable input.
+ * Allows searching of linked resources from your API.
+ * @displayName VaAutocompleteInput
+ */
 export default {
   mixins: [Input, Multiple, Reference],
   props: {
+    /**
+     * Minimum characters to tap before search query launch.
+     */
     minChars: {
       type: Number,
       default: 3,
     },
+    /**
+     * Enable taggable mode. Transform autocomplete into combobox.
+     */
     taggable: Boolean,
   },
   data() {

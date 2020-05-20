@@ -9,6 +9,7 @@ export default {
     parentSource: String,
     /**
      * Property of resource for fetching the value to show.
+     * Support dot notation for nested object.
      */
     source: String,
     /**

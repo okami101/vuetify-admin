@@ -118,6 +118,7 @@
 
 <script>
 import Resource from "../../../mixins/resource";
+import Search from "../../../mixins/search";
 import FormFilter from "../../core/list/FormFilter";
 import isEmpty from "lodash/isEmpty";
 import { mapState, mapActions } from "vuex";
@@ -129,19 +130,11 @@ import { mapState, mapActions } from "vuex";
  * @displayName VaList
  */
 export default {
-  mixins: [Resource],
+  mixins: [Resource, Search],
   components: {
     FormFilter,
   },
   props: {
-    /**
-     * Internal filter, always active and not modifiable through UI.
-     * Sent to your data provider inside `filter` params.
-     */
-    filter: {
-      type: Object,
-      default: () => {},
-    },
     /**
      * Exposed filters, editable through advanced filter form, update URL query string if not disabled.
      * Sent to your data provider inside `filter` params.
@@ -149,46 +142,6 @@ export default {
     filters: {
       type: Array,
       default: () => [],
-    },
-    /**
-     * List of fields to select for API side. Support dot notation for nested fields.
-     * Sent to your data provider inside `fields` params.
-     */
-    fields: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * List of sorted fields, can be multiple.
-     * Sent to your data provider inside `sort` params.
-     */
-    sortBy: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * List of sort state for each sorted fields, only `boolean`, `true` if sorted as `DESC`.
-     * Sent to your data provider inside `sort` params.
-     */
-    sortDesc: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * Related resources to include within current resource for API side. Allow eager-loading on demand.
-     * Sent to your data provider inside `include` params.
-     */
-    include: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * Maximum number of items to show in the list for each page.
-     * Sent to your data provider inside `pagination.perPage` params.
-     */
-    itemsPerPage: {
-      type: Number,
-      default: 15,
     },
     /**
      * List of available selections of items per page.

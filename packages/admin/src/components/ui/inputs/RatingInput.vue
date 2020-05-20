@@ -28,7 +28,7 @@ export default {
      * Number to be edited.
      */
     value: {
-      type: String,
+      type: Number,
       default: null,
     },
   },

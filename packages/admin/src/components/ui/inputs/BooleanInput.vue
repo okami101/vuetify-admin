@@ -14,7 +14,7 @@ import Editable from "../../../mixins/editable";
 
 /**
  * Edit value as boolean. Rendered as a switch.
- * @displayNumber VaBooleanInput
+ * @displayName VaBooleanInput
  */
 export default {
   mixins: [Input, Editable],

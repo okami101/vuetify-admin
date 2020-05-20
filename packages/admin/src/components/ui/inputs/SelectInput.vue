@@ -20,6 +20,11 @@ import Multiple from "../../../mixins/multiple";
 import Editable from "../../../mixins/editable";
 import Reference from "../../../mixins/reference";
 
+/**
+ * Value editing from a fixed choices. Referenceable input.
+ * If no choices, by default, takes localized enums with source as value from your VueI18n resources locales.
+ * @displayName VaSelectInput
+ */
 export default {
   mixins: [Input, Multiple, Editable, Reference],
   async created() {
