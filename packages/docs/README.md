@@ -40,8 +40,9 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
     <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/vtec-laravel-crud">Vtec Laravel Crud</a> composer package for even more immediate start from top to bottom. Server-side API CRUD code generators included as a bonus !</p>
   </div>
   <div class="feature">
-    <h2>Respectful</h2>
-    <p>No black magic pitfall, if you know well Laravel and Vue CLI basics, so you're ready to go !</p>
+    <h2>Respectful and documented</h2>
+    <p>No black magic pitfall, if you know well Laravel and Vue CLI basics, you're ready to go !</p>
+    <p>All VA components has intellisense integration within VSCode Vetur and all Jetbrains products.</p>
   </div>
   <div class="feature">
     <h2>The ultimate alchimy</h2>

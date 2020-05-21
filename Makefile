@@ -59,6 +59,9 @@ tinker-laravel-demo: ## access laravel console
 build-admin: ## compile the admin library to static js
 	@cd ./packages/admin && yarn -s build
 
+docgen-api: ## generate api docs with watch
+	@cd ./packages/admin && node docgen
+
 run-docs: ## run the docs
 	@cd ./packages/docs && yarn dev --port 9000
 
