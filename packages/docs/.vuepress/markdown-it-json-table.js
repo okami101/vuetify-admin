@@ -29,22 +29,112 @@ module.exports = (md) => {
     });
   };
 
-  let generateSchemaTable = (state, startLine, type, definition) => {
-    let columns = ["Property", "Type", "Description"];
-    let data = getJsonSchemaData(type, definition);
+  let getDocgenData = (component) => {
+    return JSON.parse(fs.readFileSync(`.vuepress/api/${component}.json`));
+  };
 
+  let generateSchemaTable = (state, startLine, type, definition) => {
     state.line = startLine + 1;
 
+    generateTable(
+      state,
+      [
+        { name: "Property", property: "name", formatter: (v) => `**${v}**` },
+        { name: "Type", property: "type", formatter: (v) => `\`${v}\`` },
+        { name: "Description", property: "description" },
+      ],
+      getJsonSchemaData(type, definition)
+    );
+  };
+
+  let generateDocgenTable = (state, startLine, component) => {
+    state.line = startLine + 1;
+
+    let doc = getDocgenData(component);
+
+    // Generate description paragraph
+    generateParagraph(state, doc.description);
+
+    // Generate props
+    if (doc.props) {
+      generateParagraph(state, "**`PROPS`**");
+
+      generateTable(
+        state,
+        [
+          { name: "Props", property: "name", formatter: (v) => `**${v}**` },
+          { name: "Type", property: "type", formatter: (v) => `\`${v}\`` },
+          { name: "Description", property: "description" },
+        ],
+        doc.props.map((p) => {
+          return {
+            name: p.name,
+            description: p.description,
+            type: p.type.name,
+          };
+        })
+      );
+    }
+
+    // Generate slots
+    if (doc.slots) {
+      generateParagraph(state, "**`SLOTS`**");
+
+      generateTable(
+        state,
+        [
+          { name: "Name", property: "name", formatter: (v) => `**${v}**` },
+          { name: "Description", property: "description" },
+        ],
+        doc.slots.map((p) => {
+          return {
+            name: p.name,
+            description: p.description,
+          };
+        })
+      );
+    }
+
+    // Generate events
+    if (doc.events) {
+      generateParagraph(state, "**`EVENTS`**");
+
+      generateTable(
+        state,
+        [
+          { name: "Name", property: "name", formatter: (v) => `**${v}**` },
+          { name: "Description", property: "description" },
+        ],
+        doc.events.map((p) => {
+          return {
+            name: p.name,
+            description: p.description,
+          };
+        })
+      );
+    }
+  };
+
+  let generateParagraph = (state, content) => {
+    state.push("paragraph_open", "p", 1);
+    token = state.push("inline", "", 0);
+    token.content = content;
+    token.children = [];
+    state.push("paragraph_close", "p", -1);
+  };
+
+  let generateTable = (state, headers, data) => {
+    let token;
     token = state.push("table_open", "table", 1);
     token = state.push("thead_open", "thead", 1);
     token = state.push("tr_open", "tr", 1);
 
-    for (i = 0; i < columns.length; i++) {
+    for (i = 0; i < headers.length; i++) {
       token = state.push("th_open", "th", 1);
       token.attrs = [["style", "text-align:center"]];
 
       token = state.push("inline", "", 0);
-      token.content = columns[i];
+      token.content = headers[i].name;
       token.children = [];
 
       token = state.push("th_close", "th", -1);
@@ -58,11 +148,7 @@ module.exports = (md) => {
     for (i = 0; i < data.length; i++) {
       token = state.push("tr_open", "tr", 1);
 
-      [
-        { property: "name", formatter: (v) => `**${v}**` },
-        { property: "type", formatter: (v) => `\`${v}\`` },
-        { property: "description" },
-      ].forEach(({ property, formatter }) => {
+      headers.forEach(({ property, formatter }) => {
         let value = data[i][property];
         token = state.push("td_open", "td", 1);
 
@@ -119,7 +205,7 @@ module.exports = (md) => {
           generateSchemaTable(state, startLine, args[1], args[2]);
           break;
         case "docgen":
-          generateDocgenTable(state, startLine, args[1], args[2]);
+          generateDocgenTable(state, startLine, args[1]);
           break;
       }
 

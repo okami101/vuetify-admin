@@ -4,7 +4,8 @@ const fs = require("fs");
 const { parse } = require("vue-docgen-api");
 const { kebabCase } = require("lodash");
 
-mkdirp.sync("dist/json/docs");
+mkdirp.sync("dist/json");
+mkdirp.sync("../docs/.vuepress/api");
 
 let tagsJson = {};
 let attributesJson = {};
@@ -22,9 +23,9 @@ Promise.all(
       let tag = kebabCase(doc.displayName);
 
       /**
-       * Generate json doc.
+       * Generate json doc into VuePress for automatic markdown API.
        */
-      writeJsonFile(`dist/json/docs/${tag}.json`, doc);
+      writeJsonFile(`../docs/.vuepress/api/${tag}.json`, doc);
 
       /**
        * Generate Vetur metas
