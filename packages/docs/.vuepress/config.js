@@ -91,7 +91,7 @@ module.exports = (ctx) => ({
   ],
   markdown: {
     extendMarkdown: (md) => {
-      md.use(require("./markdown-it-json-schema-table"));
+      md.use(require("./markdown-it-json-table"));
     },
   },
 });
