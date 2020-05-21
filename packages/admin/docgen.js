@@ -1,18 +1,29 @@
+const path = require("path");
+const fs = require("fs");
+const rimraf = require("rimraf");
 const mkdirp = require("mkdirp");
 const glob = require("globby");
-const fs = require("fs");
 const { parse } = require("vue-docgen-api");
 const { kebabCase } = require("lodash");
 
-mkdirp.sync("dist/json");
-mkdirp.sync("../docs/.vuepress/api");
+const metasDir = path.resolve(__dirname, "dist/json");
+const docsDir = path.resolve(__dirname, "../docs/.vuepress/api");
+
+rimraf.sync(metasDir);
+rimraf.sync(docsDir);
+
+mkdirp.sync(metasDir);
+mkdirp.sync(docsDir);
 
 let tagsJson = {};
 let attributesJson = {};
 let webTypesJson = [];
 
-const writeJsonFile = (path, json) => {
-  fs.writeFileSync(path, JSON.stringify(json, null, 2) + "\n");
+const writeJsonFile = (dir, file, json) => {
+  fs.writeFileSync(
+    path.resolve(dir, file),
+    JSON.stringify(json, null, 2) + "\n"
+  );
 };
 
 Promise.all(
@@ -25,7 +36,7 @@ Promise.all(
       /**
        * Generate json doc into VuePress for automatic markdown API.
        */
-      writeJsonFile(`../docs/.vuepress/api/${tag}.json`, doc);
+      writeJsonFile(docsDir, `${tag}.json`, doc);
 
       /**
        * Generate Vetur metas
@@ -64,9 +75,9 @@ Promise.all(
       });
     })
 ).then(() => {
-  writeJsonFile("dist/json/tags.json", tagsJson);
-  writeJsonFile("dist/json/attributes.json", attributesJson);
-  writeJsonFile("dist/json/web-types.json", {
+  writeJsonFile(metasDir, "tags.json", tagsJson);
+  writeJsonFile(metasDir, "attributes.json", attributesJson);
+  writeJsonFile(metasDir, "web-types.json", {
     $schema:
       "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
     framework: "vue",

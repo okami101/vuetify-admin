@@ -26,6 +26,7 @@
     "globby": "^11.0.0",
     "mkdirp": "^1.0.4",
     "portal-vue": "^2.1.7",
+    "rimraf": "^3.0.2",
     "vue-docgen-api": "^4.23.1",
     "vuedraggable": "^2.23.2",
     "vuetify": "^2.2.29",
