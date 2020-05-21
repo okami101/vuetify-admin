@@ -55,6 +55,9 @@ Promise.all(
               kind: "expression",
               type: p.type.name,
             },
+            ...(p.type.name === "boolean" &&
+              !p.defaultValue && { default: "false" }),
+            ...(p.type.name === "boolean" && { type: p.type.name }),
             description: p.description,
           };
         }),
@@ -71,6 +74,8 @@ Promise.all(
     version: "0.1.0",
     contributions: {
       html: {
+        "types-syntax": "typescript",
+        "description-markup": "markdown",
         tags: webTypesJson,
       },
     },
