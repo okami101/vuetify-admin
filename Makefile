@@ -66,4 +66,5 @@ run-docs: ## run the docs
 	@cd ./packages/docs && yarn dev --port 9000
 
 build-docs: ## compile the docs into to static js
+	@make docgen-api
 	@cd ./packages/docs && yarn -s build
