@@ -89,6 +89,11 @@ module.exports = (ctx) => ({
       },
     ],
   ],
+  markdown: {
+    extendMarkdown: md => {
+      md.use(require('./markdown-it-json-schema-table'))
+    }
+  },
 });
 
 function getGuideSidebar(groupA, groupB, groupC) {
