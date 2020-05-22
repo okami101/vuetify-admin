@@ -9,7 +9,7 @@
     >
       <div v-for="(item, i) in input" :key="item[trackedBy]" class="item">
         <!--
-          @slot Required default slot for your own inputs components.
+          @slot Your repeatable group of inputs components.
           @binding {string} resource Name of resource.
           @binding {object} item Object item of array.
           @binding {string} parentSource Original array source.

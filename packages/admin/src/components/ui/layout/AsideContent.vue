@@ -2,6 +2,7 @@
   <div class="d-none">
     <portal to="aside-title">{{ title }}</portal>
     <portal to="aside-content">
+      <!-- @slot Main content of the aside. -->
       <slot v-bind="$props"></slot>
     </portal>
   </div>
@@ -12,7 +13,7 @@ import { mapState, mapMutations } from "vuex";
 
 /**
  * Component to use for showing information on aside from any components.
- * Use Portal Vue plugin internally for this.
+ * Use Portal Vue plugin internally for integrate within VaAside.
  * @displayName VaAsideContent
  */
 export default {

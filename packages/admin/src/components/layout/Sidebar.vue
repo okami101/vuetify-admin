@@ -7,7 +7,7 @@
     :color="color"
   >
     <template v-slot:img="props">
-      <!-- @slot Slot for full customizable image background. -->
+      <!-- @slot Image background. -->
       <slot name="img" v-bind="props"></slot>
     </template>
     <v-list dense>
@@ -70,7 +70,6 @@ export default {
   props: {
     /**
      * Main place for side menu, support hierarchical structure, MDI icons, heading and dividers.
-     * Best place for `src/_navs.js` file import.
      */
     menu: {
       type: Array,

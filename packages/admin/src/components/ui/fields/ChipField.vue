@@ -1,6 +1,6 @@
 <template>
   <v-chip :color="getColor(value)" :small="small" :to="to">
-    <!-- @slot Default chip content slot for further customization, show the value by default. -->
+    <!-- @slot Chip content placeholder for further customization, show the value by default. -->
     <slot>{{ value }}</slot>
   </v-chip>
 </template>

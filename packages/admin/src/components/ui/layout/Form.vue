@@ -1,6 +1,6 @@
 <template>
   <v-form ref="form" @submit.prevent="onSave">
-    <!-- @slot Default slot for inner inputs. Model will be injected for each inputs. -->
+    <!-- @slot All content form with all inner inputs. Model will be injected for each inputs. -->
     <slot></slot>
   </v-form>
 </template>

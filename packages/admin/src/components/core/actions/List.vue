@@ -93,7 +93,7 @@
     </template>
     <template v-slot:default>
       <!--
-        @slot Default slot for main list layout. Mainly for VaDatagrid but can be anything else.
+        @slot Main list layout placeholder. Mainly for VaDatagrid but can be anything else.
         @binding {string} resource Name of resource.
         @binding {array} items Result of data fetched from API.
         @binding {boolean} loading Loading indicator.

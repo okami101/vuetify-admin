@@ -5,10 +5,10 @@
         {{ title }}
       </h1>
       <v-spacer></v-spacer>
-      <!-- @slot Slot for action buttons. -->
+      <!-- @slot Action buttons placeholder. -->
       <slot name="actions"></slot>
     </div>
-    <!-- @slot Default slot for page content. -->
+    <!-- @slot Page content placeholder. -->
     <slot></slot>
   </div>
 </template>

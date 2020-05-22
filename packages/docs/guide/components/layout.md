@@ -123,13 +123,23 @@ You can easily show hide each link by using [some authorization helpers](../auth
 
 ### VaSidebar
 
+|> docgen va-sidebar
+
 ### VaFooter
+
+|> docgen va-footer
 
 ### VaBreadcrumbs
 
+|> docgen va-breadcrumbs
+
 ### VaAside
 
+|> docgen va-aside
+
 #### VaAsideContent
+
+|> docgen va-aside-content
 
 ### VaMessages
 

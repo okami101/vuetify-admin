@@ -4,7 +4,7 @@
 
 <script>
 /**
- * Default admin component for breadcrumbs, will generate automatically hierarchical links from router.
+ * Default admin component for breadcrumbs, will generate automatically hierarchical links from current route.
  * Support hierarchical CRUD structure.
  * @displayName VaBreadcrumbs
  */

@@ -2,7 +2,7 @@
   <v-input v-if="record" :label="label" class="va-input">
     <div>
       <!--
-        @slot Default slot for showing field. By default use field component according to `type` props.
+        @slot Field placeholder. By default use field component according to `type` props.
       -->
       <slot v-bind="{ item: record, value }">
         <component

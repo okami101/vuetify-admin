@@ -3,7 +3,7 @@
     <slot :value="value">{{ getItemText }}</slot>
   </v-chip>
   <router-link v-else :to="link">
-    <!-- @slot Default content slot for further customization, guess the resource text by default. -->
+    <!-- @slot Content placeholder for further customization, guess the resource text by default. -->
     <slot :value="value">{{ getItemText }}</slot>
   </router-link>
 </template>

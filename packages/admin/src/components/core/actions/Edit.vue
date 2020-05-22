@@ -3,7 +3,7 @@
     <template slot="actions">
       <va-list-button :resource="resource" :item="record"></va-list-button>
       <va-show-button :resource="resource" :item="record"></va-show-button>
-      <!-- @slot Slot for additional custom action buttons. -->
+      <!-- @slot Additional custom action buttons placeholder. -->
       <slot name="actions"></slot>
       <va-clone-button :resource="resource" :item="record"></va-clone-button>
       <va-delete-button
@@ -13,7 +13,7 @@
       ></va-delete-button>
       <va-locale-button :resource="resource"></va-locale-button>
     </template>
-    <!-- @slot Default slot for page content. -->
+    <!-- @slot Page content placeholder. -->
     <slot v-if="record"></slot>
   </va-action-page>
 </template>

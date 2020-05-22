@@ -5,7 +5,7 @@
     </slot>
   </v-chip>
   <span v-else>
-    <!-- @slot Default content slot for further customization, take the text of selected choice by default. -->
+    <!-- @slot Content placeholder for further customization, take the text of selected choice by default. -->
     <slot :value="selected">
       <span>{{ selected ? selected[itemText] : "" }}</span>
     </slot>

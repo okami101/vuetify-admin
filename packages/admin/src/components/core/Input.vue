@@ -8,7 +8,7 @@
     :hide-details="hideDetails"
     :dense="dense"
   >
-    <!-- @slot Default slot for custom input which handles value editing -->
+    <!-- @slot Custom input placeholder which handles value editing -->
     <slot></slot>
   </v-input>
 </template>

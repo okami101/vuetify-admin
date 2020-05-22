@@ -55,8 +55,6 @@ module.exports = (md) => {
     // Generate description paragraph
     generateParagraph(state, doc.description);
 
-    state.push("hr", "hr", 0);
-
     // Generate props
     if (doc.props) {
       generateParagraph(state, "**`PROPS`**");
@@ -115,8 +113,6 @@ module.exports = (md) => {
         })
       );
     }
-
-    state.push("hr", "hr", 0);
   };
 
   let generateParagraph = (state, content) => {
