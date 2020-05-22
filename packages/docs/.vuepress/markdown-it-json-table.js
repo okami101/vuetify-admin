@@ -30,7 +30,9 @@ module.exports = (md) => {
   };
 
   let getDocgenData = (component) => {
-    return JSON.parse(fs.readFileSync(`../admin/dist/json/docs/${component}.json`));
+    return JSON.parse(
+      fs.readFileSync(`../admin/dist/json/docs/${component}.json`)
+    );
   };
 
   let generateSchemaTable = (state, startLine, type, definition) => {

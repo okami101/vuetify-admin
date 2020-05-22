@@ -38,10 +38,10 @@ Standard admin layout with :
 
 Classic crud pages that can be generated with CLI plugin :
 
-* List : classic resource browser, paginable, filtrable as-you-type, multi-sortable and exportable. Can have global SQL like search filter as well as advanced specific filters. Use datagrid component by default that can be replaced by your own custom data-iterable layout list component.
+* List : classic resource browser, paginable, filtrable as-you-type, multi-sortable and exportable. Can have global SQL like search filter as well as advanced specific filters. Use datatable component by default that can be replaced by your own custom data-iterable layout list component.
 * Show : entirely customizable layout show page. Use fields components as formatter for each resource properties.
 * Create : form page for new resource creation. Can use an other existing resource as source for input prefilling (clone).
-* Edit : customizable form page for an existing resource. Ideal place (as show page) for adding other related resources with contextualized datagrid or any other layout you want.
+* Edit : customizable form page for an existing resource. Ideal place (as show page) for adding other related resources with contextualized datatable or any other layout you want.
 
 > See [dedicated guide](https://vtec.okami101.io/guide/components/list).
 

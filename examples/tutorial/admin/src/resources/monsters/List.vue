@@ -16,7 +16,7 @@
       v-model="selected"
       :options.sync="options"
     >
-      <va-datagrid
+      <va-data-table
         :fields="[
           'name',
           { source: 'email', type: 'email' },
@@ -42,7 +42,7 @@
         v-model="selected"
         :options.sync="options"
       >
-      </va-datagrid>
+      </va-data-table>
     </va-list>
   </base-material-card>
 </template>

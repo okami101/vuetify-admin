@@ -15,7 +15,7 @@
   >
     <template v-slot:header v-if="!hideHeader">
       <v-toolbar flat color="blue lighten-5" v-if="value.length">
-        {{ $tc("va.datagrid.selected_items", value.length) }}
+        {{ $tc("va.datatable.selected_items", value.length) }}
         <v-spacer></v-spacer>
         <div>
           <!-- @slot Custom bulk actions, ideal place for VaBulkActionButton -->
@@ -61,7 +61,7 @@
           <template v-slot:activator="{ on }">
             <v-btn text color="success" v-on="on">
               <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
-              {{ $t("va.datagrid.add_filter") }}
+              {{ $t("va.datatable.add_filter") }}
             </v-btn>
           </template>
           <v-list>
@@ -93,7 +93,7 @@
     </template>
     <template v-slot:default>
       <!--
-        @slot Main list layout placeholder. Mainly for VaDatagrid but can be anything else.
+        @slot Main list layout placeholder. Mainly for VaDataTable but can be anything else.
         @binding {string} resource Name of resource.
         @binding {array} items Result of data fetched from API.
         @binding {boolean} loading Loading indicator.
@@ -126,7 +126,7 @@ import { mapState, mapActions } from "vuex";
 /**
  * List data iterator component, perfect for list CRUD page as well as any resource browsing standalone component.
  * Allow resource paginating and filtering. Use current query string context for initial state by default.
- * The main list layout is fully customizable and can be used for Datagrid separate component.
+ * The main list layout is fully customizable and can be used for DataTable separate component.
  * @displayName VaList
  */
 export default {
@@ -222,7 +222,7 @@ export default {
           if (f === "q") {
             return {
               source: "q",
-              label: this.$t("va.datagrid.search"),
+              label: this.$t("va.datatable.search"),
               alwaysOn: true,
               options: { icon: "mdi-magnify" },
             };
@@ -291,7 +291,7 @@ export default {
     onSelect(selected) {
       /**
        * Triggered when item is selected.
-       * Synchronize it with VaDatagrid for selection clearing.
+       * Synchronize it with VaDataTable for selection clearing.
        */
       this.$emit("input", selected);
     },

@@ -13,7 +13,7 @@
         @create="(e) => onAction('create', e)"
       >
         <template v-slot="props">
-          <va-datagrid
+          <va-data-table
             :fields="[
               'name',
               { source: 'email', type: 'email' },
@@ -42,7 +42,7 @@
                 icon
               ></impersonate-button>
             </template>
-          </va-datagrid>
+          </va-data-table>
         </template>
       </va-list>
     </base-material-card>

@@ -1,4 +1,4 @@
-import Datagrid from "./list/Datagrid";
+import DataTable from "./list/DataTable";
 
 import Form from "./layout/Form";
 import AsideContent from "./layout/AsideContent";
@@ -47,7 +47,7 @@ import AutocompleteInput from "./inputs/AutocompleteInput";
 import FileInput from "./inputs/FileInput";
 
 export {
-  Datagrid,
+  DataTable,
   Form,
   AsideContent,
   ListButton,

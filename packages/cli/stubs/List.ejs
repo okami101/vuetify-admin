@@ -8,14 +8,14 @@
       v-model="selected"
       :options.sync="options"
     >
-      <va-datagrid
+      <va-data-table
         :fields="<%- fields %>"
         :sortable="<%- sortable %>"
         v-bind="props"
         v-model="selected"
         :options.sync="options"
       >
-      </va-datagrid>
+      </va-data-table>
     </va-list>
   </base-material-card>
 </template>

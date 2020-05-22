@@ -153,9 +153,9 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 /**
- * Dumb datagrid component, you will need data iterator as VaList in order to make it usable.
+ * Dumb datatable component, you will need data iterator as VaList in order to make it usable.
  * This component allows you to template all fields columns.
- * @displayName VaDatagrid
+ * @displayName VaDataTable
  */
 export default {
   mixins: [List],
@@ -190,7 +190,7 @@ export default {
     },
     /**
      * List of sortable columns.
-     * If empty, datagrid will use a default behavior where all "text", "date" and "number" are sortable.
+     * If empty, datatable will use a default behavior where all "text", "date" and "number" are sortable.
      */
     sortable: {
       type: Array,
@@ -201,7 +201,7 @@ export default {
      */
     dense: Boolean,
     /**
-     * Put the datagrid on a loading state. Used by VaList while loading data.
+     * Put the datatable on a loading state. Used by VaList while loading data.
      */
     loading: Boolean,
     /**
@@ -226,7 +226,7 @@ export default {
     /**
      * Vuetify context state of the list with current page and sorting.
      * Should by synchronized with VaList.
-     * Datagrid manage only sorting here.
+     * DataTable manage only sorting here.
      */
     options: {
       type: Object,

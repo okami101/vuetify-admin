@@ -34,7 +34,7 @@
       :options.sync="options"
       v-slot="props"
     >
-      <va-datagrid
+      <va-data-table
         :fields="[
           {
             source: 'book',
@@ -69,7 +69,7 @@
         <template v-slot:quality="{ item }">
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}
         </template>
-      </va-datagrid>
+      </va-data-table>
     </va-list>
   </base-material-card>
 </template>

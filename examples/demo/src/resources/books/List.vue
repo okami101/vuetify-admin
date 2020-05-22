@@ -38,7 +38,7 @@
       :options.sync="options"
       v-slot="props"
     >
-      <va-datagrid
+      <va-data-table
         :fields="[
           { source: 'isbn', link: 'show' },
           {
@@ -101,7 +101,7 @@
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
-      </va-datagrid>
+      </va-data-table>
     </va-list>
   </base-material-card>
 </template>

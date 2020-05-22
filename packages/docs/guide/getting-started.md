@@ -195,7 +195,7 @@ Then next step is to define CRUD pages for each resource.
       v-slot="props"
       flat
     >
-      <va-datagrid
+      <va-data-table
         :fields="fields"
         v-bind="props"
         v-model="selected"
@@ -204,7 +204,7 @@ Then next step is to define CRUD pages for each resource.
         <template v-slot:quality="{ item }">
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}
         </template>
-      </va-datagrid>
+      </va-data-table>
     </va-list>
   </base-material-card>
 </template>

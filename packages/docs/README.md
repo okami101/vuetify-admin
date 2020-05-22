@@ -49,8 +49,8 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
     <p>With combination of Vtec Admin, code generators as well as Vue.js power, feel the better mix between productivity, nice development experience and limitless customization.</p>
   </div>
   <div class="feature">
-    <h2>Full-featured datagrid</h2>
-    <p>Full-featured datagrid, including multi-sort, pagination, global search, advanced filters, basic CSV export, live query string context. Customizable by-row, bulk and global actions.</p>
+    <h2>Full-featured DataTable</h2>
+    <p>Full-featured DataTable, including multi-sort, pagination, global search, advanced filters, basic CSV export, live query string context. Customizable by-row, bulk and global actions.</p>
   </div>
   <div class="feature">
     <h2>Custom fields</h2>

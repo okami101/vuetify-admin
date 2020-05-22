@@ -5,7 +5,7 @@ export default {
   props: {
     /**
      * List of data resource object to show inside list component.
-     * Uses for VaDatagrid
+     * Used by VaDataTable
      */
     items: {
       type: Array,

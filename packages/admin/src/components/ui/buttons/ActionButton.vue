@@ -29,7 +29,7 @@ import Item from "../../../mixins/item";
 import ActionButton from "../../../mixins/action-button";
 
 /**
- * Component tu use for any custom action button. Can be used on datagrid rows or top header of create, show and edit pages.
+ * Component tu use for any custom action button. Can be used on datatable rows or top header of create, show and edit pages.
  * @displayName VaActionButton
  */
 export default {

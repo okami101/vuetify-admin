@@ -52,13 +52,13 @@ const dataProvider = {
 
 Used for all resources browsing context, as
 
-* [Data iterator component](components/list) for showing list of resources inside datagrid or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
+* [Data iterator component](components/list) for showing list of resources inside datatable or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
 * [Export button](components/list#export) for filtred CSV resources exporting.
 * Entity referable choices component as [Autocomplete](components/inputs#autocomplete), [Select](components/inputs#select), or [RadioGroup](components/inputs#radio-group).
 
 #### getOne
 
-For showing detail of resource, mainly for [Show page](components/crud#show) or datagrid show actions.
+For showing detail of resource, mainly for [Show page](components/crud#show) or datatable show actions.
 
 #### getMany
 

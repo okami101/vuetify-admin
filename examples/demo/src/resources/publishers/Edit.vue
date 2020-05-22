@@ -42,7 +42,7 @@
         :options.sync="options"
         v-slot="props"
       >
-        <va-datagrid
+        <va-data-table
           :fields="[
             { source: 'isbn', link: 'show' },
             { source: 'category', type: 'select', chip: true },
@@ -78,7 +78,7 @@
               </va-reference-field>
             </v-chip-group>
           </template>
-        </va-datagrid>
+        </va-data-table>
       </va-list>
     </base-material-card>
   </va-edit>

@@ -77,7 +77,7 @@ resources
 ├── `monster-children` _(**The kebab-case format of resource name**)_
 │   ├── [Create.vue](components/crud#create)
 │   ├── [Edit.vue](components/crud#edit)
-│   ├── Form.vue _(**Form component for reusing into Create and Edit views**)_
+│   ├── [Form.vue](components/crud#form) _(**Form component reused for both Create and Edit views**)_
 │   ├── [List.vue](components/list)
 │   └── [Show.vue](components/crud#show)
 │

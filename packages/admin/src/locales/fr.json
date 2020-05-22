@@ -2,7 +2,7 @@
   "logout": "Se déconnecter",
   "close": "Fermer",
   "file_manager": "Gestionnaire de fichiers",
-  "datagrid": {
+  "datatable": {
     "search": "Rechercher",
     "add_filter": "Ajouter un filtre",
     "selected_items": "1 élément sélectionné | {count} éléments sélectionnés"

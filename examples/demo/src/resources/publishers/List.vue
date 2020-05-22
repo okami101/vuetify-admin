@@ -13,7 +13,7 @@
       v-model="selected"
       :options.sync="options"
     >
-      <va-datagrid
+      <va-data-table
         :fields="[
           {
             source: 'logo',
@@ -50,7 +50,7 @@
         <template v-slot:address="{ value }">
           {{ value.postcode }} {{ value.city }}
         </template>
-      </va-datagrid>
+      </va-data-table>
     </va-list>
   </base-material-card>
 </template>

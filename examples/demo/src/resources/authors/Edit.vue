@@ -20,7 +20,7 @@
         :options.sync="options"
         v-slot="props"
       >
-        <va-datagrid
+        <va-data-table
           resource="books"
           disable-sort
           disable-select
@@ -61,7 +61,7 @@
               </va-reference-field>
             </v-chip-group>
           </template>
-        </va-datagrid>
+        </va-data-table>
       </va-list>
     </base-material-card>
   </va-edit>

@@ -42,7 +42,7 @@ VA is composed of this basic elements :
   * Register **resources modules** into Vuex for data fetching. All of this modules will be bridged to your own data provider.
 * **Contextual aware components**, that we can group into 3 categories :
   * **Layout components** built on top of Vuetify with App Bar, Navigation Drawer with hierarchical sidebar, Aside, Footer, User account menu.
-  * **Pages components** which should be used as root components for your cruds pages. We will find here all contextualised CRUD buttons, as well as Data Iterator which can be associated to a datagrid or any custom layout.
+  * **Pages components** which should be used as root components for your cruds pages. We will find here all contextualised CRUD buttons, as well as Data Iterator which can be associated to a datatable or any custom layout.
   * **Fields and inputs components** which are superset of existing Vuetify components that will be mainly used on show and create/edit pages. Their functions is to heavily simplify the amount of code needed to made a functional CRUD page. All of this components shares a mixin which can be used for create your own VA compatible components.
 
 To summary, VA will do this steps :
@@ -73,7 +73,7 @@ VA will try to integrate within all of your existing plugins without hoisted the
 
 **All essential components**
 
-* [Full-featured Datagrid](components/list) : multi-sort, pagination, global search, advanced filters, CSV export
+* [Full-featured DataTable](components/list) : multi-sort, pagination, global search, advanced filters, CSV export
 * [Internal CRUD views](components/crud) : For detail or edition of any resources
 * [Form](components/crud#form) : Global unique form V-model and server-side validation
 * [Translatable fields](components/crud#translatable) : context switching resource locale
