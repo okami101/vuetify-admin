@@ -208,3 +208,65 @@ try {
   });
 }
 ```
+
+### Store
+
+You can use all data provider methods for each resource on your custom CRUD pages or any custom authenticated page directly from the Vuex store. You have 2 different methods, one by the `mapActions` Vuex helper and the other by the global `$store` instance where you can use the `dispatch`. The next piece of code will show an example of both ways to fetch data from your providers :
+
+```vue
+<template>
+  <v-row>
+    <v-col v-for="item in data" :key="item.id">
+      {{ item.name }}
+    </v-col>
+  </v-row>
+</template>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  data() {
+    return {
+      data: [],
+    }
+  },
+  async mounted() {
+    /**
+     * Use the global vuex store instance.
+     * You need to provide the name of the resource followed by the provider method you want to call.
+     * Each provider methods needs a `params` argument which is the same object described above.
+     */
+    this.data = await this.$store.dispatch("publishers/getList", {
+      pagination: {
+        page: 1,
+        perPage: 5,
+      },
+    });
+
+    /**
+     * Use the registered global method which use global `api` store module.
+     * Then you need to provide a object argument of this format : `{ resource, params }`
+     */
+    this.data = await this.getList({
+      resource: "publishers",
+      params: {
+        pagination: {
+          page: 1,
+          perPage: 5,
+        },
+      },
+    });
+  },
+  methods: {
+    ...mapActions({
+      getList: "api/getList",
+    }),
+  },
+};
+</script>
+```
+
+:::tip GLOBAL AXIOS
+For any non standard API call that don't follow the above data provider implementation, you have still access to the global `$axios` instance which always use the current active authentication state (cookies or token).
+:::

@@ -26,7 +26,7 @@ export default {
 
 The main layout, alias VaLayout, is composed of different regions as shown here :
 
-![demo](/assets/layout.png)
+![layout](/assets/layout.png)
 
 | Region         | Default VAComponent               | Description                                                     |
 | -------------- | --------------------------------- | --------------------------------------------------------------- |

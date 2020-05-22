@@ -1,4 +1,3 @@
-import { mapActions } from "vuex";
 import isEmpty from "lodash/isEmpty";
 import Choices from "./choices";
 import Search from "./search";
@@ -65,10 +64,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      getList: "api/getList",
-      getMany: "api/getMany",
-    }),
     async fetchChoices(search = null) {
       if (!this.reference || this.loading) {
         return;

@@ -1,3 +1,5 @@
+import { mapActions } from "vuex";
+
 export default {
   props: {
     /**
@@ -48,5 +50,11 @@ export default {
       type: Number,
       default: 15,
     },
+  },
+  methods: {
+    ...mapActions({
+      getList: "api/getList",
+      getMany: "api/getMany",
+    }),
   },
 };
