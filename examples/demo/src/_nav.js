@@ -9,7 +9,7 @@ export default (i18n, admin) => [
   ...admin.getResourceLinks(["publishers", "authors", "books", "reviews"]),
   { divider: true },
   { heading: i18n.t("menu.other") },
-  ...[admin.getResourceLink("users") || []],
+  admin.getResourceLink("users"),
   admin.can(["admin"]) && {
     icon: "mdi-settings",
     text: i18n.t("menu.settings"),

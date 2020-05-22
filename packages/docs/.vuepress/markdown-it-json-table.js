@@ -30,7 +30,7 @@ module.exports = (md) => {
   };
 
   let getDocgenData = (component) => {
-    return JSON.parse(fs.readFileSync(`.vuepress/api/${component}.json`));
+    return JSON.parse(fs.readFileSync(`../admin/dist/json/docs/${component}.json`));
   };
 
   let generateSchemaTable = (state, startLine, type, definition) => {
@@ -54,6 +54,8 @@ module.exports = (md) => {
 
     // Generate description paragraph
     generateParagraph(state, doc.description);
+
+    state.push("hr", "hr", 0);
 
     // Generate props
     if (doc.props) {
@@ -113,6 +115,8 @@ module.exports = (md) => {
         })
       );
     }
+
+    state.push("hr", "hr", 0);
   };
 
   let generateParagraph = (state, content) => {
@@ -198,7 +202,7 @@ module.exports = (md) => {
         return true;
       }
 
-      args = state.src.slice(pos, max).trim().split(",");
+      args = state.src.slice(pos, max).trim().split(" ");
 
       switch (args[0]) {
         case "schema":

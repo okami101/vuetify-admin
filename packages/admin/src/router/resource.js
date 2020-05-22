@@ -1,33 +1,8 @@
 export default ({ store, i18n, resource, title }) => {
-  let { name, actions, translatable, label } = resource;
+  let { name, actions, translatable, getTitle, pluralName } = resource;
 
   const setTitle = (to, action, item = null) => {
-    let nameKey = `resources.${name}.name`;
-    let titleKey = `resources.${name}.titles.${action}`;
-
-    if (item) {
-      /**
-       * Build default main title with item
-       */
-      to.meta.title =
-        (i18n.te(titleKey)
-          ? i18n.t(titleKey, item)
-          : i18n.t(`va.pages.${action}`, {
-              resource: i18n.tc(nameKey, 1).toLowerCase(),
-              label: typeof label === "function" ? label(item) : item[label],
-            })) + ` #${to.params.id}`;
-    } else {
-      /**
-       * Build default main title
-       */
-      to.meta.title = i18n.te(titleKey)
-        ? i18n.t(titleKey)
-        : i18n.t(`va.pages.${action}`, {
-            resource: i18n
-              .tc(nameKey, action === "list" ? 10 : 1)
-              .toLowerCase(),
-          });
-    }
+    to.meta.title = getTitle(action, item);
 
     /**
      * Set main and document title
@@ -109,7 +84,7 @@ export default ({ store, i18n, resource, title }) => {
       },
     },
     meta: {
-      title: i18n.tc(`resources.${name}.name`, 10),
+      title: pluralName,
     },
     children: [
       { name: "list", path: "/" },

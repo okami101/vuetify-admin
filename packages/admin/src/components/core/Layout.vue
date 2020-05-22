@@ -1,18 +1,16 @@
 <template>
   <v-app>
     <template>
-      <!-- @slot Slot for header reagion, ideal place for VAppBar. -->
-      <slot name="header"></slot>
+      <!-- @slot Slot for top app bar region, ideal place for VAppBar. -->
+      <slot name="app-bar"></slot>
       <!-- @slot Slot for sidebar region, ideal place for VNavigationDrawer. -->
       <slot name="sidebar"></slot>
 
       <v-content>
         <div class="d-flex flex-column fill-height">
-          <!-- @slot Slot for content top header, ideal place for VBreadcrumbs. -->
-          <slot name="breadcrumbs"></slot>
-          <!-- @slot Slot for custom messages or important notification as impersonation state, etc. -->
-          <slot name="message"></slot>
-          <messages></messages>
+          <!-- @slot Slot for content top header, ideal place for VBreadcrumbs and/or additional custom messages or important notification as impersonation state, etc. -->
+          <slot name="header"></slot>
+          <va-messages></va-messages>
           <v-container fluid>
             <router-view />
           </v-container>
@@ -31,22 +29,15 @@
 </template>
 
 <script>
-import Messages from "../internal/Messages";
-
 /**
  * Admin composable component layout with one slot for each region.
  * @displayName VaLayout
  */
-export default {
-  components: {
-    Messages,
-  },
-};
+export default {};
 </script>
 
 <style>
 .v-content {
   background-color: #fafafa;
-  min-height: 100vh;
 }
 </style>

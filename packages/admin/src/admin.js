@@ -76,10 +76,40 @@ export default class VtecAdmin {
           }
         );
 
+        let getName = (count) => i18n.tc(`resources.${r.name}.name`, count);
+
         return {
           ...r,
           icon: r.icon || "mdi-view-grid",
           actions,
+          getName,
+          singularName: getName(1),
+          pluralName: getName(10),
+          getTitle: (action, item = null) => {
+            let nameKey = `resources.${r.name}.name`;
+            let titleKey = `resources.${r.name}.titles.${action}`;
+
+            if (item) {
+              return (
+                (i18n.te(titleKey)
+                  ? i18n.t(titleKey, item)
+                  : i18n.t(`va.pages.${action}`, {
+                      resource: i18n.tc(nameKey, 1).toLowerCase(),
+                      label:
+                        typeof r.label === "function"
+                          ? r.label(item)
+                          : item[r.label],
+                    })) + ` #${item.id}`
+              );
+            }
+            return i18n.te(titleKey)
+              ? i18n.t(titleKey)
+              : i18n.t(`va.pages.${action}`, {
+                  resource: i18n
+                    .tc(nameKey, action === "list" ? 10 : 1)
+                    .toLowerCase(),
+                });
+          },
           canAction: (action) => {
             /**
              * Test if action exist for this resource
@@ -131,27 +161,43 @@ export default class VtecAdmin {
     /**
      * Resource link helper with action permission test
      */
-    this.getResourceLink = (name, action = "list") => {
-      let { icon, canAction } = this.getResource(name);
+    this.getResourceLink = (link) => {
+      let getLink = ({ name, icon, text, action }) => {
+        action = action || "list";
+        let resource = this.getResource(name);
+        let { canAction, singularName, pluralName } = resource;
 
-      if (!canAction(action)) {
-        return null;
-      }
+        if (!canAction(action)) {
+          return false;
+        }
 
-      return {
-        icon,
-        text: i18n.tc(`resources.${name}.name`, 10),
-        link: { name: `${name}_${action}` },
+        return {
+          icon: icon || resource.icon,
+          text: text || (action === "list" ? pluralName : singularName),
+          link: { name: `${name}_${action}` },
+        };
       };
+
+      if (typeof link === "object") {
+        return getLink(link);
+      }
+      return getLink({ name: link });
     };
 
     /**
      * Resource links list helper
      */
-    this.getResourceLinks = (names, action = "list") => {
-      return names
-        .map((name) => {
-          return this.getResourceLink(name, action);
+    this.getResourceLinks = (links) => {
+      return links
+        .map((link) => {
+          if (typeof link === "object") {
+            if (link.children) {
+              return link;
+            }
+
+            return this.getResourceLink(link);
+          }
+          return this.getResourceLink({ name: link });
         })
         .filter((r) => r);
     };

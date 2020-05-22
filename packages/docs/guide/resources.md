@@ -115,3 +115,65 @@ Some quick tables to resume (we take `monster_children` resource name as example
 | **show**   | `MonsterChildrenShow`   | `/monster-children/Show.vue`   |
 | **create** | `MonsterChildrenCreate` | `/monster-children/Create.vue` |
 | **edit**   | `MonsterChildrenEdit`   | `/monster-children/Edit.vue`   |
+
+### Link helpers
+
+You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](components/layout#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
+
+For exemple this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in the `sidebar-menu` as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
+
+```js
+[
+  // ...
+  this.$admin.getResourceLink("users"),
+  // ...
+]
+```
+
+Use `getResourceLinks` in order to make many resource links at once. Only links where users has the resource action permissions will be returned.
+
+```js
+[
+  // ...
+  ...this.$admin.getResourceLinks([
+    "publishers",
+    "authors",
+    "books",
+    "reviews",
+  ]),
+  // ...
+]
+```
+
+For this helpers, you can pass a full link object instead of resource name that will override the default generated. For example this code will generate a new link to the user create page with a plus icon and a "Create new user" as text :
+
+```js
+[
+  // ...
+  this.$admin.getResourceLink({ name: "users", action: "create", icon: "mdi-plus", text: "Create new user" }),
+  // ...
+]
+```
+
+The `getResourceLinks` helper can accept hierarchical menu as following :
+
+```js
+[
+  // ...
+  ...admin.getResourceLinks([
+    {
+      icon: "mdi-globe-model",
+      text: "Publishers,
+      expanded: true,
+      children: [
+        admin.getResourceLink({ name: "publishers", icon: "mdi-view-list", text: "List" }),
+        admin.getResourceLink({ name: "publishers", icon: "mdi-plus", text: "Create" }),
+      ],
+    },
+    "authors",
+    "books",
+    "reviews",
+  ]),
+  // ...
+]
+```

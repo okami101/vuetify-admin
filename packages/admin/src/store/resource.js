@@ -12,7 +12,7 @@ let {
 } = methods;
 
 export default ({ provider, resource, i18n }) => {
-  let { name } = resource;
+  let { name, getName } = resource;
 
   Object.values(methods).forEach(
     (action) =>
@@ -105,30 +105,26 @@ export default ({ provider, resource, i18n }) => {
         let messages = {
           [CREATE]: () =>
             i18n.t("va.messages.created", {
-              resource: i18n.tc(`resources.${name}.name`, 1),
+              resource: getName(1),
             }),
           [UPDATE]: () =>
             i18n.t("va.messages.updated", {
-              resource: i18n.tc(`resources.${name}.name`, 1),
+              resource: getName(1),
               id: params.id,
             }),
           [UPDATE_MANY]: () =>
             i18n.t("va.messages.updated_many", {
-              resource: i18n
-                .tc(`resources.${name}.name`, params.ids.length)
-                .toLowerCase(),
+              resource: getName(params.ids.length).toLowerCase(),
               count: params.ids.length,
             }),
           [DELETE]: () =>
             i18n.t("va.messages.deleted", {
-              resource: i18n.tc(`resources.${name}.name`, 1),
+              resource: getName(1),
               id: params.id,
             }),
           [DELETE_MANY]: () =>
             i18n.t("va.messages.deleted_many", {
-              resource: i18n
-                .tc(`resources.${name}.name`, params.ids.length)
-                .toLowerCase(),
+              resource: getName(params.ids.length).toLowerCase(),
               count: params.ids.length,
             }),
         };

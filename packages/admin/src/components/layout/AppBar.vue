@@ -13,7 +13,7 @@
     -->
     <v-app-bar-nav-icon @click.stop="$emit('mini')" />
     <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
-      <span class="hidden-sm-and-down">{{ $admin.title }}</span>
+      <span class="hidden-sm-and-down">{{ title || $admin.title }}</span>
     </v-toolbar-title>
     <v-row v-if="headerMenu.length">
       <v-col
@@ -34,40 +34,38 @@
     </v-row>
     <v-spacer />
     <div>
-      <v-menu offset-y v-if="resources.length">
+      <v-menu offset-y v-if="!disableCreate && createResourceLinks.length">
         <template v-slot:activator="{ on }">
-          <v-btn icon small class="mr-5" v-on="on">
+          <v-btn
+            icon
+            small
+            class="mr-5"
+            v-on="on"
+            :title="$t('va.actions.create')"
+          >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </template>
 
         <v-list nav dense>
           <v-list-item
-            v-for="(item, index) in resources"
+            v-for="(item, index) in createResourceLinks"
             :key="index"
             link
-            :to="{ name: `${item.name}_create` }"
+            :to="item.link"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{
-                $te(`resources.${item.name}.titles.create`)
-                  ? $t(`resources.${item.name}.titles.create`)
-                  : $t("va.pages.create", {
-                      resource: $tc(
-                        `resources.${item.name}.name`,
-                        1
-                      ).toLowerCase(),
-                    })
-              }}</v-list-item-title>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
       </v-menu>
       <v-btn
+        v-if="!disableReload"
         icon
         small
         class="mr-5"
@@ -129,11 +127,16 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 
 /**
- * Default customizable admin VAppBar with header and profile menu, as well as some create actions.
- * @displayName VaHeader
+ * Default customizable admin VAppBar.
+ * Contains main app title, header menus, direct resource creation links, global refresh action, profile menu.
+ * @displayName VaAppBar
  */
 export default {
   props: {
+    /**
+     * Replace default admin app title setted on VtecAdmin constructor.
+     */
+    title: String,
     /**
      * Header links visible on left side.
      */
@@ -148,6 +151,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * Disable create menu.
+     */
+    disableCreate: Boolean,
+    /**
+     * Disable reload state button.
+     */
+    disableReload: Boolean,
     /**
      * Color for the VAppBar.
      */
@@ -169,8 +180,15 @@ export default {
       loading: (state) => state.api.loading,
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
-    resources() {
-      return this.$admin.resources.filter((r) => r.canAction("create"));
+    createResourceLinks() {
+      return this.$admin.getResourceLinks(
+        this.$admin.resources.map((r) => {
+          return {
+            name: r.name,
+            action: "create",
+          };
+        })
+      );
     },
   },
   methods: {

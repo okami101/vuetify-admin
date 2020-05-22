@@ -23,10 +23,7 @@ export default {
      * Boolean to be edited.
      * @model
      */
-    value: {
-      type: Boolean,
-      default: false,
-    },
+    value: Boolean,
   },
   methods: {
     changeState(value) {

@@ -7,12 +7,9 @@ const { parse } = require("vue-docgen-api");
 const { kebabCase } = require("lodash");
 
 const metasDir = path.resolve(__dirname, "dist/json");
-const docsDir = path.resolve(__dirname, "../docs/.vuepress/api");
+const docsDir = path.resolve(__dirname, "dist/json/docs");
 
 rimraf.sync(metasDir);
-rimraf.sync(docsDir);
-
-mkdirp.sync(metasDir);
 mkdirp.sync(docsDir);
 
 let tagsJson = {};

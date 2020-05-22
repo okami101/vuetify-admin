@@ -1,16 +1,18 @@
 <template>
   <va-layout>
-    <va-header
-      slot="header"
+    <va-app-bar
+      slot="app-bar"
       :header-menu="headerMenu"
       :profile-menu="profileMenu"
       dense
       dark
       @mini="mini = !mini"
-    ></va-header>
+    ></va-app-bar>
     <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
-    <va-breadcrumbs slot="breadcrumbs"></va-breadcrumbs>
-    <impersonate-message slot="message"></impersonate-message>
+    <template slot="header">
+      <va-breadcrumbs></va-breadcrumbs>
+      <impersonate-message></impersonate-message>
+    </template>
     <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,

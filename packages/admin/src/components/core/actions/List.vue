@@ -34,7 +34,7 @@
           @submit.prevent="onAssociate"
         >
           <va-autocomplete-input
-            :label="$tc(`resources.${resource}.name`, 1)"
+            :label="$admin.getResource(resource).singularName"
             :resource="resource"
             :reference="resource"
             v-model="associationId"

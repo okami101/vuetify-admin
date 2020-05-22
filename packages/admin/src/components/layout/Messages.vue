@@ -11,9 +11,15 @@
 </template>
 
 <script>
-import Confirm from "./Confirm";
+import Confirm from "../internal/Confirm";
 import { mapState } from "vuex";
 
+/**
+ * Internal VaMessages system for snackbar/toaster infos and confirm dialog.
+ * Integrated with all resource modules for message API calls.
+ * Already included in main admin layout, use it only if you need total custom layout.
+ * @displayName VaMessages
+ */
 export default {
   components: {
     Confirm,

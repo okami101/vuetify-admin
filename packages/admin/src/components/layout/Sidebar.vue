@@ -11,13 +11,13 @@
       <slot name="img" v-bind="props"></slot>
     </template>
     <v-list dense>
-      <template v-for="(item, index) in menu">
+      <template v-for="(item, index) in menu.filter((l) => l)">
         <v-subheader v-if="item.heading && !mini" :key="index">
           {{ item.heading }}
         </v-subheader>
         <v-divider v-else-if="item.divider" :key="index"></v-divider>
         <v-list-group
-          v-else-if="item.children"
+          v-else-if="item.children && item.children.length"
           :key="index"
           v-model="item.expanded"
           :prepend-icon="item.icon"
@@ -31,7 +31,7 @@
             </v-list-item-content>
           </template>
           <v-list-item
-            v-for="(child, i) in item"
+            v-for="(child, i) in item.children"
             :key="i"
             link
             :to="child.link"
