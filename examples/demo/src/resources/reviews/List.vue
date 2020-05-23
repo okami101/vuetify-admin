@@ -2,7 +2,6 @@
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
       :filters="[
-        'q',
         {
           source: 'book',
           type: 'autocomplete',

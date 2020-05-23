@@ -13,7 +13,6 @@
           publisher: id,
         }"
         :filters="[
-          'q',
           'title',
           {
             source: 'authors',

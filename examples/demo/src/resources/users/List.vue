@@ -8,7 +8,6 @@
       <va-list
         ref="list"
         :filters="[
-          'q',
           { source: 'active', type: 'boolean' },
           {
             source: 'roles',

@@ -7,6 +7,7 @@
     >
       <va-list
         resource="books"
+        disable-global-search
         disable-pagination
         disable-query-string
         disable-create

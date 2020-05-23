@@ -21,7 +21,7 @@ Here a quick sample usage within the `VaDataTable` component :
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-list :filters="['q']" v-slot="props" v-model="selected" :options.sync="options">
+    <va-list v-slot="props" v-model="selected" :options.sync="options">
       <va-data-table
         :fields="[
           { source: 'name', link: 'show' },
@@ -58,8 +58,8 @@ It will produce this simple structure :
 
 ![list](/assets/samples/list.png)
 
-:::tip GLOBAL SEARCH
-To enable global search, you just have to add the specific `q` filter inside `filters` prop. It will automatically.
+:::tip DISABLE GLOBAL SEARCH
+A global search filter will be enabled by default. To disable it, use `disable-global-search` prop.
 :::
 
 #### Pagination
@@ -71,6 +71,10 @@ TODO
 TODO
 
 #### Filters
+
+TODO
+
+#### Bulk actions
 
 TODO
 

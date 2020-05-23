@@ -182,10 +182,21 @@ export default {
      */
     disableCreate: Boolean,
     /**
-     * Force disabling of export button, shown by default.
+     * Disable the export button.
      * The export allows client-side CSV download and keep active filters while disabling pagination.
      */
     disableExport: Boolean,
+    /**
+     * Disable the global search.
+     */
+    disableGlobalSearch: Boolean,
+    /**
+     * Key parameter of the global search query.
+     */
+    globalSearchQuery: {
+      type: String,
+      default: "q",
+    },
     /**
      * Association infos object in case of this list is related to a current show or edit resource page.
      * Enable the association between resources directly by an autocomplete an associate action.
@@ -217,18 +228,23 @@ export default {
       refresh: (state) => state.api.refresh,
     }),
     getFilters() {
-      return this.filters
-        .map((f) => {
-          if (f === "q") {
-            return {
-              source: "q",
-              label: this.$t("va.datatable.search"),
-              alwaysOn: true,
-              options: { icon: "mdi-magnify" },
-            };
-          }
-          return f;
-        })
+      let filters = [];
+
+      if (!this.disableGlobalSearch) {
+        /**
+         * Add global search filter
+         */
+        filters = [
+          {
+            source: this.globalSearchQuery,
+            label: this.$t("va.datatable.search"),
+            alwaysOn: true,
+            options: { icon: "mdi-magnify" },
+          },
+        ];
+      }
+
+      return [...filters, ...this.filters]
         .map((f) => {
           return typeof f === "string"
             ? {

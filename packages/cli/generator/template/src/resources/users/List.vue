@@ -7,7 +7,6 @@
     <base-material-card :icon="resource.icon" :title="title">
       <va-list
         ref="list"
-        :filters="['q']"
         v-model="selected"
         :options.sync="options"
         @create="(e) => onAction('create', e)"

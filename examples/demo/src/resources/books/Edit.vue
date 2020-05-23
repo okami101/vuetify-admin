@@ -13,7 +13,6 @@
           book: id,
         }"
         :filters="[
-          'q',
           { source: 'rating', type: 'rating' },
           {
             source: 'status',
