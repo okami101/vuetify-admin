@@ -6,9 +6,9 @@
     :options.sync="currentOptions"
     :value="value"
     :items-per-page="itemsPerPage"
-    :hide-default-footer="disablePagination"
+    :hide-default-footer="hideDefaultFooter || disablePagination"
     :footer-props="{
-      'items-per-page-options': rowsPerPage,
+      'items-per-page-options': itemsPerPageOptions,
       showFirstLastPage: true,
     }"
     @input="onSelect"
@@ -113,6 +113,15 @@
     <template v-slot:no-results>
       <slot :resource="resource"></slot>
     </template>
+    <template v-slot:footer>
+      <!-- @slot Best place for pagination. -->
+      <slot
+        name="footer"
+        :total="total"
+        :items-per-page="itemsPerPage"
+        :items-per-page-options="itemsPerPageOptions"
+      ></slot>
+    </template>
   </v-data-iterator>
 </template>
 
@@ -146,7 +155,7 @@ export default {
     /**
      * List of available selections of items per page.
      */
-    rowsPerPage: {
+    itemsPerPageOptions: {
       type: Array,
       default: () => [5, 10, 15, 25, 50, 100],
     },
@@ -170,7 +179,11 @@ export default {
      */
     disableQueryString: Boolean,
     /**
-     * Disable pagination.
+     * Hide default footer, notably default pagination.
+     */
+    hideDefaultFooter: Boolean,
+    /**
+     * Disable pagination, will hide default footer.
      */
     disablePagination: Boolean,
     /**

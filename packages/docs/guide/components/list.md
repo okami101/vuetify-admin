@@ -156,7 +156,7 @@ As you can see, `VaDataIterator` is mainly a data iterator that will provide ite
   <base-material-card>
     <va-data-iterator
       :items-per-page="8"
-      :rows-per-page="[4, 8, 16, 32]"
+      :items-per-page-options="[4, 8, 16, 32]"
     >
       <template v-slot="{ items }">
         <v-row>

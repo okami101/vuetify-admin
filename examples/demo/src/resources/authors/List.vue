@@ -12,7 +12,7 @@
         },
       ]"
       :items-per-page="8"
-      :rows-per-page="[8, 16, 32]"
+      :items-per-page-options="[8, 16, 32]"
       :include="['media', 'books']"
     >
       <template v-slot="{ items }">
