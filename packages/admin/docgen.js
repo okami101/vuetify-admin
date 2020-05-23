@@ -26,7 +26,21 @@ const writeJsonFile = (dir, file, json) => {
 Promise.all([
   ...glob.sync("src/components/(layout|ui)/**/[A-Z]*.vue").map(async (path) => {
     let doc = await parse(path);
+    doc.mixins = [];
     let tag = kebabCase(doc.displayName);
+
+    /**
+     * Get mixins.
+     */
+    ["props", "events"].forEach((type) => {
+      if (doc[type]) {
+        doc[type].forEach((p) => {
+          if (p.mixin && !doc.mixins.includes(p.mixin.name)) {
+            doc.mixins.push(p.mixin.name);
+          }
+        });
+      }
+    });
 
     /**
      * Generate json doc into VuePress for automatic markdown API.

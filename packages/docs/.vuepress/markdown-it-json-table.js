@@ -57,25 +57,41 @@ module.exports = (md) => {
     // Generate description paragraph
     generateParagraph(state, doc.description);
 
+    // Generate mixins links
+    if (doc.mixins && doc.mixins.length) {
+      generateParagraph(state, "**`MIXINS`**");
+
+      doc.mixins.forEach((mixin) => {
+        generateParagraph(
+          state,
+          `[${mixin}](/guide/components/mixins#${mixin.toLowerCase()})`
+        );
+      });
+    }
+
     // Generate props
     if (doc.props) {
-      generateParagraph(state, "**`PROPS`**");
+      let props = doc.props.filter((p) => !p.mixin);
 
-      generateTable(
-        state,
-        [
-          { name: "Props", property: "name", formatter: (v) => `**${v}**` },
-          { name: "Type", property: "type", formatter: (v) => `\`${v}\`` },
-          { name: "Description", property: "description" },
-        ],
-        doc.props.map((p) => {
-          return {
-            name: p.name,
-            description: p.description,
-            type: p.type.name,
-          };
-        })
-      );
+      if (props.length) {
+        generateParagraph(state, "**`PROPS`**");
+
+        generateTable(
+          state,
+          [
+            { name: "Props", property: "name", formatter: (v) => `**${v}**` },
+            { name: "Type", property: "type", formatter: (v) => `\`${v}\`` },
+            { name: "Description", property: "description" },
+          ],
+          props.map((p) => {
+            return {
+              name: p.name,
+              description: p.description,
+              type: p.type.name,
+            };
+          })
+        );
+      }
     }
 
     // Generate slots
