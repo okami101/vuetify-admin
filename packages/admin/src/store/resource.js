@@ -12,7 +12,7 @@ let {
 } = methods;
 
 export default ({ provider, resource, i18n }) => {
-  let { name, getName } = resource;
+  let { name, api, getName } = resource;
 
   Object.values(methods).forEach(
     (action) =>
@@ -35,7 +35,7 @@ export default ({ provider, resource, i18n }) => {
             });
           }
 
-          let response = await provider[action](name, {
+          let response = await provider[action](api || name, {
             locale: state.locale,
             ...params,
           });

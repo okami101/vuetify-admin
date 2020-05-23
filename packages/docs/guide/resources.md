@@ -65,9 +65,9 @@ The deactivation of actions is obviously only done on the client side. You must 
 
 ### Reuse API endpoints
 
-You can perfectly reuse the same backend resource api endpoint, aka store module for different resources. Imagine a first group of cruds pages that show only active resources and a separate second group of cruds pages that show only archived ones.
+You can perfectly reuse the same backend resource api endpoint for different resources. Imagine a first group of cruds pages that show only active resources and a separate second group of cruds pages that show only archived ones.
 
-Use the `api` property for that. It will correspond to the existing resource store module to use. Then every CRUD pages inside `src/resources/{name-1}` and `src/resources/{name-2}` will use the same store module, i.e. same API endpoint.
+Use the `api` property for that. It will override API default base path in resource store module. Then every CRUD pages inside `src/resources/{name-1}` and `src/resources/{name-2}` will use the same API endpoint.
 
 See this example :
 
