@@ -1,3 +1,7 @@
+/**
+ * Common props for all type of action button.
+ * @displayName VaMixinActionButton
+ */
 export default {
   props: {
     /**

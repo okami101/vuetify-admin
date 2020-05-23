@@ -3,8 +3,6 @@
  */
 import * as layout from "./components/layout";
 import * as ui from "./components/ui";
-import field from "./mixins/field";
-import input from "./mixins/input";
 
 /**
  * Main JS App
@@ -15,11 +13,6 @@ import VtecAdmin from "./admin";
  * Main admin entry
  */
 export default VtecAdmin;
-
-/**
- * Mixins
- */
-export { field, input };
 
 /**
  * Vue install plugin

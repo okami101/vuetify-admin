@@ -1,5 +1,9 @@
 import { mapActions } from "vuex";
 
+/**
+ * Allow any input to have editable behavior.
+ * @displayName VaMixinEditable
+ */
 export default {
   props: {
     /**
@@ -17,6 +21,9 @@ export default {
      * Interaction event
      */
     change(value) {
+      /**
+       * Triggered on any user input interaction.
+       */
       this.$emit("change", value);
 
       if (this.editable) {

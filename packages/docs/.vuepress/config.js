@@ -128,6 +128,7 @@ function getGuideSidebar(groupA, groupB, groupC) {
         "components/crud",
         "components/fields",
         "components/inputs",
+        "components/mixins",
       ],
     },
   ];

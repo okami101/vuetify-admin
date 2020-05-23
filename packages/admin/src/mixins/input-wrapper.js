@@ -1,3 +1,7 @@
+/**
+ * Common props for all inputs.
+ * @displayName VaMixinInputWrapper
+ */
 export default {
   props: {
     /**

@@ -1,5 +1,9 @@
 import Resource from "./resource";
 
+/**
+ * For single current item aware components.
+ * @displayName VaMixinItem
+ */
 export default {
   mixins: [Resource],
   props: {

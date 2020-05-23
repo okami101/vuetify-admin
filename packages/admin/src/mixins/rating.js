@@ -1,3 +1,7 @@
+/**
+ * Common props for rating field and input components.
+ * @displayName VaMixinRating
+ */
 export default {
   props: {
     /**

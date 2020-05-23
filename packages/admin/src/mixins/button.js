@@ -1,3 +1,7 @@
+/**
+ * Common props for generic button.
+ * @displayName VaMixinButton
+ */
 export default {
   props: {
     /**

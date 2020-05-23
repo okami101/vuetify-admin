@@ -23,8 +23,8 @@ const writeJsonFile = (dir, file, json) => {
   );
 };
 
-Promise.all(
-  glob.sync("src/components/(layout|ui)/**/[A-Z]*.vue").map(async (path) => {
+Promise.all([
+  ...glob.sync("src/components/(layout|ui)/**/[A-Z]*.vue").map(async (path) => {
     let doc = await parse(path);
     let tag = kebabCase(doc.displayName);
 
@@ -68,8 +68,17 @@ Promise.all(
         };
       }),
     });
-  })
-).then(() => {
+  }),
+  ...glob.sync("src/mixins/**/*.js").map(async (path) => {
+    let doc = await parse(path);
+    let tag = kebabCase(doc.displayName);
+
+    /**
+     * Generate json doc into VuePress for automatic markdown API.
+     */
+    writeJsonFile(docsDir, `${tag}.json`, doc);
+  }),
+]).then(() => {
   writeJsonFile(metasDir, "tags.json", tagsJson);
   writeJsonFile(metasDir, "attributes.json", attributesJson);
   writeJsonFile(metasDir, "web-types.json", {

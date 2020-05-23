@@ -1,6 +1,11 @@
+/**
+ * For input components that allow multiple value as array.
+ * @displayName VaMixinMultiple
+ */
 export default {
   props: {
     /**
+     * Value to be edited. Array by default if multiple.
      * @model
      */
     value: {

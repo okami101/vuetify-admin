@@ -2,6 +2,10 @@ import isEmpty from "lodash/isEmpty";
 import Choices from "./choices";
 import Search from "./search";
 
+/**
+ * For all input components that support resource reference, as `VaSelectInput`, `VaRadioGroupInput` or `VaAutocompleteInput`.
+ * @displayName VaMixinReference
+ */
 export default {
   mixins: [Choices, Search],
   props: {

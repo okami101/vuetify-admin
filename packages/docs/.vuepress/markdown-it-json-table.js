@@ -154,9 +154,11 @@ module.exports = (md) => {
         let value = data[i][property];
         token = state.push("td_open", "td", 1);
 
-        token = state.push("inline", "", 0);
-        token.content = formatter ? formatter(value) : value;
-        token.children = [];
+        if (value) {
+          token = state.push("inline", "", 0);
+          token.content = formatter ? formatter(value) : value;
+          token.children = [];
+        }
 
         token = state.push("td_close", "td", -1);
       });

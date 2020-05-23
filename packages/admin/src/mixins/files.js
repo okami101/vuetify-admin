@@ -1,6 +1,10 @@
 import Field from "./field";
 import get from "lodash/get";
 
+/**
+ * Common props for all file upload inputs.
+ * @displayName VaMixinFiles
+ */
 export default {
   inject: {
     formState: { default: undefined },
