@@ -1,6 +1,6 @@
 <template>
   <va-action-button
-    :show-label="showLabel"
+    :hide-label="hideLabel"
     :label="label"
     :icon="icon"
     :text="text"

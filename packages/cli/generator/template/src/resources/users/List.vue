@@ -34,7 +34,7 @@
             disable-create-redirect
             disable-show-redirect
             disable-edit-redirect
-            @row-action="onAction"
+            @item-action="onAction"
           >
             <template v-slot:item.actions="{ resource, item }">
               <impersonate-button

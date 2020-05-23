@@ -1,7 +1,7 @@
 <template>
   <va-action-button
     v-if="item && canShow('edit')"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.edit')"
     icon="mdi-pencil"
     :color="color || 'blue'"

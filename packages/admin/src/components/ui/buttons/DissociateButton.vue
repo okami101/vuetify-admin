@@ -1,6 +1,6 @@
 <template>
   <va-action-button
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.dissociate')"
     icon="mdi-link-off"
     :color="color || 'red'"

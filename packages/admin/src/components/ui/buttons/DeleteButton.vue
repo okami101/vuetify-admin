@@ -1,7 +1,7 @@
 <template>
   <va-action-button
     v-if="hasAction('delete')"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.delete')"
     icon="mdi-trash-can"
     :color="color || 'red'"

@@ -1,7 +1,7 @@
 <template>
   <va-action-button
     v-if="canShow('create')"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.create')"
     icon="mdi-plus"
     :color="color || 'success'"

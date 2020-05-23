@@ -422,7 +422,7 @@ export default {
        * Triggered on action on specific row.
        * This event will return a freshed item Object from your API.
        */
-      this.$emit("row-action", { action, title, id, item: data });
+      this.$emit("item-action", { action, title, id, item: data });
     },
   },
 };

@@ -16,9 +16,9 @@ export default {
       required: true,
     },
     /**
-     * Show label next of icon. As tooltip by default.
+     * Hide label next of icon. Will appear as tooltip.
      */
-    showLabel: Boolean,
+    hideLabel: Boolean,
     /**
      * Color of button.
      */

@@ -1,6 +1,6 @@
 <template>
   <va-action-button
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.save')"
     icon="mdi-floppy"
     :color="color || 'primary'"

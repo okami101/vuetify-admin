@@ -1,7 +1,7 @@
 <template>
   <va-action-button
     v-if="item && canShow('show')"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.show')"
     icon="mdi-eye"
     :color="color || 'info'"

@@ -28,7 +28,6 @@
             icon="mdi-publish"
             color="success"
             :action="{ active: true }"
-            show-label
             text
           ></va-bulk-action-button>
           <va-bulk-action-button
@@ -38,7 +37,6 @@
             icon="mdi-download"
             color="orange"
             :action="{ active: false }"
-            show-label
             text
           ></va-bulk-action-button>
         </template>
@@ -67,7 +65,7 @@
             disable-create-redirect
             disable-show-redirect
             disable-edit-redirect
-            @row-action="onAction"
+            @item-action="onAction"
           >
             <template v-slot:roles="{ value }">
               <v-chip-group column>

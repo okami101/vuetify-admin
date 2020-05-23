@@ -3,7 +3,7 @@
     v-if="item && ![1, user.id].includes(item.id)"
     :item="item"
     @click="impersonate"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('users.impersonate')"
     icon="mdi-lock"
     color="warning"

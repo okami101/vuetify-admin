@@ -1,7 +1,7 @@
 <template>
   <va-action-button
     v-if="item && canShow('create')"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.clone')"
     icon="mdi-content-duplicate"
     :color="color || 'success'"

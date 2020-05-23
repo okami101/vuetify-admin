@@ -137,9 +137,76 @@ You will have the same bahavior for `show`, `edit` and `clone` actions inside `V
 Note that this buttons will autohide if no action exist for this button. A subscription to relevent action will force the button to reappear.
 :::
 
+##### Export
+
+The export button will process a CSV file download on client side. It simply takes the current search context and refetch data on server side, while keeping current filters and sorts without any pagination infos.
+
+##### Custom actions
+
+You can add custom actions via `actions` slot :
+
+```vue {4-6}
+<template>
+  <base-material-card>
+    <va-data-iterator>
+      <template v-slot:actions>
+        <my-custom-button></my-custom-button>
+      </template>
+      <template v-slot="props">
+        <!-- VaDataTable -->
+      </template>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+```
+
+:::warning DEFAULT V-SLOT
+In case you need other slots than default one, you must move `v-slot="props"` into immediate parent template of list layout as shown above.
+:::
+
 #### Bulk actions
 
-TODO
+The data iterator support all sort of bulk operations, whether it be updating or deleting. This feature will use `updateMany` and `deleteMany` methods of you data provider. All available bulk actions will appear at header as soon as you have selected some items.
+
+![bulk-actions](/assets/samples/bulk-actions.png)
+
+##### Custom bulk actions
+
+By default VA provides a bulk delete action, but you add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](buttons#vabulkactionbutton) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
+
+The next example will show you a bulk publish and unpublish bulk actions :
+
+```vue
+<template>
+  <base-material-card>
+    <va-data-iterator>
+      <template v-slot:actions>
+        <va-bulk-action-button
+          resource="users"
+          v-model="selected"
+          :label="$t('users.enable')"
+          icon="mdi-publish"
+          color="success"
+          :action="{ active: true }"
+          text
+        ></va-bulk-action-button>
+        <va-bulk-action-button
+          resource="users"
+          v-model="selected"
+          :label="$t('users.disable')"
+          icon="mdi-download"
+          color="orange"
+          :action="{ active: false }"
+          text
+        ></va-bulk-action-button>
+      </template>
+      <template v-slot="props">
+        <!-- VaDataTable -->
+      </template>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+```
 
 #### Pagination
 

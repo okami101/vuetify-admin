@@ -1,6 +1,6 @@
 <template>
   <va-action-button
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.associate')"
     icon="mdi-link-plus"
     :color="color || 'success'"

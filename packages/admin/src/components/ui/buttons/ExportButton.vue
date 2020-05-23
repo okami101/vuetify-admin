@@ -1,7 +1,7 @@
 <template>
   <va-action-button
     v-if="hasAction('list')"
-    :show-label="!icon"
+    :hide-label="icon"
     :label="$t('va.actions.export')"
     icon="mdi-download"
     :color="color || 'success'"
