@@ -86,7 +86,7 @@
         <slot name="cell.actions" v-bind="{ resource, item }">
           <va-show-button
             v-if="!disableShow"
-            :show="!!$listeners.show"
+            :disable-redirect="disableShowRedirect"
             :resource="resource"
             :item="item"
             icon
@@ -94,7 +94,7 @@
           ></va-show-button>
           <va-edit-button
             v-if="!disableEdit"
-            :show="!!$listeners.edit"
+            :disable-redirect="disableEditRedirect"
             :resource="resource"
             :item="item"
             icon
@@ -104,7 +104,7 @@
           <slot name="item.actions" v-bind="{ resource, item }"></slot>
           <va-clone-button
             v-if="!disableClone"
-            :show="!!$listeners.create"
+            :disable-redirect="disableCreateRedirect"
             :resource="resource"
             :item="item"
             icon
@@ -266,6 +266,18 @@ export default {
      */
     disableActions: Boolean,
     /**
+     * Disable create redirection. Will force clone button to show.
+     */
+    disableCreateRedirect: Boolean,
+    /**
+     * Disable show redirection. Will force show button to show.
+     */
+    disableShowRedirect: Boolean,
+    /**
+     * Disable edit redirection. Will force edit button to show.
+     */
+    disableEditRedirect: Boolean,
+    /**
      * Association infos object in case of this list is related to a current show or edit resource page.
      * Enable the dissociation between resources directly by an additional dissociation action.
      */
@@ -385,7 +397,7 @@ export default {
       }
     },
     async onAction(action, item) {
-      if (!this.$listeners[action]) {
+      if (!this[`disable${upperFirst(action)}Redirect`]) {
         return;
       }
 
@@ -407,24 +419,10 @@ export default {
       this.$store.commit(`${this.resource}/setItem`, data);
 
       /**
-       * Allows you to use `show` event for custom action on your side.
-       * If event subscribed, it will force showing of `show` button even if no create action available for this resource.
+       * Triggered on action on specific row.
        * This event will return a freshed item Object from your API.
-       * @event show
        */
-      /**
-       * Allows you to use `edit` event for custom action on your side.
-       * If event subscribed, it will force showing of `edit` button even if no create action available for this resource.
-       * This event will return a freshed item Object from your API.
-       * @event edit
-       */
-      /**
-       * Allows you to use `create` event for custom action on your side.
-       * If event subscribed, it will force showing of `clone` button even if no create action available for this resource.
-       * This event will return a freshed item Object from your API for allowing prefill form create data.
-       * @event create
-       */
-      this.$emit(action, { title, id, item: data });
+      this.$emit("row-action", { action, title, id, item: data });
     },
   },
 };

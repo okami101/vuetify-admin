@@ -76,9 +76,9 @@
         </v-menu>
         <va-create-button
           v-if="!disableCreate"
-          :show="!!$listeners.create"
+          :disable-redirect="disableCreateRedirect"
           :resource="resource"
-          @click="onCreate"
+          @click="onAction('create')"
         ></va-create-button>
         <!-- @slot Put here some global action with components based on VaActionButton. -->
         <slot name="actions"></slot>
@@ -201,6 +201,10 @@ export default {
      * The export allows client-side CSV download and keep active filters while disabling pagination.
      */
     disableExport: Boolean,
+    /**
+     * Disable create redirection. Will force create button to show.
+     */
+    disableCreateRedirect: Boolean,
     /**
      * Disable the global search.
      */
@@ -479,18 +483,17 @@ export default {
     async onDelete(item) {
       this.fetchData();
     },
-    onCreate() {
-      if (!this.$listeners.create) {
+    onAction(action) {
+      if (!this.disableCreateRedirect) {
         return;
       }
 
       let title = this.$t(`resources.${this.resource}.titles.create`);
 
       /**
-       * Allows you to use `create` event for custom action on your side.
-       * If event subscribed, it will force showing of `create` button even if no create action available for this resource.
+       * Allows you to use global action event for custom action on your side.
        */
-      this.$emit("create", { title });
+      this.$emit("action", { action, title });
     },
     async onAssociate() {
       await this.update({

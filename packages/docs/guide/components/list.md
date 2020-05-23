@@ -123,11 +123,19 @@ Other filter properties will correspond to props that you can use for inputs. Se
 
 ##### Internal filters
 
-In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's simply an object of key-value that will be automatically sent to your data provider, merged with any other active filters.
+In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
 
 #### Actions
 
-TODO
+This list component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
+
+:::tip ACTION EVENTS
+You're not forced keep the default redirect behavior button. If you prefer a create event, juste subscribe to `create` event and the button will not redirect to linked action page.
+
+You will have the same bahavior for `show`, `edit` and `clone` actions inside `VaDataTable`. A subscribe to each respective event will disable redirect.
+
+Note that this buttons will autohide if no action exist for this button. A subscription to relevent action will force the button to reappear.
+:::
 
 #### Bulk actions
 
@@ -238,3 +246,5 @@ It will allow you to have this kind of nice card list layout while conserving al
 ![custom-list-layout](/assets/samples/custom-list-layout.png)
 
 ### VaDataTable
+
+|> docgen va-data-table
