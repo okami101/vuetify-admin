@@ -14,6 +14,11 @@
           "type": "string",
           "examples": ["Monster | Monsters"]
         },
+        "api": {
+          "description": "Will override API default base path in resource store module.",
+          "type": "string",
+          "examples": ["old-monsters"]
+        },
         "icon": {
           "description": "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
           "type": "string"

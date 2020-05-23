@@ -21,10 +21,10 @@
             src: 'thumbnails.small',
             contain: true,
           },
-          { source: 'name', link: 'show' },
+          { source: 'name', link: 'show', sortable: true },
           { source: 'type', type: 'select' },
-          'founder',
-          'headquarter',
+          { source: 'founder', sortable: true },
+          { source: 'headquarter', sortable: true },
           { source: 'url', type: 'url' },
           { source: 'active', type: 'boolean' },
           'address.street',
@@ -32,15 +32,13 @@
             source: 'address',
             label: $t('address'),
           },
-          { source: 'opening_date', type: 'date', format: 'long' },
-          { source: 'books_count', type: 'number' },
-        ]"
-        :sortable="[
-          'name',
-          'founder',
-          'headquarter',
-          'opening_date',
-          'books_count',
+          {
+            source: 'opening_date',
+            type: 'date',
+            format: 'long',
+            sortable: true,
+          },
+          { source: 'books_count', type: 'number', sortable: true },
         ]"
         v-bind="props"
         v-model="selected"

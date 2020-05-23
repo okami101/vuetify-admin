@@ -30,6 +30,10 @@ You will find here all mixins reference used inside VtecAdmin.
 
 |> docgen va-mixin-action-button
 
+## VaMixinRedirectButton
+
+|> docgen va-mixin-redirect-button
+
 ## VaMixinList
 
 |> docgen va-mixin-list

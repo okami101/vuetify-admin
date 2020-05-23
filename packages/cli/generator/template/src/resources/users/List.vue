@@ -15,17 +15,19 @@
         <template v-slot="props">
           <va-data-table
             :fields="[
-              'name',
+              { source: 'name', sortable: true },
               { source: 'email', type: 'email' },
               {
                 source: 'created_at',
                 type: 'date',
                 format: 'long',
+                sortable: true,
               },
               {
                 source: 'updated_at',
                 type: 'date',
                 format: 'long',
+                sortable: true,
               },
             ]"
             v-bind="props"

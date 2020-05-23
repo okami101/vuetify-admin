@@ -17,6 +17,7 @@ const options = {
     locale:
       "Default vue-i18n locale used for register resource labels (name and fields).",
     name: "Localized name of resource. Will be shown on menus and page titles.",
+    api: "Will override API default base path in resource store module.",
     icon:
       "Icon of resource for menus and list pages. Should be a supported mdi icon (mdi-account, etc.).",
     label:
@@ -29,7 +30,6 @@ const options = {
       "For more advanced generation, you can even specify all fields used by this resource. This fields will be generated on each crud views. Each field can specify name (required), localized label, and specific field widget options.",
     columns: "Fields that should be shown on datatable list.",
     sortable: "Fields that can be sortable.",
-    searchable: "Enable datatable global search.",
     filterable:
       "Fields that can be filtered individualy. Will appear on advanced filter on list page.",
     include: "Related resources to include on list page with eager loading.",
@@ -134,9 +134,8 @@ async function service(resourceName, args = {}, api) {
     if (template === "list") {
       data.sortable = util.inspect(args.sortable || []);
       data.include = util.inspect(args.include || []);
-      data.filters = util.inspect([
-        ...(args.searchable ? ["q"] : []),
-        ...(args.filterable || []).map((name) => {
+      data.filters = util.inspect(
+        (args.filterable || []).map((name) => {
           let field = fields.find((f) => f.name === name);
 
           if (!field || field.type === "text") {
@@ -146,12 +145,13 @@ async function service(resourceName, args = {}, api) {
           let filter = {
             source: field.name,
             type: field.form && field.form.type ? field.form.type : field.type,
+            ...(args.sortable.inlcludes(field.name) && { sortable: true }),
             ...(field.attributes || {}),
             ...(field.filter || {}),
           };
           return filter;
-        }),
-      ]);
+        })
+      );
       data.fields = util.inspect(
         (args.columns || []).map((name) => {
           let field = fields.find((f) => f.name === name);
@@ -233,7 +233,7 @@ async function service(resourceName, args = {}, api) {
     resources.default.push(resourceObject);
   }
 
-  ["icon", "label", "actions", "permissions", "translatable"].forEach(
+  ["api", "icon", "label", "actions", "permissions", "translatable"].forEach(
     (prop) => {
       if (args[prop]) {
         resourceObject[prop] = args[prop];

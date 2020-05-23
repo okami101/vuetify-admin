@@ -54,11 +54,12 @@
             chip: true,
             color: 'orange',
           },
-          'title',
+          { source: 'title', sortable: true },
           {
             source: 'price',
             type: 'number',
             format: 'currency',
+            sortable: true,
           },
           { source: 'commentable', type: 'boolean', editable: true },
           {
@@ -73,10 +74,10 @@
             source: 'publication_date',
             type: 'date',
             format: 'long',
+            sortable: true,
           },
           'authors',
         ]"
-        :sortable="['title', 'price', 'publication_date']"
         show-expand
         v-bind="props"
         v-model="selected"

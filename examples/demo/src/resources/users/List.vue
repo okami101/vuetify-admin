@@ -43,7 +43,7 @@
         <template v-slot="props">
           <va-data-table
             :fields="[
-              'name',
+              { source: 'name', sortable: true },
               { source: 'email', type: 'email' },
               { source: 'active', type: 'boolean', editable: true },
               'roles',
@@ -51,14 +51,15 @@
                 source: 'created_at',
                 type: 'date',
                 format: 'long',
+                sortable: true,
               },
               {
                 source: 'updated_at',
                 type: 'date',
                 format: 'long',
+                sortable: true,
               },
             ]"
-            :sortable="['name', 'created_at', 'updated_at']"
             v-bind="props"
             v-model="selected"
             :options.sync="options"

@@ -179,20 +179,14 @@ export default {
     /**
      * List of columns for each property of resource data.
      * Each column can be a simple string or a full object with advanced field properties.
+     * A specific `sortable` property can be setted if you need the column to be sortable.
+     * By default all text, date and number will be sortable.
      * A specific `align` property can be setted with "left", "center", "right".
      * By default all number fields are aligned to right.
      * If you set `editable`, the input version will be rendered instead of field.
      * That will allow quick live edit on fly.
      */
     fields: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * List of sortable columns.
-     * If empty, datatable will use a default behavior where all "text", "date" and "number" are sortable.
-     */
-    sortable: {
       type: Array,
       default: () => [],
     },
@@ -297,7 +291,7 @@ export default {
         return {
           text: field.label,
           value: field.source,
-          sortable: this.getDefaultSort(field),
+          sortable: field.sortable,
           align: field.align || this.getDefaultAlign(field),
         };
       });
@@ -359,14 +353,8 @@ export default {
       this.$emit("update:options", this.currentOptions);
     },
     getAttributes(field) {
-      let { type, link, ...attributes } = field;
+      let { type, link, sortable, align, ...attributes } = field;
       return attributes;
-    },
-    getDefaultSort(field) {
-      if (this.sortable.length) {
-        return this.sortable.includes(field.source);
-      }
-      return !field.type || ["text", "date", "number"].includes(field.type);
     },
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {

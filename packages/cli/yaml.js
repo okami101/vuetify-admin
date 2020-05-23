@@ -48,15 +48,15 @@ async function service(file, args = {}, api) {
       make.service(name, {
         output: args.output || "./src/resources",
         name: resource.name,
+        api: resource.api,
         icon: resource.icon,
         label: resource.label,
         actions: resource.actions,
-        translatable: !!resource.translatable,
+        translatable: !isEmpty(resource.translatable),
         columns: resource.columns,
         include: resource.include,
         filterable: resource.filterable,
         sortable: resource.sortable,
-        searchable: !isEmpty(resource.searchable),
         locale: args.locale || "en",
         fields,
       });

@@ -250,9 +250,91 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 #### Fields
 
-TODO
+Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter to use for data. As for filters above, you need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields). All others object properties will be merged into field as props or attributes.
 
-#### Column templating
+```vue {9-47}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+    >
+      <va-data-table
+        :fields="[
+          { source: 'isbn', link: 'show' },
+          {
+            source: 'cover',
+            type: 'image',
+            link: 'show',
+            src: 'thumbnails.small',
+          },
+          { source: 'category', type: 'select', chip: true },
+          {
+            source: 'publisher',
+            type: 'reference',
+            reference: 'publishers',
+            text: 'name',
+            chip: true,
+            color: 'orange',
+          },
+          { source: 'title', sortable: true },
+          {
+            source: 'price',
+            type: 'number',
+            format: 'currency',
+            sortable: true,
+          },
+          { source: 'commentable', type: 'boolean', editable: true },
+          {
+            source: 'formats',
+            type: 'array',
+            select: true,
+            color: 'yellow',
+            small: true,
+            column: true,
+          },
+          {
+            source: 'publication_date',
+            type: 'date',
+            format: 'long',
+            sortable: true,
+          },
+          'authors',
+        ]"
+        show-expand
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+        <template v-slot:authors="{ value }">
+          <v-chip-group column>
+            <va-reference-field
+              reference="authors"
+              v-for="(item, i) in value"
+              :key="i"
+              color="primary"
+              small
+              chip
+              :item="item"
+            >
+            </va-reference-field>
+          </v-chip-group>
+        </template>
+        <template v-slot:expanded-item="{ item }">
+          {{ item.description }}
+        </template>
+      </va-data-table>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+```
+
+:::tip SORTABLE AND ALIGN
+Each field support 2 specifics `sortable` and `align` attributes. Set `sortable` to true for activating server-side sort. You can Use `left`, `right`, `center` for each cell `align` attribute.
+:::
+
+#### Advanced column templating
 
 ## Usage outside list page
 

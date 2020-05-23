@@ -38,7 +38,7 @@ A resource object must follow this structure :
 | Property               | Type                 | Description                                                                                           |
 | ---------------------- | -------------------- | ----------------------------------------------------------------------------------------------------- |
 | **name**               | `string`             | A mandatory unique slug name which will be used for client-side router base path.                     |
-| **api**                | `string`             | Correspond to API base path calls and store module name. Equal to above name by default.              |
+| **api**                | `string`             | Correspond to API base path calls. Equal to above name by default.                                    |
 | **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/). |
 | **label**              | `string`, `function` | Return an identifiable label of resource.                                                             |
 | **actions**            | `array`              | List of all valid actions for this resource.                                                          |

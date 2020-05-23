@@ -46,16 +46,16 @@
             chip: true,
             color: (v) => $statusColor(v),
           },
-          { source: 'rating', type: 'rating' },
+          { source: 'rating', type: 'rating', sortable: true },
           'quality',
-          'author',
+          { source: 'author', sortable: true },
           {
             source: 'publication_date',
             type: 'date',
             format: 'long',
+            sortable: true,
           },
         ]"
-        :sortable="['rating', 'author', 'publication_date']"
         v-bind="props"
         show-expand
         v-model="selected"
