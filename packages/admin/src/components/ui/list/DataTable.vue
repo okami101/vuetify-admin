@@ -153,7 +153,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 /**
- * Dumb datatable component, you will need data iterator as VaList in order to make it usable.
+ * Dumb datatable component, you will need data iterator as VaDataIterator in order to make it usable.
  * This component allows you to template all fields columns.
  * @displayName VaDataTable
  */
@@ -201,7 +201,7 @@ export default {
      */
     dense: Boolean,
     /**
-     * Put the datatable on a loading state. Used by VaList while loading data.
+     * Put the datatable on a loading state. Used by VaDataIterator while loading data.
      */
     loading: Boolean,
     /**
@@ -225,7 +225,7 @@ export default {
     },
     /**
      * Vuetify context state of the list with current page and sorting.
-     * Should by synchronized with VaList.
+     * Should by synchronized with VaDataIterator.
      * DataTable manage only sorting here.
      */
     options: {
@@ -233,7 +233,7 @@ export default {
       default: () => {},
     },
     /**
-     * Total of items on server side, prefilled from VaList by `total` return by data provider.
+     * Total of items on server side, prefilled from VaDataIterator by `total` return by data provider.
      * Disable client-side sorting if setted.
      */
     serverItemsLength: Number,
@@ -336,7 +336,7 @@ export default {
     onSelect(selected) {
       /**
        * Triggered when item is selected via checkbox selection.
-       * Synchronize it with VaList for enabling bulk action context.
+       * Synchronize it with VaDataIterator for enabling bulk action context.
        */
       this.$emit("input", selected);
     },

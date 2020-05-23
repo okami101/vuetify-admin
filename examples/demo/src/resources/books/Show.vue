@@ -1,5 +1,5 @@
 <template>
-  <va-show>
+  <va-show-layout>
     <v-row justify="center">
       <v-col lg="8">
         <base-material-tabs-card
@@ -78,7 +78,7 @@
         </base-material-tabs-card>
       </v-col>
     </v-row>
-  </va-show>
+  </va-show-layout>
 </template>
 
 <script>

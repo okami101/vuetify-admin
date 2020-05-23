@@ -14,7 +14,7 @@ import { mapState, mapMutations } from "vuex";
 /**
  * Component to use for showing information on aside from any components.
  * Use Portal Vue plugin internally for integrate within VaAside.
- * @displayName VaAsideContent
+ * @displayName VaAsideLayout
  */
 export default {
   props: {

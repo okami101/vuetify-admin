@@ -127,7 +127,7 @@ import { mapState, mapActions } from "vuex";
  * List data iterator component, perfect for list CRUD page as well as any resource browsing standalone component.
  * Allow resource paginating and filtering. Use current query string context for initial state by default.
  * The list layout on default slot is fully customizable and can be used for separate `VaDataTable` component.
- * @displayName VaList
+ * @displayName VaDataIterator
  */
 export default {
   mixins: [Resource, Search],
@@ -159,7 +159,7 @@ export default {
     },
     /**
      * Vuetify context state of the list with current page and sorting.
-     * VaList manage only pagination here.
+     * VaDataIterator manage only pagination here.
      */
     options: {
       type: Object,

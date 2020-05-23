@@ -24,53 +24,51 @@ const writeJsonFile = (dir, file, json) => {
 };
 
 Promise.all(
-  glob
-    .sync("src/components/(core|layout|ui)/**/[A-Z]*.vue")
-    .map(async (path) => {
-      let doc = await parse(path);
-      let tag = kebabCase(doc.displayName);
+  glob.sync("src/components/(layout|ui)/**/[A-Z]*.vue").map(async (path) => {
+    let doc = await parse(path);
+    let tag = kebabCase(doc.displayName);
 
-      /**
-       * Generate json doc into VuePress for automatic markdown API.
-       */
-      writeJsonFile(docsDir, `${tag}.json`, doc);
+    /**
+     * Generate json doc into VuePress for automatic markdown API.
+     */
+    writeJsonFile(docsDir, `${tag}.json`, doc);
 
-      /**
-       * Generate Vetur metas
-       */
-      tagsJson[tag] = {
-        description: doc.description,
-        attributes: (doc.props || []).map((p) => p.name),
+    /**
+     * Generate Vetur metas
+     */
+    tagsJson[tag] = {
+      description: doc.description,
+      attributes: (doc.props || []).map((p) => p.name),
+    };
+
+    (doc.props || []).forEach((p) => {
+      attributesJson[`${tag}/${p.name}`] = {
+        description: p.description,
+        type: p.type.name,
       };
+    });
 
-      (doc.props || []).forEach((p) => {
-        attributesJson[`${tag}/${p.name}`] = {
+    /**
+     * Generate Jetbrains metas
+     */
+    webTypesJson.push({
+      name: doc.displayName,
+      description: doc.description,
+      attributes: (doc.props || []).map((p) => {
+        return {
+          name: p.name,
+          value: {
+            kind: "expression",
+            type: p.type.name,
+          },
+          ...(p.type.name === "boolean" &&
+            !p.defaultValue && { default: "false" }),
+          ...(p.type.name === "boolean" && { type: p.type.name }),
           description: p.description,
-          type: p.type.name,
         };
-      });
-
-      /**
-       * Generate Jetbrains metas
-       */
-      webTypesJson.push({
-        name: doc.displayName,
-        description: doc.description,
-        attributes: (doc.props || []).map((p) => {
-          return {
-            name: p.name,
-            value: {
-              kind: "expression",
-              type: p.type.name,
-            },
-            ...(p.type.name === "boolean" &&
-              !p.defaultValue && { default: "false" }),
-            ...(p.type.name === "boolean" && { type: p.type.name }),
-            description: p.description,
-          };
-        }),
-      });
-    })
+      }),
+    });
+  })
 ).then(() => {
   writeJsonFile(metasDir, "tags.json", tagsJson);
   writeJsonFile(metasDir, "attributes.json", attributesJson);

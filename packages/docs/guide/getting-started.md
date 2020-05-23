@@ -189,7 +189,7 @@ Then next step is to define CRUD pages for each resource.
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-list
+    <va-data-iterator
       v-model="selected"
       :options.sync="options"
       v-slot="props"
@@ -205,7 +205,7 @@ Then next step is to define CRUD pages for each resource.
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}
         </template>
       </va-data-table>
-    </va-list>
+    </va-data-iterator>
   </base-material-card>
 </template>
 
@@ -243,7 +243,7 @@ export default {
 
 ```vue
 <template>
-  <va-show>
+  <va-show-layout>
     <v-row justify="center">
       <v-col lg="4">
         <base-material-card>
@@ -273,7 +273,7 @@ export default {
         </base-material-card>
       </v-col>
     </v-row>
-  </va-show>
+  </va-show-layout>
 </template>
 
 <script>
@@ -290,9 +290,9 @@ export default {
 
 ```vue
 <template>
-  <va-create>
+  <va-create-layout>
     <reviews-form :title="title" :item="item"></reviews-form>
-  </va-create>
+  </va-create-layout>
 </template>
 
 <script>
@@ -309,9 +309,9 @@ export default {
 
 ```vue
 <template>
-  <va-edit>
+  <va-edit-layout>
     <reviews-form :id="id" :title="title" :item="item"></reviews-form>
-  </va-edit>
+  </va-edit-layout>
 </template>
 
 <script>

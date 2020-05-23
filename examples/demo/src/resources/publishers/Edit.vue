@@ -1,11 +1,11 @@
 <template>
-  <va-edit>
+  <va-edit-layout>
     <publishers-form :id="id" :title="title" :item="item"></publishers-form>
     <base-material-card
       icon="mdi-book"
       :title="$tc('resources.books.name', 10)"
     >
-      <va-list
+      <va-data-iterator
         resource="books"
         disable-query-string
         :items-per-page="10"
@@ -77,9 +77,9 @@
             </v-chip-group>
           </template>
         </va-data-table>
-      </va-list>
+      </va-data-iterator>
     </base-material-card>
-  </va-edit>
+  </va-edit-layout>
 </template>
 
 <script>

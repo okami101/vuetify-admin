@@ -137,9 +137,9 @@ You can easily show hide each link by using [some authorization helpers](../auth
 
 |> docgen va-aside
 
-#### VaAsideContent
+#### VaAsideLayout
 
-|> docgen va-aside-content
+|> docgen va-aside-layout
 
 ### VaMessages
 

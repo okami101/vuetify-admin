@@ -1,11 +1,11 @@
 <template>
   <div>
-    <va-aside-content v-model="asideOpened" :title="asideTitle">
+    <va-aside-layout v-model="asideOpened" :title="asideTitle">
       <users-show v-if="show" :item="item"></users-show>
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
-    </va-aside-content>
+    </va-aside-layout>
     <base-material-card :icon="resource.icon" :title="title">
-      <va-list
+      <va-data-iterator
         ref="list"
         v-model="selected"
         :options.sync="options"
@@ -43,7 +43,7 @@
             </template>
           </va-data-table>
         </template>
-      </va-list>
+      </va-data-iterator>
     </base-material-card>
   </div>
 </template>

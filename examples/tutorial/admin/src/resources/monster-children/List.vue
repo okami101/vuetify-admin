@@ -1,6 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-list
+    <va-data-iterator
       :filters="[
         {
           source: 'monster',
@@ -28,7 +28,7 @@
         :options.sync="options"
       >
       </va-data-table>
-    </va-list>
+    </va-data-iterator>
   </base-material-card>
 </template>
 

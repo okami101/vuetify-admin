@@ -1,5 +1,5 @@
 <template>
-  <va-show :title="title">
+  <va-show-layout :title="title">
     <v-row justify="center">
       <v-col lg="4">
         <v-card v-if="item">
@@ -33,7 +33,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </va-show>
+  </va-show-layout>
 </template>
 
 <script>

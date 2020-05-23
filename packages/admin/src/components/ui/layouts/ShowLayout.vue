@@ -24,7 +24,7 @@ import Item from "../../../mixins/item";
 /**
  * Page layout for resource detail showing.
  * Contain specific related action as deleting, cloning, editing as well as translation action.
- * @displayName VaShow
+ * @displayName VaShowLayout
  */
 export default {
   mixins: [Item],

@@ -1,3 +1,4 @@
+import Layout from "./Layout";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
@@ -6,4 +7,13 @@ import Breadcrumbs from "./Breadcrumbs";
 import Messages from "./Messages";
 import ActionPage from "./ActionPage";
 
-export { AppBar, Footer, Sidebar, Aside, Breadcrumbs, ActionPage, Messages };
+export {
+  Layout,
+  AppBar,
+  Footer,
+  Sidebar,
+  Aside,
+  Breadcrumbs,
+  ActionPage,
+  Messages,
+};

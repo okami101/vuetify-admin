@@ -1,11 +1,11 @@
 <template>
-  <va-edit>
+  <va-edit-layout>
     <books-form :id="id" :title="title" :item="item"></books-form>
     <base-material-card
       icon="mdi-comment"
       :title="$tc('resources.reviews.name', 10)"
     >
-      <va-list
+      <va-data-iterator
         resource="reviews"
         disable-query-string
         :items-per-page="10"
@@ -60,9 +60,9 @@
             {{ item.rating >= 3 ? $t("good") : $t("bad") }}
           </template>
         </va-data-table>
-      </va-list>
+      </va-data-iterator>
     </base-material-card>
-  </va-edit>
+  </va-edit-layout>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
-  <va-edit>
+  <va-edit-layout>
     <monsters-form :id="id" :title="title" :item="item"></monsters-form>
-  </va-edit>
+  </va-edit-layout>
 </template>
 
 <script>

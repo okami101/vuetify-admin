@@ -16,7 +16,7 @@ import Resource from "../../../mixins/resource";
 
 /**
  * Page layout for resource creation.
- * @displayName VaCreate
+ * @displayName VaCreateLayout
  */
 export default {
   mixins: [Resource],

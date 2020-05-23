@@ -1,6 +1,6 @@
 # List
 
-The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaList` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full datatable by using `VaDataTable` components, but it can be totally replaced by anything you want.
+The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaDataIterator` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full datatable by using `VaDataTable` components, but it can be totally replaced by anything you want.
 
 ![list](/assets/list.png)
 
@@ -10,9 +10,9 @@ Note that for every CRUD pages you are free to put anything you want, and you ha
 Since all data provider methods are available in a dedicated store module for each resource, it's not that complicated to create your own list components that will fetch your data. And you can of course use the current global `$axios` instance if you need to fetch all sort of custom data that coming out of data provider logic. See [usage here](../data-providers#store).
 :::
 
-## VaList
+## VaDataIterator
 
-|> docgen va-list
+|> docgen va-data-iterator
 
 ### Usage
 
@@ -21,7 +21,7 @@ Here a quick sample usage within the `VaDataTable` component :
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-list v-slot="props" v-model="selected" :options.sync="options">
+    <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
       <va-data-table
         :fields="[
           { source: 'name', link: 'show' },
@@ -37,7 +37,7 @@ Here a quick sample usage within the `VaDataTable` component :
         :options.sync="options"
       >
       </va-data-table>
-    </va-list>
+    </va-data-iterator>
   </base-material-card>
 </template>
 
@@ -58,14 +58,14 @@ It will produce this simple structure :
 
 ![list](/assets/samples/list.png)
 
-Note that `VaList` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
+Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
 :::tip DISABLE GLOBAL SEARCH
 A global search filter will be enabled by default. To disable it, use `disable-global-search` prop.
 :::
 
 :::warning SHOW DATA
-`VaList` is only responsible for data iteration UI controls. You will need to display the data list on your own or use the providing `VaDataTable`.
+`VaDataIterator` is only responsible for data iteration UI controls. You will need to display the data list on your own or use the providing `VaDataTable`.
 :::
 
 #### Pagination
@@ -90,14 +90,14 @@ You're not forced to use it on list page ! As the same way for most of VA compon
 
 But for that you will probably need to explicitly set the main `resource` prop which is present on all resource aware VA components. If not defined, the default resource will be the one linked to the current route.
 
-Next example shows a perfect good case of `VaList` usage inside a `VaEdit` page in order to show some related resources linked to the current edited resource.
+Next example shows a perfect good case of `VaDataIterator` usage inside a `VaEditLayout` page in order to show some related resources linked to the current edited resource.
 
 ```vue {6-10}
 <template>
-  <va-edit>
+  <va-edit-layout>
     <publishers-form :id="id" :title="title" :item="item"></publishers-form>
     <base-material-card icon="mdi-book" title="Books">
-      <va-list
+      <va-data-iterator
         resource="books"
         disable-query-string
         :filter="{
@@ -117,9 +117,9 @@ Next example shows a perfect good case of `VaList` usage inside a `VaEdit` page 
         >
           <!-- ... -->
         </va-data-table>
-      </va-list>
+      </va-data-iterator>
     </base-material-card>
-  </va-edit>
+  </va-edit-layout>
 </template>
 
 <script>
@@ -149,12 +149,12 @@ TODO
 
 #### Custom layout
 
-As you can see, `VaList` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
+As you can see, `VaDataIterator` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
 
 ```vue
 <template>
   <base-material-card>
-    <va-list
+    <va-data-iterator
       :items-per-page="8"
       :rows-per-page="[4, 8, 16, 32]"
     >
@@ -173,7 +173,7 @@ As you can see, `VaList` is mainly a data iterator that will provide items resul
           </v-col>
         </v-row>
       </template>
-    </va-list>
+    </va-data-iterator>
   </base-material-card>
 </template>
 ```

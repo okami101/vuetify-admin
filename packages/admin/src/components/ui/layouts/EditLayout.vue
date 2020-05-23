@@ -24,7 +24,7 @@ import Item from "../../../mixins/item";
 /**
  * Page layout for resource edition.
  * Contain specific related action as deleting, cloning, showing as well as translation action.
- * @displayName VaEdit
+ * @displayName VaEditLayout
  */
 export default {
   mixins: [Item],

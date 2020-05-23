@@ -1,9 +1,10 @@
 /**
  * All UI Vue Components
  */
-import * as core from "./components/core";
 import * as layout from "./components/layout";
 import * as ui from "./components/ui";
+import field from "./mixins/field";
+import input from "./mixins/input";
 
 /**
  * Main JS App
@@ -16,13 +17,18 @@ import VtecAdmin from "./admin";
 export default VtecAdmin;
 
 /**
+ * Mixins
+ */
+export { field, input };
+
+/**
  * Vue install plugin
  */
 VtecAdmin.install = (Vue) => {
   /**
    * Register Admin UI components
    */
-  [core, layout, ui].forEach((c) => {
+  [layout, ui].forEach((c) => {
     Object.keys(c).forEach((name) => {
       Vue.component(`Va${name}`, c[name]);
     });

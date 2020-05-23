@@ -1,7 +1,7 @@
 <template>
-  <va-edit>
+  <va-edit-layout>
     <reviews-form :id="id" :title="title" :item="item"></reviews-form>
-  </va-edit>
+  </va-edit-layout>
 </template>
 
 <script>
