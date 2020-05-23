@@ -258,7 +258,7 @@ export default {
             source: this.globalSearchQuery,
             label: this.$t("va.datatable.search"),
             alwaysOn: true,
-            options: { icon: "mdi-magnify" },
+            attributes: { appendIcon: "mdi-magnify" },
           },
         ];
       }

@@ -18,8 +18,10 @@
             source: 'logo',
             type: 'image',
             link: 'show',
-            src: 'thumbnails.small',
-            contain: true,
+            attributes: {
+              src: 'thumbnails.small',
+              contain: true,
+            },
           },
           { source: 'name', link: 'show', sortable: true },
           { source: 'type', type: 'select' },
@@ -35,8 +37,10 @@
           {
             source: 'opening_date',
             type: 'date',
-            format: 'long',
             sortable: true,
+            attributes: {
+              format: 'long',
+            },
           },
           { source: 'books_count', type: 'number', sortable: true },
         ]"

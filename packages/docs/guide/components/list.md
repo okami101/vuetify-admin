@@ -331,8 +331,9 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
 ```
 
 :::tip SORTABLE AND ALIGN
-Each field support 3 specifics `sortable`, `align` and `editable` attributes. Set `sortable` to true for activating server-side sort. You can Use `left`, `right`, `center` for each cell `align` attribute.
+Each field support specifics `label`, `sortable`, `align`, `link`, `attributes` and `editable` attributes. Set `sortable` to true for activating server-side sort. You can Use `left`, `right`, `center` for each cell `align` attribute.
 
+Set `link` to any valid `show` or `edit` action in order to add an anchor wrapper link for each cell field.
 Set `editable` to true in order to replace field by a live edit input. Ideal for quick live toggle switch updates.
 :::
 

@@ -5,26 +5,34 @@
         {
           source: 'book',
           type: 'autocomplete',
-          optionText: 'title',
-          multiple: true,
-          reference: 'books',
+          attributes: {
+            optionText: 'title',
+            multiple: true,
+            reference: 'books',
+          },
         },
         { source: 'rating', type: 'rating' },
         {
           source: 'status',
           type: 'select',
-          multiple: true,
+          attributes: {
+            multiple: true,
+          },
         },
         'author',
         {
           source: 'published_before',
           type: 'date',
-          format: 'long',
+          attributes: {
+            format: 'long',
+          },
         },
         {
           source: 'published_after',
           type: 'date',
-          format: 'long',
+          attributes: {
+            format: 'long',
+          },
         },
       ]"
       :include="['book']"
@@ -37,14 +45,18 @@
           {
             source: 'book',
             type: 'reference',
-            optionText: 'title',
-            reference: 'books',
+            attributes: {
+              optionText: 'title',
+              reference: 'books',
+            },
           },
           {
             source: 'status',
             type: 'select',
-            chip: true,
-            color: (v) => $statusColor(v),
+            attributes: {
+              chip: true,
+              color: (v) => $statusColor(v),
+            },
           },
           { source: 'rating', type: 'rating', sortable: true },
           'quality',
@@ -52,8 +64,10 @@
           {
             source: 'publication_date',
             type: 'date',
-            format: 'long',
             sortable: true,
+            attributes: {
+              format: 'long',
+            },
           },
         ]"
         v-bind="props"

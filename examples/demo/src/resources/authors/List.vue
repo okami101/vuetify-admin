@@ -6,9 +6,11 @@
         {
           source: 'books',
           type: 'autocomplete',
-          optionText: 'title',
-          multiple: true,
-          reference: 'books',
+          attributes: {
+            optionText: 'title',
+            multiple: true,
+            reference: 'books',
+          },
         },
       ]"
       :items-per-page="8"

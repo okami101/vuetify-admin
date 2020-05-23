@@ -17,18 +17,24 @@
           {
             source: 'status',
             type: 'select',
-            multiple: true,
+            attributes: {
+              multiple: true,
+            },
           },
           'author',
           {
             source: 'published_before',
             type: 'date',
-            format: 'long',
+            attributes: {
+              format: 'long',
+            },
           },
           {
             source: 'published_after',
             type: 'date',
-            format: 'long',
+            attributes: {
+              format: 'long',
+            },
           },
         ]"
         v-model="selected"
@@ -40,8 +46,10 @@
             {
               source: 'status',
               type: 'select',
-              chip: true,
-              color: (v) => $statusColor(v),
+              attributes: {
+                chip: true,
+                color: (v) => $statusColor(v),
+              },
             },
             { source: 'rating', type: 'rating' },
             'quality',
@@ -49,7 +57,9 @@
             {
               source: 'publication_date',
               type: 'date',
-              format: 'long',
+              attributes: {
+                format: 'long',
+              },
             },
           ]"
           v-bind="props"

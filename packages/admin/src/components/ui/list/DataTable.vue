@@ -27,12 +27,13 @@
         :key="field.source"
         :is="`va-${field.type || 'text'}-input`"
         :resource="resource"
+        :source="field.source"
         editable
         :item="item"
         :value="value"
         dense
         label=""
-        v-bind="getAttributes(field)"
+        v-bind="field.attributes"
       ></component>
       <router-link
         v-else-if="field.link"
@@ -48,7 +49,8 @@
           :is="`va-${field.type}-field`"
           :resource="resource"
           :item="item"
-          v-bind="getAttributes(field)"
+          :source="field.source"
+          v-bind="field.attributes"
           v-slot="props"
         >
           <slot
@@ -67,7 +69,8 @@
         :is="`va-${field.type}-field`"
         :resource="resource"
         :item="item"
-        v-bind="getAttributes(field)"
+        :source="field.source"
+        v-bind="field.attributes"
         v-slot="props"
       >
         <slot
@@ -351,10 +354,6 @@ export default {
        * Triggered on sorting change
        */
       this.$emit("update:options", this.currentOptions);
-    },
-    getAttributes(field) {
-      let { type, link, sortable, align, ...attributes } = field;
-      return attributes;
     },
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {

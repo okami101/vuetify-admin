@@ -17,9 +17,11 @@
           {
             source: 'authors',
             type: 'autocomplete',
-            optionText: 'name',
-            multiple: true,
-            reference: 'authors',
+            attributes: {
+              optionText: 'name',
+              multiple: true,
+              reference: 'authors',
+            },
           },
           { source: 'pricier_than', type: 'number' },
           { source: 'cheaper_than', type: 'number' },
@@ -27,12 +29,16 @@
           {
             source: 'published_before',
             type: 'date',
-            format: 'long',
+            attributes: {
+              format: 'long',
+            },
           },
           {
             source: 'published_after',
             type: 'date',
-            format: 'long',
+            attributes: {
+              format: 'long',
+            },
           },
         ]"
         :include="['authors']"
@@ -43,18 +49,22 @@
         <va-data-table
           :fields="[
             { source: 'isbn', link: 'show' },
-            { source: 'category', type: 'select', chip: true },
+            { source: 'category', type: 'select', attributes: { chip: true } },
             'title',
             {
               source: 'price',
               type: 'number',
-              format: 'currency',
+              attributes: {
+                format: 'currency',
+              },
             },
             { source: 'commentable', type: 'boolean' },
             {
               source: 'publication_date',
               type: 'date',
-              format: 'long',
+              attributes: {
+                format: 'long',
+              },
             },
             'authors',
           ]"

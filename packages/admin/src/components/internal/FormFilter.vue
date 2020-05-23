@@ -14,7 +14,9 @@
         </v-btn>
         <input-filter
           :type="item.type"
-          v-bind="getAttributes(item)"
+          :source="item.source"
+          :label="item.label"
+          v-bind="item.attributes"
           :value="value[item.source]"
           @input="(val) => update(item.source, val)"
         >
@@ -42,10 +44,6 @@ export default {
     },
   },
   methods: {
-    getAttributes(filter) {
-      let { type, ...attributes } = filter;
-      return attributes;
-    },
     remove(filter) {
       let value = { ...this.value };
       delete value[filter.source];

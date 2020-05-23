@@ -29,18 +29,22 @@
           :association="association"
           :fields="[
             { source: 'isbn', link: 'show' },
-            { source: 'category', type: 'select', chip: true },
+            { source: 'category', type: 'select', attributes: { chip: true } },
             'title',
             {
               source: 'price',
               type: 'number',
-              format: 'currency',
+              attributes: {
+                format: 'currency',
+              },
             },
             { source: 'commentable', type: 'boolean' },
             {
               source: 'publication_date',
               type: 'date',
-              format: 'long',
+              attributes: {
+                format: 'long',
+              },
             },
             'reviews',
           ]"

@@ -12,7 +12,9 @@
           {
             source: 'roles',
             type: 'select',
-            multiple: true,
+            attributes: {
+              multiple: true,
+            },
           },
         ]"
         v-model="selected"
@@ -50,14 +52,18 @@
               {
                 source: 'created_at',
                 type: 'date',
-                format: 'long',
                 sortable: true,
+                attributes: {
+                  format: 'long',
+                },
               },
               {
                 source: 'updated_at',
                 type: 'date',
-                format: 'long',
                 sortable: true,
+                attributes: {
+                  format: 'long',
+                },
               },
             ]"
             v-bind="props"

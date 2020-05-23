@@ -6,16 +6,20 @@
         {
           source: 'publisher',
           type: 'select',
-          optionText: 'name',
-          multiple: true,
-          reference: 'publishers',
+          attributes: {
+            optionText: 'name',
+            multiple: true,
+            reference: 'publishers',
+          },
         },
         {
           source: 'authors',
           type: 'autocomplete',
-          optionText: 'name',
-          multiple: true,
-          reference: 'authors',
+          attributes: {
+            optionText: 'name',
+            multiple: true,
+            reference: 'authors',
+          },
         },
         { source: 'pricier_than', type: 'number' },
         { source: 'cheaper_than', type: 'number' },
@@ -23,12 +27,16 @@
         {
           source: 'published_before',
           type: 'date',
-          format: 'long',
+          attributes: {
+            format: 'long',
+          },
         },
         {
           source: 'published_after',
           type: 'date',
-          format: 'long',
+          attributes: {
+            format: 'long',
+          },
         },
       ]"
       :include="['publisher', 'authors', 'media']"
@@ -43,38 +51,48 @@
             source: 'cover',
             type: 'image',
             link: 'show',
-            src: 'thumbnails.small',
+            attributes: {
+              src: 'thumbnails.small',
+            },
           },
-          { source: 'category', type: 'select', chip: true },
+          { source: 'category', type: 'select', attributes: { chip: true } },
           {
             source: 'publisher',
             type: 'reference',
-            reference: 'publishers',
-            text: 'name',
-            chip: true,
-            color: 'orange',
+            attributes: {
+              reference: 'publishers',
+              text: 'name',
+              chip: true,
+              color: 'orange',
+            },
           },
           { source: 'title', sortable: true },
           {
             source: 'price',
             type: 'number',
-            format: 'currency',
             sortable: true,
+            attributes: {
+              format: 'currency',
+            },
           },
           { source: 'commentable', type: 'boolean', editable: true },
           {
             source: 'formats',
             type: 'array',
-            select: true,
-            color: 'yellow',
-            small: true,
-            column: true,
+            attributes: {
+              select: true,
+              color: 'yellow',
+              small: true,
+              column: true,
+            },
           },
           {
             source: 'publication_date',
             type: 'date',
-            format: 'long',
             sortable: true,
+            attributes: {
+              format: 'long',
+            },
           },
           'authors',
         ]"
