@@ -60,15 +60,27 @@ It will produce this simple structure :
 
 Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
-:::tip DISABLE GLOBAL SEARCH
-A global search filter will be enabled by default. To disable it, use `disable-global-search` prop.
-:::
-
 :::warning SHOW DATA
 `VaDataIterator` is only responsible for data iteration UI controls. You will need to display the data list on your own or use the providing `VaDataTable`.
 :::
 
-#### Pagination
+#### Filters
+
+:::tip GLOBAL SEARCH
+A global search filter will be enabled by default. To disable it, use `disableGlobalSearch` prop.
+
+This filter will send the string search query on backend via the key configured on `globalSearchQuery`, which is `q` by default.
+
+Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the Vtec Laravel package for your Laravel app, you can use the dedicated `SearchFilter` for that.
+:::
+
+In addition to global search, `VaDataIterator` supports advanced custom filters as well with many supported inputs as shown here :
+
+![filters](/assets/samples/filters.png)
+
+Use the "add filter" button for adding more filters that will add a new `AND` condition. It's all filter as you type so no need for any manual apply input. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`.
+
+##### Internal filters
 
 TODO
 
@@ -76,13 +88,15 @@ TODO
 
 TODO
 
-#### Filters
-
-TODO
-
 #### Bulk actions
 
 TODO
+
+#### Pagination
+
+By default, `VaDataIterator` will use the default vuetify pagination control which allows direct page control navigation as well as number of shown item per page. Use `itemsPerPage` and `itemsPerPageOptions` in order to initialized the maximum number of shown item per page.
+
+This default control is totally replaceable by your own pagination control. Use `footer` slot property for that.
 
 #### Usage outside list page
 

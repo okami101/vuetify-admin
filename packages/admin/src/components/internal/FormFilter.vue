@@ -12,25 +12,25 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
-        <component
-          :is="`va-${item.type}-input`"
+        <input-filter
+          :type="item.type"
           v-bind="getAttributes(item)"
           :value="value[item.source]"
-          hide-details
-          :filled="false"
-          small-chips
           @input="(val) => update(item.source, val)"
         >
-        </component>
+        </input-filter>
       </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import debounce from "lodash/debounce";
+import InputFilter from "./InputFilter";
 
 export default {
+  components: {
+    InputFilter,
+  },
   props: {
     value: {
       type: Object,
@@ -40,11 +40,6 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  data() {
-    return {
-      filter: {},
-    };
   },
   methods: {
     getAttributes(filter) {
@@ -59,19 +54,11 @@ export default {
       this.$emit("input", value);
     },
     update(source, value) {
-      if (value === undefined) {
-        return;
-      }
-
-      this.filter = {
+      this.$emit("input", {
         ...this.value,
         [source]: value,
-      };
-      this.debounceInput();
+      });
     },
-    debounceInput: debounce(function () {
-      this.$emit("input", this.filter);
-    }, 200),
   },
 };
 </script>

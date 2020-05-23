@@ -114,9 +114,10 @@
       <slot :resource="resource"></slot>
     </template>
     <template v-slot:footer>
-      <!-- @slot Best place for pagination. -->
+      <!-- @slot Best place for any custom pagination. -->
       <slot
         name="footer"
+        :options="currentOptions"
         :total="total"
         :items-per-page="itemsPerPage"
         :items-per-page-options="itemsPerPageOptions"
