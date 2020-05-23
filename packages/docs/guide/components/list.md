@@ -176,7 +176,7 @@ By default VA provides a bulk delete action, but you add any multiple bulk actio
 
 The next example will show you a bulk publish and unpublish bulk actions :
 
-```vue
+```vue {4-23}
 <template>
   <base-material-card>
     <va-data-iterator>
@@ -201,12 +201,34 @@ The next example will show you a bulk publish and unpublish bulk actions :
         ></va-bulk-action-button>
       </template>
       <template v-slot="props">
-        <!-- VaDataTable -->
+        <va-data-table
+          :fields="[
+            // ...
+          ]"
+          v-bind="props"
+          v-model="selected"
+          :options.sync="options"
+        ></va-data-table>
       </template>
     </va-data-iterator>
   </base-material-card>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
 ```
+
+:::warning SELECTED V-MODEL
+In order to keep all components synchronized with current selected items, you may add `v-model="selected"` on any components that need to interact with them.
+:::
 
 #### Pagination
 
@@ -214,7 +236,25 @@ By default, `VaDataIterator` will use the default vuetify pagination control whi
 
 This default control is totally replaceable by your own pagination control. Use `footer` slot property for that.
 
-#### Usage outside list page
+### VaDataTable
+
+|> docgen va-data-table
+
+:::warning CONTEXT SYNCHRONIZATION
+As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at many above code examples, the simplest way is to use `VaDataIterator` as data browsing control and do next additional attachments :
+
+* `v-slot="props"` and `v-bind="props"` : Pass all data iterator slot bindings into data table as props.
+* `v-model="selected"` : Keep selected items synchronized, all selected items in data table will be reflected on data iterator and vice-versa.
+* `:options.sync="options"`: Keep current search query context synchronized between all components, as the data table will add sorting support.
+:::
+
+#### Fields
+
+TODO
+
+#### Column templating
+
+## Usage outside list page
 
 You're not forced to use it on list page ! As the same way for most of VA components, all of them can be used anywhere on any page.
 
@@ -271,13 +311,13 @@ export default {
 For this case usage, you may need to disable default query string update in order to prevent unexpected behavior. Use `disable-query-string` for that.
 :::
 
-#### Associations
+## Associations
 
 You can use the
 
 TODO
 
-#### Custom layout
+## Custom layout
 
 As you can see, `VaDataIterator` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
 
@@ -311,7 +351,3 @@ As you can see, `VaDataIterator` is mainly a data iterator that will provide ite
 It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters :
 
 ![custom-list-layout](/assets/samples/custom-list-layout.png)
-
-### VaDataTable
-
-|> docgen va-data-table
