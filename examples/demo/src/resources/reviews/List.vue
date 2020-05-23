@@ -29,7 +29,6 @@
         },
       ]"
       :include="['book']"
-      flat
       v-model="selected"
       :options.sync="options"
       v-slot="props"

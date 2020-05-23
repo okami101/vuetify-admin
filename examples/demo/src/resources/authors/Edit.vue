@@ -16,7 +16,6 @@
           authors: id,
         }"
         :include="['publisher', 'reviews']"
-        flat
         :options.sync="options"
         v-slot="props"
       >

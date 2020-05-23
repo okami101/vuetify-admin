@@ -32,7 +32,6 @@
             format: 'long',
           },
         ]"
-        flat
         v-model="selected"
         :options.sync="options"
         v-slot="props"

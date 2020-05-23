@@ -16,31 +16,127 @@ Since all data provider methods are available in a dedicated store module for ea
 
 ### Usage
 
+Here a quick sample usage within the `VaDataTable` component :
+
 ```vue
 <template>
-  <v-card>
-    <va-list
-      :filters="[
-        'q',
-        'name',
-        'founder',
-        'headquarter',
-        { source: 'active', type: 'boolean' },
-      ]"
-      :include="['media', 'books_count']"
-    >
-      <!-- Any custom list layout -->
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-list :filters="['q']" v-slot="props" v-model="selected" :options.sync="options">
+      <va-data-table
+        :fields="[
+          { source: 'name', link: 'show' },
+          { source: 'type', type: 'select' },
+          'founder',
+          'headquarter',
+          { source: 'url', type: 'url' },
+          { source: 'active', type: 'boolean' },
+          { source: 'opening_date', type: 'date', format: 'long' },
+        ]"
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+      </va-data-table>
     </va-list>
-  </v-card>
+  </base-material-card>
 </template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
 ```
 
-:::tip USAGE OUTSIDE OF PAGE LIST
-You're not forced to use it on list page ! As the same way for most of VA components, all of them can be used anywhere on any page.
+It will produce this simple structure :
 
-But for that you will probably need to explicitly set the main `resource` prop which is present on all resource aware VA components. If not defined, the default resource will be the one linked to the current route.
+![list](/assets/samples/list.png)
+
+:::tip GLOBAL SEARCH
+To enable global search, you just have to add the specific `q` filter inside `filters` prop. It will automatically.
 :::
+
+#### Pagination
+
+TODO
+
+#### Actions
+
+TODO
 
 #### Filters
 
 TODO
+
+#### Usage outside list page
+
+You're not forced to use it on list page ! As the same way for most of VA components, all of them can be used anywhere on any page.
+
+But for that you will probably need to explicitly set the main `resource` prop which is present on all resource aware VA components. If not defined, the default resource will be the one linked to the current route.
+
+Next example shows a perfect good case of `VaList` usage inside a `VaEdit` page in order to show some related resources linked to the current edited resource.
+
+```vue {6-10}
+<template>
+  <va-edit>
+    <publishers-form :id="id" :title="title" :item="item"></publishers-form>
+    <base-material-card icon="mdi-book" title="Books">
+      <va-list
+        resource="books"
+        disable-query-string
+        :filter="{
+          publisher: id,
+        }"
+        v-model="selected"
+        :options.sync="options"
+        v-slot="props"
+      >
+        <va-data-table
+          :fields="[
+            // ...
+          ]"
+          v-bind="props"
+          v-model="selected"
+          :options.sync="options"
+        >
+          <!-- ... -->
+        </va-data-table>
+      </va-list>
+    </base-material-card>
+  </va-edit>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+  data() {
+    return {
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
+```
+
+![list](/assets/samples/relationship.png)
+
+:::warning QUERY STRING
+
+:::
+
+#### Associations
+
+You can use the
+
+TODO
+
+#### Custom layout
+
+### VaDataTable
