@@ -64,13 +64,55 @@ This slot composition system allows a complete customization possibility. By def
 </template>
 ```
 
-:::tip TOTALLY OPTIONAL
+:::tip OPTIONAL
 You can totally replace the layout component by your own if you need total personalization !
 
 In this case you'll need to use at least the below [VaMessages](#vamessages) component in order to have all toaster notifications and confirmation dialogs.
 :::
 
-#### Links
+:::tip LINKS
+See [below section](#links).
+:::
+
+### VaAppBar
+
+|> docgen va-app-bar
+
+:::tip CREATE RESOURCE LINKS
+The create action links will be automatically generated from your registred resources if the current user has permissions for it.
+:::
+
+:::tip RELOAD BUTTON
+The reload button will dynamically spin for every fetch calls from you data provider, i.e. `getList`, `getOne` or `getMany`. A manual clic will redo the call from current state for freshed content. It will be apply on all CRUD pages.
+
+The show, create, edit page will reload the route linked resource and refresh all related field or input components, while list page will reload current resources list from current iterator context.
+:::
+
+### VaSidebar
+
+|> docgen va-sidebar
+
+:::tip MINIMIZE
+Use `mini` event from `VaAppBar` and play with `mini` prop in order to toggle sidebar minimization state.
+:::
+
+### VaFooter
+
+|> docgen va-footer
+
+### VaBreadcrumbs
+
+|> docgen va-breadcrumbs
+
+### VaAside
+
+|> docgen va-aside
+
+### VaMessages
+
+|> docgen va-messages
+
+## Links
 
 All navigation menu that can be putted on next components are simple array of object which represents a link. VA Components that support nav are `VaAppBar`, `VaSidebar` and `VaFooter` for a total of 4 differents menus, `header`, `profile`, `sidebar` and `footer`. Example of simple menu array :
 
@@ -116,31 +158,3 @@ You can easily build resources actions links thanks to [resources link helpers](
 :::tip PERMISSIONS ON LINKS
 You can easily show hide each link by using [some authorization helpers](../authorization#helpers).
 :::
-
-### VaAppBar
-
-|> docgen va-app-bar
-
-### VaSidebar
-
-|> docgen va-sidebar
-
-### VaFooter
-
-|> docgen va-footer
-
-### VaBreadcrumbs
-
-|> docgen va-breadcrumbs
-
-### VaAside
-
-|> docgen va-aside
-
-#### VaAsideLayout
-
-|> docgen va-aside-layout
-
-### VaMessages
-
-|> docgen va-messages

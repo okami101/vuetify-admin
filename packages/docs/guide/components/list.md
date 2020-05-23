@@ -58,7 +58,7 @@ It will produce this simple structure :
 
 ![list](/assets/samples/list.png)
 
-Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
+Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
 :::tip DISABLE GLOBAL SEARCH
 A global search filter will be enabled by default. To disable it, use `disable-global-search` prop.
