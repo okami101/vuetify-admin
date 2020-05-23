@@ -58,8 +58,14 @@ It will produce this simple structure :
 
 ![list](/assets/samples/list.png)
 
+Note that `VaList` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
+
 :::tip DISABLE GLOBAL SEARCH
 A global search filter will be enabled by default. To disable it, use `disable-global-search` prop.
+:::
+
+:::warning SHOW DATA
+`VaList` is only responsible for data iteration UI controls. You will need to display the data list on your own or use the providing `VaDataTable`.
 :::
 
 #### Pagination
@@ -129,10 +135,10 @@ export default {
 </script>
 ```
 
-![list](/assets/samples/relationship.png)
+![relationship](/assets/samples/relationship.png)
 
 :::warning QUERY STRING
-
+For this case usage, you may need to disable default query string update in order to prevent unexpected behavior. Use `disable-query-string` for that.
 :::
 
 #### Associations
@@ -142,5 +148,38 @@ You can use the
 TODO
 
 #### Custom layout
+
+As you can see, `VaList` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
+
+```vue
+<template>
+  <base-material-card>
+    <va-list
+      :items-per-page="8"
+      :rows-per-page="[4, 8, 16, 32]"
+    >
+      <template v-slot="{ items }">
+        <v-row>
+          <v-col lg="3" v-for="item in items" :key="item.id">
+            <v-card
+              class="my-3 fill-height"
+              flat
+              :to="{ name: 'authors_show', params: { id: item.id } }"
+            >
+              <v-card-title>
+                {{ item.name }}
+              </v-card-title>
+            </v-card>
+          </v-col>
+        </v-row>
+      </template>
+    </va-list>
+  </base-material-card>
+</template>
+```
+
+It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters :
+
+![custom-list-layout](/assets/samples/custom-list-layout.png)
 
 ### VaDataTable

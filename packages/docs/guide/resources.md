@@ -116,6 +116,28 @@ Some quick tables to resume (we take `monster_children` resource name as example
 | **create** | `MonsterChildrenCreate` | `/monster-children/Create.vue` |
 | **edit**   | `MonsterChildrenEdit`   | `/monster-children/Edit.vue`   |
 
+### Injected props
+
+On every CRUD pages, the following props will be injected for easy reuse :
+
+| Action          | Type     | Path from `src/resources`                                   |
+| --------------- | -------- | ----------------------------------------------------------- |
+| **resource**    | `object` | The resource object descriptor linked to the current route. |
+| **title**       | `string` | The [localized title](i18n) of resource action page.        |
+| **id**          | `id`     | ID of current resource to be displayed or edited.           |
+| **item**        | `object` | Current item to be displayed, edited or cloned.             |
+| **permissions** | `array`  | Current user permissions.                                   |
+
+To use it, you simply have to declare them on props page component :
+
+```vue
+<script>
+export default {
+  props: ["resource", "title"],
+};
+</script>
+```
+
 ### Link helpers
 
 You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](components/layout#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
