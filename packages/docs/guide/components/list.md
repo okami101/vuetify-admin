@@ -78,11 +78,52 @@ In addition to global search, `VaDataIterator` supports advanced custom filters 
 
 ![filters](/assets/samples/filters.png)
 
-Use the "add filter" button for adding more filters that will add a new `AND` condition. It's all filter as you type so no need for any manual apply input. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`.
+Use the "Add filter" button for adding more filters that will add a new `AND` condition. It's all filter as you type so no need for any manual apply input. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`. Each filter are removable.
+
+In order to define new filters, use the `filters` props. Here are a code sample usage of this advanced filters :
+
+```vue
+<template>
+  <va-data-iterator
+    :filters="[
+      {
+        source: 'book',
+        type: 'autocomplete',
+        optionText: 'title',
+        multiple: true,
+        reference: 'books',
+      },
+      { source: 'rating', type: 'rating' },
+      {
+        source: 'status',
+        type: 'select',
+        multiple: true,
+      },
+      'author',
+      {
+        source: 'published_before',
+        type: 'date',
+        format: 'long',
+      },
+      {
+        source: 'published_after',
+        type: 'date',
+        format: 'long',
+      },
+    ]"
+  >
+    <!-- Default slot -->
+  </va-data-iterator>
+</template>
+```
+
+Each added filter will be added to the "Add filter" dropdown button for on-asking filter activation, unless `alwaysOn` property is set to `true`. In that case, filter will be always visible and not removable.
+
+Other filter properties will correspond to props that you can use for inputs. See [dedicated inputs section](inputs) for further detail on valid props for each filterable inputs. You will mainly use mandatory `source` property as well as `type` for input type. All other properties will be merged in input component as props or attributes.
 
 ##### Internal filters
 
-TODO
+In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's simply an object of key-value that will be automatically sent to your data provider, merged with any other active filters.
 
 #### Actions
 

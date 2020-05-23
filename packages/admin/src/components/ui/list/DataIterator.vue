@@ -148,6 +148,7 @@ export default {
     /**
      * Exposed filters, editable through advanced filter form, update URL query string if not disabled.
      * Sent to your data provider inside `filter` params.
+     * Use specific `alwaysOn` property for each filter you want to be visible and not removable.
      */
     filters: {
       type: Array,

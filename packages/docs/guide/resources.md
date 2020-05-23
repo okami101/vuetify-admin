@@ -35,16 +35,17 @@ export default [
 
 A resource object must follow this structure :
 
-| Property               | Type                 | Description                                                                                          |
-| ---------------------- | -------------------- | ---------------------------------------------------------------------------------------------------- |
-| **name**               | `string`             | A mandatory slug name which will be used for api base URL calls                                      |
-| **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/) |
-| **label**              | `string`, `function` | Return an identifiable label of resource                                                             |
-| **actions**            | `array`              | List of all valid actions for this resource                                                          |
-| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted                  |
-| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n#translation)                                      |
-| **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization#resource)               |
-| **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching              |
+| Property               | Type                 | Description                                                                                           |
+| ---------------------- | -------------------- | ----------------------------------------------------------------------------------------------------- |
+| **name**               | `string`             | A mandatory unique slug name which will be used for client-side router base path.                     |
+| **api**                | `string`             | Correspond to API base path calls and store module name. Equal to above name by default.              |
+| **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/). |
+| **label**              | `string`, `function` | Return an identifiable label of resource.                                                             |
+| **actions**            | `array`              | List of all valid actions for this resource.                                                          |
+| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted.                  |
+| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n#translation).                                      |
+| **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization#resource).               |
+| **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.              |
 
 :::tip LABEL
 The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targetted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
@@ -62,6 +63,36 @@ All removed actions will be reflected on all crud pages and Vue Router will be a
 The deactivation of actions is obviously only done on the client side. You must also adapt your backend accordingly.
 :::
 
+### Reuse API endpoints
+
+You can perfectly reuse the same backend resource api endpoint, aka store module for different resources. Imagine a first group of cruds pages that show only active resources and a separate second group of cruds pages that show only archived ones.
+
+Use the `api` property for that. It will correspond to the existing resource store module to use. Then every CRUD pages inside `src/resources/{name-1}` and `src/resources/{name-2}` will use the same store module, i.e. same API endpoint.
+
+See this example :
+
+```js {11}
+export default [
+  {
+    name: "users",
+    icon: "mdi-account",
+    label: "name",
+    actions: ["list", "delete"],
+    permissions: ["admin"],
+  },
+  {
+    name: "archived_users",
+    api: "users",
+    icon: "mdi-account",
+    label: "name",
+    actions: ["list", "delete"],
+    permissions: ["admin"],
+  },
+];
+```
+
+The `archived_users` resource will reuse the same API endpoints as `users` resource.
+
 ## Resource CRUD pages and API modules
 
 With the above resources informations, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures. However, all the main stuf remains to be done, i.e. the CRUD pages. The link between builded CRUD routes and the final resource action page component follows a specific naming convention.
@@ -74,7 +105,7 @@ Example for a `monster_children` and `users` resources :
 
 :::vue
 resources
-├── `monster-children` _(**The kebab-case format of resource name**)_
+├── `monster-children` _(**The kebab-case format of resource slug or name**)_
 │   ├── [Create.vue](components/crud#create)
 │   ├── [Edit.vue](components/crud#edit)
 │   ├── [Form.vue](components/crud#form) _(**Form component reused for both Create and Edit views**)_
