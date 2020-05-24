@@ -53,13 +53,20 @@
           v-bind="field.attributes"
           v-slot="props"
         >
+          <!--
+            @slot Use for field cell templating.
+            @binding {string} resource Name of resource.
+            @binding {string} source Property source.
+            @binding {string} item Full object item.
+            @binding {string} value Value of property source.
+          -->
           <slot
-            :name="field.source"
+            :name="`field.${field.source}`"
             :item="props.item || item"
             v-bind="props"
           ></slot>
         </component>
-        <slot v-else :name="field.source" v-bind="{ item, value }">
+        <slot v-else :name="`field.${field.source}`" v-bind="{ item, value }">
           {{ value }}
         </slot>
       </router-link>
@@ -74,12 +81,12 @@
         v-slot="props"
       >
         <slot
-          :name="field.source"
+          :name="`field.${field.source}`"
           :item="props.item || item"
           v-bind="props"
         ></slot>
       </component>
-      <slot v-else :name="field.source" v-bind="{ item, value }">
+      <slot v-else :name="`field.${field.source}`" v-bind="{ item, value }">
         {{ value }}
       </slot>
     </template>
@@ -182,12 +189,7 @@ export default {
     /**
      * List of columns for each property of resource data.
      * Each column can be a simple string or a full object with advanced field properties.
-     * A specific `sortable` property can be setted if you need the column to be sortable.
-     * By default all text, date and number will be sortable.
-     * A specific `align` property can be setted with "left", "center", "right".
-     * By default all number fields are aligned to right.
-     * If you set `editable`, the input version will be rendered instead of field.
-     * That will allow quick live edit on fly.
+     * Valid properties are `source`, `type`, `label`, `sortable`, `align`, `link`, `attributes`, `edtitable`.
      */
     fields: {
       type: Array,

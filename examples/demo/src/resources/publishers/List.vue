@@ -13,7 +13,7 @@
         v-model="selected"
         :options.sync="options"
       >
-        <template v-slot:address="{ value }">
+        <template v-slot:field.address="{ value }">
           {{ value.postcode }} {{ value.city }}
         </template>
       </va-data-table>

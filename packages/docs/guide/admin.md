@@ -104,7 +104,7 @@ Finally, in you entrypoint, don't forget to add `vuetify` and `admin` into main 
 
 **`src/main.js`**
 
-```js{2-3,10-11}
+```js {2-3,10-11}
 // ...
 import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";

@@ -31,7 +31,7 @@
           v-bind="props"
           :options.sync="options"
         >
-          <template v-slot:reviews="{ value }">
+          <template v-slot:field.reviews="{ value }">
             <v-chip-group column>
               <va-reference-field
                 reference="reviews"

@@ -112,7 +112,7 @@ By default, basic auth will just return the username used for credentials. If yo
 
 **`src/plugins/admin.js`**
 
-```js{9-11}
+```js {9-11}
 import {
   laravelDataProvider,
   basicAuthProvider,
@@ -190,7 +190,7 @@ If not using it, you can start with [profile boilerplate page](https://github.co
 As explained above, this authenticated page should be registred into `src/router/admin.js` for getting admin layout inheritance. The idea here is to get user informations stored inside VA auth state and prefill all account form from it.  
 Because saving account information can be very different according to project context, there is no specific auth provider method available. So this the good showcase for using the global admin axios instance which owns all authorization context to made authenticated API requests as following.
 
-```js{14,23}
+```js {14,23}
 import { mapState, mapActions } from "vuex";
 
 export default {

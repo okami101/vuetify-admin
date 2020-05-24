@@ -28,7 +28,7 @@ You can define specific permissions access for each action of each resource. Thi
 
 **`src/resources/index.js`**
 
-```js{5-9}
+```js {5-9}
 export default [
   {
     name: "reviews",

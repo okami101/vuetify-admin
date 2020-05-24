@@ -79,9 +79,11 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 ### Fields
 
-Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter to use for data. As for filters above, you need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
+![fields](/assets/samples/fields.png)
 
-```vue {9-47}
+Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter for data display. You need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
+
+```vue {9,25-72}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator
@@ -96,7 +98,109 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
         v-model="selected"
         :options.sync="options"
       >
-        <template v-slot:authors="{ value }">
+      </va-data-table>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        { source: "isbn", link: "show" },
+        {
+          source: "cover",
+          type: "image",
+          link: "show",
+          attributes: {
+            src: "thumbnails.small",
+          },
+        },
+        { source: "category", type: "select", attributes: { chip: true } },
+        {
+          source: "publisher",
+          type: "reference",
+          attributes: {
+            reference: "publishers",
+            text: "name",
+            chip: true,
+            color: "orange",
+          },
+        },
+        { source: "title", sortable: true },
+        {
+          source: "price",
+          type: "number",
+          sortable: true,
+          attributes: {
+            format: "currency",
+          },
+        },
+        { source: "commentable", type: "boolean", editable: true },
+        {
+          source: "formats",
+          type: "array",
+          attributes: {
+            select: true,
+            color: "yellow",
+            small: true,
+            column: true,
+          },
+        },
+        {
+          source: "publication_date",
+          type: "date",
+          sortable: true,
+        },
+        "authors",
+      ],
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
+```
+
+See all supported field properties :
+
+| Property       | Type      | Description                                                                                  |
+| -------------- | --------- | -------------------------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                                                |
+| **type**       | `string`  | Type of [field](fields) to use.                                                               |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                    |
+| **sortable**   | `boolean` | Activate server-side sort.                                                                   |
+| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                       |
+| **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link. |
+| **attributes** | `object`  | All props or attributes to merge to the [field component](fields).                            |
+| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.              |
+
+:::tip SHORTHAND
+You can use a simple string for each field column, `"my-property"` is similar to `{ source: "my-property" }`.
+:::
+
+### Field templating
+
+In case of all above field options doasn't suit your needs, you can percectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
+
+```vue {15-28}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+    >
+      <va-data-table
+        :fields="fields"
+        show-expand
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+        <template v-slot:field.authors="{ value }">
           <v-chip-group column>
             <va-reference-field
               reference="authors"
@@ -110,6 +214,35 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
             </va-reference-field>
           </v-chip-group>
         </template>
+      </va-data-table>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+```
+
+You just have to use `v-slot:field.{field}="{ item, value }"` for that. This slot will provide to you full row resource item and value of the cell that will be rendered as default.
+
+### Expandable row
+
+![expandable](/assets/samples/expandable.png)
+
+You can use the `expanded-item` slot for an additional togglable full collspan cell under the item row. Ideal for quick view.
+
+```vue {10,15-17}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+    >
+      <va-data-table
+        :fields="fields"
+        show-expand
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
@@ -119,24 +252,40 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
 </template>
 ```
 
-See all supported field properties :
+### Custom row actions
 
-| Property       | Type      | Description                                                                                       |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------- |
-| **source**     | `string`  | Resource property to display.                                                                     |
-| **type**       | `string`  | Type of [field](field) to use.                                                                    |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                         |
-| **sortable**   | `boolean` | Activate server-side sort.                                                                        |
-| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                            |
-| **link**       | `string`  | Use any valid `show` or `edit` action in order to add an anchor wrapper link for each cell field. |
-| **attributes** | `object`  | All props or attributes to merge to the [field component](field)                                  |
-| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.                   |
+If you need other item actions in addition to classic crud operations, use the dedicated `item.actions` slot.
 
-#### Advanced column templating
+```vue {15-21}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+    >
+      <template v-slot="props">
+        <va-data-table
+          :fields="fields"
+          v-bind="props"
+          v-model="selected"
+          :options.sync="options"
+        >
+          <template v-slot:item.actions="{ resource, item }">
+            <impersonate-button
+              :resource="resource"
+              :item="item"
+              icon
+            ></impersonate-button>
+          </template>
+        </va-data-table>
+      </template>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+```
 
-TODO
-
-#### Filters
+### Filters
 
 :::tip GLOBAL SEARCH
 A global search filter will be enabled by default. To disable it, use `disableGlobalSearch` prop.
@@ -150,46 +299,64 @@ In addition to global search, `VaDataIterator` supports advanced custom filters 
 
 ![filters](/assets/samples/filters.png)
 
-Use the "Add filter" button for adding more filters that will add a new `AND` condition. It's all filter as you type so no need for any manual apply input. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`. Each filter are removable.
+Use the "Add filter" button for adding more filters that will add a new `AND` condition. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`. Each filter are removable.
 
 In order to define new filters, use the `filters` props. Here are a code sample usage of this advanced filters :
 
-```vue
+```vue {4,19-42}
 <template>
-  <va-data-iterator
-    :filters="[
-      {
-        source: 'book',
-        type: 'autocomplete',
-        optionText: 'title',
-        multiple: true,
-        reference: 'books',
-      },
-      { source: 'rating', type: 'rating' },
-      {
-        source: 'status',
-        type: 'select',
-        multiple: true,
-      },
-      'author',
-      {
-        source: 'published_before',
-        type: 'date',
-      },
-      {
-        source: 'published_after',
-        type: 'date',
-      },
-    ]"
-  >
-    <!-- Default slot -->
-  </va-data-iterator>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      :filters="filters"
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+    >
+      <!-- Default slot -->
+    </va-data-iterator>
+  </base-material-card>
 </template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      filters: [
+        {
+          source: 'book',
+          type: 'autocomplete',
+          optionText: 'title',
+          multiple: true,
+          reference: 'books',
+        },
+        { source: 'rating', type: 'rating' },
+        {
+          source: 'status',
+          type: 'select',
+          multiple: true,
+        },
+        'author',
+        {
+          source: 'published_before',
+          type: 'date',
+        },
+        {
+          source: 'published_after',
+          type: 'date',
+        },
+      ],
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
 ```
 
-Each added filter will be added to the "Add filter" dropdown button for on-asking filter activation, unless `alwaysOn` property is set to `true`. In that case, filter will be always visible and not removable.
+You will mainly use mandatory `source` property as well as `type` for input type. Each added filter will be added to the "Add filter" dropdown button for on-asking filter activation, unless `alwaysOn` property is set to `true`. In that case, filter will be always visible and not removable.
 
-Other filter properties will correspond to props that you can use for inputs. See [dedicated inputs section](inputs) for further detail on valid props for each filterable inputs. You will mainly use mandatory `source` property as well as `type` for input type. All other properties will be merged in input component as props or attributes.
+Use `attributes` property in order to merge specific attributes into input component. See [dedicated inputs section](inputs) for further detail on valid props for each filterable inputs.
 
 See all supported field properties :
 
@@ -201,25 +368,29 @@ See all supported field properties :
 | **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
 | **attributes** | `object`  | All props or attributes to merge to the [input component](input)          |
 
-##### Internal filters
-
+:::tip INTERNAL FILTERS
 In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
-
-#### Actions
-
-This list component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
-
-:::tip ACTION EVENTS
-You're not forced keep the default redirect behavior button. If you prefer a create event, juste subscribe to `create` event and the button will not redirect to linked action page.
-
-You will have the same bahavior for `show`, `edit` and `clone` actions inside `VaDataTable`. A subscribe to each respective event will disable redirect.
-
-Note that this buttons will autohide if no action exist for this button. A subscription to relevent action will force the button to reappear.
 :::
 
-##### Export
+### Global actions
+
+This `VaDataIterator` component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
+
+:::tip ACTION EVENTS
+You're not forced keep the default redirect behavior button. If you prefer a create event, juste subscribe to `action` event and disable create redirect via `disableCreateRedirect` prop for preventing create button to redirect to linked action page.
+
+You will have the same bahavior for `show`, `edit` and `clone` actions inside `VaDataTable`. Use `item-action` event and disable default redirect if you need custom behavior on your side as aside or dialog edition.
+
+Note that all of this buttons will autohide if no action exist for each related button. Deactivation of each relevent action redirect will force buttons to reappear.
+:::
+
+#### Export
 
 The export button will process a CSV file download on client side. It simply takes the current search context and refetch data on server side, while keeping current filters and sorts without any pagination infos.
+
+:::tip SERVER-SIDE EXPORT
+Because the client-side exports has it's own limits and limited to basic CSV, you can always create a custom action that do an export on server-side. Create a custom `href` button as shown below and use `disableExport` prop. Your href should contain all search context provided by `options` without any pagination infos and redirect to a valid API endpoint that return a response with attachment content that will provoke a download.
+:::
 
 ##### Custom actions
 

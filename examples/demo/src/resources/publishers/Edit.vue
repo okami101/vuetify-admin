@@ -24,7 +24,7 @@
           v-model="selected"
           :options.sync="options"
         >
-          <template v-slot:authors="{ value }">
+          <template v-slot:field.authors="{ value }">
             <v-chip-group column>
               <va-reference-field
                 reference="authors"

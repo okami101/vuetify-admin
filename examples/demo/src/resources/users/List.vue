@@ -44,7 +44,7 @@
             disable-edit-redirect
             @item-action="onAction"
           >
-            <template v-slot:roles="{ value }">
+            <template v-slot:field.roles="{ value }">
               <v-chip-group column>
                 <v-chip
                   color="yellow"
