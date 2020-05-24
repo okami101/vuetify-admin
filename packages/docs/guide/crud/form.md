@@ -1,6 +1,4 @@
-# CRUD pages
-
-![show](/assets/show.png)
+# Form
 
 ![form](/assets/form.png)
 

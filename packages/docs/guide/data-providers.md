@@ -52,29 +52,29 @@ const dataProvider = {
 
 Used for all resources browsing context, as
 
-* [Data iterator component](components/list) for showing list of resources inside datatable or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
-* [Export button](components/list#export) for filtred CSV resources exporting.
+* [Data iterator component](crud/list) for showing list of resources inside datatable or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
+* [Export button](crud/list#export) for filtred CSV resources exporting.
 * Entity referable choices component as [Autocomplete](components/inputs#autocomplete), [Select](components/inputs#select), or [RadioGroup](components/inputs#radio-group).
 
 #### getOne
 
-For showing detail of resource, mainly for [Show page](components/crud#show) or datatable show actions.
+For showing detail of resource, mainly for [Show page](crud/show) or datatable show actions.
 
 #### getMany
 
-Only used for [Autocomplete](components/inputs#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](components/crud#edit) or [query context filtering](components/list#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
+Only used for [Autocomplete](components/inputs#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/edit) or [query context filtering](crud/list#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields#vareferencefield) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
 
 #### create, update
 
-Used by [VA Form](components/crud#form) for creating new or updating existing resource.
+Used by [VA Form](crud/form) for creating new or updating existing resource.
 
 #### delete
 
-Simple delete action called when interacting with [VA Delete Button](components/crud#delete).
+Simple delete action called when interacting with VA Delete Button.
 
 #### updateMany, deleteMany
 
-Bulk actions on [list page](components/list). If your backend doesn't support a bulk action API, the simplest way is to push a Promise.all towards all unique simple operation method (update or delete) as you will find on Laravel Data Provider source code.
+Bulk actions on [list page](crud/list). If your backend doesn't support a bulk action API, the simplest way is to push a Promise.all towards all unique simple operation method (update or delete) as you will find on Laravel Data Provider source code.
 
 ### [Translatable resources](#translatable)
 
@@ -187,7 +187,7 @@ Each provider's method must return a Provider on given format.
 | **deleteMany** | `empty`                               |
 
 :::warning Paging count
-As showed here, in order to make [data iterator](components/list) aware of pager count you'll need to return the total of filtred dataset from server-side.
+As showed here, in order to make [data iterator](crud/list) aware of pager count you'll need to return the total of filtred dataset from server-side.
 :::
 
 ### Errors handling

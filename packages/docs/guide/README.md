@@ -73,10 +73,10 @@ VA will try to integrate within all of your existing plugins without hoisted the
 
 **All essential components**
 
-* [Full-featured DataTable](components/list) : multi-sort, pagination, global search, advanced filters, CSV export
-* [Internal CRUD views](components/crud) : For detail or edition of any resources
-* [Form](components/crud#form) : Global unique form V-model and server-side validation
-* [Translatable fields](components/crud#translatable) : context switching resource locale
+* [Full-featured DataTable](crud/list) : multi-sort, pagination, global search, advanced filters, CSV export
+* [Internal CRUD views](crud/show) : For detail or edition of any resources
+* [Form](crud/form) : Global unique form V-model and server-side validation
+* [Translatable fields](crud/show#translatable) : context switching resource locale
 * [Fields](components/fields) : for list or show views, extensibles with your own fields
 * [Inputs](components/inputs) : for all create / edit forms, extensibles with your own inputs
 

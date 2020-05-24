@@ -43,7 +43,7 @@ module.exports = (ctx) => ({
           },
         ],
         sidebar: {
-          "/guide/": getGuideSidebar("Guide", "Zero to One", "Components"),
+          "/guide/": getGuideSidebar("Guide", "Zero to One", "CRUD", "Components"),
         },
       },
       /*"/fr/": {
@@ -97,7 +97,7 @@ module.exports = (ctx) => ({
   },
 });
 
-function getGuideSidebar(groupA, groupB, groupC) {
+function getGuideSidebar(groupA, groupB, groupC, groupD) {
   return [
     {
       title: groupA,
@@ -124,9 +124,17 @@ function getGuideSidebar(groupA, groupB, groupC) {
       collapsable: false,
       sidebarDepth: 2,
       children: [
-        "components/layout",
-        "components/list",
-        "components/crud",
+        "crud/layout",
+        "crud/list",
+        "crud/show",
+        "crud/form",
+      ],
+    },
+    {
+      title: groupD,
+      collapsable: false,
+      sidebarDepth: 2,
+      children: [
         "components/fields",
         "components/inputs",
         "components/buttons",

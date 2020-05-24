@@ -32,18 +32,16 @@ Standard admin layout with :
 * App footer with customizable links and corporate message
 * Multi UI language (en and fr), takes browser language as default
 
-> See [dedicated guide](https://vtec.okami101.io/guide/components/layout).
+> See [dedicated guide](https://vtec.okami101.io/guide/crud/layout).
 
 ### CRUD
 
 Classic crud pages that can be generated with CLI plugin :
 
-* List : classic resource browser, paginable, filtrable as-you-type, multi-sortable and exportable. Can have global SQL like search filter as well as advanced specific filters. Use datatable component by default that can be replaced by your own custom data-iterable layout list component.
-* Show : entirely customizable layout show page. Use fields components as formatter for each resource properties.
-* Create : form page for new resource creation. Can use an other existing resource as source for input prefilling (clone).
-* Edit : customizable form page for an existing resource. Ideal place (as show page) for adding other related resources with contextualized datatable or any other layout you want.
-
-> See [dedicated guide](https://vtec.okami101.io/guide/components/list).
+* [List](https://vtec.okami101.io/guide/crud/list) : classic resource browser, paginable, filtrable as-you-type, multi-sortable and exportable. Can have global SQL like search filter as well as advanced specific filters. Use datatable component by default that can be replaced by your own custom data-iterable layout list component.
+* [Show](https://vtec.okami101.io/guide/crud/show) : entirely customizable layout show page. Use fields components as formatter for each resource properties.
+* [Create](https://vtec.okami101.io/guide/crud/form#create) : form page for new resource creation. Can use an other existing resource as source for input prefilling (clone).
+* [Edit](https://vtec.okami101.io/guide/crud/form#edit) : customizable form page for an existing resource. Ideal place (as show page) for adding other related resources with contextualized datatable or any other layout you want.
 
 ### Supported fields
 

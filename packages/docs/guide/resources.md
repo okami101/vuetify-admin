@@ -106,11 +106,11 @@ Example for a `monster_children` and `users` resources :
 :::vue
 resources
 ├── `monster-children` _(**The kebab-case format of resource slug or name**)_
-│   ├── [Create.vue](components/crud#create)
-│   ├── [Edit.vue](components/crud#edit)
-│   ├── [Form.vue](components/crud#form) _(**Form component reused for both Create and Edit views**)_
-│   ├── [List.vue](components/list)
-│   └── [Show.vue](components/crud#show)
+│   ├── [Create.vue](crud/form#create)
+│   ├── [Edit.vue](crud/form#edit)
+│   ├── [Form.vue](crud/form) _(**Form component reused for both Create and Edit views**)_
+│   ├── [List.vue](crud/list)
+│   └── [Show.vue](crud/show)
 │
 ├── `users` _(**No need of Create or Edit here as we use direct list aside feature for this**)_
 │   ├── Form.vue
@@ -171,7 +171,7 @@ export default {
 
 ### Link helpers
 
-You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](components/layout#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
+You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](crud/layout#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
 
 For exemple this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in the `sidebar-menu` as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
 
