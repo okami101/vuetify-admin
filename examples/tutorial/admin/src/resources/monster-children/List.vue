@@ -5,8 +5,7 @@
         {
           source: 'monster',
           type: 'autocomplete',
-          reference: 'monsters',
-          multiple: true,
+          attributes: { reference: 'monsters', multiple: true },
         },
       ]"
       :include="['monster']"
@@ -17,12 +16,15 @@
     >
       <va-data-table
         :fields="[
-          { source: 'monster', type: 'reference', reference: 'monsters' },
+          {
+            source: 'monster',
+            type: 'reference',
+            attributes: { reference: 'monsters' },
+          },
           'name',
-          { source: 'created_at', type: 'date', format: 'long' },
-          { source: 'updated_at', type: 'date', format: 'long' },
+          { source: 'created_at', type: 'date', sortable: true },
+          { source: 'updated_at', type: 'date', sortable: true },
         ]"
-        :sortable="['name', 'created_at', 'updated_at']"
         v-bind="props"
         v-model="selected"
         :options.sync="options"

@@ -7,7 +7,11 @@
         { source: 'active', type: 'boolean' },
         { source: 'level', type: 'number' },
         { source: 'rating', type: 'rating' },
-        { source: 'category', type: 'select', multiple: true },
+        {
+          source: 'category',
+          type: 'select',
+          attributes: { multiple: true },
+        },
       ]"
       :include="['media']"
       flat
@@ -21,21 +25,16 @@
           { source: 'email', type: 'email' },
           'label',
           { source: 'active', type: 'boolean' },
-          { source: 'level', type: 'number' },
-          { source: 'rating', type: 'rating' },
-          { source: 'price', type: 'number', format: 'currency' },
+          { source: 'level', type: 'number', sortable: true },
+          { source: 'rating', type: 'rating', sortable: true },
+          {
+            source: 'price',
+            type: 'number',
+            sortable: true,
+            attributes: { format: 'currency' },
+          },
           { source: 'category', type: 'select' },
-          { source: 'publication_date', type: 'date', format: 'long' },
-        ]"
-        :sortable="[
-          'name',
-          'label',
-          'level',
-          'rating',
-          'price',
-          'publication_date',
-          'created_at',
-          'updated_at',
+          { source: 'publication_date', type: 'date', sortable: true },
         ]"
         v-bind="props"
         v-model="selected"

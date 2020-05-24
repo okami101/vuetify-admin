@@ -28,11 +28,7 @@
               multiple
               taggable
             ></va-autocomplete-input>
-            <va-date-input
-              source="publication_date"
-              format="long"
-              required
-            ></va-date-input>
+            <va-date-input source="publication_date" required></va-date-input>
             <va-file-input source="avatar" preview></va-file-input>
             <va-file-input source="images" preview multiple></va-file-input>
             <va-file-input source="files" multiple></va-file-input>

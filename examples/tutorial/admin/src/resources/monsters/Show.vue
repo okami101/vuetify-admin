@@ -20,11 +20,7 @@
             <va-field source="body" type="rich-text"></va-field>
             <va-field source="category" type="select"></va-field>
             <va-field source="tags" type="array"></va-field>
-            <va-field
-              source="publication_date"
-              type="date"
-              format="long"
-            ></va-field>
+            <va-field source="publication_date" type="date"></va-field>
             <va-field source="avatar" type="image"></va-field>
             <va-field source="images" type="image"></va-field>
             <va-field source="files" type="file"></va-field>

@@ -163,7 +163,9 @@ async function service(resourceName, args = {}, api) {
           let column = {
             source: field.name,
             type: field.type,
-            ...(args.sortable.inlcludes(field.name) && { sortable: true }),
+            ...((args.sortable || []).includes(field.name) && {
+              sortable: true,
+            }),
             ...(field.attributes && { attributes: field.attributes }),
           };
 
