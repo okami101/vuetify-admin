@@ -4,10 +4,14 @@ The create and edit pages will allow creation of new resource item or modificati
 
 ![form](/assets/form.png)
 
-## VaCreateLayout
+## Layouts
+
+Both create and edit layouts share similar layout as show page with specific contextualized actions.
+
+### VaCreateLayout
 
 |> docgen va-create-layout
 
-## VaEditLayout
+### VaEditLayout
 
 |> docgen va-edit-layout

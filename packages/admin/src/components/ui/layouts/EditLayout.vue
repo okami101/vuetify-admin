@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import Page from "../../../mixins/page";
+import Resource from "../../../mixins/resource";
 import Item from "../../../mixins/item";
 
 /**
@@ -27,12 +29,6 @@ import Item from "../../../mixins/item";
  * @displayName VaEditLayout
  */
 export default {
-  mixins: [Item],
-  props: {
-    /**
-     * Optional H1 title of the page shown on the left of top header
-     */
-    title: String,
-  },
+  mixins: [Page, Resource, Item],
 };
 </script>

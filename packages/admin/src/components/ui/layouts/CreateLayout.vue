@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import Page from "../../../mixins/page";
 import Resource from "../../../mixins/resource";
 
 /**
@@ -19,12 +20,6 @@ import Resource from "../../../mixins/resource";
  * @displayName VaCreateLayout
  */
 export default {
-  mixins: [Resource],
-  props: {
-    /**
-     * Optional H1 title of the page shown on the left of top header
-     */
-    title: String,
-  },
+  mixins: [Page, Resource],
 };
 </script>
