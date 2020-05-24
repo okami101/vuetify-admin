@@ -16,7 +16,7 @@ import VtecAdmin from "vtec-admin";
  * Register all third-party components as Portal Vue, Vuedraggable
  * Will automatically load all CRUD pages resources as well
  */
-import "vtec-admin/dist/loader";
+import "vtec-admin/src/loader";
 // Import custom admin CSS
 import "vtec-admin/dist/admin.css";
 
@@ -24,10 +24,10 @@ import "vtec-admin/dist/admin.css";
 import {
   laravelDataProvider,
   sanctumAuthProvider,
-} from "vtec-admin/dist/providers";
+} from "vtec-admin/src/providers";
 
 // UI locales your want to support
-import { en, fr } from "vtec-admin/dist/locales";
+import { en, fr } from "vtec-admin/src/locales";
 
 // Custom authenticated admin pages as dashboard, profile, etc.
 import routes from "@/router/admin";
@@ -88,9 +88,9 @@ All this boring stuf as well as all next pieces of code shown in this page are a
 
 ## Components & resources loading
 
-In order to work, you need to load all Vuetify components used by VA manually. Indeed, as VA is precompiled as a standalone library, [a-la-carte](https://vuetifyjs.com/en/customization/a-la-carte/#a-la-carte-treeshaking) (the Vuetify treeshaking system) will not work as-is. All you have to do is to import `vtec-admin/dist/vuetify` which will load all necessary components inside `src/plugins/vuetify.js` file. You can remove `Vue.use(Vuetify)` line as it's already done by the import.
+In order to work, you need to load all Vuetify components used by VA manually. Indeed, as VA is precompiled as a standalone library, [a-la-carte](https://vuetifyjs.com/en/customization/a-la-carte/#a-la-carte-treeshaking) (the Vuetify treeshaking system) will not work as-is. All you have to do is to import `vtec-admin/src/vuetify` which will load all necessary components inside `src/plugins/vuetify.js` file. You can remove `Vue.use(Vuetify)` line as it's already done by the import.
 
-> TL;DR : add `import "vtec-admin/dist/vuetify"` and remove `Vue.use(Vuetify)` inside **`src/plugins/vuetify.js`**
+> TL;DR : add `import "vtec-admin/src/vuetify"` and remove `Vue.use(Vuetify)` inside **`src/plugins/vuetify.js`**
 
 :::warning IMPORT LOCATION
 This import line should be in `src/plugins/vuetify` for avoiding CSS overrides issues
@@ -98,7 +98,7 @@ This import line should be in `src/plugins/vuetify` for avoiding CSS overrides i
 
 Next, you have to import VA loader which import some external third-party components as well as all your CRUD pages, which will avoid us to the immensely boring manual import.
 
-> TL;DR : add `import "vtec-admin/dist/loader"` inside **`src/plugins/vuetify.js`**
+> TL;DR : add `import "vtec-admin/src/loader"` inside **`src/plugins/vuetify.js`**
 
 Finally, in you entrypoint, don't forget to add `vuetify` and `admin` into main Vue constructor options. It will register `$admin` global object into all of your Vue components, which allows you to use some useful helper functions.
 

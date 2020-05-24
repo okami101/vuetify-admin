@@ -142,8 +142,8 @@ If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin l
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
-import "vtec-admin/dist/vuetify";
-import "vtec-admin/dist/loader";
+import "vtec-admin/src/vuetify";
+import "vtec-admin/src/loader";
 import "vtec-admin/dist/admin.css";
 
 Vue.use(VtecAdmin);

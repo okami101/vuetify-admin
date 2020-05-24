@@ -27,7 +27,7 @@ import VtecAdmin from "vtec-admin";
 import {
   laravelDataProvider,
   sanctumAuthProvider,
-} from "vtec-admin/dist/providers";
+} from "vtec-admin/src/providers";
 
 import axios from "axios";
 
@@ -116,7 +116,7 @@ By default, basic auth will just return the username used for credentials. If yo
 import {
   laravelDataProvider,
   basicAuthProvider,
-} from "vtec-admin/dist/providers";
+} from "vtec-admin/src/providers";
 //...
 export default new VtecAdmin({
   //...

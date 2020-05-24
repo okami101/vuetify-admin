@@ -99,7 +99,7 @@ With the above resources informations, it's enough for Vtec Admin to recreate al
 
 Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
 
-In order to facilitate this boring work, use the provided loader to do this automatically by importing it with `import "vtec-admin/dist/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the sluggified name of resource.
+In order to facilitate this boring work, use the provided loader to do this automatically by importing it with `import "vtec-admin/src/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the sluggified name of resource.
 
 Example for a `monster_children` and `users` resources :
 
