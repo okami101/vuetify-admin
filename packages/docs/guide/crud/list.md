@@ -55,7 +55,7 @@ export default {
 
 It will produce this simple structure :
 
-![list](/assets/samples/list.png)
+![list](/assets/list-sample.png)
 
 Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
@@ -77,7 +77,7 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 ### Fields
 
-![fields](/assets/samples/fields.png)
+![fields](/assets/fields.png)
 
 Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter for data display. You need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
 
@@ -222,7 +222,7 @@ You just have to use `v-slot:field.{field}="{ item, value }"` for that. This slo
 
 ### Expandable row
 
-![expandable](/assets/samples/expandable.png)
+![expandable](/assets/expandable.png)
 
 You can use the `expanded-item` slot for an additional togglable full collspan cell under the item row. Ideal for quick view.
 
@@ -310,7 +310,7 @@ In addition to exposed filters, you may need some internal filters that user can
 
 In addition to global search, `VaDataIterator` supports advanced custom filters as well with many supported inputs as shown here :
 
-![filters](/assets/samples/filters.png)
+![filters](/assets/filters.png)
 
 Use the "Add filter" button for adding more filters that will add a new `AND` condition. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`. Each filter are removable.
 
@@ -430,7 +430,7 @@ In case you need other slots than default one, you must move `v-slot="props"` in
 
 The data iterator support all sort of bulk operations, whether it be updating or deleting. This feature will use `updateMany` and `deleteMany` methods of you data provider. All available bulk actions will appear at header as soon as you have selected some items.
 
-![bulk-actions](/assets/samples/bulk-actions.png)
+![bulk-actions](/assets/bulk-actions.png)
 
 ### Custom bulk actions
 
@@ -487,7 +487,7 @@ This default control is totally replaceable by your own pagination control. Use 
 
 ## Usage outside list page
 
-![relationship](/assets/samples/relationship.png)
+![relationship](/assets/relationship.png)
 
 You're not forced to use `VaDataIterator` on list page ! As the same way for most of VA components, it can be used anywhere on any page or context thanks to `resource` prop which is present on all resource aware VA components. When not defined, the default resource will be the one linked to the current route.
 
@@ -530,7 +530,7 @@ For this case usage, you may disable default query string update in order to pre
 
 ### Associations
 
-![associations](/assets/samples/associations.png)
+![associations](/assets/associations.png)
 
 You can go even further by managing associations thanks to provided `association` prop object that give us the ability of attach or detach relationship between related resources directly from the list. It will automatically generate a autocomplete search on given list ressource that allow us to attach via the associate button. Each row item can be detach via dissaciate button.
 
@@ -626,7 +626,7 @@ As you can see, `VaDataIterator` is mainly a data iterator that will provide ite
 
 It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters.
 
-![custom-list-layout](/assets/samples/custom-list-layout.png)
+![custom-list-layout](/assets/custom-list-layout.png)
 
 The only thing to do is to use the default slot of `VaDataIterator` which allows you to implement your custom template item list from the provided `items` binding value as shown here :
 
@@ -661,7 +661,7 @@ The only thing to do is to use the default slot of `VaDataIterator` which allows
 
 Instead of have separate CRUD pages for each action, it's possible to regroup all CRUD view operations into single page list thanks to `VaAsideLayout` component. It's perfect if you show and form views are relatively small.
 
-![aside](/assets/samples/aside.png)
+![aside](/assets/aside.png)
 
 ### VaAsideLayout
 
