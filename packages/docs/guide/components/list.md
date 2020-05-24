@@ -256,7 +256,7 @@ You can use the `expanded-item` slot for an additional togglable full collspan c
 
 If you need other item actions in addition to classic crud operations, use the dedicated `item.actions` slot.
 
-```vue {15-21}
+```vue {14-20}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator
@@ -264,28 +264,26 @@ If you need other item actions in addition to classic crud operations, use the d
       :options.sync="options"
       v-slot="props"
     >
-      <template v-slot="props">
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-          <template v-slot:item.actions="{ resource, item }">
-            <impersonate-button
-              :resource="resource"
-              :item="item"
-              icon
-            ></impersonate-button>
-          </template>
-        </va-data-table>
-      </template>
+      <va-data-table
+        :fields="fields"
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+        <template v-slot:item.actions="{ resource, item }">
+          <impersonate-button
+            :resource="resource"
+            :item="item"
+            icon
+          ></impersonate-button>
+        </template>
+      </va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
 ```
 
-### Filters
+## Filters
 
 :::tip GLOBAL SEARCH
 A global search filter will be enabled by default. To disable it, use `disableGlobalSearch` prop.
@@ -372,7 +370,7 @@ See all supported field properties :
 In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
 :::
 
-### Global actions
+## Global actions
 
 This `VaDataIterator` component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
 
@@ -384,15 +382,15 @@ You will have the same bahavior for `show`, `edit` and `clone` actions inside `V
 Note that all of this buttons will autohide if no action exist for each related button. Deactivation of each relevent action redirect will force buttons to reappear.
 :::
 
-#### Export
+### Export
 
 The export button will process a CSV file download on client side. It simply takes the current search context and refetch data on server side, while keeping current filters and sorts without any pagination infos.
 
 :::tip SERVER-SIDE EXPORT
-Because the client-side exports has it's own limits and limited to basic CSV, you can always create a custom action that do an export on server-side. Create a custom `href` button as shown below and use `disableExport` prop. Your href should contain all search context provided by `options` without any pagination infos and redirect to a valid API endpoint that return a response with attachment content that will provoke a download.
+Because the client-side exports has it's own limits and limited to basic CSV, you can always create a custom action that do an export on server-side. Create a custom `href` button as shown below and use `disableExport` prop. Your href should contain all search context provided by `options` without any pagination infos and redirect to a valid API endpoint that return a response with attachment content in order to provoke a file download.
 :::
 
-##### Custom actions
+### Custom actions
 
 You can add custom actions via `actions` slot :
 
@@ -415,15 +413,15 @@ You can add custom actions via `actions` slot :
 In case you need other slots than default one, you must move `v-slot="props"` into immediate parent template of list layout as shown above.
 :::
 
-#### Bulk actions
+## Bulk actions
 
 The data iterator support all sort of bulk operations, whether it be updating or deleting. This feature will use `updateMany` and `deleteMany` methods of you data provider. All available bulk actions will appear at header as soon as you have selected some items.
 
 ![bulk-actions](/assets/samples/bulk-actions.png)
 
-##### Custom bulk actions
+### Custom bulk actions
 
-By default VA provides a bulk delete action, but you add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](buttons#vabulkactionbutton) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
+By default VA provides a bulk delete action, but you can add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](buttons#vabulkactionbutton) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
 
 The next example will show you a bulk publish and unpublish bulk actions :
 
@@ -468,11 +466,11 @@ The next example will show you a bulk publish and unpublish bulk actions :
 In order to keep all components synchronized with current selected items, you may add `v-model="selected"` on any components that need to interact with them.
 :::
 
-#### Pagination
+## Pagination
 
 By default, `VaDataIterator` will use the default vuetify pagination control which allows direct page control navigation as well as number of shown item per page. Use `itemsPerPage` and `itemsPerPageOptions` in order to initialized the maximum number of shown item per page.
 
-This default control is totally replaceable by your own pagination control. Use `footer` slot property for that.
+This default control is totally replaceable by your own pagination control. Use `footer` slot property for that and set `hideDefaultFooter` prop to `true`. This slot will provide all pagination context infos as well as server-side total of items.
 
 ## Usage outside list page
 
