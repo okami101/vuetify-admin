@@ -6,6 +6,4 @@
 
 ## Components
 
-### VaAsideLayout
-
-|> docgen va-aside-layout
+TODO

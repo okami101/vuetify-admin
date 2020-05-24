@@ -59,8 +59,8 @@ For actions, you have to choose between `list` / `show` / `create` / `edit` / `d
 All removed actions will be reflected on all crud pages and Vue Router will be adapted accordingly as well. For example, if you set `except` to `["show"]`, it will disable `show` route and all `show` actions (mainly buttons) associates to the concerned resource.
 :::
 
-:::warning DISABLING ACTIONS
-The deactivation of actions is obviously only done on the client side. You must also adapt your backend accordingly.
+:::danger DISABLING ACTIONS
+Note that it will only disable routes client-side generation and change action buttons behavior. The resource API module has always all actions method available. You must also adapt your backend accordingly.
 :::
 
 ### Reuse API endpoints
