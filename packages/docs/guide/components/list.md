@@ -119,6 +119,16 @@ Each added filter will be added to the "Add filter" dropdown button for on-askin
 
 Other filter properties will correspond to props that you can use for inputs. See [dedicated inputs section](inputs) for further detail on valid props for each filterable inputs. You will mainly use mandatory `source` property as well as `type` for input type. All other properties will be merged in input component as props or attributes.
 
+See all supported field properties :
+
+| Property       | Type      | Description                                                               |
+| -------------- | --------- | ------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                             |
+| **type**       | `string`  | Type of [input](input) to use.                                            |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default. |
+| **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
+| **attributes** | `object`  | All props or attributes to merge to the [input component](input)          |
+
 ##### Internal filters
 
 In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
@@ -248,7 +258,7 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 #### Fields
 
-Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter to use for data. As for filters above, you need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields). All others object properties will be merged into field as props or attributes.
+Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter to use for data. As for filters above, you need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
 
 ```vue {9-47}
 <template>
@@ -335,14 +345,22 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
 </template>
 ```
 
-:::tip SORTABLE AND ALIGN
-Each field support specifics `label`, `sortable`, `align`, `link`, `attributes` and `editable` attributes. Set `sortable` to true for activating server-side sort. You can Use `left`, `right`, `center` for each cell `align` attribute.
+See all supported field properties :
 
-Set `link` to any valid `show` or `edit` action in order to add an anchor wrapper link for each cell field.
-Set `editable` to true in order to replace field by a live edit input. Ideal for quick live toggle switch updates.
-:::
+| Property       | Type      | Description                                                                                       |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                                                     |
+| **type**       | `string`  | Type of [field](field) to use.                                                                    |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                         |
+| **sortable**   | `boolean` | Activate server-side sort.                                                                        |
+| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                            |
+| **link**       | `string`  | Use any valid `show` or `edit` action in order to add an anchor wrapper link for each cell field. |
+| **attributes** | `object`  | All props or attributes to merge to the [field component](field)                                  |
+| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.                   |
 
 #### Advanced column templating
+
+TODO
 
 ## Usage outside list page
 
