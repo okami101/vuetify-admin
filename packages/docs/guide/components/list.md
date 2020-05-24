@@ -169,12 +169,12 @@ See all supported field properties :
 | Property       | Type      | Description                                                                                  |
 | -------------- | --------- | -------------------------------------------------------------------------------------------- |
 | **source**     | `string`  | Resource property to display.                                                                |
-| **type**       | `string`  | Type of [field](fields) to use.                                                               |
+| **type**       | `string`  | Type of [field](fields) to use.                                                              |
 | **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                    |
 | **sortable**   | `boolean` | Activate server-side sort.                                                                   |
 | **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                       |
 | **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link. |
-| **attributes** | `object`  | All props or attributes to merge to the [field component](fields).                            |
+| **attributes** | `object`  | All props or attributes to merge to the [field component](fields).                           |
 | **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.              |
 
 :::tip SHORTHAND
@@ -310,7 +310,7 @@ In order to define new filters, use the `filters` props. Here are a code sample 
       :options.sync="options"
       v-slot="props"
     >
-      <!-- Default slot -->
+      <!-- VaDataTable -->
     </va-data-iterator>
   </base-material-card>
 </template>
@@ -474,11 +474,11 @@ This default control is totally replaceable by your own pagination control. Use 
 
 ## Usage outside list page
 
-You're not forced to use it on list page ! As the same way for most of VA components, all of them can be used anywhere on any page.
+![relationship](/assets/samples/relationship.png)
 
-But for that you will probably need to explicitly set the main `resource` prop which is present on all resource aware VA components. If not defined, the default resource will be the one linked to the current route.
+You're not forced to use `VaDataIterator` on list page ! As the same way for most of VA components, it can be used anywhere on any page or context thanks to `resource` prop which is present on all resource aware VA components. When not defined, the default resource will be the one linked to the current route.
 
-Next example shows a perfect good case of `VaDataIterator` usage inside a `VaEditLayout` page in order to show some related resources linked to the current edited resource.
+Next example shows a good use case of `VaDataIterator` inside a `VaEditLayout` page in order to show some related resources linked to the current edited item resource.
 
 ```vue {6-10}
 <template>
@@ -501,8 +501,62 @@ Next example shows a perfect good case of `VaDataIterator` usage inside a `VaEdi
           v-model="selected"
           :options.sync="options"
         >
-          <!-- ... -->
+          <!-- VaDataTable -->
         </va-data-table>
+      </va-data-iterator>
+    </base-material-card>
+  </va-edit-layout>
+</template>
+```
+
+Note that the only thing to do is to provide explicitly the resource to fetch and use the `filter` which allows us to add internal filters, perfect place for adding the current resource as filter.
+
+:::warning QUERY STRING
+For this case usage, you may disable default query string update in order to prevent unexpected behavior. Use `disable-query-string` for that.
+:::
+
+### Associations
+
+![associations](/assets/samples/associations.png)
+
+You can go even further by managing associations thanks to provided `association` prop object that give us the ability of attach or detach relationship between related resources directly from the list. It will automatically generate a autocomplete search on given list ressource that allow us to attach via the associate button. Each row item can be detach via dissaciate button.
+
+See this example :
+
+```vue {15,29,48-52}
+<template>
+  <va-edit-layout>
+    <authors-form :id="id" :title="title" :item="item"></authors-form>
+    <base-material-card
+      icon="mdi-book"
+      :title="$tc('resources.books.name', 10)"
+    >
+      <va-data-iterator
+        resource="books"
+        disable-global-search
+        disable-pagination
+        disable-query-string
+        disable-create
+        disable-export
+        :association="association"
+        :filter="{
+          authors: id,
+        }"
+        :include="['publisher', 'reviews']"
+        :options.sync="options"
+        v-slot="props"
+      >
+        <va-data-table
+          resource="books"
+          disable-sort
+          disable-select
+          disable-clone
+          disable-delete
+          :association="association"
+          :fields="fields"
+          v-bind="props"
+          :options.sync="options"
+        ></va-data-table>
       </va-data-iterator>
     </base-material-card>
   </va-edit-layout>
@@ -517,30 +571,38 @@ export default {
         // ...
       ],
       options: {},
-      selected: [],
+      association: {
+        resource: "authors",
+        source: "author_id",
+        id: this.id,
+      },
     };
   },
 };
 </script>
 ```
 
-![relationship](/assets/samples/relationship.png)
+Expected properties of `association` :
 
-:::warning QUERY STRING
-For this case usage, you may need to disable default query string update in order to prevent unexpected behavior. Use `disable-query-string` for that.
-:::
+| Property     | Type     | Description                                                              |
+| ------------ | -------- | ------------------------------------------------------------------------ |
+| **resource** | `string` | Resource that you want to link / unlink. Just for labellisation purpose. |
+| **source**   | `string` | Name of request key data to send on backend.                             |
+| **id**       | `number` | ID of current ressource to detach.                                       |
 
-## Associations
-
-You can use the
-
-TODO
+For both associate and dissociate actions, the `update` data provider method will be called on the listed resource (which is `books` for this example) with this data : `{ <source>: <id> }`. It's up to you to make the effective association from server-side.
 
 ## Custom layout
 
 As you can see, `VaDataIterator` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
 
-```vue
+It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters.
+
+![custom-list-layout](/assets/samples/custom-list-layout.png)
+
+The only thing to do is to use the default slot of `VaDataIterator` which allows you to implement your custom template item list from the provided `items` binding value as shown here :
+
+```vue {7-21}
 <template>
   <base-material-card>
     <va-data-iterator
@@ -566,7 +628,3 @@ As you can see, `VaDataIterator` is mainly a data iterator that will provide ite
   </base-material-card>
 </template>
 ```
-
-It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters :
-
-![custom-list-layout](/assets/samples/custom-list-layout.png)

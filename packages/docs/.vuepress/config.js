@@ -90,6 +90,7 @@ module.exports = (ctx) => ({
     ],
   ],
   markdown: {
+    lineNumbers: true,
     extendMarkdown: (md) => {
       md.use(require("./markdown-it-json-table"));
     },
