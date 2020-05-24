@@ -2,7 +2,7 @@
   <v-input v-if="record" :label="label" class="va-input">
     <div>
       <!--
-        @slot Field placeholder. By default use field component according to `type` props.
+        @slot Field placeholder. By default use field component according to `type` props with all other attributes merged.
       -->
       <slot v-bind="{ item: record, value }">
         <component
@@ -21,9 +21,9 @@
 import Field from "../../mixins/field";
 
 /**
- * Wrapper component for field, mainly used for show page.
+ * Wrapper component for field which contains label and supported VA field, mainly used for show page.
  * Use default slot for custom needs or use `type` property for quick usage of valid existing field component.
- * All attributes of this component will be merged into child slot.
+ * All other attributes of this component will be merged into child slot.
  * @displayName VaField
  */
 export default {

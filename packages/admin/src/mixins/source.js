@@ -8,14 +8,14 @@ export default {
   mixins: [Resource],
   props: {
     /**
-     * Specific case of parent resource for array input.
-     */
-    parentSource: String,
-    /**
      * Property of resource for fetching the value to show.
      * Support dot notation for nested object.
      */
     source: String,
+    /**
+     * Specific case of parent resource for array input.
+     */
+    parentSource: String,
     /**
      * Override default label behavior.
      * Default is to get the localized VueI18n label from both ressource and property source.
