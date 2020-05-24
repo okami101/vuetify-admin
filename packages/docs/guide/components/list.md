@@ -590,7 +590,22 @@ Expected properties of `association` :
 | **source**   | `string` | Name of request key data to send on backend.                             |
 | **id**       | `number` | ID of current ressource to detach.                                       |
 
-For both associate and dissociate actions, the `update` data provider method will be called on the listed resource (which is `books` for this example) with this data : `{ <source>: <id> }`. It's up to you to make the effective association from server-side.
+For both associate and dissociate actions, the `update` data provider method will be called on the listed resource (which is `books` for this example) with this data : `{ <type>_<source>: <id> }`. `type` will correspond to the type of operation, which is `add` or `remove`. It's up to you to make the effective association from server-side.
+
+:::tip LARAVEL EXAMPLE
+Here is a code sample you can use on your `update` endpoint of your controller for a pivot relation :
+
+```php
+if ($id = $request->input('add_author_id')) {
+    $book->authors()->attach($id);
+}
+
+if ($id = $request->input('remove_author_id')) {
+    $book->authors()->detach($id);
+}
+```
+
+:::
 
 ## Custom layout
 
