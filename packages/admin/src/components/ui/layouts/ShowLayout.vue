@@ -22,7 +22,7 @@
 import Item from "../../../mixins/item";
 
 /**
- * Page layout for resource detail showing.
+ * Page layout for resource detail showing. It's the better place for made heavy usage of any VA fields.
  * Contain specific related action as deleting, cloning, editing as well as translation action.
  * @displayName VaShowLayout
  */
