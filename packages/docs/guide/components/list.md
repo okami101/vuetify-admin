@@ -283,15 +283,32 @@ If you need other item actions in addition to classic crud operations, use the d
 </template>
 ```
 
-## Filters
+## Search filter
 
-:::tip GLOBAL SEARCH
 A global search filter will be enabled by default. To disable it, use `disableGlobalSearch` prop.
 
 This filter will send the string search query on backend via the key configured on `globalSearchQuery`, which is `q` by default.
 
-Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the Vtec Laravel package for your Laravel app, you can use the dedicated `SearchFilter` for that.
+Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the Vtec Laravel package for your Laravel app, you can use the dedicated `SearchFilter` for that :
+
+```php {4}
+return UserResource::collection(
+    QueryBuilder::for(User::class)
+        ->allowedFilters([
+            AllowedFilter::custom('q', new SearchFilter(['name', 'email'])),
+            AllowedFilter::exact('id'),
+            AllowedFilter::partial('roles'),
+        ])
+        ->allowedSorts(['id', 'name', 'email'])
+        ->exportOrPaginate()
+);
+```
+
+:::tip INTERNAL FILTERS
+In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
 :::
+
+## Advanced filters
 
 In addition to global search, `VaDataIterator` supports advanced custom filters as well with many supported inputs as shown here :
 
@@ -365,10 +382,6 @@ See all supported field properties :
 | **label**      | `string`  | Column title header, use [localized property source](../i18n) by default. |
 | **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
 | **attributes** | `object`  | All props or attributes to merge to the [input component](input)          |
-
-:::tip INTERNAL FILTERS
-In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
-:::
 
 ## Global actions
 
