@@ -52,6 +52,9 @@ export default new VtecAdmin({
   },
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
-  fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
   resources,
+  options: {
+    dateFormat: "long",
+    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+  },
 });

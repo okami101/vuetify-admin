@@ -30,7 +30,7 @@ Here a quick sample usage within the `VaDataTable` component :
           'headquarter',
           { source: 'url', type: 'url' },
           { source: 'active', type: 'boolean' },
-          { source: 'opening_date', type: 'date', format: 'long' },
+          { source: 'opening_date', type: 'date' },
         ]"
         v-bind="props"
         v-model="selected"
@@ -103,12 +103,10 @@ In order to define new filters, use the `filters` props. Here are a code sample 
       {
         source: 'published_before',
         type: 'date',
-        format: 'long',
       },
       {
         source: 'published_after',
         type: 'date',
-        format: 'long',
       },
     ]"
   >
@@ -267,37 +265,44 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
             source: 'cover',
             type: 'image',
             link: 'show',
-            src: 'thumbnails.small',
+            attributes: {
+              src: 'thumbnails.small',
+            }
           },
-          { source: 'category', type: 'select', chip: true },
+          { source: 'category', type: 'select',  attributes: { chip: true } },
           {
             source: 'publisher',
             type: 'reference',
-            reference: 'publishers',
-            text: 'name',
-            chip: true,
-            color: 'orange',
+            attributes: {
+              reference: 'publishers',
+              text: 'name',
+              chip: true,
+              color: 'orange',
+            }
           },
           { source: 'title', sortable: true },
           {
             source: 'price',
             type: 'number',
-            format: 'currency',
             sortable: true,
+            attributes: {
+              format: 'currency',
+            }
           },
           { source: 'commentable', type: 'boolean', editable: true },
           {
             source: 'formats',
             type: 'array',
-            select: true,
-            color: 'yellow',
-            small: true,
-            column: true,
+            attributes: {
+              select: true,
+              color: 'yellow',
+              small: true,
+              column: true,
+            }
           },
           {
             source: 'publication_date',
             type: 'date',
-            format: 'long',
             sortable: true,
           },
           'authors',

@@ -16,7 +16,12 @@ export default {
     /**
      * Name of date format to use. Must be predefined on your VueI18n plugin.
      */
-    format: String,
+    format: {
+      type: String,
+      default() {
+        return this.$admin.options.dateFormat;
+      },
+    },
   },
   methods: {
     dateFormatted(val) {

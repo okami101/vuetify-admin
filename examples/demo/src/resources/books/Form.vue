@@ -27,10 +27,7 @@
               <v-col>
                 <va-select-input source="formats" multiple></va-select-input>
                 <va-boolean-input source="commentable"></va-boolean-input>
-                <va-date-input
-                  source="publication_date"
-                  format="long"
-                ></va-date-input>
+                <va-date-input source="publication_date"></va-date-input>
                 <va-autocomplete-input
                   v-if="$admin.can(['admin'])"
                   source="authors"

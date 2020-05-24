@@ -29,16 +29,10 @@
           {
             source: 'published_before',
             type: 'date',
-            attributes: {
-              format: 'long',
-            },
           },
           {
             source: 'published_after',
             type: 'date',
-            attributes: {
-              format: 'long',
-            },
           },
         ]"
         :include="['authors']"
@@ -62,9 +56,6 @@
             {
               source: 'publication_date',
               type: 'date',
-              attributes: {
-                format: 'long',
-              },
             },
             'authors',
           ]"

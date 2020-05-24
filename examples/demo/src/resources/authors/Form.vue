@@ -37,11 +37,7 @@
             >
               <v-row>
                 <v-col sm="6">
-                  <va-date-input
-                    v-bind="props"
-                    source="date"
-                    format="long"
-                  ></va-date-input>
+                  <va-date-input v-bind="props" source="date"></va-date-input>
                 </v-col>
                 <v-col sm="6">
                   <va-text-input v-bind="props" source="url"></va-text-input>

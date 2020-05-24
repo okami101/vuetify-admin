@@ -132,8 +132,6 @@ resources:
       publication_date:
         label: Date
         type: date
-        attributes:
-          format: 'long'
         form:
           required: true
       avatar:
@@ -203,12 +201,8 @@ resources:
       created_at:
         label: Creation date
         type: date
-        attributes:
-          format: 'long'
         form: false
       updated_at:
         label: Modification date
         type: date
-        attributes:
-          format: 'long'
         form: false

@@ -145,9 +145,9 @@ async function service(resourceName, args = {}, api) {
           let filter = {
             source: field.name,
             type: field.form && field.form.type ? field.form.type : field.type,
-            ...(args.sortable.inlcludes(field.name) && { sortable: true }),
-            ...(field.attributes || {}),
-            ...(field.filter || {}),
+            ...((field.attributes || field.filter) && {
+              attributes: { ...field.attributes, ...field.filter },
+            }),
           };
           return filter;
         })
@@ -163,7 +163,8 @@ async function service(resourceName, args = {}, api) {
           let column = {
             source: field.name,
             type: field.type,
-            ...(field.attributes || {}),
+            ...(args.sortable.inlcludes(field.name) && { sortable: true }),
+            ...(field.attributes && { attributes: field.attributes }),
           };
 
           return column;

@@ -40,11 +40,7 @@
                 >
                   {{ value.street }}, {{ value.postcode }} {{ value.city }}
                 </va-field>
-                <va-field
-                  source="opening_date"
-                  type="date"
-                  format="long"
-                ></va-field>
+                <va-field source="opening_date" type="date"></va-field>
                 <va-field source="books_count" type="number"></va-field>
               </v-col>
             </v-row>

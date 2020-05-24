@@ -38,9 +38,6 @@
             source: 'opening_date',
             type: 'date',
             sortable: true,
-            attributes: {
-              format: 'long',
-            },
           },
           { source: 'books_count', type: 'number', sortable: true },
         ]"

@@ -85,11 +85,13 @@ export default {
         inline: this.inline,
       };
 
-      if (this.$admin.fileBrowserUrl) {
+      let url = this.$admin.options.fileBrowserUrl;
+
+      if (url) {
         init.file_picker_callback = (callback, value, meta) => {
           tinymce.activeEditor.windowManager.openUrl({
             title: this.$t("va.file_manager"),
-            url: this.$admin.fileBrowserUrl,
+            url,
             /**
              * On message will be triggered by the child window
              *

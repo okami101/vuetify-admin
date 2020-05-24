@@ -23,16 +23,10 @@
         {
           source: 'published_before',
           type: 'date',
-          attributes: {
-            format: 'long',
-          },
         },
         {
           source: 'published_after',
           type: 'date',
-          attributes: {
-            format: 'long',
-          },
         },
       ]"
       :include="['book']"
@@ -65,9 +59,6 @@
             source: 'publication_date',
             type: 'date',
             sortable: true,
-            attributes: {
-              format: 'long',
-            },
           },
         ]"
         v-bind="props"

@@ -64,8 +64,11 @@ export default new VtecAdmin({
   },
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
-  fileBrowserUrl: '/elfinder/tinymce5',
   resources,
+  options: {
+    dateFormat: "long",
+    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+  },
 });
 ```
 
@@ -253,3 +256,12 @@ Use title property inside meta route object for title page. This title will be a
 :::tip DEFAULT REDIRECT
 Add an automatic redirect on the main parent route towards authenticated home page, i.e. most of the time your dashboard page.
 :::
+
+### Options
+
+See all supported specific options :
+
+| Property           | Type     | Description                                                                                    |
+| ------------------ | -------- | ---------------------------------------------------------------------------------------------- |
+| **dateFormat**     | `string` | Default date format for all date fields and inputs. Must be predefined on your VueI18n plugin. |
+| **fileBrowserUrl** | `string` | Optional file browser URL, which will appear on included TinyMCE file picker.                  |

@@ -63,10 +63,7 @@
                 <va-text-input source="address.city"></va-text-input>
               </v-col>
               <v-col sm="6">
-                <va-date-input
-                  source="opening_date"
-                  format="long"
-                ></va-date-input>
+                <va-date-input source="opening_date"></va-date-input>
                 <va-boolean-input source="active"></va-boolean-input>
               </v-col>
             </v-row>

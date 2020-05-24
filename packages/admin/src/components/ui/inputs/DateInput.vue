@@ -57,7 +57,12 @@ export default {
      * Name of date format to use for textfield input.
      * Must be predefined on your VueI18n plugin.
      */
-    format: String,
+    format: {
+      type: String,
+      default() {
+        return this.$admin.options.dateFormat;
+      },
+    },
   },
   data() {
     return {

@@ -25,16 +25,10 @@
           {
             source: 'published_before',
             type: 'date',
-            attributes: {
-              format: 'long',
-            },
           },
           {
             source: 'published_after',
             type: 'date',
-            attributes: {
-              format: 'long',
-            },
           },
         ]"
         v-model="selected"
@@ -57,9 +51,6 @@
             {
               source: 'publication_date',
               type: 'date',
-              attributes: {
-                format: 'long',
-              },
             },
           ]"
           v-bind="props"

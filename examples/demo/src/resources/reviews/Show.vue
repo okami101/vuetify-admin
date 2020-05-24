@@ -26,11 +26,7 @@
             <va-field source="rating" type="rating"></va-field>
             <va-field source="body"></va-field>
             <va-field source="author"></va-field>
-            <va-field
-              source="publication_date"
-              type="date"
-              format="long"
-            ></va-field>
+            <va-field source="publication_date" type="date"></va-field>
           </v-card-text>
         </base-material-card>
       </v-col>

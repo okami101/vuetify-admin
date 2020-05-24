@@ -42,9 +42,6 @@
             {
               source: 'publication_date',
               type: 'date',
-              attributes: {
-                format: 'long',
-              },
             },
             'reviews',
           ]"

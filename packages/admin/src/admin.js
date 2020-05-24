@@ -21,8 +21,8 @@ export default class VtecAdmin {
     translations,
     authProvider,
     dataProvider,
-    fileBrowserUrl,
     resources,
+    options,
     canAction,
   }) {
     /**
@@ -33,7 +33,7 @@ export default class VtecAdmin {
     this.translations = translations;
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
-    this.fileBrowserUrl = fileBrowserUrl;
+    this.options = options || {};
 
     /**
      * Permissions helper & directive

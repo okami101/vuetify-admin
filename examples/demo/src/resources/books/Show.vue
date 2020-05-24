@@ -36,11 +36,7 @@
                   format="currency"
                 ></va-field>
                 <va-field source="commentable" type="boolean"></va-field>
-                <va-field
-                  source="publication_date"
-                  type="date"
-                  format="long"
-                ></va-field>
+                <va-field source="publication_date" type="date"></va-field>
                 <va-field source="authors" v-slot="{ value }">
                   <v-chip-group>
                     <va-reference-field

@@ -53,17 +53,11 @@
                 source: 'created_at',
                 type: 'date',
                 sortable: true,
-                attributes: {
-                  format: 'long',
-                },
               },
               {
                 source: 'updated_at',
                 type: 'date',
                 sortable: true,
-                attributes: {
-                  format: 'long',
-                },
               },
             ]"
             v-bind="props"
