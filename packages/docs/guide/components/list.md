@@ -23,15 +23,7 @@ Here a quick sample usage within the `VaDataTable` component :
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
       <va-data-table
-        :fields="[
-          { source: 'name', link: 'show' },
-          { source: 'type', type: 'select' },
-          'founder',
-          'headquarter',
-          { source: 'url', type: 'url' },
-          { source: 'active', type: 'boolean' },
-          { source: 'opening_date', type: 'date' },
-        ]"
+        :fields="fields"
         v-bind="props"
         v-model="selected"
         :options.sync="options"
@@ -46,6 +38,15 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      fields: [
+        { source: 'name', link: 'show' },
+        { source: 'type', type: 'select' },
+        'founder',
+        'headquarter',
+        { source: 'url', type: 'url' },
+        { source: 'active', type: 'boolean' },
+        { source: 'opening_date', type: 'date' },
+      ],
       options: {},
       selected: [],
     };
@@ -60,9 +61,80 @@ It will produce this simple structure :
 
 Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
-:::warning SHOW DATA
-`VaDataIterator` is only responsible for data iteration UI controls. You will need to display the data list on your own or use the providing `VaDataTable`.
+:::warning DISPLAY DATA
+`VaDataIterator` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the providing `VaDataTable`.
 :::
+
+## VaDataTable
+
+|> docgen va-data-table
+
+:::warning CONTEXT SYNCHRONIZATION
+As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaDataIterator` as data browsing control and do next additional attachments :
+
+* `v-slot="props"` and `v-bind="props"` : Pass all data iterator slot bindings into data table as props.
+* `v-model="selected"` : Keep selected items used for bulk operation synchronized, all selected items in data table will be reflected on data iterator and vice-versa.
+* `:options.sync="options"`: Keep current search query context synchronized between all components, as the data table will add sorting support.
+:::
+
+### Fields
+
+Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter to use for data. As for filters above, you need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
+
+```vue {9-47}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      v-model="selected"
+      :options.sync="options"
+      v-slot="props"
+    >
+      <va-data-table
+        :fields="fields"
+        show-expand
+        v-bind="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+        <template v-slot:authors="{ value }">
+          <v-chip-group column>
+            <va-reference-field
+              reference="authors"
+              v-for="(item, i) in value"
+              :key="i"
+              color="primary"
+              small
+              chip
+              :item="item"
+            >
+            </va-reference-field>
+          </v-chip-group>
+        </template>
+        <template v-slot:expanded-item="{ item }">
+          {{ item.description }}
+        </template>
+      </va-data-table>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+```
+
+See all supported field properties :
+
+| Property       | Type      | Description                                                                                       |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                                                     |
+| **type**       | `string`  | Type of [field](field) to use.                                                                    |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                         |
+| **sortable**   | `boolean` | Activate server-side sort.                                                                        |
+| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                            |
+| **link**       | `string`  | Use any valid `show` or `edit` action in order to add an anchor wrapper link for each cell field. |
+| **attributes** | `object`  | All props or attributes to merge to the [field component](field)                                  |
+| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.                   |
+
+#### Advanced column templating
+
+TODO
 
 #### Filters
 
@@ -210,9 +282,7 @@ The next example will show you a bulk publish and unpublish bulk actions :
       </template>
       <template v-slot="props">
         <va-data-table
-          :fields="[
-            // ...
-          ]"
+          :fields="fields"
           v-bind="props"
           v-model="selected"
           :options.sync="options"
@@ -221,17 +291,6 @@ The next example will show you a bulk publish and unpublish bulk actions :
     </va-data-iterator>
   </base-material-card>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      options: {},
-      selected: [],
-    };
-  },
-};
-</script>
 ```
 
 :::warning SELECTED V-MODEL
@@ -243,124 +302,6 @@ In order to keep all components synchronized with current selected items, you ma
 By default, `VaDataIterator` will use the default vuetify pagination control which allows direct page control navigation as well as number of shown item per page. Use `itemsPerPage` and `itemsPerPageOptions` in order to initialized the maximum number of shown item per page.
 
 This default control is totally replaceable by your own pagination control. Use `footer` slot property for that.
-
-### VaDataTable
-
-|> docgen va-data-table
-
-:::warning CONTEXT SYNCHRONIZATION
-As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at many above code examples, the simplest way is to use `VaDataIterator` as data browsing control and do next additional attachments :
-
-* `v-slot="props"` and `v-bind="props"` : Pass all data iterator slot bindings into data table as props.
-* `v-model="selected"` : Keep selected items synchronized, all selected items in data table will be reflected on data iterator and vice-versa.
-* `:options.sync="options"`: Keep current search query context synchronized between all components, as the data table will add sorting support.
-:::
-
-#### Fields
-
-Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter to use for data. As for filters above, you need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
-
-```vue {9-47}
-<template>
-  <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="[
-          { source: 'isbn', link: 'show' },
-          {
-            source: 'cover',
-            type: 'image',
-            link: 'show',
-            attributes: {
-              src: 'thumbnails.small',
-            }
-          },
-          { source: 'category', type: 'select',  attributes: { chip: true } },
-          {
-            source: 'publisher',
-            type: 'reference',
-            attributes: {
-              reference: 'publishers',
-              text: 'name',
-              chip: true,
-              color: 'orange',
-            }
-          },
-          { source: 'title', sortable: true },
-          {
-            source: 'price',
-            type: 'number',
-            sortable: true,
-            attributes: {
-              format: 'currency',
-            }
-          },
-          { source: 'commentable', type: 'boolean', editable: true },
-          {
-            source: 'formats',
-            type: 'array',
-            attributes: {
-              select: true,
-              color: 'yellow',
-              small: true,
-              column: true,
-            }
-          },
-          {
-            source: 'publication_date',
-            type: 'date',
-            sortable: true,
-          },
-          'authors',
-        ]"
-        show-expand
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
-        <template v-slot:authors="{ value }">
-          <v-chip-group column>
-            <va-reference-field
-              reference="authors"
-              v-for="(item, i) in value"
-              :key="i"
-              color="primary"
-              small
-              chip
-              :item="item"
-            >
-            </va-reference-field>
-          </v-chip-group>
-        </template>
-        <template v-slot:expanded-item="{ item }">
-          {{ item.description }}
-        </template>
-      </va-data-table>
-    </va-data-iterator>
-  </base-material-card>
-</template>
-```
-
-See all supported field properties :
-
-| Property       | Type      | Description                                                                                       |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------- |
-| **source**     | `string`  | Resource property to display.                                                                     |
-| **type**       | `string`  | Type of [field](field) to use.                                                                    |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                         |
-| **sortable**   | `boolean` | Activate server-side sort.                                                                        |
-| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                            |
-| **link**       | `string`  | Use any valid `show` or `edit` action in order to add an anchor wrapper link for each cell field. |
-| **attributes** | `object`  | All props or attributes to merge to the [field component](field)                                  |
-| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.                   |
-
-#### Advanced column templating
-
-TODO
 
 ## Usage outside list page
 
@@ -386,9 +327,7 @@ Next example shows a perfect good case of `VaDataIterator` usage inside a `VaEdi
         v-slot="props"
       >
         <va-data-table
-          :fields="[
-            // ...
-          ]"
+          :fields="fields"
           v-bind="props"
           v-model="selected"
           :options.sync="options"
@@ -405,6 +344,9 @@ export default {
   props: ["id", "title", "item"],
   data() {
     return {
+      fields: [
+        // ...
+      ],
       options: {},
       selected: [],
     };

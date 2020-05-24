@@ -1,66 +1,14 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator
-      :filters="[
-        {
-          source: 'book',
-          type: 'autocomplete',
-          attributes: {
-            optionText: 'title',
-            multiple: true,
-            reference: 'books',
-          },
-        },
-        { source: 'rating', type: 'rating' },
-        {
-          source: 'status',
-          type: 'select',
-          attributes: {
-            multiple: true,
-          },
-        },
-        'author',
-        {
-          source: 'published_before',
-          type: 'date',
-        },
-        {
-          source: 'published_after',
-          type: 'date',
-        },
-      ]"
+      :filters="filters"
       :include="['book']"
       v-model="selected"
       :options.sync="options"
       v-slot="props"
     >
       <va-data-table
-        :fields="[
-          {
-            source: 'book',
-            type: 'reference',
-            attributes: {
-              optionText: 'title',
-              reference: 'books',
-            },
-          },
-          {
-            source: 'status',
-            type: 'select',
-            attributes: {
-              chip: true,
-              color: (v) => $statusColor(v),
-            },
-          },
-          { source: 'rating', type: 'rating', sortable: true },
-          'quality',
-          { source: 'author', sortable: true },
-          {
-            source: 'publication_date',
-            type: 'date',
-            sortable: true,
-          },
-        ]"
+        :fields="fields"
         v-bind="props"
         show-expand
         v-model="selected"
@@ -82,6 +30,60 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      filters: [
+        {
+          source: "book",
+          type: "autocomplete",
+          attributes: {
+            optionText: "title",
+            multiple: true,
+            reference: "books",
+          },
+        },
+        { source: "rating", type: "rating" },
+        {
+          source: "status",
+          type: "select",
+          attributes: {
+            multiple: true,
+          },
+        },
+        "author",
+        {
+          source: "published_before",
+          type: "date",
+        },
+        {
+          source: "published_after",
+          type: "date",
+        },
+      ],
+      fields: [
+        {
+          source: "book",
+          type: "reference",
+          attributes: {
+            optionText: "title",
+            reference: "books",
+          },
+        },
+        {
+          source: "status",
+          type: "select",
+          attributes: {
+            chip: true,
+            color: (v) => this.$statusColor(v),
+          },
+        },
+        { source: "rating", type: "rating", sortable: true },
+        "quality",
+        { source: "author", sortable: true },
+        {
+          source: "publication_date",
+          type: "date",
+          sortable: true,
+        },
+      ],
       options: {},
       selected: [],
     };

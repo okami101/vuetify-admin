@@ -1,46 +1,14 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator
-      :filters="[
-        'name',
-        'founder',
-        'headquarter',
-        { source: 'active', type: 'boolean' },
-      ]"
+      :filters="filters"
       :include="['media', 'books_count']"
       v-slot="props"
       v-model="selected"
       :options.sync="options"
     >
       <va-data-table
-        :fields="[
-          {
-            source: 'logo',
-            type: 'image',
-            link: 'show',
-            attributes: {
-              src: 'thumbnails.small',
-              contain: true,
-            },
-          },
-          { source: 'name', link: 'show', sortable: true },
-          { source: 'type', type: 'select' },
-          { source: 'founder', sortable: true },
-          { source: 'headquarter', sortable: true },
-          { source: 'url', type: 'url' },
-          { source: 'active', type: 'boolean' },
-          'address.street',
-          {
-            source: 'address',
-            label: $t('address'),
-          },
-          {
-            source: 'opening_date',
-            type: 'date',
-            sortable: true,
-          },
-          { source: 'books_count', type: 'number', sortable: true },
-        ]"
+        :fields="fields"
         v-bind="props"
         v-model="selected"
         :options.sync="options"
@@ -58,6 +26,40 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      filters: [
+        "name",
+        "founder",
+        "headquarter",
+        { source: "active", type: "boolean" },
+      ],
+      fields: [
+        {
+          source: "logo",
+          type: "image",
+          link: "show",
+          attributes: {
+            src: "thumbnails.small",
+            contain: true,
+          },
+        },
+        { source: "name", link: "show", sortable: true },
+        { source: "type", type: "select" },
+        { source: "founder", sortable: true },
+        { source: "headquarter", sortable: true },
+        { source: "url", type: "url" },
+        { source: "active", type: "boolean" },
+        "address.street",
+        {
+          source: "address",
+          label: this.$t("address"),
+        },
+        {
+          source: "opening_date",
+          type: "date",
+          sortable: true,
+        },
+        { source: "books_count", type: "number", sortable: true },
+      ],
       options: {},
       selected: [],
     };

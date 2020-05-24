@@ -14,20 +14,7 @@
       >
         <template v-slot="props">
           <va-data-table
-            :fields="[
-              { source: 'name', sortable: true },
-              { source: 'email', type: 'email' },
-              {
-                source: 'created_at',
-                type: 'date',
-                sortable: true,
-              },
-              {
-                source: 'updated_at',
-                type: 'date',
-                sortable: true,
-              },
-            ]"
+            :fields="fields"
             v-bind="props"
             v-model="selected"
             :options.sync="options"
@@ -60,6 +47,20 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      fields: [
+        { source: "name", sortable: true },
+        { source: "email", type: "email" },
+        {
+          source: "created_at",
+          type: "date",
+          sortable: true,
+        },
+        {
+          source: "updated_at",
+          type: "date",
+          sortable: true,
+        },
+      ],
       asideOpened: false,
       asideTitle: null,
       id: null,

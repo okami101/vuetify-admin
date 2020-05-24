@@ -12,47 +12,13 @@
         :filter="{
           book: id,
         }"
-        :filters="[
-          { source: 'rating', type: 'rating' },
-          {
-            source: 'status',
-            type: 'select',
-            attributes: {
-              multiple: true,
-            },
-          },
-          'author',
-          {
-            source: 'published_before',
-            type: 'date',
-          },
-          {
-            source: 'published_after',
-            type: 'date',
-          },
-        ]"
+        :filters="filters"
         v-model="selected"
         :options.sync="options"
         v-slot="props"
       >
         <va-data-table
-          :fields="[
-            {
-              source: 'status',
-              type: 'select',
-              attributes: {
-                chip: true,
-                color: (v) => $statusColor(v),
-              },
-            },
-            { source: 'rating', type: 'rating' },
-            'quality',
-            'author',
-            {
-              source: 'publication_date',
-              type: 'date',
-            },
-          ]"
+          :fields="fields"
           v-bind="props"
           v-model="selected"
           :options.sync="options"
@@ -71,6 +37,42 @@ export default {
   props: ["id", "title", "item"],
   data() {
     return {
+      filters: [
+        { source: "rating", type: "rating" },
+        {
+          source: "status",
+          type: "select",
+          attributes: {
+            multiple: true,
+          },
+        },
+        "author",
+        {
+          source: "published_before",
+          type: "date",
+        },
+        {
+          source: "published_after",
+          type: "date",
+        },
+      ],
+      fields: [
+        {
+          source: "status",
+          type: "select",
+          attributes: {
+            chip: true,
+            color: (v) => this.$statusColor(v),
+          },
+        },
+        { source: "rating", type: "rating" },
+        "quality",
+        "author",
+        {
+          source: "publication_date",
+          type: "date",
+        },
+      ],
       options: {},
       selected: [],
     };

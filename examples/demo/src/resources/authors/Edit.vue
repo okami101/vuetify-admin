@@ -27,24 +27,7 @@
           disable-clone
           disable-delete
           :association="association"
-          :fields="[
-            { source: 'isbn', link: 'show' },
-            { source: 'category', type: 'select', attributes: { chip: true } },
-            'title',
-            {
-              source: 'price',
-              type: 'number',
-              attributes: {
-                format: 'currency',
-              },
-            },
-            { source: 'commentable', type: 'boolean' },
-            {
-              source: 'publication_date',
-              type: 'date',
-            },
-            'reviews',
-          ]"
+          :fields="fields"
           v-bind="props"
           :options.sync="options"
         >
@@ -73,6 +56,24 @@ export default {
   props: ["id", "title", "item"],
   data() {
     return {
+      fields: [
+        { source: "isbn", link: "show" },
+        { source: "category", type: "select", attributes: { chip: true } },
+        "title",
+        {
+          source: "price",
+          type: "number",
+          attributes: {
+            format: "currency",
+          },
+        },
+        { source: "commentable", type: "boolean" },
+        {
+          source: "publication_date",
+          type: "date",
+        },
+        "reviews",
+      ],
       options: {},
       association: {
         resource: "authors",

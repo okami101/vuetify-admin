@@ -1,13 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator
-      :filters="[
-        {
-          source: 'monster',
-          type: 'autocomplete',
-          attributes: { reference: 'monsters', multiple: true },
-        },
-      ]"
+      :filters="filters"
       :include="['monster']"
       flat
       v-slot="props"
@@ -15,16 +9,7 @@
       :options.sync="options"
     >
       <va-data-table
-        :fields="[
-          {
-            source: 'monster',
-            type: 'reference',
-            attributes: { reference: 'monsters' },
-          },
-          'name',
-          { source: 'created_at', type: 'date', sortable: true },
-          { source: 'updated_at', type: 'date', sortable: true },
-        ]"
+        :fields="fields"
         v-bind="props"
         v-model="selected"
         :options.sync="options"
@@ -39,6 +24,23 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      filters: [
+        {
+          source: "monster",
+          type: "autocomplete",
+          attributes: { reference: "monsters", multiple: true },
+        },
+      ],
+      fields: [
+        {
+          source: "monster",
+          type: "reference",
+          attributes: { reference: "monsters" },
+        },
+        "name",
+        { source: "created_at", type: "date", sortable: true },
+        { source: "updated_at", type: "date", sortable: true },
+      ],
       options: {},
       selected: [],
     };
