@@ -1,0 +1,42 @@
+<template>
+  <div>
+    <!-- @slot All content form with all inner fields. Item will be injected for each fields. -->
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+/**
+ * Main show component which handle resource display by using VA component fields.
+ * Inject item for each VA field.
+ * @displayName VaShow
+ */
+export default {
+  provide() {
+    return {
+      showState: this.showState,
+    };
+  },
+  props: {
+    /**
+     * Explicit item resource object where all properties must be injected into VA fields.
+     */
+    item: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      showState: {
+        item: this.item,
+      },
+    };
+  },
+  watch: {
+    item(val) {
+      this.showState.item = val;
+    },
+  },
+};
+</script>

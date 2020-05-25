@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <va-show :item="item">
     <va-field source="name"></va-field>
     <va-field source="email"></va-field>
     <va-field source="active" type="boolean"></va-field>
@@ -32,7 +32,7 @@
         </v-chip>
       </v-chip-group>
     </va-field>
-  </div>
+  </va-show>
 </template>
 
 <script>

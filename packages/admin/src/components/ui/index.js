@@ -1,6 +1,7 @@
 import Field from "./Field";
 import Input from "./Input";
 import Form from "./Form";
+import Show from "./Show";
 
 import DataIterator from "./list/DataIterator";
 import DataTable from "./list/DataTable";
@@ -57,6 +58,7 @@ export {
   Field,
   Input,
   Form,
+  Show,
   DataIterator,
   DataTable,
   CreateLayout,

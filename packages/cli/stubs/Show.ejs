@@ -1,21 +1,23 @@
 <template>
   <va-show-layout>
-    <v-row justify="center">
-      <v-col sm="6">
-        <base-material-card>
-          <template v-slot:heading>
-            <div class="display-2">
-              {{ title }}
-            </div>
-          </template>
-          <v-card-text>
-            <%_ for (field of fields) { _%>
-            <va-field source="<%- field.name %>" type="<%- field.type %>"<%- field.attrs ? ' ' + field.attrs : '' %>></va-field>
-            <%_ } _%>
-          </v-card-text>
-        </base-material-card>
-      </v-col>
-    </v-row>
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col sm="6">
+          <base-material-card>
+            <template v-slot:heading>
+              <div class="display-2">
+                {{ title }}
+              </div>
+            </template>
+            <v-card-text>
+              <%_ for (field of fields) { _%>
+              <va-field source="<%- field.name %>" type="<%- field.type %>"<%- field.attrs ? ' ' + field.attrs : '' %>></va-field>
+              <%_ } _%>
+            </v-card-text>
+          </base-material-card>
+        </v-col>
+      </v-row>
+    </va-show>
   </va-show-layout>
 </template>
 

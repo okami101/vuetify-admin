@@ -1,9 +1,16 @@
+import Resource from "./resource";
+
 /**
  * Common props for generic button.
  * @displayName VaMixinButton
  */
 export default {
+  mixins: [Resource],
   props: {
+    /**
+     * Item attached to the button.
+     */
+    item: null,
     /**
      * If true, show button with icon only, label will be shown as tooltip.
      */

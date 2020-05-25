@@ -13,13 +13,12 @@
 
 <script>
 import Page from "../../../mixins/page";
-import Resource from "../../../mixins/resource";
 
 /**
  * Page layout for resource creation.
  * @displayName VaCreateLayout
  */
 export default {
-  mixins: [Page, Resource],
+  mixins: [Page],
 };
 </script>

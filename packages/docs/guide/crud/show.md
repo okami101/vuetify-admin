@@ -13,59 +13,61 @@ Here a quick sample usage within the `VaShowLayout` component :
 ```vue
 <template>
   <va-show-layout>
-    <v-row justify="center">
-      <v-col sm="6">
-        <base-material-card>
-          <template v-slot:heading>
-            <div class="display-2">
-              {{ title }}
-            </div>
-          </template>
-          <v-card-text>
-            <va-field
-              source="logo"
-              type="image"
-              src="thumbnails.large"
-              contain
-            ></va-field>
-            <v-row>
-              <v-col>
-                <va-field source="name"></va-field>
-                <va-field source="type" type="select"></va-field>
-              </v-col>
-              <v-col>
-                <va-field source="founder"></va-field>
-                <va-field source="headquarter"></va-field>
-              </v-col>
-            </v-row>
-            <va-field source="description"></va-field>
-            <v-row>
-              <v-col lg="6">
-                <va-field source="url" type="url"></va-field>
-                <va-field source="email" type="email"></va-field>
-                <va-field source="active" type="boolean"></va-field>
-              </v-col>
-              <v-col lg="6">
-                <va-field
-                  source="address"
-                  :label="$t('address')"
-                  v-slot="{ value }"
-                >
-                  {{ value.street }}, {{ value.postcode }} {{ value.city }}
-                </va-field>
-                <va-field source="opening_date" type="date"></va-field>
-                <va-field source="books_count" type="number"></va-field>
-              </v-col>
-            </v-row>
-            <va-field
-              source="local"
-              type="image"
-              src="thumbnails.medium"
-            ></va-field>
-          </v-card-text>
-        </base-material-card>
-      </v-col>
-    </v-row>
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col sm="6">
+          <base-material-card>
+            <template v-slot:heading>
+              <div class="display-2">
+                {{ title }}
+              </div>
+            </template>
+            <v-card-text>
+              <va-field
+                source="logo"
+                type="image"
+                src="thumbnails.large"
+                contain
+              ></va-field>
+              <v-row>
+                <v-col>
+                  <va-field source="name"></va-field>
+                  <va-field source="type" type="select"></va-field>
+                </v-col>
+                <v-col>
+                  <va-field source="founder"></va-field>
+                  <va-field source="headquarter"></va-field>
+                </v-col>
+              </v-row>
+              <va-field source="description"></va-field>
+              <v-row>
+                <v-col lg="6">
+                  <va-field source="url" type="url"></va-field>
+                  <va-field source="email" type="email"></va-field>
+                  <va-field source="active" type="boolean"></va-field>
+                </v-col>
+                <v-col lg="6">
+                  <va-field
+                    source="address"
+                    :label="$t('address')"
+                    v-slot="{ value }"
+                  >
+                    {{ value.street }}, {{ value.postcode }} {{ value.city }}
+                  </va-field>
+                  <va-field source="opening_date" type="date"></va-field>
+                  <va-field source="books_count" type="number"></va-field>
+                </v-col>
+              </v-row>
+              <va-field
+                source="local"
+                type="image"
+                src="thumbnails.medium"
+              ></va-field>
+            </v-card-text>
+          </base-material-card>
+        </v-col>
+      </v-row>
+    </va-show>
   </va-show-layout>
 </template>
 
@@ -89,7 +91,9 @@ So :
 ```vue
 <template>
   <va-show-layout>
-    <va-field source="type" type="select"></va-field>
+    <va-show :item="item">
+      <va-field source="type" type="select"></va-field>
+    </va-show>
   </va-show-layout>
 </template>
 ```
@@ -99,9 +103,11 @@ Is perfectly equivalent to :
 ```vue
 <template>
   <va-show-layout>
-    <va-field source="type">
-      <va-select-field source="type"></va-select-field>
-    </va-field>
+    <va-show :item="item">
+      <va-field source="type">
+        <va-select-field source="type"></va-select-field>
+      </va-field>
+    </va-show>
   </va-show-layout>
 </template>
 ```
@@ -111,9 +117,11 @@ Or :
 ```vue
 <template>
   <va-show-layout>
-    <va-field source="type" v-slot="{ item }">
-      <va-select-field source="type" :item="item"></va-select-field>
-    </va-field>
+    <va-show :item="item">
+      <va-field source="type" v-slot="{ item }">
+        <va-select-field source="type" :item="item"></va-select-field>
+      </va-field>
+    </va-show>
   </va-show-layout>
 </template>
 ```
@@ -123,13 +131,15 @@ You can use this component only for label and item value provider and made your 
 ```vue
 <template>
   <va-show-layout>
-    <va-field
-      source="address"
-      :label="$t('address')"
-      v-slot="{ value }"
-    >
-      {{ value.street }}, {{ value.postcode }} {{ value.city }}
-    </va-field>
+    <va-show :item="item">
+      <va-field
+        source="address"
+        :label="$t('address')"
+        v-slot="{ value }"
+      >
+        {{ value.street }}, {{ value.postcode }} {{ value.city }}
+      </va-field>
+    </va-show>
   </va-show-layout>
 </template>
 ```
@@ -163,23 +173,25 @@ As you have total freedom on the layout, it's really easy to create a tabbed sty
 ```vue
 <template>
   <va-show-layout>
-    <v-row justify="center">
-      <v-col lg="8">
-        <base-material-tabs-card
-          :tabs="[
-            { id: 'attributes', icon: 'mdi-eye' },
-            { id: 'summary', icon: 'mdi-text' },
-          ]"
-        >
-          <template v-slot:attributes>
-            <!-- 1st tab content -->
-          </template>
-          <template v-slot:summary>
-            <!-- 2st tab content -->
-          </template>
-        </base-material-tabs-card>
-      </v-col>
-    </v-row>
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col lg="8">
+          <base-material-tabs-card
+            :tabs="[
+              { id: 'attributes', icon: 'mdi-eye' },
+              { id: 'summary', icon: 'mdi-text' },
+            ]"
+          >
+            <template v-slot:attributes>
+              <!-- 1st tab content -->
+            </template>
+            <template v-slot:summary>
+              <!-- 2st tab content -->
+            </template>
+          </base-material-tabs-card>
+        </v-col>
+      </v-row>
+    </va-show>
   </va-show-layout>
 </template>
 

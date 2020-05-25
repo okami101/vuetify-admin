@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import Item from "../../../mixins/item";
 import ActionButton from "../../../mixins/action-button";
 
 /**
@@ -33,7 +32,7 @@ import ActionButton from "../../../mixins/action-button";
  * @displayName VaActionButton
  */
 export default {
-  mixins: [Item, ActionButton],
+  mixins: [ActionButton],
   props: {
     /**
      * Set the button's type attribute.

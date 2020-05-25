@@ -20,8 +20,7 @@ Note that the create page support copy of values from other existing resource, i
   <va-create-layout>
     <va-form
       :item="item"
-      :saving.sync="saving"
-      v-model="model">
+      :saving.sync="saving">
       <!-- VA inputs component -->
     </va-form>
   </va-create-layout>
@@ -49,8 +48,7 @@ Compared to to create page, you gain a new `id` prop that correspond to the reso
     <va-form
       :id="id"
       :item="item"
-      :saving.sync="saving"
-      v-model="model">
+      :saving.sync="saving">
       <!-- VA inputs component -->
     </va-form>
   </va-edit-layout>
@@ -76,7 +74,7 @@ Here a code sample :
 ```vue
 <template>
   <va-edit-layout>
-    <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
+    <va-form :id="id" :item="item" :saving.sync="saving">
       <v-row justify="center">
         <v-col lg="8">
           <base-material-tabs-card

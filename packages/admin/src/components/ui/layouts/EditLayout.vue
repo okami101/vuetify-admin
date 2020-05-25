@@ -20,8 +20,6 @@
 
 <script>
 import Page from "../../../mixins/page";
-import Resource from "../../../mixins/resource";
-import Item from "../../../mixins/item";
 
 /**
  * Page layout for resource edition.
@@ -29,6 +27,6 @@ import Item from "../../../mixins/item";
  * @displayName VaEditLayout
  */
 export default {
-  mixins: [Page, Resource, Item],
+  mixins: [Page],
 };
 </script>

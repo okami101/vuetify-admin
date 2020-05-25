@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import Item from "../../../mixins/item";
 import Button from "../../../mixins/button";
 import { mapActions } from "vuex";
 
@@ -20,7 +19,7 @@ import { mapActions } from "vuex";
  * @displayName VaDissociateButton
  */
 export default {
-  mixins: [Item, Button],
+  mixins: [Button],
   props: {
     /**
      * POST Request property name for update.

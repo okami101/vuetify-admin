@@ -20,7 +20,6 @@
 
 <script>
 import Page from "../../../mixins/page";
-import Item from "../../../mixins/item";
 
 /**
  * Page layout for resource detail showing. It's the better place for made heavy usage of any VA fields.
@@ -28,6 +27,6 @@ import Item from "../../../mixins/item";
  * @displayName VaShowLayout
  */
 export default {
-  mixins: [Page, Item],
+  mixins: [Page],
 };
 </script>

@@ -1,5 +1,4 @@
 import Source from "./source";
-import Item from "./item";
 import get from "lodash/get";
 
 /**
@@ -9,8 +8,20 @@ import get from "lodash/get";
  * @displayName VaMixinField
  */
 export default {
-  mixins: [Source, Item],
+  mixins: [Source],
+  inject: {
+    showState: { default: undefined },
+  },
+  props: {
+    /**
+     * Override show state.
+     */
+    item: null,
+  },
   computed: {
+    record() {
+      return this.item || this.showState.item;
+    },
     value() {
       return typeof this.record === "string" || !this.source
         ? this.record

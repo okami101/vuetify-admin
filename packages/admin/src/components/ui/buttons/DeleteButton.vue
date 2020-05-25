@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import Item from "../../../mixins/item";
 import Button from "../../../mixins/button";
 import { mapActions } from "vuex";
 
@@ -21,7 +20,7 @@ import { mapActions } from "vuex";
  * @displayName VaDeleteButton
  */
 export default {
-  mixins: [Item, Button],
+  mixins: [Button],
   props: {
     /**
      * Redirect to resource list after successful deletion.

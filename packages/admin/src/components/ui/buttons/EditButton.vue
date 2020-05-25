@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import Item from "../../../mixins/item";
 import RedirectButton from "../../../mixins/redirect-button";
 
 /**
@@ -21,6 +20,6 @@ import RedirectButton from "../../../mixins/redirect-button";
  * @displayName VaEditButton
  */
 export default {
-  mixins: [Item, RedirectButton],
+  mixins: [RedirectButton],
 };
 </script>

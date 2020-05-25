@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <va-show :item="item">
     <va-field source="name"></va-field>
     <va-field source="email"></va-field>
-  </div>
+  </va-show>
 </template>
 
 <script>

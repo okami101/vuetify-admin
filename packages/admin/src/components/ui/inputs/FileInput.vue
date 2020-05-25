@@ -5,6 +5,7 @@
       <component
         :is="`va-${preview ? 'image' : 'file'}-field`"
         :source="source"
+        :item="formState.item"
         v-bind="$attrs"
         clearable
       ></component>
