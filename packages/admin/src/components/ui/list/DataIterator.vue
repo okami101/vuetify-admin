@@ -87,7 +87,7 @@
           :resource="resource"
           text
           :options="options"
-          :filter="{ ...filter, ...currentFilter }"
+          :filter="currentFilter"
         ></va-export-button>
       </v-toolbar>
     </template>
@@ -294,6 +294,13 @@ export default {
     },
   },
   watch: {
+    filter: {
+      handler(newVal) {
+        this.currentFilter = newVal || {};
+      },
+      immediate: true,
+      deep: true,
+    },
     refresh(newVal) {
       if (newVal) {
         this.fetchData();
@@ -314,9 +321,11 @@ export default {
        */
       this.$emit("update:options", val);
     },
-    currentFilter() {
+    currentFilter(newVal) {
       this.fetchData();
       this.updateQuery();
+
+      this.$emit("update:filter", newVal);
     },
   },
   methods: {
@@ -429,10 +438,7 @@ export default {
         sort: (sortBy || []).map((by, index) => {
           return { by, desc: sortDesc[index] };
         }),
-        filter: {
-          ...this.filter,
-          ...this.currentFilter,
-        },
+        filter: this.currentFilter,
       };
 
       if (!this.disablePagination) {

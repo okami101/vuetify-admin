@@ -8,7 +8,7 @@ import { mapActions } from "vuex";
 export default {
   props: {
     /**
-     * Internal filter, always active and not modifiable through UI.
+     * Internal active filter.
      * Sent to your data provider inside `filter` params.
      */
     filter: {

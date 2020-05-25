@@ -12,15 +12,23 @@
         >
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
-        <input-filter
-          :type="item.type"
+        <slot
+          :name="item.source"
           :source="item.source"
           :label="item.label"
           v-bind="item.attributes"
           :value="value[item.source]"
-          @input="(val) => update(item.source, val)"
         >
-        </input-filter>
+          <input-filter
+            :type="item.type"
+            :source="item.source"
+            :label="item.label"
+            v-bind="item.attributes"
+            :value="value[item.source]"
+            @input="(val) => update(item.source, val)"
+          >
+          </input-filter>
+        </slot>
       </div>
     </v-col>
   </v-row>

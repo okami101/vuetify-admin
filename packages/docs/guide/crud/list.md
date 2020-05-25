@@ -181,7 +181,7 @@ You can use a simple string for each field column, `"my-property"` is similar to
 
 ### Field templating
 
-In case of all above field options doasn't suit your needs, you can percectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
+In case of all above field options doesn't suit your needs, you can percectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
 
 ```vue {15-28}
 <template>
@@ -218,7 +218,7 @@ In case of all above field options doasn't suit your needs, you can percectly us
 </template>
 ```
 
-You just have to use `v-slot:field.{field}="{ item, value }"` for that. This slot will provide to you full row resource item and value of the cell that will be rendered as default.
+You just have to use a slot named as `field.{source}` for that, where `source` is the name of field. This slot will provide to you full row resource item and value of the cell that will be rendered as default.
 
 ### Expandable row
 
@@ -380,6 +380,72 @@ See all supported field properties :
 | **label**      | `string`  | Column title header, use [localized property source](../i18n) by default. |
 | **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
 | **attributes** | `object`  | All props or attributes to merge to the [input component](input)          |
+
+### Filter templating
+
+As same way as field templating you can even template your filter directy by using `filter.{source}` slot, where `source` is the name of filter. However, as your custom filter component must return input on change in order to work with current active filter, you will need to expose the internal filter of `VaDataIterator` by `filter.sync`, and then update the filter with new value on each input change.
+
+Here is a full working sample :
+
+```vue {7,9-16,34,48-55}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      :filters="filters"
+      v-model="selected"
+      :options.sync="options"
+      :filter.sync="filter"
+    >
+      <template v-slot:filter.headquarter="props">
+        <va-text-input
+          hide-details
+          :filled="false"
+          v-bind="props"
+          @input="(val) => update('headquarter', val)"
+        ></va-text-input>
+      </template>
+      <template v-slot="props">
+        <va-data-table
+          :fields="fields"
+          v-bind="props"
+          v-model="selected"
+          :options.sync="options"
+        ></va-data-table>
+      </template>
+    </va-data-iterator>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      filter: {},
+      filters: [
+        "name",
+        "founder",
+        "headquarter",
+        { source: "active", type: "boolean" },
+      ],
+      fields: [
+        // ...
+      ],
+      options: {},
+      selected: [],
+    };
+  },
+  methods: {
+    update(source, value) {
+      this.filter = {
+        ...this.filter,
+        [source]: value,
+      };
+    },
+  },
+};
+</script>
+```
 
 ## Global actions
 
