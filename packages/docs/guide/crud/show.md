@@ -136,7 +136,7 @@ You can use this component only for label and item value provider and made your 
 
 :::tip Supported field components
 Go to separated [fields guide reference](../components/fields) to get all supported components for display data.
-You can still create your [own field component](../components/fields#custom) if none suit your needs.
+You can still create your [own field component](../components/fields#custom-field-component) if none suit your needs.
 :::
 
 ## Custom actions
