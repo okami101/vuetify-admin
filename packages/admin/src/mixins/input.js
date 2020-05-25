@@ -93,16 +93,22 @@ export default {
       this.$emit("change", value);
     },
     update(value) {
+      // Take default value if undefined
+      value = value === undefined ? this.value : value;
+
       /**
-       * Update model in the injected form if available
+       * Update model in the injected form if available.
        */
       if (this.formState) {
         this.formState.update({
           source: this.uniqueFormId,
-          value: value || this.value,
+          value: value,
         });
       }
 
+      /**
+       * Set value into input.
+       */
       this.input = value;
 
       /**

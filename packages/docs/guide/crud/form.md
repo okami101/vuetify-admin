@@ -186,12 +186,24 @@ export default {
 
 As you can see on above code sample, there is no need of any v-model in order to make it work. Indeed, all child inputs will receive the parent form state via [provide/inject](https://vuejs.org/v2/api/#provide-inject) Vue feature, which reduces considerably code form boilerplate. All inputs will update the internal parent model accordingly on first input initialization and on every input change.
 
-But what if we need access to internal form model for specific case, as show/hide some fields based on current model state ? For that you just have to expose the internal form model via `v-model` as shown here :
+But what if we need access to internal form model for specific case, as show/hide some fields based on current model state ? For that you just have to expose the internal form model via `v-model`.
 
-```vue {2,13}
+Here is a full example with show/hide some fields based on `active` property model :
+
+```vue {2,5,23-25}
 <template>
   <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
-    <!-- VA inputs component -->
+    <va-text-input source="description" multiline></va-text-input>
+    <va-boolean-input source="active"></va-boolean-input>
+    <v-row v-if="model.active">
+      <v-col sm="6">
+        <va-text-input source="url"></va-text-input>
+      </v-col>
+      <v-col sm="6">
+        <va-text-input source="email"></va-text-input>
+      </v-col>
+    </v-row>
+    <va-save-button :saving="saving"></va-save-button>
   </va-form>
 </template>
 
@@ -201,12 +213,58 @@ export default {
   data() {
     return {
       saving: false,
-      model: {},
+      model: {
+        active: true,
+      },
     };
   },
 };
 </script>
 ```
+
+:::tip DEFAULT VALUE
+Note that you're not forced to put all properties inside exposed model. If not present, they will still autocreated by all present VA inputs component.
+
+If you explicitly set a property, the relatad input will take this value as default in case of no item is injected into `VaForm`. Ideal for prefilling a create item.
+
+If you don't need a `v-model`, simply set the `value` prop to any compatible value. This value will be take as default on create form.
+:::
+
+You can even use the v-model on VA input instead of full form :
+
+```vue {4,5,23}
+<template>
+  <va-form :id="id" :item="item" :saving.sync="saving">
+    <va-text-input source="description" multiline></va-text-input>
+    <va-boolean-input source="active" v-model="active"></va-boolean-input>
+    <v-row v-if="active">
+      <v-col sm="6">
+        <va-text-input source="url"></va-text-input>
+      </v-col>
+      <v-col sm="6">
+        <va-text-input source="email"></va-text-input>
+      </v-col>
+    </v-row>
+    <va-save-button :saving="saving"></va-save-button>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+  data() {
+    return {
+      saving: false,
+      active: true,
+    };
+  },
+};
+</script>
+```
+
+### Client-side validation
+
+`VaForm` use a vuetify `v-form` under the hood. Check the [official docs](https://vuetifyjs.com/en/components/forms/#creating-rules) for further detail. Use the `rules` property for each VA inputs for setting custom rules. For required, you can use the `required` shortand prop.
 
 ### Server-side validation
 
