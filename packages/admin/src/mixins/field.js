@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     record() {
-      return this.item || this.showState.item;
+      return this.item || (this.showState ? this.showState.item : null);
     },
     value() {
       return typeof this.record === "string" || !this.source

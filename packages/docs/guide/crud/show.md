@@ -8,7 +8,64 @@ The show page is used to be display full detail of particular resource item via 
 
 |> docgen va-show-layout
 
-Here a quick sample usage within the `VaShowLayout` component :
+### Custom actions
+
+You can add specific global item actions on top header of `VaShowLayout` by using `actions` slot :
+
+```vue
+<template>
+  <va-show-layout>
+    <template slot="actions">
+      <impersonate-button :item="item"></impersonate-button>
+    </template>
+    <!-- Default slot -->
+  </va-show-layout>
+</template>
+```
+
+### Tab layout
+
+![tabs](/assets/tabs.png)
+
+As you have total freedom on the layout, it's really easy to create a tabbed style show by using any vuetify or custom components. By example you can use the material tabs card component provided by Vue CLI Plugin :
+
+```vue
+<template>
+  <va-show-layout>
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col lg="8">
+          <base-material-tabs-card
+            :tabs="[
+              { id: 'attributes', icon: 'mdi-eye' },
+              { id: 'summary', icon: 'mdi-text' },
+            ]"
+          >
+            <template v-slot:attributes>
+              <!-- 1st tab content -->
+            </template>
+            <template v-slot:summary>
+              <!-- 2st tab content -->
+            </template>
+          </base-material-tabs-card>
+        </v-col>
+      </v-row>
+    </va-show>
+  </va-show-layout>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
+
+## VaShow
+
+|> docgen va-show
+
+Here a full showcase of this injector component :
 
 ```vue
 <template>
@@ -78,7 +135,7 @@ export default {
 </script>
 ```
 
-As you can see, this show page will do heavy use of special VA field components that are aware of current route context and are able to catch the value of resource property indicated on the `source` prop.
+As you can guess, the main role of `VaShow` is to inject full item resource object on every VA field components which leads to minimal boilerplate code. Then VA field will be able to catch the value of resource property indicated on the `source` prop.
 
 ## VaField
 
@@ -148,56 +205,3 @@ You can use this component only for label and item value provider and made your 
 Go to separated [fields guide reference](../components/fields) to get all supported components for display data.
 You can still create your [own field component](../components/fields#custom-field-component) if none suit your needs.
 :::
-
-## Custom actions
-
-You can add specific global item actions on top header of `VaShowLayout` by using `actions` slot :
-
-```vue
-<template>
-  <va-show-layout>
-    <template slot="actions">
-      <impersonate-button :item="item"></impersonate-button>
-    </template>
-    <!-- Default slot -->
-  </va-show-layout>
-</template>
-```
-
-## Tab layout
-
-![tabs](/assets/tabs.png)
-
-As you have total freedom on the layout, it's really easy to create a tabbed style show by using any vuetify or custom components. By example you can use the material tabs card component provided by Vue CLI Plugin :
-
-```vue
-<template>
-  <va-show-layout>
-    <va-show :item="item">
-      <v-row justify="center">
-        <v-col lg="8">
-          <base-material-tabs-card
-            :tabs="[
-              { id: 'attributes', icon: 'mdi-eye' },
-              { id: 'summary', icon: 'mdi-text' },
-            ]"
-          >
-            <template v-slot:attributes>
-              <!-- 1st tab content -->
-            </template>
-            <template v-slot:summary>
-              <!-- 2st tab content -->
-            </template>
-          </base-material-tabs-card>
-        </v-col>
-      </v-row>
-    </va-show>
-  </va-show-layout>
-</template>
-
-<script>
-export default {
-  props: ["title", "item"],
-};
-</script>
-```
