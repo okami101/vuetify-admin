@@ -19,7 +19,6 @@
     "show": "Afficher",
     "edit": "Éditer",
     "delete": "Supprimer",
-    "save": "Enregistrer",
     "export": "Exporter",
     "clone": "Dupliquer",
     "add": "Ajouter",
@@ -27,7 +26,11 @@
     "move": "Déplacer",
     "associate": "Associer",
     "dissociate": "Dissocier",
-    "locale": "Langue"
+    "locale": "Langue",
+    "save": "Enregistrer",
+    "save_and_add": "Enregistrer et ajouter",
+    "save_and_show": "Enregistrer et afficher",
+    "save_and_edit": "Enregistrer et editer"
   },
   "messages": {
     "created": "{resource} créé avec succès !",

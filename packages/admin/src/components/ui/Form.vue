@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="form" @submit.prevent="onSave">
+  <v-form ref="form" @submit.prevent="onSubmit">
     <!-- @slot All content form with all inner inputs. Model will be injected for each inputs. -->
     <slot></slot>
   </v-form>
@@ -49,10 +49,11 @@ export default {
     saving: Boolean,
     /**
      * Default route resource action to redirect after saving.
-     * @values list, show, edit
+     * @values list, create, show, edit
      */
     redirect: {
       type: String,
+      validator: (v) => ["list", "create", "show", "edit"].includes(v),
       default: "list",
     },
     /**
@@ -75,6 +76,9 @@ export default {
            */
           this.$emit("input", this.formState.model);
         },
+        submit: (redirect) => {
+          this.save(redirect);
+        },
       },
     };
   },
@@ -93,7 +97,14 @@ export default {
     },
   },
   methods: {
-    async onSave() {
+    onSubmit() {
+      if (this.disableRedirect) {
+        this.save();
+        return;
+      }
+      this.save(this.redirect);
+    },
+    async save(redirect) {
       if (!this.$refs.form.validate()) {
         return;
       }
@@ -120,13 +131,16 @@ export default {
          */
         this.$emit("saved");
 
-        if (this.disableRedirect) {
-          return;
-        }
-
-        switch (this.redirect) {
+        switch (redirect) {
           case "list":
             this.$router.push({ name: `${this.resource}_list` });
+            break;
+          case "create":
+            // Reset form in case of same route
+            this.formState.item = null;
+            this.formState.model = {};
+
+            this.$router.push({ name: `${this.resource}_create` });
             break;
           case "show":
             this.$router.push({

@@ -19,7 +19,6 @@
     "show": "Show",
     "edit": "Edit",
     "delete": "Delete",
-    "save": "Save",
     "export": "Export",
     "clone": "Clone",
     "add": "Add",
@@ -27,7 +26,11 @@
     "move": "Move",
     "associate": "Associate",
     "dissociate": "Dissociate",
-    "locale": "Locale"
+    "locale": "Locale",
+    "save": "Save",
+    "save_and_add": "Save and add",
+    "save_and_show": "Save and show",
+    "save_and_edit": "Save and edit"
   },
   "messages": {
     "created": "New {resource} successfully created !",
