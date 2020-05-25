@@ -209,6 +209,14 @@ try {
 }
 ```
 
+The expected error object format :
+
+| Property    | Type     | Description                                                                                                            |
+| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **message** | `string` | The error message that will be shown at snackbar via `VaMessages` component.                                           |
+| **status**  | `number` | Response status code, not used by VA but returned on [`checkError`](authentication#api-contract) auth provider method. |
+| **errors**  | `object` | Use it for [server-side validation support](crud/form#server-side-validation).                                         |
+
 ### Store
 
 You can use all data provider methods for each resource on your custom CRUD pages or any custom authenticated page directly from the Vuex store. You have 2 different methods, one by the `mapActions` Vuex helper and the other by the global `$store` instance where you can use the `dispatch`. The next piece of code will show an example of both ways to fetch data from your providers :

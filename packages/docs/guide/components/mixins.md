@@ -2,6 +2,10 @@
 
 You will find here all mixins reference used inside VtecAdmin.
 
+## VaMixinPage
+
+|> docgen va-mixin-page
+
 ## VaMixinResource
 
 |> docgen va-mixin-resource

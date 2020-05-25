@@ -84,7 +84,9 @@ export default {
     },
     value: {
       handler(val) {
-        this.formState.model = val;
+        if (val) {
+          this.formState.model = val;
+        }
       },
       deep: true,
       immediate: true,
@@ -105,10 +107,10 @@ export default {
         let { data } = this.id
           ? await this.$store.dispatch(`${this.resource}/update`, {
               id: this.id,
-              data: this.value,
+              data: this.formState.model,
             })
           : await this.$store.dispatch(`${this.resource}/create`, {
-              data: this.value,
+              data: this.formState.model,
             });
 
         this.$emit("update:saving", false);

@@ -133,7 +133,7 @@ All navigation menu that can be putted on next components are simple array of ob
 
 Object link structure :
 
-| Properties   | Type              | Description                                                                                                 |
+| Property     | Type              | Description                                                                                                 |
 | ------------ | ----------------- | ----------------------------------------------------------------------------------------------------------- |
 | **icon**     | `string`          | Icon of menu, shown on left side. Must be a valid MDI an is only supported on `sidebar` and `profile` menu. |
 | **text**     | `string`          | Label of link.                                                                                              |

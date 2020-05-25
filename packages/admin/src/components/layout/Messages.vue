@@ -17,6 +17,7 @@ import { mapState } from "vuex";
 /**
  * Internal VaMessages system for snackbar/toaster infos and confirm dialog.
  * Integrated with all resource modules for message API calls.
+ * Will automatically show `message` error property in case or API errors.
  * Already included in main admin layout, use it only if you need total custom layout.
  * @displayName VaMessages
  */
