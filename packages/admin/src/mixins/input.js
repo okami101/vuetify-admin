@@ -1,5 +1,5 @@
 import Source from "./source";
-import Item from "./item";
+import Resource from "./resource";
 import InputWrapper from "./input-wrapper";
 import get from "lodash/get";
 
@@ -10,7 +10,7 @@ import get from "lodash/get";
  * @displayName VaMixinInput
  */
 export default {
-  mixins: [Source, Item, InputWrapper],
+  mixins: [Source, Resource, InputWrapper],
   inject: {
     formState: { default: undefined },
   },
