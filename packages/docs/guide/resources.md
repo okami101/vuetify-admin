@@ -164,7 +164,7 @@ To use it, you simply have to declare them on props page component :
 ```vue
 <script>
 export default {
-  props: ["resource", "title"],
+  props: ["resource", "title", "item"],
 };
 </script>
 ```
