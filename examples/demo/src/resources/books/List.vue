@@ -14,20 +14,6 @@
         v-model="selected"
         :options.sync="options"
       >
-        <template v-slot:field.authors="{ value }">
-          <v-chip-group column>
-            <va-reference-field
-              reference="authors"
-              v-for="(item, i) in value"
-              :key="i"
-              color="primary"
-              small
-              chip
-              :item="item"
-            >
-            </va-reference-field>
-          </v-chip-group>
-        </template>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
@@ -119,7 +105,16 @@ export default {
           type: "date",
           sortable: true,
         },
-        "authors",
+        {
+          source: "authors",
+          type: "reference-array",
+          attributes: {
+            reference: "authors",
+            color: "primary",
+            small: true,
+            column: true,
+          },
+        },
       ],
       options: {},
       selected: [],

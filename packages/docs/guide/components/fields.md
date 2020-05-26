@@ -242,28 +242,20 @@ Use default slot for inner chip templating :
 </template>
 ```
 
-:::tip ARRAY LIST OF REFERENCE
+### Reference array
 
-You can't combine array field with reference field for that.
+|> docgen reference-array-field
 
 ```vue
 <template>
-  <va-field source="authors" v-slot="{ value }">
-    <v-chip-group>
-      <va-reference-field
-        reference="authors"
-        v-for="(item, i) in value"
-        :key="i"
-        color="orange"
-        chip
-        :item="item"
-      >
-      </va-reference-field>
-    </v-chip-group>
-  </va-field>
+  <va-reference-array-field
+    source="reviews"
+    reference="reviews"
+    color="green"
+    column
+    action="edit"
+  ></va-reference-array-field>
 </template>
 ```
-
-:::
 
 ## Custom field component

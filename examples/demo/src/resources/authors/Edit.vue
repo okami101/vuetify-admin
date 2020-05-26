@@ -30,22 +30,7 @@
           :fields="fields"
           v-bind="props"
           :options.sync="options"
-        >
-          <template v-slot:field.reviews="{ value }">
-            <v-chip-group column>
-              <va-reference-field
-                reference="reviews"
-                v-for="(item, i) in value"
-                :key="i"
-                color="green"
-                small
-                chip
-                :item="item"
-              >
-              </va-reference-field>
-            </v-chip-group>
-          </template>
-        </va-data-table>
+        ></va-data-table>
       </va-data-iterator>
     </base-material-card>
   </va-edit-layout>
@@ -72,7 +57,16 @@ export default {
           source: "publication_date",
           type: "date",
         },
-        "reviews",
+        {
+          source: "reviews",
+          type: "reference-array",
+          attributes: {
+            reference: "reviews",
+            color: "green",
+            small: true,
+            column: true,
+          },
+        },
       ],
       options: {},
       association: {

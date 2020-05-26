@@ -23,22 +23,7 @@
           v-bind="props"
           v-model="selected"
           :options.sync="options"
-        >
-          <template v-slot:field.authors="{ value }">
-            <v-chip-group column>
-              <va-reference-field
-                reference="authors"
-                v-for="(item, i) in value"
-                :key="i"
-                color="primary"
-                small
-                chip
-                :item="item"
-              >
-              </va-reference-field>
-            </v-chip-group>
-          </template>
-        </va-data-table>
+        ></va-data-table>
       </va-data-iterator>
     </base-material-card>
   </va-edit-layout>
@@ -88,7 +73,16 @@ export default {
           source: "publication_date",
           type: "date",
         },
-        "authors",
+        {
+          source: "authors",
+          type: "reference-array",
+          attributes: {
+            reference: "authors",
+            color: "primary",
+            small: true,
+            column: true,
+          },
+        },
       ],
       options: {},
       selected: [],

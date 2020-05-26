@@ -1,11 +1,19 @@
 <template>
-  <v-chip v-if="chip" :color="getColor(value)" :small="small" :to="link">
-    <slot :value="value">{{ getItemText }}</slot>
-  </v-chip>
-  <router-link v-else :to="link">
-    <!-- @slot Content placeholder for further customization, guess the resource text by default. -->
-    <slot :value="value">{{ getItemText }}</slot>
-  </router-link>
+  <v-chip-group :column="column">
+    <va-reference-field
+      :reference="reference"
+      v-for="(item, i) in value"
+      :key="i"
+      :item="item"
+      :color="color"
+      chip
+      :small="small"
+      :action="action"
+      :itemText="itemText"
+      :itemValue="itemValue"
+    >
+    </va-reference-field>
+  </v-chip-group>
 </template>
 
 <script>
@@ -13,15 +21,15 @@ import Field from "../../../mixins/field";
 import Reference from "../../../mixins/reference";
 
 /**
- * Field with a reference link to another existing resource.
+ * Field with multiple reference links to another existing resource.
  */
 export default {
   mixins: [Field, Reference],
   props: {
     /**
-     * Show link as a chip.
+     * Show list of chips as column.
      */
-    chip: Boolean,
+    column: Boolean,
   },
   computed: {
     link() {

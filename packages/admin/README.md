@@ -61,6 +61,7 @@ Fields is a custom show formatter of a given data, generally a property of a res
 * ImageField
 * ArrayField
 * ReferenceField
+* ReferenceArrayField
 
 > You can create you custom fields by creating your own vue component which extend this specific mixin `vtec-admin/mixins/field`
 > See [dedicated guide](https://vtec.okami101.io/guide/components/fields).

@@ -28,7 +28,7 @@
 <script>
 import Input from "../../../mixins/input";
 import Multiple from "../../../mixins/multiple";
-import Reference from "../../../mixins/reference";
+import ReferenceInput from "../../../mixins/reference-input";
 import get from "lodash/get";
 
 /**
@@ -36,7 +36,7 @@ import get from "lodash/get";
  * Allows searching of linked resources from your API.
  */
 export default {
-  mixins: [Input, Multiple, Reference],
+  mixins: [Input, Multiple, ReferenceInput],
   props: {
     /**
      * Minimum characters to tap before search query launch.

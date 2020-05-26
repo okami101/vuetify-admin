@@ -38,35 +38,22 @@
                   ></va-field>
                   <va-field source="commentable" type="boolean"></va-field>
                   <va-field source="publication_date" type="date"></va-field>
-                  <va-field source="authors" v-slot="{ value }">
-                    <v-chip-group>
-                      <va-reference-field
-                        reference="authors"
-                        v-for="(item, i) in value"
-                        :key="i"
-                        color="orange"
-                        chip
-                        :item="item"
-                      >
-                      </va-reference-field>
-                    </v-chip-group>
-                  </va-field>
+                  <va-field
+                    source="authors"
+                    type="reference-array"
+                    reference="authors"
+                    color="orange"
+                  ></va-field>
                 </v-col>
               </v-row>
               <va-field source="description"></va-field>
-              <va-field source="reviews" v-slot="{ value }">
-                <v-chip-group column>
-                  <va-reference-field
-                    reference="reviews"
-                    v-for="(item, i) in value"
-                    :key="i"
-                    color="green"
-                    chip
-                    :item="item"
-                  >
-                  </va-reference-field>
-                </v-chip-group>
-              </va-field>
+              <va-field
+                source="reviews"
+                type="reference-array"
+                reference="reviews"
+                color="green"
+                column
+              ></va-field>
             </template>
             <template v-slot:summary>
               <va-rich-text-field source="summary"></va-rich-text-field>
