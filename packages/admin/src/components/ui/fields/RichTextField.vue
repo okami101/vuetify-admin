@@ -7,7 +7,7 @@ import Field from "../../../mixins/field";
 
 /**
  * Show value on raw format that allows HTML tags.
- * Source value must be trusted for prevent XSS attacks ! Clean HTML on API side if needed.
+ * Source value must be trusted for prevent XSS attacks.
  */
 export default {
   mixins: [Field],

@@ -149,7 +149,7 @@ So :
 <template>
   <va-show-layout>
     <va-show :item="item">
-      <va-field source="type" type="select"></va-field>
+      <va-field source="type" type="select" chip></va-field>
     </va-show>
   </va-show-layout>
 </template>
@@ -162,7 +162,7 @@ Is perfectly equivalent to :
   <va-show-layout>
     <va-show :item="item">
       <va-field source="type">
-        <va-select-field source="type"></va-select-field>
+        <va-select-field source="type" chip></va-select-field>
       </va-field>
     </va-show>
   </va-show-layout>
@@ -176,7 +176,7 @@ Or :
   <va-show-layout>
     <va-show :item="item">
       <va-field source="type" v-slot="{ item }">
-        <va-select-field source="type" :item="item"></va-select-field>
+        <va-select-field source="type" :item="item" chip></va-select-field>
       </va-field>
     </va-show>
   </va-show-layout>
