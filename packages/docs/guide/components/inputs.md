@@ -4,4 +4,52 @@ VA input components allow editing of particular property of existing API resourc
 
 ## VA input components
 
+### Text
+
+|> docgen text-input
+
+### Password
+
+|> docgen password-input
+
+### Number
+
+|> docgen number-input
+
+### Rating
+
+|> docgen rating-input
+
+### Date
+
+|> docgen date-input
+
+### Boolean
+
+|> docgen boolean-input
+
+### RichText
+
+|> docgen rich-text-input
+
+### Array
+
+|> docgen array-input
+
+### Select
+
+|> docgen select-input
+
+### RadioGroup
+
+|> docgen radio-group-input
+
+### Autocomplete
+
+|> docgen autocomplete-input
+
+### File
+
+|> docgen file-input
+
 ## Custom input component
