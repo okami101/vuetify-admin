@@ -11,14 +11,10 @@ export default {
      * Optional H1 title of the page shown on the left of top header
      */
     title: String,
-    /**
-     * Exising record to use, default behavior is to fetch it from resource API store.
-     */
-    item: null,
   },
   computed: {
-    record() {
-      return this.item || this.$store.state[this.resource].item;
+    item() {
+      return this.$store.state[this.resource].item;
     },
   },
 };
