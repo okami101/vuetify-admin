@@ -2,6 +2,10 @@
 
 VA field components allow custom and optimized display of specific resource property. It's mainly means to be used on [show](../crud/show) and [list](../crud/list) views. Use required `source` prop as resource property to fetch and display. Must be used with [`VaShow`](../crud/show#injector) component injector or with an explicit item object via `item` prop.
 
+:::tip CELL TEMPLATING
+You may use this VA fields as cells template for `VaDataTable`, see [this section](../crud/list#fields).
+:::
+
 :::tip WRAPPER
 Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show#field-wrapper) for that.
 
@@ -213,17 +217,18 @@ You can play with `lg` and `height` for sort of gallery when multiple files :
 You can combine this field with `VaSelectField` for enums or choices support by activating `select` prop.
 :::
 
-:::tip SLOT
+:::tip NESTED OBJECT
 Use default slot for inner chip templating :
 
 ```vue
 <template>
   <va-array-field source="formats" v-slot="{ value }">
-    VA_{{ value.toUpperCase() }}
+    {{ value.date }} : {{ value.url }}
   </va-array-field>
 </template>
 ```
 
+For more complex case, use a simple `v-for` custom template.
 :::
 
 ### Reference
@@ -257,5 +262,9 @@ Use default slot for inner chip templating :
   ></va-reference-array-field>
 </template>
 ```
+
+Will render :
+
+![references](/assets/references.png)
 
 ## Custom field component

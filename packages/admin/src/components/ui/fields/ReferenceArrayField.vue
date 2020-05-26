@@ -21,7 +21,7 @@ import Field from "../../../mixins/field";
 import Reference from "../../../mixins/reference";
 
 /**
- * Field with multiple reference links to another existing resource.
+ * Display multiple reference links to another existing resource as material chip group.
  */
 export default {
   mixins: [Field, Reference],

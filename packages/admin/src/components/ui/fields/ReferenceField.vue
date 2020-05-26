@@ -13,7 +13,7 @@ import Field from "../../../mixins/field";
 import Reference from "../../../mixins/reference";
 
 /**
- * Field with a reference link to another existing resource.
+ * Display a reference link to another existing resource.
  */
 export default {
   mixins: [Field, Reference],

@@ -27,7 +27,7 @@ import Field from "../../../mixins/field";
 import Chip from "../../../mixins/chip";
 
 /**
- * Show each single value of multiple array type value inside material chips group.
+ * Show each single value of multiple array type value as material chip group.
  */
 export default {
   mixins: [Field, Chip],
