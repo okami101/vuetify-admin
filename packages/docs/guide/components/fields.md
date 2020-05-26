@@ -6,7 +6,7 @@ VA field components allow custom and optimized display of specific resource prop
 You may use this VA fields as cells template for `VaDataTable`, see [this section](../crud/list#fields).
 :::
 
-:::tip WRAPPER
+:::tip FIELD WRAPPER
 Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show#field-wrapper) for that.
 
 Besides this wrapper include a nice shortand with specific `type` property that avoid to retype full field component inside default slot. All supported type field attributes will be merged into child field component. See [more](../crud/show#field-wrapper) for further detail.
@@ -289,18 +289,18 @@ export default {
 </script>
 ```
 
-Then you may register it globally :
+Then register it globally :
 
 **`src/main.js`**
 
 ```js
-import MyCustomField from "./components/fields/MyCustomField.vue";
+import MyCustomField from "./components/fields/MyCustomField";
 
 Vue.component("VaMyCustomField", MyCustomField)
 ```
 
 :::warning NAMESPACE
-Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for `VaDataTable` and `VaField` components. So next code will perfectly working :
+Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for [`VaDataTable`](../crud/list#data-table) and [`VaField`](../crud/show#field-wrapper) components. So next code will perfectly working :
 
 ```vue
 <template>
