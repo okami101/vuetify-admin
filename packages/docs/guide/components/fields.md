@@ -12,7 +12,7 @@ Contrary to VA inputs, the typed VA fields doesn't include any wrapper with labe
 Besides this wrapper include a nice shortand with specific `type` property that avoid to retype full field component inside default slot. All supported type field attributes will be merged into child field component. See [more](../crud/show#field-wrapper) for further detail.
 :::
 
-## VA field components
+## VA fields
 
 ### Text
 
@@ -267,4 +267,45 @@ Will render :
 
 ![references](/assets/references.png)
 
-## Custom field component
+## Custom component
+
+You can prefectly create your own VA field component by using [`field`](mixins#field) mixin component. Very useful for displaying complex property object or custom advanced display for primitives.
+
+**`src/components/fields/MyCustomField.vue`**
+
+```vue
+<template>
+  <span class="my-custom-field">
+    My custom field component : {{ value }}
+  </span>
+</template>
+
+<script>
+import Field from "vtec-admin/src/mixins/field";
+
+export default {
+  mixins: [Field],
+};
+</script>
+```
+
+Then you may register it globally :
+
+**`src/main.js`**
+
+```js
+import MyCustomField from "./components/fields/MyCustomField.vue";
+
+Vue.component("VaMyCustomField", MyCustomField)
+```
+
+:::warning NAMESPACE
+Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for `VaDataTable` and `VaField` components. So next code will perfectly working :
+
+```vue
+<template>
+  <va-field source="custom_property" type="my-custom"></va-field>
+</template>
+```
+
+:::
