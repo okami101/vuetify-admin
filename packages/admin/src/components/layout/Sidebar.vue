@@ -19,7 +19,7 @@
         <v-list-group
           v-else-if="item.children && item.children.length"
           :key="index"
-          v-model="item.expanded"
+          :value="item.expanded"
           :prepend-icon="item.icon"
           append-icon="mdi-chevron-up"
         >
