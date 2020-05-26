@@ -2,7 +2,7 @@ import Resource from "./resource";
 
 /**
  * CRUD action page layout used for Show, Create end Edit.
- * @displayName VaMixinPage
+ * @displayName MixinPage
  */
 export default {
   mixins: [Resource],

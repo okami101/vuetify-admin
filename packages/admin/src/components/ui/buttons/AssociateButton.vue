@@ -16,7 +16,7 @@ import Button from "../../../mixins/button";
 /**
  * Action button for resource association. Used on lists with association enabled.
  * Dumb component, just a submit button.
- * @displayName VaAssociateButton
+ * @displayName AssociateButton
  */
 export default {
   mixins: [Button],

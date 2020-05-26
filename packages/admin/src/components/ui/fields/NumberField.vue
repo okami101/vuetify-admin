@@ -8,7 +8,7 @@ import Field from "../../../mixins/field";
 /**
  * Show value as formatted number. Can be any localized currency, decimal number, or percent value.
  * Use `$n` VueI18n function under the hood.
- * @displayName VaNumberField
+ * @displayName NumberField
  */
 export default {
   mixins: [Field],

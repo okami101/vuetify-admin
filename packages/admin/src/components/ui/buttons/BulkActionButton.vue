@@ -17,7 +17,7 @@ import { mapActions } from "vuex";
 /**
  * Generic customizable button for update bulk actions in VaDataIterator component.
  * Shown after items selections. Use `updateMany` data provider method under the hood.
- * @displayName VaBulkActionButton
+ * @displayName BulkActionButton
  */
 export default {
   mixins: [Resource, ActionButton],

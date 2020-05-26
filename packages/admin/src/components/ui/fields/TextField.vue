@@ -7,7 +7,7 @@ import Field from "../../../mixins/field";
 
 /**
  * Show value as simple text. HTML tags will be stripped.
- * @displayName VaTextField
+ * @displayName TextField
  */
 export default {
   mixins: [Field],

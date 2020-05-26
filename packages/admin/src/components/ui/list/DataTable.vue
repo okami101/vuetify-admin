@@ -165,7 +165,7 @@ import upperFirst from "lodash/upperFirst";
 /**
  * Dumb datatable component, you will need data iterator as VaDataIterator in order to make it usable.
  * This component allows you to template all fields columns.
- * @displayName VaDataTable
+ * @displayName DataTable
  */
 export default {
   mixins: [List],

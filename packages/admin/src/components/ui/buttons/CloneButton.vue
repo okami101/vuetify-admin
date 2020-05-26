@@ -18,7 +18,7 @@ import RedirectButton from "../../../mixins/redirect-button";
 /**
  * Button for all clone resource action.
  * Redirect to create page by default with target ID of original resource to clone.
- * @displayName VaCloneButton
+ * @displayName CloneButton
  */
 export default {
   mixins: [RedirectButton],

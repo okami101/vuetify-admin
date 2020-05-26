@@ -17,7 +17,7 @@ import { mapActions } from "vuex";
 /**
  * Button for all delete resource action. Comes with confirm dialog.
  * Autohide if no delete action available unless show prop is active.
- * @displayName VaDeleteButton
+ * @displayName DeleteButton
  */
 export default {
   mixins: [Button],

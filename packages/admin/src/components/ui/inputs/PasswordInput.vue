@@ -15,7 +15,7 @@ import Input from "../../../mixins/input";
 
 /**
  * Use it for password. No value accepted. Has show/hide behavior for current input.
- * @displayName VaPasswordInput
+ * @displayName PasswordInput
  */
 export default {
   mixins: [Input],

@@ -7,7 +7,7 @@ import Field from "../../../mixins/field";
 
 /**
  * Show value as mailto link.
- * @displayName VaEmailField
+ * @displayName EmailField
  */
 export default {
   mixins: [Field],

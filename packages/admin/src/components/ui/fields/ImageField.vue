@@ -41,7 +41,7 @@ import Files from "../../../mixins/files";
 
 /**
  * Show list of images as gallery with preview support for thumbnails.
- * @displayName VaImageField
+ * @displayName ImageField
  */
 export default {
   mixins: [Files],

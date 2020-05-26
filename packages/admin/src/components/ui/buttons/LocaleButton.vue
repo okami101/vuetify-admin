@@ -35,7 +35,7 @@ import Button from "../../../mixins/button";
  * Locale button which allows resource translation.
  * Will list all configured supported languages as dropdown menu.
  * Change current locale on current resource store for contextualized fetching or saving on backend API.
- * @displayName VaLocaleButton
+ * @displayName LocaleButton
  */
 export default {
   mixins: [Resource, Button],

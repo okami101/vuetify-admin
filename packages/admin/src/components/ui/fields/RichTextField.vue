@@ -8,7 +8,7 @@ import Field from "../../../mixins/field";
 /**
  * Show value on raw format that allows HTML tags.
  * Source value must be trusted for prevent XSS attacks ! Clean HTML on API side if needed.
- * @displayName VaRichTextField
+ * @displayName RichTextField
  */
 export default {
   mixins: [Field],

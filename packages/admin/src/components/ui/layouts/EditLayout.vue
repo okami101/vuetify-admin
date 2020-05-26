@@ -24,7 +24,7 @@ import Page from "../../../mixins/page";
 /**
  * Page layout for resource edition.
  * Contain specific related action as deleting, cloning, showing as well as translation action.
- * @displayName VaEditLayout
+ * @displayName EditLayout
  */
 export default {
   mixins: [Page],

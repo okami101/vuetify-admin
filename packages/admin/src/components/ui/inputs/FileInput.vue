@@ -31,7 +31,7 @@ import Multiple from "../../../mixins/multiple";
  * Current files will be shown as simple link or thumbnail image and can be deleted.
  * Use VaFileField or VaImageField under the hood.
  * No Ajax support.
- * @displayName VaFileInput
+ * @displayName FileInput
  */
 export default {
   mixins: [Input, Multiple],

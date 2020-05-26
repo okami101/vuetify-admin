@@ -1,6 +1,6 @@
 /**
  * For input components that allow multiple value as array.
- * @displayName VaMixinMultiple
+ * @displayName MixinMultiple
  */
 export default {
   props: {

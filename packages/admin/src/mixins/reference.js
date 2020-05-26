@@ -4,7 +4,7 @@ import Search from "./search";
 
 /**
  * For all input components that support resource reference, as `VaSelectInput`, `VaRadioGroupInput` or `VaAutocompleteInput`.
- * @displayName VaMixinReference
+ * @displayName MixinReference
  */
 export default {
   mixins: [Choices, Search],

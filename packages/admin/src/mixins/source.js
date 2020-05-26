@@ -2,7 +2,7 @@ import Resource from "./resource";
 
 /**
  * For components that must use specific property of the resource.
- * @displayName VaMixinSource
+ * @displayName MixinSource
  */
 export default {
   mixins: [Resource],

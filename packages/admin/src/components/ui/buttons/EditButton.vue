@@ -17,7 +17,7 @@ import RedirectButton from "../../../mixins/redirect-button";
 
 /**
  * Button for all edit resource action. Redirect to edit page by default.
- * @displayName VaEditButton
+ * @displayName EditButton
  */
 export default {
   mixins: [RedirectButton],

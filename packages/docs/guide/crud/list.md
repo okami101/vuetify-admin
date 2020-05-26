@@ -12,7 +12,7 @@ Since all data provider methods are available in a dedicated store module for ea
 
 ## VaDataIterator
 
-|> docgen va-data-iterator
+|> docgen data-iterator
 
 Here a quick sample usage within the `VaDataTable` component :
 
@@ -65,7 +65,7 @@ Note that `VaDataIterator` will try to be synchronized on real time within query
 
 ## VaDataTable
 
-|> docgen va-data-table
+|> docgen data-table
 
 :::warning CONTEXT SYNCHRONIZATION
 As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaDataIterator` as data browsing control and do next additional attachments :
@@ -731,7 +731,7 @@ Instead of have separate CRUD pages for each action, it's possible to regroup al
 
 ### VaAsideLayout
 
-|> docgen va-aside-layout
+|> docgen aside-layout
 
 :::tip USELESS ROUTES
 If you use aside for crud operations, you may disable related `show`, `create` and `edit` routes. As shown in [resources guide section](../resources), use `actions` or `except` resource properties for that :

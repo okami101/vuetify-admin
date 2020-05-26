@@ -2,7 +2,7 @@ import Resource from "./resource";
 
 /**
  * Common props for generic button.
- * @displayName VaMixinButton
+ * @displayName MixinButton
  */
 export default {
   mixins: [Resource],

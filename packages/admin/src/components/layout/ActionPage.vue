@@ -18,7 +18,7 @@ import Page from "../../mixins/page";
 
 /**
  * Main CRUD action page layout used for Show, Create end Edit views components.
- * @displayName VaActionPage
+ * @displayName ActionPage
  */
 export default {
   mixins: [Page],

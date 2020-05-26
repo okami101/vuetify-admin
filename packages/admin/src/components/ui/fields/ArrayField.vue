@@ -28,7 +28,7 @@ import Chip from "../../../mixins/chip";
 
 /**
  * Show values for a array type value inside material chips.
- * @displayName VaArrayField
+ * @displayName ArrayField
  */
 export default {
   mixins: [Field, Chip],

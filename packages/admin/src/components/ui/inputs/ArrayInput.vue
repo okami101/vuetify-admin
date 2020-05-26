@@ -51,7 +51,7 @@ import Input from "../../../mixins/input";
 /**
  * Allow multiple inputs as array. See it as a repeater.
  * Support adding, removing, as well as moving via drag thanks to VueDraggable.
- * @displayName VaArrayInput
+ * @displayName ArrayInput
  */
 export default {
   mixins: [Input],

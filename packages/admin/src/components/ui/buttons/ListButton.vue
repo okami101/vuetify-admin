@@ -18,7 +18,7 @@ import Button from "../../../mixins/button";
 /**
  * Button for all list resource action. Redirect to list page by default.
  * Shown on internal CRUD page at top header.
- * @displayName VaListButton
+ * @displayName ListButton
  */
 export default {
   mixins: [Resource, Button],

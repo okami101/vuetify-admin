@@ -11,7 +11,7 @@ import Chip from "../../../mixins/chip";
 
 /**
  * Show value inside a material chip.
- * @displayName VaChipField
+ * @displayName ChipField
  */
 export default {
   mixins: [Field, Chip],

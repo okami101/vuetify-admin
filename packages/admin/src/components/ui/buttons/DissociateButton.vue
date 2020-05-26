@@ -16,7 +16,7 @@ import { mapActions } from "vuex";
 /**
  * Action button for resource dissociation. Used on datatables with association enabled.
  * Comes with confirm dialog.
- * @displayName VaDissociateButton
+ * @displayName DissociateButton
  */
 export default {
   mixins: [Button],

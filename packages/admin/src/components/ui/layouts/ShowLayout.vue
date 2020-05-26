@@ -24,7 +24,7 @@ import Page from "../../../mixins/page";
 /**
  * Page layout for resource detail showing. It's the better place for made heavy usage of any VA fields.
  * Contain specific related action as deleting, cloning, editing as well as translation action.
- * @displayName VaShowLayout
+ * @displayName ShowLayout
  */
 export default {
   mixins: [Page],

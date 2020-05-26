@@ -1,6 +1,6 @@
 /**
  * Common props for all inputs.
- * @displayName VaMixinInputWrapper
+ * @displayName MixinInputWrapper
  */
 export default {
   props: {

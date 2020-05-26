@@ -50,13 +50,13 @@ Promise.all([
     /**
      * Generate Vetur metas
      */
-    tagsJson[tag] = {
+    tagsJson[`va-${tag}`] = {
       description: doc.description,
       attributes: (doc.props || []).map((p) => p.name),
     };
 
     (doc.props || []).forEach((p) => {
-      attributesJson[`${tag}/${p.name}`] = {
+      attributesJson[`va-${tag}/${p.name}`] = {
         description: p.description,
         type: p.type.name,
       };
@@ -66,7 +66,7 @@ Promise.all([
      * Generate Jetbrains metas
      */
     webTypesJson.push({
-      name: doc.displayName,
+      name: `Va${doc.displayName}`,
       description: doc.description,
       attributes: (doc.props || []).map((p) => {
         return {

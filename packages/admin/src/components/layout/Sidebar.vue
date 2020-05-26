@@ -64,7 +64,7 @@
 <script>
 /**
  * Default customizable admin VNavigationDrawer with full hierarchical menu and minimizable.
- * @displayName VaSidebar
+ * @displayName Sidebar
  */
 export default {
   props: {

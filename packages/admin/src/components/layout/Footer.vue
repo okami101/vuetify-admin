@@ -33,7 +33,7 @@
 <script>
 /**
  * Default customizable admin VFooter with possibility of corporate related links and infos.
- * @displayName VaFooter
+ * @displayName Footer
  */
 export default {
   props: {

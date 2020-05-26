@@ -17,7 +17,7 @@ import Rating from "../../../mixins/rating";
 /**
  * Show value as rating stars. Value should be a valid integer or decimal if half increments enabled.
  * Icons can be edited via $ratingFull, $ratingEmpty and $ratingHalf on Vuetify settings.
- * @displayName VaRatingField
+ * @displayName RatingField
  */
 export default {
   mixins: [Field, Rating],

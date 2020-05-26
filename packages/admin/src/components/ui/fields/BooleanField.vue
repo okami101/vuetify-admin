@@ -13,7 +13,7 @@ import Field from "../../../mixins/field";
 
 /**
  * Show value as identifiable true/false icon.
- * @displayName VaBooleanField
+ * @displayName BooleanField
  */
 export default {
   mixins: [Field],

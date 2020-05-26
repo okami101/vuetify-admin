@@ -4,72 +4,72 @@ You will find here all mixins reference used inside VtecAdmin.
 
 ## VaMixinPage
 
-|> docgen va-mixin-page
+|> docgen mixin-page
 
 ## VaMixinResource
 
-|> docgen va-mixin-resource
+|> docgen mixin-resource
 
 ## VaMixinSource
 
-|> docgen va-mixin-source
+|> docgen mixin-source
 
 ## VaMixinField
 
-|> docgen va-mixin-field
+|> docgen mixin-field
 
 ## VaMixinInput
 
-|> docgen va-mixin-input
+|> docgen mixin-input
 
 ## VaMixinButton
 
-|> docgen va-mixin-button
+|> docgen mixin-button
 
 ## VaMixinActionButton
 
-|> docgen va-mixin-action-button
+|> docgen mixin-action-button
 
 ## VaMixinRedirectButton
 
-|> docgen va-mixin-redirect-button
+|> docgen mixin-redirect-button
 
 ## VaMixinList
 
-|> docgen va-mixin-list
+|> docgen mixin-list
 
 ## VaMixinSearch
 
-|> docgen va-mixin-search
+|> docgen mixin-search
 
 ## VaMixinChip
 
-|> docgen va-mixin-chip
+|> docgen mixin-chip
 
 ## VaMixinInputWrapper
 
-|> docgen va-mixin-input-wrapper
+|> docgen mixin-input-wrapper
 
 ## VaMixinRating
 
-|> docgen va-mixin-rating
+|> docgen mixin-rating
 
 ## VaMixinChoices
 
-|> docgen va-mixin-choices
+|> docgen mixin-choices
 
 ## VaMixinReference
 
-|> docgen va-mixin-reference
+|> docgen mixin-reference
 
 ## VaMixinMultiple
 
-|> docgen va-mixin-multiple
+|> docgen mixin-multiple
 
 ## VaMixinFiles
 
-|> docgen va-mixin-files
+|> docgen mixin-files
 
 ## VaMixinEditable
 
-|> docgen va-mixin-editable
+|> docgen mixin-editable

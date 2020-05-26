@@ -6,7 +6,7 @@ The show page is used to be display full detail of particular resource item via 
 
 ## VaShowLayout
 
-|> docgen va-show-layout
+|> docgen show-layout
 
 ### Custom actions
 
@@ -63,7 +63,7 @@ export default {
 
 ## VaShow
 
-|> docgen va-show
+|> docgen show
 
 Here a full showcase of this injector component :
 
@@ -139,7 +139,7 @@ As you can guess, the main role of `VaShow` is to inject full item resource obje
 
 ## VaField
 
-|> docgen va-field
+|> docgen field
 
 By default if no default slot is provided, `VaField` will automatically use a specific [Va field component](../components/fields) under the hood according to the `type` prop.
 

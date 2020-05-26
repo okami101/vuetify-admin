@@ -1,6 +1,6 @@
 /**
  * For any resource related components.
- * @displayName VaMixinResource
+ * @displayName MixinResource
  */
 export default {
   props: {

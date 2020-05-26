@@ -24,7 +24,7 @@ import Field from "../../mixins/field";
  * Wrapper component for field which contains label and supported VA field, mainly used for show page.
  * Use default slot for custom needs or use `type` property for quick usage of valid existing field component.
  * All other attributes of this component will be merged into child slot.
- * @displayName VaField
+ * @displayName Field
  */
 export default {
   mixins: [Field],

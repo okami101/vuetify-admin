@@ -41,7 +41,7 @@ The main layout, alias VaLayout, is composed of different regions as shown here 
 
 ### VaLayout
 
-|> docgen va-layout
+|> docgen layout
 
 This slot composition system allows a complete customization possibility. By default Vue CLI Plugin will generate functional basic layout with all default components placed for each slot. You can totally customize or replace each component by your own.
 
@@ -76,7 +76,7 @@ See [below section](#links).
 
 ### VaAppBar
 
-|> docgen va-app-bar
+|> docgen app-bar
 
 :::tip CREATE RESOURCE LINKS
 The create action links will be automatically generated from your registred resources if the current user has permissions for it.
@@ -90,7 +90,7 @@ The show, create, edit page will reload the route linked resource and refresh al
 
 ### VaSidebar
 
-|> docgen va-sidebar
+|> docgen sidebar
 
 :::tip MINIMIZE
 Use `mini` event from `VaAppBar` and play with `mini` prop in order to toggle sidebar minimization state.
@@ -98,19 +98,19 @@ Use `mini` event from `VaAppBar` and play with `mini` prop in order to toggle si
 
 ### VaFooter
 
-|> docgen va-footer
+|> docgen footer
 
 ### VaBreadcrumbs
 
-|> docgen va-breadcrumbs
+|> docgen breadcrumbs
 
 ### VaAside
 
-|> docgen va-aside
+|> docgen aside
 
 ### VaMessages
 
-|> docgen va-messages
+|> docgen messages
 
 ## Links
 

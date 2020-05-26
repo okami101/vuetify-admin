@@ -1,6 +1,6 @@
 /**
  * Common props for all based chip fields.
- * @displayName VaMixinChip
+ * @displayName MixinChip
  */
 export default {
   props: {

@@ -10,7 +10,7 @@ Both create and edit layouts share similar layout as [show page](show) with spec
 
 ### VaCreateLayout
 
-|> docgen va-create-layout
+|> docgen create-layout
 
 :::tip CLONE
 Note that the create page support copy of values from other existing resource, i.e. cloning, as soon as a specific `source` query string with a valid existing id is present. This is automatically done via `VaCloneButton` present by default on `VaDataTable`. This is why a `item` prop is available on `Create` vue component that allows you to inject it into `VaForm`.
@@ -37,7 +37,7 @@ export default {
 
 ### VaEditLayout
 
-|> docgen va-edit-layout
+|> docgen edit-layout
 
 :::tip USE ID
 Compared to to create page, you gain a new `id` prop that correspond to the resource to edit and patch on the API side. Don't forget to put it on form via the same prop in order to use `update` data provider method under the hood.
@@ -105,7 +105,7 @@ export default {
 
 ## VaForm
 
-|> docgen va-form
+|> docgen form
 
 Here a quick sample usage within the `VaForm` inside a `VaEditLayout` component :
 
