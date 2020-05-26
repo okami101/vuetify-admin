@@ -14,10 +14,6 @@ You will find here all mixins reference used inside VtecAdmin.
 
 |> docgen va-mixin-source
 
-## VaMixinItem
-
-|> docgen va-mixin-item
-
 ## VaMixinField
 
 |> docgen va-mixin-field
