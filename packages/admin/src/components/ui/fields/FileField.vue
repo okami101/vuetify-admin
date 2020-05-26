@@ -21,7 +21,7 @@
 import Files from "../../../mixins/files";
 
 /**
- * Show a list of file links that points to original files.
+ * Show a list of file links that point to original files.
  */
 export default {
   mixins: [Files],

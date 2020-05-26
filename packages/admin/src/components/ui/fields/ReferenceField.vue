@@ -41,6 +41,13 @@ export default {
      */
     itemText: [String, Array, Function],
     /**
+     * Attribute where taking the id value for link building.
+     */
+    itemValue: {
+      type: String,
+      default: "id",
+    },
+    /**
      * Show link as a chip.
      */
     chip: Boolean,
@@ -49,7 +56,7 @@ export default {
     link() {
       return {
         name: `${this.reference}_${this.action}`,
-        params: { id: this.value.id },
+        params: { id: this.value[this.itemValue] },
       };
     },
     getItemText() {

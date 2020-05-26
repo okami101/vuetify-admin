@@ -49,6 +49,7 @@
                 source="local"
                 type="image"
                 src="thumbnails.medium"
+                lg="4"
               ></va-field>
             </v-card-text>
           </base-material-card>

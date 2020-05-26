@@ -179,16 +179,91 @@ You may centralized all choices for reuse directly inside you locales as [explai
 
 |> docgen file-field
 
+```vue
+<template>
+  <va-file-field source="files"></va-file-field>
+</template>
+```
+
 ### Image
 
 |> docgen image-field
+
+```vue
+<template>
+  <va-image-field source="photos" src="thumbnails.medium"></va-image-field>
+</template>
+```
+
+You can play with `lg` and `height` for sort of gallery when multiple files :
+
+![images](/assets/images.png)
 
 ### Array
 
 |> docgen array-field
 
+```vue
+<template>
+  <va-array-field source="formats" select></va-array-field>
+</template>
+```
+
+:::tip ENUMS
+You can combine this field with `VaSelectField` for enums or choices support by activating `select` prop.
+:::
+
+:::tip SLOT
+Use default slot for inner chip templating :
+
+```vue
+<template>
+  <va-array-field source="formats" v-slot="{ value }">
+    VA_{{ value.toUpperCase() }}
+  </va-array-field>
+</template>
+```
+
+:::
+
 ### Reference
 
 |> docgen reference-field
+
+```vue
+<template>
+  <va-reference-field
+    source="publisher"
+    reference="publishers"
+    chip
+    color="orange"
+    action="edit"
+  ></va-reference-field>
+</template>
+```
+
+:::tip ARRAY LIST OF REFERENCE
+
+You can't combine array field with reference field for that.
+
+```vue
+<template>
+  <va-field source="authors" v-slot="{ value }">
+    <v-chip-group>
+      <va-reference-field
+        reference="authors"
+        v-for="(item, i) in value"
+        :key="i"
+        color="orange"
+        chip
+        :item="item"
+      >
+      </va-reference-field>
+    </v-chip-group>
+  </va-field>
+</template>
+```
+
+:::
 
 ## Custom field component
