@@ -13,7 +13,7 @@ export default {
   },
   props: {
     /**
-     * Override show state.
+     * Override default item injected by `VaShow`.
      */
     item: null,
   },

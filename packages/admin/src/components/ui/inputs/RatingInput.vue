@@ -25,6 +25,7 @@ export default {
   props: {
     /**
      * Number to be edited.
+     * @model
      */
     value: {
       type: Number,

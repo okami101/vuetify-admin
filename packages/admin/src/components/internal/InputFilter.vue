@@ -37,6 +37,18 @@ export default {
           "autocomplete",
         ].includes(v),
     },
+    /**
+     * Override default label behavior.
+     * Default is to get the localized VueI18n label from both ressource and property source.
+     */
+    label: {
+      type: String,
+      default() {
+        return this.source
+          ? this.$t(`resources.${this.resource}.fields.${this.source}`)
+          : "";
+      },
+    },
   },
   data() {
     return {

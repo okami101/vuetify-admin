@@ -1,5 +1,4 @@
 import Source from "./source";
-import Resource from "./resource";
 import InputWrapper from "./input-wrapper";
 import get from "lodash/get";
 
@@ -9,24 +8,11 @@ import get from "lodash/get";
  * Use it to create your own input component.
  */
 export default {
-  mixins: [Source, Resource, InputWrapper],
+  mixins: [Source, InputWrapper],
   inject: {
     formState: { default: undefined },
   },
   props: {
-    /**
-     * Placeholder if input support it.
-     */
-    placeholder: String,
-    /**
-     * Mark this input as clearable.
-     */
-    clearable: Boolean,
-    /**
-     * Specific index of field in case of inside array of inputs, aka VaArrayInput.
-     * Use it with `parentSource` prop in order to update the value at a good place in the form model.
-     */
-    index: Number,
     /**
      * By default, the source will be the final name that will be sent to the API for create/update.
      * This prop allows you to override this default behavior.

@@ -4,6 +4,10 @@
 export default {
   props: {
     /**
+     * Specific case of parent resource for array input.
+     */
+    parentSource: String,
+    /**
      * Appends an icon to the component. Must be a valid MDI.
      */
     appendIcon: String,
@@ -40,5 +44,37 @@ export default {
         return rules;
       },
     },
+    /**
+     * Override default label behavior.
+     * Default is to get the localized VueI18n label from both ressource and property source.
+     */
+    label: {
+      type: String,
+      default() {
+        if (!this.source) {
+          return "";
+        }
+
+        if (this.parentSource) {
+          return this.$t(
+            `resources.${this.resource}.fields.${this.parentSource}.${this.source}`
+          );
+        }
+        return this.$t(`resources.${this.resource}.fields.${this.source}`);
+      },
+    },
   },
+  /**
+   * Placeholder if input support it.
+   */
+  placeholder: String,
+  /**
+   * Mark this input as clearable.
+   */
+  clearable: Boolean,
+  /**
+   * Specific index of field in case of inside array of inputs, aka VaArrayInput.
+   * Use it with `parentSource` prop in order to update the value at a good place in the form model.
+   */
+  index: Number,
 };

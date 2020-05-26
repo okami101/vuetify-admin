@@ -8,6 +8,12 @@ VA field components allow custom and optimized display of specific resource prop
 
 |> docgen text-field
 
+```vue
+<template>
+  <va-text-field source="name"></va-text-field>
+</template>
+```
+
 ### Number
 
 |> docgen number-field
