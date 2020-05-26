@@ -130,7 +130,6 @@ import { mapState, mapGetters, mapActions } from "vuex";
  * Default customizable admin VAppBar.
  * Contains main app title, header menus, direct resource creation links, global refresh action, profile menu.
  * Profile user dropdown will not appear on guest mode.
- * @displayName AppBar
  */
 export default {
   props: {

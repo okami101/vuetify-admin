@@ -3,7 +3,6 @@ import { mapActions } from "vuex";
 /**
  * Common props for resource search components, as `VaDataIterator` or `VaAutocompleteInput`.
  * Use the `getList` data provider uner the hood.
- * @displayName MixinSearch
  */
 export default {
   props: {

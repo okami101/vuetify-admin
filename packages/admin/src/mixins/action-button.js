@@ -1,6 +1,5 @@
 /**
  * Common props for all type of action button.
- * @displayName MixinActionButton
  */
 export default {
   props: {

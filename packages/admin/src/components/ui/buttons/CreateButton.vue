@@ -17,7 +17,6 @@ import RedirectButton from "../../../mixins/redirect-button";
 
 /**
  * Button for all create resource action. Redirect to create page by default.
- * @displayName CreateButton
  */
 export default {
   mixins: [Resource, RedirectButton],

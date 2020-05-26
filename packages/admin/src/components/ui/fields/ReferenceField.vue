@@ -14,7 +14,6 @@ import Chip from "../../../mixins/chip";
 
 /**
  * Field with a reference link to another existing resource.
- * @displayName ReferenceField
  */
 export default {
   mixins: [Field, Chip],

@@ -1,6 +1,5 @@
 /**
  * For input components that allow multiple value as array.
- * @displayName MixinMultiple
  */
 export default {
   props: {

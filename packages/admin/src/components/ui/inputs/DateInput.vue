@@ -33,7 +33,6 @@ import Editable from "../../../mixins/editable";
 /**
  * Use for date type value editing. Is composed of a readonly textfield associated to a vuetify datepicker.
  * Do not support time, use classic VaTextInput in that case.
- * @displayName DateInput
  */
 export default {
   mixins: [Input, Editable],

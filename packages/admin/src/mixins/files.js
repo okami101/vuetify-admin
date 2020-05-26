@@ -3,7 +3,6 @@ import get from "lodash/get";
 
 /**
  * Common props for all file upload inputs.
- * @displayName MixinFiles
  */
 export default {
   inject: {

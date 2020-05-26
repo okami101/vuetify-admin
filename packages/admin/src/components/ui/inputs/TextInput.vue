@@ -26,7 +26,6 @@ import Editable from "../../../mixins/editable";
  * Support textarea mode for long text via `multiline` prop.
  * Can be use for any date, datetime or time editing, use type setted on `date`, `datetime-local` or `time`.
  * Render will depend of browser support.
- * @displayName TextInput
  */
 export default {
   mixins: [Input, Editable],

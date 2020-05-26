@@ -28,7 +28,6 @@ import { mapState, mapMutations } from "vuex";
 /**
  * Customizable admin aside component where you put some contextualized additional informations.
  * Use the associated `VaAsideLayout` component for content integration from anywhere on any context.
- * @displayName Aside
  */
 export default {
   props: {

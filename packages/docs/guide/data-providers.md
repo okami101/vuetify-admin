@@ -62,7 +62,7 @@ For showing detail of resource, mainly for [Show page](crud/show) or datatable s
 
 #### getMany
 
-Only used for [Autocomplete](components/inputs#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/edit) or [query context filtering](crud/list#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields#vareferencefield) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
+Only used for [Autocomplete](components/inputs#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/edit) or [query context filtering](crud/list#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
 
 #### create, update
 

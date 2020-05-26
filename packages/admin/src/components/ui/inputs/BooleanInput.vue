@@ -14,7 +14,6 @@ import Editable from "../../../mixins/editable";
 
 /**
  * Edit value as boolean. Rendered as a switch.
- * @displayName BooleanInput
  */
 export default {
   mixins: [Input, Editable],

@@ -2,74 +2,74 @@
 
 You will find here all mixins reference used inside VtecAdmin.
 
-## VaMixinPage
+## Page
 
-|> docgen mixin-page
+|> docgen page-mixin
 
-## VaMixinResource
+## Resource
 
-|> docgen mixin-resource
+|> docgen resource-mixin
 
-## VaMixinSource
+## Source
 
-|> docgen mixin-source
+|> docgen source-mixin
 
-## VaMixinField
+## Field
 
-|> docgen mixin-field
+|> docgen field-mixin
 
-## VaMixinInput
+## Input
 
-|> docgen mixin-input
+|> docgen input-mixin
 
-## VaMixinButton
+## Button
 
-|> docgen mixin-button
+|> docgen button-mixin
 
-## VaMixinActionButton
+## Action button
 
-|> docgen mixin-action-button
+|> docgen action-button-mixin
 
-## VaMixinRedirectButton
+## Redirect button
 
-|> docgen mixin-redirect-button
+|> docgen redirect-button-mixin
 
-## VaMixinList
+## List
 
-|> docgen mixin-list
+|> docgen list-mixin
 
-## VaMixinSearch
+## Search
 
-|> docgen mixin-search
+|> docgen search-mixin
 
-## VaMixinChip
+## Chip
 
-|> docgen mixin-chip
+|> docgen chip-mixin
 
-## VaMixinInputWrapper
+## Input wrapper
 
-|> docgen mixin-input-wrapper
+|> docgen input-wrapper-mixin
 
-## VaMixinRating
+## Rating
 
-|> docgen mixin-rating
+|> docgen rating-mixin
 
-## VaMixinChoices
+## Choices
 
-|> docgen mixin-choices
+|> docgen choices-mixin
 
-## VaMixinReference
+## Reference
 
-|> docgen mixin-reference
+|> docgen reference-mixin
 
-## VaMixinMultiple
+## Multiple
 
-|> docgen mixin-multiple
+|> docgen multiple-mixin
 
-## VaMixinFiles
+## Files
 
-|> docgen mixin-files
+|> docgen files-mixin
 
-## VaMixinEditable
+## Editable
 
-|> docgen mixin-editable
+|> docgen editable-mixin

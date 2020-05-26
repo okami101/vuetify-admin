@@ -1,6 +1,5 @@
 /**
  * Common props for all inputs.
- * @displayName MixinInputWrapper
  */
 export default {
   props: {

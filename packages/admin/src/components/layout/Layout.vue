@@ -31,7 +31,6 @@
 <script>
 /**
  * Admin composable component layout with one slot for each region.
- * @displayName Layout
  */
 export default {};
 </script>

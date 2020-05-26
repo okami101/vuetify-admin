@@ -7,7 +7,6 @@ import get from "lodash/get";
  * Main input mixin for all inputs used for resource property edition or creation.
  * Auto update the model of the parent form.
  * Use it to create your own input component.
- * @displayName MixinInput
  */
 export default {
   mixins: [Source, Resource, InputWrapper],

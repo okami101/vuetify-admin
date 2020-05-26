@@ -17,7 +17,6 @@ import RedirectButton from "../../../mixins/redirect-button";
 
 /**
  * Button for all show resource action. Redirect to show page by default.
- * @displayName ShowButton
  */
 export default {
   mixins: [RedirectButton],

@@ -34,7 +34,6 @@ import get from "lodash/get";
 /**
  * Value editing from a searchable choices. Referenceable input.
  * Allows searching of linked resources from your API.
- * @displayName AutocompleteInput
  */
 export default {
   mixins: [Input, Multiple, Reference],

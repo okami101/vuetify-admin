@@ -8,7 +8,7 @@ The create and edit pages will allow creation of new resource item or modificati
 
 Both create and edit layouts share similar layout as [show page](show) with specific contextualized actions. There is nothing more to say about them as the `VaForm` will do the real work.
 
-### VaCreateLayout
+### Create layout
 
 |> docgen create-layout
 
@@ -35,7 +35,7 @@ export default {
 
 :::
 
-### VaEditLayout
+### Edit layout
 
 |> docgen edit-layout
 
@@ -103,7 +103,7 @@ export default {
 </script>
 ```
 
-## VaForm
+## Injector
 
 |> docgen form
 

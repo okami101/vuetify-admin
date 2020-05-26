@@ -9,7 +9,6 @@
 /**
  * Show component injector which facilitates resource display by using VA component fields.
  * Inject item for each VA field.
- * @displayName Show
  */
 export default {
   provide() {

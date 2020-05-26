@@ -43,7 +43,12 @@ module.exports = (ctx) => ({
           },
         ],
         sidebar: {
-          "/guide/": getGuideSidebar("Guide", "Zero to One", "CRUD", "Components"),
+          "/guide/": getGuideSidebar(
+            "Guide",
+            "Zero to One",
+            "CRUD",
+            "Components"
+          ),
         },
       },
       /*"/fr/": {
@@ -123,12 +128,7 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
       title: groupC,
       collapsable: false,
       sidebarDepth: 2,
-      children: [
-        "crud/layout",
-        "crud/list",
-        "crud/show",
-        "crud/form",
-      ],
+      children: ["crud/layout", "crud/list", "crud/show", "crud/form"],
     },
     {
       title: groupD,

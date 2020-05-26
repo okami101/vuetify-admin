@@ -17,7 +17,6 @@ import Button from "../../../mixins/button";
 /**
  * Default saving button that can be used for VaForm component.
  * Dumb component, just a submit button, VaForm do the real work.
- * @displayName SaveButton
  */
 export default {
   mixins: [Button],

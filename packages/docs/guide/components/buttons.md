@@ -2,58 +2,58 @@
 
 You will find here all buttons components reference used inside VtecAdmin.
 
-## VaActionButton
+## Action
 
 |> docgen action-button
 
-## VaListButton
+## List
 
 |> docgen list-button
 
-## VaShowButton
+## Show
 
 |> docgen show-button
 
-## VaCreateButton
+## Create
 
 |> docgen create-button
 
-## VaEditButton
+## Edit
 
 |> docgen edit-button
 
-## VaCloneButton
+## Clone
 
 |> docgen clone-button
 
-## VaDeleteButton
+## Delete
 
 |> docgen delete-button
 
-## VaAssociateButton
+## Associate
 
 |> docgen associate-button
 
-## VaDissociateButton
+## Dissociate
 
 |> docgen dissociate-button
 
-## VaBulkActionButton
+## Bulk action
 
 |> docgen bulk-action-button
 
-## VaBulkDeleteButton
+## Bulk delete
 
 |> docgen bulk-delete-button
 
-## VaExportButton
+## Export
 
 |> docgen export-button
 
-## VaLocaleButton
+## Locale
 
 |> docgen locale-button
 
-## VaSaveButton
+## Save
 
 |> docgen save-button

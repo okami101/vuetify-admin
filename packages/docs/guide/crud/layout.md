@@ -30,16 +30,16 @@ The main layout, alias VaLayout, is composed of different regions as shown here 
 
 | Region         | Default VAComponent               | Description                                                     |
 | -------------- | --------------------------------- | --------------------------------------------------------------- |
-| **AppBar**     | [`VaAppBar`](#vaappbar)           | Main app bar, mainly a `VAppBar`.                               |
-| **Sidebar**    | [`VaSidebar`](#vasidebar)         | Main sidebar, mainly a `VNavigationDrawer`.                     |
-| **Header**     | [`VaBreadcrumbs`](#vabreadcrumbs) | Page header, perfect for a `VBreadcrumbs` or any custom alerts. |
+| **AppBar**     | [`VaAppBar`](#app-bar)           | Main app bar, mainly a `VAppBar`.                               |
+| **Sidebar**    | [`VaSidebar`](#sidebar)         | Main sidebar, mainly a `VNavigationDrawer`.                     |
+| **Header**     | [`VaBreadcrumbs`](#breadcrumbs) | Page header, perfect for a `VBreadcrumbs` or any custom alerts. |
 | **RouterView** | -                                 | All CRUD pages or any custom authenticated page will show here. |
-| **Aside**      | [`VaAside`](#vaaside)             | Asidecontent, for any contextualized additional infos.          |
-| **Footer**     | [`VaFooter`](#vafooter)           | App footer, for some corporate informations.                    |
+| **Aside**      | [`VaAside`](#aside)             | Asidecontent, for any contextualized additional infos.          |
+| **Footer**     | [`VaFooter`](#footer)           | App footer, for some corporate informations.                    |
 
 ## Components
 
-### VaLayout
+### Admin layout
 
 |> docgen layout
 
@@ -67,14 +67,14 @@ This slot composition system allows a complete customization possibility. By def
 :::tip OPTIONAL
 You can totally replace the layout component by your own if you need total personalization !
 
-In this case you'll need to use at least the below [VaMessages](#vamessages) component in order to have all toaster notifications and confirmation dialogs.
+In this case you'll need to use at least the below [`VaMessages`](#messages) component in order to have all toaster notifications and confirmation dialogs.
 :::
 
 :::tip LINKS
 See [below section](#links).
 :::
 
-### VaAppBar
+### App bar
 
 |> docgen app-bar
 
@@ -88,7 +88,7 @@ The reload button will dynamically spin for every fetch calls from you data prov
 The show, create, edit page will reload the route linked resource and refresh all related field or input components, while list page will reload current resources list from current iterator context.
 :::
 
-### VaSidebar
+### Sidebar
 
 |> docgen sidebar
 
@@ -96,19 +96,19 @@ The show, create, edit page will reload the route linked resource and refresh al
 Use `mini` event from `VaAppBar` and play with `mini` prop in order to toggle sidebar minimization state.
 :::
 
-### VaFooter
+### Footer
 
 |> docgen footer
 
-### VaBreadcrumbs
+### Breadcrumbs
 
 |> docgen breadcrumbs
 
-### VaAside
+### Aside
 
 |> docgen aside
 
-### VaMessages
+### Messages
 
 |> docgen messages
 

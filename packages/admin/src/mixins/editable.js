@@ -2,7 +2,6 @@ import { mapActions } from "vuex";
 
 /**
  * Allow any input to have editable behavior.
- * @displayName MixinEditable
  */
 export default {
   props: {

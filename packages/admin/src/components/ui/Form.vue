@@ -13,7 +13,6 @@ import set from "lodash/set";
  * Form component which handle resource saving by calling `create` or `update` data provider methods.
  * It's the better place for made heavy usage of any VA inputs.
  * Use injection which allowing unique global v-model for all inputs.
- * @displayName Form
  */
 export default {
   mixins: [Resource],

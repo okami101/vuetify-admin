@@ -1,6 +1,5 @@
 /**
  * Common props for rating field and input components.
- * @displayName MixinRating
  */
 export default {
   props: {

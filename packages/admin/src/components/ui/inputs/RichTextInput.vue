@@ -17,7 +17,6 @@ import Editor from "@tinymce/tinymce-vue";
 /**
  * Full Wysiwyg HTML editor by using TinyMCE 5.
  * Can be bridged to any file browser as elFinder if you use PHP on the backend.
- * @displayName RichTextInput
  */
 export default {
   components: { Editor },

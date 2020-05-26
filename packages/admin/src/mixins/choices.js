@@ -1,6 +1,5 @@
 /**
  * Common props for all choices based fields or inputs.
- * @displayName MixinChoices
  */
 export default {
   props: {

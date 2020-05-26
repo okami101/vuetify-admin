@@ -2,7 +2,6 @@ import Resource from "./resource";
 
 /**
  * For components that must use specific property of the resource.
- * @displayName MixinSource
  */
 export default {
   mixins: [Resource],

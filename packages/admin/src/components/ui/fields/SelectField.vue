@@ -20,7 +20,6 @@ import Chip from "../../../mixins/chip";
 /**
  * Show value as text selected from a predefined key-value choices.
  * If no choices, by default, takes localized enums with source as value from your VueI18n resources locales.
- * @displayName SelectField
  */
 export default {
   mixins: [Field, Choices, Chip],

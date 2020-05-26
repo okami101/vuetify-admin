@@ -8,7 +8,6 @@ import Field from "../../../mixins/field";
 /**
  * Show value as formatted date. Support any localized format, long, short, etc.
  * Use `$d` VueI18n function under the hood.
- * @displayName DateField
  */
 export default {
   mixins: [Field],

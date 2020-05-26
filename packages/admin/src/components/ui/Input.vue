@@ -19,7 +19,6 @@ import InputWrapper from "../../mixins/input-wrapper";
 
 /**
  * Dumb input wrapper for custom input components that don't manage natively error states.
- * @displayName Input
  */
 export default {
   mixins: [Source, InputWrapper],

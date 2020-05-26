@@ -7,7 +7,6 @@ import Field from "../../../mixins/field";
 
 /**
  * Show value as URL format.
- * @displayName UrlField
  */
 export default {
   mixins: [Field],

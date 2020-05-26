@@ -4,7 +4,7 @@ The show page is used to be display full detail of particular resource item via 
 
 ![show](/assets/show.png)
 
-## VaShowLayout
+## Show layout
 
 |> docgen show-layout
 
@@ -61,7 +61,7 @@ export default {
 </script>
 ```
 
-## VaShow
+## Injector
 
 |> docgen show
 
@@ -137,7 +137,7 @@ export default {
 
 As you can guess, the main role of `VaShow` is to inject full item resource object on every VA field components which leads to minimal boilerplate code. Then VA field will be able to catch the value of resource property indicated on the `source` prop.
 
-## VaField
+## Field wrapper
 
 |> docgen field
 

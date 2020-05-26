@@ -17,7 +17,6 @@ import Editable from "../../../mixins/editable";
 
 /**
  * Optimized for number editing. Just a type number input with step, min and max attribute behavior.
- * @displayName NumberInput
  */
 export default {
   mixins: [Input, Editable],

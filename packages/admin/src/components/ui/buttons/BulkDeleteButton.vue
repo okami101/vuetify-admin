@@ -12,7 +12,6 @@ import { mapActions } from "vuex";
 /**
  * Button for delete bulk actions for VaDataIterator. Shown after items selections.
  * Keep all VaDeleteButton feature and use `deleteMany` data provider method under the hood.
- * @displayName BulkDeleteButton
  */
 export default {
   mixins: [Resource],

@@ -2,7 +2,6 @@ import Resource from "./resource";
 
 /**
  * For components that must compute with list of resource items, as `VaDataTable`.
- * @displayName MixinList
  */
 export default {
   mixins: [Resource],

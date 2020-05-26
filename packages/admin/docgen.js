@@ -90,7 +90,7 @@ Promise.all([
     /**
      * Generate json doc into VuePress for automatic markdown API.
      */
-    writeJsonFile(docsDir, `${tag}.json`, doc);
+    writeJsonFile(docsDir, `${tag}-mixin.json`, doc);
   }),
 ]).then(() => {
   writeJsonFile(metasDir, "tags.json", tagsJson);

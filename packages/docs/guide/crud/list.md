@@ -10,7 +10,7 @@ Note that for every CRUD pages you are free to put anything you want, and you ha
 Since all data provider methods are available in a dedicated store module for each resource, it's not that complicated to create your own list components that will fetch your data. And you can of course use the current global `$axios` instance if you need to fetch all sort of custom data that coming out of data provider logic. See [usage here](../data-providers#store).
 :::
 
-## VaDataIterator
+## Data iterator
 
 |> docgen data-iterator
 
@@ -63,7 +63,7 @@ Note that `VaDataIterator` will try to be synchronized on real time within query
 `VaDataIterator` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the providing `VaDataTable`.
 :::
 
-## VaDataTable
+## Data table
 
 |> docgen data-table
 
@@ -500,7 +500,7 @@ The data iterator support all sort of bulk operations, whether it be updating or
 
 ### Custom bulk actions
 
-By default VA provides a bulk delete action, but you can add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](buttons#vabulkactionbutton) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
+By default VA provides a bulk delete action, but you can add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](buttons#bulk-action) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
 
 The next example will show you a bulk publish and unpublish bulk actions :
 
@@ -729,7 +729,7 @@ Instead of have separate CRUD pages for each action, it's possible to regroup al
 
 ![aside](/assets/aside.png)
 
-### VaAsideLayout
+### AsideLayout
 
 |> docgen aside-layout
 

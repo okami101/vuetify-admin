@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { get } = require("lodash");
+const { get, upperFirst, camelCase } = require("lodash");
 
 module.exports = (md) => {
   let getJsonSchemaData = (type, definition) => {
@@ -54,6 +54,13 @@ module.exports = (md) => {
 
     let doc = getDocgenData(component);
 
+    generateParagraph(
+      state,
+      component.includes("mixin")
+        ? `**\`${upperFirst(camelCase(doc.displayName))}\`**`
+        : `**\`Va${doc.displayName}\`**`
+    );
+
     // Generate description paragraph
     generateParagraph(state, doc.description);
 
@@ -64,7 +71,7 @@ module.exports = (md) => {
       doc.mixins.forEach((mixin) => {
         generateParagraph(
           state,
-          `[${mixin}](/guide/components/mixins#${mixin.toLowerCase()})`
+          `[${upperFirst(mixin)}](/guide/components/mixins#${mixin})`
         );
       });
     }

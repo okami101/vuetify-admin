@@ -1,6 +1,5 @@
 /**
  * For any resource related components.
- * @displayName MixinResource
  */
 export default {
   props: {
