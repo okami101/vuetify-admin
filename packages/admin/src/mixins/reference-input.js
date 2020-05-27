@@ -20,13 +20,6 @@ export default {
      * Name of resource to search into.
      */
     reference: String,
-    /**
-     * Name of request query for searching into your API.
-     */
-    searchQuery: {
-      type: String,
-      default: "q",
-    },
   },
   data() {
     return {
@@ -93,7 +86,7 @@ export default {
           }),
           filter: {
             ...this.filter,
-            [this.searchQuery]: search || "",
+            ...(this.searchQuery && search && { [this.searchQuery]: search }),
           },
         },
       });

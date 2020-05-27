@@ -32,7 +32,7 @@ import ReferenceInput from "../../../mixins/reference-input";
 import get from "lodash/get";
 
 /**
- * Value editing from a searchable choices. Referenceable input.
+ * Value editing from a searchable choices. Support multiple and references.
  * Allows searching of linked resources from your API.
  */
 export default {
@@ -44,6 +44,13 @@ export default {
     minChars: {
       type: Number,
       default: 3,
+    },
+    /**
+     * Name of request query for searching into your API.
+     */
+    searchQuery: {
+      type: String,
+      default: "q",
     },
     /**
      * Enable taggable mode. Transform autocomplete into combobox.

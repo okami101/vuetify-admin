@@ -184,9 +184,62 @@ If you use any PHP framework you should try `elFinder` which is already integrat
 
 |> docgen select-input
 
-### RadioGroup
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-select-input source="formats" multiple></va-select-input>
+</template>
+```
+
+Will render :
+
+![select](/assets/inputs/select.png)
+
+:::tip LOCALIZED ENUMS
+You may centralized all choices for reuse directly inside you locales as [explain here](../i18n#resources). If no choices setted, `VaSelectInput` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
+:::
+
+:::tip REFERENCES
+If you want select from existing resource reference, use `reference` prop as follow :
+
+```vue
+<template>
+  <va-select-input
+    source="publisher"
+    model="publisher_id"
+    reference="publishers"
+    :filter="{ active: true }"
+  ></va-select-input>
+</template>
+```
+
+It will automatically fetch all publishers and integrate them as choices. Multiple is also supported. Use `filter` prop for filtering. You may use `model` in case of the update property request on backend side is different than `source`.
+:::
+
+### Radio group
 
 |> docgen radio-group-input
+
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-radio-group-input source="status" row></va-radio-group-input>
+</template>
+```
+
+Will render :
+
+![radio-group](/assets/inputs/radio-group.png)
+
+:::tip NO CHECKBOX GROUP
+Use above select with `multiple` prop enabled.
+:::
+
+:::tip REFERENCES
+Same above related `VaSelectInput` references tip applies, without multiple support obviously.
+:::
 
 ### Autocomplete
 
