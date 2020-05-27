@@ -6,7 +6,7 @@
 import Field from "../../../mixins/field";
 
 /**
- * Show value as URL format.
+ * Show value as simple anchor.
  */
 export default {
   mixins: [Field],

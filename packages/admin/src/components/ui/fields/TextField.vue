@@ -6,7 +6,7 @@
 import Field from "../../../mixins/field";
 
 /**
- * Show value as simple text. HTML tags will be stripped.
+ * Show value as simple text, render a simple span. HTML tags will be stripped.
  */
 export default {
   mixins: [Field],

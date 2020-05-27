@@ -26,6 +26,12 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 </template>
 ```
 
+Will render a simple span :
+
+```html
+<span>Admin</span>
+```
+
 ### Email
 
 |> docgen email-field
@@ -36,6 +42,12 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 <template>
   <va-email-field source="email"></va-email-field>
 </template>
+```
+
+Will render a mailto anchor :
+
+```html
+<a href="mailto:admin@example.com">admin@example.com</a>
 ```
 
 ### Url
@@ -50,6 +62,12 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 </template>
 ```
 
+Will render an anchor :
+
+```html
+<a href="https://vtec.okamo101.io">https://vtec.okamo101.io</a>
+```
+
 ### Rich text
 
 |> docgen rich-text-field
@@ -62,6 +80,15 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 </template>
 ```
 
+Will render an raw HTML div :
+
+```html
+<div>
+<p>Repudiandae minus consequatur error maiores repellat. Placeat harum fugiat illo est esse laudantium velit necessitatibus. Sed quaerat et impedit voluptatibus eveniet doloribus molestiae. Fuga hic nulla nobis eius qui et ex. Accusantium et molestiae earum eos vel impedit. Enim dolore ea esse repudiandae eveniet qui debitis ut. Suscipit aspernatur distinctio molestias est aut eius. Magnam nihil quia ea doloribus autem. Fugiat architecto quisquam sed eveniet qui. Velit autem et blanditiis libero voluptas. Cumque aspernatur voluptatem culpa fugiat. Quia nostrum non vel omnis accusamus architecto. Dolorem odio tempora culpa consequatur voluptatem.</p>
+<p>Animi molestias aut et voluptates qui autem odit. At voluptatum qui nihil amet dignissimos. Sed illum ut aperiam quod odio. Dolor qui corporis cupiditate occaecati veritatis cupiditate molestias ut. Eius dolor rerum minima sunt necessitatibus accusamus. Laborum omnis culpa error eos maxime qui ipsa laudantium. Aut sunt quisquam est vero. Rerum autem in veniam sunt voluptate nemo. Non blanditiis id dolor maiores velit. Facilis nihil ut quas omnis ullam ut in. Reprehenderit officia quibusdam qui dolorem sed rerum inventore.</p>
+</div>
+```
+
 ### Number
 
 |> docgen number-field
@@ -72,6 +99,12 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 <template>
   <va-number-field source="price" format="currency"></va-number-field>
 </template>
+```
+
+Will render an formatted number inside span :
+
+```html
+<span>49,92&nbsp;€</span>
 ```
 
 :::warning FORMAT
@@ -105,6 +138,12 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/number.html
 <template>
   <va-date-field source="publication_date" format="short"></va-date-field>
 </template>
+```
+
+Will render an formatted date inside span :
+
+```html
+<span>Sunday, November 18, 1984</span>
 ```
 
 :::warning FORMAT
@@ -142,6 +181,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
 </template>
 ```
 
+Will render an [MDI](https://vuetifyjs.com/en/components/icons/) :
+
 ### Rating
 
 |> docgen rating-field
@@ -154,6 +195,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
 </template>
 ```
 
+Will render a [vuetify rating component](https://vuetifyjs.com/en/components/ratings/)
+
 ### Chip
 
 |> docgen chip-field
@@ -165,6 +208,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
   <va-chip-field source="type" color="secondary" small></va-chip-field>
 </template>
 ```
+
+Will render a [chip](https://vuetifyjs.com/en/components/chips/)
 
 :::tip ENUMS
 If you need format value in terms of choices or enums, use [`VaSelectField`](#select) with `chip` prop.

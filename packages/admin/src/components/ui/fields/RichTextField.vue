@@ -1,5 +1,5 @@
 <template>
-  <span v-html="value"></span>
+  <div class="va-rich-text-field" v-html="value"></div>
 </template>
 
 <script>
