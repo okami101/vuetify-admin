@@ -29,6 +29,7 @@ Route::group(['middleware' => Impersonate::class], function () {
 
     Route::account();
     Route::impersonate();
+    Route::upload();
 
     /**
      * API resources controllers

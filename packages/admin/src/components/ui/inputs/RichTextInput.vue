@@ -91,13 +91,39 @@ export default {
         inline: this.inline,
       };
 
-      let url = this.$admin.options.fileBrowserUrl;
+      /**
+       * Image upload.
+       */
+      let imageUploadUrl = this.$admin.options.imageUploadUrl;
 
-      if (url) {
+      if (imageUploadUrl) {
+        init = {
+          ...init,
+          paste_data_images: true,
+          images_upload_handler: async (blobInfo, success, failure) => {
+            try {
+              let formData = new FormData();
+              formData.append("file", blobInfo.blob(), blobInfo.filename());
+              let { data } = await this.$axios.post(imageUploadUrl, formData);
+
+              success(data.location);
+            } catch (e) {
+              failure("HTTP Error: " + e.status);
+            }
+          },
+        };
+      }
+
+      /**
+       * File browser config.
+       */
+      let fileBrowserUrl = this.$admin.options.fileBrowserUrl;
+
+      if (fileBrowserUrl) {
         init.file_picker_callback = (callback, value, meta) => {
           tinymce.activeEditor.windowManager.openUrl({
             title: this.$t("va.file_manager"),
-            url,
+            url: fileBrowserUrl,
             /**
              * On message will be triggered by the child window
              *

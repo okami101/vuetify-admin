@@ -127,7 +127,7 @@ VUE_APP_TINYMCE_LANGUAGE=my_default_locale
 :::
 
 :::tip TINYMCE 5 DOCUMENTATION
-Check the [official documentation](https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/) for further details on `plugins` and `toolbar` configuration.
+Check the [official documentation](https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/) for further details on `plugins` and `toolbar` configuration. Use `init` prop for full control, it will replace other props.
 
 Default init value for `init` :
 
@@ -151,10 +151,31 @@ Default init value for `init` :
 
 :::
 
-:::tip FILE BROWSER
-You may want to bridge the Wysiwyg within and file browser system. Use global `fileBrowserUrl` admin options [as explain here](../admin#options) for setting a valid file browser backend solution. It will add a picker button for images and media that allows file selection from the file browser.
+:::tip IMAGE UPLOAD HANDLER
+You may need a real backend image upload handler in order to avoid the default base64. Use global `imageUploadUrl` admin options [as explain here](../admin#options) for setting a handler URL compatible with TinyMCE 5. It will add a direct upload zone on images plugin and as well as enable drag and drop.
 
-If you use any PHP framework you should try `elFinder` :
+[Vtec Laravel Crud](../laravel) already integrate a functional upload handler that you can activate by adding the upload route :
+
+**`routes/api.php`**
+
+```php {6}
+Route::group(['middleware' => Impersonate::class], function () {
+    // ...
+
+    Route::account();
+    Route::impersonate();
+    Route::upload();
+
+    // ...
+});
+```
+
+:::
+
+:::tip FILE BROWSER
+You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowserUrl` admin options [as explain here](../admin#options) for setting a backend file browser solution. It will add a picker button for images and media that allows file selection from the file browser.
+
+If you use any PHP framework you should try `elFinder` which is already integrated on official [Vtec Laravel Crud](../laravel) package :
 
 ![file-browser](/assets/inputs/file-browser.png)
 :::

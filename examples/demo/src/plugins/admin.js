@@ -48,6 +48,7 @@ export default new VtecAdmin({
   resources,
   options: {
     dateFormat: "long",
+    imageUploadUrl: "/api/upload",
     fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
   },
 });
