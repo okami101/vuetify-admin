@@ -2,6 +2,25 @@
 
 VA input components allow editing of particular property of existing API resource object. Mainly used on [forms](../crud/form) for create and edit views. Can also be used as filter input for [`VaDataIterator`](../crud/list#data-iterator). For resource edition, it must be used within [`VaForm`](../crud/form#injector), which handle item injection and form model supply with error messages.
 
+:::tip SOURCE AND MODEL
+Va inputs support both `source` and `model` prop. Source is the original property object where to fetch the value and model will be the final property name with the new value that will be sent on your data provider.
+:::
+
+:::tip DOT NOTATION SUPPORT
+VA inputs accept dot notation for `source` prop. Very useful for nested object :
+
+```vue
+<template>
+  <va-text-input source="address.street"></va-text-input>
+  <va-text-input source="address.postcode"></va-text-input>
+  <va-text-input source="address.city"></va-text-input>
+</template>
+```
+
+It will directly get the value of street property of address object and take the localized label from nested structure.
+The final form model data that will be sent on your data provider will also respect this nested structure.
+:::
+
 ## VA inputs
 
 ### Text
@@ -160,13 +179,13 @@ You may need a real backend image upload handler in order to avoid the default b
 
 ```php {6}
 Route::group(['middleware' => Impersonate::class], function () {
-    // ...
+    //...
 
     Route::account();
     Route::impersonate();
     Route::upload();
 
-    // ...
+    //...
 });
 ```
 
@@ -326,12 +345,7 @@ If using Vtec Laravel Crud, this [RequestMediaTrait](../laravel#requestmediatrai
 
 ```vue
 <template>
-  <va-array-input
-    source="backlinks"
-    tracked-by="date"
-    :label="$t('backlinks')"
-    v-slot="props"
-  >
+  <va-array-input source="backlinks" :label="$t('backlinks')" v-slot="props">
     <v-row>
       <v-col sm="6">
         <va-date-input v-bind="props" source="date"></va-date-input>
@@ -347,6 +361,43 @@ If using Vtec Laravel Crud, this [RequestMediaTrait](../laravel#requestmediatrai
 Will render :
 
 ![array](/assets/inputs/array.png)
+
+:::tip LABEL
+For proper inner localization, use nested structure :
+
+```json
+//...
+  "fields": {
+    //...
+    "backlinks": {
+      "date": "Date",
+      "url": "Url"
+    }
+  }
+//...
+```
+
+As we cannot have proper label for `backlinks`, use `label` prop for explicit label.
+:::
+
+:::tip API VALIDATION HANDLING
+The final form model will stay a classic array. In the above example, if encoded in FormData, it will be sent on this format : `backlinks[$i][(date|url)]`. In case of Laravel using, you may use this validation rule :
+
+```php
+public function rules()
+{
+    return [
+        //...
+        'backlinks.*.date' => 'required|date',
+        'backlinks.*.url' => 'required|url',
+    ];
+}
+```
+
+And it should work perfectly fine :
+
+![array-validation](/assets/inputs/array-validation.png)
+:::
 
 ## Custom component
 
@@ -428,9 +479,9 @@ export default {
     return {
       filters: [
         { source: 'level', type: 'my-custom' },
-        // ...
+        //...
       ],
-      // ...
+      //...
     };
   },
 };

@@ -7,9 +7,23 @@ You may use this VA fields as cells template for `VaDataTable`, see [this sectio
 :::
 
 :::tip FIELD WRAPPER
-Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show#field-wrapper) for that.
+Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show#field-wrapper) for that. It will get localized label will guess the proper field component via `type` prop, which is avoid us to rewrite it on default slot.
 
-Besides this wrapper include a nice shortand with specific `type` property that avoid to retype full field component inside default slot. All supported type field attributes will be merged into child field component. See [more](../crud/show#field-wrapper) for further detail.
+All supported type field attributes will be merged into child field component. See [more](../crud/show#field-wrapper) for further detail.
+:::
+
+:::tip DOT NOTATION SUPPORT
+VA fields accept dot notation for `source` prop. Very useful for nested object :
+
+```vue
+<template>
+  <va-field source="address.street"></va-field>
+  <va-field source="address.postcode"></va-field>
+  <va-field source="address.city"></va-field>
+</template>
+```
+
+It will directly get the value of street property of address object and take the localized label from nested structure.
 :::
 
 ## VA fields

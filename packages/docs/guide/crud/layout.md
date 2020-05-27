@@ -6,7 +6,7 @@ By using Vue CLI plugin, your project will be initialized with a premade default
 
 ```js {1,8}
 import AdminLayout from "@/layouts/Admin";
-// ...
+//...
 
 export default {
   path: "/",
@@ -17,7 +17,7 @@ export default {
     title: i18n.t("routes.home"),
   },
   children: [
-    // ...
+    //...
   ],
 };
 ```

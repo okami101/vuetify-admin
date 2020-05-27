@@ -66,7 +66,7 @@ This callback takes an `params` object with 3 properties :
 
 ```js
 export default new VtecAdmin({
-  // ...
+  //...
   canAction: ({ resource, action, can }) => {
     if (can(["admin"])) {
       return true;
@@ -90,7 +90,7 @@ You can access to current user permissions everywhere in your apps, which allows
 <script>
 export default {
   props: ["permissions"],
-  // ...
+  //...
 },
 </script>
 ```
@@ -106,7 +106,7 @@ For any other cases, on any components apart from CRUD pages or custom pages as 
 import { mapGetters } from "vuex";
 
 export default {
-  // ...
+  //...
   computed: {
     ...mapGetters({
       permissions: "auth/getPermissions",
@@ -133,11 +133,11 @@ VA offers to you a global `$admin.can` helper that you can use anywhere which al
 
 <script>
 export default {
-  // ...
+  //...
   method() {
     onSubmit() {
       if (this.$admin.can(["book_edit"])) {
-        // ...
+        //...
       }
     },
   },

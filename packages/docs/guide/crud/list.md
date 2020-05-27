@@ -429,7 +429,7 @@ export default {
         { source: "active", type: "boolean" },
       ],
       fields: [
-        // ...
+        //...
       ],
       options: {},
       selected: [],
@@ -647,7 +647,7 @@ export default {
   data() {
     return {
       fields: [
-        // ...
+        //...
       ],
       options: {},
       association: {
@@ -740,7 +740,7 @@ If you use aside for crud operations, you may disable related `show`, `create` a
 
 ```js {7}
 export default [
-  // ...
+  //...
   {
     name: "users",
     icon: "mdi-account",
@@ -793,7 +793,7 @@ export default {
   data() {
     return {
       fields: [
-        // ...
+        //...
       ],
       asideOpened: false,
       asideTitle: null,

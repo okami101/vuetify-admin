@@ -49,7 +49,7 @@
 import Input from "../../../mixins/input";
 
 /**
- * Allow multiple inputs as array. See it as a repeater.
+ * Allow multiple embed inputs as array. See it as a repeater.
  * Support adding, removing, as well as moving via drag thanks to VueDraggable.
  */
 export default {

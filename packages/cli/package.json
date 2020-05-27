@@ -20,6 +20,6 @@
     "@vue/cli-service": "^3.0.0 || ^4.0.0-0"
   },
   "devDependencies": {
-    "js-yaml": "^3.13.1"
+    "js-yaml": "^3.14.0"
   }
 }

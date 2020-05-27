@@ -177,9 +177,9 @@ For exemple this piece of code will return a link object to the user page list w
 
 ```js
 [
-  // ...
+  //...
   this.$admin.getResourceLink("users"),
-  // ...
+  //...
 ]
 ```
 
@@ -187,14 +187,14 @@ Use `getResourceLinks` in order to make many resource links at once. Only links 
 
 ```js
 [
-  // ...
+  //...
   ...this.$admin.getResourceLinks([
     "publishers",
     "authors",
     "books",
     "reviews",
   ]),
-  // ...
+  //...
 ]
 ```
 
@@ -202,9 +202,9 @@ For this helpers, you can pass a full link object instead of resource name that 
 
 ```js
 [
-  // ...
+  //...
   this.$admin.getResourceLink({ name: "users", action: "create", icon: "mdi-plus", text: "Create new user" }),
-  // ...
+  //...
 ]
 ```
 
@@ -212,7 +212,7 @@ The `getResourceLinks` helper can accept hierarchical menu as following :
 
 ```js
 [
-  // ...
+  //...
   ...admin.getResourceLinks([
     {
       icon: "mdi-globe-model",
@@ -227,6 +227,6 @@ The `getResourceLinks` helper can accept hierarchical menu as following :
     "books",
     "reviews",
   ]),
-  // ...
+  //...
 ]
 ```

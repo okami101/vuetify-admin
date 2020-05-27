@@ -118,7 +118,6 @@
         "books": "Livres",
         "users": "Utilisateurs",
         "backlinks": {
-          "text": "Texte",
           "date": "Date",
           "url": "Url"
         }

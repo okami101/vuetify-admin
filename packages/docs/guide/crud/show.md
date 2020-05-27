@@ -141,7 +141,11 @@ As you can guess, the main role of `VaShow` is to inject full item resource obje
 
 |> docgen field
 
-By default if no default slot is provided, `VaField` will automatically use a specific [Va field component](../components/fields) under the hood according to the `type` prop.
+:::tip DEFAULT LABEL
+By default, `VaField` will try to guess the proper localized label from `source` prop by following [this structure](../i18n#resources).
+:::
+
+If no default slot is provided, `VaField` will automatically use a specific [Va field component](../components/fields) under the hood according to the `type` prop.
 
 So :
 
