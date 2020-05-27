@@ -50,7 +50,7 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 </template>
 ```
 
-### RichText
+### Rich text
 
 |> docgen rich-text-field
 
@@ -275,6 +275,26 @@ For more complex case, use a simple `v-for` custom template.
 </template>
 ```
 
+:::tip DEFAULT SLOT
+Use default slot for custom resource labelization. It takes by default the value of property configured on `label` of [main resource object property](../resources#resource-object-structure). If you want just ID instead :
+
+```vue
+<template>
+  <va-reference-field
+    source="publisher"
+    reference="publishers"
+    chip
+    color="orange"
+    action="edit"
+    v-slot="{ value }"
+  >
+    {{ value.id }}
+  </va-reference-field>
+</template>
+```
+
+:::
+
 ### Reference array
 
 |> docgen reference-array-field
@@ -296,6 +316,10 @@ For more complex case, use a simple `v-for` custom template.
 Will render :
 
 ![references](/assets/references.png)
+
+:::tip DEFAULT SLOT
+Use default slot for custom resource labelization.
+:::
 
 ## Custom component
 

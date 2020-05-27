@@ -100,7 +100,7 @@ Will render :
 
 ![rating](/assets/inputs/rating.png)
 
-### RichText
+### Rich text
 
 |> docgen rich-text-input
 
@@ -129,22 +129,24 @@ VUE_APP_TINYMCE_LANGUAGE=my_default_locale
 :::tip TINYMCE 5 DOCUMENTATION
 Check the [official documentation](https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/) for further details on `plugins` and `toolbar` configuration.
 
-Default used value for `plugins` prop :
+Default init value for `init` :
 
 ```js
-[
-  "advlist autolink lists link image charmap print preview anchor",
-  "searchreplace visualblocks code fullscreen",
-  "insertdatetime media table paste code help wordcount",
-]
-```
-
-Default used value for `toolbar` prop :
-
-```js
-"undo redo | formatselect | bold italic backcolor | \
+{
+  language: process.env.VUE_APP_TINYMCE_LANGUAGE,
+  height: 500,
+  menubar: false,
+  plugins: [
+    "advlist autolink lists link image charmap print preview anchor",
+    "searchreplace visualblocks code fullscreen",
+    "insertdatetime media table paste code help wordcount",
+  ],
+  toolbar: "undo redo | formatselect | bold italic backcolor | \
     alignleft aligncenter alignright alignjustify | \
-    bullist numlist outdent indent | image media | removeformat | help",
+    bullist numlist outdent indent | image media | removeformat | help",,
+  inline: false,
+}
+
 ```
 
 :::

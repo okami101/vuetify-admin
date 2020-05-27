@@ -2,7 +2,7 @@
   <va-input v-bind="$props" class="va-rich-text-input">
     <editor
       :api-key="apiKey"
-      :init="init"
+      :init="getInit"
       :value="input"
       @change="change"
       @input="update"
@@ -66,6 +66,13 @@ export default {
            alignleft aligncenter alignright alignjustify | \
            bullist numlist outdent indent | image media | removeformat | help",
     },
+    /**
+     * The full TinyMCE object, check official docs.
+     */
+    init: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -74,8 +81,8 @@ export default {
     };
   },
   computed: {
-    init() {
-      let init = {
+    getInit() {
+      let init = this.init || {
         language: this.language,
         height: this.height,
         menubar: this.menubar,
