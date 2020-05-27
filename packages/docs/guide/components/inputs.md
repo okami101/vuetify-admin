@@ -264,6 +264,16 @@ Will render :
 
 ![autocomplete](/assets/inputs/autocomplete.png)
 
+:::tip SEARCH
+Use `minChars` and `searchQuery` to configure the minimal char needed before search and the query search parameter key which is `q` by default. It will reuse `getList` data provider method with a custom search filter.
+
+Use `fields` prop to reduce API query overfetching for better performance.
+:::
+
+:::tip TAGGABLE
+Autocomplete will be transformed into combobox component as soon as you enable `taggable` prop. It will allow you to create new tags on the fly.
+:::
+
 ### File
 
 |> docgen file-input
@@ -286,6 +296,23 @@ Will render :
 Will render :
 
 ![file](/assets/inputs/file.png)
+
+:::tip IMAGES
+Use `preview` for image gallery support, use [`VaImageField`](fields#image) under the hood.
+:::
+
+:::tip DATA PROVIDER FILE UPLOAD
+2 different solutions :
+
+* Base64 : JSON friendly but more payload size and generally poorly integrated on server-side.
+* FormData : Send raw binary file as-is inside classic `multipart/form-data`. Poor FormData API but better native server-side integration thanks to `UploadedFile` with native MIME validation.
+
+Data providers of VtecAdmin use the second method for easier server-side integration. It uses a `objectToFormData` helper for this, more info [here](../data-providers#usage) in case you want use it for your custom data provider.
+:::
+
+:::tip DATA PROVIDER FILE DELETION
+
+:::
 
 ### Array
 
