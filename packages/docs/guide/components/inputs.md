@@ -245,13 +245,75 @@ Same above related `VaSelectInput` references tip applies, without multiple supp
 
 |> docgen autocomplete-input
 
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-autocomplete-input
+    source="authors"
+    model="author_ids"
+    multiple
+    reference="authors"
+  ></va-autocomplete-input>
+</template>
+```
+
+Will render :
+
+![autocomplete](/assets/inputs/autocomplete.png)
+
 ### File
 
 |> docgen file-input
 
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-file-input
+    source="local"
+    preview
+    multiple
+    src="thumbnails.medium"
+    lg="4"
+  >
+  </va-file-input>
+</template>
+```
+
+Will render :
+
+![file](/assets/inputs/file.png)
+
 ### Array
 
 |> docgen array-input
+
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-array-input
+    source="backlinks"
+    tracked-by="date"
+    :label="$t('backlinks')"
+    v-slot="props"
+  >
+    <v-row>
+      <v-col sm="6">
+        <va-date-input v-bind="props" source="date"></va-date-input>
+      </v-col>
+      <v-col sm="6">
+        <va-text-input v-bind="props" source="url"></va-text-input>
+      </v-col>
+    </v-row>
+  </va-array-input>
+</template>
+```
+
+Will render :
+
+![array](/assets/inputs/array.png)
 
 ## Custom component
 

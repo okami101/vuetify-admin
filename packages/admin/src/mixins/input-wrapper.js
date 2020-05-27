@@ -63,18 +63,18 @@ export default {
         return this.$t(`resources.${this.resource}.fields.${this.source}`);
       },
     },
+    /**
+     * Placeholder if input support it.
+     */
+    placeholder: String,
+    /**
+     * Mark this input as clearable.
+     */
+    clearable: Boolean,
+    /**
+     * Specific index of field in case of inside array of inputs, aka VaArrayInput.
+     * Use it with `parentSource` prop in order to update the value at a good place in the form model.
+     */
+    index: Number,
   },
-  /**
-   * Placeholder if input support it.
-   */
-  placeholder: String,
-  /**
-   * Mark this input as clearable.
-   */
-  clearable: Boolean,
-  /**
-   * Specific index of field in case of inside array of inputs, aka VaArrayInput.
-   * Use it with `parentSource` prop in order to update the value at a good place in the form model.
-   */
-  index: Number,
 };
