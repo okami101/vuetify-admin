@@ -150,7 +150,9 @@ Default used value for `toolbar` prop :
 :::
 
 :::tip FILE BROWSER
-Use global `fileBrowserUrl` admin options [as explain here](../admin#options) for setting a valid file browser backend solution. If you use any PHP framework you way bridge `elFinder`.
+You may want to bridge the Wysiwyg within and file browser system. Use global `fileBrowserUrl` admin options [as explain here](../admin#options) for setting a valid file browser backend solution. It will add a picker button for images and media that allows file selection from the file browser.
+
+If you use any PHP framework you should try `elFinder` :
 
 ![file-browser](/assets/inputs/file-browser.png)
 :::
