@@ -46,11 +46,18 @@ export default new VtecAdmin({
   //...
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
+  axios: http,
   //...
 });
 ```
 
 All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
+
+:::tip GLOBAL ADMIN AXIOS
+Pass axios instance into [VtecAdmin constructor](admin#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
+
+Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusivly use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
+:::
 
 In addition to axios, a second `params` optional argument can be used for various parameters as authentication routes, credentials format, etc.
 

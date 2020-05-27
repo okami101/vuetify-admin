@@ -274,9 +274,3 @@ export default {
 };
 </script>
 ```
-
-:::tip GLOBAL ADMIN AXIOS
-For any non standard API call that don't follow the above data provider implementation, you can still access to the global `$admin.axios` instance by setting it on [VtecAdmin constructor](admin#instantiation). It allows reusing of current active authentication state (cookies or token).
-
-Don't forget that only providers are aware of this axios instance by default, Vtec Admin doesn't know about it and exclusivly use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
-:::
