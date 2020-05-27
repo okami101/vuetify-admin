@@ -76,7 +76,7 @@ export default {
       /**
        * Return ISO 8601
        */
-      let date = new Date(this.input);
+      let date = this.input ? new Date(this.input) : new Date();
 
       let month = 1 + date.getMonth();
       if (month < 10) {

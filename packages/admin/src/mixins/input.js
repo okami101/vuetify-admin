@@ -35,21 +35,19 @@ export default {
     },
     formState: {
       handler(val) {
-        if (val) {
+        if (val && this.acceptValue) {
           /**
            * Initialize value & errors
            */
-          if (this.acceptValue) {
-            this.update(get(val.item || val.model, this.uniqueFormId));
-          }
-
-          if (val.errors) {
-            this.errorMessages = val.errors[this.uniqueFormId] || [];
-          }
+          this.update(
+            this.getItem(get(val.item || val.model, this.uniqueFormId))
+          );
         }
       },
       immediate: true,
-      deep: true,
+    },
+    "formState.errors"(val) {
+      this.errorMessages = val[this.uniqueFormId] || [];
     },
   },
   computed: {
@@ -74,6 +72,9 @@ export default {
     },
   },
   methods: {
+    getItem(value) {
+      return value;
+    },
     change(value) {
       /**
        * Triggered on any user input interaction.

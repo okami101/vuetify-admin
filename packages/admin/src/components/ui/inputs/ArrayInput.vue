@@ -7,7 +7,7 @@
       handle=".handle"
       @input="update"
     >
-      <div v-for="(item, i) in input" :key="item[trackedBy]" class="item">
+      <div v-for="(item, i) in input" :key="item.id" class="item">
         <!--
           @slot Your repeatable group of inputs components.
           @binding {string} resource Name of resource.
@@ -63,18 +63,18 @@ export default {
       type: Array,
       default: () => [],
     },
-    /**
-     * Object property to use as key tracking for list.
-     * Needed for make drag move working.
-     */
-    trackedBy: {
-      type: String,
-      default: "id",
-    },
   },
   methods: {
+    getItem(value) {
+      /**
+       * Generate factice id for drag tracking
+       */
+      return value.map((v, i) => {
+        return { ...v, id: i };
+      });
+    },
     add() {
-      this.input.push({});
+      this.input.push({ id: Math.max(...this.input.map((o) => o.id)) + 1 });
       this.update(this.input);
     },
     remove(index) {

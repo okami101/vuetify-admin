@@ -31,7 +31,6 @@
             <va-text-input source="description" multiline></va-text-input>
             <va-array-input
               source="backlinks"
-              tracked-by="date"
               :label="$t('backlinks')"
               v-slot="props"
             >
