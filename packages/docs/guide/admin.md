@@ -48,7 +48,6 @@ Vue.use(VtecAdmin);
 
 // Create global axios instance, it will bridged into above providers
 const http = axios.create();
-Vue.prototype.$axios = http;
 
 // Main VA constructor that will build resources routes and modules
 export default new VtecAdmin({
@@ -65,6 +64,7 @@ export default new VtecAdmin({
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   resources,
+  axios: http,
   options: {
     dateFormat: "long",
     fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
@@ -124,20 +124,21 @@ new Vue({
 
 In order to operate, VtecAdmin constructor needs all of this parameters :
 
-| Property         | Type         | Description                                                                                                                                                  |
-| ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **router**       | `VueRouter`  | Vue Router instance, which can contains all your public custom routes.                                                                                       |
-| **store**        | `Vuex.Store` | Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.                                       |
-| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n).                     |
-| **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                 |
-| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout). All resources routes CRUD pages will be registered here as children. |
-| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n#ui).                                                        |
-| **translations** | `object`     | All supported traductions for your resources. More detail [here](i18n#resources).                                                                            |
-| **authProvider** | `object`     | [Auth](authentication) provider that must implements [auth contract](authentication#api-contract).                                                           |
-| **dataProvider** | `object`     | [Data](data-providers) provider that must implements [data contract](data-providers#api-contract).                                                           |
-| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources).                                     |
-| **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                 |
-| **canAction**    | `function`   | Callback for [advanced permissions](authorization#advanced-usage) testing for each action of any resources.                                                  |
+| Property         | Type         | Description                                                                                                                                                                                  |
+| ---------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **router**       | `VueRouter`  | Vue Router instance, which can contains all your public custom routes.                                                                                                                       |
+| **store**        | `Vuex.Store` | Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.                                                                       |
+| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n).                                                     |
+| **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                                                 |
+| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout). All resources routes CRUD pages will be registered here as children.                                 |
+| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n#ui).                                                                                        |
+| **translations** | `object`     | All supported traductions for your resources. More detail [here](i18n#resources).                                                                                                            |
+| **authProvider** | `object`     | [Auth](authentication) provider that must implements [auth contract](authentication#api-contract).                                                                                           |
+| **dataProvider** | `object`     | [Data](data-providers) provider that must implements [data contract](data-providers#api-contract).                                                                                           |
+| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources).                                                                     |
+| **axios**        | `object`     | Optional, can provide better auth and CSRF integration for advanced input components as Wysiwyg for image upload. Additionaly set a available global axios instance via `this.$admin.axios`. |
+| **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                                 |
+| **canAction**    | `function`   | Callback for [advanced permissions](authorization#advanced-usage) testing for each action of any resources.                                                                                  |
 
 ![instantiation](/diagrams/instantiation.svg)
 

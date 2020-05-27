@@ -17,7 +17,7 @@ If your API don't need auth at all, simply don't set the `authProvider` option i
 
 All of this providers need an instance of axios in order to work. I prefer it to standard [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) because it allows less code and easy by-instance authentication headers across data providers.
 
-The best way is to create a global admin axios instance and passthrough it into both auth and data providers :
+The easiest way is to create an admin axios instance and passthrough it into both auth and data providers :
 
 **`src/plugins/admin.js`**
 
@@ -42,8 +42,6 @@ const http = axios.create({
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
-Vue.prototype.$axios = http;
-
 export default new VtecAdmin({
   //...
   authProvider: sanctumAuthProvider(http),
@@ -53,11 +51,6 @@ export default new VtecAdmin({
 ```
 
 All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
-
-:::tip GLOBAL AXIOS
-Pass axios instance into global Vue prototype in order to access it everywhere on your custom Vue components by `this.$axios...`. You just have to write `Vue.prototype.$axios = http;` for that.  
-Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusivly use providers for API communication.
-:::
 
 In addition to axios, a second `params` optional argument can be used for various parameters as authentication routes, credentials format, etc.
 
@@ -213,7 +206,7 @@ export default {
     }),
     async update(method, url, data) {
       try {
-        await this.$axios.patch("/api/account/update", this.accountForm);
+        await this.$admin.axios.patch("/api/account/update", this.accountForm);
 
         this.checkAuth();
         this.$admin.toast.success(this.$t("profile.account_updated"));

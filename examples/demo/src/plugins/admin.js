@@ -30,8 +30,6 @@ const http = axios.create({
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
-Vue.prototype.$axios = http;
-
 export default new VtecAdmin({
   router,
   store,
@@ -46,6 +44,7 @@ export default new VtecAdmin({
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   resources,
+  axios: http,
   options: {
     dateFormat: "long",
     imageUploadUrl: "/api/upload",

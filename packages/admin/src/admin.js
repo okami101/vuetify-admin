@@ -24,6 +24,7 @@ export default class VtecAdmin {
     resources,
     options,
     canAction,
+    axios,
   }) {
     /**
      * Options properties
@@ -34,6 +35,7 @@ export default class VtecAdmin {
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
     this.options = options || {};
+    this.axios = axios;
 
     /**
      * Permissions helper & directive

@@ -97,21 +97,34 @@ export default {
       let imageUploadUrl = this.$admin.options.imageUploadUrl;
 
       if (imageUploadUrl) {
-        init = {
-          ...init,
-          paste_data_images: true,
-          images_upload_handler: async (blobInfo, success, failure) => {
-            try {
-              let formData = new FormData();
-              formData.append("file", blobInfo.blob(), blobInfo.filename());
-              let { data } = await this.$axios.post(imageUploadUrl, formData);
+        /**
+         * Use existing axios instance if present, allows better authentication and CSRF integration.
+         */
+        init = this.$admin.axios
+          ? {
+              ...init,
+              paste_data_images: true,
+              images_upload_handler: async (blobInfo, success, failure) => {
+                try {
+                  let formData = new FormData();
+                  formData.append("file", blobInfo.blob(), blobInfo.filename());
+                  let { data } = await this.$admin.axios.post(
+                    imageUploadUrl,
+                    formData
+                  );
 
-              success(data.location);
-            } catch (e) {
-              failure("HTTP Error: " + e.status);
+                  success(data.location);
+                } catch (e) {
+                  failure("HTTP Error: " + e.status);
+                }
+              },
             }
-          },
-        };
+          : {
+              ...init,
+              images_upload_url: imageUploadUrl,
+              images_upload_credentials: true,
+              paste_data_images: true,
+            };
       }
 
       /**

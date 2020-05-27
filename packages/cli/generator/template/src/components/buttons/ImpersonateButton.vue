@@ -28,7 +28,7 @@ export default {
   methods: {
     async impersonate() {
       try {
-        await this.$axios.post(`/api/users/${this.item.id}/impersonate`);
+        await this.$admin.axios.post(`/api/users/${this.item.id}/impersonate`);
 
         /**
          * Full reload to home

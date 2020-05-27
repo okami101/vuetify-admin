@@ -170,6 +170,8 @@ Route::group(['middleware' => Impersonate::class], function () {
 });
 ```
 
+You may provide admin axios instance to [VtecAdmin constructor](../admin#instantiation) for CSRF integration. If you don't use axios, don't forget to exclude upload route from CSRF inside `app/Http/Middleware/VerifyCsrfToken.php`.
+
 :::
 
 :::tip FILE BROWSER
