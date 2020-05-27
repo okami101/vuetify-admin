@@ -8,33 +8,152 @@ VA input components allow editing of particular property of existing API resourc
 
 |> docgen text-input
 
+**`SAMPLE`**
+
+```vue
+<template>
+  <v-row>
+    <v-col sm="6">
+      <va-text-input source="founder"></va-text-input>
+    </v-col>
+    <v-col sm="6">
+      <va-text-input source="headquarter"></va-text-input>
+    </v-col>
+  </v-row>
+  <va-text-input source="description" multiline></va-text-input>
+</template>
+```
+
+Will render :
+
+![text-input](/assets/inputs/text.png)
+
 ### Password
 
 |> docgen password-input
+
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-password-input source="password"></va-password-input>
+</template>
+```
+
+Will render :
+
+![password](/assets/inputs/password.png)
 
 ### Number
 
 |> docgen number-input
 
-### Rating
+**`SAMPLE`**
 
-|> docgen rating-input
+```vue
+<template>
+  <va-number-input source="level" :step="1" :min="0" :max="99"></va-number-input>
+</template>
+```
 
 ### Date
 
 |> docgen date-input
 
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-date-input source="publication_date" format="short"></va-date-input>
+</template>
+```
+
+Will render :
+
+![date](/assets/inputs/date.png)
+
 ### Boolean
 
 |> docgen boolean-input
+
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-boolean-input source="active"></va-boolean-input>
+</template>
+```
+
+### Rating
+
+|> docgen rating-input
+
+**`SAMPLE`**
+
+```vue
+<template>
+  <va-rating-input source="rating" length="5" half-increments></va-rating-input>
+</template>
+```
+
+Will render :
+
+![rating](/assets/inputs/rating.png)
 
 ### RichText
 
 |> docgen rich-text-input
 
-### Array
+**`SAMPLE`**
 
-|> docgen array-input
+```vue
+<template>
+  <va-rich-text-input source="summary"></va-rich-text-input>
+</template>
+```
+
+Will render :
+
+![rich-text](/assets/inputs/rich-text.png)
+
+:::warning API KEY
+You'll probably need a API key. Add it to you `.env.local` file with the default language to use :
+
+```env
+VUE_APP_TINYMCE_API_KEY=my_api_key
+VUE_APP_TINYMCE_LANGUAGE=my_default_locale
+```
+
+:::
+
+:::tip TINYMCE 5 DOCUMENTATION
+Check the [official documentation](https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/) for further details on `plugins` and `toolbar` configuration.
+
+Default used value for `plugins` prop :
+
+```js
+[
+  "advlist autolink lists link image charmap print preview anchor",
+  "searchreplace visualblocks code fullscreen",
+  "insertdatetime media table paste code help wordcount",
+]
+```
+
+Default used value for `toolbar` prop :
+
+```js
+"undo redo | formatselect | bold italic backcolor | \
+    alignleft aligncenter alignright alignjustify | \
+    bullist numlist outdent indent | image media | removeformat | help",
+```
+
+:::
+
+:::tip FILE BROWSER
+Use global `fileBrowserUrl` admin options [as explain here](../admin#options) for setting a valid file browser backend solution. If you use any PHP framework you way bridge `elFinder`.
+
+![file-browser](/assets/inputs/file-browser.png)
+:::
 
 ### Select
 
@@ -51,6 +170,10 @@ VA input components allow editing of particular property of existing API resourc
 ### File
 
 |> docgen file-input
+
+### Array
+
+|> docgen array-input
 
 ## Custom component
 

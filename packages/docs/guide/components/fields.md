@@ -18,6 +18,8 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 
 |> docgen text-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-text-field source="name"></va-text-field>
@@ -27,6 +29,8 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 ### Email
 
 |> docgen email-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -38,6 +42,8 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 
 |> docgen url-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-url-field source="url" target="_self"></va-url-field>
@@ -48,6 +54,8 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 
 |> docgen rich-text-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-rich-text-field source="body"></va-rich-text-field>
@@ -57,6 +65,8 @@ Besides this wrapper include a nice shortand with specific `type` property that 
 ### Number
 
 |> docgen number-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -88,6 +98,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/number.html
 ### Date
 
 |> docgen date-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -122,6 +134,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
 
 |> docgen boolean-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-boolean-field source="active" icon-false="mdi-cancel"></va-boolean-field>
@@ -132,6 +146,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
 
 |> docgen rating-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-rating-field source="rating" length="10" half-increments></va-rating-field>
@@ -141,6 +157,8 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
 ### Chip
 
 |> docgen chip-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -155,6 +173,8 @@ If you need format value in terms of choices or enums, use [`VaSelectField`](#se
 ### Select
 
 |> docgen select-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -183,6 +203,8 @@ You may centralized all choices for reuse directly inside you locales as [explai
 
 |> docgen file-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-file-field source="files"></va-file-field>
@@ -192,6 +214,8 @@ You may centralized all choices for reuse directly inside you locales as [explai
 ### Image
 
 |> docgen image-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -206,6 +230,8 @@ You can play with `lg` and `height` for sort of gallery when multiple files :
 ### Array
 
 |> docgen array-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
@@ -235,6 +261,8 @@ For more complex case, use a simple `v-for` custom template.
 
 |> docgen reference-field
 
+**`SAMPLE`**
+
 ```vue
 <template>
   <va-reference-field
@@ -250,6 +278,8 @@ For more complex case, use a simple `v-for` custom template.
 ### Reference array
 
 |> docgen reference-array-field
+
+**`SAMPLE`**
 
 ```vue
 <template>
