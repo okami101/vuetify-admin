@@ -2,7 +2,7 @@
   <ul v-if="activeFiles.length">
     <li v-for="(file, i) in activeFiles" :key="i">
       <span class="file-item">
-        <v-btn v-if="clearable" icon @click="clear(file.id)">
+        <v-btn v-if="clearable" icon @click="clear(file[itemValue])">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <a

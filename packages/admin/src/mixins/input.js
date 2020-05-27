@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      acceptValue: true,
       input: null,
       errorMessages: [],
     };
@@ -38,7 +39,9 @@ export default {
           /**
            * Initialize value & errors
            */
-          this.update(get(val.item || val.model, this.uniqueFormId));
+          if (this.acceptValue) {
+            this.update(get(val.item || val.model, this.uniqueFormId));
+          }
 
           if (val.errors) {
             this.errorMessages = val.errors[this.uniqueFormId] || [];

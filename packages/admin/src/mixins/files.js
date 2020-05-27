@@ -51,6 +51,13 @@ export default {
         return `${this.source}_delete`;
       },
     },
+    /**
+     * Attribute where taking the id value for identify files to delete.
+     */
+    itemValue: {
+      type: String,
+      default: "id",
+    },
   },
   data() {
     return {

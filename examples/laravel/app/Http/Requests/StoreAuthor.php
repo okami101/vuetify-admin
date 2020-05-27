@@ -24,8 +24,8 @@ class StoreAuthor extends FormRequest
     public function rules()
     {
         return [
+            'photo' => 'nullable|image',
             'photo_delete' => 'nullable',
-            'photo_file' => 'nullable|image',
             'name' => 'required',
             'description' => 'required',
             'backlinks.*.date' => 'required|date',

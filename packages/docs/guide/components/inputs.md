@@ -308,10 +308,14 @@ Use `preview` for image gallery support, use [`VaImageField`](fields#image) unde
 * FormData : Send raw binary file as-is inside classic `multipart/form-data`. Poor FormData API but better native server-side integration thanks to `UploadedFile` with native MIME validation.
 
 Data providers of VtecAdmin use the second method for easier server-side integration. It uses a `objectToFormData` helper for this, more info [here](../data-providers#usage) in case you want use it for your custom data provider.
+
+Raw files will be send into your update or create API according to given `source` or `model` prop.
 :::
 
 :::tip DATA PROVIDER FILE DELETION
+This file input will use `VaFileField` or `VaImageField` with `clearable` prop enabled under the hood which allows file removing. It will fill an array which contains media id that should be deleted on backend. You can use `itemValue` prop if media value different than `id`. Then this array will be send to your update API with a specific delete property which will take this name format : `{source}_delete`.
 
+If using Vtec Laravel Crud, this [RequestMediaTrait](../laravel#requestmediatrait) will done already everything for you.
 :::
 
 ### Array

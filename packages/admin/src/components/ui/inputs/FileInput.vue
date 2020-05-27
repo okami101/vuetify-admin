@@ -8,6 +8,7 @@
         :item="formState.item"
         v-bind="$attrs"
         clearable
+        :item-value="itemValue"
       ></component>
     </slot>
     <!-- multiple as v-bind because of vuetify v-model bug forced to array -->
@@ -43,19 +44,21 @@ export default {
       default: false,
     },
     /**
-     * By default, the raw file will be send to the API under `[source]_file` property name.
-     * This prop allows you to override this default behavior.
+     * Attribute where taking the id value for identify files to delete.
      */
-    model: {
+    itemValue: {
       type: String,
-      default() {
-        return `${this.source}_file`;
-      },
+      default: "id",
     },
     /**
      * Add HTML5 `accept` attribute for simple client-side validation.
      */
     accept: String,
+  },
+  data() {
+    return {
+      acceptValue: false,
+    };
   },
 };
 </script>

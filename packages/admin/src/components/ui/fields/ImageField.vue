@@ -22,7 +22,7 @@
                     :class="{ 'show-btns': hover }"
                     icon
                     color="transparent"
-                    @click="clear(file.id)"
+                    @click="clear(file[itemValue])"
                   >
                     <v-icon :class="{ 'show-btns': hover }">mdi-close</v-icon>
                   </v-btn>

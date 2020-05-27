@@ -178,7 +178,7 @@ public function registerMediaCollections(): void
 }
 ```
 
-This trait will automatically search for all `logo_file` and `local_file` for uploaded file.  
+This trait will automatically search for all `logo` and `local` for uploaded file.  
 For media deletion, he looks for `logo_delete` and `local_delete` with valid media ids (can be array or single value).  
 The Vtec Admin file upload component `va-file-input` will take care of all of that.
 
