@@ -1,4 +1,4 @@
-export default ({ store, i18n, resource, title }) => {
+export default ({ store, resource, title }) => {
   let { name, actions, translatable, getTitle, pluralName } = resource;
 
   const setTitle = (to, action, item = null) => {
