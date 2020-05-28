@@ -4,9 +4,9 @@ This demo project is the best showcase of what [Vtec Admin](../../packages/admin
 The backend side API is served by other included [Laravel API demo](../laravel) project.
 This project is also a perfect way for developing main [Vtec Admin](../../packages/admin) lib of this repo.
 
-[Access to online demo](https://vtec-bookstore-demo.okami101.io/admin)
+[Access to online demo](https://vtec-bookstore-demo.okami101.io)
 
-[![demo](https://vtec.okami101.io/assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io/admin)
+[![demo](https://vtec.okami101.io/assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io)
 
 > The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
 > By this way, HMR from this demo to the library is fully functional which is ideal for quick visual development !
