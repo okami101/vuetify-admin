@@ -15,7 +15,6 @@ import ListGuesser from "./guessers/List";
 import ShowGuesser from "./guessers/Show";
 import CreateGuesser from "./guessers/Create";
 import EditGuesser from "./guessers/Edit";
-import FormGuesser from "./guessers/Form";
 
 import ListButton from "./buttons/ListButton";
 import CreateButton from "./buttons/CreateButton";
@@ -76,7 +75,6 @@ export {
   ShowGuesser,
   CreateGuesser,
   EditGuesser,
-  FormGuesser,
   ListButton,
   CreateButton,
   ShowButton,

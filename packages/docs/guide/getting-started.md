@@ -183,11 +183,19 @@ export default [
 
 Then next step is to define CRUD pages for each resource.
 
-:::warning GUESSER MODE
 By default if no custom page action component is found, Vtec Admin uses basic CRUD page action that will try to guess all suited typed fields according to type of each property value of resource item.
 
+:::warning GUESSER MODE
 Note that it's more a quick starter mode and it should never be used on production ! So create your own CRUD page as below stay heavily recommended.
 :::
+
+This guesser pages have one big utility. They display full generated Vue.js component template code on browser console ! That will be very helpful as quick starter code for your own custom CRUD pages :
+
+![guesser](/assets/guesser.png)
+
+Just copy paste the result and go create the related CRUD page action with this starter code. It should works seamlessly.
+
+Here some samples :
 
 :::details LIST
 **`src/resources/Reviews/List.vue`**
