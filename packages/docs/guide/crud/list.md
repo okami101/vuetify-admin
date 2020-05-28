@@ -376,10 +376,10 @@ See all supported field properties :
 | Property       | Type      | Description                                                               |
 | -------------- | --------- | ------------------------------------------------------------------------- |
 | **source**     | `string`  | Resource property to display.                                             |
-| **type**       | `string`  | Type of [input](../components/input.md) to use.                                            |
+| **type**       | `string`  | Type of [input](../components/inputs.md) to use.                                            |
 | **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default. |
 | **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
-| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/input.md)          |
+| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/inputs.md)          |
 
 ### Filter templating
 

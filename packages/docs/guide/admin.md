@@ -83,7 +83,7 @@ The main steps are :
 * Initiate VA by his constructor.
 
 :::tip BOILERPLATE
-All this boring stuf as well as all next pieces of code shown in this page are already prepared for you by the offical [Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), go to [Getting Started](getting-started) in order to get in through.
+All this boring stuf as well as all next pieces of code shown in this page are already prepared for you by the offical [Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), go to [Getting Started](getting-started.md) in order to get in through.
 :::
 
 ## Components & resources loading
@@ -207,7 +207,7 @@ export default new Vuex.Store({
 
 ### Authenticated routes
 
-VA needs a basic route format object separate from above public routes that will contains all authenticated route as children. This separation is mainly due because of because of [Vue Router children registration limitation](https://github.com/vuejs/vue-router/issues/1156). That's why it must be at least for now injected manually into [VtecAdmin constructor](admin).
+VA needs a basic route format object separate from above public routes that will contains all authenticated route as children. This separation is mainly due because of because of [Vue Router children registration limitation](https://github.com/vuejs/vue-router/issues/1156). That's why it must be at least for now injected manually into [VtecAdmin constructor](#instantiation).
 
 This is here you can put all your authenticated custom pages as dashboard, [profile page](authentication.md#profile-page), etc.
 
