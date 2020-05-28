@@ -8,8 +8,8 @@ You will find complete source code of this tutorial [in the main repo](https://g
 
 ## Installation
 
-First start a new Laravel project by following [this installation guide](laravel#installation).
-Then start your admin [as explained here](laravel#run-admin-ui).
+First start a new Laravel project by following [this installation guide](laravel.md#installation).
+Then start your admin [as explained here](laravel.md#run-admin-ui).
 
 :::warning REQUIREMENTS
 We will use docker as default for running backend API, [so install it first](https://www.docker.com/get-started).
@@ -45,10 +45,10 @@ Now you should already have all basic full admin project working with functional
 The next step is to create a YAML resource descriptor file, which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuf all by hand.  
 
 :::warning JSON SCHEMA
-This file must follow a particular Vtec Generator [JSON Schema](https://json-schema.org/). More detail on file creation in [dedicated section](generators#yaml).
+This file must follow a particular Vtec Generator [JSON Schema](https://json-schema.org/). More detail on file creation in [dedicated section](generators.md#yaml).
 :::
 
-In this tutorial we will take an already made file for quick showcase. A complete section of YAML creation is available in a [this dedicated chapiter](generators#yaml).  
+In this tutorial we will take an already made file for quick showcase. A complete section of YAML creation is available in a [this dedicated chapiter](generators.md#yaml).  
 So before we continue, take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial/admin/generators) on your prefered locale and put it inside `admin/generators` folder (or anywhere you want). This file will serve as a basis for next resources code generation.
 
 This file contains 2 simple resources :
@@ -64,7 +64,7 @@ For all next artisan commands, don't forget to add `docker-compose exec laravel`
 
 Finally it's time to generate our basic CRUD boilerplate code.
 
-First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](laravel#generators) for all detail of what's going on.
+First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](laravel.md#generators) for all detail of what's going on.
 
 This migrate your database by `php artisan migrate`.
 
@@ -106,6 +106,6 @@ We will not use them for this tutorial, but for real app it's heavily recommende
 
 ### UI generator commands
 
-Finally you can simply launch `yarn crud:yaml generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable datatable list, show, create and edit forms. See [generators specific section](generators#admin-ui) for how it works.
+Finally you can simply launch `yarn crud:yaml generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable datatable list, show, create and edit forms. See [generators specific section](generators.md#admin-ui) for how it works.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.

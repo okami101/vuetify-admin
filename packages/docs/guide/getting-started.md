@@ -6,7 +6,7 @@ It takes care of all minimal boilerplate code generation for quick start admin d
 :::tip API
 You should have a separate API backend project for real development.  
 Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. As a bonus, this package will used an integrated Vue CLI preset for even less install steps.  
-If you choose Laravel as API backend, jump to the more optimized [Laravel installation section](laravel).  
+If you choose Laravel as API backend, jump to the more optimized [Laravel installation section](laravel.md).  
 :::
 
 ## Use Vue CLI Plugin
@@ -38,7 +38,7 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
   * Nice material theme as superset on Vuetify
   * Explicit preload of all Vuetify components used by Vtec Admin (because a-la-carte mode can't work on precompiled libs)
   * Initialize admin plugin with automatic crud pages webpack context preload and create base admin layout page on your App.vue entry file
-  * Login page plugged with default [Laravel Sanctum](https://github.com/laravel/sanctum) auth provider (totally replaceable by [your own provider](auth-providers))
+  * Login page plugged with default [Laravel Sanctum](https://github.com/laravel/sanctum) auth provider (totally replaceable by [your own provider](authentication.md))
   * Static dashboard sample with usage of [Chartist.js](https://gionkunz.github.io/chartist-js/)
   * Functional basic profile edition page
   * User management page list with direct aside creation / show / edition
@@ -47,7 +47,7 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
 :::warning Does it work with my API
 Definitly. Vtec Admin uses an abstraction layer, with a concept called Data Providers.  
 As of today, only Laravel providers are available. So for all other types of backend, you'll need to implements your own data and auth providers which will ensure compatibility between VA and your backend.  
-Follow [this separate guide](data-providers) in order to get into it.
+Follow [this separate guide](data-providers.md) in order to get into it.
 :::
 
 If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
@@ -70,7 +70,7 @@ Finally start your admin panel by `yarn serve`. Don't forget to have your backen
 Now you have a full basic admin working and are ready to start !
 
 :::tip NEW NPM SCRIPTS
-This plugin will also add 2 new npm code generator scripts, [see dedicated section](generators) for more detail.
+This plugin will also add 2 new npm code generator scripts, [see dedicated section](generators.md) for more detail.
 :::
 
 ### Directory structure
@@ -87,9 +87,9 @@ src
 │   └── ImpersonateMessage.vue _(**Impersonation alert which allows leaving**)_
 │
 ├── layouts
-│   └── `Admin.vue` _(**Main admin layout, [see dedicated doc](crud/layout)**)_
+│   └── `Admin.vue` _(**Main admin layout, [see dedicated doc](crud/layout.md)**)_
 │
-├── `locales` _(**I18n, localized resources label are here, [see dedicated doc](i18n)**)_
+├── `locales` _(**I18n, localized resources label are here, [see dedicated doc](i18n.md)**)_
 │   ├── en.json
 │   └── fr.json
 │
@@ -104,7 +104,7 @@ src
 │   │   ├── Form.vue
 │   │   ├── List.vue
 │   │   └── Show.vue
-│   └── `index.js` _(**Resources file descriptor, [see dedicated doc](resources)**)_
+│   └── `index.js` _(**Resources file descriptor, [see dedicated doc](resources.md)**)_
 │
 ├── router
 │   ├── `admin.js` _(**Authenticated private routes**)_
@@ -120,8 +120,8 @@ src
 │
 ├── `views` _(**Best place for specific custom public or private pages**)_
 │   ├── Dashboard.vue _(**Static dashboard sample**)_
-│   ├── [Login.vue](authentication#login-page) _(**Public page**)_
-│   └── [Profile.vue](authentication#profile-page) _(**Private page**)_
+│   ├── [Login.vue](authentication.md#login-page) _(**Public page**)_
+│   └── [Profile.vue](authentication.md#profile-page) _(**Private page**)_
 │
 ├── `_nav.js` _(**Main Sidebar Menu**)_
 ├── App.vue
@@ -149,7 +149,7 @@ import "vtec-admin/dist/admin.css";
 Vue.use(VtecAdmin);
 ```
 
-Next you must instantiate Vtec Admin as [explained here](admin).
+Next you must instantiate Vtec Admin as [explained here](admin.md).
 
 ## At a glance
 
@@ -179,7 +179,7 @@ export default [
 ];
 ```
 
-> You will find more detail on resources registering [here](resources).
+> You will find more detail on resources registering [here](resources.md).
 
 Then next step is to define CRUD pages for each resource.
 
@@ -368,8 +368,8 @@ export default {
 
 > More detail on CRUD page development on separate guides :
 >
-> * [List](crud/list)
-> * [Show](crud/show)
-> * [Create / Edit](crud/form)
+> * [List](crud/list.md)
+> * [Show](crud/show.md)
+> * [Create / Edit](crud/form.md)
 >
-> NB : This pages can be pre-generated by code generators. See [dedicated section](generators).
+> NB : This pages can be pre-generated by code generators. See [dedicated section](generators.md).

@@ -1,15 +1,15 @@
 # Fields
 
-VA field components allow custom and optimized display of specific resource property. It's mainly means to be used on [show](../crud/show) and [list](../crud/list) views. Use required `source` prop as resource property to fetch and display. Must be used with [`VaShow`](../crud/show#injector) component injector or with an explicit item object via `item` prop.
+VA field components allow custom and optimized display of specific resource property. It's mainly means to be used on [show](../crud/show.md) and [list](../crud/list.md) views. Use required `source` prop as resource property to fetch and display. Must be used with [`VaShow`](../crud/show.md#injector) component injector or with an explicit item object via `item` prop.
 
 :::tip CELL TEMPLATING
-You may use this VA fields as cells template for `VaDataTable`, see [this section](../crud/list#fields).
+You may use this VA fields as cells template for `VaDataTable`, see [this section](../crud/list.md#fields).
 :::
 
 :::tip FIELD WRAPPER
-Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show#field-wrapper) for that. It will get localized label will guess the proper field component via `type` prop, which is avoid us to rewrite it on default slot.
+Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show.md#field-wrapper) for that. It will get localized label will guess the proper field component via `type` prop, which is avoid us to rewrite it on default slot.
 
-All supported type field attributes will be merged into child field component. See [more](../crud/show#field-wrapper) for further detail.
+All supported type field attributes will be merged into child field component. See [more](../crud/show.md#field-wrapper) for further detail.
 :::
 
 :::tip DOT NOTATION SUPPORT
@@ -255,7 +255,7 @@ export default {
 ```
 
 :::tip LOCALIZED ENUMS
-You may centralized all choices for reuse directly inside you locales as [explain here](../i18n#resources). If no choices setted, `VaSelectField` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
+You may centralized all choices for reuse directly inside you locales as [explain here](../i18n.md#resources). If no choices setted, `VaSelectField` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
 :::
 
 ### File
@@ -335,7 +335,7 @@ For more complex case, use a simple `v-for` custom template.
 ```
 
 :::tip DEFAULT SLOT
-Use default slot for custom resource labelization. It takes by default the value of property configured on `label` of [main resource object property](../resources#resource-object-structure). If you want just ID instead :
+Use default slot for custom resource labelization. It takes by default the value of property configured on `label` of [main resource object property](../resources.md#resource-object-structure). If you want just ID instead :
 
 ```vue
 <template>
@@ -386,7 +386,7 @@ Use default slot for custom resource labelization.
 
 ## Custom component
 
-You can prefectly create your own VA field component by using [`field`](mixins#field) mixin component. Very useful for displaying complex property object or custom advanced display for primitives.
+You can prefectly create your own VA field component by using [`field`](mixins.md#field) mixin component. Very useful for displaying complex property object or custom advanced display for primitives.
 
 **`src/components/fields/MyCustomField.vue`**
 
@@ -417,7 +417,7 @@ Vue.component("VaMyCustomField", MyCustomField)
 ```
 
 :::warning NAMESPACE
-Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for [`VaDataTable`](../crud/list#data-table) and [`VaField`](../crud/show#field-wrapper) components. So next code will perfectly working :
+Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for [`VaDataTable`](../crud/list.md#data-table) and [`VaField`](../crud/show.md#field-wrapper) components. So next code will perfectly working :
 
 ```vue
 <template>

@@ -71,10 +71,10 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 :::tip HOW TO GET STARTED
 Select your most suitable guide :
 
-* If you choose Laravel as backend, follow [this optimized guide](/guide/laravel).
-* For all other cases, follow [the standard Vue CLI path](/guide/getting-started).
+* If you choose Laravel as backend, follow [this optimized guide](guide/laravel.md).
+* For all other cases, follow [the standard Vue CLI path](guide/getting-started.md).
 
-For best explanation of **CRUD code generators** feature, follow [this tutorial](/guide/tutorial).
+For best explanation of **CRUD code generators** feature, follow [this tutorial](guide/tutorial.md).
 :::
 
 ### All Vtec Admin related projects
@@ -84,5 +84,5 @@ For best explanation of **CRUD code generators** feature, follow [this tutorial]
 * [Vtec Laravel Crud](https://packagist.org/packages/vtec/laravel-crud), composer package to use on fresh Laravel project which facilitates Vtec Admin integration and includes server-side API commands generator.
 * [Bookstore Admin Demo](https://github.com/okami101/vtec-admin/tree/master/examples/demo), full-featured admin sample build on top of main Vtec Admin Library.
 * [Bookstore Laravel Demo](https://github.com/okami101/vtec-admin/tree/master/examples/laravel), suitable API backend for bookstore admin demo based on Laravel.
-* [Admin Tutorial](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial), finished tutorial after following [dedicated docs](/tutorial) which aims to made a good showcase of YAML code generation power.
+* [Admin Tutorial](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial), finished tutorial after following [dedicated docs](guide/tutorial.md) which aims to made a good showcase of YAML code generation power.
 * [Vtec Docs](https://github.com/okami101/vtec-admin/tree/master/packages/docs), vuepress docs.

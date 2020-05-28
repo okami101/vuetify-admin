@@ -11,7 +11,7 @@ Therefore always prioritize the permissions on the backend at first before any U
 ## Get user permissions
 
 :::tip AUTHENTICATION
-Before continue you should consider to check the related [authentication section](authentication) of this guide. It contains all you should know about user authentication and user informations fetching.
+Before continue you should consider to check the related [authentication section](authentication.md) of this guide. It contains all you should know about user authentication and user informations fetching.
 :::
 
 As you have seen on authentication guide, every auth providers must implement a specific `getPermissions` method. His role is to fetch permissions from a valid user object returned by the API through the `checkAuth` provider method. This permissions must be returned as a format of array of strings.

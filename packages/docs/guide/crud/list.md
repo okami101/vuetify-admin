@@ -7,7 +7,7 @@ The list page is the main UI entry point of your resource where you can do all s
 :::tip PAGE CUSTOMIZATION
 Note that for every CRUD pages you are free to put anything you want, and you have not forced to use provided optimized components.
 
-Since all data provider methods are available in a dedicated store module for each resource, it's not that complicated to create your own list components that will fetch your data. And you can of course use the current global `$axios` instance if you need to fetch all sort of custom data that coming out of data provider logic. See [usage here](../data-providers#store).
+Since all data provider methods are available in a dedicated store module for each resource, it's not that complicated to create your own list components that will fetch your data. And you can of course use the current global `$axios` instance if you need to fetch all sort of custom data that coming out of data provider logic. See [usage here](../data-providers.md#store).
 :::
 
 ## Data iterator
@@ -79,7 +79,7 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 ![fields](/assets/fields.png)
 
-Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter for data display. You need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](fields).
+Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter for data display. You need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](../components/fields.md).
 
 ```vue {9,25-72}
 <template>
@@ -167,12 +167,12 @@ See all supported field properties :
 | Property       | Type      | Description                                                                                  |
 | -------------- | --------- | -------------------------------------------------------------------------------------------- |
 | **source**     | `string`  | Resource property to display.                                                                |
-| **type**       | `string`  | Type of [field](fields) to use.                                                              |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default.                    |
+| **type**       | `string`  | Type of [field](../components/fields.md) to use.                                                              |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.                    |
 | **sortable**   | `boolean` | Activate server-side sort.                                                                   |
 | **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                       |
 | **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link. |
-| **attributes** | `object`  | All props or attributes to merge to the [field component](fields).                           |
+| **attributes** | `object`  | All props or attributes to merge to the [field component](../components/fields.md).                           |
 | **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.              |
 
 :::tip SHORTHAND
@@ -369,17 +369,17 @@ export default {
 
 You will mainly use mandatory `source` property as well as `type` for input type. Each added filter will be added to the "Add filter" dropdown button for on-asking filter activation, unless `alwaysOn` property is set to `true`. In that case, filter will be always visible and not removable.
 
-Use `attributes` property in order to merge specific attributes into input component. See [dedicated inputs section](inputs) for further detail on valid props for each filterable inputs.
+Use `attributes` property in order to merge specific attributes into input component. See [dedicated inputs section](../components/inputs.md) for further detail on valid props for each filterable inputs.
 
 See all supported field properties :
 
 | Property       | Type      | Description                                                               |
 | -------------- | --------- | ------------------------------------------------------------------------- |
 | **source**     | `string`  | Resource property to display.                                             |
-| **type**       | `string`  | Type of [input](input) to use.                                            |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n) by default. |
+| **type**       | `string`  | Type of [input](../components/input.md) to use.                                            |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default. |
 | **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
-| **attributes** | `object`  | All props or attributes to merge to the [input component](input)          |
+| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/input.md)          |
 
 ### Filter templating
 
@@ -500,7 +500,7 @@ The data iterator support all sort of bulk operations, whether it be updating or
 
 ### Custom bulk actions
 
-By default VA provides a bulk delete action, but you can add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](buttons#bulk-action) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
+By default VA provides a bulk delete action, but you can add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](../components/buttons.md#bulk-action) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
 
 The next example will show you a bulk publish and unpublish bulk actions :
 
@@ -734,7 +734,7 @@ Instead of have separate CRUD pages for each action, it's possible to regroup al
 |> docgen aside-layout
 
 :::tip USELESS ROUTES
-If you use aside for crud operations, you may disable related `show`, `create` and `edit` routes. As shown in [resources guide section](../resources), use `actions` or `except` resource properties for that :
+If you use aside for crud operations, you may disable related `show`, `create` and `edit` routes. As shown in [resources guide section](../resources.md), use `actions` or `except` resource properties for that :
 
 **`src/resources/index.js`**
 

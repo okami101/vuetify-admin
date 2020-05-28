@@ -152,9 +152,9 @@ Because sidebar hierarchical menu can be cumbersome, Vue CLI Plugin will set it 
 :::
 
 :::tip LINKS TO RESOURCES
-You can easily build resources actions links thanks to [resources link helpers](../resources#link-helpers).
+You can easily build resources actions links thanks to [resources link helpers](../resources.md#link-helpers).
 :::
 
 :::tip PERMISSIONS ON LINKS
-You can easily show hide each link by using [some authorization helpers](../authorization#helpers).
+You can easily show hide each link by using [some authorization helpers](../authorization.md#helpers).
 :::

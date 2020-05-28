@@ -12,12 +12,12 @@ Consequently, this file will mainly be used for your first resource code generat
 
 See specific section of each supported API package :
 
-* [Laravel](laravel#generators)
+* [Laravel](laravel.md#generators)
 
 ## Admin UI
 
 :::warning Vue CLI Plugin
-Nexts commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started).
+Nexts commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started.md).
 :::
 
 Vue CLI plugin will provide to you a new npm command `yarn crud:make [options]`, which helps for generated initial resources CRUD pages boilerplate :
@@ -34,7 +34,7 @@ Use `yarn vue-cli-service help crud:make` for all options documentation.
 ### YAML
 
 :::tip TUTORIAL
-For best showcase of YAML driven development, follow [this tutorial guide](tutorial).
+For best showcase of YAML driven development, follow [this tutorial guide](tutorial.md).
 :::
 
 Vue CLI plugin provides an additional advanced `crud:yaml` command which is a superset of previous command and allows you to generate all initial admin interface code from a YAML file. You can see it as a developer-friendly admin panel code generator.
@@ -56,7 +56,7 @@ You can even to generate all fields as needed thanks to `fields` properties. Her
 |> schema generator field
 
 :::tip FIELD TYPE
-The `type` must correspond to a valid UI field widget you will find [here](components/fields). At this time it can be `text`, `number`, `rating`, `date`, `boolean`, `rich-text`, `chip`, `select`, `email`, `url`, `file`, `image`, `reference`, `array`.
+The `type` must correspond to a valid UI field widget you will find [here](components/fields.md). At this time it can be `text`, `number`, `rating`, `date`, `boolean`, `rich-text`, `chip`, `select`, `email`, `url`, `file`, `image`, `reference`, `array`.
 
 For primitive type on API side, use the below `db` option.
 :::

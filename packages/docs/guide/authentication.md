@@ -1,6 +1,6 @@
 # Authentication
 
-Vtec Admin is first of all an admin app, so it obviously offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
+Vtec Admin is first of all an admin app, so it obviously offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers.md), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
 
 ## Included auth providers
 
@@ -54,7 +54,7 @@ export default new VtecAdmin({
 All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
 
 :::tip GLOBAL ADMIN AXIOS
-Pass axios instance into [VtecAdmin constructor](admin#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
+Pass axios instance into [VtecAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
 
 Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusivly use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
 :::
@@ -140,7 +140,7 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 ![login](/assets/login.jpg)
 
 :::tip VUE CLI PLUGIN
-[Vue CLI VA Plugin](getting-started) will generate for you all fully functionnal login page !  
+[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functionnal login page !  
 If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/template/src/views/Login.vue) for your own.
 :::
 
@@ -183,7 +183,7 @@ If you need to add this features, login page is the perfect place to do it. Simp
 ![profile](/assets/profile.png)
 
 :::tip VUE CLI PLUGIN
-[Vue CLI VA Plugin](getting-started) will generate for you all fully functionnal profile page !
+[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functionnal profile page !
 If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/template/src/views/Profile.vue) for your own.
 :::
 
@@ -232,7 +232,7 @@ Use `this.$admin.toast` in order to show quick information state of API response
 
 ## Writing your own auth provider
 
-If none of this configurable auth provider doesn't suit you, you can always write your own by implementing following contract, as similar as [data providers](data-providers).
+If none of this configurable auth provider doesn't suit you, you can always write your own by implementing following contract, as similar as [data providers](data-providers.md).
 
 ### API Contract
 
@@ -262,4 +262,4 @@ All of this methods can be described as following :
 | **checkError**     | Called after each API error (4xx, 5xx), allows you to make custom actions depending on the API error status. Do automatic logout if reject promise is returned. The most common use case is to force automatic logout in case of API return 401 or 403 status code |
 | **getName**        | Return the fullname of user from authenticated user object. Used for showing username inside user header dropdown                                                                                                                                                  |
 | **getEmail**       | Return the email of user from authenticated user object. Used for showing email inside user header dropdown                                                                                                                                                        |
-| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization)                                                                                                                                             |
+| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization.md)                                                                                                                                             |

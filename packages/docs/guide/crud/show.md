@@ -142,10 +142,10 @@ As you can guess, the main role of `VaShow` is to inject full item resource obje
 |> docgen field
 
 :::tip DEFAULT LABEL
-By default, `VaField` will try to guess the proper localized label from `source` prop by following [this structure](../i18n#resources).
+By default, `VaField` will try to guess the proper localized label from `source` prop by following [this structure](../i18n.md#resources).
 :::
 
-If no default slot is provided, `VaField` will automatically use a specific [Va field component](../components/fields) under the hood according to the `type` prop.
+If no default slot is provided, `VaField` will automatically use a specific [Va field component](../components/fields.md) under the hood according to the `type` prop.
 
 So :
 
@@ -206,6 +206,6 @@ You can use this component only for label and item value provider and made your 
 ```
 
 :::tip Supported field components
-Go to separated [fields guide reference](../components/fields) to get all supported components for display data.
-You can still create your [own field component](../components/fields#custom-field-component) if none suit your needs.
+Go to separated [fields guide reference](../components/fields.md) to get all supported components for display data.
+You can still create your [own field component](../components/fields.md#custom-field-component) if none suit your needs.
 :::

@@ -86,7 +86,7 @@ yarn serve
 ```
 
 :::tip DIRECTORY STRUCTURE
-See [this getting started section](getting-started#directory-structure) for more detail of what you get inside the `admin` folder.
+See [this getting started section](getting-started.md#directory-structure) for more detail of what you get inside the `admin` folder.
 :::
 
 ## Generators
@@ -141,11 +141,11 @@ For even more auto generation power, and because `crud:make` can be exhausting t
 Use `name` option in order to import only targetted resource.
 
 :::tip FULL YAML STUDY
-Go to [dedicated YAML section](generators#yaml) for full explanation.
+Go to [dedicated YAML section](generators.md#yaml) for full explanation.
 :::
 
 :::warning API ONLY
-This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators#admin-ui).
+This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators.md#admin-ui).
 :::
 
 ## Other internal traits or services included
@@ -187,7 +187,7 @@ The Vtec Admin file upload component `va-file-input` will take care of all of th
 Import `HasTranslations` from [Spatie Translatable](https://github.com/spatie/laravel-translatable) with addition of default locale detection from request for translatable fields saving or fetching.
 
 This trait will intercept all `locale` request input and set his value as default locale for saving. If not set default locale will be the user browser language in case you use included `Locale` middleware, if not this will be the app default locale.
-It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n#translatable).
+It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n.md#translatable).
 
 ### Global search filter
 

@@ -54,39 +54,39 @@ To summary, VA will do this steps :
 
 **Quick starter**
 
-* [Vue CLI Plugin](getting-started) : for immediate start
-* [Vtec Laravel Crud](laravel) : for complete top to bottom development experience
+* [Vue CLI Plugin](getting-started.md) : for immediate start
+* [Vtec Laravel Crud](laravel.md) : for complete top to bottom development experience
 
 **Powerful code generators**
 
-* [CRUD generators](tutorial) : follow this really quick tutorial in order to understand possibility
-* [YAML](generators) : more detailled section with JSON schema used
+* [CRUD generators](tutorial.md) : follow this really quick tutorial in order to understand possibility
+* [YAML](generators.md) : more detailled section with JSON schema used
 
 **Powerful resources builer**
 
 VA will try to integrate within all of your existing plugins without hoisted them.
 
-* [VA usage](admin) : How to use VA constructor
-* [Resources](resources) : expected format of resource object
-* [Internationalization](i18n) : 100% localizable resources via vue-i18n by following simple rules
-* [Layout](layout) : Customizable menus
+* [VA usage](admin.md) : How to use VA constructor
+* [Resources](resources.md) : expected format of resource object
+* [Internationalization](i18n.md) : 100% localizable resources via vue-i18n by following simple rules
+* [Layout](layout.md) : Customizable menus
 
 **All essential components**
 
-* [Full-featured DataTable](crud/list) : multi-sort, pagination, global search, advanced filters, CSV export
-* [Internal CRUD views](crud/show) : For detail or edition of any resources
-* [Form](crud/form) : Global unique form V-model and server-side validation
-* [Translatable fields](crud/show#translatable) : context switching resource locale
-* [Fields](components/fields) : for list or show views, extensibles with your own fields
-* [Inputs](components/inputs) : for all create / edit forms, extensibles with your own inputs
+* [Full-featured DataTable](crud/list.md) : multi-sort, pagination, global search, advanced filters, CSV export
+* [Internal CRUD views](crud/show.md) : For detail or edition of any resources
+* [Form](crud/form.md) : Global unique form V-model and server-side validation
+* [Translatable fields](crud/show.md#translatable) : context switching resource locale
+* [Fields](components/fields.md) : for list or show views, extensibles with your own fields
+* [Inputs](components/inputs.md) : for all create / edit forms, extensibles with your own inputs
 
 **Free of any backend**
 
 Customizable providers by implementing a simple contract :
 
-* [Auth providers](auth-providers)
-* [Data providers](data-providers)
-* [Authorization](authorization) : User permissions available everywhere
+* [Auth providers](authentication.md)
+* [Data providers](data-providers.md)
+* [Authorization](authorization.md) : User permissions available everywhere
 
 ## Why Not ...?
 

@@ -25,7 +25,7 @@ All fetching methods of a data provider is standardized in order to ensure compa
 
 ![Data Provider](/diagrams/data-provider.svg)
 
-In order to give to Vtec Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin).
+In order to give to Vtec Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin.md).
 
 ## API Contract
 
@@ -52,21 +52,21 @@ const dataProvider = {
 
 Used for all resources browsing context, as
 
-* [Data iterator component](crud/list) for showing list of resources inside datatable or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
-* [Export button](crud/list#export) for filtred CSV resources exporting.
-* Entity referable choices component as [Autocomplete](components/inputs#autocomplete), [Select](components/inputs#select), or [RadioGroup](components/inputs#radio-group).
+* [Data iterator component](crud/list.md) for showing list of resources inside datatable or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
+* [Export button](crud/list.md#export) for filtred CSV resources exporting.
+* Entity referable choices component as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
 
 #### getOne
 
-For showing detail of resource, mainly for [Show page](crud/show) or datatable show actions.
+For showing detail of resource, mainly for [Show page](crud/show.md) or datatable show actions.
 
 #### getMany
 
-Only used for [Autocomplete](components/inputs#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/edit) or [query context filtering](crud/list#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
+Only used for [Autocomplete](components/inputs.md#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/edit.md) or [query context filtering](crud/list.md#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields.md#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
 
 #### create, update
 
-Used by [VA Form](crud/form) for creating new or updating existing resource.
+Used by [VA Form](crud/form.md) for creating new or updating existing resource.
 
 #### delete
 
@@ -74,17 +74,17 @@ Simple delete action called when interacting with VA Delete Button.
 
 #### updateMany, deleteMany
 
-Bulk actions on [list page](crud/list). If your backend doesn't support a bulk action API, the simplest way is to push a Promise.all towards all unique simple operation method (update or delete) as you will find on Laravel Data Provider source code.
+Bulk actions on [list page](crud/list.md). If your backend doesn't support a bulk action API, the simplest way is to push a Promise.all towards all unique simple operation method (update or delete.md) as you will find on Laravel Data Provider source code.
 
 ### [Translatable resources](#translatable)
 
-In case of a [translatable resource](i18n#translatable), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the server job to do the remaining job, aka fetching the targetted field locale in case of resource reading, or save the text field on targetted locale in case of resource creating/editing.
+In case of a [translatable resource](i18n.md#translatable), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the server job to do the remaining job, aka fetching the targetted field locale in case of resource reading, or save the text field on targetted locale in case of resource creating/editing.
 
 ## Laravel Data Provider
 
 [Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing your's. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
 
-This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel).
+This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel.md).
 
 :::tip Existing Laravel Project
 You even can use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.
@@ -187,12 +187,12 @@ Each provider's method must return a Provider on given format.
 | **deleteMany** | `empty`                               |
 
 :::warning Paging count
-As showed here, in order to make [data iterator](crud/list) aware of pager count you'll need to return the total of filtred dataset from server-side.
+As showed here, in order to make [data iterator](crud/list.md) aware of pager count you'll need to return the total of filtred dataset from server-side.
 :::
 
 ### Errors handling
 
-In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is injected into [auth provider](auth-provider#check-error) in order to allows you specific auth action according to a given status code.
+In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is injected into [auth provider](authentication.md#check-error) in order to allows you specific auth action according to a given status code.
 
 For best error message explanation, it's common to take the message inside the body response in order to get the real server exception. If case of empty message or empty response from server, we fallback to the generic statusText response.
 
@@ -214,8 +214,8 @@ The expected error object format :
 | Property    | Type     | Description                                                                                                            |
 | ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
 | **message** | `string` | The error message that will be shown at snackbar via `VaMessages` component.                                           |
-| **status**  | `number` | Response status code, not used by VA but returned on [`checkError`](authentication#api-contract) auth provider method. |
-| **errors**  | `object` | Use it for [server-side validation support](crud/form#server-side-validation).                                         |
+| **status**  | `number` | Response status code, not used by VA but returned on [`checkError`](authentication.md#api-contract) auth provider method. |
+| **errors**  | `object` | Use it for [server-side validation support](crud/form.md#server-side-validation).                                         |
 
 ### Store
 

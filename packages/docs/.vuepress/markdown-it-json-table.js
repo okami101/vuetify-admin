@@ -71,7 +71,7 @@ module.exports = (md) => {
       doc.mixins.forEach((mixin) => {
         generateParagraph(
           state,
-          `[${upperFirst(camelCase(mixin))}](/guide/components/mixins#${mixin})`
+          `[${upperFirst(camelCase(mixin))}](/guide/components/mixins.md#${mixin})`
         );
       });
     }

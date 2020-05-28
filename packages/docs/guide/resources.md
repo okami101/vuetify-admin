@@ -2,7 +2,7 @@
 
 A "resource" means a given server entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted. It must correspond to a valid API endpoint that allows all of this CRUD operations.
 
-The next piece of code represent an example of expected structure that must be sended to Vtec Admin constructor [as seen previously](admin) :
+The next piece of code represent an example of expected structure that must be sended to Vtec Admin constructor [as seen previously](admin.md) :
 
 **`src/resources/index.js`**
 
@@ -43,8 +43,8 @@ A resource object must follow this structure :
 | **label**              | `string`, `function` | Return an identifiable label of resource.                                                             |
 | **actions**            | `array`              | List of all valid actions for this resource.                                                          |
 | **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted.                  |
-| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n#translation).                                      |
-| **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization#resource).               |
+| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n.md#translation).                                      |
+| **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization.md#resource).               |
 | **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.              |
 
 :::tip LABEL
@@ -106,11 +106,11 @@ Example for a `monster_children` and `users` resources :
 :::vue
 resources
 ├── `monster-children` _(**The kebab-case format of resource slug or name**)_
-│   ├── [Create.vue](crud/form#create)
-│   ├── [Edit.vue](crud/form#edit)
-│   ├── [Form.vue](crud/form) _(**Form component reused for both Create and Edit views**)_
-│   ├── [List.vue](crud/list)
-│   └── [Show.vue](crud/show)
+│   ├── [Create.vue](crud/form.md#create)
+│   ├── [Edit.vue](crud/form.md#edit)
+│   ├── [Form.vue](crud/form.md) _(**Form component reused for both Create and Edit views**)_
+│   ├── [List.vue](crud/list.md)
+│   └── [Show.vue](crud/show.md)
 │
 ├── `users` _(**No need of Create or Edit here as we use direct list aside feature for this**)_
 │   ├── Form.vue
@@ -154,7 +154,7 @@ On every CRUD pages, the following props will be injected for easy reuse :
 | Action          | Type     | Path from `src/resources`                                   |
 | --------------- | -------- | ----------------------------------------------------------- |
 | **resource**    | `object` | The resource object descriptor linked to the current route. |
-| **title**       | `string` | The [localized title](i18n) of resource action page.        |
+| **title**       | `string` | The [localized title](i18n.md) of resource action page.        |
 | **id**          | `id`     | ID of current resource to be displayed or edited.           |
 | **item**        | `object` | Current item to be displayed, edited or cloned.             |
 | **permissions** | `array`  | Current user permissions.                                   |
@@ -171,7 +171,7 @@ export default {
 
 ### Link helpers
 
-You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](crud/layout#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
+You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](crud/layout.md#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
 
 For exemple this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in the `sidebar-menu` as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
 

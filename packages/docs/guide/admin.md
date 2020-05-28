@@ -1,7 +1,7 @@
 # Admin
 
 :::tip PROJECT STRUCTURE
-Check [directory structure](getting-started#directory-structure) for big picture of all files location that we will talk about after.  
+Check [directory structure](getting-started.md#directory-structure) for big picture of all files location that we will talk about after.  
 :::
 
 The next piece of code represent the bare minimal code in order to get VtecAdmin working :
@@ -88,7 +88,7 @@ All this boring stuf as well as all next pieces of code shown in this page are a
 
 ## Components & resources loading
 
-In order to work, you need to load all Vuetify components used by VA manually. Indeed, as VA is precompiled as a standalone library, [a-la-carte](https://vuetifyjs.com/en/customization/a-la-carte/#a-la-carte-treeshaking) (the Vuetify treeshaking system) will not work as-is. All you have to do is to import `vtec-admin/src/vuetify` which will load all necessary components inside `src/plugins/vuetify.js` file. You can remove `Vue.use(Vuetify)` line as it's already done by the import.
+In order to work, you need to load all Vuetify components used by VA manually. Indeed, as VA is precompiled as a standalone library, [a-la-carte](https://vuetifyjs.com/en/customization/a-la-carte) (the Vuetify treeshaking system) will not work as-is. All you have to do is to import `vtec-admin/src/vuetify` which will load all necessary components inside `src/plugins/vuetify.js` file. You can remove `Vue.use(Vuetify)` line as it's already done by the import.
 
 > TL;DR : add `import "vtec-admin/src/vuetify"` and remove `Vue.use(Vuetify)` inside **`src/plugins/vuetify.js`**
 
@@ -128,21 +128,21 @@ In order to operate, VtecAdmin constructor needs all of this parameters :
 | ---------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **router**       | `VueRouter`  | Vue Router instance, which can contains all your public custom routes.                                                                                                                       |
 | **store**        | `Vuex.Store` | Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.                                                                       |
-| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n).                                                     |
+| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n.md).                                                     |
 | **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                                                 |
-| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout). All resources routes CRUD pages will be registered here as children.                                 |
-| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n#ui).                                                                                        |
-| **translations** | `object`     | All supported traductions for your resources. More detail [here](i18n#resources).                                                                                                            |
-| **authProvider** | `object`     | [Auth](authentication) provider that must implements [auth contract](authentication#api-contract).                                                                                           |
-| **dataProvider** | `object`     | [Data](data-providers) provider that must implements [data contract](data-providers#api-contract).                                                                                           |
-| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources).                                                                     |
+| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout.md). All resources routes CRUD pages will be registered here as children.                                 |
+| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n.md#ui).                                                                                        |
+| **translations** | `object`     | All supported traductions for your resources. More detail [here](i18n.md#resources).                                                                                                            |
+| **authProvider** | `object`     | [Auth](authentication.md) provider that must implements [auth contract](authentication.md#api-contract).                                                                                           |
+| **dataProvider** | `object`     | [Data](data-providers.md) provider that must implements [data contract](data-providers.md#api-contract).                                                                                           |
+| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources.md).                                                                     |
 | **axios**        | `object`     | Optional, can provide better auth and CSRF integration for advanced input components as Wysiwyg for image upload. Additionaly set a available global axios instance via `this.$admin.axios`. |
 | **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                                 |
-| **canAction**    | `function`   | Callback for [advanced permissions](authorization#advanced-usage) testing for each action of any resources.                                                                                  |
+| **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                                  |
 
 ![instantiation](/diagrams/instantiation.svg)
 
-> Vtec Admin will transform your resources into client-side CRUD routes and valid Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](./#how-it-works).
+> Vtec Admin will transform your resources into client-side CRUD routes and valid Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](#how-it-works).
 
 ### Vue Router
 
@@ -180,7 +180,7 @@ export default new VueRouter({
 ```
 
 :::tip
-Generally, you should have least a login page, which also can have any registration or password reset included. [Check here](authentication#login-page) for more info in his integration within your auth provider.
+Generally, you should have least a login page, which also can have any registration or password reset included. [Check here](authentication.md#login-page) for more info in his integration within your auth provider.
 :::
 
 ### Vuex
@@ -209,7 +209,7 @@ export default new Vuex.Store({
 
 VA needs a basic route format object separate from above public routes that will contains all authenticated route as children. This separation is mainly due because of because of [Vue Router children registration limitation](https://github.com/vuejs/vue-router/issues/1156). That's why it must be at least for now injected manually into [VtecAdmin constructor](admin).
 
-This is here you can put all your authenticated custom pages as dashboard, [profile page](authentication#profile-page), etc.
+This is here you can put all your authenticated custom pages as dashboard, [profile page](authentication.md#profile-page), etc.
 
 **`src/router/admin.js`**
 
@@ -248,7 +248,7 @@ export default {
 };
 ```
 
-> As you can see here, this is a single route which use a fully customizable `AdminLayout` component which allows all children pages to inherit of all admin authenticated structure, with app bar header, sidebar menu, etc. More information [here](crud/layout).
+> As you can see here, this is a single route which use a fully customizable `AdminLayout` component which allows all children pages to inherit of all admin authenticated structure, with app bar header, sidebar menu, etc. More information [here](crud/layout.md).
 
 :::tip PAGE TITLE
 Use title property inside meta route object for title page. This title will be appear on document title as well as admin breadcrumb.
