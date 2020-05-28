@@ -69,7 +69,7 @@ VA will try to integrate within all of your existing plugins without hoisted the
 * [VA usage](admin.md) : How to use VA constructor
 * [Resources](resources.md) : expected format of resource object
 * [Internationalization](i18n.md) : 100% localizable resources via vue-i18n by following simple rules
-* [Layout](layout.md) : Customizable menus
+* [Layout](crud/layout.md) : Customizable menus
 
 **All essential components**
 

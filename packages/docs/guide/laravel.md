@@ -191,7 +191,7 @@ It should be used in conjunction with Vtec Admin resource translation feature as
 
 ### Global search filter
 
-If you need to add global search support in [Vtec Admin Iterator](crud/list), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields as a specific filter inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
+If you need to add global search support in [Vtec Admin Iterator](crud/list.md), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields as a specific filter inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
 ```php{4}
 return new BookCollection(

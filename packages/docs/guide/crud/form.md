@@ -307,7 +307,7 @@ export default {
 ### Server-side validation
 
 :::tip ERRORS HANDLING
-See [separated section](../data-provider.md#errors-handling) before continue.
+See [separated section](../data-providers.md#errors-handling) before continue.
 :::
 
 Server-side validation is supported as soon as your API provides all constraint violations inside response body, which usually wears a `422` status code. `VaForm` will search for a `errors` property on the error object returned by your data provider and will dispatch them to all input fields.
