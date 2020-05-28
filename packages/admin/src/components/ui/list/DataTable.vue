@@ -51,6 +51,7 @@
           :item="item"
           :source="field.source"
           v-bind="field.attributes"
+          :truncate="150"
           v-slot="props"
         >
           <!--
@@ -78,6 +79,7 @@
         :item="item"
         :source="field.source"
         v-bind="field.attributes"
+        :truncate="150"
         v-slot="props"
       >
         <slot

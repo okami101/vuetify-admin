@@ -1,3 +1,6 @@
+import camelCase from "lodash/camelCase";
+import upperFirst from "lodash/upperFirst";
+
 export default ({ store, resource, title }) => {
   let { name, actions, translatable, getTitle, pluralName } = resource;
 
@@ -23,13 +26,34 @@ export default ({ store, resource, title }) => {
       component: {
         props: ["id"],
         render(c) {
-          return c(`${name.replace("_", "-")}-${action}`, {
+          let componentName = `${upperFirst(camelCase(name))}${upperFirst(
+            action
+          )}`;
+
+          if (componentName in this.$options.components) {
+            /**
+             * Return client side page component
+             */
+            return c(componentName, {
+              props: {
+                id: this.id,
+                title: this.$route.meta.title,
+                resource,
+                item: store.state[name].item,
+                permissions: store.getters["auth/getPermissions"],
+              },
+            });
+          }
+
+          /**
+           * Return guesser page component
+           */
+          return c(`Va${upperFirst(action)}Guesser`, {
             props: {
               id: this.id,
               title: this.$route.meta.title,
               resource,
               item: store.state[name].item,
-              permissions: store.getters["auth/getPermissions"],
             },
           });
         },

@@ -95,7 +95,9 @@ The `archived_users` resource will reuse the same API endpoints as `users` resou
 
 ## Resource CRUD pages and API modules
 
-With the above resources informations, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures. However, all the main stuf remains to be done, i.e. the CRUD pages. The link between builded CRUD routes and the final resource action page component follows a specific naming convention.
+With the above resources informations, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures. Default CRUD page actions will be used as well. This pages have a specific guesser mode feature that allows automtic generation of best suited fields and inputs.
+
+However, you should not let this default pages on production because this mode has many limitations so you will still need to create your own CRUD pages. The link between builded CRUD routes and the final resource action page component follows a specific naming convention.
 
 Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
 

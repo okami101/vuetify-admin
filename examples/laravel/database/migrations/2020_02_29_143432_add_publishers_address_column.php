@@ -14,7 +14,7 @@ class AddPublishersAddressColumn extends Migration
     public function up()
     {
         Schema::table('publishers', function (Blueprint $table) {
-            $table->json('address')->after('active');
+            $table->json('address')->nullable()->after('active');
         });
     }
 

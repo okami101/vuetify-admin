@@ -3,7 +3,6 @@
     <va-data-iterator
       :filters="filters"
       :include="['monster']"
-      flat
       v-slot="props"
       v-model="selected"
       :options.sync="options"
