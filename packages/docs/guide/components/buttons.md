@@ -1,6 +1,6 @@
 # Buttons
 
-You will find here all buttons components reference used inside VtecAqdmin.
+You will find here all buttons components reference used inside VtecAdmin.
 
 ## Action
 
