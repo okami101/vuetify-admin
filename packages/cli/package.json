@@ -1,17 +1,20 @@
 {
   "name": "vue-cli-plugin-vtec-admin",
   "version": "0.1.0",
-  "description": "Vtec Admin plugin for vue-cli",
+  "description": "Vue CLI plugin for Vtec Admin",
   "main": "index.js",
   "keywords": [
+    "admin",
+    "rest",
     "vue",
-    "cli",
+    "vue-cli",
     "vuetify",
     "vuetify-admin",
+    "vtec",
     "vtec-admin"
   ],
-  "repository": "https://github.com/okami101/vtec-admin.git",
-  "author": "Adrien Beaudouin",
+  "repository": "https://github.com/okami101/vtec-admin",
+  "author": "Adrien Beaudouin <adrien.beaudouin@outlook.com>",
   "license": "MIT",
   "dependencies": {
     "esm": "^3.2.25"

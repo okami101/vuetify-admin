@@ -1,15 +1,19 @@
 {
   "name": "vtec-admin",
   "version": "0.1.0",
+  "description": "SPA admin library for Vue.js running on top of REST APIs, built on Vuetify",
   "main": "dist/admin.common.js",
   "keywords": [
+    "admin",
+    "rest",
     "vue",
-    "cli",
+    "vue-cli",
     "vuetify",
     "vuetify-admin",
+    "vtec",
     "vtec-admin"
   ],
-  "repository": "https://github.com/okami101/vtec-admin.git",
+  "repository": "https://github.com/okami101/vtec-admin",
   "author": "Adrien Beaudouin <adrien.beaudouin@outlook.com>",
   "license": "MIT",
   "scripts": {
