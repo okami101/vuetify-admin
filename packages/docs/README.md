@@ -6,7 +6,7 @@ actionLink: /guide/
 footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 ---
 
-> Check [online demo](https://vtec-bookstore-demo.okami101.io) -> use prefilled login (read only)  
+> Check [online demo](https://vtec-bookstore-demo.okami101.io) -> go to admin and use prefilled login (read only)  
 > Note : this project is heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
 
 ![demo](/assets/screenshot.png)

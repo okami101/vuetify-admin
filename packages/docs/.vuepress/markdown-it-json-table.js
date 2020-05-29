@@ -30,9 +30,13 @@ module.exports = (md) => {
   };
 
   let getDocgenData = (component) => {
-    return JSON.parse(
-      fs.readFileSync(`../admin/dist/json/docs/${component}.json`)
-    );
+    let file = `../admin/dist/json/docs/${component}.json`;
+
+    if (!fs.existsSync(file)) {
+      return null;
+    }
+
+    return JSON.parse(fs.readFileSync(file));
   };
 
   let generateSchemaTable = (state, startLine, type, definition) => {
@@ -54,6 +58,10 @@ module.exports = (md) => {
 
     let doc = getDocgenData(component);
 
+    if (!doc) {
+      return;
+    }
+
     generateParagraph(
       state,
       component.includes("mixin")
@@ -71,7 +79,9 @@ module.exports = (md) => {
       doc.mixins.forEach((mixin) => {
         generateParagraph(
           state,
-          `[${upperFirst(camelCase(mixin))}](/guide/components/mixins.md#${mixin})`
+          `[${upperFirst(
+            camelCase(mixin)
+          )}](/guide/components/mixins.md#${mixin})`
         );
       });
     }

@@ -3,9 +3,6 @@
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install: package.json ## install dependencies
-	@yarn
-
 install-laravel-demo: ## install laravel demo dependencies
 	@cd ./examples/laravel && composer install
 
@@ -63,6 +60,7 @@ docgen-api: ## generate api docs
 	@cd ./packages/admin && node docgen
 
 run-docs: ## run the docs
+	@make docgen-api
 	@cd ./packages/docs && yarn dev --port 9000
 
 build-docs: ## compile the docs into to static js
