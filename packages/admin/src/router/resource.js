@@ -48,7 +48,7 @@ export default ({ store, resource, title }) => {
           }
 
           /**
-           * Return guesser page component, dev only
+           * Return guesser page component
            */
           return c(`Va${upperFirst(action)}Guesser`, {
             props,
