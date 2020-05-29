@@ -1,10 +1,10 @@
-# Vue cli plugin for Vtec Admin
+# Vue CLI plugin for Vtec Admin
 
-Vue CLI plugin of main [Vtec Admin](https://github.com/okami101/vtec-admin/tree/master/packages/admin) library which allow quick start on fresh Vue CLI app. Use [Material Theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) with sass overrides and some material components as base for Vuetify UI.
+Vue CLI plugin of main [Vtec Admin](https://www.npmjs.com/package/vtec-admin) library which allow quick start on fresh Vue CLI app. Use [Material Theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) with sass overrides and some material components as base for Vuetify UI.
 
 Include scripts for quick scaffolding crud pages of specific resource.
 
-> See [dedicated guide](https://vtec.okami101.io/guide/getting-started)
+> See [dedicated guide](https://vtec.okami101.io/guide/getting-started.html)
 
 ## Prepare
 
@@ -21,7 +21,7 @@ vue add i18n # the internationalization plugin
 
 ## Installation
 
-Then you can finally launch `vue add vtec-admin`. [Check here](https://vtec.okami101.io/guide/getting-started#installation) for explanation of what this plugin does.
+Then you can finally launch `vue add vtec-admin`. [Check here](https://vtec.okami101.io/guide/getting-started.html#installation) for explanation of what this plugin does.
 
 If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
 
@@ -45,11 +45,11 @@ Finally start your admin panel by `yarn serve`. Don't forget to have your backen
 
 You'll got 2 new npm scripts :
 
-* `yarn crud:make monsters [options]` : Main UI crud command maker. Main resource name is required.
+* `yarn crud:make my_new_resource [options]` : Main UI crud command maker. Resource name is required.
 * `yarn crud:yaml my-new-resource.yml` : Superset of previous command which use a YAML file descriptor.
 
 > Use `yarn vue-cli-service help crud:make` for all options documentation  
-> See [dedicated guide](https://vtec.okami101.io/guide/generators)
+> See [dedicated guide](https://vtec.okami101.io/guide/generators.html)
 
 ## Full documentation
 
