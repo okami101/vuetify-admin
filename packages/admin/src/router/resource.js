@@ -30,31 +30,28 @@ export default ({ store, resource, title }) => {
             action
           )}`;
 
+          let props = {
+            id: this.id,
+            title: this.$route.meta.title,
+            resource,
+            item: store.state[name].item,
+            permissions: store.getters["auth/getPermissions"],
+          };
+
           if (componentName in this.$options.components) {
             /**
              * Return client side page component
              */
             return c(componentName, {
-              props: {
-                id: this.id,
-                title: this.$route.meta.title,
-                resource,
-                item: store.state[name].item,
-                permissions: store.getters["auth/getPermissions"],
-              },
+              props,
             });
           }
 
           /**
-           * Return guesser page component
+           * Return guesser page component, dev only
            */
           return c(`Va${upperFirst(action)}Guesser`, {
-            props: {
-              id: this.id,
-              title: this.$route.meta.title,
-              resource,
-              item: store.state[name].item,
-            },
+            props,
           });
         },
         async beforeRouteEnter(to, from, next) {
