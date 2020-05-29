@@ -1,7 +1,7 @@
 # Vtec Admin Tutorial
 
-Tutorial project with both Laravel backend and admin Vue CLI. Most code of this project has been generated. This should be the final state after following the [dedicated docs](https://vtec.okami101.io/guide/tutorial).  
-This is the perfect way to show the power of both backend and client generators. Ideal place for code generation testing by using [included YAML sample generators]("admin/generators").
+Tutorial project with both Laravel backend and admin Vue CLI. Most code of this project has been generated. This should be the final state after following the [dedicated docs](https://vtec.okami101.io/guide/tutorial.html).  
+This is the perfect way to show the power of both backend and client generators. Ideal place for code generation testing by using [included YAML sample generators](admin/generators).
 
 ## How to run
 

@@ -3,8 +3,7 @@
 This demo project is the API backend used by separate Vue CLI [bookstore admin demo](../demo) project, and is a good showcase for backend-side development.
 It's also a good platform for developing external [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package.
 
-[Access to online demo](https://vtec-bookstore-demo.okami101.io)
-
+> [Access to online demo](https://vtec-bookstore-demo.okami101.io)  
 > The [vtec/laravel-crud](https://github.com/okami101/vtec-laravel-crud) composer package is directly symlinked to `vtec-laravel-crud` root git submodule folder of this repo.  
 > So direct live package development is fully working, even inside docker !
 

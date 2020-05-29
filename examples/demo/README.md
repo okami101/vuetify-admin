@@ -1,6 +1,6 @@
 # Bookstore Admin
 
-This demo project is the best showcase of what [Vtec Admin](../../packages/admin) has to offer, a admin library written in Vue.js and based on Vuetify.
+This demo project is the best showcase of [Vtec Admin](https://www.npmjs.com/package/vtec-admin), an admin library written in Vue.js and based on Vuetify.
 The backend side API is served by other included [Laravel API demo](../laravel) project.
 This project is also a perfect way for developing main [Vtec Admin](../../packages/admin) lib of this repo.
 
@@ -9,7 +9,7 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 [![demo](https://vtec.okami101.io/assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io)
 
 > The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
-> By this way, HMR from this demo to the library is fully functional which is ideal for quick visual development !
+> By this way, HMR from this demo to the library is fully functional which is ideal for lib development with quick visual feedback !
 
 ## Features
 
@@ -27,18 +27,18 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 * Advanced filters
 * Bulk actions
 
-## [How to run](#run)
+## How to run
 
 Install all repo dependencies by `yarn`
 
-Before following steps you must prepare the API demo by following [this steps](../laravel#run).  
+Before following steps you must prepare the API demo by following [this steps](../laravel#how-to-run).  
 If API different than default localhost:8000 then adapt your environment variables after `cp .env .env.local`
 
 Then just `yarn serve --open` and it should be autostart !
 
 ### JWT authentication
 
-For JWT provider testing purpose, the [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package is already preconfigured for this project. In order to switch auth mode, simply follow following steps.
+For JWT provider testing purpose, the [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package is already preconfigured in Laravel demo project. In order to switch auth mode, simply follow following steps.
 
 #### Laravel demo
 
