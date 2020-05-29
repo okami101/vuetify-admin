@@ -7,20 +7,18 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 ---
 
 > Check [online demo](https://vtec-bookstore-demo.okami101.io) -> go to admin and use prefilled login (read only)  
-> Note : this project is heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
+> Heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
 
 ![demo](/assets/screenshot.png)
 
 <div class="features">
   <div class="feature">
     <h2>Built on top of Vuetify</h2>
-    <p>Nice ready-to-go Vuetify UI theme with nice <a href="https://github.com/creativetimofficial/vuetify-material-dashboard">Material Theme</a> by Creative Tim. Fully customizable theme by using
-    your existing Vuetify plugin.</p>
+    <p>Ready-to-go Vuetify UI theme with nice <a href="https://github.com/creativetimofficial/vuetify-material-dashboard">Material Theme</a> by Creative Tim. Fully customizable theme by using your existing Vuetify plugin.</p>
   </div>
   <div class="feature">
     <h2>Standalone SPA Admin</h2>
-    <p>Full independant SPA Admin Interface, released from any backend. Rely on low-level data and auth providers
-    which can pe replaced by your own simply by implementing interface compatibility layer.</p>
+    <p>Full SPA Admin UI decoupled from backend. Rely on low-level data and auth providers which can pe replaced by your own simply by implementing specific interface compatibility layer.</p>
   </div>
   <div class="feature">
     <h2>Minimal code</h2>
@@ -28,8 +26,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   </div>
   <div class="feature">
     <h2>High productivity</h2>
-    <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vtec-admin">Vue CLI plugin</a>
-    with additional UI CRUD code generators for quick init basic functional CRUD pages. YAML driven code generation given a JSON schema available !</p>
+    <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vtec-admin">Vue CLI plugin</a> with additional UI CRUD code generators. Guesser CRUD pages which give you all generated Vue template code for quick starting. YAML driven code generation given a JSON schema available !</p>
   </div>
   <div class="feature">
     <h2>Keep control</h2>
@@ -50,16 +47,16 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   </div>
   <div class="feature">
     <h2>Full-featured DataTable</h2>
-    <p>Full-featured DataTable, including multi-sort, pagination, global search, advanced filters, basic CSV export, live query string context. Customizable by-row, bulk and global actions.</p>
+    <p>Full-featured DataTable, including multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context. Possibility of total list layout customization thanks to separate DataIterator !</p>
   </div>
   <div class="feature">
     <h2>Custom fields</h2>
-    <p>All basic fields and inputs components for various data types: select, autocomplete with resource relations, boolean, number, rich text, etc. TinyMCE 5 as default Wysiwyg with elFinder bridge.</p>
+    <p>All basic fields and inputs components for various data types: select, autocomplete with resource relations, boolean, number, rich text, etc. TinyMCE 5 as default Wysiwyg.</p>
     <p>Create your own fields and inputs simply by extending mixins.</p>
   </div>
   <div class="feature">
     <h2>Internationalization</h2>
-    <p>Internationalization support via Vue I18n, with full english and french translations provided. Can be easily configured by taking user browser language.</p>
+    <p>Internationalization support via Vue I18n, with full english and french translations provided.</p>
     <p>Even more, translatable resource fields by contextual language selection on each crud page is supported !</p>
   </div>
   <div class="feature">

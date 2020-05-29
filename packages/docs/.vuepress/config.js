@@ -4,7 +4,7 @@ module.exports = (ctx) => ({
     "/": {
       lang: "en-US",
       title: "Vtec Admin",
-      description: "SPA Admin Library",
+      description: "🚀 Integrate Vue-powered Admin Library",
     },
     /*"/fr/": {
       lang: "fr-FR",
@@ -70,6 +70,22 @@ module.exports = (ctx) => ({
           {
             text: "Guide",
             link: "/guide/",
+          },
+          {
+            text: "Vtec Admin",
+            link: "https://www.npmjs.com/package/vtec-admin",
+          },
+          {
+            text: "Vue CLI Plugin",
+            link: "https://www.npmjs.com/package/vue-cli-plugin-vtec-admin",
+          },
+          {
+            text: "Laravel",
+            link: "https://github.com/okami101/vtec-laravel-crud",
+          },
+          {
+            text: "Demo",
+            link: "https://vtec-bookstore-demo.okami101.io",
           },
         ],
         sidebar: {
