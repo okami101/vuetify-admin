@@ -14,7 +14,7 @@ class AddBooksTagsColumn extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->json('tags')->after('commentable');
+            $table->json('tags')->nullable()->after('commentable');
         });
     }
 

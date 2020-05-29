@@ -14,7 +14,7 @@ class AddBooksFormatsColumn extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->json('formats')->after('author');
+            $table->json('formats')->nullable()->after('author');
         });
     }
 
