@@ -8,6 +8,10 @@
 			"path": "examples\\demo"
 		},
 		{
+      "name": "jsonplaceholder",
+			"path": "examples\\jsonplaceholder"
+		},
+		{
       "name": "tutorial",
 			"path": "examples\\tutorial\\admin"
 		},
