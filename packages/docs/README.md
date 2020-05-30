@@ -26,7 +26,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   </div>
   <div class="feature">
     <h2>High productivity</h2>
-    <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vtec-admin">Vue CLI plugin</a> with additional UI CRUD code generators. Guesser CRUD pages which give you all generated Vue template code for quick starting. YAML driven code generation given a JSON schema available !</p>
+    <p>Immediate quick start by using <a href="https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin">Vue CLI plugin</a> with additional UI CRUD code generators. Guesser CRUD pages which give you all generated Vue template code for quick starting. YAML driven code generation given a JSON schema available !</p>
   </div>
   <div class="feature">
     <h2>Keep control</h2>
@@ -76,9 +76,9 @@ For best explanation of **CRUD code generators** feature, follow [this tutorial]
 
 ### All Vtec Admin related projects
 
-* [Vtec Admin Library](https://www.npmjs.com/package/vtec-admin), the main admin library.
-* [Vtec Admin Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), the associated Vue CLI plugin which contains all base code boilerplate for quick install and UI commands code generator.
-* [Vtec Laravel Crud](https://packagist.org/packages/vtec/laravel-crud), composer package to use on fresh Laravel project which facilitates Vtec Admin integration and includes server-side API commands generator.
+* [Vtec Admin Library](https://npm.okami101.io/-/web/detail/vtec-admin), the main admin library.
+* [Vtec Admin Vue CLI Plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin), the associated Vue CLI plugin which contains all base code boilerplate for quick install and UI commands code generator.
+* [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud), composer package to use on fresh Laravel project which facilitates Vtec Admin integration and includes server-side API commands generator.
 * [Bookstore Admin Demo](https://github.com/okami101/vtec-admin/tree/master/examples/demo), full-featured admin sample build on top of main Vtec Admin Library.
 * [Bookstore Laravel Demo](https://github.com/okami101/vtec-admin/tree/master/examples/laravel), suitable API backend for bookstore admin demo based on Laravel.
 * [Admin Tutorial](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial), finished tutorial after following [dedicated docs](guide/tutorial.md) which aims to made a good showcase of YAML code generation power.

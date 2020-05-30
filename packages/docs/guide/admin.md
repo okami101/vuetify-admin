@@ -81,7 +81,7 @@ The main steps are :
 * Initiate VA by his constructor.
 
 :::tip BOILERPLATE
-All this boring stuf as well as all next pieces of code shown in this page are already prepared for you by the offical [Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), go to [Getting Started](getting-started.md) in order to get in through.
+All this boring stuf as well as all next pieces of code shown in this page are already prepared for you by the offical [Vue CLI Plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin), go to [Getting Started](getting-started.md) in order to get in through.
 :::
 
 ## Components & resources loading

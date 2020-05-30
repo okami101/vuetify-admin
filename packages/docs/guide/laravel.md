@@ -77,7 +77,7 @@ Dont forget to edit it on production. Just edit ADMIN_URL environment variable f
 
 ### Run admin UI
   
-Finish UI installation by installing dedicated [Vtec Admin Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) :
+Finish UI installation by installing dedicated [Vtec Admin Vue CLI plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin) :
 
 ```bash
 cd admin
