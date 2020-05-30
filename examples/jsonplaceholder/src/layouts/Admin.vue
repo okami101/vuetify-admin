@@ -1,17 +1,10 @@
 <template>
   <va-layout>
-    <va-app-bar
-      slot="app-bar"
-      :header-menu="headerMenu"
-      :profile-menu="profileMenu"
-      dense
-      dark
-      @mini="mini = !mini"
-    ></va-app-bar>
+    <va-app-bar slot="app-bar" dense dark @mini="mini = !mini"></va-app-bar>
     <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
     <va-breadcrumbs slot="header"></va-breadcrumbs>
     <va-aside slot="aside"></va-aside>
-    <va-footer slot="footer" :menu="footerMenu">
+    <va-footer slot="footer">
       &copy; 2020,
       <v-icon size="18">
         mdi-xml
@@ -34,33 +27,6 @@ export default {
   data() {
     return {
       mini: false,
-      headerMenu: [
-        {
-          link: "/",
-          text: this.$t("menu.dashboard"),
-        },
-      ],
-      footerMenu: [
-        {
-          href: "#",
-          text: "About Us",
-        },
-        {
-          href: "#",
-          text: "Blog",
-        },
-        {
-          href: "#",
-          text: "License",
-        },
-      ],
-      profileMenu: [
-        {
-          icon: "mdi-account",
-          text: this.$t("menu.profile"),
-          link: "/profile",
-        },
-      ],
       sidebarMenu: nav(this.$i18n, this.$admin),
     };
   },
