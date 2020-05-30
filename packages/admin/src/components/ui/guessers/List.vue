@@ -12,7 +12,7 @@
         :options.sync="options"
       >
         <va-data-table
-          :fields="guessFields(props.items)"
+          :fields="fields"
           v-bind="props"
           v-model="selected"
           :options.sync="options"
@@ -30,23 +30,23 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      fields: [],
       options: {},
       selected: [],
     };
   },
-  methods: {
-    guessFields(items) {
-      if (!items) {
-        return [];
-      }
-      let fields = guessFields(this.$i18n, this.resource.name, items[0]);
+  async mounted() {
+    this.fields = await guessFields(
+      this.$store,
+      this.$i18n,
+      this.resource.name
+    );
 
-      if (this.$guessLogger) {
-        this.$guessLogger("list", fields);
-      }
+    if (this.$guessLogger) {
+      this.$guessLogger(this.resource.name, "list", this.fields);
+    }
 
-      return fields;
-    },
+    return fields;
   },
 };
 </script>

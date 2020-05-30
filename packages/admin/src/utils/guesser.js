@@ -1,7 +1,17 @@
 /**
  * We will try to guess the best suitable fields type for each item property.
  */
-let guessFields = (i18n, resource, item) => {
+let guessFields = async (store, i18n, resource) => {
+  let { data } = await store.dispatch(`${resource}/getList`, {
+    pagination: { page: 1, perPage: 1 },
+  });
+
+  if (!data.length) {
+    return [];
+  }
+
+  let item = data[0];
+
   const supportedFields = [
     { type: "boolean", validator: (v) => typeof v === "boolean" },
     { type: "number", validator: (v) => typeof v === "number" },
@@ -42,8 +52,8 @@ let guessFields = (i18n, resource, item) => {
     .filter((t) => t && t.source !== "id");
 };
 
-let guessInputs = (i18n, resource, item) => {
-  let fields = guessFields(i18n, resource, item);
+let guessInputs = async (store, i18n, resource) => {
+  let fields = await guessFields(store, i18n, resource);
 
   return fields.map((f) => {
     if (["email", "url"].includes(f.type)) {

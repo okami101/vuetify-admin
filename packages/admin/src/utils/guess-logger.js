@@ -1,5 +1,7 @@
 import ejs from "ejs";
 import util from "util";
+import upperFirst from "lodash/upperFirst";
+import kebabCase from "lodash/kebabCase";
 
 const templates = {
   list: `
@@ -50,7 +52,7 @@ export default {
           <v-card>
             <v-card-text>
               <%_ for (field of fields) { _%>
-                <va-field source="<%- field.source %>" type="<%- field.type %>"></va-field>
+              <va-field source="<%- field.source %>" type="<%- field.type %>"></va-field>
               <%_ } _%>
             </v-card-text>
           </v-card>
@@ -75,7 +77,7 @@ export default {
           <v-card>
             <v-card-text>
               <%_ for (field of fields) { _%>
-                <va-<%- field.type %>-input source="<%- field.source %>"></va-<%- field.type %>-input>
+              <va-<%- field.type %>-input source="<%- field.source %>"></va-<%- field.type %>-input>
               <%_ } _%>
               <va-save-button :saving="saving"></va-save-button>
             </v-card-text>
@@ -106,7 +108,7 @@ export default {
           <v-card>
             <v-card-text>
               <%_ for (field of fields) { _%>
-                <va-<%- field.type %>-input source="<%- field.source %>"></va-<%- field.type %>-input>
+              <va-<%- field.type %>-input source="<%- field.source %>"></va-<%- field.type %>-input>
               <%_ } _%>
               <va-save-button :saving="saving"></va-save-button>
             </v-card-text>
@@ -130,10 +132,15 @@ export default {
 `,
 };
 
-const logger = (type, fields) => {
+const logger = (resource, action, fields) => {
   console.log(
-    ejs.render(templates[type], {
-      fields: type === "list" ? util.inspect(fields) : fields,
+    `Copy following Vue code template inside this file to override this default page : "src/resources/${kebabCase(
+      resource
+    )}/${upperFirst(action)}.vue"`
+  );
+  console.log(
+    ejs.render(templates[action], {
+      fields: action === "list" ? util.inspect(fields) : fields,
     })
   );
 };

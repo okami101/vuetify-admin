@@ -7,6 +7,7 @@ It takes care of all minimal boilerplate code generation for quick start admin d
 You should have a separate API backend project for real development.  
 Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. As a bonus, this package will used an integrated Vue CLI preset for even less install steps.  
 If you choose Laravel as API backend, jump to the more optimized [Laravel installation section](laravel.md).  
+To use it on your custom API, you will need to write your own [data provider](data-providers.md).
 :::
 
 ## Use Vue CLI Plugin
@@ -35,22 +36,16 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
 * Install main Vtec Admin library
 * Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 * Generate inside your project all minimal boilerplate code to quickly start :
-  * Nice material theme as superset on Vuetify
-  * Explicit preload of all Vuetify components used by Vtec Admin (because a-la-carte mode can't work on precompiled libs)
+  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as superset on Vuetify
+  * Load of external third party components used by Vtec Admin
   * Initialize admin plugin with automatic crud pages webpack context preload and create base admin layout page on your App.vue entry file
   * Login page plugged with default [Laravel Sanctum](https://github.com/laravel/sanctum) auth provider (totally replaceable by [your own provider](authentication.md))
-  * Static dashboard sample with usage of [Chartist.js](https://gionkunz.github.io/chartist-js/)
+  * Static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/)
   * Functional basic profile edition page
   * User management page list with direct aside creation / show / edition
 * Add UI CRUD generators scripts
 
-:::warning Does it work with my API
-Definitly. Vtec Admin uses an abstraction layer, with a concept called Data Providers.  
-As of today, only Laravel providers are available. So for all other types of backend, you'll need to implements your own data and auth providers which will ensure compatibility between VA and your backend.  
-Follow [this separate guide](data-providers.md) in order to get into it.
-:::
-
-If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
+If your backend run at different address than [http://localhost:8000](http://localhost:8000), edit `VUE_APP_API_URL` environment variable according to a valid API inside `.env.local`.
 
 > On production, don't forget to adapt BASE_URL and VUE_APP_API_URL variables. The general use case is to put this inside `.env.local` :
 
@@ -179,24 +174,22 @@ export default [
 
 > You will find more detail on resources registering [here](resources.md).
 
-Then next step is to define CRUD pages for each resource.
+Then next step is to define CRUD pages for each resource by following this naming convention : `src/resources/{resource}/{action}.vue`.
 
-By default if no custom page action component is found, Vtec Admin uses basic CRUD page action that will try to guess all suited typed fields according to type of each property value of resource item.
+By default if no custom page action component is found, Vtec Admin uses basic CRUD page action that will try to guess all suited typed fields or inputs according to type of each property value of the first found resource item via `getList` data provider method.
 
 :::warning GUESSER MODE
 Note that it's more a quick starter mode and it should never be used on production ! So create your own CRUD page as below stay heavily recommended.
 :::
 
-This guesser pages have one big utility. They display full generated Vue.js component template code on browser console ! That will be very helpful as quick starter code for your own custom CRUD pages :
+This guesser pages have one big utility. They display full generated Vue component template code as well as the target file where to paste it on browser console ! It will overriding default current page, and you're already ready to customize it as normal Vue page.
 
 ![guesser](/assets/guesser.png)
 
-Just copy paste the result and go create the related CRUD page action with this starter code. It should works seamlessly.
-
-Here some samples :
+Here some samples for `reviews` resource :
 
 :::details LIST
-**`src/resources/Reviews/List.vue`**
+**`src/resources/reviews/List.vue`**
 
 ```vue
 <template>
@@ -249,7 +242,7 @@ export default {
 :::
 
 :::details SHOW
-**`src/resources/Reviews/Show.vue`**
+**`src/resources/reviews/Show.vue`**
 
 ```vue
 <template>
@@ -294,7 +287,7 @@ export default {
 :::
 
 :::details CREATE
-**`src/resources/Reviews/Create.vue`**
+**`src/resources/reviews/Create.vue`**
 
 ```vue
 <template>
@@ -313,7 +306,7 @@ export default {
 :::
 
 :::details EDIT
-**`src/resources/Reviews/Edit.vue`**
+**`src/resources/reviews/Edit.vue`**
 
 ```vue
 <template>
@@ -332,11 +325,11 @@ export default {
 :::
 
 :::details FORM
-**`src/resources/Reviews/Form.vue`**
+**`src/resources/reviews/Form.vue`**
 
 ```vue
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
+  <va-form :id="id" :item="item" :saving.sync="saving">
     <v-row justify="center">
       <v-col lg="6">
         <base-material-card>
@@ -368,7 +361,6 @@ export default {
   data() {
     return {
       saving: false,
-      model: {},
     };
   },
 };
@@ -384,3 +376,7 @@ export default {
 > * [Create / Edit](crud/form.md)
 >
 > NB : This pages can be pre-generated by code generators. See [dedicated section](generators.md).
+
+:::tip TUTORIAL
+Go to [tutorial](tutorial.md) for advanced showcase.
+:::
