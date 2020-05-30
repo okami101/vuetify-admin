@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Docs of Vtec Admin",
   "repository": "https://github.com/okami101/vtec-admin",
   "author": "Adrien Beaudouin",
@@ -16,6 +16,5 @@
     "@vuepress/plugin-pwa": "^1.4.0",
     "vuepress": "^1.4.0",
     "vuepress-plugin-code-copy": "^1.0.6"
-  },
-  "dependencies": {}
+  }
 }
