@@ -3,7 +3,7 @@ import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/src/loader";
 
-import { laravelDataProvider } from "vtec-admin/src/providers";
+import { jsonServerDataProvider } from "vtec-admin/src/providers";
 import { en, fr } from "vtec-admin/src/locales";
 
 import router from "@/router";
@@ -12,7 +12,6 @@ import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
 import axios from "axios";
-import trimEnd from "lodash/trimEnd";
 
 /**
  * Load Admin UI components
@@ -40,16 +39,10 @@ export default new VtecAdmin({
   title: "Vtec Admin",
   routes,
   locales: { en, fr },
-  translations: {
-    en: i18n.t("locales.english"),
-    fr: i18n.t("locales.french"),
-  },
-  dataProvider: laravelDataProvider(http),
+  dataProvider: jsonServerDataProvider(http),
   resources,
   axios: http,
   options: {
     dateFormat: "long",
-    imageUploadUrl: "/api/upload",
-    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
   },
 });

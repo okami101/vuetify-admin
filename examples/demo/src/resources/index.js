@@ -12,7 +12,7 @@ export default [
     label: (r) => `${r.title} (${r.isbn})`,
     translatable: true,
     permissions: ["admin", "editor", "author"],
-    autocompleteFields: ["title", "isbn"],
+    autocompleteFields: ["id", "title", "isbn"],
   },
   {
     name: "authors",

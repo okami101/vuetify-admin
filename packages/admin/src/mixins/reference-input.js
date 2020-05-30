@@ -55,7 +55,9 @@ export default {
       let resource = this.$admin.getResource(this.reference);
       return (
         resource.autocompleteFields ||
-        (typeof this.getItemText === "string" ? [this.getItemText] : [])
+        (typeof this.getItemText === "string"
+          ? [this.getItemValue, this.getItemText]
+          : [])
       );
     },
   },
@@ -109,7 +111,7 @@ export default {
         resource: this.reference,
         params: {
           fields: {
-            [this.reference]: this.fields,
+            [this.reference]: this.getFields,
           },
           include: this.include,
           ids,

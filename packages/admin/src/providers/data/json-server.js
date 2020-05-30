@@ -8,60 +8,77 @@ import {
   DELETE,
   DELETE_MANY,
 } from "./actions";
-import qs from "qs";
-import objectToFormData from "../utils/objectToFormData";
 
-export default (axios, baseURL = "/api") => {
+export default (axios) => {
   const getRequest = (type, resource, params = {}) => {
-    const resourceURL = `${baseURL}/${resource}`;
-    let query = {
-      locale: params.locale,
-    };
+    const searchParams = new URLSearchParams();
+    const itemURL = `${resource}/${params.id}`;
+
+    if (params.locale) {
+      searchParams.append("locale", params.locale);
+    }
 
     switch (type) {
       case GET_LIST:
       case GET_MANY:
-        const { fields, include, pagination, sort, filter } = params;
-
-        query = {
-          ...query,
-          fields,
-          include,
-        };
+        const { pagination, sort, filter } = params;
 
         if (type === GET_MANY) {
-          query.filter = {
-            id: params.ids,
-          };
-          return { url: resourceURL, query };
+          params.ids.forEach((id) => {
+            searchParams.append("id", id);
+          });
+          return { url: `${resource}?${searchParams.toString()}` };
         }
 
-        query = {
-          ...query,
-          ...pagination,
-          filter,
-        };
+        if (pagination) {
+          let { page, perPage } = pagination;
+          const query = {
+            ...params.filter,
+            _sort: field,
+            _order: order,
+            _start: (page - 1) * perPage,
+            _end: page * perPage,
+          };
 
-        if (sort.length) {
-          query.sort = sort.map((item) => {
-            let { by, desc } = item;
+          if (page) {
+            searchParams.append("page", page);
+          }
+          if (perPage) {
+            searchParams.append("perPage", perPage);
+          }
+        }
+        if (sort) {
+          let param = sort
+            .map((item) => {
+              let { by, desc } = item;
 
-            if (desc) {
-              return `-${by}`;
+              if (desc) {
+                return `-${by}`;
+              }
+              return by;
+            })
+            .join(",");
+
+          if (param) searchParams.append("sort", param);
+        }
+
+        if (filter) {
+          Object.keys(filter).forEach((key) => {
+            if (filter[key] !== "") {
+              searchParams.append(`filter[${key}]`, filter[key]);
             }
-            return by;
           });
         }
 
-        return { url: resourceURL, query };
+        return { url: resource, query: searchParams.toString() };
 
       case GET_ONE:
-        return { url: `${resourceURL}/${params.id}`, query };
+        return { url: itemURL, query: searchParams.toString() };
 
       case CREATE:
         return {
-          url: resourceURL,
-          query,
+          url: resource,
+          query: searchParams.toString(),
           method: "post",
           data: objectToFormData(params.data),
         };
@@ -71,16 +88,15 @@ export default (axios, baseURL = "/api") => {
         form.append("_method", "PUT");
 
         return {
-          url: `${resourceURL}/${params.id}`,
-          query,
+          url: itemURL,
+          query: searchParams.toString(),
           method: "post",
           data: form,
         };
 
       case DELETE:
         return {
-          url: `${resourceURL}/${params.id}`,
-          query,
+          url: itemURL,
           method: "delete",
         };
 
@@ -94,7 +110,7 @@ export default (axios, baseURL = "/api") => {
     let { url, query, method, data } = getRequest(type, resource, params);
 
     if (query) {
-      url += `?${qs.stringify(query, { arrayFormat: "comma" })}`;
+      url += `?${query}`;
     }
 
     try {
