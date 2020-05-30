@@ -2,7 +2,6 @@ import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/src/loader";
-import "vtec-admin/dist/admin.css";
 
 import {
   laravelDataProvider,

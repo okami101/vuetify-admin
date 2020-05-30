@@ -17,23 +17,4 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
   },
-
-  configureWebpack: {
-    resolve: {
-      alias: {
-        "vtec-admin": path.resolve(
-          __dirname,
-          "..",
-          "..",
-          "packages",
-          "admin",
-          "src"
-        ),
-      },
-    },
-  },
-
-  chainWebpack: (config) => {
-    config.resolve.symlinks(false);
-  },
 };

@@ -1,4 +1,5 @@
 import Vue from "vue";
+import Vuetify from "vuetify/lib";
 import "./resources";
 
 /**
@@ -6,6 +7,14 @@ import "./resources";
  */
 import PortalVue from "portal-vue";
 import draggable from "vuedraggable";
+
+import { VAutocomplete, VCombobox } from "vuetify/lib";
+
+/**
+ * Explicit registering of this components because dynamic
+ */
+Vue.component("VAutocomplete", VAutocomplete);
+Vue.component("VCombobox", VCombobox);
 
 /**
  * Register portal and draggable

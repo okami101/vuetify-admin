@@ -6,6 +6,9 @@ module.exports = (api) => {
     `import "./plugins/base";`,
     `import "./plugins/chartist";`,
   ]);
+  api.injectImports("src/plugins/vuetify.js", [
+    `import "@/sass/overrides.sass";`,
+  ]);
   api.injectRootOptions(api.entryFile, `admin`);
 
   api.extendPackage({

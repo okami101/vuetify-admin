@@ -1,10 +1,13 @@
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
-import "vtec-admin/loader";
+import "vtec-admin/src/loader";
 
-import { laravelDataProvider, sanctumAuthProvider } from "vtec-admin/providers";
-import { en, fr } from "vtec-admin/locales";
+import {
+  laravelDataProvider,
+  sanctumAuthProvider,
+} from "vtec-admin/src/providers";
+import { en, fr } from "vtec-admin/src/locales";
 
 import router from "@/router";
 import routes from "@/router/admin";
