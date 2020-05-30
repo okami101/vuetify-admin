@@ -63,9 +63,13 @@ You can still generate new admin UI without reuse full installer by using `php a
 
 ## Usage
 
-### Run backend
+### Run backend API
 
 After the installation, if you selected docker, simply launch `docker-compose up`. Don't forget to adapt your environment variables with those outputted by installer when finished.
+
+:::tip DOCKER
+If you use docker, use `docker-compose exec laravel` before each next artisan commands.
+:::
 
 Then you just have to setup laravel installation as normal :
 
@@ -75,10 +79,6 @@ php artisan migrate:fresh --seed
 ```
 
 Finally create your first user by `php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
-
-:::tip DOCKER
-If you use docker, use `docker-compose exec laravel` before each command.
-:::
 
 :::tip ADMIN URL
 By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
@@ -162,16 +162,16 @@ This generators commands only applies on server-side. For UI side auto-generatio
 
 ### Specific resource base
 
-For resource fetching, you should use [Eloquent Resources](https://laravel.com/docs/eloquent-resources) that extends `Vtec\Crud\Http\Resources\BaseResource` if you need media or translatable fields support for this resource within Vtec Admin.
+For API resource definition, you may use [Eloquent Resources](https://laravel.com/docs/eloquent-resources) that extends `Vtec\Crud\Http\Resources\BaseResource` in case you need media or translatable fields support within Vtec Admin.
 
 This class will do 2 things :
 
-* Automatically only fetch the targeted locale for each translatable field.
-* Fetch minimal info (id, title and url) for each media files attached to the model.
+* Automatically get only the target locale for each translatable field.
+* Fetch some file info (id, title, url,...) with existing thumbnails for each media files attached to the model.
 
 ### Available model traits
 
-This package includes some third party request related model traits in order to reduce controller code boilerplate. It means to be used directly on your models.
+This package includes some third party request related model traits in order to reduce controller code boilerplate.
 
 #### RequestMediaTrait
 
@@ -197,11 +197,11 @@ The Vtec Admin file upload component `va-file-input` will take care of all of th
 Import `HasTranslations` from [Spatie Translatable](https://github.com/spatie/laravel-translatable) with addition of default locale detection from request for translatable fields saving or fetching.
 
 This trait will intercept all `locale` request input and set his value as default locale for saving. If not set default locale will be the user browser language in case you use included `Locale` middleware, if not this will be the app default locale.
-It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n.md#translatable).
+It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n.md#resource-translation).
 
 ### Global search filter
 
-If you need to add global search support in [Vtec Admin Iterator](crud/list.md), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields as a specific filter inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
+If you want use global search in [Vtec Admin Iterator](crud/list.md), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
 ```php{4}
 return new BookCollection(
