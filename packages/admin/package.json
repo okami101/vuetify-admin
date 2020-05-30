@@ -52,5 +52,8 @@
     "@tinymce/tinymce-vue": "^3.2.2",
     "lodash": "^4.17.15",
     "papaparse": "^5.2.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.okami101.io"
   }
 }

@@ -24,5 +24,8 @@
   },
   "devDependencies": {
     "js-yaml": "^3.14.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.okami101.io"
   }
 }
