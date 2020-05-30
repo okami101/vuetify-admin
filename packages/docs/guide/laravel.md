@@ -1,17 +1,20 @@
 # Laravel
 
-For Laravel case, we will use official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) which will heavily facilitates Vtec Admin integration.
+This guide is a demonstration of official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) which heavily facilitates Vtec Admin integration within existing real backend.
 
 :::warning REQUIREMENTS
+
 * You must have at least PHP 7.4 (required by spatie media library package).
 * [Laravel installer](https://laravel.com/docs#installing-laravel).
 * [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 * Should be installed on fresh laravel 7 installation.
+* Docker with compose as option.
+
 :::
 
 ## Installation
 
-Simply init your project by this simple 3 steps :
+Simply init your project by this simple steps :
 
 ```bash
 laravel new my-brand-new-project && cd my-brand-new-project
@@ -19,21 +22,26 @@ composer require vtec/laravel-crud
 php artisan vtec:install
 ```
 
-### Required or suggested packages
+Then follow wizard.
 
-The installer will suggest you to install :
+### Required and suggested packages
+
+**Following required packages will be autoinstalled :**
+
+* [Laravel Spatie Query Builder](https://github.com/spatie/laravel-query-builder) for api resource browsing with all pagination, fields, and filters support.
+* [Laravel Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) for media files support.
+* [Laravel Spatie Translatable](https://github.com/spatie/laravel-translatable) for simple translatable model support saved on JSON format.
+
+**The installer will suggest you to install :**
 
 * Many optional dev packages as :
-  * [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), will heavily help for IDE integration and intellisense.
-  * [PHP CS Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) with Laravel preset.
-  * [Clockwork](https://github.com/itsgoingd/clockwork), very helpful for API debugging.
+  * [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), helper for IDE integration and intellisense.
+  * [PHP CS Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) for coding formatter with Laravel preset.
+  * [Clockwork](https://github.com/itsgoingd/clockwork), for easy API debugging.
   * [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended) for advanced migration with all fields and foreigns pregeneration feature.
-* Required production packages :
+* Other suggested production packages :
   * [Laravel Sanctum](https://github.com/laravel/sanctum), a cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
-  * [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) for api resource browsing with all pagination, fields, and filters support.
-  * [Laravel MediaLibrary](https://github.com/spatie/laravel-medialibrary) for media files support.
-  * [Laravel Translatable](https://github.com/spatie/laravel-translatable) for simple translatable model support saved on JSON format.
 
 ### Provided features and generated code
 
@@ -49,13 +57,15 @@ Finally, the installer will integrate some code to get basic features working wi
 
 **At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` subfolder (default) with all required dependencies by using [this preset](https://github.com/okami101/vtec-laravel-crud/blob/master/preset.json).**
 
-:::tip UI admin project initialization
+:::tip UI ADMIN GENERATE COMMAND
 You can still generate new admin UI without reuse full installer by using `php artisan vtec:ui`.
 :::
 
+## Usage
+
 ### Run backend
 
-After the installation, if you selected docker, simply launch `docker-compose up`. Don't forget to adapt your environments variables with those outputted by installer when finished.
+After the installation, if you selected docker, simply launch `docker-compose up`. Don't forget to adapt your environment variables with those outputted by installer when finished.
 
 Then you just have to setup laravel installation as normal :
 
