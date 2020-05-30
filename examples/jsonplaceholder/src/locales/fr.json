@@ -1,0 +1,57 @@
+{
+  "locales": {
+    "english": "Anglais",
+    "french": "Français"
+  },
+  "routes": {
+    "home": "Accueil",
+    "login": "Login",
+    "profile": "Compte",
+    "dashboard": "Tableau de bord"
+  },
+  "login": {
+    "username": "Utilisateur",
+    "password": "Mot de passe",
+    "sign_in": "Se connecter"
+  },
+  "profile": {
+    "account": "Mon compte",
+    "password": "Mot de passe",
+    "name": "Nom",
+    "email": "Email",
+    "old_password": "Ancien mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirmation du mot de passe",
+    "update": "Mettre à jour",
+    "account_updated": "Compte mis à jour",
+    "password_changed": "Mot de passe changé"
+  },
+  "users": {
+    "impersonate": "Usurper",
+    "stop_impersonate": "Arrêter usurpation",
+    "logged_as": "Vous êtes actuellement connecté en tant que {0}, cliquer {1} pour arrêter le mode d'usurpation."
+  },
+  "menu": {
+    "login": "Login",
+    "profile": "Compte",
+    "dashboard": "Tableau de bord"
+  },
+  "resources": {
+    "users": {
+      "name": "Utilisateur | Utilisateurs",
+      "fields": {
+        "id": "ID",
+        "name": "Nom",
+        "email": "Email"
+      }
+    },
+    "posts": {
+      "name": "Article | Articles",
+      "fields": {
+        "id": "ID",
+        "title": "Titre",
+        "body": "Corps"
+      }
+    }
+  }
+}

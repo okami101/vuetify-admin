@@ -36,13 +36,7 @@
     <div>
       <v-menu offset-y v-if="!disableCreate && createResourceLinks.length">
         <template v-slot:activator="{ on }">
-          <v-btn
-            icon
-            small
-            class="mr-5"
-            v-on="on"
-            :title="$t('va.actions.create')"
-          >
+          <v-btn icon small v-on="on" :title="$t('va.actions.create')">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </template>
@@ -68,7 +62,7 @@
         v-if="!disableReload"
         icon
         small
-        class="mr-5"
+        class="ml-5"
         :loading="loading"
         @click="refresh($route.meta.resource)"
       >
@@ -76,7 +70,7 @@
       </v-btn>
       <v-menu offset-y v-if="name">
         <template v-slot:activator="{ on }">
-          <v-btn icon small v-on="on">
+          <v-btn icon small class="ml-5" v-on="on">
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
         </template>

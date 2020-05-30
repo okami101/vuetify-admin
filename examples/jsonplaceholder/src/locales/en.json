@@ -1,3 +1,29 @@
 {
-  "message": "hello i18n !!"
+  "routes": {
+    "home": "Home",
+    "login": "Login",
+    "profile": "Profile",
+    "dashboard": "Dashboard"
+  },
+  "users": {
+    "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
+  },
+  "resources": {
+    "users": {
+      "name": "User | Users",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email"
+      }
+    },
+    "posts": {
+      "name": "Post | Posts",
+      "fields": {
+        "id": "ID",
+        "title": "Title",
+        "body": "Body"
+      }
+    }
+  }
 }
