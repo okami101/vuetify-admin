@@ -18,7 +18,7 @@
   "author": "Adrien Beaudouin <adrien.beaudouin@outlook.com>",
   "license": "MIT",
   "scripts": {
-    "build": "vue-cli-service build --name admin --target lib src/index.js --report && node docgen"
+    "build": "vue-cli-service build --name admin --target lib src/index.js --report"
   },
   "vetur": {
     "tags": "dist/json/tags.json",
