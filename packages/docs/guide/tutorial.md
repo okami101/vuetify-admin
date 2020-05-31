@@ -61,9 +61,134 @@ You can **create** new users, **show** and **edit** them on direct **aside regio
 
 All users CRUD code templates can be found inside `src/resources/users`. `src/resources` will be your main working directory for all resources related CRUD pages development.
 
-Now why not to try adding new resource as `posts` ?
+## Enhance user list
+
+Let's add some new fields to user's list :
+
+**`src/resources/users/List.vue`**
+
+```vue {11-18}
+<template>
+  <!-- DataIterator -->
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        { source: "id", sortable: true },
+        { source: "name", sortable: true },
+        { source: "username", sortable: true },
+        { source: "email", type: "email" },
+        "address.street",
+        "phone",
+        { source: "website", type: "url" },
+        "company.name",
+      ],
+      //...
+    };
+  },
+  //...
+};
+</script>
+```
+
+Will render as next :
+
+![users-list](/assets/tutorial/users-list.png)
+
+As you can see, fields for datatable are just an list of object. `source` correspond to the targetted property of resource item where to get the value and `type` is the best suited field for display it on table cells. For basic text a simple string can be put in place of full object. `source` support dot notation as well. More detail [here](crud/list.md#fields). All supported fields is [listed here](components/fields.md).
+
+:::tip LABEL CUSTOMIZATION
+You can use `label` property to customize header column label. However, it's more appropriate to use locales of Vue I18n, because you will have to think about it only once for all fields and inputs, as the default `source` prop will be the main key. Each property of each resource must follow a convention in order to be recognized. See [dedicated section](i18n.md) if you want more.
+:::
+
+:::tip CELL TEMPLATING
+You can of course use full Vue.js power for customize all columns instead of using field type thanks to [cell slots](crud/list.md#field-templating).
+
+Imagine you want customize address cell with complete information :
+
+```vue {4-6}
+<template>
+  <va-data-iterator v-slot="props">
+    <va-data-table :fields="fields" v-bind="props">
+      <template v-slot:field.address="{ value }">
+        {{ value.street }} {{ value.zipcode }} {{ value.city }}
+      </template>
+    </va-data-table>
+  </va-data-iterator>
+</template>
+```
+
+:::
+
+:::tip CUSTOM FIELDS
+You're not limited to the existing fields. You have the possibility of [creating your own fields](components/fields.md#custom-component).
+
+Next a example of a custom specific address field :
+
+**`src/components/fields/AddressField.vue`**
+
+```vue
+<template>
+  <span class="address-field" v-if="value">
+    {{ value.street }} {{ value.zipcode }} {{ value.city }}
+  </span>
+</template>
+
+<script>
+import Field from "vtec-admin/src/mixins/field";
+
+export default {
+  mixins: [Field],
+};
+</script>
+```
+
+Then register it :
+
+**`src/main.js`**
+
+```js
+import AddressField from "./components/fields/AddressField";
+
+Vue.component("VaAddressField", AddressField);
+```
+
+You can finally use it for fields :
+
+**`src/resources/users/List.vue`**
+
+```vue {12}
+<template>
+  <!-- DataIterator -->
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        //...
+        { source: "address", type: "address" },
+        //...
+      ],
+      //...
+    };
+  },
+  //...
+};
+</script>
+```
+
+:::
 
 ## Adding new resource
+
+Now why not to try adding new resource as `posts` ?
 
 All resources must be registred inside `src/resources/index.js`. This will allow Vtec Admin to prebuild all necessary CRUD client side routes as well as API call bridges towards registred data provider. By default only `users` is registred. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
 
@@ -88,3 +213,28 @@ export default [
 :::tip RESOURCE DOCUMENTATION
 See [this dedicated section](resources.md) for all available options.
 :::
+
+Next add new link towards this new resource inside `src/_nav.js` file, dedicated for sidebar links which supports hierarchical menu as shown [here](crud/layout.md#links). We can use specific [resource link helpers](resources.md#link-helpers) for that :
+
+**`src/_nav.js`**
+
+```js {8}
+export default (i18n, admin) => [
+  {
+    icon: "mdi-view-dashboard",
+    text: i18n.t("menu.dashboard"),
+    link: "/",
+  },
+  { divider: true },
+  admin.getResourceLink("posts"),
+  admin.getResourceLink("users"),
+];
+```
+
+Now you should have direct link to a default posts page list. This page is a sort of guesser page that will try to detect the best suited fields by introspecting each value of each resource item properties.
+
+As you can guess, by theirs own nature, this fallback pages should not be used on production on any way. Their greatest utility is to print a direct full usable Vue template code to your browser console with a link to the target CRUD page file where to paste this code.
+
+![console](/assets/tutorial/console.png)
+
+As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. `List`, `Create`, `Show`, `Edit`. No you're ready for full customization !

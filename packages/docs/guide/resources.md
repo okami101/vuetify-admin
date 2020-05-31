@@ -95,15 +95,9 @@ The `archived_users` resource will reuse the same API endpoints as `users` resou
 
 ## Resource CRUD pages and API modules
 
-With the above resources informations, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures. Default CRUD page actions will be used as well. This pages have a specific guesser mode feature that allows automtic generation of best suited fields and inputs.
+With the above resources informations, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures.
 
-However, you should not let this default pages on production because this mode has many limitations so you will still need to create your own CRUD pages. The link between builded CRUD routes and the final resource action page component follows a specific naming convention.
-
-:::tip CREATE FROM GENERATED CODE
-You can quickly create all CRUD pages from generate code displayed on browser console by guesser pages ! See [getting started section](getting-started.md#at-a-glance) for showcase.
-:::
-
-Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
+Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. If not found it fallbacks to a [copiable guesser page](getting-started.md#at-a-glance). All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
 
 In order to facilitate this boring task, use the provided loader to do this automatically by importing it with `import "vtec-admin/src/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the sluggified name of resource.
 

@@ -7,6 +7,9 @@ import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 import "./plugins/base";
 import "./plugins/chartist";
+import AddressField from "./components/fields/AddressField";
+
+Vue.component("VaAddressField", AddressField);
 
 Vue.config.productionTip = false;
 

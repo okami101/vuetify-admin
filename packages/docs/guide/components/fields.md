@@ -413,7 +413,7 @@ Then register it globally :
 ```js
 import MyCustomField from "./components/fields/MyCustomField";
 
-Vue.component("VaMyCustomField", MyCustomField)
+Vue.component("VaMyCustomField", MyCustomField);
 ```
 
 :::warning NAMESPACE
