@@ -33,22 +33,5 @@ export default {
      */
     column: Boolean,
   },
-  computed: {
-    link() {
-      return {
-        name: `${this.reference}_${this.action}`,
-        params: { id: this.value[this.itemValue] },
-      };
-    },
-    getItemText() {
-      let resource = this.$admin.getResource(this.reference);
-      let text = this.itemText || resource.label;
-
-      if (typeof text === "function") {
-        return text(this.value);
-      }
-      return this.value[text] || this.value;
-    },
-  },
 };
 </script>

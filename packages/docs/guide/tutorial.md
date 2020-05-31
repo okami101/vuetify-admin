@@ -238,3 +238,215 @@ As you can guess, by theirs own nature, this fallback pages should not be used o
 ![console](/assets/tutorial/console.png)
 
 As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. `List`, `Create`, `Show`, `Edit`. No you're ready for full customization !
+
+## Use dedicated show, create and edit page for users
+
+If you don't like the default aside for users, we can use the same above methods for quickly create dedicated CRUD pages for users. Simply remove actions filter from next file :
+
+**`src/resources/index.js`**
+
+```diff
+export default [
+  {
+    name: "posts",
+    icon: "mdi-post",
+  },
+  {
+    name: "users",
+    icon: "mdi-account",
+-    actions: ["list", "delete"],
+  },
+];
+```
+
+It will active all CRUD routes actions for user. Now delete `src/resources/users/Show.vue` and `src/resources/users/Form.vue` files. Then cleanup users list template as next :
+
+**`src/resources/users/List.vue`**
+
+```vue
+<template>
+  <div>
+    <base-material-card :icon="resource.icon" :title="title">
+      <va-data-iterator v-model="selected" :options.sync="options">
+        <template v-slot="props">
+          <va-data-table
+            :fields="fields"
+            v-bind="props"
+            v-model="selected"
+            :options.sync="options"
+          >
+          </va-data-table>
+        </template>
+      </va-data-iterator>
+    </base-material-card>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        { source: "id", sortable: true },
+        { source: "name", sortable: true },
+        { source: "username", sortable: true },
+        { source: "email", type: "email" },
+        { source: "address", type: "address" },
+        "phone",
+        { source: "website", type: "url" },
+        "company.name",
+      ],
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
+```
+
+Next recreate `Show`, `Edit` and `Create` as you have done for above `posts`.
+
+## Relationships
+
+Now how we will dealing with relationships between posts and users ?
+
+JSON Server use specific `userId` property for each post that can be help for linking to a specific user :
+
+```json {2}
+{
+  "userId": 1,
+  "id": 3,
+  "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+  "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+}
+```
+
+It will be nice to have a direct link towards existing show or edit user page (you have to create this pages before !). It can simply done thanks to a reference field component.
+
+**`src/resources/posts/List.vue`**
+
+```vue {11-15}
+<template>
+  <!-- DataIterator -->
+</template>
+
+<script>
+export default {
+  props: ["title"],
+  data() {
+    return {
+      fields: [
+        {
+          source: "userId",
+          type: "reference",
+          attributes: { reference: "users", link: "edit", chip: true },
+        },
+        { source: "title", type: "text" },
+        { source: "body", type: "text" },
+      ],
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
+```
+
+Note as we add a specific `attributes` field property that allows specific usage of props or any attributes that inner field component can accept. Check [full reference here](components/fields.md). In case of [reference field](components/fields.md#reference), we can see it can accept a specific `resource` prop where we should put the name of the target linked resource. Then it will show a direct link towards user show page. Use `action` prop if different thant default `show` page. Use `chip` for material chip instead of basic anchor.
+
+Now it will be better with a real name instead of basic ID. But the API don't give us this info. However JSON server API allows linked resource expand on demand. You can see it by using this query `/posts/1?_expand=user` :
+
+```json {6-28}
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+  "user": {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": {
+        "lat": "-37.3159",
+        "lng": "81.1496"
+      }
+    },
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    }
+  }
+}
+```
+
+:::warning NO AUTOFETCH FROM USERS ?
+Contrary to React Admin equivalent, reference field doesn't support autofetching target resource from API. Instead we prefer to rely on backend capacity to give full object on demand that allows internal eager loading for better performance.
+:::
+
+So how can use it ? Simply by using specific `include` prop of `VaDataIterator` component. In case of JSON server data provider, it's an object which accepts both `expand` and `nested` property. Then don't forget to change `userId` to `user` as source prop for reference field.
+
+```vue {9,24}
+<template>
+  <v-card>
+    <!-- Title -->
+    <v-card-text>
+      <va-data-iterator
+        v-slot="props"
+        v-model="selected"
+        :options.sync="options"
+        :include="{ expand: ['user'] }"
+      >
+        <!-- DataTable -->
+      </va-data-iterator>
+    </v-card-text>
+  </v-card>
+</template>
+
+<script>
+export default {
+  props: ["title"],
+  data() {
+    return {
+      fields: [
+        {
+          source: "user",
+          type: "reference",
+          attributes: { reference: "users", action: "edit", chip: true },
+        },
+        //...
+      ],
+      //...
+    };
+  },
+};
+</script>
+```
+
+But now you have an ugly full json object. How can we stringify it ? 2 options : either locally by using `itemText` prop or globally which is recommended as it will apply for all cases, notably autocomplete, referencable choices, etc. Just set the `label` property at the resource level. Note as it can be a function callback that take a valid resource object as argument. We will set it for both `posts` and `users` :
+
+**`src/resources/index.js`**
+
+```js {5,10}
+export default [
+  {
+    name: "posts",
+    icon: "mdi-post",
+    label: "title",
+  },
+  {
+    name: "users",
+    icon: "mdi-account",
+    label: "name",
+  },
+];
+```

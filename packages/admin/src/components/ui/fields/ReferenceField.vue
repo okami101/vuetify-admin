@@ -1,11 +1,13 @@
 <template>
-  <v-chip v-if="chip" :color="getColor(value)" :small="small" :to="link">
-    <slot :value="value">{{ getItemText }}</slot>
-  </v-chip>
-  <router-link v-else :to="link">
-    <!-- @slot Content placeholder for further customization, guess the resource text by default. -->
-    <slot :value="value">{{ getItemText }}</slot>
-  </router-link>
+  <span v-if="value">
+    <v-chip v-if="chip" :color="getColor(value)" :small="small" :to="link">
+      <slot :value="value">{{ getItemText }}</slot>
+    </v-chip>
+    <router-link v-else :to="link">
+      <!-- @slot Content placeholder for further customization, guess the resource text by default. -->
+      <slot :value="value">{{ getItemText }}</slot>
+    </router-link>
+  </span>
 </template>
 
 <script>
@@ -24,10 +26,15 @@ export default {
     chip: Boolean,
   },
   computed: {
+    isPrimitiveValue() {
+      return this.value !== Object(this.value);
+    },
     link() {
       return {
         name: `${this.reference}_${this.action}`,
-        params: { id: this.value[this.itemValue] },
+        params: {
+          id: this.isPrimitiveValue ? this.value : this.value[this.itemValue],
+        },
       };
     },
     getItemText() {
@@ -37,7 +44,9 @@ export default {
       if (typeof text === "function") {
         return text(this.value);
       }
-      return this.value[text] || this.value;
+      return this.isPrimitiveValue
+        ? this.value
+        : this.value[text] || this.value;
     },
   },
 };

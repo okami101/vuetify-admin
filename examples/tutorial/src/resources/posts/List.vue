@@ -10,6 +10,7 @@
         v-slot="props"
         v-model="selected"
         :options.sync="options"
+        :include="{ expand: ['user'] }"
       >
         <va-data-table
           :fields="fields"
@@ -29,6 +30,11 @@ export default {
   data() {
     return {
       fields: [
+        {
+          source: "user",
+          type: "reference",
+          attributes: { reference: "users", action: "edit", chip: true },
+        },
         { source: "title", type: "text" },
         { source: "body", type: "text" },
       ],
