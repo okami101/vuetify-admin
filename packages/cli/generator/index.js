@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-module.exports = (api) => {
+module.exports = (api, options) => {
   api.injectImports(api.entryFile, [
     `import admin from "./plugins/admin";`,
     `import "./plugins/base";`,
@@ -25,7 +25,10 @@ module.exports = (api) => {
     },
   });
 
-  api.render("./template");
+  api.render("./template", {
+    data: options.dataProvider,
+    auth: options.authProvider,
+  });
 
   api.onCreateComplete(() => {
     /**
@@ -33,6 +36,7 @@ module.exports = (api) => {
      */
     [
       "src/components/HelloWorld.vue",
+      "src/components/HelloI18n.vue",
       "src/views/Home.vue",
       "src/views/About.vue",
     ].forEach((file) => {

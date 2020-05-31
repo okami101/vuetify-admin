@@ -3,9 +3,14 @@ import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/src/loader";
 
+
 import {
-  laravelDataProvider,
-  sanctumAuthProvider,
+<%_ if (data) { _%>
+  <%- data %>DataProvider,
+<%_ } _%>
+<%_ if (auth) { _%>
+  <%- auth %>AuthProvider,
+<%_ } _%>
 } from "vtec-admin/src/providers";
 import { en, fr } from "vtec-admin/src/locales";
 
@@ -47,8 +52,12 @@ export default new VtecAdmin({
     en: i18n.t("locales.english"),
     fr: i18n.t("locales.french"),
   },
-  authProvider: sanctumAuthProvider(http),
-  dataProvider: laravelDataProvider(http),
+<%_ if (data) { _%>
+  dataProvider: <%- data %>DataProvider(http),
+<%_ } _%>
+<%_ if (auth) { _%>
+  authProvider: <%- auth %>AuthProvider(http),
+<%_ } _%>
   resources,
   axios: http,
   options: {
