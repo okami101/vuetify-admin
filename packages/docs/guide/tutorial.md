@@ -450,3 +450,7 @@ export default [
   },
 ];
 ```
+
+Then you should have nice labelized chip for users :
+
+![relationships](/assets/tutorial/relationships.png)
