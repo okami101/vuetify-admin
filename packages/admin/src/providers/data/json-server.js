@@ -30,14 +30,20 @@ export default (axios) => {
           return { url: resource, query: { id: params.ids } };
         }
 
-        let { page, perPage } = pagination;
-
         query = {
           ...query,
           ...filter,
-          _start: (page - 1) * perPage,
-          _end: page * perPage,
         };
+
+        if (pagination) {
+          let { page, perPage } = pagination;
+
+          query = {
+            ...query,
+            _start: (page - 1) * perPage,
+            _end: page * perPage,
+          };
+        }
 
         if (sort && sort.length) {
           query = {
