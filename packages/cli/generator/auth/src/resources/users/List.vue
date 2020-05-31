@@ -22,7 +22,15 @@
             disable-show-redirect
             disable-edit-redirect
             @item-action="onAction"
-          ></va-data-table>
+          >
+            <template v-slot:item.actions="{ resource, item }">
+              <impersonate-button
+                :resource="resource"
+                :item="item"
+                icon
+              ></impersonate-button>
+            </template>
+          </va-data-table>
         </template>
       </va-data-iterator>
     </base-material-card>
@@ -30,7 +38,12 @@
 </template>
 
 <script>
+import ImpersonateButton from "@/components/buttons/ImpersonateButton";
+
 export default {
+  components: {
+    ImpersonateButton,
+  },
   props: ["resource", "title"],
   data() {
     return {

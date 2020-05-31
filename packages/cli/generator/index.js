@@ -28,7 +28,16 @@ module.exports = (api, options) => {
   api.render("./template", {
     data: options.dataProvider,
     auth: options.authProvider,
+    apiURL: options.apiURL,
+    dashboard: options.staticDashboard,
   });
+
+  if (options.authProvider) {
+    /**
+     * Auth related templates + impersonation
+     */
+    api.render("./auth");
+  }
 
   api.onCreateComplete(() => {
     /**

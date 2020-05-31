@@ -6,9 +6,11 @@ Also a good way to quickly test Vtec Admin with a fake backend.
 
 ## How to run
 
-### Backend
+### Backend API
 
-It's really adviced to run placeholder backend on local instead of current online version for no saturate it. Don't worry it's done in less than 5 minutes. First download this [Json file DB](https://github.com/typicode/jsonplaceholder/raw/master/data.json). Then start the terminal from where you put the file and do next steps :
+It's really adviced to run placeholder backend on local instead of current online version for no saturate it. Don't worry it's done in less than 5 minutes. First .  :
+
+Download this [Json file DB](https://github.com/typicode/jsonplaceholder/raw/master/data.json), Then start the terminal from where you put the file and do next steps :
 
 ```bash
 npm install -g json-server

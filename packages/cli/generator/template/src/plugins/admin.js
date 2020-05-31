@@ -30,7 +30,7 @@ Vue.use(VtecAdmin);
 /**
  * Axios instance
  */
-const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
+const baseURL = process.env.VUE_APP_API_URL || "<%- apiURL %>";
 
 const http = axios.create({
   baseURL,

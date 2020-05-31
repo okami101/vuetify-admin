@@ -26,7 +26,7 @@ module.exports = [
     default: false,
     choices: [
       {
-        name: "Guest",
+        name: "Guest (so no login or profile pages)",
         value: false,
       },
       {
@@ -42,5 +42,17 @@ module.exports = [
         value: "basic",
       },
     ],
+  },
+  {
+    type: "input",
+    name: "apiURL",
+    message: "URL of you API endpoint :",
+    default: "http://localhost:3000",
+  },
+  {
+    type: "confirm",
+    name: "staticDashboard",
+    message: "Use nice default material dashboard with static data :",
+    default: false,
   },
 ];

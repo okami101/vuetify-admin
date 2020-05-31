@@ -167,6 +167,10 @@ export default class VtecAdmin {
       let getLink = ({ name, icon, text, action }) => {
         action = action || "list";
         let resource = this.getResource(name);
+
+        if (!resource) {
+          return false;
+        }
         let { canAction, singularName, pluralName } = resource;
 
         if (!canAction(action)) {

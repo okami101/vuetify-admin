@@ -1,5 +1,3 @@
 <template>
-  <div>
-    JSONPlaceholder Sample
-  </div>
+  <div></div>
 </template>

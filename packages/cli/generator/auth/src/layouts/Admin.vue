@@ -3,12 +3,16 @@
     <va-app-bar
       slot="app-bar"
       :header-menu="headerMenu"
+      :profile-menu="profileMenu"
       dense
       dark
       @mini="mini = !mini"
     ></va-app-bar>
     <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
-    <va-breadcrumbs slot="header"></va-breadcrumbs>
+    <template slot="header">
+      <va-breadcrumbs></va-breadcrumbs>
+      <impersonate-message></impersonate-message>
+    </template>
     <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
@@ -26,10 +30,14 @@
 </template>
 
 <script>
+import ImpersonateMessage from "@/components/ImpersonateMessage";
 import nav from "../_nav";
 
 export default {
   name: "App",
+  components: {
+    ImpersonateMessage,
+  },
   data() {
     return {
       mini: false,
@@ -51,6 +59,13 @@ export default {
         {
           href: "#",
           text: "License",
+        },
+      ],
+      profileMenu: [
+        {
+          icon: "mdi-account",
+          text: this.$t("menu.profile"),
+          link: "/profile",
         },
       ],
       sidebarMenu: nav(this.$i18n, this.$admin),

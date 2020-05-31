@@ -83,7 +83,6 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  name: "AppHeader",
   data() {
     return {
       accountUpdating: false,
