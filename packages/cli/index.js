@@ -1,6 +1,6 @@
 module.exports = (api) => {
-  const make = require("./make");
-  const yaml = require("./yaml");
+  const make = require("./commands/make");
+  const yaml = require("./commands/yaml");
   api.registerCommand("crud:make", make.options, (args, rawArgs) =>
     make.service(rawArgs[0], args, api)
   );

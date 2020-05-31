@@ -1,6 +1,7 @@
-# Vtec Admin Tutorial
+# Vtec Admin Generators
 
-Tutorial project with both Laravel backend and admin Vue CLI. Most code of this project has been generated. This should be the final state after following the [dedicated docs](https://vtec.okami101.io/guide/tutorial.html).  
+Generators showcase project with both Laravel backend and admin Vue CLI. Most code of this project has been generated as shown in this [dedicated guide](https://vtec.okami101.io/guide/generators.html).
+
 This is the perfect way to show the power of both backend and client generators. Ideal place for code generation testing by using [included YAML sample generators](admin/generators).
 
 ## How to run
@@ -19,15 +20,13 @@ php artisan serve # Should run at localhost:8000 as default
 
 ### Admin UI
 
-Before use following commands, you must build main Vtec Admin library. Run `make build-admin` from root of this repo for that.
-
 ```bash
 cd admin
 yarn
 yarn serve
 ```
 
-> Then on localhost:8080, you should be able to login as admin@example.com / password
+Then on localhost:8080, you should be able to login as admin@example.com / password
 
 ## License
 
