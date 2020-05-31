@@ -95,6 +95,10 @@ Then you're already ready to run the Admin UI by `cd admin && yarn serve`
 
 ## Generators
 
+:::warning API ONLY
+This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators.md#admin-ui).
+:::
+
 This package provides 2 specific crud generator commands. Use `php artisan crud:make [MyNewResource] [options]` with many as options as possible in order to scaffolding following files :
 
 * Model
@@ -144,12 +148,8 @@ For even more auto generation power, and because `crud:make` can be exhausting t
 
 Use `name` option in order to import only targetted resource.
 
-:::tip FULL YAML STUDY
-Go to [dedicated YAML section](generators.md#yaml) for full explanation.
-:::
-
-:::warning API ONLY
-This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators.md#admin-ui).
+:::tip YAML TUTORIAL
+Go to [dedicated YAML section](generators.md#yaml) for full explanation with advanced tutorial.
 :::
 
 ## Other internal traits or services included

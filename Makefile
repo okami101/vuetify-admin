@@ -7,7 +7,7 @@ install-laravel-demo: ## install laravel demo dependencies
 	@cd ./examples/laravel && composer install
 
 install-laravel-tutorial: ## install laravel tutorial dependencies
-	@cd ./examples/tutorial && composer install
+	@cd ./examples/generators && composer install
 
 run-demo: ## run the demo example
 	@cd ./examples/demo && yarn serve --open
@@ -26,7 +26,7 @@ serve-laravel-demo: ## serve laravel demo
 	@cd ./examples/laravel && php artisan serve
 
 serve-laravel-tutorial: ## serve laravel tutorial
-	@cd ./examples/tutorial && php artisan serve
+	@cd ./examples/generators && php artisan serve
 
 migrate-laravel-demo: ## migrate database laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force

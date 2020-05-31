@@ -64,22 +64,3 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
     <p>All specific user roles or permissions can be accessible on every CRUD pages for show/hide specific UI sections. All sidebar menu can be filtred as well as general resources operations.</p>
   </div>
 </div>
-
-:::tip HOW TO GET STARTED
-Select your most suitable guide :
-
-* If you choose Laravel as backend, follow [this optimized guide](guide/laravel.md).
-* For all other cases, follow [the standard Vue CLI path](guide/getting-started.md).
-
-For best explanation of **CRUD code generators** feature, follow [this tutorial](guide/tutorial.md).
-:::
-
-### All Vtec Admin related projects
-
-* [Vtec Admin Library](https://npm.okami101.io/-/web/detail/vtec-admin), the main admin library.
-* [Vtec Admin Vue CLI Plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin), the associated Vue CLI plugin which contains all base code boilerplate for quick install and UI commands code generator.
-* [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud), composer package to use on fresh Laravel project which facilitates Vtec Admin integration and includes server-side API commands generator.
-* [Bookstore Admin Demo](https://github.com/okami101/vtec-admin/tree/master/examples/demo), full-featured admin sample build on top of main Vtec Admin Library.
-* [Bookstore Laravel Demo](https://github.com/okami101/vtec-admin/tree/master/examples/laravel), suitable API backend for bookstore admin demo based on Laravel.
-* [Admin Tutorial](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial), finished tutorial after following [dedicated docs](guide/tutorial.md) which aims to made a good showcase of YAML code generation power.
-* [Vtec Docs](https://github.com/okami101/vtec-admin/tree/master/packages/docs), vuepress docs.
