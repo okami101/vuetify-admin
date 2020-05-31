@@ -61,6 +61,10 @@ Finally, the installer will integrate some code to get basic features working wi
 You can still generate new admin UI without reuse full installer by using `php artisan vtec:ui`.
 :::
 
+:::tip DIRECTORY STRUCTURE
+See [this getting started section](getting-started.md#directory-structure) for more detail of what you get inside the `admin` folder.
+:::
+
 ## Usage
 
 ### Run backend API
@@ -85,19 +89,9 @@ By default admin URL is configured at [http://localhost:8080](http://localhost:8
 Dont forget to edit it on production. Just edit ADMIN_URL environment variable for that.
 :::
 
-### Run admin UI
+### Run Admin UI
   
-Finish UI installation by installing dedicated [Vtec Admin Vue CLI plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin) :
-
-```bash
-cd admin
-vue add vtec-admin # Will generated all minimal admin boilerplate as well as UI crud commands
-yarn serve
-```
-
-:::tip DIRECTORY STRUCTURE
-See [this getting started section](getting-started.md#directory-structure) for more detail of what you get inside the `admin` folder.
-:::
+Then you're already ready to run the Admin UI by `cd admin && yarn serve`
 
 ## Generators
 
