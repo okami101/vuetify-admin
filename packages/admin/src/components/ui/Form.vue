@@ -62,18 +62,22 @@ export default {
   },
   data() {
     return {
+      originalValue: this.value,
       formState: {
         edit: !!this.id,
         item: this.item,
         model: {},
         errors: [],
         update: ({ source, value }) => {
-          set(this.formState.model, source, value);
+          let model = { ...this.formState.model };
+          set(model, source, value);
+
+          this.formState.model = model;
 
           /**
            * Send model update, called after each single input change.
            */
-          this.$emit("input", this.formState.model);
+          this.$emit("input", model);
         },
         submit: (redirect) => {
           this.save(redirect);
@@ -83,6 +87,9 @@ export default {
   },
   watch: {
     item(val) {
+      if (!val) {
+        this.formState.model = this.originalValue;
+      }
       this.formState.item = val;
     },
     value: {
@@ -137,7 +144,7 @@ export default {
           case "create":
             // Reset form in case of same route
             this.formState.item = null;
-            this.formState.model = {};
+            this.formState.model = this.originalValue;
 
             this.$router.push({ name: `${this.resource}_create` });
             break;

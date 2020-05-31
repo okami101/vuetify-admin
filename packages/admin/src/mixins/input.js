@@ -46,6 +46,16 @@ export default {
       },
       immediate: true,
     },
+    "formState.item"(val) {
+      /**
+       * Only if item change, mainly for form in aside case (users).
+       */
+      if (this.acceptValue) {
+        this.update(
+          this.getItem(get(val || this.formState.model, this.uniqueFormId))
+        );
+      }
+    },
     "formState.errors"(val) {
       this.errorMessages = val[this.uniqueFormId] || [];
     },

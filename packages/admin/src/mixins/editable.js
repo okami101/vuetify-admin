@@ -6,6 +6,10 @@ import { mapActions } from "vuex";
 export default {
   props: {
     /**
+     * Full item resource to be editable.
+     */
+    item: null,
+    /**
      * Mark this field as live-editable.
      * If enabled, the input will send directly a call to the API for live edit on change.
      * Ideal for editable input inside VaDataTable, with combination of `editable` prop for each column.
