@@ -12,6 +12,9 @@ install-laravel-tutorial: ## install laravel tutorial dependencies
 run-demo: ## run the demo example
 	@cd ./examples/demo && yarn serve --open
 
+run-jsonplaceholder: ## run the jsonplaceholder example
+	@cd ./examples/jsonplaceholder && yarn serve --open
+
 run-tutorial: ## run the tutorial example
 	@cd ./examples/tutorial/admin && yarn serve --open
 

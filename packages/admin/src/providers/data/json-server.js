@@ -8,95 +8,69 @@ import {
   DELETE,
   DELETE_MANY,
 } from "./actions";
+import qs from "qs";
 
 export default (axios) => {
   const getRequest = (type, resource, params = {}) => {
-    const searchParams = new URLSearchParams();
-    const itemURL = `${resource}/${params.id}`;
-
-    if (params.locale) {
-      searchParams.append("locale", params.locale);
-    }
-
     switch (type) {
       case GET_LIST:
       case GET_MANY:
-        const { pagination, sort, filter } = params;
+        const { include, pagination, sort, filter } = params;
+        let query = {};
+
+        if (include) {
+          let { embed, expand } = include;
+          query = {
+            _embed: embed,
+            _expand: expand,
+          };
+        }
 
         if (type === GET_MANY) {
-          params.ids.forEach((id) => {
-            searchParams.append("id", id);
-          });
-          return { url: `${resource}?${searchParams.toString()}` };
+          return { url: resource, query: { id: params.ids } };
         }
 
-        if (pagination) {
-          let { page, perPage } = pagination;
-          const query = {
-            ...params.filter,
-            _sort: field,
-            _order: order,
-            _start: (page - 1) * perPage,
-            _end: page * perPage,
+        let { page, perPage } = pagination;
+
+        query = {
+          ...query,
+          ...filter,
+          _start: (page - 1) * perPage,
+          _end: page * perPage,
+        };
+
+        if (sort && sort.length) {
+          query = {
+            _sort: sort.map((item) => item.by),
+            _order: sort.map((item) => (item.desc ? "desc" : "asc")),
           };
-
-          if (page) {
-            searchParams.append("page", page);
-          }
-          if (perPage) {
-            searchParams.append("perPage", perPage);
-          }
-        }
-        if (sort) {
-          let param = sort
-            .map((item) => {
-              let { by, desc } = item;
-
-              if (desc) {
-                return `-${by}`;
-              }
-              return by;
-            })
-            .join(",");
-
-          if (param) searchParams.append("sort", param);
         }
 
-        if (filter) {
-          Object.keys(filter).forEach((key) => {
-            if (filter[key] !== "") {
-              searchParams.append(`filter[${key}]`, filter[key]);
-            }
-          });
-        }
-
-        return { url: resource, query: searchParams.toString() };
+        return {
+          url: resource,
+          query,
+        };
 
       case GET_ONE:
-        return { url: itemURL, query: searchParams.toString() };
+        return { url: `${resource}/${params.id}` };
 
       case CREATE:
         return {
           url: resource,
-          query: searchParams.toString(),
           method: "post",
-          data: objectToFormData(params.data),
+          data: params.data,
         };
 
       case UPDATE:
-        let form = objectToFormData(params.data);
-        form.append("_method", "PUT");
-
         return {
-          url: itemURL,
-          query: searchParams.toString(),
-          method: "post",
-          data: form,
+          url: `${resource}/${params.id}`,
+          method: "put",
+          data: params.data,
         };
 
       case DELETE:
         return {
-          url: itemURL,
+          url: `${resource}/${params.id}`,
           method: "delete",
         };
 
@@ -110,7 +84,7 @@ export default (axios) => {
     let { url, query, method, data } = getRequest(type, resource, params);
 
     if (query) {
-      url += `?${query}`;
+      url += `?${qs.stringify(query, { arrayFormat: "comma" })}`;
     }
 
     try {
@@ -130,11 +104,11 @@ export default (axios) => {
     switch (type) {
       case GET_LIST:
       case GET_MANY:
-        let { data, meta } = response.data;
+        let { data, headers } = response;
 
         return Promise.resolve({
           data,
-          total: meta ? meta.total : data.length,
+          total: parseInt(headers["x-total-count"], 10),
         });
       case DELETE:
         return Promise.resolve();
@@ -142,7 +116,7 @@ export default (axios) => {
       case GET_ONE:
       case CREATE:
       case UPDATE:
-        return Promise.resolve(response.data);
+        return Promise.resolve(response);
     }
   };
 

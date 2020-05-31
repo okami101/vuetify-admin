@@ -24,27 +24,17 @@
 </template>
 
 <script>
-import { guessFields } from "../../../utils/guesser";
-
 export default {
-  props: ["resource", "title"],
+  props: ["title"],
   data() {
     return {
-      fields: [],
+      fields: [
+        { source: "title", type: "text" },
+        { source: "body", type: "text" },
+      ],
       options: {},
       selected: [],
     };
-  },
-  async mounted() {
-    this.fields = await guessFields(
-      this.$store,
-      this.$i18n,
-      this.resource.name
-    );
-
-    if (this.$guessLogger) {
-      this.$guessLogger(this.resource.name, "list", this.fields);
-    }
   },
 };
 </script>

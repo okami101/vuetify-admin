@@ -42,7 +42,7 @@ export default (axios, baseURL = "/api") => {
           filter,
         };
 
-        if (sort.length) {
+        if (sort && sort.length) {
           query.sort = sort.map((item) => {
             let { by, desc } = item;
 

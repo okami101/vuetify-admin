@@ -43,7 +43,7 @@ export default {
      * Sent to your data provider inside `include` params.
      */
     include: {
-      type: Array,
+      type: [Array, Object],
       default: () => [],
     },
     /**

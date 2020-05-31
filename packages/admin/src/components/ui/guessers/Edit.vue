@@ -41,7 +41,7 @@ export default {
     );
 
     if (this.$guessLogger) {
-      this.$guessLogger(this.resource.name, "create", this.inputs);
+      this.$guessLogger(this.resource.name, "edit", this.inputs);
     }
   },
 };

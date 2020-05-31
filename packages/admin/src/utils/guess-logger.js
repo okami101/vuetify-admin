@@ -140,7 +140,14 @@ const logger = (resource, action, fields) => {
   );
   console.log(
     ejs.render(templates[action], {
-      fields: action === "list" ? util.inspect(fields) : fields,
+      fields:
+        action === "list"
+          ? util.inspect(
+              fields.map((f) => {
+                return { ...f };
+              })
+            )
+          : fields,
     })
   );
 };
