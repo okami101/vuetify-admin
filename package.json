@@ -16,8 +16,8 @@
   "workspaces": [
     "packages/*",
     "examples/demo",
-    "examples/jsonplaceholder",
-    "examples/tutorial/admin"
+    "examples/tutorial",
+    "examples/generators/admin"
   ],
   "resolutions": {
     "watchpack": "1.6.1"
