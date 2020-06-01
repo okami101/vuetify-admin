@@ -13,7 +13,7 @@ export default {
      * @model
      */
     value: {
-      type: [String, Array],
+      type: [String, Number, Array],
       default: null,
     },
     /**

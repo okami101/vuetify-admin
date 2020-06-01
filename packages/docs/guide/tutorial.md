@@ -95,11 +95,13 @@ export default {
 </script>
 ```
 
-Will render as next :
+As you can see, fields for datatable are just an list of object. `source` correspond to the targetted property of resource item where to get the value and `type` is the best suited field for display it on table cells. For basic text a simple string can be put in place of full object. `source` support dot notation as well.
 
 ![users-list](/assets/tutorial/users-list.png)
 
-As you can see, fields for datatable are just an list of object. `source` correspond to the targetted property of resource item where to get the value and `type` is the best suited field for display it on table cells. For basic text a simple string can be put in place of full object. `source` support dot notation as well. More detail [here](crud/list.md#fields). All supported fields is [listed here](components/fields.md).
+:::tip FULL DOCUMENTATION
+More detail [here](crud/list.md#fields). See [all supported fields](components/fields.md).
+:::
 
 :::tip LABEL CUSTOMIZATION
 You can use `label` property to customize header column label. However, it's more appropriate to use locales of Vue I18n, because you will have to think about it only once for all fields and inputs, as the default `source` prop will be the main key. Each property of each resource must follow a convention in order to be recognized. See [dedicated section](i18n.md) if you want more.
@@ -703,5 +705,55 @@ Just use `userId` as source, `users` as reference and you're done :
 ![relationships-select](/assets/tutorial/relationships-select.png)
 
 :::tip AUTOCOMPLETE
-Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User search will be already functional by using default `q` full text search of JSON Server.
+Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User search will be already functional by using default `q` query parameter for full text search of JSON Server.
+:::
+
+## Filters
+
+So we have global search as default filter from posts page list. It will be trivial to have the possibility to filter by user to. It's also as simple as adding fields. Simply add a new select filter object and bind it to `VaDataIterator` component as next :
+
+```vue {5,19-26}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator
+      :filters="filters"
+      v-slot="props"
+      v-model="selected"
+      :options.sync="options"
+    >
+      <!-- DataTable -->
+    </va-data-iterator>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      filters: [
+        {
+          source: "userId",
+          type: "select",
+          alwaysOn: true,
+          attributes: { reference: "users" },
+        },
+      ],
+      //...
+    };
+  },
+};
+</script>
+```
+
+It's a simple object that will translate it on valid supported inputs that react as you type. Same behavior than fields apply for `source`, `type`, and `attributes`. Note as by default filter is hidden under a dropdowns next to global actions on right side. It will allow filter activation on demand, without UI pollution with many inputs. the `alwaysOn` prop will always reveal filter without being able to remove it.
+
+![filters](/assets/tutorial/filters.png)
+
+:::tip FULL DOCUMENTATION
+More detail [here](crud/list.md#filters). See [all supported inputs](components/inputs.md).
+:::
+
+:::tip FILTER TEMPLATING
+It's possible to use direct Vue.js code for filters via [filter slots](crud/list.md#filter-templating).
 :::

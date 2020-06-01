@@ -1,6 +1,11 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
+    <va-data-iterator
+      :filters="filters"
+      v-slot="props"
+      v-model="selected"
+      :options.sync="options"
+    >
       <va-data-table
         :fields="fields"
         v-bind="props"
@@ -17,6 +22,14 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
+      filters: [
+        {
+          source: "userId",
+          type: "select",
+          alwaysOn: true,
+          attributes: { reference: "users" },
+        },
+      ],
       fields: [
         {
           source: "user",
