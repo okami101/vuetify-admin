@@ -30,6 +30,10 @@ module.exports = [
         value: false,
       },
       {
+        name: "I will implementing my own",
+        value: "custom",
+      },
+      {
         name: "Larvel Sanctum (cookies)",
         value: "sanctum",
       },

@@ -41,7 +41,7 @@ vue add i18n
 vue add vtec-admin
 ```
 
-The last step will finish installation process with additional questions. Select `JSON Server` as **data provider**, you can always edit it after by simple couple of code lines. Let the approprate default **API endpoint** according to the local previous launched JSON server. In this tutorial we don't need (for now) any **authentication** or full **static dashboard** so we can let them disabled. Then launch app by `yarn serve` you should arrive to this step :
+The last step will finish installation process with additional questions. Select `JSON Server` as **data provider**, you can always edit it after by simple couple of code lines. Let the appropriate default **API endpoint** according to the local previous launched JSON server. In this tutorial we don't need (for now) any **authentication** so we can let it disabled. Enabled **users** and **material** theme, no need for **static dashboard**. Then launch app by `yarn serve` you should arrive to this step :
 
 ![dashboard](/assets/tutorial/dashboard.png)
 
@@ -50,7 +50,7 @@ You can perfectly customize the layout, which is a simple template component in 
 :::
 
 :::tip CUSTOMIZE THE DASHBOARD
-The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching.
+The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching. You can find a full template code based on material theme [here](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/dashboard/src/views/Dashboard.vue).
 :::
 
 ## Data Provider
@@ -761,3 +761,11 @@ More detail [here](crud/list.md#filters). See [all supported inputs](components/
 :::tip FILTER TEMPLATING
 It's possible to use direct Vue.js code for filters via [filter slots](crud/list.md#filter-templating).
 :::
+
+## Go further
+
+### Authentication
+
+You can find a full [dedicated section](authentication.md) for authentication API integration, either by using provided ones or implementing your own.
+
+It' preferable to enable authentication at first Vue CLI install by selecting any valid or custom auth provider as it will install all functional Login and Profile templates for you.

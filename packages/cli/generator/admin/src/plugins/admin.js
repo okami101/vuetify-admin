@@ -3,12 +3,11 @@ import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/src/loader";
 
-
 import {
 <%_ if (data) { _%>
   <%- data %>DataProvider,
 <%_ } _%>
-<%_ if (auth) { _%>
+<%_ if (auth && auth !== "custom") { _%>
   <%- auth %>AuthProvider,
 <%_ } _%>
 } from "vtec-admin/src/providers";
