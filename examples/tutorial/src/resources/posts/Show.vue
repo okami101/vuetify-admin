@@ -1,9 +1,14 @@
 <template>
-  <va-show-layout :title="title">
+  <va-show-layout>
     <va-show :item="item">
       <v-row justify="center">
         <v-col sm="4">
-          <v-card>
+          <base-material-card>
+            <template v-slot:heading>
+              <div class="display-2">
+                {{ title }}
+              </div>
+            </template>
             <v-card-text>
               <va-field
                 source="user"
@@ -14,7 +19,7 @@
               <va-field source="title"></va-field>
               <va-field source="body"></va-field>
             </v-card-text>
-          </v-card>
+          </base-material-card>
         </v-col>
       </v-row>
     </va-show>

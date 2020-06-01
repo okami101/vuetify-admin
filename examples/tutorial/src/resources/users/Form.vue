@@ -2,7 +2,12 @@
   <va-form :id="id" :item="item" :saving.sync="saving">
     <v-row justify="center">
       <v-col sm="6">
-        <v-card>
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
           <v-card-text>
             <va-text-input source="name"></va-text-input>
             <v-row>
@@ -33,7 +38,7 @@
             <va-text-input source="company.name"></va-text-input>
             <va-save-button :saving="saving"></va-save-button>
           </v-card-text>
-        </v-card>
+        </base-material-card>
       </v-col>
     </v-row>
   </va-form>
@@ -41,7 +46,7 @@
 
 <script>
 export default {
-  props: ["id", "item"],
+  props: ["id", "title", "item"],
   data() {
     return {
       saving: false,

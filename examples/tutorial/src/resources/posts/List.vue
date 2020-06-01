@@ -1,31 +1,20 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h1 class="display-2">
-        {{ title }}
-      </h1>
-    </v-card-title>
-    <v-card-text>
-      <va-data-iterator
-        v-slot="props"
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
+      <va-data-table
+        :fields="fields"
+        v-bind="props"
         v-model="selected"
         :options.sync="options"
       >
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-        </va-data-table>
-      </va-data-iterator>
-    </v-card-text>
-  </v-card>
+      </va-data-table>
+    </va-data-iterator>
+  </base-material-card>
 </template>
 
 <script>
 export default {
-  props: ["title"],
+  props: ["resource", "title"],
   data() {
     return {
       fields: [

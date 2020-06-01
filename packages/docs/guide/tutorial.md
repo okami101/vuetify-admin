@@ -239,6 +239,80 @@ As you can guess, by theirs own nature, this fallback pages should not be used o
 
 As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. `List`, `Create`, `Show`, `Edit`. No you're ready for full customization !
 
+Sample for posts list :
+
+**`src/resources/posts/List.vue`**
+
+```vue
+<template>
+  <v-card>
+    <v-card-title>
+      <h1 class="display-2">
+        {{ title }}
+      </h1>
+    </v-card-title>
+    <v-card-text>
+      <va-data-iterator
+        v-slot="props"
+        v-model="selected"
+        :options.sync="options"
+      >
+        <va-data-table
+          :fields="fields"
+          v-bind="props"
+          v-model="selected"
+          :options.sync="options"
+        >
+        </va-data-table>
+      </va-data-iterator>
+    </v-card-text>
+  </v-card>
+</template>
+
+<script>
+export default {
+  props: ["title"],
+  data() {
+    return {
+      fields: [
+        {
+          source: "user",
+          type: "reference",
+          attributes: { reference: "users", action: "edit", chip: true },
+        },
+        { source: "title", type: "text" },
+        { source: "body", type: "text" },
+      ],
+      options: {},
+      selected: [],
+    };
+  },
+};
+</script>
+```
+
+:::tip MATERIAL CARD
+Vtec Admin doesn't know about any custom UI components on client side and will print basic `VCard` by default. If you want use nicer `BaseMaterialCard` component instead, just replace `VCard` as next :
+
+```vue {2,6,11}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
+      <!-- DataTable -->
+    </va-data-iterator>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  //...
+};
+</script>
+```
+
+:::
+
 ## Use dedicated show, create and edit page for users
 
 If you don't like the default aside for users, we can use the same above methods for quickly create dedicated CRUD pages for users. Simply remove actions filter from next file :
@@ -265,21 +339,19 @@ It will active all CRUD routes actions for user. Now delete `src/resources/users
 
 ```vue
 <template>
-  <div>
-    <base-material-card :icon="resource.icon" :title="title">
-      <va-data-iterator v-model="selected" :options.sync="options">
-        <template v-slot="props">
-          <va-data-table
-            :fields="fields"
-            v-bind="props"
-            v-model="selected"
-            :options.sync="options"
-          >
-          </va-data-table>
-        </template>
-      </va-data-iterator>
-    </base-material-card>
-  </div>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-data-iterator v-model="selected" :options.sync="options">
+      <template v-slot="props">
+        <va-data-table
+          :fields="fields"
+          v-bind="props"
+          v-model="selected"
+          :options.sync="options"
+        >
+        </va-data-table>
+      </template>
+    </va-data-iterator>
+  </base-material-card>
 </template>
 
 <script>
@@ -306,6 +378,146 @@ export default {
 ```
 
 Next recreate `Show`, `Edit` and `Create` as you have done for above `posts`.
+
+## Show pages
+
+Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component infector, aka `VaShow` that wil inject current ressource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
+
+**`src/resources/users/Show.vue`**
+
+```vue
+<template>
+  <va-show-layout>
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col sm="4">
+          <base-material-card>
+            <template v-slot:heading>
+              <div class="display-2">
+                {{ title }}
+              </div>
+            </template>
+            <v-card-text>
+              <va-field source="name"></va-field>
+              <va-field source="username"></va-field>
+              <va-field source="email"></va-field>
+              <va-field source="address" type="address"></va-field>
+              <va-field source="phone"></va-field>
+              <va-field source="website" type="url"></va-field>
+              <va-field source="company.name"></va-field>
+            </v-card-text>
+          </base-material-card>
+        </v-col>
+      </v-row>
+    </va-show>
+  </va-show-layout>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
+
+It's enough to render :
+
+![show](/assets/tutorial/show.png)
+
+:::tip FULL DOCUMENTATION
+See [dedicated section](crud/show.md).
+:::
+
+## Create and edit pages
+
+Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next exemple for user edition page :
+
+**`src/resources/users/Edit.vue`**
+
+```vue
+<template>
+  <va-edit-layout :title="title">
+    <users-form :id="id" :item="item"></users-form>
+  </va-edit-layout>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+};
+</script>
+```
+
+**`src/resources/users/Form.vue`**
+
+```vue
+<template>
+  <va-form :id="id" :item="item" :saving.sync="saving">
+    <v-row justify="center">
+      <v-col sm="6">
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
+          <v-card-text>
+            <va-text-input source="name"></va-text-input>
+            <v-row>
+              <v-col>
+                <va-text-input source="username"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-text-input source="email"></va-text-input>
+              </v-col>
+            </v-row>
+            <va-text-input source="address.street"></va-text-input>
+            <v-row>
+              <v-col>
+                <va-text-input source="address.zipcode"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-text-input source="address.city"></va-text-input>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <va-text-input source="phone"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-text-input source="website"></va-text-input>
+              </v-col>
+            </v-row>
+            <va-text-input source="company.name"></va-text-input>
+            <va-save-button :saving="saving"></va-save-button>
+          </v-card-text>
+        </base-material-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+  data() {
+    return {
+      saving: false,
+    };
+  },
+};
+</script>
+```
+
+It's enough to render :
+
+![form](/assets/tutorial/form.png)
+
+As you can see, `VaForm` is simply a injector component that will register an internal full form model initialized by all VA inputs child components. This model is the one that will be sent to the API. For all supported inputs, go [here](components/inputs.md).
+
+:::tip FULL DOCUMENTATION
+See [dedicated section](crud/form.md).
+:::
 
 ## Relationships
 
@@ -397,7 +609,7 @@ So how can use it ? Simply by using specific `include` prop of `VaDataIterator` 
 
 ```vue {9,24}
 <template>
-  <v-card>
+  <base-material-card :icon="resource.icon" :title="title">
     <!-- Title -->
     <v-card-text>
       <va-data-iterator
@@ -409,12 +621,12 @@ So how can use it ? Simply by using specific `include` prop of `VaDataIterator` 
         <!-- DataTable -->
       </va-data-iterator>
     </v-card-text>
-  </v-card>
+  </base-material-card>
 </template>
 
 <script>
 export default {
-  props: ["title"],
+  props: ["resource", "title"],
   data() {
     return {
       fields: [
@@ -455,136 +667,6 @@ Then you should have nice labelized chip for users :
 
 ![relationships](/assets/tutorial/relationships.png)
 
-## Show pages
-
-Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component infector, aka `VaShow` that wil inject current ressource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
-
-**`src/resources/users/Show.vue`**
-
-```vue
-<template>
-  <va-show-layout :title="title">
-    <va-show :item="item">
-      <v-row justify="center">
-        <v-col sm="4">
-          <v-card>
-            <v-card-text>
-              <va-field source="name"></va-field>
-              <va-field source="username"></va-field>
-              <va-field source="email"></va-field>
-              <va-field source="address" type="address"></va-field>
-              <va-field source="phone"></va-field>
-              <va-field source="website" type="url"></va-field>
-              <va-field source="company.name"></va-field>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </va-show>
-  </va-show-layout>
-</template>
-
-<script>
-export default {
-  props: ["title", "item"],
-};
-</script>
-```
-
-It's enough to render :
-
-![show](/assets/tutorial/show.png)
-
 :::tip RELATIONSHIP IN SHOW PAGE
 Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaDataIterator` will use it as well if not defined, but it's still overridable.
-:::
-
-:::tip FULL DOCUMENTATION
-See [dedicated section](crud/show.md).
-:::
-
-## Create and edit pages
-
-Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next exemple for user edition page :
-
-**`src/resources/users/Edit.vue`**
-
-```vue
-<template>
-  <va-edit-layout :title="title">
-    <users-form :id="id" :item="item"></users-form>
-  </va-edit-layout>
-</template>
-
-<script>
-export default {
-  props: ["id", "title", "item"],
-};
-</script>
-```
-
-**`src/resources/users/Form.vue`**
-
-```vue
-<template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
-    <v-row justify="center">
-      <v-col sm="6">
-        <v-card>
-          <v-card-text>
-            <va-text-input source="name"></va-text-input>
-            <v-row>
-              <v-col>
-                <va-text-input source="username"></va-text-input>
-              </v-col>
-              <v-col>
-                <va-text-input source="email"></va-text-input>
-              </v-col>
-            </v-row>
-            <va-text-input source="address.street"></va-text-input>
-            <v-row>
-              <v-col>
-                <va-text-input source="address.zipcode"></va-text-input>
-              </v-col>
-              <v-col>
-                <va-text-input source="address.city"></va-text-input>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <va-text-input source="phone"></va-text-input>
-              </v-col>
-              <v-col>
-                <va-text-input source="website"></va-text-input>
-              </v-col>
-            </v-row>
-            <va-text-input source="company.name"></va-text-input>
-            <va-save-button :saving="saving"></va-save-button>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </va-form>
-</template>
-
-<script>
-export default {
-  props: ["id", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
-};
-</script>
-```
-
-It's enough to render :
-
-![form](/assets/tutorial/form.png)
-
-As you can see, `VaForm` is simply a injector component that will register an internal full form model initialized by all VA inputs child components. This model is the one that will be sent to the API. For all supported inputs, go [here](components/inputs.md).
-
-:::tip FULL DOCUMENTATION
-See [dedicated section](crud/form.md).
 :::
