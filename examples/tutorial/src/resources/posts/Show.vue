@@ -5,8 +5,14 @@
         <v-col sm="4">
           <v-card>
             <v-card-text>
-              <va-field source="title" type="text"></va-field>
-              <va-field source="body" type="text"></va-field>
+              <va-field
+                source="user"
+                type="reference"
+                reference="users"
+                chip
+              ></va-field>
+              <va-field source="title"></va-field>
+              <va-field source="body"></va-field>
             </v-card-text>
           </v-card>
         </v-col>

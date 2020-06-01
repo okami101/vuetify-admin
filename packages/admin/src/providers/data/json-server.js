@@ -58,7 +58,15 @@ export default (axios) => {
         };
 
       case GET_ONE:
-        return { url: `${resource}/${params.id}` };
+        if (params.include) {
+          let { embed, expand } = params.include;
+          query = {
+            _embed: embed,
+            _expand: expand,
+          };
+        }
+
+        return { url: `${resource}/${params.id}`, query };
 
       case CREATE:
         return {

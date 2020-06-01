@@ -10,7 +10,6 @@
         v-slot="props"
         v-model="selected"
         :options.sync="options"
-        :include="{ expand: ['user'] }"
       >
         <va-data-table
           :fields="fields"

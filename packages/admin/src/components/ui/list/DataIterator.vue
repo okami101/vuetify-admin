@@ -433,7 +433,9 @@ export default {
 
       let params = {
         fields: this.getFieldsQuery(this.resource, this.fields),
-        include: this.include,
+        include: isEmpty(this.include)
+          ? this.currentResource.include
+          : this.include,
         sort: (sortBy || []).map((by, index) => {
           return { by, desc: sortDesc[index] };
         }),

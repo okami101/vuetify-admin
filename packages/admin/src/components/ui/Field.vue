@@ -19,6 +19,7 @@
 
 <script>
 import Field from "../../mixins/field";
+import upperFirst from "lodash/upperFirst";
 
 /**
  * Wrapper component for field which support label localization and supported VA field, mainly used for show page.
@@ -35,9 +36,14 @@ export default {
     label: {
       type: String,
       default() {
-        return this.source
-          ? this.$t(`resources.${this.resource}.fields.${this.source}`)
-          : "";
+        let key = `resources.${this.resource}.fields.${this.source}`;
+
+        if (this.$te(key)) {
+          this.$t(key);
+        }
+
+        // Humanize source
+        return upperFirst(this.source.replace(".", " "));
       },
     },
     /**

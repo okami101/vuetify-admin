@@ -320,12 +320,15 @@ export default {
             : f;
         })
         .map((f) => {
+          let key = `resources.${this.resource}.fields.${f.source}`;
           return {
             ...f,
             type: f.type,
             label:
               f.label ||
-              this.$t(`resources.${this.resource}.fields.${f.source}`),
+              (this.$te(key)
+                ? this.$t(key)
+                : upperFirst(f.source.replace(".", " "))),
           };
         });
     },

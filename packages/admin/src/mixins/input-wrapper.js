@@ -1,3 +1,5 @@
+import upperFirst from "lodash/upperFirst";
+
 /**
  * Common props for all inputs.
  */
@@ -55,12 +57,18 @@ export default {
           return "";
         }
 
+        let key = `resources.${this.resource}.fields.${this.source}`;
+
         if (this.parentSource) {
-          return this.$t(
-            `resources.${this.resource}.fields.${this.parentSource}.${this.source}`
-          );
+          key = `resources.${this.resource}.fields.${this.parentSource}.${this.source}`;
         }
-        return this.$t(`resources.${this.resource}.fields.${this.source}`);
+
+        if (this.$te(key)) {
+          this.$t(key);
+        }
+
+        // Humanize source
+        return upperFirst(this.source.replace(".", " "));
       },
     },
     /**

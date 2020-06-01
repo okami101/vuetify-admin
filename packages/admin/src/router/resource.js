@@ -2,7 +2,7 @@ import camelCase from "lodash/camelCase";
 import upperFirst from "lodash/upperFirst";
 
 export default ({ store, resource, title }) => {
-  let { name, actions, translatable, getTitle, pluralName } = resource;
+  let { name, include, actions, translatable, getTitle, pluralName } = resource;
 
   const setTitle = (to, action, item = null) => {
     to.meta.title = getTitle(action, item);
@@ -66,6 +66,7 @@ export default ({ store, resource, title }) => {
              */
             let { data } = await store.dispatch(`${name}/getOne`, {
               id,
+              include,
             });
 
             /**

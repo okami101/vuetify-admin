@@ -35,17 +35,18 @@ export default [
 
 A resource object must follow this structure :
 
-| Property               | Type                 | Description                                                                                           |
-| ---------------------- | -------------------- | ----------------------------------------------------------------------------------------------------- |
-| **name**               | `string`             | A mandatory unique slug name which will be used for client-side router base path.                     |
-| **api**                | `string`             | Correspond to API base path calls. Equal to above name by default.                                    |
-| **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/). |
-| **label**              | `string`, `function` | Return an identifiable label of resource.                                                             |
-| **actions**            | `array`              | List of all valid actions for this resource.                                                          |
-| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted.                  |
-| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n.md#translation).                                      |
-| **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization.md#resource).               |
-| **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.              |
+| Property               | Type                 | Description                                                                                                                                |
+| ---------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **name**               | `string`             | A mandatory unique slug name which will be used for client-side router base path.                                                          |
+| **api**                | `string`             | Correspond to API base path calls. Equal to above name by default.                                                                         |
+| **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/).                                      |
+| **label**              | `string`, `function` | Return an identifiable label of resource.                                                                                                  |
+| **include**            | `array`, `object`    | Some additional object or array that will be added to data providers for all `GET` based methods for further actions inside data provider. |
+| **actions**            | `array`              | List of all valid actions for this resource.                                                                                               |
+| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted.                                                       |
+| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n.md#translation).                                                                        |
+| **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization.md#resource).                                                 |
+| **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.                                                   |
 
 :::tip LABEL
 The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targetted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
@@ -154,7 +155,7 @@ On every CRUD pages, the following props will be injected for easy reuse :
 | Action          | Type     | Path from `src/resources`                                   |
 | --------------- | -------- | ----------------------------------------------------------- |
 | **resource**    | `object` | The resource object descriptor linked to the current route. |
-| **title**       | `string` | The [localized title](i18n.md) of resource action page.        |
+| **title**       | `string` | The [localized title](i18n.md) of resource action page.     |
 | **id**          | `id`     | ID of current resource to be displayed or edited.           |
 | **item**        | `object` | Current item to be displayed, edited or cloned.             |
 | **permissions** | `array`  | Current user permissions.                                   |

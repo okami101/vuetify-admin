@@ -19,14 +19,16 @@ export default {
     translatable() {
       return this.$route.meta.translatable;
     },
+    currentResource() {
+      return this.$admin.getResource(this.resource);
+    },
   },
   methods: {
     hasAction(action) {
       /**
        * Check if access with user permissions for this specific action
        */
-      let resource = this.$admin.getResource(this.resource);
-      return resource.canAction(action);
+      return this.currentResource.canAction(action);
     },
   },
 };

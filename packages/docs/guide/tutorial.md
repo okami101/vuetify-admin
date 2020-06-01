@@ -393,7 +393,7 @@ Now it will be better with a real name instead of basic ID. But the API don't gi
 Contrary to React Admin equivalent, reference field doesn't support autofetching target resource from API. Instead we prefer to rely on backend capacity to give full object on demand that allows internal eager loading for better performance.
 :::
 
-So how can use it ? Simply by using specific `include` prop of `VaDataIterator` component. In case of JSON server data provider, it's an object which accepts both `expand` and `nested` property. Then don't forget to change `userId` to `user` as source prop for reference field.
+So how can use it ? Simply by using specific `include` prop of `VaDataIterator` component. In case of JSON server data provider, it's an object which accepts both `expand` and `embed` property. Then don't forget to change `userId` to `user` as source prop for reference field.
 
 ```vue {9,24}
 <template>
@@ -454,3 +454,137 @@ export default [
 Then you should have nice labelized chip for users :
 
 ![relationships](/assets/tutorial/relationships.png)
+
+## Show pages
+
+Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component infector, aka `VaShow` that wil inject current ressource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
+
+**`src/resources/users/Show.vue`**
+
+```vue
+<template>
+  <va-show-layout :title="title">
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col sm="4">
+          <v-card>
+            <v-card-text>
+              <va-field source="name"></va-field>
+              <va-field source="username"></va-field>
+              <va-field source="email"></va-field>
+              <va-field source="address" type="address"></va-field>
+              <va-field source="phone"></va-field>
+              <va-field source="website" type="url"></va-field>
+              <va-field source="company.name"></va-field>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </va-show>
+  </va-show-layout>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
+
+It's enough to render :
+
+![show](/assets/tutorial/show.png)
+
+:::tip RELATIONSHIP IN SHOW PAGE
+Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaDataIterator` will use it as well if not defined, but it's still overridable.
+:::
+
+:::tip FULL DOCUMENTATION
+See [dedicated section](crud/show.md).
+:::
+
+## Create and edit pages
+
+Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next exemple for user edition page :
+
+**`src/resources/users/Edit.vue`**
+
+```vue
+<template>
+  <va-edit-layout :title="title">
+    <users-form :id="id" :item="item"></users-form>
+  </va-edit-layout>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+};
+</script>
+```
+
+**`src/resources/users/Form.vue`**
+
+```vue
+<template>
+  <va-form :id="id" :item="item" :saving.sync="saving">
+    <v-row justify="center">
+      <v-col sm="6">
+        <v-card>
+          <v-card-text>
+            <va-text-input source="name"></va-text-input>
+            <v-row>
+              <v-col>
+                <va-text-input source="username"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-text-input source="email"></va-text-input>
+              </v-col>
+            </v-row>
+            <va-text-input source="address.street"></va-text-input>
+            <v-row>
+              <v-col>
+                <va-text-input source="address.zipcode"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-text-input source="address.city"></va-text-input>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <va-text-input source="phone"></va-text-input>
+              </v-col>
+              <v-col>
+                <va-text-input source="website"></va-text-input>
+              </v-col>
+            </v-row>
+            <va-text-input source="company.name"></va-text-input>
+            <va-save-button :saving="saving"></va-save-button>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: ["id", "item"],
+  data() {
+    return {
+      saving: false,
+    };
+  },
+};
+</script>
+```
+
+It's enough to render :
+
+![form](/assets/tutorial/form.png)
+
+As you can see, `VaForm` is simply a injector component that will register an internal full form model initialized by all VA inputs child components. This model is the one that will be sent to the API. For all supported inputs, go [here](components/inputs.md).
+
+:::tip FULL DOCUMENTATION
+See [dedicated section](crud/form.md).
+:::

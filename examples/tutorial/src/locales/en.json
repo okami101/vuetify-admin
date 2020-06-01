@@ -8,6 +8,11 @@
   "users": {
     "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
   },
+  "menu": {
+    "login": "Login",
+    "profile": "Profile",
+    "dashboard": "Dashboard"
+  },
   "resources": {
     "users": {
       "name": "User | Users",
