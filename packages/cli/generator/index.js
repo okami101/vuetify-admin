@@ -1,14 +1,7 @@
 const fs = require("fs");
 
 module.exports = (api, options) => {
-  api.injectImports(api.entryFile, [
-    `import admin from "./plugins/admin";`,
-    `import "./plugins/base";`,
-    `import "./plugins/chartist";`,
-  ]);
-  api.injectImports("src/plugins/vuetify.js", [
-    `import "@/sass/overrides.sass";`,
-  ]);
+  api.injectImports(api.entryFile, [`import admin from "./plugins/admin";`]);
   api.injectRootOptions(api.entryFile, `admin`);
 
   api.extendPackage({
@@ -25,7 +18,7 @@ module.exports = (api, options) => {
     },
   });
 
-  api.render("./template", {
+  api.render("./admin", {
     data: options.dataProvider,
     auth: options.authProvider,
     apiURL: options.apiURL,
@@ -37,6 +30,33 @@ module.exports = (api, options) => {
      * Auth related templates + impersonation
      */
     api.render("./auth");
+  }
+
+  if (options.users) {
+    /**
+     * Users pages templates
+     */
+    api.render("./users");
+  }
+
+  if (options.materialTheme) {
+    /**
+     * Tim material theme
+     */
+    api.injectImports(api.entryFile, [`import "./plugins/base";`]);
+    api.injectImports("src/plugins/vuetify.js", [
+      `import "@/sass/overrides.sass";`,
+    ]);
+
+    api.render("./material");
+  }
+
+  if (options.staticDashboard) {
+    /**
+     * Full static dashboard
+     */
+    api.injectImports(api.entryFile, [`import "./plugins/chartist";`]);
+    api.render("./dashboard");
   }
 
   api.onCreateComplete(() => {

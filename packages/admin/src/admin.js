@@ -78,7 +78,10 @@ export default class VtecAdmin {
           }
         );
 
-        let getName = (count) => i18n.tc(`resources.${r.name}.name`, count);
+        let nameKey = `resources.${r.name}.name`;
+
+        let getName = (count) =>
+          i18n.te(nameKey) ? i18n.tc(nameKey, count) : upperFirst(r.name);
 
         return {
           ...r,
@@ -88,7 +91,6 @@ export default class VtecAdmin {
           singularName: getName(1),
           pluralName: getName(10),
           getTitle: (action, item = null) => {
-            let nameKey = `resources.${r.name}.name`;
             let titleKey = `resources.${r.name}.titles.${action}`;
 
             if (item) {
@@ -96,7 +98,7 @@ export default class VtecAdmin {
                 (i18n.te(titleKey)
                   ? i18n.t(titleKey, item)
                   : i18n.t(`va.pages.${action}`, {
-                      resource: i18n.tc(nameKey, 1).toLowerCase(),
+                      resource: getName(1).toLowerCase(),
                       label:
                         typeof r.label === "function"
                           ? r.label(item)
@@ -107,9 +109,7 @@ export default class VtecAdmin {
             return i18n.te(titleKey)
               ? i18n.t(titleKey)
               : i18n.t(`va.pages.${action}`, {
-                  resource: i18n
-                    .tc(nameKey, action === "list" ? 10 : 1)
-                    .toLowerCase(),
+                  resource: getName("list" ? 10 : 1).toLowerCase(),
                 });
           },
           canAction: (action) => {
@@ -214,20 +214,6 @@ export default class VtecAdmin {
     Object.keys(locales).forEach((locale) => {
       i18n.mergeLocaleMessage(locale, { va: locales[locale] });
     });
-
-    /**
-     * Default try to humanize i18n locale
-     */
-    i18n.missing = (locale, key, vm, values) => {
-      let label = key;
-      let lastIndex = key.lastIndexOf(".");
-
-      if (lastIndex !== -1) {
-        label = key.substr(lastIndex + 1, key.length);
-      }
-
-      return upperFirst(label.replace("_", " "));
-    };
 
     /**
      * Auth store & api dispatcher module injection

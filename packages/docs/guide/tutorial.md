@@ -41,12 +41,16 @@ vue add i18n
 vue add vtec-admin
 ```
 
-The last step will finish installation process with additional questions. Select `JSON Server` as **data provider**, you can always edit it after by simple couple of code lines. Let the approprate default **API endpoint** according to the local previous launched JSON server. In this tutorial we don't need (for now) any **authentication** or full **static dashboard** so let them disabled. Then launch app by `yarn serve` you should arrive to this step :
+The last step will finish installation process with additional questions. Select `JSON Server` as **data provider**, you can always edit it after by simple couple of code lines. Let the approprate default **API endpoint** according to the local previous launched JSON server. In this tutorial we don't need (for now) any **authentication** or full **static dashboard** so we can let them disabled. Then launch app by `yarn serve` you should arrive to this step :
 
 ![dashboard](/assets/tutorial/dashboard.png)
 
 :::tip CUSTOMIZE THE LAYOUT
 You can perfectly customize the layout, which is a simple template component in `src/layouts/Admin.vue` file. Go to [dedicated section](crud/layout.md) for further detail.
+:::
+
+:::tip CUSTOMIZE THE DASHBOARD
+The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching.
 :::
 
 ## Data Provider
@@ -216,7 +220,7 @@ export default [
 See [this dedicated section](resources.md) for all available options.
 :::
 
-Next add new link towards this new resource inside `src/_nav.js` file, dedicated for sidebar links which supports hierarchical menu as shown [here](crud/layout.md#links). We can use specific [resource link helpers](resources.md#link-helpers) for that :
+Next add new link towards this new resource inside `src/_nav.js` file, dedicated for sidebar links which supports hierarchical menu as shown [here](crud/layout.md#links). We can use specific [resource link helpers](resources.md#link-helpers) for that. It will create for you compatible object link with above preconfigured route list action, localized label and icon.
 
 **`src/_nav.js`**
 
@@ -646,7 +650,7 @@ export default {
 </script>
 ```
 
-But now you have an ugly full json object. How can we stringify it ? 2 options : either locally by using `itemText` prop or globally which is recommended as it will apply for all cases, notably autocomplete, referencable choices, etc. Just set the `label` property at the resource level. Note as it can be a function callback that take a valid resource object as argument. We will set it for both `posts` and `users` :
+But now you have an ugly full json object. How can we stringify it ? 2 options : either locally by using `itemText` prop or globally which is recommended as it will apply for all cases, notably autocomplete, choices, CRUD default page titles, etc. Just set the `label` property at the resource level. Note as it can be a function callback that take a valid resource object as argument. We will set it for both `posts` and `users` :
 
 **`src/resources/index.js`**
 

@@ -12,23 +12,5 @@
     "login": "Login",
     "profile": "Profile",
     "dashboard": "Dashboard"
-  },
-  "resources": {
-    "users": {
-      "name": "User | Users",
-      "fields": {
-        "id": "ID",
-        "name": "Name",
-        "email": "Email"
-      }
-    },
-    "posts": {
-      "name": "Post | Posts",
-      "fields": {
-        "id": "ID",
-        "title": "Title",
-        "body": "Body"
-      }
-    }
   }
 }

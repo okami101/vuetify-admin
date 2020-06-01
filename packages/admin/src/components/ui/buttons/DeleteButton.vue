@@ -45,17 +45,11 @@ export default {
       if (
         await this.$admin.confirm(
           this.$t("va.confirm.delete_title", {
-            resource: this.$tc(
-              `resources.${this.resource}.name`,
-              1
-            ).toLowerCase(),
+            resource: this.currentResource.singularName.toLowerCase(),
             id: this.item.id,
           }),
           this.$t("va.confirm.delete_message", {
-            resource: this.$tc(
-              `resources.${this.resource}.name`,
-              1
-            ).toLowerCase(),
+            resource: this.currentResource.singularName.toLowerCase(),
             id: this.item.id,
           })
         )

@@ -51,6 +51,18 @@ module.exports = [
   },
   {
     type: "confirm",
+    name: "users",
+    message: "Install default users CRUD pages templates :",
+    default: false,
+  },
+  {
+    type: "confirm",
+    name: "materialTheme",
+    message: "Install nice material theme override by Tim Creative :",
+    default: false,
+  },
+  {
+    type: "confirm",
     name: "staticDashboard",
     message: "Use nice default material dashboard with static data :",
     default: false,

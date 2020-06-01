@@ -275,9 +275,7 @@ export default {
           return {
             ...f,
             type: f.type || "text",
-            label:
-              f.label ||
-              this.$t(`resources.${this.resource}.fields.${f.source}`),
+            label: f.label,
           };
         });
     },

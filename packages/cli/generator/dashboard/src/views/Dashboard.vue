@@ -1,6 +1,5 @@
 <template>
   <div>
-    <%_ if (dashboard) { _%>
     <v-row>
       <v-col cols="12" lg="4">
         <base-material-chart-card
@@ -286,11 +285,9 @@
         </base-material-card>
       </v-col>
     </v-row>
-    <%_ } _%>
   </div>
 </template>
 
-<%_ if (dashboard) { _%>
 <script>
 export default {
   data() {
@@ -515,4 +512,3 @@ export default {
   },
 };
 </script>
-<%_ } _%>

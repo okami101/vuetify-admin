@@ -42,22 +42,15 @@ export default {
       if (
         await this.$admin.confirm(
           this.$t("va.confirm.dissociate_title", {
-            targetResource: this.$tc(
-              `resources.${this.resource}.name`,
-              1
-            ).toLowerCase(),
+            targetResource: this.currentResource.singularName.toLowerCase(),
             targetId: this.item.id,
           }),
           this.$t("va.confirm.dissociate_message", {
-            sourceResource: this.$tc(
-              `resources.${this.sourceResource}.name`,
-              1
-            ).toLowerCase(),
+            sourceResource: this.$admin
+              .getResource(this.sourceResource)
+              .singularName.toLowerCase(),
             sourceId: this.sourceId,
-            targetResource: this.$tc(
-              `resources.${this.resource}.name`,
-              1
-            ).toLowerCase(),
+            targetResource: this.currentResource.singularName.toLowerCase(),
             targetId: this.item.id,
           })
         )
