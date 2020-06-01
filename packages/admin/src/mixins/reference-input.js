@@ -62,6 +62,16 @@ export default {
     },
   },
   methods: {
+    getItem(value) {
+      if (!value) {
+        return value;
+      }
+      let input = this.multiple
+        ? value.map((v) => v[this.getItemValue] || v)
+        : value[this.getItemValue] || value;
+
+      return input;
+    },
     async fetchChoices(search = null) {
       if (!this.reference || this.loading) {
         return;

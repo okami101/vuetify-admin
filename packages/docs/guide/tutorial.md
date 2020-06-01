@@ -663,10 +663,45 @@ export default [
 ];
 ```
 
-Then you should have nice labelized chip for users :
+Then you should have nice labelled chip for users :
 
 ![relationships](/assets/tutorial/relationships.png)
 
 :::tip RELATIONSHIP IN SHOW PAGE
-Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaDataIterator` will use it as well if not defined, but it's still overridable.
+Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaDataIterator` will use it as well if not defined, but it still can be overridden.
+:::
+
+### Form
+
+Now we may add the possibility of attach user on any posts. We can use a simple select input for that :
+
+```vue {8-11}
+<template>
+  <va-form :id="id" :item="item" :saving.sync="saving">
+    <v-row justify="center">
+      <v-col sm="4">
+        <base-material-card>
+          <!-- Title -->
+          <v-card-text>
+            <va-select-input
+              source="userId"
+              reference="users"
+            ></va-select-input>
+            <va-text-input source="title"></va-text-input>
+            <va-text-input source="body" multiline></va-text-input>
+            <va-save-button :saving="saving"></va-save-button>
+          </v-card-text>
+        </base-material-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+```
+
+Just use `userId` as source, `users` as reference and you're done :
+
+![relationships-select](/assets/tutorial/relationships-select.png)
+
+:::tip AUTOCOMPLETE
+Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User search will be already functional by using default `q` full text search of JSON Server.
 :::

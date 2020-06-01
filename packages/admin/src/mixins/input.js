@@ -40,7 +40,7 @@ export default {
            * Initialize value & errors
            */
           this.update(
-            this.getItem(get(val.item || val.model, this.uniqueFormId))
+            this.getItem(get(val.item || val.model, this.uniqueSourceId))
           );
         }
       },
@@ -52,15 +52,22 @@ export default {
        */
       if (this.acceptValue) {
         this.update(
-          this.getItem(get(val || this.formState.model, this.uniqueFormId))
+          this.getItem(get(val || this.formState.model, this.uniqueSourceId))
         );
       }
     },
     "formState.errors"(val) {
-      this.errorMessages = val[this.uniqueFormId] || [];
+      if (val) {
+        this.errorMessages = val[this.uniqueFormId] || [];
+      }
     },
   },
   computed: {
+    uniqueSourceId() {
+      return [this.parentSource, this.index, this.source]
+        .filter((s) => s !== undefined)
+        .join(".");
+    },
     uniqueFormId() {
       return [this.parentSource, this.index, this.model || this.source]
         .filter((s) => s !== undefined)
@@ -101,7 +108,7 @@ export default {
       if (this.formState) {
         this.formState.update({
           source: this.uniqueFormId,
-          value: value,
+          value,
         });
       }
 

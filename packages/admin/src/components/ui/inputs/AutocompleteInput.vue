@@ -63,22 +63,9 @@ export default {
     };
   },
   created() {
-    this.fillInputFromSource();
     this.loadCurrentChoices(this.input);
   },
   methods: {
-    fillInputFromSource() {
-      if (!this.reference || !this.formState || !this.formState.item) {
-        return;
-      }
-
-      let value = this.formState.item[this.source];
-      let input = this.multiple
-        ? value.map((v) => v[this.getItemValue])
-        : value[this.getItemValue];
-
-      this.update(input);
-    },
     async loadCurrentChoices(value) {
       if (this.reference && value) {
         this.items = await this.fetchCurrentChoices(
