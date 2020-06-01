@@ -22,7 +22,7 @@ module.exports = (api, options) => {
     data: options.dataProvider,
     auth: options.authProvider,
     apiURL: options.apiURL,
-    dashboard: options.staticDashboard,
+    users: options.users,
   });
 
   if (options.authProvider) {
@@ -36,7 +36,9 @@ module.exports = (api, options) => {
     /**
      * Users pages templates
      */
-    api.render("./users");
+    api.render("./users", {
+      impersonate: !!authProvider,
+    });
   }
 
   if (options.materialTheme) {

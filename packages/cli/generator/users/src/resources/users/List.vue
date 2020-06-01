@@ -22,7 +22,17 @@
             disable-show-redirect
             disable-edit-redirect
             @item-action="onAction"
-          ></va-data-table>
+          >
+            <%_ if (impersonate) { _%>
+            <template v-slot:item.actions="{ resource, item }">
+              <impersonate-button
+                :resource="resource"
+                :item="item"
+                icon
+              ></impersonate-button>
+            </template>
+            <%_ } _%>
+          </va-data-table>
         </template>
       </va-data-iterator>
     </base-material-card>
@@ -30,7 +40,16 @@
 </template>
 
 <script>
+<%_ if (impersonate) { _%>
+import ImpersonateButton from "@/components/buttons/ImpersonateButton";
+<%_ } _%>
+
 export default {
+  <%_ if (impersonate) { _%>
+  components: {
+    ImpersonateButton,
+  },
+  <%_ } _%>
   props: ["resource", "title"],
   data() {
     return {

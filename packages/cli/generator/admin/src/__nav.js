@@ -5,5 +5,7 @@ export default (i18n, admin) => [
     link: "/",
   },
   { divider: true },
+  <%_ if (users) { _%>
   admin.getResourceLink("users"),
+  <%_ } _%>
 ];
