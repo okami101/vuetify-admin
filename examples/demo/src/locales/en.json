@@ -1,7 +1,4 @@
 {
-  "login": {
-    "title": "Bookstore Admin"
-  },
   "locales": {
     "english": "English",
     "french": "French"
@@ -15,12 +12,50 @@
     "settings": "Settings",
     "feedback": "Feedback"
   },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "sign_in": "Sign in"
+  },
+  "profile": {
+    "account": "Account",
+    "password": "Password",
+    "name": "Name",
+    "email": "Email",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "update": "Update",
+    "account_updated": "Account updated",
+    "password_changed": "Password changed"
+  },
   "users": {
+    "impersonate": "Impersonate",
+    "enable": "Enable",
+    "disable": "Disable",
+    "stop_impersonate": "Stop impersonate",
     "logged_as": "You are actually logged as {0}, click {1} link in order to stop impersonate mode."
+  },
+  "menu": {
+    "login": "Login",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "help": "Help",
+    "settings": "Settings",
+    "feedback": "Feedback",
+    "other": "Other",
+    "bookstore": "Bookstore"
+  },
+  "authors": {
+    "last_books": "Last books",
+    "all_books": "All books"
+  },
+  "tabs": {
+    "attributes": "Attributes",
+    "summary": "Summary"
   },
   "resources": {
     "publishers": {
-      "name": "Publisher | Publishers",
       "enums": {
         "type": {
           "sarl": "SARL",
@@ -33,11 +68,7 @@
         }
       }
     },
-    "authors": {
-      "name": "Author | Authors"
-    },
     "books": {
-      "name": "Book | Books",
       "enums": {
         "category": {
           "novel": "Novel",
@@ -59,7 +90,6 @@
       }
     },
     "reviews": {
-      "name": "Review | Reviews",
       "enums": {
         "status": {
           "published": "Published",
@@ -69,7 +99,6 @@
       }
     },
     "users": {
-      "name": "User | Users",
       "enums": {
         "roles": {
           "admin": "Admin",

@@ -768,4 +768,4 @@ It's possible to use direct Vue.js code for filters via [filter slots](crud/list
 
 You can find a full [dedicated section](authentication.md) for authentication API integration, either by using provided ones or implementing your own.
 
-It' preferable to enable authentication at first Vue CLI install by selecting any valid or custom auth provider as it will install all functional Login and Profile templates for you.
+It' preferable to enable authentication at first Vue CLI install by selecting any valid or custom auth provider as it will install all functional [Login](authentication.md#login-page) and [Profile](authentication.md#profile-page) templates for you.

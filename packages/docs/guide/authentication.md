@@ -141,10 +141,12 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 
 :::tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you all fully functionnal login page !  
-If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/template/src/views/Login.vue) for your own.
+If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/admin/src/views/Login.vue) for your own.
 :::
 
 In order to work, login page must have a classic login form. Then all you have to do is to submit credentials into `login` VA auth module action which will pass them to the `login` auth provider method.
+
+**`src/views/Login.vue`**
 
 ```js
 import { mapActions } from "vuex";
@@ -184,13 +186,17 @@ If you need to add this features, login page is the perfect place to do it. Simp
 
 :::tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you all fully functionnal profile page !
-If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/template/src/views/Profile.vue) for your own.
+If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/admin/src/views/Profile.vue) for your own.
 :::
 
 As explained above, this authenticated page should be registred into `src/router/admin.js` for getting admin layout inheritance. The idea here is to get user informations stored inside VA auth state and prefill all account form from it.  
-Because saving account information can be very different according to project context, there is no specific auth provider method available. So this the good showcase for using the global admin axios instance which owns all authorization context to made authenticated API requests as following.
+Because saving account information can be very different according to project context, there is no specific auth provider method available. So this the good showcase for using the global admin axios instance which owns all authorization context to made authenticated API requests.
 
-```js {14,23}
+Default api URLs are `/api/account/update` for account update and `/api/account/password` for password change. So don't forget to change their according to you suited API endpoints :
+
+**`src/views/Profile.vue`**
+
+```js {24,36}
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -211,15 +217,26 @@ export default {
     ...mapActions({
       checkAuth: "auth/checkAuth",
     }),
-    async update(method, url, data) {
-      try {
-        await this.$admin.axios.patch("/api/account/update", this.accountForm);
-
+    //...
+    async updateAccount() {
+      this.accountUpdating = true;
+      if (await this.update("patch", "/api/account/update", this.accountForm)) {
+        /**
+         * Recheck auth
+         */
         this.checkAuth();
         this.$admin.toast.success(this.$t("profile.account_updated"));
-      } catch ({ response }) {
-        this.$admin.toast.error(response.data.message);
       }
+      this.accountUpdating = false;
+    },
+    async changePassword() {
+      this.passwordChanging = true;
+      if (
+        await this.update("patch", "/api/account/password", this.passwordForm)
+      ) {
+        //...
+      }
+      this.passwordChanging = false;
     },
   },
 };
