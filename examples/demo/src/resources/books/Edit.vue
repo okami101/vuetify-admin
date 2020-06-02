@@ -3,7 +3,7 @@
     <books-form :id="id" :title="title" :item="item"></books-form>
     <base-material-card
       icon="mdi-comment"
-      :title="$tc('resources.reviews.name', 10)"
+      :title="$admin.getResource('reviews').pluralName"
     >
       <va-data-iterator
         resource="reviews"

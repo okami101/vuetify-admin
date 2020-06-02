@@ -43,10 +43,7 @@ export default new VtecAdmin({
   title: "Vtec Admin",
   routes,
   locales: { en, fr },
-  translations: {
-    en: i18n.t("locales.english"),
-    fr: i18n.t("locales.french"),
-  },
+  translations: ["en", "fr"],
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   resources,

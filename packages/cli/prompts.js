@@ -54,6 +54,22 @@ module.exports = [
     default: "http://localhost:3000",
   },
   {
+    type: "checkbox",
+    name: "locales",
+    message: "Select supported locales :",
+    default: ["en"],
+    choices: [
+      {
+        name: "English",
+        value: "en",
+      },
+      {
+        name: "French",
+        value: "fr",
+      },
+    ],
+  },
+  {
     type: "confirm",
     name: "users",
     message: "Install default users CRUD pages templates :",

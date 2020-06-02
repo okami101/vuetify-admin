@@ -1,7 +1,7 @@
 {
-  "locales": {
-    "english": "Anglais",
-    "french": "Français"
+  "translations": {
+    "en": "Anglais",
+    "fr": "Français"
   },
   "routes": {
     "home": "Accueil",

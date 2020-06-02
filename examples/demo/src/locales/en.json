@@ -1,7 +1,12 @@
 {
-  "locales": {
-    "english": "English",
-    "french": "French"
+  "good": "Good",
+  "bad": "Bad",
+  "here": "here",
+  "address": "Address",
+  "backlinks": "Backlinks",
+  "translations": {
+    "en": "English",
+    "fr": "French"
   },
   "routes": {
     "home": "Home",

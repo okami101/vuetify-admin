@@ -55,10 +55,7 @@ export default new VtecAdmin({
   title: "My Admin App",
   routes,
   locales: { en, fr },
-  translations: {
-    en: i18n.t("locales.english"),
-    fr: i18n.t("locales.french"),
-  },
+  translations: ["en", "fr"],
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   resources,
@@ -116,17 +113,17 @@ In order to operate, VtecAdmin constructor needs all of this parameters :
 | ---------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **router**       | `VueRouter`  | Vue Router instance, which can contains all your public custom routes.                                                                                                                       |
 | **store**        | `Vuex.Store` | Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.                                                                       |
-| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n.md).                                                     |
+| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n.md).                                                  |
 | **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                                                 |
-| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout.md). All resources routes CRUD pages will be registered here as children.                                 |
-| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n.md#ui).                                                                                        |
-| **translations** | `object`     | All supported traductions for your resources. More detail [here](i18n.md#resources).                                                                                                            |
-| **authProvider** | `object`     | [Auth](authentication.md) provider that must implements [auth contract](authentication.md#api-contract).                                                                                           |
-| **dataProvider** | `object`     | [Data](data-providers.md) provider that must implements [data contract](data-providers.md#api-contract).                                                                                           |
-| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources.md).                                                                     |
+| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout.md). All resources routes CRUD pages will be registered here as children.                              |
+| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n.md#ui).                                                                                     |
+| **translations** | `array`      | All supported traductions for your resources. More detail [here](i18n.md#resources).                                                                                                         |
+| **authProvider** | `object`     | [Auth](authentication.md) provider that must implements [auth contract](authentication.md#api-contract).                                                                                     |
+| **dataProvider** | `object`     | [Data](data-providers.md) provider that must implements [data contract](data-providers.md#api-contract).                                                                                     |
+| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources.md).                                                                  |
 | **axios**        | `object`     | Optional, can provide better auth and CSRF integration for advanced input components as Wysiwyg for image upload. Additionaly set a available global axios instance via `this.$admin.axios`. |
 | **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                                 |
-| **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                                  |
+| **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                               |
 
 ![instantiation](/diagrams/instantiation.svg)
 

@@ -21,16 +21,16 @@ export default {
       meta: {
         title: i18n.t("routes.dashboard"),
       },
-      <%_ if (auth) { _%>
-      {
-        path: "/profile",
-        name: "profile",
-        component: Profile,
-        meta: {
-          title: i18n.t("routes.profile"),
-        },
-      },
-      <%_ } _%>
     },
+    <%_ if (auth) { _%>
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile,
+      meta: {
+        title: i18n.t("routes.profile"),
+      },
+    },
+    <%_ } _%>
   ],
 };

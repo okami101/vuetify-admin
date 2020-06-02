@@ -4,9 +4,9 @@
   "here": "ici",
   "address": "Adresse",
   "backlinks": "Références",
-  "locales": {
-    "english": "Anglais",
-    "french": "Français"
+  "translations": {
+    "en": "Anglais",
+    "fr": "Français"
   },
   "routes": {
     "home": "Accueil",

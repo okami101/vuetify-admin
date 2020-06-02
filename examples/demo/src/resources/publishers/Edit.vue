@@ -3,7 +3,7 @@
     <publishers-form :id="id" :title="title" :item="item"></publishers-form>
     <base-material-card
       icon="mdi-book"
-      :title="$tc('resources.books.name', 10)"
+      :title="$admin.getResource('books').pluralName"
     >
       <va-data-iterator
         resource="books"

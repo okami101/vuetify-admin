@@ -22,6 +22,7 @@ module.exports = (api, options) => {
     data: options.dataProvider,
     auth: options.authProvider,
     apiURL: options.apiURL,
+    locales: options.locales,
     users: options.users,
   });
 
@@ -30,6 +31,16 @@ module.exports = (api, options) => {
      * Auth related templates + impersonation
      */
     api.render("./auth");
+  }
+
+  if (options.locales) {
+    /**
+     * Users pages templates
+     */
+    for (locale of options.locales) {
+      console.log(locale);
+      api.render(`./locales/${locale}`);
+    }
   }
 
   if (options.users) {

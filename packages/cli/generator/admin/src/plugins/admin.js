@@ -11,7 +11,11 @@ import {
   <%- auth %>AuthProvider,
 <%_ } _%>
 } from "vtec-admin/src/providers";
-import { en, fr } from "vtec-admin/src/locales";
+import {
+<%_ for (locale of locales) { _%>
+  <%- locale %>,
+<%_ } _%>
+} from "vtec-admin/src/locales";
 
 import router from "@/router";
 import routes from "@/router/admin";
@@ -46,11 +50,16 @@ export default new VtecAdmin({
   i18n,
   title: "Vtec Admin",
   routes,
-  locales: { en, fr },
-  translations: {
-    en: i18n.t("locales.english"),
-    fr: i18n.t("locales.french"),
+  locales: {
+    <%_ for (locale of locales) { _%>
+      <%- locale %>,
+    <%_ } _%>
   },
+  translations: [
+    <%_ for (locale of locales) { _%>
+      "<%- locale %>",
+    <%_ } _%>
+  ],
 <%_ if (data) { _%>
   dataProvider: <%- data %>DataProvider(http),
 <%_ } _%>

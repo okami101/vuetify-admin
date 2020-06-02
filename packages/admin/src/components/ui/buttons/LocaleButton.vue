@@ -10,18 +10,19 @@
       >
         <v-icon small>mdi-translate</v-icon>
         <span v-if="!icon" class="ml-2">
-          {{ $t("va.actions.locale") }} :
-          {{ $admin.translations[$store.state[resource].locale] }}
+          {{ $t("va.actions.locale") }}&nbsp;:&nbsp;{{
+            $t(`translations.${$store.state[resource].locale}`)
+          }}
         </span>
       </v-btn>
     </template>
     <v-list>
       <v-list-item
-        v-for="(label, code) in $admin.translations"
-        :key="code"
+        v-for="(code, index) in $admin.translations"
+        :key="index"
         @click="changeLocale(code)"
       >
-        <v-list-item-title>{{ label }}</v-list-item-title>
+        <v-list-item-title>{{ $t(`translations.${code}`) }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-menu>
