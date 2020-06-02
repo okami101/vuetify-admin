@@ -1,30 +1,32 @@
 <template>
   <v-navigation-drawer
-    :value="opened"
     :clipped="$vuetify.breakpoint.lgAndUp"
     right
     app
+    disable-resize-watcher
     :width="width"
+    v-model="opened"
   >
     <div class="pa-4">
       <div class="d-flex align-center">
         <h3 class="display-2">
           <portal-target name="aside-title"></portal-target>
         </h3>
-        <v-btn class="close" icon @click="close()">
+        <v-btn class="close" icon @click="opened = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </div>
       <div class="content">
-        <portal-target name="aside-content"></portal-target>
+        <portal-target
+          name="aside-content"
+          @change="handleUpdate"
+        ></portal-target>
       </div>
     </div>
   </v-navigation-drawer>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-
 /**
  * Customizable admin aside component where you put some contextualized additional informations.
  * Use the associated `VaAsideLayout` component for content integration from anywhere on any context.
@@ -39,15 +41,15 @@ export default {
       default: 400,
     },
   },
-  computed: {
-    ...mapState({
-      opened: (state) => state.aside.opened,
-    }),
+  data() {
+    return {
+      opened: false,
+    };
   },
   methods: {
-    ...mapMutations({
-      close: "aside/close",
-    }),
+    handleUpdate(newContent, oldContent) {
+      this.opened = newContent;
+    },
   },
 };
 </script>

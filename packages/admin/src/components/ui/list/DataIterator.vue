@@ -59,9 +59,16 @@
         <v-spacer></v-spacer>
         <v-menu offset-y v-if="getDisabledFilters.length">
           <template v-slot:activator="{ on }">
-            <v-btn text color="success" v-on="on">
-              <v-icon small class="mr-2">mdi-filter-variant-plus</v-icon>
-              {{ $t("va.datatable.add_filter") }}
+            <v-btn
+              text
+              color="success"
+              v-on="on"
+              :icon="!$vuetify.breakpoint.lgAndUp"
+            >
+              <v-icon small>mdi-filter-variant-plus</v-icon>
+              <span v-if="$vuetify.breakpoint.lgAndUp" class="ml-2">{{
+                $t("va.datatable.add_filter")
+              }}</span>
             </v-btn>
           </template>
           <v-list>
@@ -275,7 +282,8 @@ export default {
           return {
             ...f,
             type: f.type || "text",
-            label: f.label,
+            label:
+              f.label || this.$admin.getSourceLabel(this.resource, f.source),
           };
         });
     },

@@ -6,9 +6,15 @@
       :profile-menu="profileMenu"
       dense
       dark
-      @mini="mini = !mini"
+      @drawer="drawer = !drawer"
+      @mini-variant="mini = !mini"
     ></va-app-bar>
-    <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
+    <va-sidebar
+      slot="sidebar"
+      :menu="sidebarMenu"
+      v-model="drawer"
+      :mini-variant="mini"
+    ></va-sidebar>
     <template slot="header">
       <va-breadcrumbs></va-breadcrumbs>
       <impersonate-message></impersonate-message>
@@ -40,6 +46,7 @@ export default {
   },
   data() {
     return {
+      drawer: null,
       mini: false,
       headerMenu: [
         {

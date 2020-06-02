@@ -7,9 +7,16 @@
       color="secondary"
       dense
       dark
-      @mini="mini = !mini"
+      @drawer="drawer = !drawer"
+      @mini-variant="mini = !mini"
     ></va-app-bar>
-    <va-sidebar slot="sidebar" :menu="sidebarMenu" dark :mini="mini">
+    <va-sidebar
+      slot="sidebar"
+      :menu="sidebarMenu"
+      dark
+      v-model="drawer"
+      :mini-variant="mini"
+    >
       <template v-slot:img="props">
         <v-img
           src="../assets/splash.jpg"
@@ -55,6 +62,7 @@ export default {
   },
   data() {
     return {
+      drawer: null,
       mini: false,
       headerMenu: [
         ...this.$admin.getResourceLinks([

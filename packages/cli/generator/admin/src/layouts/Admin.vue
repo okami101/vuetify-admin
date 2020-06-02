@@ -5,9 +5,15 @@
       :header-menu="headerMenu"
       dense
       dark
-      @mini="mini = !mini"
+      @drawer="drawer = !drawer"
+      @mini-variant="mini = !mini"
     ></va-app-bar>
-    <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
+    <va-sidebar
+      slot="sidebar"
+      :menu="sidebarMenu"
+      v-model="drawer"
+      :mini-variant="mini"
+    ></va-sidebar>
     <%_ if (auth) { _%>
     <template slot="header">
       <va-breadcrumbs></va-breadcrumbs>
@@ -47,6 +53,7 @@ export default {
   <%_ } _%>
   data() {
     return {
+      drawer: null,
       mini: false,
       headerMenu: [
         {

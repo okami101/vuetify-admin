@@ -37,14 +37,7 @@ export default {
     label: {
       type: String,
       default() {
-        let key = `resources.${this.resource}.fields.${this.source}`;
-
-        if (this.$te(key)) {
-          this.$t(key);
-        }
-
-        // Humanize source
-        return upperFirst(lowerCase(this.source.replace(".", " ")));
+        return this.$admin.getSourceLabel(this.resource, this.source);
       },
     },
     /**

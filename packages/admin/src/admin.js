@@ -2,7 +2,6 @@ import upperFirst from "lodash/upperFirst";
 import lowerCase from "lodash/lowerCase";
 import isEmpty from "lodash/isEmpty";
 
-import aside from "./store/aside";
 import messages from "./store/messages";
 import auth from "./store/auth";
 import guest from "./store/guest";
@@ -164,6 +163,17 @@ export default class VtecAdmin {
     this.getResource = (name) => this.resources.find((r) => r.name === name);
 
     /**
+     * Get label source, humanize it if not found
+     */
+    this.getSourceLabel = (resource, source) => {
+      let key = `resources.${resource}.fields.${source}`;
+
+      return i18n.te(key)
+        ? i18n.t(key)
+        : upperFirst(lowerCase(source.replace(".", " ")));
+    };
+
+    /**
      * Resource link helper with action permission test
      */
     this.getResourceLink = (link) => {
@@ -221,7 +231,6 @@ export default class VtecAdmin {
     /**
      * Auth store & api dispatcher module injection
      */
-    store.registerModule("aside", aside);
     store.registerModule("messages", messages);
     store.registerModule("api", api);
     store.registerModule(
@@ -291,11 +300,6 @@ export default class VtecAdmin {
         document.title = to.meta.title
           ? `${to.meta.title} | ${this.title}`
           : this.title;
-
-        /**
-         * Auto close aside
-         */
-        store.commit("aside/close");
 
         /**
          * Check and refresh authenticated user with last permissions

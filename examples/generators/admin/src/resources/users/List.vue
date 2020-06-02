@@ -1,6 +1,6 @@
 <template>
   <div>
-    <va-aside-layout v-model="asideOpened" :title="asideTitle">
+    <va-aside-layout :title="asideTitle">
       <users-show v-if="show" :item="item"></users-show>
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside-layout>
@@ -61,7 +61,6 @@ export default {
           sortable: true,
         },
       ],
-      asideOpened: false,
       asideTitle: null,
       id: null,
       item: null,
@@ -76,10 +75,9 @@ export default {
       this.id = id;
       this.show = action === "show";
       this.item = item;
-      this.asideOpened = true;
     },
     onSaved() {
-      this.asideOpened = false;
+      this.asideTitle = null;
       this.$refs.list.fetchData();
     },
   },

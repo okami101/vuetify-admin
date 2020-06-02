@@ -11,11 +11,15 @@
       Triggered on VAppBar icon click, use it with VaSidebar for minimize it.
       @event mini
     -->
-    <v-app-bar-nav-icon @click.stop="$emit('mini')" />
+    <v-app-bar-nav-icon
+      @click.stop="
+        $vuetify.breakpoint.lgAndUp ? $emit('mini-variant') : $emit('drawer')
+      "
+    />
     <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
       <span class="hidden-sm-and-down">{{ title || $admin.title }}</span>
     </v-toolbar-title>
-    <v-row v-if="headerMenu.length">
+    <v-row v-if="headerMenu.length && $vuetify.breakpoint.lgAndUp">
       <v-col
         v-for="(item, i) in headerMenu"
         :key="i"

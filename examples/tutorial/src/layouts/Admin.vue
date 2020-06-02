@@ -1,7 +1,18 @@
 <template>
   <va-layout>
-    <va-app-bar slot="app-bar" dense dark @mini="mini = !mini"></va-app-bar>
-    <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
+    <va-app-bar
+      slot="app-bar"
+      dense
+      dark
+      @drawer="drawer = !drawer"
+      @mini-variant="mini = !mini"
+    ></va-app-bar>
+    <va-sidebar
+      slot="sidebar"
+      :menu="sidebarMenu"
+      v-model="drawer"
+      :mini-variant="mini"
+    ></va-sidebar>
     <va-breadcrumbs slot="header"></va-breadcrumbs>
     <va-aside slot="aside"></va-aside>
     <va-footer slot="footer">
@@ -26,6 +37,7 @@ export default {
   name: "App",
   data() {
     return {
+      drawer: null,
       mini: false,
       sidebarMenu: nav(this.$i18n, this.$admin),
     };

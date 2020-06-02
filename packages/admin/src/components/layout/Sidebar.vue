@@ -1,10 +1,12 @@
 <template>
   <v-navigation-drawer
-    :mini-variant="mini"
     :clipped="$vuetify.breakpoint.lgAndUp"
     app
     :dark="dark"
     :color="color"
+    :mini-variant="miniVariant"
+    :value="value"
+    @input="(v) => $emit('input', v)"
   >
     <template v-slot:img="props">
       <!-- @slot Image background. -->
@@ -12,7 +14,7 @@
     </template>
     <v-list dense>
       <template v-for="(item, index) in menu.filter((l) => l)">
-        <v-subheader v-if="item.heading && !mini" :key="index">
+        <v-subheader v-if="item.heading && !miniVariant" :key="index">
           {{ item.heading }}
         </v-subheader>
         <v-divider v-else-if="item.divider" :key="index"></v-divider>
@@ -77,7 +79,7 @@ export default {
     /**
      * Minimize the sidebar and show only icons.
      */
-    mini: Boolean,
+    miniVariant: Boolean,
     /**
      * Main color of VNavigationDrawer.
      */
@@ -89,6 +91,10 @@ export default {
      * Apply dark theme variant for VNavigationDrawer
      */
     dark: Boolean,
+    /**
+     * Control visibility
+     */
+    value: null,
   },
 };
 </script>

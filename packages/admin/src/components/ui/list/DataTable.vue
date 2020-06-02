@@ -163,7 +163,6 @@
 import List from "../../../mixins/list";
 import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
-import lowerCase from "lodash/lowerCase";
 
 /**
  * Dumb datatable component, you will need data iterator as VaDataIterator in order to make it usable.
@@ -321,15 +320,11 @@ export default {
             : f;
         })
         .map((f) => {
-          let key = `resources.${this.resource}.fields.${f.source}`;
           return {
             ...f,
             type: f.type,
             label:
-              f.label ||
-              (this.$te(key)
-                ? this.$t(key)
-                : upperFirst(lowerCase(f.source.replace(".", " ")))),
+              f.label || this.$admin.getSourceLabel(this.resource, f.source),
           };
         });
     },

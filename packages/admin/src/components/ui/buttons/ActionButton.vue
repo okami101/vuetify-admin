@@ -2,7 +2,7 @@
   <v-tooltip bottom :disabled="!hideLabel">
     <template v-slot:activator="{ on }">
       <v-btn
-        :icon="hideLabel"
+        :icon="hideLabel || !$vuetify.breakpoint.lgAndUp"
         :text="text"
         :href="href"
         :target="target"
@@ -15,7 +15,7 @@
         :loading="loading"
       >
         <v-icon small>{{ icon }}</v-icon>
-        <span v-if="!hideLabel" class="ml-2">
+        <span v-if="!hideLabel && $vuetify.breakpoint.lgAndUp" class="ml-2">
           {{ label }}
         </span>
       </v-btn>
