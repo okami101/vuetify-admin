@@ -1,4 +1,5 @@
 import camelCase from "lodash/camelCase";
+import kebabCase from "lodash/kebabCase";
 import upperFirst from "lodash/upperFirst";
 
 export default ({ store, resource, title }) => {
@@ -99,7 +100,7 @@ export default ({ store, resource, title }) => {
    * Return crud routes for this resource
    */
   return {
-    path: `/${name.replace("_", "-")}`,
+    path: `/${kebabCase(name)}`,
     component: {
       render(c) {
         return c("router-view");
