@@ -40,13 +40,10 @@
     "users": {
       "name": "Utilisateur | Utilisateurs",
       "fields": {
-        "id": "ID",
         "name": "Nom",
         "email": "Email",
         "password": "Mot de passe",
-        "password_confirmation": "Confirmation du Mot de passe",
-        "created_at": "Date de création",
-        "updated_at": "Date de modification"
+        "password_confirmation": "Confirmation du Mot de passe"
       }
     }
   }

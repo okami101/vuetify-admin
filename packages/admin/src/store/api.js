@@ -31,6 +31,10 @@ export default {
   actions: {
     ...storeActions,
     refresh({ commit, dispatch }, resource) {
+      if (!resource) {
+        return;
+      }
+
       commit("setRefresh", true);
 
       return dispatch(
