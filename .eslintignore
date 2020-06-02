@@ -1,2 +1,7 @@
+**/generator/admin
+**/generator/auth
+**/generator/dashboard
+**/generator/material
+**/generator/users
 node_modules
 dist

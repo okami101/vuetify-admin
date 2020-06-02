@@ -12,6 +12,10 @@
 			"path": "examples\\tutorial"
 		},
 		{
+      "name": "vue-cli-base",
+			"path": "examples\\vue-cli-base"
+		},
+		{
       "name": "generators",
 			"path": "examples\\generators\\admin"
 		},

@@ -17,6 +17,7 @@
     "packages/*",
     "examples/demo",
     "examples/tutorial",
+    "examples/vue-cli-base",
     "examples/generators/admin"
   ],
   "resolutions": {

@@ -77,7 +77,8 @@ module.exports = (ctx) => ({
           },
           {
             text: "Vue CLI Plugin",
-            link: "https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin",
+            link:
+              "https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin",
           },
           {
             text: "Laravel",
