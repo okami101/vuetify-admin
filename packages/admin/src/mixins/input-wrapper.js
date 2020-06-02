@@ -1,4 +1,5 @@
 import upperFirst from "lodash/upperFirst";
+import lowerCase from "lodash/lowerCase";
 
 /**
  * Common props for all inputs.
@@ -68,7 +69,7 @@ export default {
         }
 
         // Humanize source
-        return upperFirst(this.source.replace(".", " "));
+        return upperFirst(lowerCase(this.source.replace(".", " ")));
       },
     },
     /**

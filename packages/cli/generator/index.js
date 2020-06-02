@@ -37,7 +37,7 @@ module.exports = (api, options) => {
      * Users pages templates
      */
     api.render("./users", {
-      impersonate: !!authProvider,
+      impersonate: !!options.authProvider,
     });
   }
 

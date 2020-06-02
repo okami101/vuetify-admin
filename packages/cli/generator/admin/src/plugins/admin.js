@@ -54,7 +54,7 @@ export default new VtecAdmin({
 <%_ if (data) { _%>
   dataProvider: <%- data %>DataProvider(http),
 <%_ } _%>
-<%_ if (auth) { _%>
+<%_ if (auth && auth !== "custom") { _%>
   authProvider: <%- auth %>AuthProvider(http),
 <%_ } _%>
   resources,

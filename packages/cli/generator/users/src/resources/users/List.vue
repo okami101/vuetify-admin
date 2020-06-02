@@ -56,16 +56,6 @@ export default {
       fields: [
         { source: "name", sortable: true },
         { source: "email", type: "email" },
-        {
-          source: "created_at",
-          type: "date",
-          sortable: true,
-        },
-        {
-          source: "updated_at",
-          type: "date",
-          sortable: true,
-        },
       ],
       asideOpened: false,
       asideTitle: null,

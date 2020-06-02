@@ -1,5 +1,5 @@
 import upperFirst from "lodash/upperFirst";
-import startCase from "lodash/startCase";
+import lowerCase from "lodash/lowerCase";
 import isEmpty from "lodash/isEmpty";
 
 import aside from "./store/aside";
@@ -84,7 +84,7 @@ export default class VtecAdmin {
         let getName = (count) =>
           i18n.te(nameKey)
             ? i18n.tc(nameKey, count)
-            : upperFirst(startCase(r.name).toLowerCase());
+            : upperFirst(lowerCase(r.name));
 
         return {
           ...r,
