@@ -1,9 +1,10 @@
-import Field from "./Field";
-import Input from "./Input";
-import Form from "./Form";
-import Show from "./Show";
+import Field from "./wrappers/Field";
+import Input from "./wrappers/Input";
 
-import DataIterator from "./list/DataIterator";
+import List from "./injectors/List";
+import Show from "./injectors/Show";
+import Form from "./injectors/Form";
+
 import DataTable from "./list/DataTable";
 
 import CreateLayout from "./layouts/CreateLayout";
@@ -63,9 +64,9 @@ import FileInput from "./inputs/FileInput";
 export {
   Field,
   Input,
+  List,
   Form,
   Show,
-  DataIterator,
   DataTable,
   CreateLayout,
   ShowLayout,

@@ -6,9 +6,9 @@
       </h1>
     </v-card-title>
     <v-card-text>
-      <va-data-iterator>
+      <va-list>
         <va-data-table :fields="fields"> </va-data-table>
-      </va-data-iterator>
+      </va-list>
     </v-card-text>
   </v-card>
 </template>

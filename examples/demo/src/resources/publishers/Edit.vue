@@ -5,7 +5,7 @@
       icon="mdi-book"
       :title="$admin.getResource('books').pluralName"
     >
-      <va-data-iterator
+      <va-list
         resource="books"
         disable-query-string
         :items-per-page="10"
@@ -16,7 +16,7 @@
         :include="['authors']"
       >
         <va-data-table :fields="fields"></va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </va-edit-layout>
 </template>

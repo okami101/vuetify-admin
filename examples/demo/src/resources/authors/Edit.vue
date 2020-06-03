@@ -5,7 +5,7 @@
       icon="mdi-book"
       :title="$admin.getResource('books').pluralName"
     >
-      <va-data-iterator
+      <va-list
         resource="books"
         disable-global-search
         disable-pagination
@@ -27,7 +27,7 @@
           :association="association"
           :fields="fields"
         ></va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </va-edit-layout>
 </template>

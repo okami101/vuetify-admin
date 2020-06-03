@@ -73,7 +73,7 @@ Let's add some new fields to user's list :
 
 ```vue {11-18}
 <template>
-  <!-- DataIterator -->
+  <!-- VaList -->
 </template>
 
 <script>
@@ -118,13 +118,13 @@ Imagine you want customize address cell with complete information :
 
 ```vue {4-6}
 <template>
-  <va-data-iterator>
+  <va-list>
     <va-data-table :fields="fields">
       <template v-slot:field.address="{ value }">
         {{ value.street }} {{ value.zipcode }} {{ value.city }}
       </template>
     </va-data-table>
-  </va-data-iterator>
+  </va-list>
 </template>
 ```
 
@@ -169,7 +169,7 @@ You can finally use it for fields :
 
 ```vue {12}
 <template>
-  <!-- DataIterator -->
+  <!-- VaList -->
 </template>
 
 <script>
@@ -258,9 +258,9 @@ Sample for posts list :
       </h1>
     </v-card-title>
     <v-card-text>
-      <va-data-iterator>
+      <va-list>
         <va-data-table :fields="fields"></va-data-table>
-      </va-data-iterator>
+      </va-list>
     </v-card-text>
   </v-card>
 </template>
@@ -291,9 +291,9 @@ Vtec Admin doesn't know about any custom UI components on client side and will p
 ```vue {2,6,11}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <!-- DataTable -->
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 
@@ -333,9 +333,9 @@ It will active all CRUD routes actions for user. Now delete `src/resources/users
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields"></va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 
@@ -518,7 +518,7 @@ It will be nice to have a direct link towards existing show or edit user page (y
 
 ```vue {11-15}
 <template>
-  <!-- DataIterator -->
+  <!-- VaList -->
 </template>
 
 <script>
@@ -581,16 +581,16 @@ Now it will be better with a real name instead of basic ID. But the API don't gi
 Contrary to React Admin equivalent, reference field doesn't support autofetching target resource from API. Instead we prefer to rely on backend capacity to give full object on demand that allows internal eager loading for better performance.
 :::
 
-So how can use it ? Simply by using specific `include` prop of `VaDataIterator` component. In case of JSON server data provider, it's an object which accepts both `expand` and `embed` property. Then don't forget to change `userId` to `user` as source prop for reference field.
+So how can use it ? Simply by using specific `include` prop of `VaList` component. In case of JSON server data provider, it's an object which accepts both `expand` and `embed` property. Then don't forget to change `userId` to `user` as source prop for reference field.
 
 ```vue {9,24}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <!-- Title -->
     <v-card-text>
-      <va-data-iterator :include="{ expand: ['user'] }">
+      <va-list :include="{ expand: ['user'] }">
         <!-- DataTable -->
-      </va-data-iterator>
+      </va-list>
     </v-card-text>
   </base-material-card>
 </template>
@@ -639,7 +639,7 @@ Then you should have nice labelled chip for users :
 ![relationships](/assets/tutorial/relationships.png)
 
 :::tip RELATIONSHIP IN SHOW PAGE
-Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaDataIterator` will use it as well if not defined, but it still can be overridden.
+Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaList` will use it as well if not defined, but it still can be overridden.
 :::
 
 ### Form
@@ -679,14 +679,14 @@ Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User
 
 ## Filters
 
-So we have global search as default filter from posts page list. It will be trivial to have the possibility to filter by user to. It's also as simple as adding fields. Simply add a new select filter object and bind it to `VaDataIterator` component as next :
+So we have global search as default filter from posts page list. It will be trivial to have the possibility to filter by user to. It's also as simple as adding fields. Simply add a new select filter object and bind it to `VaList` component as next :
 
 ```vue {5,19-26}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator :filters="filters">
+    <va-list :filters="filters">
       <!-- DataTable -->
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Source from "../../mixins/source";
-import InputWrapper from "../../mixins/input-wrapper";
+import Source from "../../../mixins/source";
+import InputWrapper from "../../../mixins/input-wrapper";
 
 /**
  * Dumb input wrapper for custom input components that don't manage natively error states.

@@ -1,15 +1,12 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      :include="['publisher', 'authors', 'media']"
-    >
+    <va-list :filters="filters" :include="['publisher', 'authors', 'media']">
       <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

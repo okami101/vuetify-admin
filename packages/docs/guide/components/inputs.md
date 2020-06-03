@@ -1,6 +1,6 @@
 # Inputs
 
-VA input components allow editing of particular property of existing API resource object. Mainly used on [forms](../crud/form.md) for create and edit views. Can also be used as filter input for [`VaDataIterator`](../crud/list.md#data-iterator). For resource edition, it must be used within [`VaForm`](../crud/form.md#injector), which handle item injection and form model supply with error messages.
+VA input components allow editing of particular property of existing API resource object. Mainly used on [forms](../crud/form.md) for create and edit views. Can also be used as filter input for [`VaList`](../crud/list.md#data-iterator). For resource edition, it must be used within [`VaForm`](../crud/form.md#injector), which handle item injection and form model supply with error messages.
 
 :::tip SOURCE AND MODEL
 Va inputs support both `source` and `model` prop. Source is the original property object where to fetch the value and model will be the final property name with the new value that will be sent on your data provider.
@@ -468,9 +468,9 @@ Note as we add `Va` as prefix component name. That allows us to have a functiona
 
 ```vue
 <template>
-  <va-data-iterator :filters="filters">
+  <va-list :filters="filters">
     <!-- VaDataTable -->
-  </va-data-iterator>
+  </va-list>
 </template>
 
 <script>

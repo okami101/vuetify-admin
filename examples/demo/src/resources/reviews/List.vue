@@ -1,6 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator :filters="filters" :include="['book']">
+    <va-list :filters="filters" :include="['book']">
       <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.body }}
@@ -9,7 +9,7 @@
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

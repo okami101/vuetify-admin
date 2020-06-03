@@ -194,13 +194,13 @@ Here some samples for `reviews` resource :
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields">
         <template v-slot:quality="{ item }">
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

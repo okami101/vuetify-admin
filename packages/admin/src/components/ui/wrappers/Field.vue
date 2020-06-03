@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Field from "../../mixins/field";
+import Field from "../../../mixins/field";
 import upperFirst from "lodash/upperFirst";
 import lowerCase from "lodash/lowerCase";
 

@@ -1,6 +1,6 @@
 # List
 
-The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaDataIterator` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full datatable by using `VaDataTable` components, but it can be totally replaced by anything you want.
+The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaList` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full datatable by using `VaDataTable` components, but it can be totally replaced by anything you want.
 
 ![list](/assets/list.png)
 
@@ -19,9 +19,9 @@ Here a quick sample usage within the `VaDataTable` component :
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields"></va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 
@@ -49,10 +49,10 @@ It will produce this simple structure :
 
 ![list](/assets/list-sample.png)
 
-Note that `VaDataIterator` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
+Note that `VaList` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
 :::warning DISPLAY DATA
-`VaDataIterator` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the providing `VaDataTable`.
+`VaList` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the providing `VaDataTable`.
 :::
 
 ## Data table
@@ -60,7 +60,7 @@ Note that `VaDataIterator` will try to be synchronized on real time within query
 |> docgen data-table
 
 :::warning CONTEXT SYNCHRONIZATION
-As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaDataIterator` as data browsing control that will automatically inject following behaviors :
+As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaList` as data browsing control that will automatically inject following behaviors :
 
 * **Current resource and items** : Pass all result data from iterator into data table with total.
 * **Loading state** : for activating busy mode when fetching on API.
@@ -77,9 +77,9 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
 ```vue {9,25-72}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields" show-expand></va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 
@@ -166,7 +166,7 @@ In case of all above field options doesn't suit your needs, you can percectly us
 ```vue {15-28}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields" show-expand>
         <template v-slot:field.authors="{ value }">
           <v-chip-group column>
@@ -183,7 +183,7 @@ In case of all above field options doesn't suit your needs, you can percectly us
           </v-chip-group>
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 ```
@@ -199,13 +199,13 @@ You can use the `expanded-item` slot for an additional togglable full collspan c
 ```vue {10,15-17}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 ```
@@ -217,7 +217,7 @@ If you need other item actions in addition to classic crud operations, use the d
 ```vue {14-20}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator>
+    <va-list>
       <va-data-table :fields="fields">
         <template v-slot:item.actions="{ resource, item }">
           <impersonate-button
@@ -227,7 +227,7 @@ If you need other item actions in addition to classic crud operations, use the d
           ></impersonate-button>
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 ```
@@ -259,7 +259,7 @@ In addition to exposed filters, you may need some internal filters that user can
 
 ## Advanced filters
 
-In addition to global search, `VaDataIterator` supports advanced custom filters as well with many supported inputs as shown here :
+In addition to global search, `VaList` supports advanced custom filters as well with many supported inputs as shown here :
 
 ![filters](/assets/filters.png)
 
@@ -270,9 +270,9 @@ In order to define new filters, use the `filters` props. Here are a code sample 
 ```vue {4,19-42}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator :filters="filters">
+    <va-list :filters="filters">
       <!-- VaDataTable -->
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 
@@ -327,14 +327,14 @@ See all supported field properties :
 
 ### Filter templating
 
-As same way as field templating you can even template your filter directy by using `filter.{source}` slot, where `source` is the name of filter. However, as your custom filter component must return input on change in order to work with current active filter, you will need to expose the internal filter of `VaDataIterator` by `filter.sync`, and then update the filter with new value on each input change.
+As same way as field templating you can even template your filter directy by using `filter.{source}` slot, where `source` is the name of filter. However, as your custom filter component must return input on change in order to work with current active filter, you will need to expose the internal filter of `VaList` by `filter.sync`, and then update the filter with new value on each input change.
 
 Here is a full working sample :
 
 ```vue {7,9-16,34,48-55}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator :filters="filters" :filter.sync="filter">
+    <va-list :filters="filters" :filter.sync="filter">
       <template v-slot:filter.headquarter="props">
         <va-text-input
           hide-details
@@ -344,7 +344,7 @@ Here is a full working sample :
         ></va-text-input>
       </template>
       <va-data-table :fields="fields"></va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 
@@ -379,7 +379,7 @@ export default {
 
 ## Global actions
 
-This `VaDataIterator` component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
+This `VaList` component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
 
 :::tip ACTION EVENTS
 You're not forced keep the default redirect behavior button. If you prefer a create event, juste subscribe to `action` event and disable create redirect via `disableCreateRedirect` prop for preventing create button to redirect to linked action page.
@@ -406,12 +406,12 @@ You can add custom actions via `actions` slot :
 ```vue {4-6}
 <template>
   <base-material-card>
-    <va-data-iterator>
+    <va-list>
       <template v-slot:actions>
         <my-custom-button></my-custom-button>
       </template>
       <!-- VaDataTable -->
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 ```
@@ -431,7 +431,7 @@ The next example will show you a bulk publish and unpublish bulk actions :
 ```vue {4-23}
 <template>
   <base-material-card>
-    <va-data-iterator>
+    <va-list>
       <template v-slot:actions>
         <va-bulk-action-button
           resource="users"
@@ -451,7 +451,7 @@ The next example will show you a bulk publish and unpublish bulk actions :
         ></va-bulk-action-button>
       </template>
       <va-data-table :fields="fields"></va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 ```
@@ -462,7 +462,7 @@ The next example will show you a bulk publish and unpublish bulk actions :
 
 ## Pagination
 
-By default, `VaDataIterator` will use the default vuetify pagination control which allows direct page control navigation as well as number of shown item per page. Use `itemsPerPage` and `itemsPerPageOptions` in order to initialized the maximum number of shown item per page.
+By default, `VaList` will use the default vuetify pagination control which allows direct page control navigation as well as number of shown item per page. Use `itemsPerPage` and `itemsPerPageOptions` in order to initialized the maximum number of shown item per page.
 
 This default control is totally replaceable by your own pagination control. Use `footer` slot property for that and set `hideDefaultFooter` prop to `true`. This slot will provide all pagination context infos as well as server-side total of items.
 
@@ -470,16 +470,16 @@ This default control is totally replaceable by your own pagination control. Use 
 
 ![relationship](/assets/relationship.png)
 
-You're not forced to use `VaDataIterator` on list page ! As the same way for most of VA components, it can be used anywhere on any page or context thanks to `resource` prop which is present on all resource aware VA components. When not defined, the default resource will be the one linked to the current route.
+You're not forced to use `VaList` on list page ! As the same way for most of VA components, it can be used anywhere on any page or context thanks to `resource` prop which is present on all resource aware VA components. When not defined, the default resource will be the one linked to the current route.
 
-Next example shows a good use case of `VaDataIterator` inside a `VaEditLayout` page in order to show some related resources linked to the current edited item resource.
+Next example shows a good use case of `VaList` inside a `VaEditLayout` page in order to show some related resources linked to the current edited item resource.
 
 ```vue {6-10}
 <template>
   <va-edit-layout>
     <publishers-form :id="id" :title="title" :item="item"></publishers-form>
     <base-material-card icon="mdi-book" title="Books">
-      <va-data-iterator
+      <va-list
         resource="books"
         disable-query-string
         :filter="{
@@ -489,7 +489,7 @@ Next example shows a good use case of `VaDataIterator` inside a `VaEditLayout` p
         <va-data-table :fields="fields">
           <!-- VaDataTable -->
         </va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </va-edit-layout>
 </template>
@@ -517,7 +517,7 @@ See this example :
       icon="mdi-book"
       :title="$tc('resources.books.name', 10)"
     >
-      <va-data-iterator
+      <va-list
         resource="books"
         disable-global-search
         disable-pagination
@@ -539,7 +539,7 @@ See this example :
           :association="association"
           :fields="fields"
         ></va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </va-edit-layout>
 </template>
@@ -590,18 +590,18 @@ if ($id = $request->input('remove_author_id')) {
 
 ## Custom layout
 
-As you can see, `VaDataIterator` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
+As you can see, `VaList` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
 
 It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters.
 
 ![custom-list-layout](/assets/custom-list-layout.png)
 
-The only thing to do is to use the default slot of `VaDataIterator` which allows you to implement your custom template item list from the provided `items` binding value as shown here :
+The only thing to do is to use the default slot of `VaList` which allows you to implement your custom template item list from the provided `items` binding value as shown here :
 
 ```vue {7-21}
 <template>
   <base-material-card>
-    <va-data-iterator
+    <va-list
       :items-per-page="8"
       :items-per-page-options="[4, 8, 16, 32]"
     >
@@ -620,7 +620,7 @@ The only thing to do is to use the default slot of `VaDataIterator` which allows
           </v-col>
         </v-row>
       </template>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 ```
@@ -665,7 +665,7 @@ The default users template generated by Vue CLI Plugin is a good showcase for th
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside-layout>
     <base-material-card :icon="resource.icon" :title="title">
-      <va-data-iterator
+      <va-list
         ref="list"
         disable-create-redirect
         @action="onAction"
@@ -677,7 +677,7 @@ The default users template generated by Vue CLI Plugin is a good showcase for th
           disable-edit-redirect
           @item-action="onAction"
         ></va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </div>
 </template>

@@ -5,7 +5,7 @@
       icon="mdi-comment"
       :title="$admin.getResource('reviews').pluralName"
     >
-      <va-data-iterator
+      <va-list
         resource="reviews"
         disable-query-string
         :items-per-page="10"
@@ -19,7 +19,7 @@
             {{ item.rating >= 3 ? $t("good") : $t("bad") }}
           </template>
         </va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </va-edit-layout>
 </template>

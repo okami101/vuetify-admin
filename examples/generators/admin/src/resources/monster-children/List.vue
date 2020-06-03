@@ -1,8 +1,8 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator :filters="filters" :include="['monster']">
+    <va-list :filters="filters" :include="['monster']">
       <va-data-table :fields="fields"> </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

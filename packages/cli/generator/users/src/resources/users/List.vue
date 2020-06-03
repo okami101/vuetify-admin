@@ -5,7 +5,7 @@
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside-layout>
     <base-material-card :icon="resource.icon" :title="title">
-      <va-data-iterator
+      <va-list
         ref="list"
         disable-create-redirect
         @action="onAction"
@@ -28,7 +28,7 @@
           </template>
           <%_ } _%>
         </va-data-table>
-      </va-data-iterator>
+      </va-list>
     </base-material-card>
   </div>
 </template>

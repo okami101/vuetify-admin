@@ -1,6 +1,6 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
+    <va-list
       :filters="[
         'name',
         {
@@ -57,7 +57,7 @@
           </v-col>
         </v-row>
       </template>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

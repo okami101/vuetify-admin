@@ -17,8 +17,8 @@ import Papa from "papaparse";
 import { mapActions } from "vuex";
 
 /**
- * Action button for export all data from a list iterator, aka VaDataIterator.
- * Use current state of VaDataIterator, i.e. keep current filters and sorts while removing pagination limitation.
+ * Action button for export all data from a list iterator, aka VaList.
+ * Use current state of VaList, i.e. keep current filters and sorts while removing pagination limitation.
  * Will provoke a download of a CSV file generated on client side thanks to papaparse library.
  */
 export default {

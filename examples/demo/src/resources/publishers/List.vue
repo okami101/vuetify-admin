@@ -1,12 +1,12 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator :filters="filters" :include="['media', 'books_count']">
+    <va-list :filters="filters" :include="['media', 'books_count']">
       <va-data-table :fields="fields">
         <template v-slot:field.address="{ value }">
           {{ value.postcode }} {{ value.city }}
         </template>
       </va-data-table>
-    </va-data-iterator>
+    </va-list>
   </base-material-card>
 </template>
 

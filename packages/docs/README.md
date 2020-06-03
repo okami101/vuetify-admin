@@ -47,7 +47,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   </div>
   <div class="feature">
     <h2>Full-featured DataTable</h2>
-    <p>Full-featured DataTable, including multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context. Possibility of total list layout customization thanks to separate DataIterator !</p>
+    <p>Full-featured DataTable, including multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context. Possibility of total list layout customization thanks to separate data iterator !</p>
   </div>
   <div class="feature">
     <h2>Custom fields</h2>

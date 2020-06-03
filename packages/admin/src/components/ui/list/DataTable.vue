@@ -165,7 +165,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 /**
- * Dumb datatable component, you will need data iterator as VaDataIterator in order to make it usable.
+ * Dumb datatable component, you will need data iterator as VaList in order to make it usable.
  * This component allows you to template all fields columns.
  */
 export default {
