@@ -1,18 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      :include="['media', 'books_count']"
-      v-slot="props"
-      v-model="selected"
-      :options.sync="options"
-    >
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+    <va-data-iterator :filters="filters" :include="['media', 'books_count']">
+      <va-data-table :fields="fields">
         <template v-slot:field.address="{ value }">
           {{ value.postcode }} {{ value.city }}
         </template>
@@ -60,8 +49,6 @@ export default {
         },
         { source: "books_count", type: "number", sortable: true },
       ],
-      options: {},
-      selected: [],
     };
   },
 };

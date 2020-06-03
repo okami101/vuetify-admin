@@ -1,19 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      :include="['book']"
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        show-expand
-        v-model="selected"
-        :options.sync="options"
-      >
+    <va-data-iterator :filters="filters" :include="['book']">
+      <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.body }}
         </template>
@@ -84,8 +72,6 @@ export default {
           sortable: true,
         },
       ],
-      options: {},
-      selected: [],
     };
   },
 };

@@ -194,17 +194,8 @@ Here some samples for `reviews` resource :
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+    <va-data-iterator>
+      <va-data-table :fields="fields">
         <template v-slot:quality="{ item }">
           {{ item.rating >= 3 ? $t("good") : $t("bad") }}
         </template>
@@ -230,9 +221,7 @@ export default {
           source: 'publication_date',
           type: 'date',
         },
-      ]
-      options: {},
-      selected: [],
+      ],
     };
   },
 };

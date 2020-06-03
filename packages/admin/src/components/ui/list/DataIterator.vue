@@ -1,30 +1,25 @@
 <template>
   <v-data-iterator
-    :items="items"
-    :server-items-length="total"
-    :loading="loading"
-    :options.sync="currentOptions"
-    :value="value"
+    :items="listState.items"
+    :server-items-length="listState.total"
+    :loading="listState.loading"
+    :options.sync="listState.options"
+    :value="listState.selected"
     :items-per-page="itemsPerPage"
     :hide-default-footer="hideDefaultFooter || disablePagination"
     :footer-props="{
       'items-per-page-options': itemsPerPageOptions,
       showFirstLastPage: true,
     }"
-    @input="onSelect"
   >
     <template v-slot:header v-if="!hideHeader">
-      <v-toolbar flat color="blue lighten-5" v-if="value.length">
-        {{ $tc("va.datatable.selected_items", value.length) }}
+      <v-toolbar flat color="blue lighten-5" v-if="listState.selected.length">
+        {{ $tc("va.datatable.selected_items", listState.selected.length) }}
         <v-spacer></v-spacer>
         <div>
           <!-- @slot Custom bulk actions, ideal place for VaBulkActionButton -->
           <slot name="bulk.actions"></slot>
-          <va-bulk-delete-button
-            :resource="resource"
-            :value="value"
-            @input="onSelect"
-          ></va-bulk-delete-button>
+          <va-bulk-delete-button :resource="resource"></va-bulk-delete-button>
         </div>
       </v-toolbar>
       <v-toolbar flat v-else>
@@ -106,13 +101,10 @@
         @binding {boolean} loading Loading indicator.
         @binding {number} total Total count from server-side.
       -->
-      <slot
-        v-bind="{ resource, items, loading }"
-        :server-items-length="total"
-      ></slot>
+      <slot v-bind="listState"></slot>
     </template>
     <template v-slot:loading>
-      <slot :resource="resource" :loading="loading"></slot>
+      <slot :resource="resource" :loading="listState.loading"></slot>
     </template>
     <template v-slot:no-data>
       <slot :resource="resource"></slot>
@@ -124,8 +116,8 @@
       <!-- @slot Best place for any custom pagination. -->
       <slot
         name="footer"
-        :options="currentOptions"
-        :total="total"
+        :options="listState.options"
+        :total="listState.total"
         :items-per-page="itemsPerPage"
         :items-per-page-options="itemsPerPageOptions"
       ></slot>
@@ -149,6 +141,11 @@ export default {
   mixins: [Resource, Search],
   components: {
     FormFilter,
+  },
+  provide() {
+    return {
+      listState: this.listState,
+    };
   },
   props: {
     /**
@@ -235,13 +232,26 @@ export default {
   data() {
     return {
       loaded: false,
-      loading: false,
-      items: [],
-      total: 0,
-      currentOptions: {},
       currentFilter: {},
       enabledFilters: [],
       associationId: null,
+      listState: {
+        resource: this.resource,
+        items: [],
+        loading: false,
+        total: 0,
+        selected: [],
+        options: {},
+        setOptions(options) {
+          this.options = options;
+        },
+        setSelected(selected) {
+          this.selected = selected;
+        },
+        clearSelected() {
+          this.selected = [];
+        },
+      },
     };
   },
   async mounted() {
@@ -311,13 +321,7 @@ export default {
         this.fetchData();
       }
     },
-    options: {
-      handler(val) {
-        this.currentOptions = val;
-      },
-      immediate: true,
-    },
-    currentOptions(val) {
+    "listState.options"(val) {
       this.fetchData();
       this.updateQuery();
 
@@ -337,13 +341,6 @@ export default {
     ...mapActions({
       update: "api/update",
     }),
-    onSelect(selected) {
-      /**
-       * Triggered when item is selected.
-       * Synchronize it with VaDataTable for selection clearing.
-       */
-      this.$emit("input", selected);
-    },
     async initFiltersFromQuery() {
       let options = {
         page: 1,
@@ -353,7 +350,7 @@ export default {
       };
 
       if (this.disableQueryString) {
-        this.currentOptions = options;
+        this.listState.options = options;
         return;
       }
 
@@ -378,7 +375,7 @@ export default {
         options.sortDesc = sortDesc.split(",").map((bool) => bool === "true");
       }
 
-      this.currentOptions = options;
+      this.listState.options = options;
 
       /**
        * Enable active filters from query
@@ -402,14 +399,14 @@ export default {
       this.enabledFilters.splice(this.enabledFilters.indexOf(filter.source), 1);
     },
     updateQuery() {
-      if (this.disableQueryString || isEmpty(this.currentOptions)) {
+      if (this.disableQueryString || isEmpty(this.listState.options)) {
         return;
       }
 
       /**
        * Update query router
        */
-      let { itemsPerPage, page, sortBy, sortDesc } = this.currentOptions;
+      let { itemsPerPage, page, sortBy, sortDesc } = this.listState.options;
       let query = {
         perPage: itemsPerPage,
         page,
@@ -430,12 +427,13 @@ export default {
       this.$router.push({ query }).catch((e) => {});
     },
     async fetchData() {
-      if (!this.loaded || isEmpty(this.currentOptions)) {
+      if (!this.loaded || isEmpty(this.listState.options)) {
         return;
       }
 
-      this.loading = true;
-      const { sortBy, sortDesc, page, itemsPerPage } = this.currentOptions;
+      this.listState.loading = true;
+
+      const { sortBy, sortDesc, page, itemsPerPage } = this.listState.options;
 
       let params = {
         fields: this.getFieldsQuery(this.resource, this.fields),
@@ -456,16 +454,27 @@ export default {
       }
 
       /**
-       * Load paginated and sortad data list
+       * Load paginated and sorted data list
        */
       let { data, total } = await this.getList({
         resource: this.resource,
         params,
       });
 
-      this.loading = false;
-      this.items = data;
-      this.total = total;
+      /**
+       * Update state without cloning
+       */
+      let newState = {
+        items: data,
+        loading: false,
+        total,
+        selected: [],
+        options: this.listState.options,
+      };
+
+      for (let key in newState) {
+        this.listState[key] = newState[key];
+      }
     },
     getFieldsQuery(resource, sources, fields = {}) {
       sources.forEach((s) => {

@@ -5,7 +5,7 @@
     :icon="icon"
     :text="text"
     :color="color || 'primary'"
-    @click="onBlukUpdate"
+    @click="onBulkUpdate"
   ></va-action-button>
 </template>
 
@@ -20,6 +20,9 @@ import { mapActions } from "vuex";
  */
 export default {
   mixins: [Resource, ActionButton],
+  inject: {
+    listState: { default: undefined },
+  },
   props: {
     /**
      * Selected resources items.
@@ -39,16 +42,19 @@ export default {
       updateMany: "api/updateMany",
       refresh: "api/refresh",
     }),
-    async onBlukUpdate() {
+    async onBulkUpdate() {
+      let value = this.value || this.listState.selected;
+
       await this.updateMany({
         resource: this.resource,
-        params: { ids: this.value.map(({ id }) => id), data: this.action },
+        params: { ids: value.map(({ id }) => id), data: this.action },
       });
 
       /**
        * Cleanup selected elements
        */
       this.$emit("input", []);
+      this.listState.clearSelected();
       this.refresh(this.resource);
     },
   },

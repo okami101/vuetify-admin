@@ -13,16 +13,8 @@
           book: id,
         }"
         :filters="filters"
-        v-model="selected"
-        :options.sync="options"
-        v-slot="props"
       >
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
+        <va-data-table :fields="fields">
           <template v-slot:quality="{ item }">
             {{ item.rating >= 3 ? $t("good") : $t("bad") }}
           </template>
@@ -73,8 +65,6 @@ export default {
           type: "date",
         },
       ],
-      options: {},
-      selected: [],
     };
   },
 };

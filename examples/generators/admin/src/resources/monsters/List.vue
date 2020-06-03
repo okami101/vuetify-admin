@@ -1,19 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      :include="['media']"
-      v-slot="props"
-      v-model="selected"
-      :options.sync="options"
-    >
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
-      </va-data-table>
+    <va-data-iterator :filters="filters" :include="['media']">
+      <va-data-table :fields="fields"> </va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
@@ -51,8 +39,6 @@ export default {
         { source: "category", type: "select" },
         { source: "publication_date", type: "date", sortable: true },
       ],
-      options: {},
-      selected: [],
     };
   },
 };

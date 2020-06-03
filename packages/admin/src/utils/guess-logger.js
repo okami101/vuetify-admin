@@ -13,18 +13,8 @@ const templates = {
       </h1>
     </v-card-title>
     <v-card-text>
-      <va-data-iterator
-        v-slot="props"
-        v-model="selected"
-        :options.sync="options"
-      >
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-        </va-data-table>
+      <va-data-iterator>
+        <va-data-table :fields="fields"></va-data-table>
       </va-data-iterator>
     </v-card-text>
   </v-card>
@@ -36,8 +26,6 @@ export default {
   data() {
     return {
       fields: <%- fields %>,
-      options: {},
-      selected: [],
     };
   },
 };

@@ -1,16 +1,16 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="items"
+    :items="currentItems"
     :show-select="!disableSelect"
     :disable-sort="disableSort"
-    :value="value"
+    :value="selected"
     :dense="dense"
     hide-default-footer
     :options.sync="currentOptions"
     :loading="loading"
     :multi-sort="multiSort"
-    :server-items-length="serverItemsLength"
+    :server-items-length="total"
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
@@ -170,6 +170,9 @@ import upperFirst from "lodash/upperFirst";
  */
 export default {
   mixins: [List],
+  inject: {
+    listState: { default: undefined },
+  },
   props: {
     /**
      * Make each row clickable. Use predefined function as edit or show.
@@ -201,10 +204,6 @@ export default {
      */
     dense: Boolean,
     /**
-     * Put the datatable on a loading state. Used by VaDataIterator while loading data.
-     */
-    loading: Boolean,
-    /**
      * Enable multisort feature, enabled by default.
      */
     multiSort: {
@@ -232,11 +231,6 @@ export default {
       type: Object,
       default: () => {},
     },
-    /**
-     * Total of items on server side, prefilled from VaDataIterator by `total` return by data provider.
-     * Disable client-side sorting if setted.
-     */
-    serverItemsLength: Number,
     /**
      * Disable select feature.
      */
@@ -288,6 +282,10 @@ export default {
   },
   data() {
     return {
+      currentItems: [],
+      loading: false,
+      total: 0,
+      selected: [],
       currentOptions: {},
     };
   },
@@ -330,6 +328,19 @@ export default {
     },
   },
   watch: {
+    listState: {
+      handler(val) {
+        if (val) {
+          this.currentItems = val.items;
+          this.loading = val.loading;
+          this.total = val.total;
+          this.selected = val.selected;
+          this.currentOptions = val.options;
+        }
+      },
+      immediate: true,
+      deep: true,
+    },
     options: {
       handler(val) {
         this.currentOptions = {
@@ -350,12 +361,16 @@ export default {
        * Synchronize it with VaDataIterator for enabling bulk action context.
        */
       this.$emit("input", selected);
+
+      this.listState.setSelected(selected);
     },
     updateOptions() {
       /**
        * Triggered on sorting change
        */
       this.$emit("update:options", this.currentOptions);
+
+      this.listState.setOptions(this.currentOptions);
     },
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {

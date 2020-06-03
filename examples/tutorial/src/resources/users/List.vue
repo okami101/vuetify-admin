@@ -1,15 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator v-model="selected" :options.sync="options">
-      <template v-slot="props">
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-        </va-data-table>
-      </template>
+    <va-data-iterator>
+      <va-data-table :fields="fields"> </va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
@@ -29,8 +21,6 @@ export default {
         { source: "website", type: "url" },
         "company.name",
       ],
-      options: {},
-      selected: [],
     };
   },
 };

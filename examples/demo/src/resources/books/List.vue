@@ -3,17 +3,8 @@
     <va-data-iterator
       :filters="filters"
       :include="['publisher', 'authors', 'media']"
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
     >
-      <va-data-table
-        :fields="fields"
-        show-expand
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+      <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
@@ -116,8 +107,6 @@ export default {
           },
         },
       ],
-      options: {},
-      selected: [],
     };
   },
 };

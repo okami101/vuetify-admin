@@ -7,33 +7,27 @@
     <base-material-card :icon="resource.icon" :title="title">
       <va-data-iterator
         ref="list"
-        v-model="selected"
-        :options.sync="options"
         disable-create-redirect
         @action="onAction"
       >
-        <template v-slot="props">
-          <va-data-table
-            :fields="fields"
-            v-bind="props"
-            v-model="selected"
-            :options.sync="options"
-            disable-create-redirect
-            disable-show-redirect
-            disable-edit-redirect
-            @item-action="onAction"
-          >
-            <%_ if (impersonate) { _%>
-            <template v-slot:item.actions="{ resource, item }">
-              <impersonate-button
-                :resource="resource"
-                :item="item"
-                icon
-              ></impersonate-button>
-            </template>
-            <%_ } _%>
-          </va-data-table>
-        </template>
+        <va-data-table
+          :fields="fields"
+          :options.sync="options"
+          disable-create-redirect
+          disable-show-redirect
+          disable-edit-redirect
+          @item-action="onAction"
+        >
+          <%_ if (impersonate) { _%>
+          <template v-slot:item.actions="{ resource, item }">
+            <impersonate-button
+              :resource="resource"
+              :item="item"
+              icon
+            ></impersonate-button>
+          </template>
+          <%_ } _%>
+        </va-data-table>
       </va-data-iterator>
     </base-material-card>
   </div>
@@ -61,8 +55,6 @@ export default {
       id: null,
       item: null,
       show: false,
-      options: {},
-      selected: [],
     };
   },
   methods: {

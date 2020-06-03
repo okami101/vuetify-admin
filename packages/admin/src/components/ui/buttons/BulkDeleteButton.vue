@@ -15,6 +15,9 @@ import { mapActions } from "vuex";
  */
 export default {
   mixins: [Resource],
+  inject: {
+    listState: { default: undefined },
+  },
   props: {
     /**
      * Selected resources items.
@@ -27,31 +30,30 @@ export default {
       refresh: "api/refresh",
     }),
     async onBulkDelete() {
+      let value = this.value || this.listState.selected;
+
       if (
         await this.$admin.confirm(
           this.$t("va.confirm.delete_many_title", {
-            resource: this.currentResource
-              .getName(this.value.length)
-              .toLowerCase(),
-            count: this.value.length,
+            resource: this.currentResource.getName(value.length).toLowerCase(),
+            count: value.length,
           }),
           this.$t("va.confirm.delete_many_message", {
-            resource: this.currentResource
-              .getName(this.value.length)
-              .toLowerCase(),
-            count: this.value.length,
+            resource: this.currentResource.getName(value.length).toLowerCase(),
+            count: value.length,
           })
         )
       ) {
         await this.deleteMany({
           resource: this.resource,
-          params: { ids: this.value.map(({ id }) => id) },
+          params: { ids: value.map(({ id }) => id) },
         });
 
         /**
          * Cleanup selected elements
          */
         this.$emit("input", []);
+        this.listState.clearSelected();
         this.refresh(this.resource);
       }
     },

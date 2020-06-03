@@ -3,16 +3,8 @@
     <va-data-iterator
       :filters="filters"
       :include="<%- include %>"
-      v-slot="props"
-      v-model="selected"
-      :options.sync="options"
     >
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+      <va-data-table :fields="fields">
       </va-data-table>
     </va-data-iterator>
   </base-material-card>
@@ -25,8 +17,6 @@ export default {
     return {
       filters: <%- filters %>,
       fields: <%- fields %>,
-      options: {},
-      selected: [],
     };
   },
 };

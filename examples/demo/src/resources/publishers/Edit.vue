@@ -14,16 +14,8 @@
         }"
         :filters="filters"
         :include="['authors']"
-        v-model="selected"
-        :options.sync="options"
-        v-slot="props"
       >
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        ></va-data-table>
+        <va-data-table :fields="fields"></va-data-table>
       </va-data-iterator>
     </base-material-card>
   </va-edit-layout>
@@ -84,8 +76,6 @@ export default {
           },
         },
       ],
-      options: {},
-      selected: [],
     };
   },
 };

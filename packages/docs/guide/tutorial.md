@@ -258,18 +258,8 @@ Sample for posts list :
       </h1>
     </v-card-title>
     <v-card-text>
-      <va-data-iterator
-        v-slot="props"
-        v-model="selected"
-        :options.sync="options"
-      >
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-        </va-data-table>
+      <va-data-iterator>
+        <va-data-table :fields="fields"></va-data-table>
       </va-data-iterator>
     </v-card-text>
   </v-card>
@@ -289,8 +279,6 @@ export default {
         { source: "title", type: "text" },
         { source: "body", type: "text" },
       ],
-      options: {},
-      selected: [],
     };
   },
 };
@@ -303,7 +291,7 @@ Vtec Admin doesn't know about any custom UI components on client side and will p
 ```vue {2,6,11}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
+    <va-data-iterator>
       <!-- DataTable -->
     </va-data-iterator>
   </base-material-card>
@@ -312,7 +300,6 @@ Vtec Admin doesn't know about any custom UI components on client side and will p
 <script>
 export default {
   props: ["resource", "title"],
-  //...
 };
 </script>
 ```
@@ -346,15 +333,9 @@ It will active all CRUD routes actions for user. Now delete `src/resources/users
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator v-model="selected" :options.sync="options">
+    <va-data-iterator>
       <template v-slot="props">
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
-        </va-data-table>
+        <va-data-table :fields="fields"></va-data-table>
       </template>
     </va-data-iterator>
   </base-material-card>
@@ -375,8 +356,6 @@ export default {
         { source: "website", type: "url" },
         "company.name",
       ],
-      options: {},
-      selected: [],
     };
   },
 };
@@ -558,8 +537,6 @@ export default {
         { source: "title", type: "text" },
         { source: "body", type: "text" },
       ],
-      options: {},
-      selected: [],
     };
   },
 };
@@ -613,12 +590,7 @@ So how can use it ? Simply by using specific `include` prop of `VaDataIterator` 
   <base-material-card :icon="resource.icon" :title="title">
     <!-- Title -->
     <v-card-text>
-      <va-data-iterator
-        v-slot="props"
-        v-model="selected"
-        :options.sync="options"
-        :include="{ expand: ['user'] }"
-      >
+      <va-data-iterator :include="{ expand: ['user'] }">
         <!-- DataTable -->
       </va-data-iterator>
     </v-card-text>
@@ -714,12 +686,7 @@ So we have global search as default filter from posts page list. It will be triv
 ```vue {5,19-26}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      v-slot="props"
-      v-model="selected"
-      :options.sync="options"
-    >
+    <va-data-iterator :filters="filters">
       <!-- DataTable -->
     </va-data-iterator>
   </base-material-card>

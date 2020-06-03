@@ -19,14 +19,8 @@ Here a quick sample usage within the `VaDataTable` component :
 ```vue
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator v-slot="props" v-model="selected" :options.sync="options">
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
-      </va-data-table>
+    <va-data-iterator>
+      <va-data-table :fields="fields"></va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
@@ -45,8 +39,6 @@ export default {
         { source: 'active', type: 'boolean' },
         { source: 'opening_date', type: 'date' },
       ],
-      options: {},
-      selected: [],
     };
   },
 };
@@ -68,11 +60,12 @@ Note that `VaDataIterator` will try to be synchronized on real time within query
 |> docgen data-table
 
 :::warning CONTEXT SYNCHRONIZATION
-As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaDataIterator` as data browsing control and do next additional attachments :
+As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaDataIterator` as data browsing control that will automatically inject following behaviors :
 
-* `v-slot="props"` and `v-bind="props"` : Pass all data iterator slot bindings into data table as props.
-* `v-model="selected"` : Keep selected items used for bulk operation synchronized, all selected items in data table will be reflected on data iterator and vice-versa.
-* `:options.sync="options"`: Keep current search query context synchronized between all components, as the data table will add sorting support.
+* **Current resource and items** : Pass all result data from iterator into data table with total.
+* **Loading state** : for activating busy mode when fetching on API.
+* **Selected items** : Keep selected items used for bulk operation synchronized, all selected items in data table will be reflected on data iterator and vice-versa.
+* **Current search context**: Keep current search query context synchronized between all components, as the data table will add sorting support.
 :::
 
 ### Fields
@@ -84,19 +77,8 @@ Use `fields` prop in order to define all columns. It's an array of string or obj
 ```vue {9,25-72}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="fields"
-        show-expand
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
-      </va-data-table>
+    <va-data-iterator>
+      <va-data-table :fields="fields" show-expand></va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
@@ -154,8 +136,6 @@ export default {
         },
         "authors",
       ],
-      options: {},
-      selected: [],
     };
   },
 };
@@ -186,18 +166,8 @@ In case of all above field options doesn't suit your needs, you can percectly us
 ```vue {15-28}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="fields"
-        show-expand
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+    <va-data-iterator>
+      <va-data-table :fields="fields" show-expand>
         <template v-slot:field.authors="{ value }">
           <v-chip-group column>
             <va-reference-field
@@ -229,18 +199,8 @@ You can use the `expanded-item` slot for an additional togglable full collspan c
 ```vue {10,15-17}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="fields"
-        show-expand
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+    <va-data-iterator>
+      <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
         </template>
@@ -257,17 +217,8 @@ If you need other item actions in addition to classic crud operations, use the d
 ```vue {14-20}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
-      <va-data-table
-        :fields="fields"
-        v-bind="props"
-        v-model="selected"
-        :options.sync="options"
-      >
+    <va-data-iterator>
+      <va-data-table :fields="fields">
         <template v-slot:item.actions="{ resource, item }">
           <impersonate-button
             :resource="resource"
@@ -319,12 +270,7 @@ In order to define new filters, use the `filters` props. Here are a code sample 
 ```vue {4,19-42}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      v-model="selected"
-      :options.sync="options"
-      v-slot="props"
-    >
+    <va-data-iterator :filters="filters">
       <!-- VaDataTable -->
     </va-data-iterator>
   </base-material-card>
@@ -359,8 +305,6 @@ export default {
           type: 'date',
         },
       ],
-      options: {},
-      selected: [],
     };
   },
 };
@@ -390,12 +334,7 @@ Here is a full working sample :
 ```vue {7,9-16,34,48-55}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-data-iterator
-      :filters="filters"
-      v-model="selected"
-      :options.sync="options"
-      :filter.sync="filter"
-    >
+    <va-data-iterator :filters="filters" :filter.sync="filter">
       <template v-slot:filter.headquarter="props">
         <va-text-input
           hide-details
@@ -404,14 +343,7 @@ Here is a full working sample :
           @input="(val) => update('headquarter', val)"
         ></va-text-input>
       </template>
-      <template v-slot="props">
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        ></va-data-table>
-      </template>
+      <va-data-table :fields="fields"></va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
@@ -431,8 +363,6 @@ export default {
       fields: [
         //...
       ],
-      options: {},
-      selected: [],
     };
   },
   methods: {
@@ -511,7 +441,6 @@ The next example will show you a bulk publish and unpublish bulk actions :
       <template v-slot:actions>
         <va-bulk-action-button
           resource="users"
-          v-model="selected"
           :label="$t('users.enable')"
           icon="mdi-publish"
           color="success"
@@ -520,7 +449,6 @@ The next example will show you a bulk publish and unpublish bulk actions :
         ></va-bulk-action-button>
         <va-bulk-action-button
           resource="users"
-          v-model="selected"
           :label="$t('users.disable')"
           icon="mdi-download"
           color="orange"
@@ -528,21 +456,14 @@ The next example will show you a bulk publish and unpublish bulk actions :
           text
         ></va-bulk-action-button>
       </template>
-      <template v-slot="props">
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        ></va-data-table>
-      </template>
+      <va-data-table :fields="fields"></va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>
 ```
 
-:::warning SELECTED V-MODEL
-In order to keep all components synchronized with current selected items, you may add `v-model="selected"` on any components that need to interact with them.
+:::tip SELECTED ITEMS
+`VaBulkActionButton` will automatically use injected search state to get all items to interact.
 :::
 
 ## Pagination
@@ -570,16 +491,8 @@ Next example shows a good use case of `VaDataIterator` inside a `VaEditLayout` p
         :filter="{
           publisher: id,
         }"
-        v-model="selected"
-        :options.sync="options"
-        v-slot="props"
       >
-        <va-data-table
-          :fields="fields"
-          v-bind="props"
-          v-model="selected"
-          :options.sync="options"
-        >
+        <va-data-table :fields="fields">
           <!-- VaDataTable -->
         </va-data-table>
       </va-data-iterator>
@@ -765,23 +678,16 @@ The default users template generated by Vue CLI Plugin is a good showcase for th
     <base-material-card :icon="resource.icon" :title="title">
       <va-data-iterator
         ref="list"
-        v-model="selected"
-        :options.sync="options"
         disable-create-redirect
         @action="onAction"
       >
-        <template v-slot="props">
-          <va-data-table
-            :fields="fields"
-            v-bind="props"
-            v-model="selected"
-            :options.sync="options"
-            disable-create-redirect
-            disable-show-redirect
-            disable-edit-redirect
-            @item-action="onAction"
-          ></va-data-table>
-        </template>
+        <va-data-table
+          :fields="fields"
+          disable-create-redirect
+          disable-show-redirect
+          disable-edit-redirect
+          @item-action="onAction"
+        ></va-data-table>
       </va-data-iterator>
     </base-material-card>
   </div>
@@ -800,8 +706,6 @@ export default {
       id: null,
       item: null,
       show: false,
-      options: {},
-      selected: [],
     };
   },
   methods: {
