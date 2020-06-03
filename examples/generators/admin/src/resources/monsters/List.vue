@@ -1,7 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters" :include="['media']">
-      <va-data-table :fields="fields"> </va-data-table>
+      <va-data-table :fields="fields"></va-data-table>
     </va-list>
   </base-material-card>
 </template>

@@ -7,7 +7,7 @@
     </v-card-title>
     <v-card-text>
       <va-list>
-        <va-data-table :fields="fields"> </va-data-table>
+        <va-data-table :fields="fields"></va-data-table>
       </va-list>
     </v-card-text>
   </v-card>

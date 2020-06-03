@@ -8,6 +8,7 @@
     hide-details
     :filled="false"
     small-chips
+    clearable
     v-model="input"
   >
   </component>
