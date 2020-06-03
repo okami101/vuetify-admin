@@ -52,13 +52,13 @@ const dataProvider = {
 
 Used for all resources browsing context, as
 
-* [Data iterator component](crud/list.md) for showing list of resources inside datatable or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
+* [Data iterator component](crud/list.md) for showing list of resources inside data table or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
 * [Export button](crud/list.md#export) for filtred CSV resources exporting.
 * Entity referable choices component as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
 
 #### getOne
 
-For showing detail of resource, mainly for [Show page](crud/show.md) or datatable show actions.
+For showing detail of resource, mainly for [Show page](crud/show.md) or data table show actions.
 
 #### getMany
 
@@ -78,7 +78,7 @@ Bulk actions on [list page](crud/list.md). If your backend doesn't support a bul
 
 ### [Translatable resources](#translatable)
 
-In case of a [translatable resource](i18n.md#translatable), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the server job to do the remaining job, aka fetching the targetted field locale in case of resource reading, or save the text field on targetted locale in case of resource creating/editing.
+In case of a [translatable resource](i18n.md#translatable), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the server job to do the remaining job, aka fetching the targeted field locale in case of resource reading, or save the text field on targeted locale in case of resource creating/editing.
 
 ## Laravel Data Provider
 

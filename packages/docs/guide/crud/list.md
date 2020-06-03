@@ -1,6 +1,6 @@
 # List
 
-The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaList` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full datatable by using `VaDataTable` components, but it can be totally replaced by anything you want.
+The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaList` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full data table by using `VaDataTable` components, but it can be totally replaced by anything you want.
 
 ![list](/assets/list.png)
 

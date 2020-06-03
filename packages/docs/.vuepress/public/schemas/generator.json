@@ -38,7 +38,7 @@
           }
         },
         "columns": {
-          "description": "Fields that should be shown on datatable list. Cell format will be adapted according to field type (cf 'fields' property section).",
+          "description": "Fields that should be shown on data table list. Cell format will be adapted according to field type (cf 'fields' property section).",
           "type": "array",
           "uniqueItems": true,
           "items": {

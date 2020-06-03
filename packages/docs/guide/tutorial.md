@@ -14,7 +14,7 @@ Check [Laravel guide](laravel.md) for quick starting with generators samples or 
 
 ### Backend API
 
-First you will need a function local API in order to test Vtec Admin. We will use JSONPlaceholder as DB sample but it's really adviced to run it locally instead of current online version for preventing slow response. Don't worry it's done in less than 2 minutes in 3 steps :
+First you will need a function local API in order to test Vtec Admin. We will use JSONPlaceholder as DB sample but it's really advised to run it locally instead of current online version for preventing slow response. Don't worry it's done in less than 2 minutes in 3 steps :
 
 ```bash
 npm install -g json-server
@@ -99,7 +99,7 @@ export default {
 </script>
 ```
 
-As you can see, fields for datatable are just an list of object. `source` correspond to the targetted property of resource item where to get the value and `type` is the best suited field for display it on table cells. For basic text a simple string can be put in place of full object. `source` support dot notation as well.
+As you can see, fields for data table are just an list of object. `source` correspond to the targeted property of resource item where to get the value and `type` is the best suited field for display it on table cells. For basic text a simple string can be put in place of full object. `source` support dot notation as well.
 
 ![users-list](/assets/tutorial/users-list.png)
 
@@ -196,7 +196,7 @@ export default {
 
 Now why not to try adding new resource as `posts` ?
 
-All resources must be registred inside `src/resources/index.js`. This will allow Vtec Admin to prebuild all necessary CRUD client side routes as well as API call bridges towards registred data provider. By default only `users` is registred. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
+All resources must be registered inside `src/resources/index.js`. This will allow Vtec Admin to build all necessary CRUD client side routes as well as API call bridges towards registered data provider. By default only `users` is registered. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
 
 **`src/resources/index.js`**
 
@@ -220,7 +220,7 @@ export default [
 See [this dedicated section](resources.md) for all available options.
 :::
 
-Next add new link towards this new resource inside `src/_nav.js` file, dedicated for sidebar links which supports hierarchical menu as shown [here](crud/layout.md#links). We can use specific [resource link helpers](resources.md#link-helpers) for that. It will create for you compatible object link with above preconfigured route list action, localized label and icon.
+Next add new link towards this new resource inside `src/_nav.js` file, dedicated for sidebar links which supports hierarchical menu as shown [here](crud/layout.md#links). We can use specific [resource link helpers](resources.md#link-helpers) for that. It will create for you compatible object link with above configured route list action, localized label and icon.
 
 **`src/_nav.js`**
 
@@ -364,7 +364,7 @@ Next recreate `Show`, `Edit` and `Create` as you have done for above `posts`.
 
 ## Show pages
 
-Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component infector, aka `VaShow` that wil inject current ressource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
+Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component infector, aka `VaShow` that wil inject current resource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
 
 **`src/resources/users/Show.vue`**
 
@@ -413,7 +413,7 @@ See [dedicated section](crud/show.md).
 
 ## Create and edit pages
 
-Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next exemple for user edition page :
+Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next example for user edition page :
 
 **`src/resources/users/Edit.vue`**
 
@@ -577,8 +577,8 @@ Now it will be better with a real name instead of basic ID. But the API don't gi
 }
 ```
 
-:::warning NO AUTOFETCH FROM USERS ?
-Contrary to React Admin equivalent, reference field doesn't support autofetching target resource from API. Instead we prefer to rely on backend capacity to give full object on demand that allows internal eager loading for better performance.
+:::warning NO AUTO FETCH FROM USERS ?
+Contrary to React Admin equivalent, reference field doesn't support auto fetching target resource from API. Instead we prefer to rely on backend capacity to give full object on demand that allows internal eager loading for better performance.
 :::
 
 So how can use it ? Simply by using specific `include` prop of `VaList` component. In case of JSON server data provider, it's an object which accepts both `expand` and `embed` property. Then don't forget to change `userId` to `user` as source prop for reference field.

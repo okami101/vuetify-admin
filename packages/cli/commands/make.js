@@ -28,7 +28,7 @@ const options = {
       "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'.",
     fields:
       "For more advanced generation, you can even specify all fields used by this resource. This fields will be generated on each crud views. Each field can specify name (required), localized label, and specific field widget options.",
-    columns: "Fields that should be shown on datatable list.",
+    columns: "Fields that should be shown on data table list.",
     sortable: "Fields that can be sortable.",
     filterable:
       "Fields that can be filtered individualy. Will appear on advanced filter on list page.",

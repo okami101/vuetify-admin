@@ -122,7 +122,7 @@ Will render an formatted number inside span :
 ```
 
 :::warning FORMAT
-You must register a valid number format first for targetted i18n locale as next :
+You must register a valid number format first for targeted i18n locale as next :
 
 ```js
 i18n.setNumberFormat("en", {
@@ -161,7 +161,7 @@ Will render an formatted date inside span :
 ```
 
 :::warning FORMAT
-You must register a valid date format first for targetted i18n locale as next :
+You must register a valid date format first for targeted i18n locale as next :
 
 ```js
 i18n.setDateTimeFormat("en", {

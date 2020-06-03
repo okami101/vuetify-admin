@@ -14,7 +14,7 @@ composer install
 php artisan key:generate
 php artisan storage:link
 php artisan elfinder:publish
-php artisan migrate:fresh --seed # configurate DB according to your local before inside .env
+php artisan migrate:fresh --seed # configure DB according to your local before inside .env
 php artisan serve # Should run at localhost:8000 as default
 ```
 

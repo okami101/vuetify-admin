@@ -28,7 +28,7 @@
 import ActionButton from "../../../mixins/action-button";
 
 /**
- * Component tu use for any custom action button. Can be used on datatable rows or top header of create, show and edit pages.
+ * Component tu use for any custom action button. Can be used on data table rows or top header of create, show and edit pages.
  */
 export default {
   mixins: [ActionButton],

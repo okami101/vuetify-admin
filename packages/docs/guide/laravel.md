@@ -146,7 +146,7 @@ For server-side validation, you must manually add rules to generated store and u
 
 For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml [options]`. You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
 
-Use `name` option in order to import only targetted resource.
+Use `name` option in order to import only targeted resource.
 
 :::tip YAML TUTORIAL
 Go to [dedicated YAML section](generators.md#yaml) for full explanation with advanced tutorial.

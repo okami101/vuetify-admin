@@ -5,7 +5,7 @@ Vtec Admin offers powerful generators commands that can considerably accelerate 
 Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development while **maintaining full template customization** at hand.
 
 :::danger CUSTOMIZATION
-Consequently, this file will mainly be used for your first resource code generation. After each each generation, all customization made inside targetted resource templates will be lost.
+Consequently, this file will mainly be used for your first resource code generation. After each each generation, all customization made inside targeted resource templates will be lost.
 :::
 
 ## API
@@ -177,6 +177,6 @@ We will not use them for this tutorial, but for real app it's heavily recommende
 
 ### UI generator commands
 
-Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable datatable list, show, create and edit forms.
+Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable data table list, show, create and edit forms.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.

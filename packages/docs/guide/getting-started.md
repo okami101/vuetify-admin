@@ -14,7 +14,7 @@ To use it on your custom API, you will need to write your own [data provider](da
 
 ![demo](/assets/dashboard.png)
 
-> As a CLI projet, be sure to have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
+> As a CLI project, be sure to have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 
 ### Prepare
 
@@ -38,7 +38,7 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
 * Generate inside your project all minimal boilerplate code to quickly start :
   * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as superset on Vuetify
   * Load of external third party components used by Vtec Admin
-  * Initialize admin plugin with automatic crud pages webpack context preload and create base admin layout page on your App.vue entry file
+  * Initialize admin plugin with automatic crud pages webpack context load and create base admin layout page on your App.vue entry file
   * Login page plugged with default [Laravel Sanctum](https://github.com/laravel/sanctum) auth provider (totally replaceable by [your own provider](authentication.md))
   * Static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/)
   * Functional basic profile edition page

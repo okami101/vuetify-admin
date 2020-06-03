@@ -16,7 +16,7 @@ His main purpose is to accelerate resources CRUD UI development in a full SPA, w
 * [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) approach, minimal boilerplate code for best development experience.
 * Powerful API (Laravel only) and UI code generators for highest productivity.
 * Best balance between productivity and customization.
-* Maximize usage of many other opensource projects.
+* Maximize usage of many other open source projects.
 
 This is a sort of Vue.js little brother equivalent to well known [React Admin](https://github.com/marmelab/react-admin/), which uses even more extensive DSL approach.
 
@@ -42,7 +42,7 @@ VA is composed of this basic elements :
   * Register **resources modules** into Vuex for data fetching. This modules will be bridged to your data provider.
 * **Contextual aware components**, that we can group into 3 categories :
   * **Layout components** built on top of Vuetify with App Bar, Navigation Drawer with hierarchical sidebar, Aside, Footer, User account menu.
-  * **Pages components** which should be used as root components for your cruds pages. We will find here all contextualised CRUD buttons, as well as Data Iterator which can be associated to a datatable or any custom layout.
+  * **Pages components** which should be used as root components for your cruds pages. We will find here all contextualized CRUD buttons, as well as Data Iterator which can be associated to a data table or any custom layout.
   * **Fields and inputs components** which are superset of existing Vuetify components that will be mainly used on show and create/edit pages. Their functions is to heavily simplify the amount of code needed to made a functional CRUD page. All of this components shares a mixin which can be used for create your own VA compatible components.
 
 To summary :
@@ -64,7 +64,7 @@ VA will try to integrate within all of your existing plugins without hoisted the
 
 * [VA usage](admin.md) : How to use VA constructor
 * [Resources](resources.md) : expected format of resource object
-* [Internationalization](i18n.md) : 100% localizable resources via vue-i18n by following simple rules
+* [Internationalization](i18n.md) : 100% translatable resources via vue-i18n by following simple rules
 * [Layout](crud/layout.md) : Customizable menus
 
 **All essential components :**
@@ -72,8 +72,8 @@ VA will try to integrate within all of your existing plugins without hoisted the
 * [Full-featured DataTable](crud/list.md) : multi-sort, pagination, global search, advanced filters, CSV export
 * [Show view](crud/show.md) : For show detail of any resources
 * [Form](crud/form.md) : Global unique form V-model and server-side validation
-* [Fields](components/fields.md) : for list or show views, extensibles with your own fields
-* [Inputs](components/inputs.md) : for all create / edit forms, extensibles with your own inputs
+* [Fields](components/fields.md) : for list or show views, extensible with your own fields
+* [Inputs](components/inputs.md) : for all create / edit forms, extensible with your own inputs
 
 **Free of any backend :**
 
@@ -87,27 +87,25 @@ Customizable providers by implementing a simple contract :
 
 * [Generators](generators.md) : YAML driven development that follows a JSON schema
 
-## Why Not ...?
+## Other admin builders
 
 ### React Admin
 
 * [React Admin](https://github.com/marmelab/react-admin/) for React world. Obviously far more mature than VA, well tested, with bigger and bigger community. Actually the funniest way for admin development and is the SPA admin framework I highly recommend.
 
-### Other well known backend coupled admin builders
-
-#### Nova
+### Nova
 
 * [Official Laravel Nova](https://nova.laravel.com/), commercial product, full featured, good community and very efficient SPA admin builder for Laravel with Vue.js. Beautiful UI Framework and nice Laravel-ish development experience. But tends to be a Nova-way for development.
 
-#### Backpack
+### Backpack
 
 * [Backpack](https://backpackforlaravel.com/), not free for commercial projects, with the good old school Bootstrap/jQuery combo with CoreUI theme. Can have quickly bloated code in case of specific custom development needs, but still stay one of the most productive admin panel on the market with a tons of widgets.
 
-#### EasyAdmin
+### EasyAdmin
 
-* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), opensourced and free admin builder for Symfony, very YAML configuration-oriented development. Not many widgets by default but productive, heavily configurable and extensible via twig templates.
+* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), open sourced and free admin builder for Symfony, very YAML configuration-oriented development. Not many widgets by default but productive, heavily configurable and extensible via twig templates.
 
-#### A very subjective comparison
+## A very subjective comparison
 
 | Features               | Vtec Admin | React Admin  | EasyAdmin | Nova | Backpack |
 | ---------------------- | ---------- | ------------ | --------- | ---- | -------- |

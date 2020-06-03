@@ -49,7 +49,7 @@ A resource object must follow this structure :
 | **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.                                                   |
 
 :::tip LABEL
-The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targetted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
+The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targeted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
 
 This label will be used for default page title for every show and edit CRUD pages as well as every reference-based fields and inputs (`ReferenceField`, `ReferenceArrayField`, `AutocompleteInput`, `SelectInput`, `RadioGroupInput`).
 :::

@@ -8,7 +8,7 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 
 [![demo](https://vtec.okami101.io/assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io)
 
-> The seprated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
+> The separated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
 > By this way, HMR from this demo to the library is fully functional which is ideal for lib development with quick visual feedback !
 
 ## Features
@@ -19,10 +19,10 @@ This project is also a perfect way for developing main [Vtec Admin](../../packag
 * User management with simple roles and impersonation support
 * Common list/create/show/edit bookstore resources views with :
   * Publishers
-  * Authors (custom paginable data iterator)
+  * Authors (custom list layout)
   * Books (custom tabbed layout and wysiwyg)
   * Reviews
-* Almoste all supported fields used from main admin library, with Wysiwyg (TinyMCE 5) and file media uploading
+* Almost all supported fields used from main admin library, with Wysiwyg (TinyMCE 5) and file media uploading
 * Publisher, authors and books entities are translatable
 * Advanced filters
 * Bulk actions
@@ -38,7 +38,7 @@ Then just `yarn serve --open` and it should be autostart !
 
 ### JWT authentication
 
-For JWT provider testing purpose, the [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package is already preconfigured in Laravel demo project. In order to switch auth mode, simply follow following steps.
+For JWT provider testing purpose, the [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package is already pre configured in Laravel demo project. In order to switch auth mode, simply follow following steps.
 
 #### Laravel demo
 
@@ -82,7 +82,7 @@ export default new VtecAdmin({
 
 It should be now already fully working as a real stateless app ! JWT will be saved inside localStorage.
 
-> Note that in this mode, you lose few features which needs statefull session in order to work, as impersonation and elFinder for file management.
+> Note that in this mode, you lose few features which needs stateful session in order to work, as impersonation and elFinder for file management.
 
 ### HTTP Basic authentication
 

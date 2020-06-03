@@ -23,7 +23,7 @@ export default {
       default: "show",
     },
     /**
-     * Property used for stringify inner targetted resource.
+     * Property used for stringify inner targeted resource.
      * Use a function for further stringify customization.
      * If nothing set, use the global label property resource by default.
      */
