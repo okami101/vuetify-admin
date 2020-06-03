@@ -410,17 +410,11 @@ You can add custom actions via `actions` slot :
       <template v-slot:actions>
         <my-custom-button></my-custom-button>
       </template>
-      <template v-slot="props">
-        <!-- VaDataTable -->
-      </template>
+      <!-- VaDataTable -->
     </va-data-iterator>
   </base-material-card>
 </template>
 ```
-
-:::warning DEFAULT V-SLOT
-In case you need other slots than default one, you must move `v-slot="props"` into immediate parent template of list layout as shown above.
-:::
 
 ## Bulk actions
 
@@ -535,8 +529,6 @@ See this example :
           authors: id,
         }"
         :include="['publisher', 'reviews']"
-        :options.sync="options"
-        v-slot="props"
       >
         <va-data-table
           resource="books"
@@ -546,8 +538,6 @@ See this example :
           disable-delete
           :association="association"
           :fields="fields"
-          v-bind="props"
-          :options.sync="options"
         ></va-data-table>
       </va-data-iterator>
     </base-material-card>
@@ -562,7 +552,6 @@ export default {
       fields: [
         //...
       ],
-      options: {},
       association: {
         resource: "authors",
         source: "author_id",

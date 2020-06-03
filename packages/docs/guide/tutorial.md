@@ -118,8 +118,8 @@ Imagine you want customize address cell with complete information :
 
 ```vue {4-6}
 <template>
-  <va-data-iterator v-slot="props">
-    <va-data-table :fields="fields" v-bind="props">
+  <va-data-iterator>
+    <va-data-table :fields="fields">
       <template v-slot:field.address="{ value }">
         {{ value.street }} {{ value.zipcode }} {{ value.city }}
       </template>
@@ -334,9 +334,7 @@ It will active all CRUD routes actions for user. Now delete `src/resources/users
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-data-iterator>
-      <template v-slot="props">
-        <va-data-table :fields="fields"></va-data-table>
-      </template>
+      <va-data-table :fields="fields"></va-data-table>
     </va-data-iterator>
   </base-material-card>
 </template>

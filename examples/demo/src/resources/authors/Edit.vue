@@ -17,8 +17,6 @@
           authors: id,
         }"
         :include="['publisher', 'reviews']"
-        :options.sync="options"
-        v-slot="props"
       >
         <va-data-table
           resource="books"
@@ -28,8 +26,6 @@
           disable-delete
           :association="association"
           :fields="fields"
-          v-bind="props"
-          :options.sync="options"
         ></va-data-table>
       </va-data-iterator>
     </base-material-card>
@@ -68,7 +64,6 @@ export default {
           },
         },
       ],
-      options: {},
       association: {
         resource: "authors",
         source: "author_id",
