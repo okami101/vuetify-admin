@@ -88,7 +88,7 @@
           v-if="!disableExport"
           :resource="resource"
           text
-          :options="options"
+          :options="listState.options"
           :filter="currentFilter"
         ></va-export-button>
       </v-toolbar>
@@ -166,21 +166,6 @@ export default {
       default: () => [5, 10, 15, 25, 50, 100],
     },
     /**
-     * List of current selected items.
-     */
-    value: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * Vuetify context state of the list with current page and sorting.
-     * VaDataIterator manage only pagination here.
-     */
-    options: {
-      type: Object,
-      default: () => {},
-    },
-    /**
      * Disable real time update of URL query string on any browsing action as pagination, sorting, filtering, etc.
      */
     disableQueryString: Boolean,
@@ -242,15 +227,6 @@ export default {
         total: 0,
         selected: [],
         options: {},
-        setOptions(options) {
-          this.options = options;
-        },
-        setSelected(selected) {
-          this.selected = selected;
-        },
-        clearSelected() {
-          this.selected = [];
-        },
       },
     };
   },

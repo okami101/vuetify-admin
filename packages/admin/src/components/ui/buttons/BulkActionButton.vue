@@ -54,7 +54,7 @@ export default {
        * Cleanup selected elements
        */
       this.$emit("input", []);
-      this.listState.clearSelected();
+      this.listState.selected = [];
       this.refresh(this.resource);
     },
   },

@@ -1,21 +1,21 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="currentItems"
+    :items="listState.items"
     :show-select="!disableSelect"
     :disable-sort="disableSort"
-    :value="selected"
+    :value="listState.selected"
     :dense="dense"
     hide-default-footer
-    :options.sync="currentOptions"
-    :loading="loading"
+    :loading="listState.loading"
     :multi-sort="multiSort"
-    :server-items-length="total"
+    :server-items-length="listState.total"
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
-    @update:sort-desc="updateOptions"
-    @input="onSelect"
+    :sort-by.sync="listState.options.sortBy"
+    :sort-desc.sync="listState.options.sortDesc"
+    @input="(s) => (listState.selected = s)"
     :class="{ 'clickable-rows': rowClick || !!$listeners['row-click'] }"
   >
     <template
@@ -184,13 +184,6 @@ export default {
       validator: (v) => ["show", "edit"].includes(v),
     },
     /**
-     * List of current selected items.
-     */
-    value: {
-      type: Array,
-      default: () => [],
-    },
-    /**
      * List of columns for each property of resource data.
      * Each column can be a simple string or a full object with advanced field properties.
      * Valid properties are `source`, `type`, `label`, `sortable`, `align`, `link`, `attributes`, `edtitable`.
@@ -221,15 +214,6 @@ export default {
     singleExpand: {
       type: Boolean,
       default: true,
-    },
-    /**
-     * Vuetify context state of the list with current page and sorting.
-     * Should by synchronized with VaDataIterator.
-     * DataTable manage only sorting here.
-     */
-    options: {
-      type: Object,
-      default: () => {},
     },
     /**
      * Disable select feature.
@@ -280,15 +264,6 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {
-      currentItems: [],
-      loading: false,
-      total: 0,
-      selected: [],
-      currentOptions: {},
-    };
-  },
   computed: {
     headers() {
       let fields = this.getFields.map((field) => {
@@ -327,51 +302,10 @@ export default {
         });
     },
   },
-  watch: {
-    listState: {
-      handler(val) {
-        if (val) {
-          this.currentItems = val.items;
-          this.loading = val.loading;
-          this.total = val.total;
-          this.selected = val.selected;
-          this.currentOptions = val.options;
-        }
-      },
-      immediate: true,
-      deep: true,
-    },
-    options: {
-      handler(val) {
-        this.currentOptions = {
-          ...val,
-          multiSort: this.multiSort,
-        };
-      },
-      immediate: true,
-    },
-  },
   methods: {
     ...mapActions({
       getOne: "api/getOne",
     }),
-    onSelect(selected) {
-      /**
-       * Triggered when item is selected via checkbox selection.
-       * Synchronize it with VaDataIterator for enabling bulk action context.
-       */
-      this.$emit("input", selected);
-
-      this.listState.setSelected(selected);
-    },
-    updateOptions() {
-      /**
-       * Triggered on sorting change
-       */
-      this.$emit("update:options", this.currentOptions);
-
-      this.listState.setOptions(this.currentOptions);
-    },
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {
         return "right";
