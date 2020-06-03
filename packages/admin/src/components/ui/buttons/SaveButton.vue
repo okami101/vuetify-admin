@@ -5,7 +5,7 @@
     icon="mdi-floppy"
     :color="color || 'primary'"
     :type="redirect ? 'button' : 'submit'"
-    :loading="saving"
+    :loading="formState && formState.saving"
     :text="text"
     @click="onClick"
   ></va-action-button>
@@ -24,11 +24,6 @@ export default {
     formState: { default: undefined },
   },
   props: {
-    /**
-     * Will provoke a spinner if active.
-     * Should be synced with `saving` VaForm prop.
-     */
-    saving: Boolean,
     /**
      * Remove background button.
      */

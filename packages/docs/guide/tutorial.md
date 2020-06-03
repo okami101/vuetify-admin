@@ -458,7 +458,7 @@ export default {
 
 ```vue
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item">
     <v-row justify="center">
       <v-col sm="6">
         <base-material-card>
@@ -495,7 +495,7 @@ export default {
               </v-col>
             </v-row>
             <va-text-input source="company.name"></va-text-input>
-            <va-save-button :saving="saving"></va-save-button>
+            <va-save-button></va-save-button>
           </v-card-text>
         </base-material-card>
       </v-col>
@@ -506,11 +506,6 @@ export default {
 <script>
 export default {
   props: ["id", "title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>
 ```
@@ -683,7 +678,7 @@ Now we may add the possibility of attach user on any posts. We can use a simple 
 
 ```vue {8-11}
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item">
     <v-row justify="center">
       <v-col sm="4">
         <base-material-card>
@@ -695,7 +690,7 @@ Now we may add the possibility of attach user on any posts. We can use a simple 
             ></va-select-input>
             <va-text-input source="title"></va-text-input>
             <va-text-input source="body" multiline></va-text-input>
-            <va-save-button :saving="saving"></va-save-button>
+            <va-save-button></va-save-button>
           </v-card-text>
         </base-material-card>
       </v-col>

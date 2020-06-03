@@ -2,7 +2,6 @@
   <va-form
     :id="id"
     :item="item"
-    :saving.sync="saving"
     disable-redirect
     @saved="$emit('saved')"
     v-model="model"
@@ -27,7 +26,7 @@
       reference="authors"
       v-if="hasRole('author')"
     ></va-autocomplete-input>
-    <va-save-button :saving="saving"></va-save-button>
+    <va-save-button></va-save-button>
   </va-form>
 </template>
 
@@ -36,7 +35,6 @@ export default {
   props: ["id", "item"],
   data() {
     return {
-      saving: false,
       model: {
         active: true,
         roles: [],

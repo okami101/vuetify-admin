@@ -42,11 +42,6 @@ export default {
       default: () => {},
     },
     /**
-     * Is model saving ?
-     * Allows you to add loading spinner to submit button.
-     */
-    saving: Boolean,
-    /**
      * Default route resource action to redirect after saving.
      * @values list, create, show, edit
      */
@@ -67,6 +62,7 @@ export default {
         edit: !!this.id,
         item: this.item,
         model: {},
+        saving: false,
         errors: [],
         update: ({ source, value }) => {
           let model = { ...this.formState.model };
@@ -116,9 +112,9 @@ export default {
       }
 
       /**
-       * Synchronization event for `saving` prop.
+       * Set saving to childs.
        */
-      this.$emit("update:saving", true);
+      this.formState.saving = true;
 
       try {
         let { data } = this.id
@@ -130,7 +126,7 @@ export default {
               data: this.formState.model,
             });
 
-        this.$emit("update:saving", false);
+        this.formState.saving = false;
 
         /**
          * Sent after success saving.
@@ -162,7 +158,7 @@ export default {
             break;
         }
       } catch (e) {
-        this.$emit("update:saving", false);
+        this.formState.saving = false;
 
         if (e.data) {
           this.formState.errors = e.data.errors;

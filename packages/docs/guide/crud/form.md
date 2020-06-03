@@ -18,9 +18,7 @@ Note that the create page support copy of values from other existing resource, i
 ```vue {4,14}
 <template>
   <va-create-layout>
-    <va-form
-      :item="item"
-      :saving.sync="saving">
+    <va-form :item="item">
       <!-- VA inputs component -->
     </va-form>
   </va-create-layout>
@@ -45,10 +43,7 @@ Compared to to create page, you gain a new `id` prop that correspond to the reso
 ```vue {4,15}
 <template>
   <va-edit-layout>
-    <va-form
-      :id="id"
-      :item="item"
-      :saving.sync="saving">
+    <va-form :id="id" :item="item">
       <!-- VA inputs component -->
     </va-form>
   </va-edit-layout>
@@ -74,7 +69,7 @@ Here a code sample :
 ```vue
 <template>
   <va-edit-layout>
-    <va-form :id="id" :item="item" :saving.sync="saving">
+    <va-form :id="id" :item="item">
       <v-row justify="center">
         <v-col lg="8">
           <base-material-tabs-card
@@ -111,7 +106,7 @@ Here a quick sample usage within the `VaForm` inside a `VaEditLayout` component 
 
 ```vue
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item">
     <v-row justify="center">
       <v-col lg="6">
         <base-material-card>
@@ -132,7 +127,7 @@ Here a quick sample usage within the `VaForm` inside a `VaEditLayout` component 
             <va-text-input source="author"></va-text-input>
             <va-date-input source="publication_date"></va-date-input>
           </v-card-text>
-          <va-save-button :saving="saving"></va-save-button>
+          <va-save-button></va-save-button>
         </base-material-card>
       </v-col>
     </v-row>
@@ -142,11 +137,6 @@ Here a quick sample usage within the `VaForm` inside a `VaEditLayout` component 
 <script>
 export default {
   props: ["id", "title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>
 ```
@@ -162,24 +152,19 @@ You can still create your [own input component](../components/inputs.md#custom-i
 
 ### Saving and redirect
 
-Use the `VaSaveButton` as default submit button and synchronize it with `saving` prop of `VaForm` in order to active the spinner on API call.
+Use the `VaSaveButton` as default submit button. It will automatically synchronize with parent form in order to active the spinner while saving to the API.
 
 ```vue {2,4,13}
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving" redirect="show">
+  <va-form :id="id" :item="item" redirect="show">
     <!-- VA inputs component -->
-    <va-save-button :saving="saving"></va-save-button>
+    <va-save-button></va-save-button>
   </va-form>
 </template>
 
 <script>
 export default {
   props: ["id", "title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>
 ```
@@ -188,11 +173,10 @@ By default a successful saving will redirect to resource list page unless you se
 
 ```vue {4-10}
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item">
     <!-- VA inputs component -->
-    <va-save-button :saving="saving"></va-save-button>
+    <va-save-button></va-save-button>
     <va-save-button
-      :saving="saving"
       text
       redirect="create"
       color="secondary"
@@ -203,11 +187,6 @@ By default a successful saving will redirect to resource list page unless you se
 <script>
 export default {
   props: ["id", "title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>
 ```
@@ -230,7 +209,7 @@ Here is a full example with show/hide some fields based on `active` property mod
 
 ```vue {2,5,23-25}
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
+  <va-form :id="id" :item="item" v-model="model">
     <va-text-input source="description" multiline></va-text-input>
     <va-boolean-input source="active"></va-boolean-input>
     <v-row v-if="model.active">
@@ -241,7 +220,7 @@ Here is a full example with show/hide some fields based on `active` property mod
         <va-text-input source="email"></va-text-input>
       </v-col>
     </v-row>
-    <va-save-button :saving="saving"></va-save-button>
+    <va-save-button></va-save-button>
   </va-form>
 </template>
 
@@ -250,7 +229,6 @@ export default {
   props: ["id", "title", "item"],
   data() {
     return {
-      saving: false,
       model: {
         active: true,
       },
@@ -272,7 +250,7 @@ You can even use the v-model on VA input instead of full form :
 
 ```vue {4,5,23}
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item">
     <va-text-input source="description" multiline></va-text-input>
     <va-boolean-input source="active" v-model="active"></va-boolean-input>
     <v-row v-if="active">
@@ -283,7 +261,7 @@ You can even use the v-model on VA input instead of full form :
         <va-text-input source="email"></va-text-input>
       </v-col>
     </v-row>
-    <va-save-button :saving="saving"></va-save-button>
+    <va-save-button></va-save-button>
   </va-form>
 </template>
 
@@ -292,7 +270,6 @@ export default {
   props: ["id", "title", "item"],
   data() {
     return {
-      saving: false,
       active: true,
     };
   },

@@ -126,7 +126,7 @@ VA offers to you a global `$admin.can` helper that you can use anywhere which al
 
 ```vue {3,12}
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving" v-model="model">
+  <va-form :id="id" :item="item">
     <va-text-input source="isbn" v-if="$admin.can(['isbn_edit'])"></va-text-input>
   </va-form>
 </template>

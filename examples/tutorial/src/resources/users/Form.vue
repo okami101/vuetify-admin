@@ -1,5 +1,5 @@
 <template>
-  <va-form :id="id" :item="item" :saving.sync="saving">
+  <va-form :id="id" :item="item">
     <v-row justify="center">
       <v-col sm="6">
         <base-material-card>
@@ -36,7 +36,7 @@
               </v-col>
             </v-row>
             <va-text-input source="company.name"></va-text-input>
-            <va-save-button :saving="saving"></va-save-button>
+            <va-save-button></va-save-button>
           </v-card-text>
         </base-material-card>
       </v-col>
@@ -47,10 +47,5 @@
 <script>
 export default {
   props: ["id", "title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>

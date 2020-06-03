@@ -1,6 +1,6 @@
 <template>
   <va-create-layout :title="title">
-    <va-form :item="item" :saving.sync="saving">
+    <va-form :item="item">
       <v-row justify="center">
         <v-col sm="4">
           <v-card>
@@ -13,7 +13,7 @@
                   :is="`va-${input.type}-input`"
                 ></component>
               </div>
-              <va-save-button :saving="saving"></va-save-button>
+              <va-save-button></va-save-button>
             </v-card-text>
           </v-card>
         </v-col>
@@ -30,7 +30,6 @@ export default {
   data() {
     return {
       inputs: [],
-      saving: false,
     };
   },
   async mounted() {

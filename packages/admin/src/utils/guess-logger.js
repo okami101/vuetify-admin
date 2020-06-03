@@ -71,7 +71,7 @@ export default {
   create: `
 <template>
   <va-create-layout :title="title">
-    <va-form :item="item" :saving.sync="saving">
+    <va-form :item="item">
       <v-row justify="center">
         <v-col sm="4">
           <v-card>
@@ -79,7 +79,7 @@ export default {
               <%_ for (field of fields) { _%>
               <va-<%- field.type %>-input source="<%- field.source %>"></va-<%- field.type %>-input>
               <%_ } _%>
-              <va-save-button :saving="saving"></va-save-button>
+              <va-save-button></va-save-button>
             </v-card-text>
           </v-card>
         </v-col>
@@ -91,18 +91,13 @@ export default {
 <script>
 export default {
   props: ["title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>
 `,
   edit: `
 <template>
   <va-edit-layout :title="title">
-    <va-form :id="id" :item="item" :saving.sync="saving">
+    <va-form :id="id" :item="item">
       <v-row justify="center">
         <v-col sm="4">
           <v-card>
@@ -110,7 +105,7 @@ export default {
               <%_ for (field of fields) { _%>
               <va-<%- field.type %>-input source="<%- field.source %>"></va-<%- field.type %>-input>
               <%_ } _%>
-              <va-save-button :saving="saving"></va-save-button>
+              <va-save-button></va-save-button>
             </v-card-text>
           </v-card>
         </v-col>
@@ -122,11 +117,6 @@ export default {
 <script>
 export default {
   props: ["id", "title", "item"],
-  data() {
-    return {
-      saving: false,
-    };
-  },
 };
 </script>
 `,
