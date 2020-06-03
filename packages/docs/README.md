@@ -20,7 +20,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/power-cord.svg" alt="decoupled" />
     <h2>Standalone SPA Admin</h2>
-    <p>Full SPA Admin UI decoupled from backend. Rely on low-level data and auth providers which can pe replaced by your own simply by implementing specific interface compatibility layer.</p>
+    <p>Full responsive SPA Admin UI decoupled from backend. Rely on low-level data and auth providers which can pe replaced by your own simply by implementing specific interface compatibility layer.</p>
   </div>
   <div class="feature">
     <img src="/icons/embed2.svg" alt="code" />
