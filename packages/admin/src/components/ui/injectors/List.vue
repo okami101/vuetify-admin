@@ -164,15 +164,20 @@ export default {
     itemsPerPageOptions: {
       type: Array,
       default() {
-        let value = [5, 10, 15, 25, 50, 100];
-
-        if (this.$admin.options.list) {
-          if (this.$admin.options.list.disableItemsPerPage) {
-            return [];
-          }
-          return this.$admin.options.list.itemsPerPageOptions || value;
+        if (this.$admin.options?.list?.disableItemsPerPage) {
+          return [];
         }
-        return value;
+
+        return (
+          this.$admin.options?.list?.itemsPerPageOptions || [
+            5,
+            10,
+            15,
+            25,
+            50,
+            100,
+          ]
+        );
       },
     },
     /**

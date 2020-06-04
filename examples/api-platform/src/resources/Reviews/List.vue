@@ -31,10 +31,10 @@ export default {
           type: "reference",
           attributes: { reference: "books" },
         },
-        { source: "body", type: "text" },
+        "body",
         { source: "rating", type: "rating" },
-        { source: "author", type: "text" },
-        { source: "publicationDate", type: "date" },
+        "author",
+        { source: "publicationDate", type: "date", sortable: true },
       ],
     };
   },

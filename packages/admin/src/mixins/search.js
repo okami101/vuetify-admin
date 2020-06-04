@@ -53,12 +53,7 @@ export default {
     itemsPerPage: {
       type: Number,
       default() {
-        let value = 15;
-
-        if (this.$admin.options.list) {
-          return this.$admin.options.list.itemsPerPage || value;
-        }
-        return value;
+        return this.$admin.options?.list?.itemsPerPage || 15;
       },
     },
     /**
@@ -68,10 +63,7 @@ export default {
     disableItemsPerPage: {
       type: Boolean,
       default() {
-        if (this.$admin.options.list) {
-          return this.$admin.options.list.disableItemsPerPage || false;
-        }
-        return false;
+        return this.$admin.options?.list?.disableItemsPerPage || false;
       },
     },
   },

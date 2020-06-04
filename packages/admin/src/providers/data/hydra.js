@@ -112,10 +112,11 @@ export default (axios) => {
         /**
          * Manage nested hydra object reference if applicable
          */
-        data[p] =
-          typeof value === "object" && value["@id"]
-            ? getResourceWithId(value)
-            : value;
+        data[p] = Array.isArray(value)
+          ? value.map((v) => getResourceWithId(v))
+          : typeof value === "object" && value["@id"]
+          ? getResourceWithId(value)
+          : value;
       });
 
       return data;

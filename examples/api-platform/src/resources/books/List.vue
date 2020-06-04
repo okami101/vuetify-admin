@@ -6,7 +6,7 @@
       </h1>
     </v-card-title>
     <v-card-text>
-      <va-list>
+      <va-list :filters="filters">
         <va-data-table :fields="fields"></va-data-table>
       </va-list>
     </v-card-text>
@@ -18,12 +18,17 @@ export default {
   props: ["title"],
   data() {
     return {
+      filters: ["title", "author"],
       fields: [
-        { source: "isbn", type: "text" },
-        { source: "title", type: "text" },
-        { source: "description", type: "text" },
-        { source: "author", type: "text" },
-        { source: "publicationDate", type: "date" },
+        { source: "isbn", type: "text", sortable: true },
+        { source: "title", type: "text", sortable: true },
+        { source: "author", type: "text", sortable: true },
+        { source: "publicationDate", type: "date", sortable: true },
+        {
+          source: "reviews",
+          type: "reference-array",
+          attributes: { reference: "reviews", itemText: "id", column: true },
+        },
       ],
     };
   },
