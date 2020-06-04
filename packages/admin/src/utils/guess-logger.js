@@ -40,7 +40,11 @@ export default {
           <v-card>
             <v-card-text>
               <%_ for (field of fields) { _%>
-              <va-field source="<%- field.source %>" type="<%- field.type %>"></va-field>
+              <%_ if (field.type === "text") { _%>
+                <va-field source="<%- field.source %>"></va-field>
+              <%_ } else { _%>
+                <va-field source="<%- field.source %>" type="<%- field.type %>"></va-field>
+              <%_ } _%>
               <%_ } _%>
             </v-card-text>
           </v-card>
@@ -122,7 +126,7 @@ const logger = (resource, action, fields) => {
         action === "list"
           ? util.inspect(
               fields.map((f) => {
-                return { ...f };
+                return f.type === "text" ? f.source : { ...f };
               })
             )
           : fields,

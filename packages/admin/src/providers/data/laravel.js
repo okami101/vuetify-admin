@@ -102,9 +102,9 @@ export default (axios, baseURL = "/api") => {
     } catch ({ response }) {
       let { data, status, statusText } = response;
       return Promise.reject({
-        message: (data && data.message) || statusText,
+        message: statusText,
         status,
-        data,
+        ...(data || {}),
       });
     }
 

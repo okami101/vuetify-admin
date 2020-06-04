@@ -1,7 +1,6 @@
 <template>
   <v-data-iterator
     :items="listState.items"
-    :server-items-length="listState.total"
     :loading="listState.loading"
     :options.sync="listState.options"
     :value="listState.selected"
@@ -10,6 +9,7 @@
     :footer-props="{
       'items-per-page-options': itemsPerPageOptions,
       showFirstLastPage: true,
+      disableItemsPerPage,
     }"
   >
     <template v-slot:header v-if="!hideHeader">
@@ -120,6 +120,7 @@
         :total="listState.total"
         :items-per-page="itemsPerPage"
         :items-per-page-options="itemsPerPageOptions"
+        :disable-items-per-page="disableItemsPerPage"
       ></slot>
     </template>
   </v-data-iterator>
@@ -164,10 +165,6 @@ export default {
     itemsPerPageOptions: {
       type: Array,
       default() {
-        if (this.$admin.options?.list?.disableItemsPerPage) {
-          return [];
-        }
-
         return (
           this.$admin.options?.list?.itemsPerPageOptions || [
             5,
@@ -204,7 +201,12 @@ export default {
      * Disable the export button.
      * The export allows client-side CSV download and keep active filters while disabling pagination.
      */
-    disableExport: Boolean,
+    disableExport: {
+      type: Boolean,
+      default() {
+        return this.$admin.options?.list?.disableExport || false;
+      },
+    },
     /**
      * Disable create redirection. Will force create button to show.
      */
@@ -448,7 +450,7 @@ export default {
       if (!this.disablePagination) {
         params.pagination = {
           page,
-          ...(!this.disableItemsPerPage && { itemsPerPage: this.itemsPerPage }),
+          ...(!this.disableItemsPerPage && { perPage: this.itemsPerPage }),
         };
       }
 

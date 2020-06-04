@@ -43,7 +43,9 @@ export default {
      */
     value: {
       type: String,
-      default: null,
+      default() {
+        return this.$d(new Date(), this.format);
+      },
     },
     /**
      * Use full filled background color style.

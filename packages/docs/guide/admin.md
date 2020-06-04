@@ -247,8 +247,9 @@ Add an automatic redirect on the main parent route towards authenticated home pa
 
 See all supported specific options :
 
-| Property           | Type     | Description                                                                                    |
-| ------------------ | -------- | ---------------------------------------------------------------------------------------------- |
-| **dateFormat**     | `string` | Default date format for all date fields and inputs. Must be predefined on your VueI18n plugin. |
-| **imageUploadUrl** | `string` | Optional upload file URL for TinyMCE Wysiwyg. Can be a path if same backend.                   |
-| **fileBrowserUrl** | `string` | Optional file browser URL, which will appear on included TinyMCE file picker.                  |
+| Property           | Type     | Description                                                                                                                                                          |
+| ------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **dateFormat**     | `string` | Default date format for all date fields and inputs. Must be predefined on your VueI18n plugin.                                                                       |
+| **imageUploadUrl** | `string` | Optional upload file URL for TinyMCE Wysiwyg. Can be a path if same backend.                                                                                         |
+| **fileBrowserUrl** | `string` | Optional file browser URL, which will appear on included TinyMCE file picker.                                                                                        |
+| **list**           | `object` | Some global options for list behavior. List of valid options : `disableGlobalSearch`, `disableItemsPerPage`, `itemsPerPage`, `itemsPerPageOptions`, `disableExport`. |

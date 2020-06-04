@@ -83,12 +83,25 @@ export default (axios) => {
       /**
        * TODO validation
        */
-      /*{"@context":"\/contexts\/ConstraintViolationList","@type":"ConstraintViolationList","hydra:title":"An error occurred","hydra:description":"book: This value should not be null.","violations":[{"propertyPath":"book","message":"This value should not be null."}]}*/
       let { data, status, statusText } = response;
       return Promise.reject({
-        message: (data && data.message) || statusText,
+        message: statusText,
         status,
-        data,
+        ...{
+          message: data["hydra:title"],
+          errors: data.violations
+            ? data.violations.reduce(
+                (o, error) => ({
+                  ...o,
+                  [error.propertyPath]: [
+                    ...(o[error.propertyPath] || []),
+                    error.message,
+                  ],
+                }),
+                {}
+              )
+            : {},
+        },
       });
     }
 

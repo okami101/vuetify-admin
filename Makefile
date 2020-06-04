@@ -6,7 +6,7 @@ help:
 install-laravel-demo: ## install laravel demo dependencies
 	@cd ./examples/laravel && composer install
 
-install-laravel-tutorial: ## install laravel tutorial dependencies
+install-laravel-generators: ## install laravel tutorial dependencies
 	@cd ./examples/generators && composer install
 
 run-demo: ## run the demo example
@@ -14,6 +14,9 @@ run-demo: ## run the demo example
 
 run-tutorial: ## run the tutorial example
 	@cd ./examples/tutorial && yarn serve --open
+
+run-api-platform: ## run the api-platform example
+	@cd ./examples/api-platform && yarn serve --open --port 8000
 
 run-generators: ## run the generators example
 	@cd ./examples/generators/admin && yarn serve --open

@@ -36,7 +36,7 @@ export default {
      */
     value: {
       type: String,
-      default: null,
+      default: "",
     },
     /**
      * Type of text input. All HTML type allowed.

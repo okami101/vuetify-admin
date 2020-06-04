@@ -160,8 +160,8 @@ export default {
       } catch (e) {
         this.formState.saving = false;
 
-        if (e.data) {
-          this.formState.errors = e.data.errors;
+        if (e.errors) {
+          this.formState.errors = e.errors;
         }
       }
     },

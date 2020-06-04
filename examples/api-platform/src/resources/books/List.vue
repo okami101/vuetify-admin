@@ -20,9 +20,9 @@ export default {
     return {
       filters: ["title", "author"],
       fields: [
-        { source: "isbn", type: "text", sortable: true },
-        { source: "title", type: "text", sortable: true },
-        { source: "author", type: "text", sortable: true },
+        { source: "isbn", sortable: true },
+        { source: "title", sortable: true },
+        { source: "author", sortable: true },
         { source: "publicationDate", type: "date", sortable: true },
         {
           source: "reviews",

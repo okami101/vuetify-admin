@@ -171,6 +171,12 @@ dataProvider.delete("books", { id: 1 });
 dataProvider.deleteMany("books", { ids: [1, 2, 3] });
 ```
 
+:::tip ADDITIONAL DATA PROVIDER METHODS
+You can perfectly add custom methods for specific resource related edge cases ! You will receive same call signature as all above methods with `resource` and `params` argument. It's up to you to use them for you custom components.
+
+All data provider methods can be called as same as via `this.$store.dispatch("{resource}/{myCustomMethod}", params)`.
+:::
+
 ### Method response formats
 
 Each provider's method must return a Provider on given format.
@@ -211,9 +217,9 @@ try {
 
 The expected error object format :
 
-| Property    | Type     | Description                                                                                                            |
-| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **message** | `string` | The error message that will be shown at snackbar via `VaMessages` component.                                           |
+| Property    | Type     | Description                                                                                                               |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **message** | `string` | The error message that will be shown at snackbar via `VaMessages` component.                                              |
 | **status**  | `number` | Response status code, not used by VA but returned on [`checkError`](authentication.md#api-contract) auth provider method. |
 | **errors**  | `object` | Use it for [server-side validation support](crud/form.md#server-side-validation).                                         |
 

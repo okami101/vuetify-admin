@@ -1,24 +1,30 @@
-# vue-cli-base
+# API Platform Testing
 
-## Project setup
-```
-yarn install
-```
+Purpose of this project is to test Vtec Admin within [API Platform](https://api-platform.com/) based on Symfony. Use provided hydra data provider and JWT authentication. Serve as demonstration with real API backend for main tutorial. See [dedicated part of documentation](https://vtec.okami101.io/guide/tutorial.html#api-platform).
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## How to run
 
-### Compiles and minifies for production
-```
-yarn build
+### Backend API
+
+Clone the [demo project](https://github.com/api-platform/demo) of API Platform and follow readme instructions for running it on docker :
+
+```bash
+docker-compose up
+docker-compose exec php bin/console hautelook:fixtures:load
 ```
 
-### Lints and fixes files
-```
-yarn lint
+API Platform should be running at [http://localhost:8080](http://localhost:8080).
+
+### Admin UI
+
+```bash
+yarn
+yarn serve --port 8000
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This should run at [http://localhost:8000](http://localhost:8000).
+You can login as admin@example.com / admin.
+
+## License
+
+This project is open-sourced software licensed under the [MIT license](https://adr1enbe4udou1n.mit-license.org).

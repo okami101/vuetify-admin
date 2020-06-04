@@ -732,4 +732,14 @@ It' preferable to enable authentication at first Vue CLI install by selecting an
 
 ### Use real API
 
-Well done if you got so far in this tutorial, you now have all basic concepts for UI side development and now you're ready to test within a real API. Check the [dedicated section](data-providers.md) for full spec of implementing your own.
+Well done if you got so far in this tutorial, you now have all basic concepts for UI side development and now you're ready to test within a real API. Go to the [dedicated section](data-providers.md) for full spec of implementing your own or check next chapiter for advanced API showcase.
+
+## API Platform
+
+In order to demonstrate how we can easily change server API while keeping same Admin UI, let's try another more advanced API backend with stateless simple JWT authentication.
+
+![ap-login](/assets/tutorial/ap-login.jpg)
+![ap-books](/assets/tutorial/ap-books.png)
+![ap-reviews](/assets/tutorial/ap-reviews.png)
+![ap-form](/assets/tutorial/ap-form.png)
+![ap-validation](/assets/tutorial/ap-validation.png)

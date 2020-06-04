@@ -104,11 +104,10 @@ export default (axios) => {
     try {
       response = await axios[method || "get"](url, data);
     } catch ({ response }) {
-      let { data, status, statusText } = response;
+      let { status, statusText } = response;
       return Promise.reject({
-        message: (data && data.message) || statusText,
+        message: statusText,
         status,
-        data,
       });
     }
 

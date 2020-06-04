@@ -21,7 +21,7 @@ Vue.use(VtecAdmin);
 /**
  * Axios instance
  */
-const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
+const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8080";
 
 const http = axios.create({
   baseURL,
@@ -59,6 +59,7 @@ export default new VtecAdmin({
       disableGlobalSearch: true,
       disableItemsPerPage: true,
       itemsPerPage: 30,
+      itemsPerPageOptions: [30],
     },
   },
 });

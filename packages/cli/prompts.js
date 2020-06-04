@@ -14,6 +14,10 @@ module.exports = [
         value: "laravel",
       },
       {
+        name: "Hydra (Symfony API Platform)",
+        value: "hydra",
+      },
+      {
         name: "JSON Server",
         value: "jsonServer",
       },

@@ -21,17 +21,17 @@
                   v-model="password"
                   required
                 ></v-text-field>
-              </v-card-text>
 
-              <v-btn
-                :loading="loading"
-                color="primary"
-                large
-                type="submit"
-                text
-                rounded
-                >{{ $t("login.sign_in") }}</v-btn
-              >
+                <v-btn
+                  :loading="loading"
+                  color="primary"
+                  large
+                  type="submit"
+                  text
+                  rounded
+                  >{{ $t("login.sign_in") }}</v-btn
+                >
+              </v-card-text>
             </v-card>
           </v-form>
         </v-flex>
