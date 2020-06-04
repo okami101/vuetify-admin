@@ -15,9 +15,10 @@
   },
   "workspaces": [
     "packages/*",
+    "vue-cli-base",
     "examples/demo",
     "examples/tutorial",
-    "examples/vue-cli-base",
+    "examples/api-platform",
     "examples/generators/admin"
   ],
   "resolutions": {

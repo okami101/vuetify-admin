@@ -12,8 +12,12 @@
 			"path": "examples\\tutorial"
 		},
 		{
+      "name": "api-platform",
+			"path": "examples\\api-platform"
+		},
+		{
       "name": "vue-cli-base",
-			"path": "examples\\vue-cli-base"
+			"path": "vue-cli-base"
 		},
 		{
       "name": "generators",
