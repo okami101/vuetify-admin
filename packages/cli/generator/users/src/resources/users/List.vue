@@ -18,7 +18,7 @@
           disable-edit-redirect
           @item-action="onAction"
         >
-          <%_ if (impersonate) { _%>
+          <%_ if (impersonation) { _%>
           <template v-slot:item.actions="{ resource, item }">
             <impersonate-button
               :resource="resource"
@@ -34,12 +34,12 @@
 </template>
 
 <script>
-<%_ if (impersonate) { _%>
+<%_ if (impersonation) { _%>
 import ImpersonateButton from "@/components/buttons/ImpersonateButton";
 <%_ } _%>
 
 export default {
-  <%_ if (impersonate) { _%>
+  <%_ if (impersonation) { _%>
   components: {
     ImpersonateButton,
   },

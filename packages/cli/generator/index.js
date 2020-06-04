@@ -24,6 +24,7 @@ module.exports = (api, options) => {
     apiURL: options.apiURL,
     locales: options.locales,
     users: options.users,
+    impersonation: options.impersonation,
   });
 
   if (options.authProvider) {
@@ -48,8 +49,15 @@ module.exports = (api, options) => {
      * Users pages templates
      */
     api.render("./users", {
-      impersonate: !!options.authProvider,
+      impersonation: options.impersonation,
     });
+  }
+
+  if (options.impersonation) {
+    /**
+     * Add impersonation components
+     */
+    api.render("./impersonation");
   }
 
   if (options.materialTheme) {

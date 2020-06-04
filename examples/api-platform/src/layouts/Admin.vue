@@ -14,14 +14,7 @@
       v-model="drawer"
       :mini-variant="mini"
     ></va-sidebar>
-    <%_ if (impersonation) { _%>
-    <template slot="header">
-      <va-breadcrumbs></va-breadcrumbs>
-      <impersonate-message></impersonate-message>
-    </template>
-    <%_ } else { _%>
     <va-breadcrumbs slot="header"></va-breadcrumbs>
-    <%_ } _%>
     <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu">
       &copy; 2020,
@@ -39,18 +32,10 @@
 </template>
 
 <script>
-<%_ if (impersonation) { _%>
-import ImpersonateMessage from "@/components/ImpersonateMessage";
-<%_ } _%>
 import nav from "../_nav";
 
 export default {
   name: "App",
-  <%_ if (impersonation) { _%>
-  components: {
-    ImpersonateMessage,
-  },
-  <%_ } _%>
   data() {
     return {
       drawer: null,

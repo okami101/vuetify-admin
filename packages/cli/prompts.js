@@ -77,6 +77,12 @@ module.exports = [
   },
   {
     type: "confirm",
+    name: "impersonation",
+    message: "Add impersonation feature :",
+    default: false,
+  },
+  {
+    type: "confirm",
     name: "materialTheme",
     message: "Install nice material theme override by Tim Creative :",
     default: false,
