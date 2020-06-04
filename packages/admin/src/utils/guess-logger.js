@@ -8,7 +8,7 @@ const templates = {
 <template>
   <v-card>
     <v-card-title>
-      <h1 class="display-2">
+      <h1 class="display-1">
         {{ title }}
       </h1>
     </v-card-title>

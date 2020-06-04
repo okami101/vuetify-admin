@@ -80,6 +80,8 @@ export default new VtecAdmin({
 });
 ```
 
+As it's stateless now, you should retire `withCredentials: true` from axios config.
+
 It should be now already fully working as a real stateless app ! JWT will be saved inside localStorage.
 
 > Note that in this mode, you lose few features which needs stateful session in order to work, as impersonation and elFinder for file management.

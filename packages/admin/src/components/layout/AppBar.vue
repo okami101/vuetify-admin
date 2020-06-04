@@ -72,7 +72,7 @@
       >
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
-      <v-menu offset-y v-if="name">
+      <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon small class="ml-5" v-on="on">
             <v-icon>mdi-account-circle</v-icon>
@@ -80,16 +80,18 @@
         </template>
 
         <v-list nav dense>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="title">{{ name }}</v-list-item-title>
-              <v-list-item-subtitle v-if="email">{{
-                email
-              }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <template v-if="name">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="title">{{ name }}</v-list-item-title>
+                <v-list-item-subtitle v-if="email">{{
+                  email
+                }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
 
-          <v-divider></v-divider>
+            <v-divider></v-divider>
+          </template>
 
           <v-list-item
             v-for="(item, index) in profileMenu"

@@ -1,7 +1,10 @@
 const fs = require("fs");
 
 module.exports = (api, options) => {
-  api.injectImports(api.entryFile, [`import admin from "./plugins/admin";`]);
+  api.injectImports(api.entryFile, [
+    `import admin from "./plugins/admin";`,
+    `import "./plugins/i18n";`,
+  ]);
   api.injectRootOptions(api.entryFile, `admin`);
 
   api.extendPackage({

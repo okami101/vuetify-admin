@@ -9,7 +9,7 @@
   >
     <div class="pa-4">
       <div class="d-flex align-center">
-        <h3 class="display-2">
+        <h3 class="display-1">
           <portal-target name="aside-title"></portal-target>
         </h3>
         <v-btn class="close" icon @click="opened = false">

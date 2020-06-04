@@ -29,7 +29,7 @@ export default {
       fields: [],
     };
   },
-  async mounted() {
+  async created() {
     this.fields = await guessFields(
       this.$store,
       this.$i18n,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex align-center mb-2">
-      <h1 class="display-2">
+      <h1 class="display-1">
         {{ title }}
       </h1>
       <v-spacer></v-spacer>

@@ -3,7 +3,7 @@ import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/src/loader";
 
-import {} from "vtec-admin/src/providers";
+import { hydraDataProvider, jwtAuthProvider } from "vtec-admin/src/providers";
 import { en, fr } from "vtec-admin/src/locales";
 
 import router from "@/router";
@@ -12,7 +12,6 @@ import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
 import axios from "axios";
-import trimEnd from "lodash/trimEnd";
 
 /**
  * Load Admin UI components
@@ -22,12 +21,13 @@ Vue.use(VtecAdmin);
 /**
  * Axios instance
  */
-const baseURL = process.env.VUE_APP_API_URL || "https://localhost:8443";
+const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8000";
 
 const http = axios.create({
   baseURL,
-  withCredentials: true,
-  headers: { "X-Requested-With": "XMLHttpRequest" },
+  headers: {
+    Accept: "application/ld+json",
+  },
 });
 
 /**
@@ -44,11 +44,21 @@ export default new VtecAdmin({
     fr,
   },
   translations: ["en", "fr"],
+  dataProvider: hydraDataProvider(http),
+  authProvider: jwtAuthProvider(http, {
+    routes: {
+      login: "/authentication_token",
+    },
+    getToken: (r) => r.token,
+  }),
   resources,
   axios: http,
   options: {
     dateFormat: "long",
-    imageUploadUrl: "/api/upload",
-    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    list: {
+      disableGlobalSearch: true,
+      disableItemsPerPage: true,
+      itemsPerPage: 30,
+    },
   },
 });

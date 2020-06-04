@@ -52,7 +52,27 @@ export default {
      */
     itemsPerPage: {
       type: Number,
-      default: 15,
+      default() {
+        let value = 15;
+
+        if (this.$admin.options.list) {
+          return this.$admin.options.list.itemsPerPage || value;
+        }
+        return value;
+      },
+    },
+    /**
+     * Disable items per page on query, forced on server side.
+     * Note at `itemsPerPage` is still necessary for proper client-side pager calculation.
+     */
+    disableItemsPerPage: {
+      type: Boolean,
+      default() {
+        if (this.$admin.options.list) {
+          return this.$admin.options.list.disableItemsPerPage || false;
+        }
+        return false;
+      },
     },
   },
   methods: {

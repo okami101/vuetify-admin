@@ -47,11 +47,9 @@ export default (provider, router) => {
       /**
        * Explicit logout action, remove user from storage
        */
-      [LOGOUT]: async ({ state, dispatch }) => {
-        if (state.user) {
-          await provider.logout();
-          dispatch("checkAuth");
-        }
+      [LOGOUT]: async ({ dispatch }) => {
+        await provider.logout();
+        dispatch("checkAuth");
       },
       /**
        * Check valid auth on target route server by retrieving user infos
@@ -62,12 +60,15 @@ export default (provider, router) => {
         const isLoginPage = (route || router.currentRoute).name === "login";
 
         try {
-          let { data } = await provider.checkAuth();
+          let response = await provider.checkAuth();
 
           if (isLoginPage) {
             await router.push("/");
           }
-          commit("setUser", data);
+
+          if (response) {
+            commit("setUser", response.data);
+          }
         } catch (e) {
           if (!isLoginPage) {
             await router.push({ name: "login" });

@@ -163,7 +163,17 @@ export default {
      */
     itemsPerPageOptions: {
       type: Array,
-      default: () => [5, 10, 15, 25, 50, 100],
+      default() {
+        let value = [5, 10, 15, 25, 50, 100];
+
+        if (this.$admin.options.list) {
+          if (this.$admin.options.list.disableItemsPerPage) {
+            return [];
+          }
+          return this.$admin.options.list.itemsPerPageOptions || value;
+        }
+        return value;
+      },
     },
     /**
      * Disable real time update of URL query string on any browsing action as pagination, sorting, filtering, etc.
@@ -197,7 +207,15 @@ export default {
     /**
      * Disable the global search.
      */
-    disableGlobalSearch: Boolean,
+    disableGlobalSearch: {
+      type: Boolean,
+      default() {
+        if (this.$admin.options.list) {
+          return this.$admin.options.list.disableGlobalSearch || false;
+        }
+        return false;
+      },
+    },
     /**
      * Key parameter of the global search query.
      */
@@ -320,7 +338,7 @@ export default {
     async initFiltersFromQuery() {
       let options = {
         page: 1,
-        itemsPerPage: this.itemsPerPage,
+        ...(!this.disableItemsPerPage && { itemsPerPage: this.itemsPerPage }),
         sortBy: this.sortBy,
         sortDesc: this.sortDesc,
       };
@@ -384,8 +402,8 @@ export default {
        */
       let { itemsPerPage, page, sortBy, sortDesc } = this.listState.options;
       let query = {
-        perPage: itemsPerPage,
         page,
+        ...(!this.disableItemsPerPage && { perPage: itemsPerPage }),
       };
 
       if (!isEmpty(sortBy)) {
@@ -425,7 +443,7 @@ export default {
       if (!this.disablePagination) {
         params.pagination = {
           page,
-          perPage: itemsPerPage,
+          ...(!this.disableItemsPerPage && { itemsPerPage: this.itemsPerPage }),
         };
       }
 

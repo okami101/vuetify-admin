@@ -69,19 +69,15 @@ export default (axios, params = {}) => {
       updateToken();
     },
     [LOGOUT]: async () => {
-      await axios.post(routes.logout);
+      if (routes.logout) {
+        await axios.post(routes.logout);
+      }
 
       localStorage.removeItem(storageKey);
       updateToken();
       return Promise.resolve();
     },
     [CHECK_AUTH]: async () => {
-      let response = await axios.post(routes.user);
-
-      if (response.status < 200 || response.status >= 300) {
-        throw new Error(response.statusText);
-      }
-
       /**
        * Refresh token
        */
@@ -91,7 +87,22 @@ export default (axios, params = {}) => {
         updateToken();
       }
 
-      return response.data;
+      /**
+       * Get user infos
+       */
+      if (routes.user) {
+        let response = await axios.post(routes.user);
+
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error(response.statusText);
+        }
+
+        return response.data;
+      }
+
+      return localStorage.getItem(storageKey)
+        ? Promise.resolve()
+        : Promise.reject();
     },
     [CHECK_ERROR]: ({ status }) => {
       if (status === 401 || status === 403) {

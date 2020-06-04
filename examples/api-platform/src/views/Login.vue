@@ -4,12 +4,7 @@
       <v-layout align-center justify-center>
         <v-flex :style="{ 'max-width': '350px' }">
           <v-form ref="form" @submit.prevent="validate">
-            <base-material-card class="text-center">
-              <template v-slot:heading>
-                <div class="display-3 text-center">
-                  {{ $admin.title }}
-                </div>
-              </template>
+            <v-card class="text-center">
               <v-card-text>
                 <v-text-field
                   :label="$t('login.username')"
@@ -37,7 +32,7 @@
                 rounded
                 >{{ $t("login.sign_in") }}</v-btn
               >
-            </base-material-card>
+            </v-card>
           </v-form>
         </v-flex>
       </v-layout>
@@ -51,8 +46,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: null,
-      password: null,
+      username: "admin@example.com",
+      password: "admin",
       errorMessages: {},
       loading: false,
     };

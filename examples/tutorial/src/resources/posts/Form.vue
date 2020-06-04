@@ -9,10 +9,10 @@
             </div>
           </template>
           <v-card-text>
-            <va-autocomplete-input
+            <va-select-input
               source="userId"
               reference="users"
-            ></va-autocomplete-input>
+            ></va-select-input>
             <va-text-input source="title"></va-text-input>
             <va-text-input source="body" multiline></va-text-input>
             <va-save-button></va-save-button>

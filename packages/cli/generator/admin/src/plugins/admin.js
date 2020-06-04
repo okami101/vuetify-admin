@@ -4,17 +4,17 @@ import VtecAdmin from "vtec-admin";
 import "vtec-admin/src/loader";
 
 import {
-<%_ if (data) { _%>
+  <%_ if (data) { _%>
   <%- data %>DataProvider,
-<%_ } _%>
-<%_ if (auth && auth !== "custom") { _%>
+  <%_ } _%>
+  <%_ if (auth && auth !== "custom") { _%>
   <%- auth %>AuthProvider,
-<%_ } _%>
+  <%_ } _%>
 } from "vtec-admin/src/providers";
 import {
-<%_ for (locale of locales) { _%>
+  <%_ for (locale of locales) { _%>
   <%- locale %>,
-<%_ } _%>
+  <%_ } _%>
 } from "vtec-admin/src/locales";
 
 import router from "@/router";
@@ -37,7 +37,9 @@ const baseURL = process.env.VUE_APP_API_URL || "<%- apiURL %>";
 
 const http = axios.create({
   baseURL,
+  <%_ if (auth === "sanctum") { _%>
   withCredentials: true,
+  <%_ } _%>
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
@@ -52,20 +54,20 @@ export default new VtecAdmin({
   routes,
   locales: {
     <%_ for (locale of locales) { _%>
-      <%- locale %>,
+    <%- locale %>,
     <%_ } _%>
   },
   translations: [
     <%_ for (locale of locales) { _%>
-      "<%- locale %>",
+    "<%- locale %>",
     <%_ } _%>
   ],
-<%_ if (data) { _%>
+  <%_ if (data) { _%>
   dataProvider: <%- data %>DataProvider(http),
-<%_ } _%>
-<%_ if (auth && auth !== "custom") { _%>
+  <%_ } _%>
+  <%_ if (auth && auth !== "custom") { _%>
   authProvider: <%- auth %>AuthProvider(http),
-<%_ } _%>
+  <%_ } _%>
   resources,
   axios: http,
   options: {

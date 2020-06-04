@@ -1,6 +1,5 @@
 import AdminLayout from "@/layouts/Admin";
 import Dashboard from "@/views/Dashboard";
-import Profile from "@/views/Profile";
 import i18n from "@/i18n";
 
 export default {

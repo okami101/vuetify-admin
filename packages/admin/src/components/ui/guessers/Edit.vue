@@ -32,7 +32,7 @@ export default {
       inputs: [],
     };
   },
-  async mounted() {
+  async created() {
     this.inputs = await guessInputs(
       this.$store,
       this.$i18n,

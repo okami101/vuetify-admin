@@ -76,6 +76,9 @@ export default {
   },
   watch: {
     async search(val, old) {
+      if (old === null) {
+        return;
+      }
       if (!val || val.length < this.minChars) {
         return;
       }
