@@ -171,12 +171,6 @@ dataProvider.delete("books", { id: 1 });
 dataProvider.deleteMany("books", { ids: [1, 2, 3] });
 ```
 
-:::tip ADDITIONAL DATA PROVIDER METHODS
-You can perfectly add custom methods for specific resource related edge cases ! You will receive same call signature as all above methods with `resource` and `params` argument. It's up to you to use them for you custom components.
-
-All data provider methods can be called as same as via `this.$store.dispatch("{resource}/{myCustomMethod}", params)`.
-:::
-
 ### Method response formats
 
 Each provider's method must return a Provider on given format.

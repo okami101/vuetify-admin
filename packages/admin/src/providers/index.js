@@ -1,8 +1,9 @@
 import laravelDataProvider from "./data/laravel";
 import jsonServerDataProvider from "./data/json-server";
 import hydraDataProvider from "./data/hydra";
-import basicAuthProvider from "./auth/basic";
 import jwtAuthProvider from "./auth/jwt";
+import basicAuthProvider from "./auth/basic";
+import fakeAuthProvider from "./auth/fake";
 import sanctumAuthProvider from "./auth/sanctum";
 
 export {
@@ -11,5 +12,6 @@ export {
   hydraDataProvider,
   basicAuthProvider,
   jwtAuthProvider,
+  fakeAuthProvider,
   sanctumAuthProvider,
 };

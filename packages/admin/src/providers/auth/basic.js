@@ -27,6 +27,7 @@ export default (axios, params = {}) => {
         username,
         password,
       };
+      return Promise.resolve();
     },
     [LOGOUT]: () => {
       delete axios.defaults.auth;

@@ -67,6 +67,7 @@ export default (axios, params = {}) => {
 
       localStorage.setItem(storageKey, getToken(response.data));
       updateToken();
+      return Promise.resolve();
     },
     [LOGOUT]: async () => {
       if (routes.logout) {

@@ -339,12 +339,9 @@ export default {
         return;
       }
 
-      let titleKey = `resources.${this.resource}.titles.${action}`;
       let hasItem = action !== "create";
 
-      let title = hasItem
-        ? `${this.$t(titleKey, item)} #${item.id}`
-        : this.$t(titleKey);
+      let title = this.currentResource.getTitle(action, hasItem ? item : null);
       let id = hasItem ? item.id : null;
 
       /**

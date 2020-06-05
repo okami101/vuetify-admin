@@ -30,7 +30,7 @@ module.exports = [
     default: false,
     choices: [
       {
-        name: "Guest (so no login or profile pages)",
+        name: "Guest (so no login page template)",
         value: false,
       },
       {
@@ -38,7 +38,7 @@ module.exports = [
         value: "custom",
       },
       {
-        name: "Larvel Sanctum (cookies)",
+        name: "Laravel Sanctum (cookies)",
         value: "sanctum",
       },
       {
@@ -48,6 +48,10 @@ module.exports = [
       {
         name: "Basic HTTP",
         value: "basic",
+      },
+      {
+        name: "Fake local authentication (no need of API server)",
+        value: "fake",
       },
     ],
   },
@@ -75,6 +79,12 @@ module.exports = [
   },
   {
     type: "confirm",
+    name: "profile",
+    message: "Install profile pages template :",
+    default: false,
+  },
+  {
+    type: "confirm",
     name: "users",
     message: "Install default users CRUD pages templates :",
     default: false,
@@ -87,14 +97,8 @@ module.exports = [
   },
   {
     type: "confirm",
-    name: "materialTheme",
-    message: "Install nice material theme override by Tim Creative :",
-    default: false,
-  },
-  {
-    type: "confirm",
-    name: "staticDashboard",
-    message: "Use nice default material dashboard with static data :",
+    name: "material",
+    message: "Install nice material theme with dashboard by Tim Creative :",
     default: false,
   },
 ];

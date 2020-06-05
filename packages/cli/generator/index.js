@@ -25,7 +25,7 @@ module.exports = (api, options) => {
     data: options.dataProvider,
     auth: options.authProvider,
     apiURL: options.apiURL,
-    profile: options.profilePage,
+    profile: options.profile,
     locales: options.locales,
     users: options.users,
     impersonation: options.impersonation,
@@ -36,16 +36,16 @@ module.exports = (api, options) => {
      * Login page
      */
     api.render("./login", {
-      material: options.materialTheme,
+      material: options.material,
     });
   }
 
-  if (options.profilePage) {
+  if (options.profile) {
     /**
      * Profile page
      */
     api.render("./profile", {
-      material: options.materialTheme,
+      material: options.material,
     });
   }
 
@@ -63,6 +63,7 @@ module.exports = (api, options) => {
      * Users pages templates
      */
     api.render("./users", {
+      material: options.material,
       impersonation: options.impersonation,
     });
   }
@@ -74,24 +75,19 @@ module.exports = (api, options) => {
     api.render("./impersonation");
   }
 
-  if (options.materialTheme) {
+  if (options.material) {
     /**
      * Tim material theme
      */
-    api.injectImports(api.entryFile, [`import "./plugins/base";`]);
+    api.injectImports(api.entryFile, [
+      `import "./plugins/base";`,
+      `import "./plugins/chartist";`,
+    ]);
     api.injectImports("src/plugins/vuetify.js", [
       `import "@/sass/overrides.sass";`,
     ]);
 
     api.render("./material");
-  }
-
-  if (options.staticDashboard) {
-    /**
-     * Full static dashboard
-     */
-    api.injectImports(api.entryFile, [`import "./plugins/chartist";`]);
-    api.render("./dashboard");
   }
 
   api.onCreateComplete(() => {

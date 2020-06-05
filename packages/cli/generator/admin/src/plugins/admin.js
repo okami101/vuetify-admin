@@ -66,7 +66,11 @@ export default new VtecAdmin({
   dataProvider: <%- data %>DataProvider(http),
   <%_ } _%>
   <%_ if (auth && auth !== "custom") { _%>
-  authProvider: <%- auth %>AuthProvider(http),
+  authProvider: <%- auth %>AuthProvider(
+    <%_ if (auth !== "fake") { _%>
+    http
+    <%_ } _%>
+  ),
   <%_ } _%>
   resources,
   axios: http,

@@ -4,7 +4,17 @@
       <users-show v-if="show" :item="item"></users-show>
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside-layout>
+    <%_ if (material) { _%>
     <base-material-card :icon="resource.icon" :title="title">
+    <%_ } else { _%>
+    <v-card>
+      <v-card-title>
+        <h1 class="display-1">
+          {{ title }}
+        </h1>
+      </v-card-title>
+      <v-card-text>
+    <%_ } _%>
       <va-list
         ref="list"
         disable-create-redirect
@@ -29,7 +39,12 @@
           <%_ } _%>
         </va-data-table>
       </va-list>
+    <%_ if (material) { _%>
     </base-material-card>
+    <%_ } else { _%>
+      </v-card-text>
+    </v-card>
+    <%_ } _%>
   </div>
 </template>
 

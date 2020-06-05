@@ -512,12 +512,13 @@ export default {
         return;
       }
 
-      let title = this.$t(`resources.${this.resource}.titles.create`);
-
       /**
        * Allows you to use global action event for custom action on your side.
        */
-      this.$emit("action", { action, title });
+      this.$emit("action", {
+        action,
+        title: this.currentResource.getTitle("create"),
+      });
     },
     async onAssociate() {
       await this.update({

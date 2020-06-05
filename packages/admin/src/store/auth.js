@@ -19,18 +19,18 @@ export default (provider, router) => {
     },
     getters: {
       [GET_NAME](state) {
-        if (state.user) {
-          return provider.getName(state.user);
+        if (state.user && provider[GET_NAME]) {
+          return provider[GET_NAME](state.user);
         }
       },
       [GET_EMAIL](state) {
-        if (state.user) {
-          return provider.getEmail(state.user);
+        if (state.user && provider[GET_EMAIL]) {
+          return provider[GET_EMAIL](state.user);
         }
       },
       [GET_PERMISSIONS](state) {
-        if (state.user) {
-          return provider.getPermissions(state.user) || [];
+        if (state.user && provider[GET_PERMISSIONS]) {
+          return provider[GET_PERMISSIONS](state.user) || [];
         }
         return [];
       },
@@ -41,14 +41,14 @@ export default (provider, router) => {
        * checkAuth action will set fresh user infos on store automatically
        */
       [LOGIN]: async ({ dispatch }, credentials) => {
-        await provider.login(credentials);
+        await provider[LOGIN](credentials);
         dispatch("checkAuth");
       },
       /**
        * Explicit logout action, remove user from storage
        */
       [LOGOUT]: async ({ dispatch }) => {
-        await provider.logout();
+        await provider[LOGOUT]();
         dispatch("checkAuth");
       },
       /**
@@ -60,7 +60,7 @@ export default (provider, router) => {
         const isLoginPage = (route || router.currentRoute).name === "login";
 
         try {
-          let response = await provider.checkAuth();
+          let response = await provider[CHECK_AUTH]();
 
           if (isLoginPage) {
             await router.push("/");
@@ -83,7 +83,7 @@ export default (provider, router) => {
        */
       [CHECK_ERROR]: async ({ dispatch }, error) => {
         try {
-          await provider.checkError(error);
+          await provider[CHECK_ERROR](error);
         } catch (e) {
           dispatch("logout");
         }
