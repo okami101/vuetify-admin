@@ -55,11 +55,7 @@ export default {
       },
       immediate: true,
     },
-    input(newVal) {
-      if (newVal === undefined) {
-        return;
-      }
-
+    input() {
       this.debounceInput();
     },
   },

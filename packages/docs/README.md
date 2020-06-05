@@ -116,10 +116,7 @@ export default {
   props: ["title"],
   data() {
     return {
-      fields: [
-        { source: "title", type: "text" },
-        { source: "body", type: "text" },
-      ],
+      fields: ["title", "body"],
     };
   },
 };

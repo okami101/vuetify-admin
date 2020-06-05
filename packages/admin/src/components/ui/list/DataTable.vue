@@ -13,8 +13,7 @@
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
-    :sort-by.sync="listState.options.sortBy"
-    :sort-desc.sync="listState.options.sortDesc"
+    :options.sync="listState.options"
     @input="(s) => (listState.selected = s)"
     :class="{ 'clickable-rows': rowClick || !!$listeners['row-click'] }"
   >
@@ -26,7 +25,7 @@
         v-if="field.editable"
         :key="field.source"
         :is="`va-${field.type || 'text'}-input`"
-        :resource="resource"
+        :resource="listState.resource"
         :source="field.source"
         editable
         :item="item"
@@ -39,7 +38,7 @@
         v-else-if="field.link"
         :key="field.source"
         :to="{
-          name: `${resource}_${field.link}`,
+          name: `${listState.resource}_${field.link}`,
           params: { id: item.id },
         }"
       >
@@ -47,7 +46,7 @@
           v-if="field.type"
           :key="field.source"
           :is="`va-${field.type}-field`"
-          :resource="resource"
+          :resource="listState.resource"
           :item="item"
           :source="field.source"
           v-bind="field.attributes"
@@ -75,7 +74,7 @@
         v-else-if="field.type"
         :key="field.source"
         :is="`va-${field.type}-field`"
-        :resource="resource"
+        :resource="listState.resource"
         :item="item"
         :source="field.source"
         v-bind="field.attributes"
@@ -95,11 +94,11 @@
     <template v-slot:item.actions="{ item }">
       <div class="item-actions">
         <!-- @slot Full cell template which contains all row actions -->
-        <slot name="cell.actions" v-bind="{ resource, item }">
+        <slot name="cell.actions" v-bind="{ item }">
           <va-show-button
             v-if="!disableShow"
             :disable-redirect="disableShowRedirect"
-            :resource="resource"
+            :resource="listState.resource"
             :item="item"
             icon
             @click="(item) => onAction('show', item)"
@@ -107,17 +106,17 @@
           <va-edit-button
             v-if="!disableEdit"
             :disable-redirect="disableEditRedirect"
-            :resource="resource"
+            :resource="listState.resource"
             :item="item"
             icon
             @click="(item) => onAction('edit', item)"
           ></va-edit-button>
           <!-- @slot Use it for additional custom row actions with components based on VaActionButton. -->
-          <slot name="item.actions" v-bind="{ resource, item }"></slot>
+          <slot name="item.actions" v-bind="{ item }"></slot>
           <va-clone-button
             v-if="!disableClone"
             :disable-redirect="disableCreateRedirect"
-            :resource="resource"
+            :resource="listState.resource"
             :item="item"
             icon
             @click="(item) => onAction('create', item)"
@@ -128,7 +127,7 @@
           -->
           <va-dissociate-button
             v-if="association"
-            :resource="resource"
+            :resource="listState.resource"
             :item="item"
             :source-resource="association.resource"
             :source="association.source"
@@ -142,7 +141,7 @@
           -->
           <va-delete-button
             v-if="!disableDelete"
-            :resource="resource"
+            :resource="listState.resource"
             :item="item"
             icon
             @deleted="$emit('deleted', item)"
@@ -297,9 +296,18 @@ export default {
             ...f,
             type: f.type,
             label:
-              f.label || this.$admin.getSourceLabel(this.resource, f.source),
+              f.label ||
+              this.$admin.getSourceLabel(this.listState.resource, f.source),
           };
         });
+    },
+  },
+  watch: {
+    multiSort: {
+      handler(val) {
+        this.listState.options.multiSort = val;
+      },
+      immediate: true,
     },
   },
   methods: {
@@ -316,13 +324,13 @@ export default {
       switch (this.rowClick) {
         case "show":
           this.$router.push({
-            name: `${this.resource}_show`,
+            name: `${this.listState.resource}_show`,
             params: { id: item.id },
           });
           break;
         case "edit":
           this.$router.push({
-            name: `${this.resource}_edit`,
+            name: `${this.listState.resource}_edit`,
             params: { id: item.id },
           });
           break;
@@ -341,7 +349,9 @@ export default {
 
       let hasItem = action !== "create";
 
-      let title = this.currentResource.getTitle(action, hasItem ? item : null);
+      let title = this.$admin
+        .getResource(this.listState.resource)
+        .getTitle(action, hasItem ? item : null);
       let id = hasItem ? item.id : null;
 
       /**
@@ -351,7 +361,7 @@ export default {
         resource: this.resource,
         params: { id: item.id },
       });
-      this.$store.commit(`${this.resource}/setItem`, data);
+      this.$store.commit(`${this.listState.resource}/setItem`, data);
 
       /**
        * Triggered on action on specific row.

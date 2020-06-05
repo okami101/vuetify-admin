@@ -44,7 +44,7 @@ vue add vtec-admin
 The last step will finish installation process with additional questions :
 
 * Select `JSON Server` as **data provider** for this tutorial.
-* In this tutorial we don't need any **authentication** so we can directly use guest mode.
+* In this tutorial we don't need any **authentication** so we can directly use guest mode. Or you can use the faker one that use only local storage without need of any API server for testing purpose, any login will be accepted.
 * Sets appropriate **API endpoint** according to the previous launched JSON server.
 * Enable **users** and **material** theme.
 * We don't need of any **profile** or **impersonation** feature.
@@ -63,13 +63,13 @@ The default dashboard home page is generated at `src/views/Dashboard.vue` file. 
 
 ## Data Provider
 
-As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vtec Admin can understand. For that each provider must follow a specific implementation as [explained here](data-data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/json-server.js)
+As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vtec Admin can understand. For that each provider must follow a specific implementation as [explained here](data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/json-server.js)
 
 Vue CLI plugin comes with default simple CRUD templates pages for users resources. It's a basic functional single CRUD page interface with aside that should already totally working with actual `users` object of previous `data.json`, by using standard `name` and `email` properties.
 
 ![users](/assets/tutorial/users.png)
 
-You can **create** new users, **show** and **edit** them on direct **aside region**, as well as **clone** them, **paginate** all list, **sort** by name, using **full text search** for **filtering** and finally **export** all data with current filtering and sorting inside CSV. All current context search is updated into URL as **query string** for keeping state on refresh. You can also **bulk delete** them by simply select multiple rows.
+You can **create** new users, **show** and **edit** them on direct **aside region**, as well as **clone** them, **paginate** all list, **sort** by name, using **full text search** for **filtering** and finally **export** all data with current filtering and sorting inside CSV file. All current context search is updated into URL as **query string** for keeping state on refresh. You can also **bulk delete** them by simply select multiple rows.
 
 All users CRUD code templates can be found inside `src/resources/users`. `src/resources` will be your main working directory for all resources related CRUD pages development.
 
@@ -111,7 +111,7 @@ As you can see, fields for data table are just an list of object. `source` corre
 
 ![users-list](/assets/tutorial/users-list.png)
 
-:::tip FULL DOCUMENTATION
+:::tip FIELDS DOCUMENTATION
 More detail [here](crud/list.md#fields). See [all supported fields](components/fields.md).
 :::
 
@@ -204,7 +204,7 @@ export default {
 
 Now why not to try adding new resource as `posts` ?
 
-All resources must be registered inside `src/resources/index.js`. This will allow Vtec Admin to build all necessary CRUD client side routes as well as API call bridges towards registered data provider. By default only `users` is registered. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
+All resources must be registered inside `src/resources/index.js`. This will allow Vtec Admin to build all necessary CRUD client side routes as well as API call bridges towards registered data provider. If you have selected related option through above Vue CLI wizard, `users` should be already registered. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
 
 **`src/resources/index.js`**
 
@@ -224,7 +224,7 @@ export default [
 
 `name` is the unique identifier of resource that will be used as default route path as well as base URL for API calls. `icon` will be user for link icon identifier or any custom use for your own CRUD pages.
 
-:::tip RESOURCE DOCUMENTATION
+:::tip RESOURCES DOCUMENTATION
 See [this dedicated section](resources.md) for all available options.
 :::
 
@@ -245,13 +245,13 @@ export default (i18n, admin) => [
 ];
 ```
 
-Now you should have direct link to a default posts page list. This page is a sort of guesser page that will try to detect the best suited fields by introspecting each value of each resource item properties.
+Now you should have direct link to a default already functional posts page list. This page is a sort of guesser page that will try to detect the best suited fields by introspecting each value of each resource item properties.
 
-As you can guess, by theirs own nature, this fallback pages should not be used on production on any way. Their greatest utility is to print a direct full usable Vue template code to your browser console with a link to the target CRUD page file where to paste this code.
+As you can guess, by theirs own nature, this kind of fallback pages should not be used on production at any way. Their greatest utility is to print a direct full usable Vue template code to your browser console with a link to the target CRUD page file where to paste this code.
 
 ![console](/assets/tutorial/console.png)
 
-As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. `List`, `Create`, `Show`, `Edit`. No you're ready for full customization !
+As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. **List**, **Create**, **Show**, **Edit**. No you're ready for full customization !
 
 Sample for posts list :
 
@@ -261,7 +261,7 @@ Sample for posts list :
 <template>
   <v-card>
     <v-card-title>
-      <h1 class="display-2">
+      <h1 class="display-1">
         {{ title }}
       </h1>
     </v-card-title>
@@ -278,15 +278,7 @@ export default {
   props: ["title"],
   data() {
     return {
-      fields: [
-        {
-          source: "user",
-          type: "reference",
-          attributes: { reference: "users", action: "edit", chip: true },
-        },
-        { source: "title", type: "text" },
-        { source: "body", type: "text" },
-      ],
+      fields: ["title", "body"],
     };
   },
 };
@@ -294,7 +286,7 @@ export default {
 ```
 
 :::tip MATERIAL CARD
-Vtec Admin doesn't know about any custom UI components on client side and will print basic `VCard` by default. If you want use nicer `BaseMaterialCard` component instead, just replace `VCard` as next :
+Vtec Admin will print basic `VCard` by default. If you have selected material theme superset from above Vue CLI wizard, you may use nicer `BaseMaterialCard` component instead, just replace `VCard` as next :
 
 ```vue {2,6,11}
 <template>
@@ -314,7 +306,7 @@ export default {
 
 :::
 
-## Use dedicated show, create and edit page for users
+## Use dedicated show, create and edit pages for users
 
 If you don't like the default aside for users, we can use the same above methods for quickly create dedicated CRUD pages for users. Simply remove actions filter from next file :
 
@@ -368,11 +360,9 @@ export default {
 </script>
 ```
 
-Next recreate `Show`, `Edit` and `Create` as you have done for above `posts`.
-
 ## Show pages
 
-Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component infector, aka `VaShow` that wil inject current resource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
+Main use of show pages is to display full resource information, associated to various global actions. It's mainly composed of component injector, aka `VaShow` that wil inject current resource item to display through all `VaField` components. Similarly as above fields for `VaDataTable`, we must use specific `source` prop for property value to fetch as well as `type` for define the best suited field for format the value. All others attributes will be merge to under field component. See next show user page :
 
 **`src/resources/users/Show.vue`**
 
@@ -384,7 +374,7 @@ Main use of show pages is to display full resource information, associated to va
         <v-col sm="4">
           <base-material-card>
             <template v-slot:heading>
-              <div class="display-2">
+              <div class="display-1">
                 {{ title }}
               </div>
             </template>
@@ -415,13 +405,29 @@ It's enough to render :
 
 ![show](/assets/tutorial/show.png)
 
-:::tip FULL DOCUMENTATION
+:::tip SHOW DOCUMENTATION
 See [dedicated section](crud/show.md).
 :::
 
 ## Create and edit pages
 
-Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next example for user edition page :
+Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next example for user creation and edition page :
+
+**`src/resources/users/Create.vue`**
+
+```vue
+<template>
+  <va-create-layout :title="title">
+    <users-form :item="item"></users-form>
+  </va-create-layout>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
 
 **`src/resources/users/Edit.vue`**
 
@@ -448,7 +454,7 @@ export default {
       <v-col sm="6">
         <base-material-card>
           <template v-slot:heading>
-            <div class="display-2">
+            <div class="display-1">
               {{ title }}
             </div>
           </template>
@@ -501,7 +507,7 @@ It's enough to render :
 
 As you can see, `VaForm` is simply a injector component that will register an internal full form model initialized by all VA inputs child components. This model is the one that will be sent to the API. For all supported inputs, go [here](components/inputs.md).
 
-:::tip FULL DOCUMENTATION
+:::tip FORM DOCUMENTATION
 See [dedicated section](crud/form.md).
 :::
 
@@ -520,7 +526,7 @@ JSON Server use specific `userId` property for each post that can be help for li
 }
 ```
 
-It will be nice to have a direct link towards existing show or edit user page (you have to create this pages before !). It can simply done thanks to a reference field component.
+It will be nice to have a direct link towards existing show or edit user page (you have to create this pages as above before !). It can be simply done thanks to a reference field component.
 
 **`src/resources/posts/List.vue`**
 
@@ -540,8 +546,8 @@ export default {
           type: "reference",
           attributes: { reference: "users", link: "edit", chip: true },
         },
-        { source: "title", type: "text" },
-        { source: "body", type: "text" },
+        "title",
+        "body",
       ],
     };
   },
@@ -591,7 +597,7 @@ Contrary to React Admin equivalent, reference field doesn't support auto fetchin
 
 So how can use it ? Simply by using specific `include` prop of `VaList` component. In case of JSON server data provider, it's an object which accepts both `expand` and `embed` property. Then don't forget to change `userId` to `user` as source prop for reference field.
 
-```vue {9,24}
+```vue {5,19}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <!-- Title -->
@@ -642,7 +648,7 @@ export default [
 ];
 ```
 
-Then you should have nice labelled chip for users :
+Then you should have nice linkable labelled chip for users :
 
 ![relationships](/assets/tutorial/relationships.png)
 
@@ -687,9 +693,9 @@ Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User
 
 ## Filters
 
-So we have global search as default filter from posts page list. It will be trivial to have the possibility to filter by user to. It's also as simple as adding fields. Simply add a new select filter object and bind it to `VaList` component as next :
+So we have global search as default filter from posts page list. It would be trivial to have the possibility to filter by user too. It's also as simple as adding fields. Simply add a new select filter object and bind it to `VaList` component as next :
 
-```vue {5,19-26}
+```vue {3,14-21}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters">
@@ -718,11 +724,11 @@ export default {
 </script>
 ```
 
-It's a simple object that will translate it on valid supported inputs that react as you type. Same behavior than fields apply for `source`, `type`, and `attributes`. Note as by default filter is hidden under a dropdowns next to global actions on right side. It will allow filter activation on demand, without UI pollution with many inputs. the `alwaysOn` prop will always reveal filter without being able to remove it.
+It's a simple object that will be translated as valid supported inputs that react as you type. Same behavior than fields apply for `source`, `type`, and `attributes`. Note as by default filter is hidden under a dropdowns next to global actions on right side. It will allow filter activation on demand, without UI pollution with many inputs. the `alwaysOn` prop will always reveal filter without being able to remove it.
 
 ![filters](/assets/tutorial/filters.png)
 
-:::tip FULL DOCUMENTATION
+:::tip FILTERS DOCUMENTATION
 More detail [here](crud/list.md#filters). See [all supported inputs](components/inputs.md).
 :::
 
@@ -730,21 +736,99 @@ More detail [here](crud/list.md#filters). See [all supported inputs](components/
 It's possible to use direct Vue.js code for filters via [filter slots](crud/list.md#filter-templating).
 :::
 
-## Go further
+## Nested relationships
 
-### Authentication
+Now how about show all comments linked to a post ? **Show** or **Edit** pages would be the ideal place for adding a new data table list pre filtered on current post. Let's first add new `comments` resource :
+
+**`src/resources/index.js`**
+
+```js {6-11}
+export default [
+  {
+    name: "posts",
+    icon: "mdi-post",
+  },
+  {
+    name: "comments",
+    icon: "mdi-comment",
+    label: "name",
+    actions: ["delete"],
+  },
+  //...
+];
+```
+
+:::tip ACTIONS
+Use `actions` property for disabling client related routes as we'll not use them. It will automatically disable all related action buttons.
+:::
+
+Next go to show page and add a new list iterator component after show card :
+
+```vue {10-19,26,29-33}
+<template>
+  <va-show-layout>
+    <va-show :item="item">
+      <!-- VaFields -->
+    </va-show>
+    <base-material-card
+      :icon="$admin.getResource('comments').icon"
+      :title="$admin.getResource('comments').pluralName"
+    >
+      <va-list
+        resource="comments"
+        disable-pagination
+        disable-query-string
+        :filter="{
+          postId: id,
+        }"
+      >
+        <va-data-table :fields="fields" disable-select></va-data-table>
+      </va-list>
+    </base-material-card>
+  </va-show-layout>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+  data() {
+    return {
+      fields: [
+        { source: "name", sortable: true },
+        { source: "email", type: "email" },
+        "body",
+      ],
+    };
+  },
+};
+</script>
+```
+
+Will render :
+
+![nested-relationships](/assets/tutorial/nested-relationships.png)
+
+The most important part is to precise the resource to fetch on each component and put the id of current post into internal filter of list. All not crud action buttons will be auto disabled according to above resource config. You can now do the same for posts linked to a user at user show or edit page for exercise !
+
+:::tip ASSOCIATIONS
+It's not relevant for this case, but you can also add association support directly from this list ! It will add a new autocomplete for associate as well as dissociate button on each data table row. Ideal for pivot relations. See [more](crud/list.md#associations).
+:::
+
+## Authentication
 
 You can find a full [dedicated section](authentication.md) for authentication API integration, either by using provided ones or implementing your own.
 
 It' preferable to enable authentication at first Vue CLI install by selecting any valid or custom auth provider as it will install all functional [Login](authentication.md#login-page) and [Profile](authentication.md#profile-page) templates for you.
 
-### Use real API
+## Conclusion
 
 Well done if you got so far in this tutorial, you now have all basic concepts for UI side development and now you're ready to test within a real API. Go to the [dedicated section](data-providers.md) for full spec of implementing your own or check next chapiter for advanced API showcase.
 
 ## API Platform
 
-In order to demonstrate how we can easily change server API while keeping same Admin UI, let's try another more advanced API backend with stateless simple JWT authentication.
+In order to demonstrate how we can easily change server API while keeping same Admin UI, let's try another more advanced API backend with stateless JWT authentication.
+
+First reinstall a new Vue CLI project.
 
 ![ap-login](/assets/tutorial/ap-login.jpg)
 ![ap-books](/assets/tutorial/ap-books.png)

@@ -37,8 +37,8 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
 * Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 * Add UI CRUD generators scripts
 * Generate inside your project all minimal boilerplate while select them via on-demand wizard for quickly start :
-  * Any data provider, select none if you intend to use within your own API.
-  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use your [custom provider](authentication.md).
+  * Any data provider, select [custom implementation](data-provider.md) if you intend to use within your own API. It will prepare for you basic implemented data provider file, that let you just fill in the holes.
+  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use your [custom provider](authentication.md) by starting with an empty implemented file.
   * Pre configured API URL endpoint for above providers using axios.
   * Supported UI locales.
   * Basic profile edition page with password change support. You'll need to [configure endpoints](authentication.md#profile-page) for profile update on API side.

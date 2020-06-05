@@ -1,8 +1,6 @@
-<%_ if (users) { _%>
+/* eslint-disable no-unused-vars */
+
 export default (i18n, admin) => [
-<%_ } else { _%>
-export default (i18n) => [
-<%_ } _%>
   {
     icon: "mdi-view-dashboard",
     text: i18n.t("menu.dashboard"),

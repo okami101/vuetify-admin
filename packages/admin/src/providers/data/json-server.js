@@ -27,7 +27,7 @@ export default (axios) => {
         }
 
         if (type === GET_MANY) {
-          return { url: resource, query: { id: params.ids } };
+          return { url: resource, query: { ...query, id: params.ids } };
         }
 
         query = {
@@ -47,6 +47,7 @@ export default (axios) => {
 
         if (sort && sort.length) {
           query = {
+            ...query,
             _sort: sort.map((item) => item.by),
             _order: sort.map((item) => (item.desc ? "desc" : "asc")),
           };
@@ -105,7 +106,7 @@ export default (axios) => {
     let { url, query, method, data } = getRequest(type, resource, params);
 
     if (query) {
-      url += `?${qs.stringify(query, { arrayFormat: "comma" })}`;
+      url += `?${qs.stringify(query, { arrayFormat: "repeat" })}`;
     }
 
     try {

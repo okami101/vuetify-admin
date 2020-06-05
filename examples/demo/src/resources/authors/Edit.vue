@@ -19,7 +19,6 @@
         :include="['publisher', 'reviews']"
       >
         <va-data-table
-          resource="books"
           disable-sort
           disable-select
           disable-clone

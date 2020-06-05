@@ -22,11 +22,31 @@
         </v-col>
       </v-row>
     </va-show>
+    <base-material-card
+      :icon="$admin.getResource('posts').icon"
+      :title="$admin.getResource('posts').pluralName"
+    >
+      <va-list
+        resource="posts"
+        disable-pagination
+        disable-query-string
+        :filter="{
+          userId: id,
+        }"
+      >
+        <va-data-table :fields="fields" disable-select></va-data-table>
+      </va-list>
+    </base-material-card>
   </va-show-layout>
 </template>
 
 <script>
 export default {
-  props: ["title", "item"],
+  props: ["id", "title", "item"],
+  data() {
+    return {
+      fields: [{ source: "title", sortable: true }, "body"],
+    };
+  },
 };
 </script>

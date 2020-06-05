@@ -26,7 +26,7 @@
               :label="item.label"
               v-bind="item.attributes"
               :value="value[item.source]"
-              @input="(val) => update(item.source, val)"
+              @input="(val) => update(item, val)"
             >
             </input-filter>
           </slot>
@@ -61,10 +61,14 @@ export default {
       this.$emit("remove", filter);
       this.$emit("input", value);
     },
-    update(source, value) {
+    update(item, value) {
+      if (!value) {
+        this.remove(item);
+        return;
+      }
       this.$emit("input", {
         ...this.value,
-        [source]: value,
+        [item.source]: value,
       });
     },
   },

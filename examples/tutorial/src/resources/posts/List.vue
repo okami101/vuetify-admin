@@ -25,8 +25,8 @@ export default {
           type: "reference",
           attributes: { reference: "users", action: "edit", chip: true },
         },
-        { source: "title", type: "text" },
-        { source: "body", type: "text" },
+        { source: "title", sortable: true },
+        "body",
       ],
     };
   },

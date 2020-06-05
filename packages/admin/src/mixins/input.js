@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     getItem(value) {
-      return value;
+      return value === undefined ? this.value : value;
     },
     change(value) {
       /**
@@ -99,9 +99,6 @@ export default {
       this.$emit("change", value);
     },
     update(value) {
-      // Take default value if undefined
-      value = value === undefined ? this.value : value;
-
       /**
        * Update model in the injected form if available.
        */
