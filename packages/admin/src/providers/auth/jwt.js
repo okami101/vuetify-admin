@@ -102,7 +102,9 @@ export default (axios, params = {}) => {
       }
 
       return localStorage.getItem(storageKey)
-        ? Promise.resolve()
+        ? Promise.resolve({
+            data: true,
+          })
         : Promise.reject();
     },
     [CHECK_ERROR]: ({ status }) => {

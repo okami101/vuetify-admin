@@ -39,11 +39,11 @@ export default (axios, params = {}) => {
       }
 
       if (!routes.user) {
-        return {
+        return Promise.resolve({
           data: {
             name: axios.defaults.auth.username,
           },
-        };
+        });
       }
 
       let response = await axios.get(routes.user);

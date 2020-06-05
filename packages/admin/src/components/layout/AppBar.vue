@@ -72,7 +72,7 @@
       >
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
-      <v-menu offset-y>
+      <v-menu offset-y v-if="user">
         <template v-slot:activator="{ on }">
           <v-btn icon small class="ml-5" v-on="on">
             <v-icon>mdi-account-circle</v-icon>
@@ -178,6 +178,7 @@ export default {
   computed: {
     ...mapState({
       loading: (state) => state.api.loading,
+      user: (state) => state.auth.user,
     }),
     ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
     createResourceLinks() {
@@ -195,6 +196,7 @@ export default {
     ...mapActions({
       refresh: "api/refresh",
       logout: "auth/logout",
+      checkAuth: "auth/checkAuth",
     }),
   },
 };
