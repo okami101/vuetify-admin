@@ -3,6 +3,7 @@
     <v-row>
       <v-col>
         <form @submit.prevent="updateAccount" class="mb-5">
+          <%_ if (material) { _%>
           <base-material-card icon="mdi-account" :title="$t('profile.account')">
             <v-card-text>
               <v-row>
@@ -29,10 +30,42 @@
               $t("profile.update")
             }}</v-btn>
           </base-material-card>
+          <%_ } else { _%>
+          <v-card>
+            <v-card-title>
+              {{ $t("profile.account") }}
+            </v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    :label="$t('profile.name')"
+                    v-model="accountForm.name"
+                    required
+                    :error-messages="errorMessages.name"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    :label="$t('profile.email')"
+                    v-model="accountForm.email"
+                    type="email"
+                    required
+                    :error-messages="errorMessages.email"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-btn :loading="accountUpdating" color="primary" type="submit">{{
+                $t("profile.update")
+              }}</v-btn>
+            </v-card-text>
+          </v-card>
+          <%_ } _%>
         </form>
       </v-col>
       <v-col>
         <form @submit.prevent="changePassword">
+          <%_ if (material) { _%>
           <base-material-card
             color="warning"
             icon="mdi-lock"
@@ -73,6 +106,50 @@
               $t("profile.update")
             }}</v-btn>
           </base-material-card>
+          <%_ } else { _%>
+          <v-card>
+            <v-card-title>
+              {{ $t("profile.password") }}
+            </v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    :label="$t('profile.old_password')"
+                    type="password"
+                    v-model="passwordForm.old_password"
+                    required
+                    :error-messages="errorMessages.old_password"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    :label="$t('profile.new_password')"
+                    type="password"
+                    v-model="passwordForm.new_password"
+                    required
+                    :error-messages="errorMessages.new_password"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    :label="$t('profile.confirm_password')"
+                    type="password"
+                    v-model="passwordForm.new_password_confirmation"
+                    required
+                    :error-messages="errorMessages.new_password_confirmation"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-btn
+                :loading="passwordChanging"
+                color="warning"
+                type="submit"
+                >{{ $t("profile.update") }}</v-btn
+              >
+            </v-card-text>
+          </v-card>
+          <%_ } _%>
         </form>
       </v-col>
     </v-row>

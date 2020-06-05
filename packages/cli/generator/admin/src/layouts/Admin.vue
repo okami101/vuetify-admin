@@ -3,6 +3,7 @@
     <va-app-bar
       slot="app-bar"
       :header-menu="headerMenu"
+      :profile-menu="profileMenu"
       dense
       dark
       @drawer="drawer = !drawer"
@@ -74,6 +75,15 @@ export default {
           href: "#",
           text: "License",
         },
+      ],
+      profileMenu: [
+        <%_ if (profile) { _%>
+        {
+          icon: "mdi-account",
+          text: this.$t("menu.profile"),
+          link: "/profile",
+        },
+        <%_ } _%>
       ],
       sidebarMenu: nav(this.$i18n, this.$admin),
     };

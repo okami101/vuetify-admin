@@ -4,6 +4,7 @@
       <v-layout align-center justify-center>
         <v-flex :style="{ 'max-width': '350px' }">
           <v-form ref="form" @submit.prevent="validate">
+            <%_ if (material) { _%>
             <base-material-card class="text-center">
               <template v-slot:heading>
                 <div class="display-3 text-center">
@@ -38,6 +39,37 @@
                 >{{ $t("login.sign_in") }}</v-btn
               >
             </base-material-card>
+            <%_ } else { _%>
+            <v-card class="text-center">
+              <v-card-text>
+                <v-text-field
+                  :label="$t('login.username')"
+                  prepend-icon="mdi-account"
+                  v-model="username"
+                  required
+                  :error-messages="errorMessages.email"
+                ></v-text-field>
+
+                <v-text-field
+                  :label="$t('login.password')"
+                  prepend-icon="mdi-lock"
+                  type="password"
+                  v-model="password"
+                  required
+                ></v-text-field>
+
+                <v-btn
+                  :loading="loading"
+                  color="primary"
+                  large
+                  type="submit"
+                  text
+                  rounded
+                  >{{ $t("login.sign_in") }}</v-btn
+                >
+              </v-card-text>
+            </v-card>
+            <%_ } _%>
           </v-form>
         </v-flex>
       </v-layout>

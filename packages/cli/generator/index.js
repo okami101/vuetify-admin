@@ -25,6 +25,7 @@ module.exports = (api, options) => {
     data: options.dataProvider,
     auth: options.authProvider,
     apiURL: options.apiURL,
+    profile: options.profilePage,
     locales: options.locales,
     users: options.users,
     impersonation: options.impersonation,
@@ -32,9 +33,20 @@ module.exports = (api, options) => {
 
   if (options.authProvider) {
     /**
-     * Auth related templates + impersonation
+     * Login page
      */
-    api.render("./auth");
+    api.render("./login", {
+      material: options.materialTheme,
+    });
+  }
+
+  if (options.profilePage) {
+    /**
+     * Profile page
+     */
+    api.render("./profile", {
+      material: options.materialTheme,
+    });
   }
 
   if (options.locales) {
@@ -42,7 +54,6 @@ module.exports = (api, options) => {
      * Users pages templates
      */
     for (locale of options.locales) {
-      console.log(locale);
       api.render(`./locales/${locale}`);
     }
   }

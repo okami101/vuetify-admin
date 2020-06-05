@@ -1,6 +1,6 @@
 import AdminLayout from "@/layouts/Admin";
 import Dashboard from "@/views/Dashboard";
-<%_ if (auth) { _%>
+<%_ if (profile) { _%>
 import Profile from "@/views/Profile";
 <%_ } _%>
 import i18n from "@/i18n";
@@ -22,7 +22,7 @@ export default {
         title: i18n.t("routes.dashboard"),
       },
     },
-    <%_ if (auth) { _%>
+    <%_ if (profile) { _%>
     {
       path: "/profile",
       name: "profile",
