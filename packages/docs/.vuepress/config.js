@@ -155,7 +155,7 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
       title: groupA,
       collapsable: false,
       sidebarDepth: 2,
-      children: ["", "getting-started", "tutorial", "laravel"],
+      children: ["", "getting-started", "tutorial", "api-platform", "laravel"],
     },
     {
       title: groupB,

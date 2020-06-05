@@ -49,7 +49,7 @@ The last step will finish installation process with additional questions :
 * Enable **users** and **material** theme.
 * We don't need of any **profile** or **impersonation** feature.
 
-Then launch app by `yarn serve` you should arrive to this step :
+Then launch app by `yarn serve --open` you should arrive to this step :
 
 ![dashboard](/assets/tutorial/dashboard.png)
 
@@ -822,16 +822,4 @@ It' preferable to enable authentication at first Vue CLI install by selecting an
 
 ## Conclusion
 
-Well done if you got so far in this tutorial, you now have all basic concepts for UI side development and now you're ready to test within a real API. Go to the [dedicated section](data-providers.md) for full spec of implementing your own or check next chapiter for advanced API showcase.
-
-## API Platform
-
-In order to demonstrate how we can easily change server API while keeping same Admin UI, let's try another more advanced API backend with stateless JWT authentication.
-
-First reinstall a new Vue CLI project.
-
-![ap-login](/assets/tutorial/ap-login.jpg)
-![ap-books](/assets/tutorial/ap-books.png)
-![ap-reviews](/assets/tutorial/ap-reviews.png)
-![ap-form](/assets/tutorial/ap-form.png)
-![ap-validation](/assets/tutorial/ap-validation.png)
+Well done if you got so far in this tutorial, you now have all basic concepts for UI side development and you're ready to test within a real API. Go to the [dedicated section](data-providers.md) for full spec of implementing your own or check next [API Platform](api-platform.md) for more advanced API showcase.

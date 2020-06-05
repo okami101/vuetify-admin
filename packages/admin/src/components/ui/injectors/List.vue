@@ -4,6 +4,7 @@
     :loading="listState.loading"
     :options.sync="listState.options"
     :value="listState.selected"
+    :server-items-length="listState.total"
     :items-per-page="itemsPerPage"
     :hide-default-footer="hideDefaultFooter || disablePagination"
     :footer-props="{
@@ -345,7 +346,7 @@ export default {
     async initFiltersFromQuery() {
       let options = {
         page: 1,
-        ...(!this.disableItemsPerPage && { itemsPerPage: this.itemsPerPage }),
+        itemsPerPage: this.itemsPerPage,
         sortBy: this.sortBy,
         sortDesc: this.sortDesc,
       };

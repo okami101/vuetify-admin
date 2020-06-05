@@ -9,7 +9,6 @@
     hide-default-footer
     :loading="listState.loading"
     :multi-sort="multiSort"
-    :server-items-length="listState.total"
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
