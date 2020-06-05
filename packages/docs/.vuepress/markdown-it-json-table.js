@@ -152,7 +152,7 @@ module.exports = (md) => {
 
   let generateParagraph = (state, content) => {
     state.push("paragraph_open", "p", 1);
-    token = state.push("inline", "", 0);
+    let token = state.push("inline", "", 0);
     token.content = content;
     token.children = [];
     state.push("paragraph_close", "p", -1);
@@ -164,7 +164,7 @@ module.exports = (md) => {
     token = state.push("thead_open", "thead", 1);
     token = state.push("tr_open", "tr", 1);
 
-    for (i = 0; i < headers.length; i++) {
+    for (let i = 0; i < headers.length; i++) {
       token = state.push("th_open", "th", 1);
       token.attrs = [["style", "text-align:center"]];
 
@@ -180,7 +180,7 @@ module.exports = (md) => {
 
     token = state.push("tbody_open", "tbody", 1);
 
-    for (i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       token = state.push("tr_open", "tr", 1);
 
       headers.forEach(({ property, formatter }) => {

@@ -425,7 +425,7 @@ export default {
         query.filter = JSON.stringify(this.currentFilter);
       }
 
-      this.$router.push({ query }).catch((e) => {});
+      this.$router.push({ query }).catch(() => {});
     },
     async fetchData() {
       if (!this.loaded || isEmpty(this.listState.options)) {
@@ -450,7 +450,7 @@ export default {
       if (!this.disablePagination) {
         params.pagination = {
           page,
-          ...(!this.disableItemsPerPage && { perPage: this.itemsPerPage }),
+          ...(!this.disableItemsPerPage && { perPage: itemsPerPage }),
         };
       }
 
@@ -504,7 +504,7 @@ export default {
       });
       return fields;
     },
-    async onDelete(item) {
+    async onDelete() {
       this.fetchData();
     },
     onAction(action) {

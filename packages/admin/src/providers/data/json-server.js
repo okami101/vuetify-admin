@@ -14,7 +14,7 @@ export default (axios) => {
   const getRequest = (type, resource, params = {}) => {
     switch (type) {
       case GET_LIST:
-      case GET_MANY:
+      case GET_MANY: {
         const { include, pagination, sort, filter } = params;
         let query = {};
 
@@ -56,8 +56,11 @@ export default (axios) => {
           url: resource,
           query,
         };
+      }
 
-      case GET_ONE:
+      case GET_ONE: {
+        let query = {};
+
         if (params.include) {
           let { embed, expand } = params.include;
           query = {
@@ -67,26 +70,30 @@ export default (axios) => {
         }
 
         return { url: `${resource}/${params.id}`, query };
+      }
 
-      case CREATE:
+      case CREATE: {
         return {
           url: resource,
           method: "post",
           data: params.data,
         };
+      }
 
-      case UPDATE:
+      case UPDATE: {
         return {
           url: `${resource}/${params.id}`,
           method: "put",
           data: params.data,
         };
+      }
 
-      case DELETE:
+      case DELETE: {
         return {
           url: `${resource}/${params.id}`,
           method: "delete",
         };
+      }
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
@@ -116,20 +123,23 @@ export default (axios) => {
      */
     switch (type) {
       case GET_LIST:
-      case GET_MANY:
+      case GET_MANY: {
         let { data, headers } = response;
 
         return Promise.resolve({
           data,
           total: parseInt(headers["x-total-count"], 10),
         });
-      case DELETE:
+      }
+      case DELETE: {
         return Promise.resolve();
+      }
 
       case GET_ONE:
       case CREATE:
-      case UPDATE:
+      case UPDATE: {
         return Promise.resolve(response);
+      }
     }
   };
 

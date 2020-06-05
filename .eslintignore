@@ -1,6 +1,6 @@
 **/generator/admin
-**/generator/auth
-**/generator/dashboard
+**/generator/login
+**/generator/profile
 **/generator/material
 **/generator/users
 node_modules

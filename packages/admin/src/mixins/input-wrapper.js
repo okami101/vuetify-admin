@@ -1,6 +1,3 @@
-import upperFirst from "lodash/upperFirst";
-import lowerCase from "lodash/lowerCase";
-
 /**
  * Common props for all inputs.
  */
@@ -49,7 +46,7 @@ export default {
     },
     /**
      * Override default label behavior.
-     * Default is to get the localized VueI18n label from both ressource and property source.
+     * Default is to get the localized VueI18n label from both resource and property source.
      */
     label: {
       type: String,

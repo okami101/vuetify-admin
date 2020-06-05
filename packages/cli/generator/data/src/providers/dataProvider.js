@@ -7,32 +7,47 @@ import {
   UPDATE_MANY,
   DELETE,
   DELETE_MANY,
-} from "./actions";
+} from "vtec-admin/src/providers/data/actions";
 import qs from "qs";
 
 export default (axios) => {
   const getRequest = (type, resource, params = {}) => {
+    let query = {
+      locale: params.locale,
+    };
+
     switch (type) {
-      case GET_LIST: {
-        const { pagination, sort, filter } = params;
+      case GET_LIST:
+      case GET_MANY: {
+        const { fields, include, pagination, sort, filter } = params;
 
-        let query = filter || {};
+        query = {
+          ...query,
+          fields,
+          include,
+        };
 
-        if (pagination) {
-          query = {
-            ...query,
-            page: pagination.page,
-            itemsPerPage: pagination.perPage,
+        if (type === GET_MANY) {
+          query.filter = {
+            id: params.ids,
           };
+          return { url: resource, query };
         }
 
-        if (sort && sort.length) {
-          query.order = {};
+        query = {
+          ...query,
+          ...pagination,
+          filter,
+        };
 
-          sort.forEach((item) => {
+        if (sort && sort.length) {
+          query.sort = sort.map((item) => {
             let { by, desc } = item;
 
-            query.order[by] = desc ? "desc" : "asc";
+            if (desc) {
+              return `-${by}`;
+            }
+            return by;
           });
         }
 
@@ -40,12 +55,13 @@ export default (axios) => {
       }
 
       case GET_ONE: {
-        return { url: `${resource}/${params.id}` };
+        return { url: `${resource}/${params.id}`, query };
       }
 
       case CREATE: {
         return {
           url: resource,
+          query,
           method: "post",
           data: params.data,
         };
@@ -54,6 +70,7 @@ export default (axios) => {
       case UPDATE: {
         return {
           url: `${resource}/${params.id}`,
+          query,
           method: "put",
           data: params.data,
         };
@@ -62,6 +79,7 @@ export default (axios) => {
       case DELETE: {
         return {
           url: `${resource}/${params.id}`,
+          query,
           method: "delete",
         };
       }
@@ -76,66 +94,19 @@ export default (axios) => {
     let { url, query, method, data } = getRequest(type, resource, params);
 
     if (query) {
-      url += `?${qs.stringify(query, { arrayFormat: "repeat" })}`;
+      url += `?${qs.stringify(query, { arrayFormat: "comma" })}`;
     }
 
     try {
       response = await axios[method || "get"](url, data);
     } catch ({ response }) {
-      /**
-       * TODO validation
-       */
       let { data, status, statusText } = response;
       return Promise.reject({
         message: statusText,
         status,
-        ...{
-          message: data["hydra:title"],
-          errors: data.violations
-            ? data.violations.reduce(
-                (o, error) => ({
-                  ...o,
-                  [error.propertyPath]: [
-                    ...(o[error.propertyPath] || []),
-                    error.message,
-                  ],
-                }),
-                {}
-              )
-            : {},
-        },
+        ...(data || {}),
       });
     }
-
-    /**
-     * Parse the guid
-     */
-    let getResourceWithId = (resource) => {
-      let data = {
-        ...resource,
-      };
-
-      if (resource["@id"]) {
-        let id = resource["@id"];
-
-        data.id = id.substring(id.lastIndexOf("/") + 1);
-      }
-
-      Object.keys(resource).forEach((p) => {
-        let value = resource[p];
-
-        /**
-         * Manage nested hydra object reference if applicable
-         */
-        data[p] = Array.isArray(value)
-          ? value.map((v) => getResourceWithId(v))
-          : typeof value === "object" && value["@id"]
-          ? getResourceWithId(value)
-          : value;
-      });
-
-      return data;
-    };
 
     /**
      * Get compatible response for Admin
@@ -143,38 +114,27 @@ export default (axios) => {
     switch (type) {
       case GET_LIST:
       case GET_MANY: {
-        let data = response.data["hydra:member"];
-        let total = response.data["hydra:totalItems"];
+        let { data, meta } = response.data;
 
         return Promise.resolve({
-          data: data.map((r) => getResourceWithId(r)),
-          total,
+          data,
+          total: meta ? meta.total : data.length,
         });
       }
       case DELETE: {
         return Promise.resolve();
       }
-
       case GET_ONE:
       case CREATE:
       case UPDATE: {
-        return Promise.resolve({
-          data: getResourceWithId(response.data),
-        });
+        return Promise.resolve(response.data);
       }
     }
   };
 
   return {
     [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
-    [GET_MANY]: (resource, params) =>
-      Promise.all(
-        params.ids.map((id) =>
-          fetchApi(GET_ONE, resource, {
-            id: id.substring(id.lastIndexOf("/") + 1),
-          })
-        )
-      ).then((responses) => ({ data: responses.map(({ data }) => data) })),
+    [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
     [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
     [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),
     [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),

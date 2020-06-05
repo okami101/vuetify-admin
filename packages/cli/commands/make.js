@@ -36,7 +36,7 @@ const options = {
   },
 };
 
-async function service(resourceName, args = {}, api) {
+async function service(resourceName, args = {}) {
   if (!resourceName) {
     console.log(chalk.red(`not specified resource 'name' argument.`));
     return;

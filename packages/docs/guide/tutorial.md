@@ -7,7 +7,7 @@ You will find complete source code of this tutorial [in the main repo](https://g
 :::
 
 :::tip I PREFER PLAY WITH REAL API BACKEND
-Check [Laravel guide](laravel.md) for quick starting with generators samples or [create your own provider](data-providers.md) for your custom API. This tutorial stay useful as it's more focused on how to play with Vtec Admin with any existing API.
+Check [API Platform tutorial](#api-platform) or more advanced [Laravel guide](laravel.md) for quick starting with generators samples or [create your own provider](data-providers.md) for your custom API. This tutorial stay useful as it's more focused on how to play with Vtec Admin with any existing API.
 :::
 
 ## Installation
@@ -41,7 +41,15 @@ vue add i18n
 vue add vtec-admin
 ```
 
-The last step will finish installation process with additional questions. Select `JSON Server` as **data provider**, you can always edit it after by simple couple of code lines. Let the appropriate default **API endpoint** according to the local previous launched JSON server. In this tutorial we don't need (for now) any **authentication** so we can let it disabled. Enabled **users** and **material** theme, no need for **static dashboard**. Then launch app by `yarn serve` you should arrive to this step :
+The last step will finish installation process with additional questions :
+
+* Select `JSON Server` as **data provider** for this tutorial.
+* In this tutorial we don't need any **authentication** so we can directly use guest mode.
+* Sets appropriate **API endpoint** according to the previous launched JSON server.
+* Enable **users** and **material** theme.
+* We don't need of any **profile** or **impersonation** feature.
+
+Then launch app by `yarn serve` you should arrive to this step :
 
 ![dashboard](/assets/tutorial/dashboard.png)
 
@@ -50,7 +58,7 @@ You can perfectly customize the layout, which is a simple template component in 
 :::
 
 :::tip CUSTOMIZE THE DASHBOARD
-The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching. You can find a full template code based on material theme [here](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/dashboard/src/views/Dashboard.vue).
+The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching.
 :::
 
 ## Data Provider

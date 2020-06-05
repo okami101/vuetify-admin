@@ -29,7 +29,6 @@
 import Input from "../../../mixins/input";
 import Multiple from "../../../mixins/multiple";
 import ReferenceInput from "../../../mixins/reference-input";
-import get from "lodash/get";
 
 /**
  * Value editing from a searchable choices. Support multiple and references.

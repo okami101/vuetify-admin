@@ -15,7 +15,7 @@ const options = {
   },
 };
 
-async function service(file, args = {}, api) {
+async function service(file, args = {}) {
   if (!file) {
     console.log(chalk.red(`not specified 'file' argument.`));
     return;

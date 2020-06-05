@@ -2,14 +2,14 @@ let objectToFormData = (obj, form, namespace) => {
   let fd = form || new FormData();
 
   for (var property in obj) {
-    if (!obj.hasOwnProperty(property)) {
+    if (!Object.prototype.hasOwnProperty.call(obj, property)) {
       continue;
     }
 
     let formKey = namespace ? `${namespace}[${property}]` : property;
 
     // if the property is an object, but not a File,
-    // use recursivity.
+    // use recursively.
     if (typeof obj[property] === "object" && !(obj[property] instanceof File)) {
       objectToFormData(obj[property], fd, formKey);
       continue;

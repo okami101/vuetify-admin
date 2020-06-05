@@ -19,8 +19,6 @@
 
 <script>
 import Field from "../../../mixins/field";
-import upperFirst from "lodash/upperFirst";
-import lowerCase from "lodash/lowerCase";
 
 /**
  * Wrapper component for field which support label localization and supported VA field, mainly used for show page.

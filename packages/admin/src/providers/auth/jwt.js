@@ -115,14 +115,8 @@ export default (axios, params = {}) => {
       }
       return Promise.resolve();
     },
-    [GET_NAME]: (user) => {
-      return getName(user);
-    },
-    [GET_EMAIL]: (user) => {
-      return getEmail(user);
-    },
-    [GET_PERMISSIONS]: (user) => {
-      return getPermissions(user);
-    },
+    [GET_NAME]: (user) => getName(user),
+    [GET_EMAIL]: (user) => getEmail(user),
+    [GET_PERMISSIONS]: (user) => getPermissions(user),
   };
 };

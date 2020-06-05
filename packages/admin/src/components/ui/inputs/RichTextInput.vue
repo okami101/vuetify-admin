@@ -134,7 +134,7 @@ export default {
 
       if (fileBrowserUrl) {
         init.file_picker_callback = (callback, value, meta) => {
-          tinymce.activeEditor.windowManager.openUrl({
+          window.tinymce.activeEditor.windowManager.openUrl({
             title: this.$t("va.file_manager"),
             url: fileBrowserUrl,
             /**

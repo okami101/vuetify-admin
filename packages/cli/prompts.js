@@ -6,19 +6,23 @@ module.exports = [
     default: false,
     choices: [
       {
-        name: "None, I will write my own",
+        name: "None (just the basic admin layout)",
         value: false,
       },
       {
-        name: "Laravel",
+        name: "I will implementing my own",
+        value: "custom",
+      },
+      {
+        name: "Laravel using Spatie query builder",
         value: "laravel",
       },
       {
-        name: "Hydra (Symfony API Platform)",
+        name: "Hydra for Symfony API Platform",
         value: "hydra",
       },
       {
-        name: "JSON Server",
+        name: "JSON Server as fake REST API",
         value: "jsonServer",
       },
     ],
@@ -30,7 +34,7 @@ module.exports = [
     default: false,
     choices: [
       {
-        name: "Guest (so no login page template)",
+        name: "Guest (no login page template)",
         value: false,
       },
       {

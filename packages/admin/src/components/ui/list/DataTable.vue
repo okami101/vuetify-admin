@@ -161,7 +161,7 @@
 
 <script>
 import List from "../../../mixins/list";
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 /**

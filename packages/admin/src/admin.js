@@ -111,7 +111,7 @@ export default class VtecAdmin {
             return i18n.te(titleKey)
               ? i18n.t(titleKey)
               : i18n.t(`va.pages.${action}`, {
-                  resource: getName("list" ? 10 : 1).toLowerCase(),
+                  resource: getName(action === "list" ? 10 : 1).toLowerCase(),
                 });
           },
           canAction: (action) => {
@@ -241,16 +241,18 @@ export default class VtecAdmin {
     /**
      * Add API resources modules dynamically
      */
-    this.resources.forEach((resource) =>
-      store.registerModule(
-        resource.name,
-        resourceCrudModule({
-          provider: this.dataProvider,
-          resource,
-          i18n,
-        })
-      )
-    );
+    if (this.dataProvider) {
+      this.resources.forEach((resource) =>
+        store.registerModule(
+          resource.name,
+          resourceCrudModule({
+            provider: this.dataProvider,
+            resource,
+            i18n,
+          })
+        )
+      );
+    }
 
     /**
      * Add resources routes dynamically

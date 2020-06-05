@@ -20,7 +20,7 @@ export default (axios, baseURL = "/api") => {
 
     switch (type) {
       case GET_LIST:
-      case GET_MANY:
+      case GET_MANY: {
         const { fields, include, pagination, sort, filter } = params;
 
         query = {
@@ -54,19 +54,22 @@ export default (axios, baseURL = "/api") => {
         }
 
         return { url: resourceURL, query };
+      }
 
-      case GET_ONE:
+      case GET_ONE: {
         return { url: `${resourceURL}/${params.id}`, query };
+      }
 
-      case CREATE:
+      case CREATE: {
         return {
           url: resourceURL,
           query,
           method: "post",
           data: objectToFormData(params.data),
         };
+      }
 
-      case UPDATE:
+      case UPDATE: {
         let form = objectToFormData(params.data);
         form.append("_method", "PUT");
 
@@ -76,13 +79,15 @@ export default (axios, baseURL = "/api") => {
           method: "post",
           data: form,
         };
+      }
 
-      case DELETE:
+      case DELETE: {
         return {
           url: `${resourceURL}/${params.id}`,
           query,
           method: "delete",
         };
+      }
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
@@ -113,20 +118,23 @@ export default (axios, baseURL = "/api") => {
      */
     switch (type) {
       case GET_LIST:
-      case GET_MANY:
+      case GET_MANY: {
         let { data, meta } = response.data;
 
         return Promise.resolve({
           data,
           total: meta ? meta.total : data.length,
         });
-      case DELETE:
+      }
+      case DELETE: {
         return Promise.resolve();
+      }
 
       case GET_ONE:
       case CREATE:
-      case UPDATE:
+      case UPDATE: {
         return Promise.resolve(response.data);
+      }
     }
   };
 

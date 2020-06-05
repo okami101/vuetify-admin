@@ -35,15 +35,17 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
 
 * Install main Vtec Admin library
 * Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
-* Generate inside your project all minimal boilerplate code to quickly start :
-  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as superset on Vuetify
-  * Load of external third party components used by Vtec Admin
-  * Initialize admin plugin with automatic crud pages webpack context load and create base admin layout page on your App.vue entry file
-  * Login page plugged with default [Laravel Sanctum](https://github.com/laravel/sanctum) auth provider (totally replaceable by [your own provider](authentication.md))
-  * Static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/)
-  * Functional basic profile edition page
-  * User management page list with direct aside creation / show / edition
 * Add UI CRUD generators scripts
+* Generate inside your project all minimal boilerplate while select them via on-demand wizard for quickly start :
+  * Any data provider, select none if you intend to use within your own API.
+  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use your [custom provider](authentication.md).
+  * Pre configured API URL endpoint for above providers using axios.
+  * Supported UI locales.
+  * Basic profile edition page with password change support. You'll need to [configure endpoints](authentication.md#profile-page) for profile update on API side.
+  * User management single page list default template with direct aside creation / show / edition.
+  * Add impersonation components if your API support it.
+  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as superset on Vuetify with nice static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/).
+  * Finally initialize admin plugin with automatic crud pages webpack context load and create base admin layout page on your App.vue entry file.
 
 If your backend run at different address than [http://localhost:8000](http://localhost:8000), edit `VUE_APP_API_URL` environment variable according to a valid API inside `.env.local`.
 

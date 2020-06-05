@@ -47,7 +47,7 @@ export default {
     };
   },
   methods: {
-    handleUpdate(newContent, oldContent) {
+    handleUpdate(newContent) {
       this.opened = newContent;
     },
   },

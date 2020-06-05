@@ -31,6 +31,20 @@ module.exports = (api, options) => {
     impersonation: options.impersonation,
   });
 
+  if (options.dataProvider === "custom") {
+    /**
+     * Custom provider base code
+     */
+    api.render("./data");
+  }
+
+  if (options.authProvider === "custom") {
+    /**
+     * Custom provider base code
+     */
+    api.render("./auth");
+  }
+
   if (options.authProvider) {
     /**
      * Login page
@@ -53,7 +67,7 @@ module.exports = (api, options) => {
     /**
      * Users pages templates
      */
-    for (locale of options.locales) {
+    for (let locale of options.locales) {
       api.render(`./locales/${locale}`);
     }
   }

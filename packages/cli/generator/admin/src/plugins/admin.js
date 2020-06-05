@@ -3,8 +3,15 @@ import VtecAdmin from "vtec-admin";
 
 import "vtec-admin/src/loader";
 
+<%_ if (data === "custom") { _%>
+import dataProvider from "@/providers/dataProvider";
+<%_ } _%>
+<%_ if (auth === "custom") { _%>
+import authProvider from "@/providers/authProvider";
+<%_ } _%>
+
 import {
-  <%_ if (data) { _%>
+  <%_ if (data && data !== "custom") { _%>
   <%- data %>DataProvider,
   <%_ } _%>
   <%_ if (auth && auth !== "custom") { _%>
@@ -63,14 +70,22 @@ export default new VtecAdmin({
     <%_ } _%>
   ],
   <%_ if (data) { _%>
+  <%_ if (data === "custom") { _%>
+  dataProvider: dataProvider(axios),
+  <%_ } else { _%>
   dataProvider: <%- data %>DataProvider(http),
   <%_ } _%>
-  <%_ if (auth && auth !== "custom") { _%>
+  <%_ } _%>
+  <%_ if (auth) { _%>
+  <%_ if (data === "custom") { _%>
+  authProvider: authProvider(axios),
+  <%_ } else { _%>
   authProvider: <%- auth %>AuthProvider(
     <%_ if (auth !== "fake") { _%>
     http
     <%_ } _%>
   ),
+  <%_ } _%>
   <%_ } _%>
   resources,
   axios: http,
