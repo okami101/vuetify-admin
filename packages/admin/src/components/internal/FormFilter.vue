@@ -62,7 +62,7 @@ export default {
       this.$emit("input", value);
     },
     update(item, value) {
-      if (!value) {
+      if (value === undefined) {
         this.remove(item);
         return;
       }

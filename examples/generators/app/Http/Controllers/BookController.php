@@ -31,6 +31,7 @@ class BookController extends Controller
                     AllowedFilter::exact('id'),
                     AllowedFilter::partial('title'),
                     AllowedFilter::partial('author'),
+                    AllowedFilter::exact('commentable'),
                 ])
                 ->allowedSorts(['isbn', 'title', 'author', 'price', 'publication_date'])
                 ->allowedIncludes([])

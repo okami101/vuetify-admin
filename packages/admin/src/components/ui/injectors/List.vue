@@ -422,8 +422,20 @@ export default {
         query.sortDesc = sortDesc.join(",");
       }
 
-      if (!isEmpty(this.currentFilter)) {
-        query.filter = JSON.stringify(this.currentFilter);
+      let filter = Object.keys(this.currentFilter).reduce((o, key) => {
+        let f = {
+          ...o,
+        };
+        let value = this.currentFilter[key];
+
+        if (value !== undefined && value !== "") {
+          f[key] = value;
+        }
+        return f;
+      }, {});
+
+      if (!isEmpty(filter)) {
+        query.filter = JSON.stringify(filter);
       }
 
       this.$router.push({ query }).catch(() => {});

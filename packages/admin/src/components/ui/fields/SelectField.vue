@@ -1,13 +1,13 @@
 <template>
   <v-chip v-if="chip" :color="getColor(value)" :small="small" :to="to">
     <slot :value="selected">
-      <span>{{ selected ? selected[itemText] : "" }}</span>
+      <span>{{ selected ? selected[itemText] : value }}</span>
     </slot>
   </v-chip>
   <span v-else>
     <!-- @slot Content placeholder for further customization, take the text of selected choice by default. -->
     <slot :value="selected">
-      <span>{{ selected ? selected[itemText] : "" }}</span>
+      <span>{{ selected ? selected[itemText] : value }}</span>
     </slot>
   </span>
 </template>

@@ -11,13 +11,19 @@ export default {
   props: ["resource", "title"],
   data() {
     return {
-      filters: ["title", "author"],
+      filters: ["title", "author", { source: "commentable", type: "boolean" }],
       fields: [
         { source: "isbn", sortable: true },
+        { source: "category", type: "select", attributes: { chip: true } },
         { source: "title", sortable: true },
-        "description",
         { source: "author", sortable: true },
-        { source: "price", type: "number", sortable: true },
+        { source: "commentable", type: "boolean" },
+        {
+          source: "price",
+          type: "number",
+          sortable: true,
+          attributes: { format: "currency" },
+        },
         { source: "publication_date", type: "date", sortable: true },
       ],
     };

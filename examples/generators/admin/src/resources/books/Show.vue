@@ -11,14 +11,18 @@
             </template>
             <v-card-text>
               <va-field source="isbn"></va-field>
-              <va-field source="category" type="select"></va-field>
+              <va-field source="category" type="select" chip></va-field>
               <va-field source="title"></va-field>
               <va-field source="description"></va-field>
-              <va-field source="summary"></va-field>
+              <va-field source="summary" type="rich-text"></va-field>
               <va-field source="author"></va-field>
-              <va-field source="price" type="number"></va-field>
+              <va-field
+                source="price"
+                type="number"
+                format="currency"
+              ></va-field>
               <va-field source="commentable" type="boolean"></va-field>
-              <va-field source="formats" type="array"></va-field>
+              <va-field source="formats" type="array" select></va-field>
               <va-field source="publication_date" type="date"></va-field>
             </v-card-text>
           </base-material-card>

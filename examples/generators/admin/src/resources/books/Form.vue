@@ -12,12 +12,12 @@
             <va-text-input source="isbn"></va-text-input>
             <va-select-input source="category"></va-select-input>
             <va-text-input source="title"></va-text-input>
-            <va-text-input source="description"></va-text-input>
-            <va-text-input source="summary"></va-text-input>
+            <va-text-input source="description" multiline></va-text-input>
+            <va-rich-text-input source="summary"></va-rich-text-input>
             <va-text-input source="author"></va-text-input>
             <va-number-input source="price"></va-number-input>
             <va-boolean-input source="commentable"></va-boolean-input>
-            <va-array-input source="formats"></va-array-input>
+            <va-select-input source="formats" multiple></va-select-input>
             <va-date-input source="publication_date"></va-date-input>
           </v-card-text>
           <va-save-button></va-save-button>

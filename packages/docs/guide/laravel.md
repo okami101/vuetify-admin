@@ -158,7 +158,7 @@ You're now ready for development. Let's try the power of above generators for in
 php artisan crud:make Book \
   --schema="isbn:string:unique, category:string, title:json, description:json, summary:json, author:string, price:float, commentable:boolean, formats:json, publication_date:date" \
   --translatable="title, description, summary" --searchable="title, description, author" \
-  --filterable="title, author" \
+  --filterable="title, author, commentable" \
   --sortable="isbn, title, author, price, publication_date" \
   -mfs --force
 ```
@@ -281,6 +281,7 @@ class BookController extends Controller
                     AllowedFilter::exact('id'),
                     AllowedFilter::partial('title'),
                     AllowedFilter::partial('author'),
+                    AllowedFilter::exact('commentable'),
                 ])
                 ->allowedSorts(['isbn', 'title', 'author', 'price', 'publication_date'])
                 ->allowedIncludes([])
@@ -464,8 +465,8 @@ Of course we can ! Vue CLI Plugin will install same separate npm scripts command
 ```bash
 yarn crud:make books --locale="en" --name="Book | Books" --icon="mdi-book" --label="title" --translatable \
   --fields="isbn, category:select, title, description, summary, author, price:number, commentable:boolean, formats:array, publication_date:date" \
-  --columns="isbn, title, description, author, price, publication_date" \
-  --filterable="title, author" \
+  --columns="isbn, title, author, commentable, price, publication_date" \
+  --filterable="title, author, commentable" \
   --sortable="isbn, title, author, sortable, publication_date"
 ```
 
@@ -473,7 +474,197 @@ yarn crud:make books --locale="en" --name="Book | Books" --icon="mdi-book" --lab
 Use `yarn vue-cli-service help crud:make` for all options documentation.
 :::
 
-It will register a new `books` resource, add link to books on sidebar and generate all CRUD files :
+It will register a new `books` resource, add link to books on sidebar and generate all CRUD files.
+
+To finish you may readapt some fields or inputs for better representation :
+
+* On list and show views :
+  * Add currency format for all **price** fields.
+  * Change **summary** of show view to rich text type.
+  * Add localized enums for category and formats.
+  * Precise `select` on **formats** on show view for use localized enums (as array field don't use it by default).
+* On form views :
+  * Add `multiline` prop on form for **description** in order to use textarea.
+  * Use rich text input for summary (use TinyMCE editor).
+  * Use multiple select for `formats` instead of input array.
+
+Here the final code templates of all book CRUD views, all above manual modifications are highlighted.
+
+:::details LIST
+**`src/resources/books/List.vue`**
+
+```vue {17,25}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-list :filters="filters">
+      <va-data-table :fields="fields"> </va-data-table>
+    </va-list>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      filters: ["title", "author", { source: "commentable", type: "boolean" }],
+      fields: [
+        { source: "isbn", sortable: true },
+        { source: "category", type: "select", attributes: { chip: true } },
+        { source: "title", sortable: true },
+        { source: "author", sortable: true },
+        { source: "commentable", type: "boolean" },
+        {
+          source: "price",
+          type: "number",
+          sortable: true,
+          attributes: { format: "currency" },
+        },
+        { source: "publication_date", type: "date", sortable: true },
+      ],
+    };
+  },
+};
+</script>
+```
+
+Final render :
+
+![books-list](/assets/laravel/books-list.png)
+:::
+
+:::details SHOW
+**`src/resources/books/List.vue`**
+
+```vue {14,17,22,25}
+<template>
+  <va-show-layout>
+    <va-show :item="item">
+      <v-row justify="center">
+        <v-col sm="6">
+          <base-material-card>
+            <template v-slot:heading>
+              <div class="display-2">
+                {{ title }}
+              </div>
+            </template>
+            <v-card-text>
+              <va-field source="isbn"></va-field>
+              <va-field source="category" type="select" chip></va-field>
+              <va-field source="title"></va-field>
+              <va-field source="description"></va-field>
+              <va-field source="summary" type="rich-text"></va-field>
+              <va-field source="author"></va-field>
+              <va-field
+                source="price"
+                type="number"
+                format="currency"
+              ></va-field>
+              <va-field source="commentable" type="boolean"></va-field>
+              <va-field source="formats" type="array" select></va-field>
+              <va-field source="publication_date" type="date"></va-field>
+            </v-card-text>
+          </base-material-card>
+        </v-col>
+      </v-row>
+    </va-show>
+  </va-show-layout>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
+
+Final render :
+
+![books-show](/assets/laravel/books-show.png)
+:::
+
+:::details CREATE
+**`src/resources/books/List.vue`**
+
+```vue
+<template>
+  <va-create-layout>
+    <books-form :title="title" :item="item"></books-form>
+  </va-create-layout>
+</template>
+
+<script>
+export default {
+  props: ["title", "item"],
+};
+</script>
+```
+
+:::
+
+:::details EDIT
+**`src/resources/books/List.vue`**
+
+```vue
+<template>
+  <va-edit-layout>
+    <books-form :id="id" :title="title" :item="item"></books-form>
+  </va-edit-layout>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+};
+</script>
+```
+
+:::
+
+:::details FORM
+**`src/resources/books/List.vue`**
+
+```vue {15,16,20}
+<template>
+  <va-form :id="id" :item="item">
+    <v-row justify="center">
+      <v-col sm="6">
+        <base-material-card>
+          <template v-slot:heading>
+            <div class="display-2">
+              {{ title }}
+            </div>
+          </template>
+          <v-card-text>
+            <va-text-input source="isbn"></va-text-input>
+            <va-select-input source="category"></va-select-input>
+            <va-text-input source="title"></va-text-input>
+            <va-text-input source="description" multiline></va-text-input>
+            <va-rich-text-input source="summary"></va-rich-text-input>
+            <va-text-input source="author"></va-text-input>
+            <va-number-input source="price"></va-number-input>
+            <va-boolean-input source="commentable"></va-boolean-input>
+            <va-select-input source="formats" multiple></va-select-input>
+            <va-date-input source="publication_date"></va-date-input>
+          </v-card-text>
+          <va-save-button></va-save-button>
+        </base-material-card>
+      </v-col>
+    </v-row>
+  </va-form>
+</template>
+
+<script>
+export default {
+  props: ["id", "title", "item"],
+};
+</script>
+```
+
+Final render :
+
+![books-form](/assets/laravel/books-form.png)
+:::
 
 ## YAML
 

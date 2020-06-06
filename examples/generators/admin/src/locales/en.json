@@ -80,7 +80,25 @@
     "books": {
       "name": "Book | Books",
       "fields": {},
-      "enums": {}
+      "enums": {
+        "category": {
+          "novel": "Novel",
+          "comic": "Comic",
+          "cook": "Cook",
+          "economy": "Economy",
+          "politics": "Politics",
+          "history": "History",
+          "fantasy": "Fantasy",
+          "biography": "Biography"
+        },
+        "formats": {
+          "pocket": "Pocket",
+          "paperback": "Paperback",
+          "pdf": "PDF",
+          "epub": "Epub",
+          "kindle": "Kindle"
+        }
+      }
     }
   }
 }
