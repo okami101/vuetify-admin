@@ -85,8 +85,8 @@
             "type": "string"
           }
         },
-        "mediable": {
-          "description": "List all mediable fields for backend. A mediable field correspond to an uploadable image or file.",
+        "media": {
+          "description": "List all media fields for backend. A media field correspond to an uploadable image or file.",
           "type": "array",
           "uniqueItems": true,
           "items": {

@@ -45,7 +45,7 @@ resources:
       - label
       - description
       - body
-    mediable:
+    media:
       - avatar
       - images
       - files

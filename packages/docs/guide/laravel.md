@@ -150,17 +150,314 @@ In case of model relation, even if foreign keys can be generated in migration fi
 For server-side validation, you must manually add rules to generated store and update request files inside `app/Http/Requests` directory.
 :::
 
-## Create your first entity
+## Generate your first entity
 
-You're now ready for development. Let's try the power of above generators for initiate our first entity on API side. We will create a new `Book` model with followed fields : `isbn`, `title`, `description`, `author` and `publication_date`. We will also set `title` and `description` as translatable fields. So we can use next command :
+You're now ready for development. Let's try the power of above generators for initiate our first entity on API side. We will create a new `Book` model with followed fields : `isbn`, `category`, `title`, `description`, `author`, `price`, `commentable`, `formats` and `publication_date`. We will also set `title` and `description` as translatable fields. So we can use next command :
 
 ```bash
-php artisan crud:make Book --schema="isbn:string:unique, title:json, description:json, author:string, publication_date:date" --translatable="title, description" --searchable="title, description, author" --filterable="title, author" --sortable="isbn, title, description, author, publication_date"
+php artisan crud:make Book \
+  --schema="isbn:string:unique, category:string, title:json, description:json, summary:json, author:string, price:float, commentable:boolean, formats:json, publication_date:date" \
+  --translatable="title, description, summary" --searchable="title, description, author" \
+  --filterable="title, author" \
+  --sortable="isbn, title, description, author, publication_date" \
+  -mfs --force
 ```
 
 :::warning JSON
 As `title` and `description` are translatable, we'll use JSON for storing all localized labels keyed by locale code.
 :::
+
+All necessary files are now generated :
+
+:::details MIGRATION
+**`database/migrations/{timestamp}_create_books_table.php`**
+
+```php
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateBooksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('isbn')->unique();
+            $table->string('category');
+            $table->json('title');
+            $table->json('description');
+            $table->json('summary');
+            $table->string('author');
+            $table->float('price');
+            $table->boolean('commentable');
+            $table->json('formats');
+            $table->date('publication_date');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('books');
+    }
+}
+```
+
+> Generated thanks to [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended).
+:::
+
+:::details MODEL
+**`app/Book.php`**
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Vtec\Crud\Traits\RequestTranslatableTrait;
+
+class Book extends Model
+{
+    use RequestTranslatableTrait;
+
+    protected $fillable = ['isbn', 'category', 'title', 'description', 'author', 'price', 'commentable', 'formats', 'publication_date'];
+
+    protected $casts = ['price' => 'float', 'commentable' => 'boolean', 'formats' => 'array', 'publication_date' => 'date'];
+
+    public $translatable = ['title', 'description', 'summary'];
+}
+```
+
+> Guess all fillable, casts, translatable, as well as media (single or multiple) fields.
+:::
+
+:::details CONTROLLER
+**`app/Http/Controllers/BookController`**
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Book;
+use App\Http\Requests\StoreBook;
+use App\Http\Requests\UpdateBook;
+use App\Http\Resources\Book as BookResource;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use Vtec\Crud\Filters\SearchFilter;
+
+class BookController extends Controller
+{
+    public function __construct()
+    {
+        $this->authorizeResource(Book::class);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index()
+    {
+        return BookResource::collection(
+            QueryBuilder::for(Book::class)
+                ->allowedFilters([
+                    AllowedFilter::custom('q', new SearchFilter(['title', 'description', 'author'])),
+                    AllowedFilter::exact('id'),
+                    AllowedFilter::partial('title'),
+                    AllowedFilter::partial('author'),
+                ])
+                ->allowedSorts(['isbn', 'title', 'description', 'author', 'publication_date'])
+                ->allowedIncludes([])
+                ->exportOrPaginate()
+        );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Book  $book
+     * @return BookResource
+     */
+    public function show(Book $book)
+    {
+        return new BookResource($book->load([]));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return BookResource
+     */
+    public function store(StoreBook $request)
+    {
+        $book = Book::create($request->all());
+
+        return new BookResource($book);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Book  $book
+     * @return BookResource
+     */
+    public function update(UpdateBook $request, Book $book)
+    {
+        $book->update($request->all());
+
+        return new BookResource($book);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Book  $book
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy(Book $book)
+    {
+        $book->delete();
+
+        return response()->noContent();
+    }
+}
+```
+
+> Use [Laravel Spatie Query Builder](https://github.com/spatie/laravel-query-builder) for index method, while keeping standard Laravel-ish for other REST methods.
+:::
+
+:::details RESOURCE
+**`app/Http/Resources/Book.php`**
+
+```php
+<?php
+
+namespace App\Http\Resources;
+
+use Vtec\Crud\Http\Resources\BaseResource;
+
+class Book extends BaseResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return parent::toArray($request);
+    }
+}
+```
+
+> Use [Laravel eloquent resource](https://laravel.com/docs/eloquent-resources) and extend specific Vtec base resource mainly for translatable and media API handling.
+:::
+
+Additional generated files : **BookPolicy**, **StoreBook**, **UpdateBook**, **BookSeeder** and **BookFactory**.
+
+### Dummy data
+
+You may needs to write some factory code for dummy data. Let's write it on next file :
+
+**`database/factories/BookFactory.php`**
+
+```php
+<?php
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Book;
+use Faker\Generator as Faker;
+use Vtec\Crud\Faker\Provider\Html;
+
+$factory->define(Book::class, function (Faker $faker) {
+    $faker->addProvider(new Html($faker));
+
+    return [
+        'isbn' => $faker->isbn13,
+        'title' => [
+            'en' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
+            'fr' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
+        ],
+        'category' => $faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
+        'description' => [
+            'en' => $faker->paragraph(10),
+            'fr' => $faker->paragraph(10),
+        ],
+        'summary' => [
+            'en' => $faker->htmlParagraphs(10, 10, 10),
+            'fr' => $faker->htmlParagraphs(10, 10, 10),
+        ],
+        'author' => $faker->name,
+        'formats' => $faker->randomElements(
+            ['pocket', 'paperback', 'pdf', 'epub', 'kindle'],
+            $faker->numberBetween(1, 5)
+        ),
+        'price' => $faker->randomFloat(2, 10, 50),
+        'commentable' => $faker->boolean(80),
+        'publication_date' => $faker->dateTime,
+    ];
+});
+```
+
+Now let's add dummy generation on seeder :
+
+**`database/seeds/BookSeeder.php`**
+
+```php
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class BookSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('books')->truncate();
+
+        factory(\App\Book::class, 500)->create();
+    }
+}
+```
+
+Finally we can migrate and seed dummy data :
+
+```bash
+php artisan migrate
+php artisan db:seed --class BookSeeder
+```
+
+You're now ready to implement the admin UI !
+
+## Admin UI
+
+We can of course use the same way of previous tutorials for generate our CRUD book pages, but why not take the opportunity to use Vtec Admin UI generators as well ?
 
 ## YAML
 

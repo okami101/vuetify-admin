@@ -31,5 +31,6 @@ Route::group(['middleware' => Impersonate::class], function () {
         'users' => 'UserController',
         'monsters' => 'MonsterController',
         'monster_children' => 'MonsterChildController',
+        'books' => 'BookController',
     ]);
 });
