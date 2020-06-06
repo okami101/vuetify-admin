@@ -668,15 +668,15 @@ Final render :
 
 ## YAML
 
-For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml [options]`. You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
+For even more auto generation power and reusability, a direct resources yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml [options]` for API and `yarn crud:yaml my-new-resource.yml [options]` for UI. You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
 
 Use `name` option in order to import only targeted resource.
 
 :::tip YAML TUTORIAL
-Go to [dedicated YAML section](generators.md#yaml) for full explanation with advanced tutorial.
+Go to [separate YAML guide](generators.md#yaml) for full showcase with yaml samples.
 :::
 
-## Other internal traits or services included
+## Internal services and traits included
 
 ### Specific resource base
 

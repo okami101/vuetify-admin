@@ -7,4 +7,6 @@ export default (i18n, admin) => [
   { divider: true },
   admin.getResourceLink("users"),
   admin.getResourceLink("books"),
+  admin.getResourceLink("monsters"),
+  admin.getResourceLink("monster_children"),
 ];
