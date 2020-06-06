@@ -1,7 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters" :include="['media']">
-      <va-data-table :fields="fields"></va-data-table>
+      <va-data-table :fields="fields"> </va-data-table>
     </va-list>
   </base-material-card>
 </template>
@@ -24,9 +24,9 @@ export default {
         },
       ],
       fields: [
-        "name",
+        { source: "name", sortable: true },
         { source: "email", type: "email" },
-        "label",
+        { source: "label", sortable: true },
         { source: "active", type: "boolean" },
         { source: "level", type: "number", sortable: true },
         { source: "rating", type: "rating", sortable: true },

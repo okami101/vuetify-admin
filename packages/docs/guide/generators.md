@@ -180,3 +180,17 @@ We will not use them for this tutorial, but for real app it's heavily recommende
 Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable data table list, show, create and edit forms.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.
+
+Now you can run all backend API as well as admin UI and see the result !
+
+Example of generated list of monsters page :
+
+![list](/assets/laravel/list.png)
+
+The show view :
+
+![show](/assets/laravel/show.png)
+
+And finally the form view :
+
+![form](/assets/laravel/form.png)

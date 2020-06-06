@@ -9,7 +9,7 @@ export default [
     name: "monsters",
     icon: "mdi-alien",
     label: "name",
-    actions: ["list", "show", "create", "edit", "delete"],
+    actions: undefined,
     translatable: true,
   },
   {

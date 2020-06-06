@@ -1,7 +1,7 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters" :include="['monster']">
-      <va-data-table :fields="fields"></va-data-table>
+      <va-data-table :fields="fields"> </va-data-table>
     </va-list>
   </base-material-card>
 </template>
@@ -24,7 +24,7 @@ export default {
           type: "reference",
           attributes: { reference: "monsters" },
         },
-        "name",
+        { source: "name", sortable: true },
         { source: "created_at", type: "date", sortable: true },
         { source: "updated_at", type: "date", sortable: true },
       ],

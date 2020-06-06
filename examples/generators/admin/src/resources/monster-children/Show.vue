@@ -15,7 +15,7 @@
                 type="reference"
                 reference="monsters"
               ></va-field>
-              <va-field source="name" type="text"></va-field>
+              <va-field source="name"></va-field>
               <va-field source="created_at" type="date"></va-field>
               <va-field source="updated_at" type="date"></va-field>
             </v-card-text>

@@ -181,7 +181,6 @@ resources:
         type: reference
         attributes:
           reference: monsters
-          optionText: name
         form:
           type: autocomplete
           required: true
