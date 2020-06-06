@@ -159,7 +159,7 @@ php artisan crud:make Book \
   --schema="isbn:string:unique, category:string, title:json, description:json, summary:json, author:string, price:float, commentable:boolean, formats:json, publication_date:date" \
   --translatable="title, description, summary" --searchable="title, description, author" \
   --filterable="title, author" \
-  --sortable="isbn, title, description, author, publication_date" \
+  --sortable="isbn, title, author, price, publication_date" \
   -mfs --force
 ```
 
@@ -282,7 +282,7 @@ class BookController extends Controller
                     AllowedFilter::partial('title'),
                     AllowedFilter::partial('author'),
                 ])
-                ->allowedSorts(['isbn', 'title', 'description', 'author', 'publication_date'])
+                ->allowedSorts(['isbn', 'title', 'author', 'price', 'publication_date'])
                 ->allowedIncludes([])
                 ->exportOrPaginate()
         );
@@ -457,7 +457,23 @@ You're now ready to implement the admin UI !
 
 ## Admin UI
 
-We can of course use the same way of previous tutorials for generate our CRUD book pages, but why not take the opportunity to use Vtec Admin UI generators as well ?
+We can of course use the same way of previous tutorials for generate our CRUD book pages via guesser's code, but now you've been thinking can we generate UI side same as previously for API ?
+
+Of course we can ! Vue CLI Plugin will install same separate npm scripts commands but for UI side. Let's try `crud:make` npm script. Go to admin sub folder and launch next `crud:make` command :
+
+```bash
+yarn crud:make books --locale="en" --name="Book | Books" --icon="mdi-book" --label="title" --translatable \
+  --fields="isbn, category:select, title, description, summary, author, price:number, commentable:boolean, formats:array, publication_date:date" \
+  --columns="isbn, title, description, author, price, publication_date" \
+  --filterable="title, author" \
+  --sortable="isbn, title, author, sortable, publication_date"
+```
+
+:::tip HELP COMMAND
+Use `yarn vue-cli-service help crud:make` for all options documentation.
+:::
+
+It will register a new `books` resource, add link to books on sidebar and generate all CRUD files :
 
 ## YAML
 

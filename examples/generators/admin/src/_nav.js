@@ -8,4 +8,5 @@ export default (i18n, admin) => [
   admin.getResourceLink("users"),
   admin.getResourceLink("monsters"),
   admin.getResourceLink("monster_children"),
+  admin.getResourceLink("books"),
 ];

@@ -2,7 +2,9 @@
   <base-material-card :icon="resource.icon" :title="title">
     <va-list
       :filters="filters"
+      <%_ if (include) { _%>
       :include="<%- include %>"
+      <%_ } _%>
     >
       <va-data-table :fields="fields">
       </va-data-table>

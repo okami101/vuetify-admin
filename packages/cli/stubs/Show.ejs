@@ -11,7 +11,7 @@
             </template>
             <v-card-text>
               <%_ for (field of fields) { _%>
-              <va-field source="<%- field.name %>" type="<%- field.type %>"<%- field.attrs ? ' ' + field.attrs : '' %>></va-field>
+              <va-field source="<%- field.name %>" <%_ if (field.type !== 'text') { _%>type="<%- field.type %>"<%_ } %> <%- field.attrs ? field.attrs : '' %>></va-field>
               <%_ } _%>
             </v-card-text>
           </base-material-card>

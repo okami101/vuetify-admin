@@ -32,7 +32,7 @@ class BookController extends Controller
                     AllowedFilter::partial('title'),
                     AllowedFilter::partial('author'),
                 ])
-                ->allowedSorts(['isbn', 'title', 'description', 'author', 'publication_date'])
+                ->allowedSorts(['isbn', 'title', 'author', 'price', 'publication_date'])
                 ->allowedIncludes([])
                 ->exportOrPaginate()
         );

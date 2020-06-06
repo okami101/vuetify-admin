@@ -17,4 +17,10 @@ export default [
     icon: "mdi-baby-carriage",
     label: "name",
   },
+  {
+    name: "books",
+    icon: "mdi-book",
+    label: "title",
+    translatable: true,
+  },
 ];

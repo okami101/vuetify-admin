@@ -3,6 +3,7 @@ const { resolve } = require("path");
 const fs = require("fs");
 const ejs = require("ejs");
 const util = require("util");
+const isEmpty = require("lodash/isEmpty");
 const upperFirst = require("lodash/upperFirst");
 const kebabCase = require("lodash/kebabCase");
 
@@ -23,7 +24,7 @@ const options = {
     label:
       "Property that define an existing resource, see it as a stringify or toString function.",
     translatable:
-      "Activate if resource has translatable fields. If setted, a contextual locale selector will be available in order to select used language on each translatable field. A locale query parameter will be send to backend.",
+      "Activate if resource has translatable fields. If set, a contextual locale selector will be available in order to select used language on each translatable field. A locale query parameter will be send to backend.",
     actions:
       "Optional supported crud operations, do not set if you want all by default. Choose between 'list', 'show', 'create', 'edit', 'delete'.",
     fields:
@@ -31,7 +32,7 @@ const options = {
     columns: "Fields that should be shown on data table list.",
     sortable: "Fields that can be sortable.",
     filterable:
-      "Fields that can be filtered individualy. Will appear on advanced filter on list page.",
+      "Fields that can be filtered individually. Will appear on advanced filter on list page.",
     include: "Related resources to include on list page with eager loading.",
   },
 };
@@ -43,13 +44,52 @@ async function service(resourceName, args = {}) {
   }
 
   /**
+   * Get formatted array input
+   */
+  let getFormattedInputArray = (input) => {
+    let value = args[input];
+
+    if (!value) {
+      return;
+    }
+
+    if (Array.isArray(value)) {
+      return value;
+    }
+
+    return value.split(",").map((s) => s.trim());
+  };
+
+  /**
+   * Get standardized fields input
+   */
+  let getFormattedFields = () => {
+    return (getFormattedInputArray("fields") || []).map((f) => {
+      if (typeof f === "string") {
+        let segments = f.split(":");
+
+        let field = {
+          name: segments[0],
+          type: "text",
+        };
+
+        if (segments.length > 1) {
+          field.type = segments[1];
+        }
+        return field;
+      }
+      return f;
+    });
+  };
+
+  /**
    * Generate crud views
    */
   let resource = kebabCase(resourceName);
-  let fields = args.fields || [];
+  let fields = getFormattedFields();
   let output = args.output || "./src/resources";
 
-  const sourceDir = resolve(__dirname, "stubs");
+  const sourceDir = resolve(__dirname, "../stubs");
   const targetDir = resolve(process.cwd(), output, resource);
 
   if (!fs.existsSync(targetDir)) {
@@ -59,17 +99,22 @@ async function service(resourceName, args = {}) {
   /**
    * Let's generate crud files
    */
+  let actions = getFormattedInputArray("actions") || [
+    "list",
+    "show",
+    "create",
+    "edit",
+    "delete",
+  ];
+
   ["create", "edit", "form", "list", "show"].forEach((template) => {
-    if (args.actions) {
+    if (actions) {
       if (template === "form") {
         // Form only if at least create or edit action
-        if (
-          !args.actions.includes("create") &&
-          !args.actions.includes("edit")
-        ) {
+        if (!actions.includes("create") && !actions.includes("edit")) {
           return;
         }
-      } else if (!args.actions.includes(template)) {
+      } else if (!actions.includes(template)) {
         return;
       }
     }
@@ -115,27 +160,31 @@ async function service(resourceName, args = {}) {
       /**
        * Format as string for EJS
        */
-      f.attrs = Object.keys(attributes)
-        .map((p) => {
-          let value = attributes[p];
+      if (!isEmpty(attributes)) {
+        f.attrs = Object.keys(attributes)
+          .map((p) => {
+            let value = attributes[p];
 
-          if (value === true) {
-            return p;
-          }
+            if (value === true) {
+              return p;
+            }
 
-          if (typeof value === "string") {
-            return `${kebabCase(p)}="${attributes[p]}"`;
-          }
-          return `:${kebabCase(p)}="${util.inspect(attributes[p])}"`;
-        })
-        .join(" ");
+            if (typeof value === "string") {
+              return `${kebabCase(p)}="${attributes[p]}"`;
+            }
+            return `:${kebabCase(p)}="${util.inspect(attributes[p])}"`;
+          })
+          .join(" ");
+      }
     });
 
     if (template === "list") {
-      data.sortable = util.inspect(args.sortable || []);
-      data.include = util.inspect(args.include || []);
+      let sortable = getFormattedInputArray("sortable") || [];
+      let include = getFormattedInputArray("include");
+      data.include = include ? util.inspect(include) : undefined;
+
       data.filters = util.inspect(
-        (args.filterable || []).map((name) => {
+        (getFormattedInputArray("filterable") || []).map((name) => {
           let field = fields.find((f) => f.name === name);
 
           if (!field || field.type === "text") {
@@ -153,17 +202,19 @@ async function service(resourceName, args = {}) {
         })
       );
       data.fields = util.inspect(
-        (args.columns || []).map((name) => {
+        (getFormattedInputArray("columns") || []).map((name) => {
           let field = fields.find((f) => f.name === name);
 
           if (!field || field.type === "text") {
-            return name;
+            return sortable.includes(name)
+              ? { source: name, sortable: true }
+              : name;
           }
 
           let column = {
             source: field.name,
             type: field.type,
-            ...((args.sortable || []).includes(field.name) && {
+            ...(sortable.includes(field.name) && {
               sortable: true,
             }),
             ...(field.attributes && { attributes: field.attributes }),
@@ -236,13 +287,17 @@ async function service(resourceName, args = {}) {
     resources.default.push(resourceObject);
   }
 
-  ["api", "icon", "label", "actions", "permissions", "translatable"].forEach(
-    (prop) => {
-      if (args[prop]) {
-        resourceObject[prop] = args[prop];
-      }
+  ["api", "icon", "label", "translatable"].forEach((prop) => {
+    if (args[prop]) {
+      resourceObject[prop] = args[prop];
     }
-  );
+  });
+
+  ["actions", "permissions"].forEach((prop) => {
+    if (args[prop]) {
+      resourceObject[prop] = getFormattedInputArray(args[prop]);
+    }
+  });
 
   fs.writeFileSync(
     resourceFile,
