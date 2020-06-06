@@ -1,6 +1,6 @@
 # Laravel
 
-This guide is a demonstration of official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) which heavily facilitates Vtec Admin integration within existing real backend.
+This guide is a demonstration of how official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) can heavily facilitates Vtec Admin integration within laravel backend. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
 
 :::warning REQUIREMENTS
 
@@ -26,43 +26,43 @@ Then follow wizard.
 
 ### Required and suggested packages
 
-**Following required packages will be autoinstalled :**
+**Following required packages will be installed :**
 
-* [Laravel Spatie Query Builder](https://github.com/spatie/laravel-query-builder) for api resource browsing with all pagination, fields, and filters support.
-* [Laravel Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) for media files support.
+* [Laravel Spatie Query Builder](https://github.com/spatie/laravel-query-builder) for api resource browsing with all pagination, fields select, sorting and filters support.
+* [Laravel Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) for easier centralized media files solution.
 * [Laravel Spatie Translatable](https://github.com/spatie/laravel-translatable) for simple translatable model support saved on JSON format.
 
 **The installer will suggest you to install :**
 
-* Many optional dev packages as :
-  * [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), helper for IDE integration and intellisense.
+* Very helpful optional dev packages as :
+  * [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), for IDE integration and laravel intellisense.
   * [PHP CS Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) for coding formatter with Laravel preset.
   * [Clockwork](https://github.com/itsgoingd/clockwork), for easy API debugging.
-  * [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended) for advanced migration with all fields and foreigns pregeneration feature.
+  * [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended) for advanced migration with fields and foreign generation feature.
 * Other suggested production packages :
-  * [Laravel Sanctum](https://github.com/laravel/sanctum), a cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
+  * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
 
 ### Provided features and generated code
 
-Finally, the installer will integrate some code to get basic features working within Vtec Admin :
+Finally, the installer will integrate some additional boilerplate code to get basic features working within Vtec Admin :
 
 * Modify some configs as cors for ready-to-go API SPA plugging.
-* User controller for admin user management.
+* User controller for admin users management.
 * Simple account controller for profile editing and password change.
-* User impersonation with dedicated middleware registred inside `routes/api.php` file.
-* Inject docker files with ready to use MySQL, phpMyadmin, Nginx and Redis !
+* User impersonation with dedicated middleware registered inside `routes/api.php` file.
+* Inject docker files with ready to use MySQL, phpMyAdmin, Nginx and Redis !
 
 ### Vue CLI admin UI project
 
-**At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` subfolder (default) with all required dependencies by using [this preset](https://github.com/okami101/vtec-laravel-crud/blob/master/preset.json).**
+**At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/vtec-laravel-crud/blob/master/preset.json).**
 
 :::tip UI ADMIN GENERATE COMMAND
-You can still generate new admin UI without reuse full installer by using `php artisan vtec:ui`.
+You can still regenerate new admin UI without reuse full installer by using `php artisan vtec:ui`.
 :::
 
 :::tip DIRECTORY STRUCTURE
-See [this getting started section](getting-started.md#directory-structure) for more detail of what you get inside the `admin` folder.
+See [this getting started section](getting-started.md#directory-structure) for more detail of what you got inside the `admin` folder.
 :::
 
 ## Usage
@@ -75,23 +75,35 @@ After the installation, if you selected docker, simply launch `docker-compose up
 If you use docker, use `docker-compose exec laravel` before each next artisan commands.
 :::
 
-Then you just have to setup laravel installation as normal :
+Then you have to prepare laravel installation with migration and all dummy data :
 
 ```bash
 php artisan storage:link
 php artisan migrate:fresh --seed
 ```
 
-Finally create your first user by `php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
+If not included on your dummy data, you may need to create your first user by `php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
 
 :::tip ADMIN URL
 By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
-Dont forget to edit it on production. Just edit ADMIN_URL environment variable for that.
+Don't forget to edit it on production. Just edit ADMIN_URL environment variable for that.
 :::
 
 ### Run Admin UI
   
-Then you're already ready to run the Admin UI by `cd admin && yarn serve`
+You're finally ready to get up and running the Admin UI by `cd admin && yarn serve --open`. It will redirect you to this login page :
+
+![login](/assets/laravel/login.jpg)
+
+After login you will be redirect to this nice static dashboard, which is entirely customizable at `src/views/Dashboard.vue` file :
+
+![dashboard](/assets/laravel/dashboard.png)
+
+Profile page that allow basic user editing and password change is also fully functional and available under top right user dropdown menu :
+
+![dashboard](/assets/laravel/profile.png)
+
+Finally a users section that allows users management with direct aside edit is also provided, as well as possibility of impersonation.
 
 ## Generators
 

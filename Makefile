@@ -3,14 +3,11 @@
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install-laravel-demo: ## install laravel demo dependencies
-	@cd ./examples/laravel && composer install
-
-install-laravel-generators: ## install laravel tutorial dependencies
+install-laravel: ## install laravel tutorial dependencies
 	@cd ./examples/generators && composer install
 
-run-demo: ## run the demo example
-	@cd ./examples/demo && yarn serve --open
+install-laravel-demo: ## install laravel demo dependencies
+	@cd ./examples/laravel && composer install
 
 run-tutorial: ## run the tutorial example
 	@cd ./examples/tutorial && yarn serve --open
@@ -18,23 +15,19 @@ run-tutorial: ## run the tutorial example
 run-api-platform: ## run the api-platform example
 	@cd ./examples/api-platform && yarn serve --open --port 8000
 
-run-generators: ## run the generators example
+run-laravel: ## serve laravel generators
+	@cd ./examples/generators && php artisan serve
+
+run-laravel-admin: ## run the admin UI of generators example
 	@cd ./examples/generators/admin && yarn serve --open
 
-build-demo: ## compile the demo example to static js
-	@cd ./examples/demo && yarn -s build
-	@make restart-laravel-demo
-
-serve-laravel-demo: ## serve laravel demo
+run-laravel-demo: ## serve laravel demo
 	@cd ./examples/laravel && php artisan serve
-
-serve-laravel-tutorial: ## serve laravel tutorial
-	@cd ./examples/generators && php artisan serve
 
 migrate-laravel-demo: ## migrate database laravel demo
 	@cd ./examples/laravel && docker-compose exec laravel php artisan migrate --force
 
-run-laravel-demo: ## run laravel demo through Docker
+up-laravel-demo: ## run laravel demo through Docker
 	@cd ./examples/laravel && cp -n .env.example .env && docker-compose up -d
 
 stop-laravel-demo: ## stop laravel demo
@@ -58,6 +51,13 @@ reset-laravel-demo: ## reset laravel with dummy data
 
 tinker-laravel-demo: ## access laravel console
 	@cd ./examples/laravel && docker-compose exec laravel php artisan tinker
+
+run-demo: ## run the demo example
+	@cd ./examples/demo && yarn serve --open
+
+build-demo: ## compile the demo example to static js
+	@cd ./examples/demo && yarn -s build
+	@make restart-laravel-demo
 
 build-admin: ## compile the admin library to static js
 	@cd ./packages/admin && yarn -s build

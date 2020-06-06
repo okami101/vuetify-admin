@@ -357,7 +357,7 @@ export default {
        * Get freshed item
        */
       let { data } = await this.getOne({
-        resource: this.resource,
+        resource: this.listState.resource,
         params: { id: item.id },
       });
       this.$store.commit(`${this.listState.resource}/setItem`, data);
