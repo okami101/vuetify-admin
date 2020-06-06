@@ -488,7 +488,45 @@ To finish you may readapt some fields or inputs for better representation :
   * Use rich text input for summary (use TinyMCE editor).
   * Use multiple select for `formats` instead of input array.
 
-Here the final code templates of all book CRUD views, all above manual modifications are highlighted.
+Here the final code templates of all locales and book CRUD views, all above manual modifications are highlighted.
+
+:::details LOCALES
+First of all, you're not forced to add label for all fields, as VA will try to humanized them by default from the `source` prop. However for enums, you'll need to add all the list because its help all `VaSelectInput` to get automatically the full choices list from the given source.
+
+**`src/locales/en.json`**
+
+```js {7-25}
+{
+  //...
+  "resources": {
+    "books": {
+      "name": "Book | Books",
+      "fields": {},
+      "enums": {
+        "category": {
+          "novel": "Novel",
+          "comic": "Comic",
+          "cook": "Cook",
+          "economy": "Economy",
+          "politics": "Politics",
+          "history": "History",
+          "fantasy": "Fantasy",
+          "biography": "Biography"
+        },
+        "formats": {
+          "pocket": "Pocket",
+          "paperback": "Paperback",
+          "pdf": "PDF",
+          "epub": "Epub",
+          "kindle": "Kindle"
+        }
+      }
+    }
+  }
+}
+```
+
+:::details LIST
 
 :::details LIST
 **`src/resources/books/List.vue`**

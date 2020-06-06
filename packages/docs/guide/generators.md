@@ -2,10 +2,10 @@
 
 Vtec Admin offers powerful generators commands that can considerably accelerate admin development. That is particularly useful as VA uses a highly customizable Vue templating development approach rather than configuration oriented development (i.e. develop UI on a full JSON or YAML file as [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle) do) which tends to be harder to extend.
 
-Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development while **maintaining full template customization** at hand.
+Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development and **maintaining full template customization** at hand, while encouraging **reusability** for quick starting next projects.
 
-:::danger CUSTOMIZATION
-Consequently, this file will mainly be used for your first resource code generation. After each each generation, all customization made inside targeted resource templates will be lost.
+:::danger FIRST STEP ONLY
+Consequently, this YAML file will mainly be used for your first resource code generation. After each each generation, all customizations made inside related resource templates will be lost.
 :::
 
 ## API
@@ -17,18 +17,22 @@ See specific section of each supported API package :
 ## Admin UI
 
 :::warning Vue CLI Plugin
-Nexts commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started.md).
+Next commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started.md).
 :::
 
-Vue CLI plugin will provide to you a new npm command `yarn crud:make [options]`, which helps for generated initial resources CRUD pages boilerplate :
+Vue CLI plugin will provide to you a new npm command `yarn crud:make [options]`, which helps for initial resources CRUD pages generation :
 
-* Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be autoloaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into `fields` options.
+* Generate all necessary basic crud views with additional form component inside dedicated resource folder under `src/resources/`. This views will be auto loaded as Vue components via Webpack. You can even generate all basic fields and inputs by passing full object into `fields` options.
 * Register new resource to `src/resources/index.js` file.
 * Add resource locales to `src/locales/{locale}.js` file. Locale will be `en` by default unless you pass `locale` as command option.
 * Add new sidebar entry to `src/_nav.js` file.
 
 :::tip HELP COMMAND
 Use `yarn vue-cli-service help crud:make` for all options documentation.
+:::
+
+:::tip TUTORIAL
+You can find a full tutorial which made use of this command [here](laravel.md).
 :::
 
 ## YAML
@@ -47,7 +51,7 @@ Each YAML file can contain a list of resources identified by a slug name on `sna
 
 |> schema generator resource
 
-You can even to generate all fields as needed thanks to `fields` properties. Here is the expected structure :
+You can even generate all fields as needed thanks to `fields` properties. Here is the expected structure :
 
 |> schema generator field
 
@@ -74,7 +78,7 @@ Same for advanced `filter` property :
 |> schema generator field.properties.filter
 
 :::tip YAML DEVELOPMENT
-For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have autocompletion with full documentation !
+For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have automatic validation, as well as autocompletion with above documentation !
 :::
 
 ## Tutorial
@@ -120,7 +124,7 @@ Now you should already have all basic full admin project working with functional
 
 The next step is to create a YAML resource descriptor file that will validate above JSON schema, which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuff all by hand.
 
-In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file will serve as a basis for next resources code generation and contains 2 resources :
+In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
 
 * Monsters : sample for show all different type of fields.
 * Child monsters : essentially for resource relationship purpose.

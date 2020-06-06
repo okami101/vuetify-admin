@@ -15,7 +15,7 @@ class Monster extends Model implements HasMedia
 
     protected $fillable = ['name', 'email', 'label', 'active', 'level', 'rating', 'price', 'description', 'body', 'category', 'tags', 'publication_date'];
 
-    protected $casts = ['active' => 'boolean', 'tags' => 'array', 'publication_date' => 'date'];
+    protected $casts = ['active' => 'boolean', 'level' => 'integer', 'rating' => 'integer', 'price' => 'float', 'tags' => 'array'];
 
     public $translatable = ['label', 'description', 'body'];
 
