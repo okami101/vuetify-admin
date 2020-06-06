@@ -1,6 +1,6 @@
 # Generators
 
-Vtec Admin offers powerful generators commands that can considerably accelerate admin development. That is particulary useful as VA uses a highly customizable Vue templating development approach rather than configuration oriented development (i.e. develop UI on a full JSON or YAML file as [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle) do) which tends to be harder to extend.
+Vtec Admin offers powerful generators commands that can considerably accelerate admin development. That is particularly useful as VA uses a highly customizable Vue templating development approach rather than configuration oriented development (i.e. develop UI on a full JSON or YAML file as [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle) do) which tends to be harder to extend.
 
 Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development while **maintaining full template customization** at hand.
 
@@ -32,10 +32,6 @@ Use `yarn vue-cli-service help crud:make` for all options documentation.
 :::
 
 ## YAML
-
-:::tip TUTORIAL
-For best showcase of YAML driven development, follow [this tutorial guide](tutorial.md).
-:::
 
 Vue CLI plugin provides an additional advanced `crud:yaml` command which is a superset of previous command and allows you to generate all initial admin interface code from a YAML file. You can see it as a developer-friendly admin panel code generator.
 
@@ -77,7 +73,7 @@ Same for advanced `filter` property :
 
 |> schema generator field.properties.filter
 
-:::tip YAML DEVELOMENT
+:::tip YAML DEVELOPMENT
 For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have autocompletion with full documentation !
 :::
 
@@ -122,12 +118,12 @@ Now you should already have all basic full admin project working with functional
 
 ### API & UI resources development
 
-The next step is to create a YAML resource descriptor file that will validate above JSON schema, which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuf all by hand.
+The next step is to create a YAML resource descriptor file that will validate above JSON schema, which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuff all by hand.
 
-In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your prefered locale and put it inside `admin/generators` folder (or anywhere you want). This file will serve as a basis for next resources code generation and contains 2 resources :
+In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file will serve as a basis for next resources code generation and contains 2 resources :
 
 * Monsters : sample for show all different type of fields.
-* Child monsters : essentialy for resource relationship purpose.
+* Child monsters : essentially for resource relationship purpose.
 
 ### API generator commands
 

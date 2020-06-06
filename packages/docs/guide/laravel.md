@@ -8,7 +8,7 @@ This guide is a demonstration of how official [Vtec Laravel Crud](https://github
 * [Laravel installer](https://laravel.com/docs#installing-laravel).
 * [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 * Should be installed on fresh laravel 7 installation.
-* Docker with compose as option.
+* [Docker](https://www.docker.com/get-started) as option
 
 :::
 
@@ -107,10 +107,6 @@ Finally a users section that allows users management with direct aside edit is a
 
 ## Generators
 
-:::warning API ONLY
-This generators commands only applies on server-side. For UI side auto-generation, see [separated guide](generators.md#admin-ui).
-:::
-
 This package provides 2 specific crud generator commands. Use `php artisan crud:make [MyNewResource] [options]` with many as options as possible in order to scaffolding following files :
 
 * Model
@@ -118,7 +114,7 @@ This package provides 2 specific crud generator commands. Use `php artisan crud:
 * Policy for authorization
 * Store and update requests for validation rules (empty by default, so don't forget to add your own rules)
 * Http Resource for API data transformer
-* Migration with all pre-generated fields (including foreigns !)
+* Migration with all pre-generated fields (including foreign !)
 * Factory and seeder (empty by default)
 
 In addition, api routes should be registered automatically at `routes/api.php` file in this place :
@@ -154,7 +150,19 @@ In case of model relation, even if foreign keys can be generated in migration fi
 For server-side validation, you must manually add rules to generated store and update request files inside `app/Http/Requests` directory.
 :::
 
-### YAML
+## Create your first entity
+
+You're now ready for development. Let's try the power of above generators for initiate our first entity on API side. We will create a new `Book` model with followed fields : `isbn`, `title`, `description`, `author` and `publication_date`. We will also set `title` and `description` as translatable fields. So we can use next command :
+
+```bash
+php artisan crud:make Book --schema="isbn:string:unique, title:json, description:json, author:string, publication_date:date" --translatable="title, description" --searchable="title, description, author" --filterable="title, author" --sortable="isbn, title, description, author, publication_date"
+```
+
+:::warning JSON
+As `title` and `description` are translatable, we'll use JSON for storing all localized labels keyed by locale code.
+:::
+
+## YAML
 
 For even more auto generation power, and because `crud:make` can be exhausting to write with all options, a direct resource yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml [options]`. You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
 
