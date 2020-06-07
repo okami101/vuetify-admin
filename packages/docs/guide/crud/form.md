@@ -15,7 +15,7 @@ Both create and edit layouts share similar layout as [show page](show.md) with s
 :::tip CLONE
 Note that the create page support copy of values from other existing resource, i.e. cloning, as soon as a specific `source` query string with a valid existing id is present. This is automatically done via `VaCloneButton` present by default on `VaDataTable`. This is why a `item` prop is available on `Create` vue component that allows you to inject it into `VaForm`.
 
-```vue {4,14}
+```vue {3,11}
 <template>
   <va-create-layout>
     <va-form :item="item">
@@ -40,7 +40,7 @@ export default {
 :::tip USE ID
 Compared to to create page, you gain a new `id` prop that correspond to the resource to edit and patch on the API side. Don't forget to put it on form via the same prop in order to use `update` data provider method under the hood.
 
-```vue {4,15}
+```vue {3,11}
 <template>
   <va-edit-layout>
     <va-form :id="id" :item="item">
@@ -58,7 +58,7 @@ export default {
 
 :::
 
-### Custom layout
+### Tabbed layout
 
 As the same way for the show view, you have total freedom for page templating. Example with a tabbed style form :
 
@@ -145,7 +145,7 @@ This form page will use special VA input components that are aware of current ro
 
 Note that the main internal form model will be auto generated from all inputs that will be present on this form. If you inject an existing item into `VaForm`, the main form model will takes his actual values that will be reflected for each input.
 
-:::tip Supported input components
+:::tip ALL INPUT COMPONENTS
 Go to separated [inputs guide reference](../components/inputs.md) to get all supported components for edit data.
 You can still create your [own input component](../components/inputs.md#custom-input-component) if none suit your needs.
 :::
@@ -154,7 +154,7 @@ You can still create your [own input component](../components/inputs.md#custom-i
 
 Use the `VaSaveButton` as default submit button. It will automatically synchronize with parent form in order to active the spinner while saving to the API.
 
-```vue {2,4,13}
+```vue {2,4}
 <template>
   <va-form :id="id" :item="item" redirect="show">
     <!-- VA inputs component -->
@@ -171,7 +171,7 @@ export default {
 
 By default a successful saving will redirect to resource list page unless you set explicit `redirect` on `VaForm` prop as above. Note as this prop have only effect for a submit button. Moreover, you can set `redirect` on `VaSaveButton`. It will disable the default submit behavior and the user must click or key press on it for saving. Particularly useful when you need multiple redirect actions as shown next :
 
-```vue {4-10}
+```vue {4-9}
 <template>
   <va-form :id="id" :item="item">
     <!-- VA inputs component -->
@@ -207,7 +207,7 @@ But what if we need access to internal form model for specific case, as show/hid
 
 Here is a full example with show/hide some fields based on `active` property model :
 
-```vue {2,5,23-25}
+```vue {2,5,22-24}
 <template>
   <va-form :id="id" :item="item" v-model="model">
     <va-text-input source="description" multiline></va-text-input>
@@ -248,7 +248,7 @@ If you don't need a `v-model`, simply set the `value` prop to any compatible val
 
 You can even use the v-model on VA input instead of full form :
 
-```vue {4,5,23}
+```vue {4,5,22}
 <template>
   <va-form :id="id" :item="item">
     <va-text-input source="description" multiline></va-text-input>

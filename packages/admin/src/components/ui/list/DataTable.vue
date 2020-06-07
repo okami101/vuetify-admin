@@ -92,7 +92,7 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <div class="item-actions">
-        <!-- @slot Full cell template which contains all row actions -->
+        <!-- @slot Full cell template which contains all row actions. -->
         <slot name="cell.actions" v-bind="{ item }">
           <va-show-button
             v-if="!disableShow"

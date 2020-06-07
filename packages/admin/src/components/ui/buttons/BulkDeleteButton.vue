@@ -1,12 +1,11 @@
 <template>
   <va-delete-button
-    :resource="resource"
+    :resource="listState.resource"
     @delete="onBulkDelete"
   ></va-delete-button>
 </template>
 
 <script>
-import Resource from "../../../mixins/resource";
 import { mapActions } from "vuex";
 
 /**
@@ -14,7 +13,6 @@ import { mapActions } from "vuex";
  * Keep all VaDeleteButton feature and use `deleteMany` data provider method under the hood.
  */
 export default {
-  mixins: [Resource],
   inject: {
     listState: { default: undefined },
   },
@@ -45,7 +43,7 @@ export default {
         )
       ) {
         await this.deleteMany({
-          resource: this.resource,
+          resource: this.listState.resource,
           params: { ids: value.map(({ id }) => id) },
         });
 
@@ -54,7 +52,7 @@ export default {
          */
         this.$emit("input", []);
         this.listState.selected = [];
-        this.refresh(this.resource);
+        this.refresh(this.listState.resource);
       }
     },
   },

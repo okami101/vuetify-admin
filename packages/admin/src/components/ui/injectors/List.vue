@@ -18,9 +18,9 @@
         {{ $tc("va.datatable.selected_items", listState.selected.length) }}
         <v-spacer></v-spacer>
         <div>
-          <!-- @slot Custom bulk actions, ideal place for VaBulkActionButton -->
+          <!-- @slot Custom bulk actions, ideal place for VaBulkActionButton. -->
           <slot name="bulk.actions"></slot>
-          <va-bulk-delete-button :resource="resource"></va-bulk-delete-button>
+          <va-bulk-delete-button></va-bulk-delete-button>
         </div>
       </v-toolbar>
       <v-toolbar flat v-else>
@@ -328,7 +328,7 @@ export default {
       this.updateQuery();
 
       /**
-       * Triggered on pagination change
+       * Triggered on pagination change.
        */
       this.$emit("update:options", val);
     },
@@ -336,6 +336,9 @@ export default {
       this.fetchData();
       this.updateQuery();
 
+      /**
+       * Triggered on filter change.
+       */
       this.$emit("update:filter", newVal);
     },
   },

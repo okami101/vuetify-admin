@@ -13,7 +13,6 @@
       >
         <template v-slot:bulk.actions>
           <va-bulk-action-button
-            resource="users"
             :label="$t('users.enable')"
             icon="mdi-publish"
             color="success"
@@ -21,7 +20,6 @@
             text
           ></va-bulk-action-button>
           <va-bulk-action-button
-            resource="users"
             :label="$t('users.disable')"
             icon="mdi-download"
             color="orange"

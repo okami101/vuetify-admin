@@ -10,9 +10,9 @@ Note that for every CRUD pages you are free to put anything you want, and you ha
 Since all data provider methods are available in a dedicated store module for each resource, it's not that complicated to create your own list components that will fetch your data. And you can of course use the current global `$axios` instance if you need to fetch all sort of custom data that coming out of data provider logic. See [usage here](../data-providers.md#store).
 :::
 
-## Data iterator
+## Data Iterator
 
-|> docgen data-iterator
+|> docgen list
 
 Here a quick sample usage within the `VaDataTable` component :
 
@@ -52,10 +52,10 @@ It will produce this simple structure :
 Note that `VaList` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
 :::warning DISPLAY DATA
-`VaList` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the providing `VaDataTable`.
+`VaList` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the provided `VaDataTable`.
 :::
 
-## Data table
+## Data Table
 
 |> docgen data-table
 
@@ -74,11 +74,11 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter for data display. You need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](../components/fields.md).
 
-```vue {9,25-72}
+```vue {4,14-61}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
-      <va-data-table :fields="fields" show-expand></va-data-table>
+      <va-data-table :fields="fields"></va-data-table>
     </va-list>
   </base-material-card>
 </template>
@@ -163,11 +163,11 @@ You can use a simple string for each field column, `"my-property"` is similar to
 
 In case of all above field options doesn't suit your needs, you can perfectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
 
-```vue {15-28}
+```vue {5-18}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
-      <va-data-table :fields="fields" show-expand>
+      <va-data-table :fields="fields">
         <template v-slot:field.authors="{ value }">
           <v-chip-group column>
             <va-reference-field
@@ -194,9 +194,9 @@ You just have to use a slot named as `field.{source}` for that, where `source` i
 
 ![expandable](/assets/expandable.png)
 
-You can use the `expanded-item` slot for an additional full colspan cell under the item row. Ideal for quick view.
+You can use the `expanded-item` slot with enabled `show-expand` prop for an additional full colspan cell under the item row. Ideal for quick view.
 
-```vue {10,15-17}
+```vue {4-8}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
@@ -214,7 +214,7 @@ You can use the `expanded-item` slot for an additional full colspan cell under t
 
 If you need other item actions in addition to classic crud operations, use the dedicated `item.actions` slot.
 
-```vue {14-20}
+```vue {5-11}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
@@ -232,26 +232,13 @@ If you need other item actions in addition to classic crud operations, use the d
 </template>
 ```
 
-## Search filter
+## Search
 
 A global search filter will be enabled by default. To disable it, use `disableGlobalSearch` prop.
 
 This filter will send the string search query on backend via the key configured on `globalSearchQuery`, which is `q` by default.
 
-Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the Vtec Laravel package for your Laravel app, you can use the dedicated `SearchFilter` for that :
-
-```php {4}
-return UserResource::collection(
-    QueryBuilder::for(User::class)
-        ->allowedFilters([
-            AllowedFilter::custom('q', new SearchFilter(['name', 'email'])),
-            AllowedFilter::exact('id'),
-            AllowedFilter::partial('roles'),
-        ])
-        ->allowedSorts(['id', 'name', 'email'])
-        ->exportOrPaginate()
-);
-```
+Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the [Vtec Laravel package](https://github.com/okami101/vtec-laravel-crud) for your Laravel app, you can use the dedicated [`SearchFilter`](../laravel.md#search-filter) for that.
 
 :::tip INTERNAL FILTERS
 In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
@@ -267,7 +254,7 @@ Use the "Add filter" button for adding more filters that will add a new `AND` co
 
 In order to define new filters, use the `filters` props. Here are a code sample usage of this advanced filters :
 
-```vue {4,19-42}
+```vue {4,14-37}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters">
@@ -317,13 +304,13 @@ Use `attributes` property in order to merge specific attributes into input compo
 
 See all supported field properties :
 
-| Property       | Type      | Description                                                                        |
-| -------------- | --------- | ---------------------------------------------------------------------------------- |
-| **source**     | `string`  | Resource property to display.                                                      |
-| **type**       | `string`  | Type of [input](../components/inputs.md) to use.                                   |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.       |
-| **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                               |
-| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/inputs.md) |
+| Property       | Type      | Description                                                                         |
+| -------------- | --------- | ----------------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                                       |
+| **type**       | `string`  | Type of [input](../components/inputs.md) to use.                                    |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.        |
+| **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable.                               |
+| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/inputs.md). |
 
 ### Filter templating
 
@@ -331,7 +318,7 @@ As same way as field templating you can even template your filter directly by us
 
 Here is a full working sample :
 
-```vue {7,9-16,34,48-55}
+```vue {3,4-11,22,35-40}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters" :filter.sync="filter">
@@ -388,7 +375,7 @@ You will have the same behavior for `show`, `edit` and `clone` actions inside `V
 
 Note that all of this buttons will auto hide if no action exist for each related button. Deactivation of each relevant action redirect will force buttons to reappear.
 
-This action events will always provide you the freshed item from the API as well as the adapted CRUD title.
+This action events will always provide you the freshed item from the API as well as the adapted CRUD title. See the users list of Vue CLI Plugin for full example with aside.
 :::
 
 ### Export
@@ -428,13 +415,12 @@ By default VA provides a bulk delete action, but you can add any multiple bulk a
 
 The next example will show you a bulk publish / unpublish bulk actions :
 
-```vue {4-23}
+```vue {4-19}
 <template>
   <base-material-card>
     <va-list>
       <template v-slot:actions>
         <va-bulk-action-button
-          resource="users"
           :label="$t('users.enable')"
           icon="mdi-publish"
           color="success"
@@ -442,7 +428,6 @@ The next example will show you a bulk publish / unpublish bulk actions :
           text
         ></va-bulk-action-button>
         <va-bulk-action-button
-          resource="users"
           :label="$t('users.disable')"
           icon="mdi-download"
           color="orange"
@@ -509,7 +494,7 @@ You can go even further by managing associations thanks to provided `association
 
 See this example :
 
-```vue {15,29,48-52}
+```vue {15,27,43-47}
 <template>
   <va-edit-layout>
     <authors-form :id="id" :title="title" :item="item"></authors-form>
@@ -657,10 +642,10 @@ export default [
 
 The default users template generated by Vue CLI Plugin is a good showcase for that :
 
-```vue {3-6,13,24}
+```vue {3-6,11,18,40-49}
 <template>
   <div>
-    <va-aside-layout v-model="asideOpened" :title="asideTitle">
+    <va-aside-layout :title="asideTitle">
       <users-show v-if="show" :item="item"></users-show>
       <users-form v-else :id="id" :item="item" @saved="onSaved"></users-form>
     </va-aside-layout>
@@ -690,7 +675,6 @@ export default {
       fields: [
         //...
       ],
-      asideOpened: false,
       asideTitle: null,
       id: null,
       item: null,
@@ -703,10 +687,9 @@ export default {
       this.id = id;
       this.show = action === "show";
       this.item = item;
-      this.asideOpened = true;
     },
     onSaved() {
-      this.asideOpened = false;
+      this.asideTitle = null;
       this.$refs.list.fetchData();
     },
   },

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import Resource from "../../../mixins/resource";
 import ActionButton from "../../../mixins/action-button";
 import { mapActions } from "vuex";
 
@@ -19,7 +18,7 @@ import { mapActions } from "vuex";
  * Shown after items selections. Use `updateMany` data provider method under the hood.
  */
 export default {
-  mixins: [Resource, ActionButton],
+  mixins: [ActionButton],
   inject: {
     listState: { default: undefined },
   },
@@ -46,7 +45,7 @@ export default {
       let value = this.value || this.listState.selected;
 
       await this.updateMany({
-        resource: this.resource,
+        resource: this.listState.resource,
         params: { ids: value.map(({ id }) => id), data: this.action },
       });
 
@@ -55,7 +54,7 @@ export default {
        */
       this.$emit("input", []);
       this.listState.selected = [];
-      this.refresh(this.resource);
+      this.refresh(this.listState.resource);
     },
   },
 };

@@ -23,7 +23,7 @@ You can add specific global item actions on top header of `VaShowLayout` by usin
 </template>
 ```
 
-### Tab layout
+### Tabbed layout
 
 ![tabs](/assets/tabs.png)
 
@@ -205,7 +205,7 @@ You can use this component only for label and item value provider and made your 
 </template>
 ```
 
-:::tip Supported field components
+:::tip ALL FIELD COMPONENTS
 Go to separated [fields guide reference](../components/fields.md) to get all supported components for display data.
 You can still create your [own field component](../components/fields.md#custom-field-component) if none suit your needs.
 :::

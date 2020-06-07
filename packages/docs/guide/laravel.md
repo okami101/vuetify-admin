@@ -756,7 +756,7 @@ Import `HasTranslations` from [Spatie Translatable](https://github.com/spatie/la
 This trait will intercept all `locale` request input and set his value as default locale for saving. If not set default locale will be the user browser language in case you use included `Locale` middleware, if not this will be the app default locale.
 It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n.md#resource-translation).
 
-### Global search filter
+### Search filter
 
 If you want use global search in [Vtec Admin Iterator](crud/list.md), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
