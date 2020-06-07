@@ -2,7 +2,7 @@
 
 A "resource" means a given server entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted. It must correspond to a valid API endpoint that allows all of this CRUD operations.
 
-The next piece of code represent an example of expected structure that must be sended to Vtec Admin constructor [as seen previously](admin.md) :
+The next piece of code represent an example of expected structure that must be sent to Vtec Admin constructor [as seen previously](admin.md) :
 
 **`src/resources/index.js`**
 
@@ -40,18 +40,18 @@ A resource object must follow this structure :
 | **name**               | `string`             | A mandatory unique slug name which will be used for client-side router base path.                                                          |
 | **api**                | `string`             | Correspond to API base path calls. Equal to above name by default.                                                                         |
 | **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/).                                      |
-| **label**              | `string`, `function` | Return an identifiable label of resource.                                                                                                  |
+| **label**              | `string`, `function` | Return the target property that identify an instantiated resource (`toString`).                                                            |
 | **include**            | `array`, `object`    | Some additional object or array that will be added to data providers for all `GET` based methods for further actions inside data provider. |
-| **actions**            | `array`              | List of all valid actions for this resource.                                                                                               |
-| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly set.                                                          |
-| **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n.md#translation).                                                                        |
+| **actions**            | `array`              | List of valid actions for this resource. All available by default.                                                                         |
+| **except**             | `array`              | Denied actions, not used if `actions` is explicitly set.                                                                                   |
+| **translatable**       | `boolean`            | Indicates if this resource can be [translated](i18n.md#translation).                                                                       |
 | **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization.md#resource).                                                 |
-| **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.                                                   |
+| **autocompleteFields** | `array`              | List of resource fields to return from API inside [`VaAutocompleteInput`](components/inputs.md#autocomplete) for avoiding over-fetching.   |
 
 :::tip LABEL
-The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targeted resource, as `name` for a `users` resource. Use a function which is a callback that takes the full resource API object, allowing you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
+The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targeted resource, as `name` for a `users` resource. Using a function, which is a simple callback that takes the full resource API object, allows you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
 
-This label will be used for default page title for every show and edit CRUD pages as well as every reference-based fields and inputs (`ReferenceField`, `ReferenceArrayField`, `AutocompleteInput`, `SelectInput`, `RadioGroupInput`).
+This label will be used for default page title for every show and edit CRUD pages as well as every reference-based fields and inputs (`VaReferenceField`, `VaReferenceArrayField`, `VaAutocompleteInput`, `VaSelectInput`, `VaRadioGroupInput`).
 :::
 
 :::tip ACTIONS
@@ -61,7 +61,7 @@ All removed actions will be reflected on all crud pages and Vue Router will be a
 :::
 
 :::danger DISABLING ACTIONS
-Note that it will only disable routes client-side generation and change action buttons behavior. The resource API module has always all actions method available. You must also adapt your backend accordingly.
+Note that it will only disable routes client-side generation and change action buttons behavior. The resource API module has always all actions method available. **Adapt your backend accordingly** for prevent any unintended actions.
 :::
 
 ### Reuse API endpoints
@@ -174,7 +174,7 @@ export default {
 
 You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](crud/layout.md#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
 
-For example this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in the `sidebar-menu` as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
+For example this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in any valid layout menu props as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
 
 ```js
 [

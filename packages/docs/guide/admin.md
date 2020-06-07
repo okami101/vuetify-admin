@@ -4,7 +4,7 @@
 Check [directory structure](getting-started.md#directory-structure) for big picture of all files location that we will talk about after.  
 :::
 
-The next piece of code represent the bare minimal code in order to get VtecAdmin working :
+Here is a typical code in order to get VtecAdmin working :
 
 **`src/plugins/admin.js`**
 
@@ -62,6 +62,7 @@ export default new VtecAdmin({
   axios: http,
   options: {
     dateFormat: "long",
+    imageUploadUrl: "/api/upload",
     fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
   },
 });
@@ -78,7 +79,7 @@ The main steps are :
 * Initiate VA by his constructor.
 
 :::tip BOILERPLATE
-All this boring stuf as well as all next pieces of code shown in this page are already prepared for you by the official [Vue CLI Plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin), go to [Getting Started](getting-started.md) in order to get in through.
+All this boring stuff as well as all next pieces of code shown in this page are already prepared for you by the official [Vue CLI Plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin), go to [getting started section](getting-started.md) for installation detail.
 :::
 
 ## Components & resources loading
@@ -116,18 +117,18 @@ In order to operate, VtecAdmin constructor needs all of this parameters :
 | **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n.md).                                                   |
 | **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                                                  |
 | **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout.md). All resources routes CRUD pages will be registered here as children.                               |
-| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported as explained [here](i18n.md#ui).                                                                                      |
+| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported. See [here](i18n.md#ui) for further detail.                                                                           |
 | **translations** | `array`      | All supported traduction for your resources. More detail [here](i18n.md#resources).                                                                                                           |
 | **authProvider** | `object`     | [Auth](authentication.md) provider that must implements [auth contract](authentication.md#api-contract).                                                                                      |
 | **dataProvider** | `object`     | [Data](data-providers.md) provider that must implements [data contract](data-providers.md#api-contract).                                                                                      |
-| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of resource object structure [here](resources.md).                                                                   |
+| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of expected resource object structure [here](resources.md).                                                          |
 | **axios**        | `object`     | Optional, can provide better auth and CSRF integration for advanced input components as Wysiwyg for image upload. Additionally set a available global axios instance via `this.$admin.axios`. |
 | **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                                  |
 | **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                                |
 
 ![instantiation](/diagrams/instantiation.svg)
 
-> Vtec Admin will transform your resources into client-side CRUD routes and valid Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](#how-it-works).
+> Vtec Admin will transform your resources into client-side CRUD routes and Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](README.md#how-it-works).
 
 ### Vue Router
 

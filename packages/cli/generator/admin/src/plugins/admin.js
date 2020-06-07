@@ -91,7 +91,9 @@ export default new VtecAdmin({
   axios: http,
   options: {
     dateFormat: "long",
+    <%_ if (data === "laravel") { _%>
     imageUploadUrl: "/api/upload",
     fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    <%_ } _%>
   },
 });
