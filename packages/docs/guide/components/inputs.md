@@ -326,7 +326,7 @@ Use `preview` for image gallery support, use [`VaImageField`](fields.md#image) u
 * Base64 : JSON friendly but more payload size and generally poorly integrated on server-side.
 * FormData : Send raw binary file as-is inside classic `multipart/form-data`. Poor FormData API but better native server-side integration thanks to `UploadedFile` with native MIME validation.
 
-Data providers of VtecAdmin use the second method for easier server-side integration. It uses a `objectToFormData` helper for this, more info [here](../data-providers.md#usage) in case you want use it for your custom data provider.
+Laravel data provider of VtecAdmin use the second method for easier server-side integration. It uses a `objectToFormData` helper for this, more info [here](../data-providers.md#usage) in case you want use it for your custom data provider.
 
 Raw files will be send into your update or create API according to given `source` or `model` prop.
 :::
@@ -463,7 +463,7 @@ import MyCustomInput from "./components/fields/MyCustomInput";
 Vue.component("VaMyCustomInput", MyCustomInput)
 ```
 
-:::warning NAMESPACE
+:::tip NAMESPACE
 Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for `VaDataTable` [filters](../crud/list.md#advanced-filters) if suitable. So next code will perfectly working :
 
 ```vue

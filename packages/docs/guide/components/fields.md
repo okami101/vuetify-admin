@@ -7,13 +7,13 @@ You may use this VA fields as cells template for `VaDataTable`, see [this sectio
 :::
 
 :::tip FIELD WRAPPER
-Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple display formatter. You may use [`VaField`](../crud/show.md#field-wrapper) for that. It will get localized label will guess the proper field component via `type` prop, which is avoid us to rewrite it on default slot.
+Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple inline display formatter. You may use [`VaField`](../crud/show.md#field-wrapper) for that. It gets the localized label and will instantiate the proper field component via `type` prop, which is avoid us to rewrite it on default slot.
 
-All supported type field attributes will be merged into child field component. See [more](../crud/show.md#field-wrapper) for further detail.
+All additional attributes will be merged into child field component. See [more](../crud/show.md#field-wrapper) for further detail.
 :::
 
 :::tip DOT NOTATION SUPPORT
-VA fields accept dot notation for `source` prop. Very useful for nested object :
+VA fields accept dot notation for `source` prop. Useful for nested object :
 
 ```vue
 <template>
@@ -195,7 +195,7 @@ See [VueI18n documentation](https://kazupon.github.io/vue-i18n/guide/datetime.ht
 </template>
 ```
 
-Will render an [MDI](https://vuetifyjs.com/en/components/icons/) :
+Will render an [MDI](https://vuetifyjs.com/en/components/icons/).
 
 ### Rating
 
@@ -209,7 +209,7 @@ Will render an [MDI](https://vuetifyjs.com/en/components/icons/) :
 </template>
 ```
 
-Will render a [vuetify rating component](https://vuetifyjs.com/en/components/ratings/)
+Will render a [vuetify readonly rating component](https://vuetifyjs.com/en/components/ratings/)
 
 ### Chip
 
@@ -416,7 +416,7 @@ import MyCustomField from "./components/fields/MyCustomField";
 Vue.component("VaMyCustomField", MyCustomField);
 ```
 
-:::warning NAMESPACE
+:::tip NAMESPACE
 Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for [`VaDataTable`](../crud/list.md#data-table) and [`VaField`](../crud/show.md#field-wrapper) components. So next code will perfectly working :
 
 ```vue
