@@ -66,7 +66,7 @@ The default dashboard home page is generated at `src/views/Dashboard.vue` file. 
 
 As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vtec Admin can understand. For that each provider must follow a specific implementation as [explained here](data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/json-server.js)
 
-Vue CLI plugin comes with default simple CRUD templates pages for users resources. It's a basic functional single CRUD page interface with aside that should already totally working with actual `users` object of previous `data.json`, by using standard `name` and `email` properties.
+Vue CLI plugin comes with default simple CRUD templates pages for users resources. It's a basic functional single CRUD page interface with aside that should already working with actual `users` object of previously downloaded `data.json` database, by using standard `name` and `email` properties.
 
 ![users](/assets/tutorial/users.png)
 
@@ -252,7 +252,7 @@ As you can guess, by theirs own nature, this kind of fallback pages should not b
 
 ![console](/assets/tutorial/console.png)
 
-As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. **List**, **Create**, **Show**, **Edit**. No you're ready for full customization !
+As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. **List**, **Create**, **Show**, **Edit**. Now you're ready for full customization !
 
 Sample for posts list :
 
@@ -412,7 +412,7 @@ See [dedicated section](crud/show.md).
 
 ## Create and edit pages
 
-Create and edit page will share in general the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically registered as global `{resource}-form` component so you can directly use it as-is. See next example for user creation and edition page :
+Create and edit page will generally share the same form. It's a good practice to separate it to a dedicated `Form` component. It will automatically be registered as global `{resource}-form` component so you can directly use it without manual importing. See next example for user creation and edition page :
 
 **`src/resources/users/Create.vue`**
 
@@ -655,6 +655,19 @@ Then you should have nice linkable labelled chip for users :
 
 :::tip RELATIONSHIP IN SHOW PAGE
 Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaList` will use it as well if not defined, but it still can be overridden.
+
+```js {6}
+export default [
+  {
+    name: "posts",
+    icon: "mdi-post",
+    label: "title",
+    include: { expand: ["user"] },
+  },
+  //...
+];
+```
+
 :::
 
 ### Form
@@ -725,7 +738,7 @@ export default {
 </script>
 ```
 
-It's a simple object that will be translated as valid supported inputs that react as you type. Same behavior than fields apply for `source`, `type`, and `attributes`. Note as by default filter is hidden under a dropdowns next to global actions on right side. It will allow filter activation on demand, without UI pollution with many inputs. the `alwaysOn` prop will always reveal filter without being able to remove it.
+It's a simple object that will be translated as valid supported input that reacts as you type. Same behavior than fields apply for `source`, `type`, and `attributes`. Note as by default filter is hidden under a dropdowns next to global actions on right side. It will allow filter activation on demand, without UI pollution with many inputs. the `alwaysOn` prop will always reveal filter without being able to remove it.
 
 ![filters](/assets/tutorial/filters.png)
 
@@ -809,7 +822,7 @@ Will render :
 
 ![nested-relationships](/assets/tutorial/nested-relationships.png)
 
-The most important part is to precise the resource to fetch on each component and put the id of current post into internal filter of list. All not crud action buttons will be auto disabled according to above resource config. You can now do the same for posts linked to a user at user show or edit page for exercise !
+The most important part is to precise the resource to fetch on `VaList` component and put the id of current post into internal filter of list. All crud action buttons will be auto hidden according to above resource config. You can now do the same for posts linked to a user at user show or edit page as exercise !
 
 :::tip ASSOCIATIONS
 It's not relevant for this case, but you can also add association support directly from this list ! It will add a new autocomplete for associate as well as dissociate button on each data table row. Ideal for pivot relations. See [more](crud/list.md#associations).

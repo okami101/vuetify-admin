@@ -1,17 +1,17 @@
 # Data Providers
 
-As soon as Vtec Admin has to communicate with your backend API, it calls the adapted method on your provider that will be responsible for fetching or updating resource data.
+Main purpose of Vtec Admin is to manage remote resources from a given API. As soon as it has to communicate with your backend API for any standardized CRUD operation, it calls the adapted method on your provider that will be responsible for fetching or updating resource data.
 
 ```js
 // Fetching books
-let { data, meta } = await provider.getList("books", { page: 1, perPage: 10 });
+let { data, total } = await provider.getList("books", { page: 1, perPage: 10 });
 console.log(data)
 
 // Create new book
 await provider.create("books", { data: { title: "My title" } });
 
 // Fetching one book
-let book = await provider.getOne("books", { id: 1 });
+let { data } = await provider.getOne("books", { id: 1 });
 console.log(book)
 
 // Update title book
@@ -21,7 +21,7 @@ await provider.update("books", { id: book.id, data: { title: "New title" } });
 await provider.delete("books", { id: book.id });
 ```
 
-All fetching methods of a data provider is standardized in order to ensure compatibility between Vtec Admin with any API server. This is the adapter pattern which allows all kind of different provider for each type of backend of any exchange protocol, whether it be REST, GraphQL, or even SOAP...
+All fetching methods of a data provider are standardized in order to ensure compatibility between Vtec Admin with any API server. This is the adapter pattern which allows all kind of different provider for each type of backend of any exchange protocol, whether it be REST, GraphQL, or even SOAP...
 
 ![Data Provider](/diagrams/data-provider.svg)
 
@@ -44,17 +44,15 @@ const dataProvider = {
 }
 ```
 
-> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/actions.js) all fetching methods that will be used by Vtec Admin.
-
 ### Supported API operation methods
 
 #### getList
 
 Used for all resources browsing context, as
 
-* [Data iterator component](crud/list.md) for showing list of resources inside data table or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
-* [Export button](crud/list.md#export) for filtered CSV resources exporting.
-* Entity referable choices component as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
+* [Data iterator component](crud/list.md) for showing list of resources inside data table or any custom list layout component. Should support specific field selection, as well as filtering, sorting and on-demand relation fetching.
+* [Export button](crud/list.md#export) for pre filtered resources exporting.
+* Auto choices fetching for component that support it as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
 
 #### getOne
 
@@ -62,39 +60,41 @@ For showing detail of resource, mainly for [Show page](crud/show.md) or data tab
 
 #### getMany
 
-Only used for [Autocomplete](components/inputs.md#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/form.md) or [query context filtering](crud/list.md#filter). As opposed to [RA Reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [VA Reference Field](components/fields.md#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
+Only used for [Autocomplete](components/inputs.md#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/form.md) or [query context filtering](crud/list.md#filter). As opposed to [RA reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [`VAReferenceField`](components/fields.md#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
 
 #### create, update
 
-Used by [VA Form](crud/form.md) for creating new or updating existing resource.
+Used by [`VaForm`](crud/form.md) for creating new or updating existing resource.
 
 #### delete
 
-Simple delete action called when interacting with VA Delete Button.
+Simple delete action called when interacting with [`VADeleteButton`](components/buttons.md#delete).
 
 #### updateMany, deleteMany
 
 Bulk actions on [list page](crud/list.md). If your backend doesn't support a bulk action API, the simplest way is to push a Promise.all towards all unique simple operation method (update or delete.md) as you will find on Laravel Data Provider source code.
 
-### [Translatable resources](#translatable)
+### Translatable resources
 
-In case of a [translatable resource](i18n.md#translatable), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the server job to do the remaining job, aka fetching the targeted field locale in case of resource reading, or save the text field on targeted locale in case of resource creating/editing.
+In case of a [translatable resource](i18n.md#resource-translation), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the backend to do the remaining job, i.e. fetching the targeted field locale in case of resource reading, or save the text field on targeted locale in case of resource creating/editing.
 
 ## Laravel Data Provider
 
-[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
+[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is one of the available data provider that implements previous contract. You can use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part and error handling.
 
 This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel.md).
 
-:::tip Existing Laravel Project
-You even can use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.
+:::tip EXISTING LARAVEL PROJECT
+You can even use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.
 :::
 
 ### Methods to API call
 
+See next table for the final endpoint API call format used on each method of this Laravel data provider.
+
 | Operation      | API Call Format                                                                                                |
 | -------------- | -------------------------------------------------------------------------------------------------------------- |
-| **getList**    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=-name&filter={"q":"douglas"}` |
+| **getList**    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=name,-date&filter={"q":"douglas"}` |
 | **getOne**     | **GET** `/books/1`                                                                                             |
 | **getMany**    | **GET** `/books?filter={"id":[1,2,3]}`                                                                         |
 | **create**     | **POST** `/books`                                                                                              |
@@ -104,7 +104,7 @@ You even can use it easily without official package if you use [Laravel Query Bu
 | **deleteMany** | Multiple calls to **DELETE** `/books/{id}`                                                                     |
 
 > For `DESC` sorting, we use a simple dash before the sortable field. Multiple sort is supported by simply adding more sortable fields separated by comma.
-> The `include` parameter is used for eager loading relation.
+> The `include` parameter is used for on demand eager loading relation.
 
 ### Usage
 
@@ -123,10 +123,10 @@ const http = axios.create({
 let dataProvider = laravelDataProvider(http)
 ```
 
-It allows you to have full control of request, by taking cookies credentials, set baseURL, adding any custom HTTP headers as JWT token, using axios request interceptors, etc. You can even add specific provider baseURL if needed via second function arguments `laravelDataProvider(http, '/api')` in case you want to use existing global axios instance.
+It allows you to have consistent request client across all providers, by taking cookies credentials, set baseURL, adding any custom HTTP headers as JWT token, using axios request interceptors, etc. You can even add specific provider baseURL if needed via second function arguments `laravelDataProvider(http, '/api')`.
 
-:::warning FormData
-Laravel Data Provider use classic FormData for all api calls instead of simple JSON. It providers better Laravel integration for file uploads with ready-to-go file validation as well as UploadedFile auto conversion object.  
+:::warning FORM DATA
+Laravel Data Provider use classic FormData for all api calls instead of simple JSON. It provides better Laravel integration for file uploads with ready-to-go file validation as well as UploadedFile auto conversion object.  
 For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vtec-admin/src/providers/utils/objectToFormData";`
 :::
 
@@ -152,7 +152,7 @@ Next board represents what object format you should expects as second `params` f
 | **delete**     | Delete existing resource       | `{ id: Any }`                                                                                                                                                      |
 | **deleteMany** | Delete multiple resources      | `{ ids: Array }`                                                                                                                                                   |
 
-Some calls examples of Vtec Admin inside each resource store module :
+Here is some valid call examples of Vtec Admin inside each resource store module :
 
 ```js
 dataProvider.getList("books", {
@@ -186,15 +186,15 @@ Each provider's method must return a Provider on given format.
 | **delete**     | `empty`                               |
 | **deleteMany** | `empty`                               |
 
-:::warning Paging count
-As showed here, in order to make [data iterator](crud/list.md) aware of pager count you'll need to return the total of filtred dataset from server-side.
+:::warning PAGING COUNT
+As showed here, in order to make [data iterator](crud/list.md) aware of pager count you'll need to return the total of dataset from server-side.
 :::
 
 ### Errors handling
 
-In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is injected into [auth provider](authentication.md#check-error) in order to allows you specific auth action according to a given status code.
+In case of any server-side error, i.e. with a response status outside of 2xx range, you just have to return a reject promise with a specific Object with at least a descriptive error message as well as the HTTP status code. This status is transmitted to [auth provider](authentication.md#api-contract) in order to allows you specific auth action according to a given status code.
 
-For best error message explanation, it's common to take the message inside the body response in order to get the real server exception. If case of empty message or empty response from server, we fallback to the generic statusText response.
+For best error message explanation, it's common to take the message inside the body response in order to get the real server exception. In case of empty message or empty response from server, we fallback to the generic statusText response.
 
 ```js
 try {
@@ -202,9 +202,9 @@ try {
 } catch ({ response }) {
   let { data, status, statusText } = response;
   return Promise.reject({
-    message: (data && data.message) || statusText,
+    message: statusText,
     status,
-    data,
+    ...(data || {}),
   });
 }
 ```

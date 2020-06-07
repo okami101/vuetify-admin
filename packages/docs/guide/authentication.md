@@ -1,6 +1,6 @@
 # Authentication
 
-Vtec Admin is first of all an admin app, so it obviously offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers.md), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
+Vtec Admin is first of all an admin app, so it offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers.md), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
 
 ## Included auth providers
 
@@ -8,16 +8,14 @@ VA provides 3 configurable auth providers :
 
 * `basicAuthProvider` : Basic HTTP authentication.
 * `jwtAuthProvider` : JWT for stateless authentication.
-* `sanctumAuthProvider` : Full state cookie authentication which is the recommended way.
+* `sanctumAuthProvider` : Full state cookie authentication which is the recommended way if you use Laravel.
 
 :::tip GUEST MODE
 Note that the auth provider is of course totally optional !  
 If your API don't need auth at all, simply don't set the `authProvider` option in `VtecAdmin` constructor and VA will directly use a `guest` mode auth that will let you manage your resources as if we were connected.
 :::
 
-All of this providers need an instance of axios in order to work. I prefer it to standard [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) because it allows less code and easy by-instance authentication headers across data providers.
-
-The easiest way is to create an admin axios instance and passthrough it into both auth and data providers :
+All of this providers need an instance of axios in order to work. The easiest way is to create an admin axios instance and passthrough it into both auth and data providers :
 
 **`src/plugins/admin.js`**
 
@@ -82,7 +80,7 @@ By calling this URL, a local `XSRF-TOKEN` cookies will be stored with HttpOnly s
 Don't forget to set `withCredentials` axios config to `true` order to include session cookies on ever XHR request.
 :::
 
-In order to work on fresh Laravel project, simply run `composer require laravel/sanctum` and be sure to add the middleware for `api` routes :
+In order to work on fresh Laravel project, simply run `composer require laravel/sanctum` and be sure to add the appropriate middleware for `api` routes :
 
 **`app/Http/Kernel.php`**
 
@@ -100,8 +98,8 @@ Use the [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packag
 
 With this provider, a simple bearer token will be injected on `Authorization` header for every next XHR requests. The JWT will be stored inside user localStorage under a configurable key. A specific `refresh` routes can be used if you want auto refresh token on every page change.
 
-:::danger LESS FEATURES
-If you prefer to use JWT (or even basic...) authentication mode instead of Sanctum, you'll lose elFinder integration as well as impersonation feature.
+:::warning LESS FEATURES
+If you use JWT authentication (same for next basic HTTP) mode instead of Sanctum, you'll lose elFinder integration as well as impersonation feature.
 :::
 
 ### Basic HTTP authentication
@@ -140,8 +138,8 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 ![login](/assets/login.jpg)
 
 :::tip VUE CLI PLUGIN
-[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functional login page !  
-If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/admin/src/views/Login.vue) for your own.
+[Vue CLI VA Plugin](getting-started.md) will generate for you fully functional login page !  
+If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/login/src/views/Login.vue) for your own.
 :::
 
 In order to work, login page must have a classic login form. Then all you have to do is to submit credentials into `login` VA auth module action which will pass them to the `login` auth provider method.
@@ -173,7 +171,7 @@ export default {
 ```
 
 :::warning LOGIN REDIRECTION
-For unauthenticated login redirection, in order to localize login URL path, Vtec Admin search for a route called "login", so be sure to have this name set on your login route !
+For unauthenticated login redirection, in order to localize login URL path, Vtec Admin search for a route called `login`, so be sure to have this name set on your login route !
 :::
 
 :::tip REGISTRATION AND PASSWORD RESET
@@ -185,8 +183,8 @@ If you need to add this features, login page is the perfect place to do it. Simp
 ![profile](/assets/profile.png)
 
 :::tip VUE CLI PLUGIN
-[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functional profile page !
-If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/admin/src/views/Profile.vue) for your own.
+[Vue CLI VA Plugin](getting-started.md) will generate for you fully functional profile page !
+If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/profile/src/views/Profile.vue) for your own.
 :::
 
 As explained above, this authenticated page should be registered into `src/router/admin.js` for getting admin layout inheritance. The idea here is to get user information stored inside VA auth state and pre fill all account form from it.  
@@ -243,13 +241,13 @@ export default {
 ```
 
 :::tip CHECK AUTH
-After successful account update, you should refresh new user information into the Vuex store by simply recall `checkAuth` from your auth provider method. Anyway, even without that, this method will be called internally after each navigation change.  
+After successful account update, you may refresh new user information into the Vuex store by simply recall `checkAuth` from your auth provider method. Anyway, even without that, this method will be called internally after each navigation change.  
 Use `this.$admin.toast` in order to show quick information state of API response.
 :::
 
 ## Writing your own auth provider
 
-If none of this configurable auth provider doesn't suit you, you can always write your own by implementing following contract, as similar as [data providers](data-providers.md).
+If none of this configurable auth provider doesn't suit you, you can always write your own by implementing following contract, similarly as [data providers](data-providers.md).
 
 ### API Contract
 
@@ -267,16 +265,14 @@ const authProvider = {
 }
 ```
 
-> You will find [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/actions.js) all fetching methods that will be used by Vtec Admin.
-
 All of this methods can be described as following :
 
-| Operation          | Description                                                                                                                                                                                                                                                        |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **login**          | Send credentials information to your API. Should return a rejected promise if response status code is out of 2xx range. If success, `checkAuth` is called                                                                                                          |
-| **logout**         | Explicit logout from your API. If success, `checkAuth` is called                                                                                                                                                                                                   |
-| **checkAuth**      | Check current auth validity by retrieving user infos from a specific API endpoint. Called after each client-side route navigation. If success, refresh user infos on global auth store. If failed, cleanup auth store information and redirect to login page       |
-| **checkError**     | Called after each API error (4xx, 5xx), allows you to make custom actions depending on the API error status. Do automatic logout if reject promise is returned. The most common use case is to force automatic logout in case of API return 401 or 403 status code |
-| **getName**        | Return the full name of user from authenticated user object. Used for showing username inside user header dropdown                                                                                                                                                 |
-| **getEmail**       | Return the email of user from authenticated user object. Used for showing email inside user header dropdown                                                                                                                                                        |
-| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization.md)                                                                                                                                          |
+| Operation          | Description                                                                                                                                                                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **login**          | Send credentials information to your API. Should return a rejected promise if response status code is out of 2xx range. If success, `checkAuth` is called.                                                                                                          |
+| **logout**         | Explicit logout from your API. If success, `checkAuth` is called.                                                                                                                                                                                                   |
+| **checkAuth**      | Check current auth validity by retrieving user infos from a specific API endpoint. Called after each client-side route navigation. If success, refresh user infos on global auth store. If failed, cleanup auth store information and redirect to login page.       |
+| **checkError**     | Called after each API error (4xx, 5xx), allows you to make custom actions depending on the API error status. Do automatic logout if reject promise is returned. The most common use case is to force automatic logout in case of API return 401 or 403 status code. |
+| **getName**        | Return the full name of user from authenticated user object. Used for showing username inside user header dropdown.                                                                                                                                                 |
+| **getEmail**       | Return the email of user from authenticated user object. Used for showing email inside user header dropdown.                                                                                                                                                        |
+| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization.md).                                                                                                                                          |

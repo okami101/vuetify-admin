@@ -65,7 +65,7 @@ export default new VtecAdmin({
 });
 ```
 
-To resume we add a specific accept header `application/ld+json` and add proper login route for fetch JWT token from valid credentials. `getToken` is mainly a response formatter that give the final token from the HTTP response. It's enough to have a functional login process.
+To resume we add a specific `application/ld+json` as `accept` header for proper communication with Symfony hydra API. We also add the proper Symfony login route for proper fetching JWT token from valid credentials. `getToken` is mainly a response formatter that give us the final token from the HTTP response. It's should be enough to have a functional login process.
 
 Try now to login as `admin@example.com` / `admin` and you should be redirected at an empty dashboard page.
 
@@ -135,7 +135,7 @@ Then create all crud pages for both resources by copy paste template code from c
 
 ### Books list
 
-API Platform demo support sorting on all fields for books. We can also filter on both title and author. API Platform use annotation for adding all this features :
+API Platform demo support sorting on all fields for books. We can also filter on both title and author. For that it uses PHP annotation :
 
 **`api/src/Entity/Book.php`**
 
@@ -216,7 +216,7 @@ export default {
 </script>
 ```
 
-As the demo give us all reviews associated to books, we can retrieve them on separate columns and format them as material linkable chip group thanks to [reference array](crud/fields.md#reference-array).
+As the demo give us all reviews associated to books, we can retrieve them on separate columns and format them as material linkable chip group thanks to [reference array](components/fields.md#reference-array).
 
 ```vue {9-13}
 <script>
@@ -249,7 +249,7 @@ All review chip will link to the full default review show page.
 
 ### Book form
 
-Symfony constraints can be defined on any entity property via the specific `Assert` annotation. For book entity :
+Symfony constraints can be defined on any entity property via the specific `Assert` PHP annotation.
 
 **`api/src/Entity/Book.php`**
 
@@ -353,7 +353,7 @@ Hydra provider will automatically send data form model to API Platform and retur
 
 Server ISBN validation will return error as well if invalid.
 
-Go to [hydra provider source code](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/hydra.js) in order to get deeper on how it works. See [errors section](data-provider.md#errors-handling).
+Go to [hydra provider source code](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/hydra.js) in order to get deeper on how it works. See [errors handling section](data-provider.md#errors-handling).
 
 ### Reviews list
 
