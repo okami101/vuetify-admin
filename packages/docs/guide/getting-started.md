@@ -92,7 +92,7 @@ src
 │   └── fr.json
 │
 ├── plugins
-│   ├── `admin.js` _(**Main admin plugin where VA is [instanciated](#instantiation)**)_
+│   ├── `admin.js` _(**Main admin plugin where VA is [instantiated](#instantiation)**)_
 │   ├── base.js _(**Material components loader from above components/base directory**)_
 │   ├── chartist.js _(**Chartist plugin for nice dashboard sample**)_
 │   └── vuetify.js _(**Vuetify plugin**)_

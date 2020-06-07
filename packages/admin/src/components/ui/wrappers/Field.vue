@@ -30,7 +30,7 @@ export default {
   props: {
     /**
      * Override default label behavior.
-     * Default is to get the localized VueI18n label from both ressource and property source.
+     * Default is to get the localized VueI18n label from both resource and property source.
      */
     label: {
       type: String,

@@ -158,16 +158,14 @@
 </template>
 
 <script>
-import List from "../../../mixins/list";
 import { mapActions } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 /**
- * Dumb data table component, you will need data iterator as VaList in order to make it usable.
+ * Data table component, you will need data iterator as `VaList` in order to make it usable.
  * This component allows you to template all fields columns.
  */
 export default {
-  mixins: [List],
   inject: {
     listState: { default: undefined },
   },
@@ -184,7 +182,7 @@ export default {
     /**
      * List of columns for each property of resource data.
      * Each column can be a simple string or a full object with advanced field properties.
-     * Valid properties are `source`, `type`, `label`, `sortable`, `align`, `link`, `attributes`, `edtitable`.
+     * Valid properties are `source`, `type`, `label`, `sortable`, `align`, `link`, `attributes`, `editable`.
      */
     fields: {
       type: Array,
@@ -195,7 +193,7 @@ export default {
      */
     dense: Boolean,
     /**
-     * Enable multisort feature, enabled by default.
+     * Enable multi sort feature, enabled by default.
      */
     multiSort: {
       type: Boolean,

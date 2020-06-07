@@ -1,6 +1,6 @@
 # Layout
 
-By using Vue CLI plugin, your project will be initialized with a premade default admin layout. The vue template of this layout is located into `src/layout/admin.vue` and linked into parent authenticated route inside `src/routes/admin.js` as following :
+By using Vue CLI plugin, your project will be initialized with a pre made default admin layout. The vue template of this layout is located into `src/layout/admin.vue` and linked into parent authenticated route inside `src/routes/admin.js` as following :
 
 **`src/routes/admin.js`**
 
@@ -28,14 +28,14 @@ The main layout, alias VaLayout, is composed of different regions as shown here 
 
 ![layout](/assets/layout.png)
 
-| Region         | Default VAComponent               | Description                                                     |
-| -------------- | --------------------------------- | --------------------------------------------------------------- |
-| **AppBar**     | [`VaAppBar`](#app-bar)           | Main app bar, mainly a `VAppBar`.                               |
+| Region         | Default VAComponent             | Description                                                     |
+| -------------- | ------------------------------- | --------------------------------------------------------------- |
+| **AppBar**     | [`VaAppBar`](#app-bar)          | Main app bar, mainly a `VAppBar`.                               |
 | **Sidebar**    | [`VaSidebar`](#sidebar)         | Main sidebar, mainly a `VNavigationDrawer`.                     |
 | **Header**     | [`VaBreadcrumbs`](#breadcrumbs) | Page header, perfect for a `VBreadcrumbs` or any custom alerts. |
-| **RouterView** | -                                 | All CRUD pages or any custom authenticated page will show here. |
-| **Aside**      | [`VaAside`](#aside)             | Asidecontent, for any contextualized additional infos.          |
-| **Footer**     | [`VaFooter`](#footer)           | App footer, for some corporate informations.                    |
+| **RouterView** | -                               | All CRUD pages or any custom authenticated page will show here. |
+| **Aside**      | [`VaAside`](#aside)             | Aside content, for any contextualized additional infos.         |
+| **Footer**     | [`VaFooter`](#footer)           | App footer, for some corporate information.                     |
 
 ## Components
 
@@ -79,11 +79,11 @@ See [below section](#links).
 |> docgen app-bar
 
 :::tip CREATE RESOURCE LINKS
-The create action links will be automatically generated from your registred resources if the current user has permissions for it.
+The create action links will be automatically generated from your registered resources if the current user has permissions for it.
 :::
 
 :::tip RELOAD BUTTON
-The reload button will dynamically spin for every fetch calls from you data provider, i.e. `getList`, `getOne` or `getMany`. A manual clic will redo the call from current state for freshed content. It will be apply on all CRUD pages.
+The reload button will dynamically spin for every fetch calls from you data provider, i.e. `getList`, `getOne` or `getMany`. A manual click will redo the call from current state for freshed content. It will be apply on all CRUD pages.
 
 The show, create, edit page will reload the route linked resource and refresh all related field or input components, while list page will reload current resources list from current iterator context.
 :::
@@ -114,7 +114,7 @@ Use `mini` event from `VaAppBar` and play with `mini` prop in order to toggle si
 
 ## Links
 
-All navigation menu that can be putted on next components are simple array of object which represents a link. VA Components that support nav are `VaAppBar`, `VaSidebar` and `VaFooter` for a total of 4 differents menus, `header`, `profile`, `sidebar` and `footer`. Example of simple menu array :
+All navigation menu that can be putted on next components are simple array of object which represents a link. VA Components that support nav are `VaAppBar`, `VaSidebar` and `VaFooter` for a total of 4 different menus, `header`, `profile`, `sidebar` and `footer`. Example of simple menu array :
 
 ```js
 [

@@ -21,7 +21,7 @@
 
         <v-col cols="12" md="auto">
           <div class="font-weight-light pt-6 pt-md-0 text-center">
-            <!-- @slot Right side informations. -->
+            <!-- @slot Right side information. -->
             <slot></slot>
           </div>
         </v-col>

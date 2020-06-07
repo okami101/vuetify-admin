@@ -147,12 +147,12 @@ See all supported field properties :
 | Property       | Type      | Description                                                                                  |
 | -------------- | --------- | -------------------------------------------------------------------------------------------- |
 | **source**     | `string`  | Resource property to display.                                                                |
-| **type**       | `string`  | Type of [field](../components/fields.md) to use.                                                              |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.                    |
+| **type**       | `string`  | Type of [field](../components/fields.md) to use.                                             |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.                 |
 | **sortable**   | `boolean` | Activate server-side sort.                                                                   |
 | **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                       |
 | **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link. |
-| **attributes** | `object`  | All props or attributes to merge to the [field component](../components/fields.md).                           |
+| **attributes** | `object`  | All props or attributes to merge to the [field component](../components/fields.md).          |
 | **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.              |
 
 :::tip SHORTHAND
@@ -161,7 +161,7 @@ You can use a simple string for each field column, `"my-property"` is similar to
 
 ### Field templating
 
-In case of all above field options doesn't suit your needs, you can percectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
+In case of all above field options doesn't suit your needs, you can perfectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
 
 ```vue {15-28}
 <template>
@@ -194,7 +194,7 @@ You just have to use a slot named as `field.{source}` for that, where `source` i
 
 ![expandable](/assets/expandable.png)
 
-You can use the `expanded-item` slot for an additional togglable full collspan cell under the item row. Ideal for quick view.
+You can use the `expanded-item` slot for an additional full colspan cell under the item row. Ideal for quick view.
 
 ```vue {10,15-17}
 <template>
@@ -317,17 +317,17 @@ Use `attributes` property in order to merge specific attributes into input compo
 
 See all supported field properties :
 
-| Property       | Type      | Description                                                               |
-| -------------- | --------- | ------------------------------------------------------------------------- |
-| **source**     | `string`  | Resource property to display.                                             |
-| **type**       | `string`  | Type of [input](../components/inputs.md) to use.                                            |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default. |
-| **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                      |
-| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/inputs.md)          |
+| Property       | Type      | Description                                                                        |
+| -------------- | --------- | ---------------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                                      |
+| **type**       | `string`  | Type of [input](../components/inputs.md) to use.                                   |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.       |
+| **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable                               |
+| **attributes** | `object`  | All props or attributes to merge to the [input component](../components/inputs.md) |
 
 ### Filter templating
 
-As same way as field templating you can even template your filter directy by using `filter.{source}` slot, where `source` is the name of filter. However, as your custom filter component must return input on change in order to work with current active filter, you will need to expose the internal filter of `VaList` by `filter.sync`, and then update the filter with new value on each input change.
+As same way as field templating you can even template your filter directly by using `filter.{source}` slot, where `source` is the name of filter. However, as your custom filter component must return input on change in order to work with current active filter, you will need to expose the internal filter of `VaList` by `filter.sync`, and then update the filter with new value on each input change.
 
 Here is a full working sample :
 
@@ -382,11 +382,11 @@ export default {
 This `VaList` component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
 
 :::tip ACTION EVENTS
-You're not forced keep the default redirect behavior button. If you prefer a create event, juste subscribe to `action` event and disable create redirect via `disableCreateRedirect` prop for preventing create button to redirect to linked action page.
+You're not forced keep the default redirect behavior button. If you prefer a create event, just subscribe to `action` event and disable create redirect via `disableCreateRedirect` prop for preventing create button to redirect to linked action page.
 
-You will have the same bahavior for `show`, `edit` and `clone` actions inside `VaDataTable`. Use `item-action` event and disable default redirect if you need custom behavior on your side as aside or dialog edition.
+You will have the same behavior for `show`, `edit` and `clone` actions inside `VaDataTable`. Use `item-action` event and disable default redirect if you need custom behavior on your side as aside or dialog edition.
 
-Note that all of this buttons will autohide if no action exist for each related button. Deactivation of each relevent action redirect will force buttons to reappear.
+Note that all of this buttons will auto hide if no action exist for each related button. Deactivation of each relevant action redirect will force buttons to reappear.
 
 This action events will always provide you the freshed item from the API as well as the adapted CRUD title.
 :::
@@ -426,7 +426,7 @@ The data iterator support all sort of bulk operations, whether it be updating or
 
 By default VA provides a bulk delete action, but you can add any multiple bulk actions as needed by using `bulk.actions` slots and [`VaBulkActionButton`](../components/buttons.md#bulk-action) that will use `updateMany` under the hood. This last component needs a required `action` prop that will be the object to send to your API. This object will contain all properties you want to bulk update.
 
-The next example will show you a bulk publish and unpublish bulk actions :
+The next example will show you a bulk publish / unpublish bulk actions :
 
 ```vue {4-23}
 <template>
@@ -505,7 +505,7 @@ For this case usage, you may disable default query string update in order to pre
 
 ![associations](/assets/associations.png)
 
-You can go even further by managing associations thanks to provided `association` prop object that give us the ability of attach or detach relationship between related resources directly from the list. It will automatically generate a autocomplete search on given list ressource that allow us to attach via the associate button. Each row item can be detach via dissaciate button.
+You can go even further by managing associations thanks to provided `association` prop object that give us the ability of attach or detach relationship between related resources directly from the list. It will automatically generate a autocomplete search on given list resource that allow us to attach via the associate button. Each row item can be detach via dissociate button.
 
 See this example :
 
@@ -565,11 +565,11 @@ export default {
 
 Expected properties of `association` :
 
-| Property     | Type     | Description                                                              |
-| ------------ | -------- | ------------------------------------------------------------------------ |
-| **resource** | `string` | Resource that you want to link / unlink. Just for labellisation purpose. |
-| **source**   | `string` | Name of request key data to send on backend.                             |
-| **id**       | `number` | ID of current ressource to detach.                                       |
+| Property     | Type     | Description                                                             |
+| ------------ | -------- | ----------------------------------------------------------------------- |
+| **resource** | `string` | Resource that you want to link / unlink. Just for localization purpose. |
+| **source**   | `string` | Name of request key data to send on backend.                            |
+| **id**       | `number` | ID of current resource to detach.                                       |
 
 For both associate and dissociate actions, the `update` data provider method will be called on the listed resource (which is `books` for this example) with this data : `{ <type>_<source>: <id> }`. `type` will correspond to the type of operation, which is `add` or `remove`. It's up to you to make the effective association from server-side.
 
@@ -714,4 +714,4 @@ export default {
 </script>
 ```
 
-It's mainly a comination of all available event actions via `action` and `item-action` which retrieve the freshed item from the API and CRUD title. Then all that's left is to disable default redirect and made some additional logic for show or hide the view or form while auto open aside via `value` prop of `VaAsideLayout`. Check the users CRUD sample for further detail.
+It's mainly a combination of all available event actions via `action` and `item-action` which retrieve the freshed item from the API and CRUD title. Then all that's left is to disable default redirect and made some additional logic for show or hide the view or form while auto open aside via `value` prop of `VaAsideLayout`. Check the users CRUD sample for further detail.

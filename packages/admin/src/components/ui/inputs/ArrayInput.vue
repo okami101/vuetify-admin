@@ -67,7 +67,7 @@ export default {
   methods: {
     getItem(value) {
       /**
-       * Generate factice id for drag tracking
+       * Generate fake id for drag tracking
        */
       return value.map((v, i) => {
         return { ...v, id: i };

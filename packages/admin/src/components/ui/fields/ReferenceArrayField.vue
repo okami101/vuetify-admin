@@ -12,7 +12,7 @@
       :itemText="itemText"
       :itemValue="itemValue"
     >
-      <!-- @slot Content placeholder for each resource labelization inside chip, guess the resource text by default. -->
+      <!-- @slot Content placeholder for each resource label localization inside chip, guess the resource text by default. -->
       <slot :value="item"></slot>
     </va-reference-field>
   </v-chip-group>

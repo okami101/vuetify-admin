@@ -11,7 +11,7 @@ Therefore always prioritize the permissions on the backend at first before any U
 ## Get user permissions
 
 :::tip AUTHENTICATION
-Before continue you should consider to check the related [authentication section](authentication.md) of this guide. It contains all you should know about user authentication and user informations fetching.
+Before continue you should consider to check the related [authentication section](authentication.md) of this guide. It contains all you should know about user authentication and user information fetching.
 :::
 
 As you have seen on authentication guide, every auth providers must implement a specific `getPermissions` method. His role is to fetch permissions from a valid user object returned by the API through the `checkAuth` provider method. This permissions must be returned as a format of array of strings.
@@ -45,7 +45,7 @@ export default [
 The `permissions` property is a simple array of strings or objects. Use simple string when you want this permission to apply to all actions. The object format allows you to define more granular permission for each action of resources. Just use `name` for permission name and `actions` for list of allowed actions when user own this permission.
 
 :::tip DEFAULT BEHAVIOR
-By default, if no permissions are setted, all authenticated users can access to any operations of this resource.
+By default, if no permissions are set, all authenticated users can access to any operations of this resource.
 :::
 
 :::warning EXCLUDED ACTIONS
@@ -77,7 +77,7 @@ export default new VtecAdmin({
 ```
 
 :::warning OVERRIDES OR DEFAULT
-If this callback return a valid boolean, the action will be considered as valid or not whatever the permissions value setted on the concerned resource.
+If this callback return a valid boolean, the action will be considered as valid or not whatever the permissions value set on the concerned resource.
 
 If nothing is returned, the default behavior is executed.
 :::
@@ -117,7 +117,7 @@ export default {
 ```
 
 :::tip USE CAN HELPER
-It is often enough to use the [dedicated can helper](#helpers) which allows you to make quick permissions ability assertions againts the authenticated user.
+It is often enough to use the [dedicated can helper](#helpers) which allows you to make quick permissions ability assertions against the authenticated user.
 :::
 
 ## Helpers
@@ -146,12 +146,12 @@ export default {
 ```
 
 :::warning OR condition
-It test the list of abilities as a `OR` conditon, so if only one permission is owned by current user, then it return `true`.
+It test the list of abilities as a `OR` condition, so if only one permission is owned by current user, then it return `true`.
 :::
 
-You can use it for easy hide or show links from the sidebar directly inside the array by using the `&&` combinator :
+You can use it for easy hide or show links from the sidebar directly inside the array by using the `&&` combination :
 
-**`src/_navs.js`**
+**`src/_nav.js`**
 
 ```js {8,13}
 export default (i18n, admin) => [

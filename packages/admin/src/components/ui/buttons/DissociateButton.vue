@@ -14,7 +14,7 @@ import Button from "../../../mixins/button";
 import { mapActions } from "vuex";
 
 /**
- * Action button for resource dissociation. Used on datatables with association enabled.
+ * Action button for resource dissociation. Used on data tables with association enabled.
  * Comes with confirm dialog.
  */
 export default {

@@ -2,7 +2,7 @@ import { mapActions } from "vuex";
 
 /**
  * Common props for resource search components, as `VaList` or `VaAutocompleteInput`.
- * Use the `getList` data provider uner the hood.
+ * Use the `getList` data provider under the hood.
  */
 export default {
   props: {

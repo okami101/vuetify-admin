@@ -17,7 +17,7 @@
 
           <v-spacer></v-spacer>
 
-          <!-- @slot Footer region, put here some corporate informations and links. -->
+          <!-- @slot Footer region, put here some corporate information and links. -->
           <slot name="footer"></slot>
         </div>
       </v-content>

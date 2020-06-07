@@ -65,7 +65,7 @@
 
 <script>
 /**
- * Default customizable admin VNavigationDrawer with full hierarchical menu and minimizable.
+ * Default customizable admin VNavigationDrawer with full hierarchical menu and minimize variant.
  */
 export default {
   props: {

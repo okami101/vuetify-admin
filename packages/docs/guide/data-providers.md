@@ -53,7 +53,7 @@ const dataProvider = {
 Used for all resources browsing context, as
 
 * [Data iterator component](crud/list.md) for showing list of resources inside data table or any custom list layout component. Should support specific field selection, as well as filtering, sorting and relation fetching.
-* [Export button](crud/list.md#export) for filtred CSV resources exporting.
+* [Export button](crud/list.md#export) for filtered CSV resources exporting.
 * Entity referable choices component as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
 
 #### getOne
@@ -82,7 +82,7 @@ In case of a [translatable resource](i18n.md#translatable), Vtec Admin will add 
 
 ## Laravel Data Provider
 
-[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing your's. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
+[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is actually the only available data provider that implements previous contract. Use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part.
 
 This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel.md).
 

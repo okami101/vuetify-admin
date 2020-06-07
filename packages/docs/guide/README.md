@@ -58,7 +58,7 @@ To summary :
 * [Vtec Laravel Crud](laravel.md) : for complete top to bottom development experience that includes backend
 * [Tutorial](tutorial.md) : follow this quick tutorial if you want a good starting point
 
-**Resources builer :**
+**Resources builder :**
 
 VA will try to integrate within all of your existing plugins without hoisted them.
 

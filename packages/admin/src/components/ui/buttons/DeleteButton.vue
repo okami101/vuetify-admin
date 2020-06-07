@@ -16,7 +16,7 @@ import { mapActions } from "vuex";
 
 /**
  * Button for all delete resource action. Comes with confirm dialog.
- * Autohide if no delete action available unless show prop is active.
+ * Auto hide if no delete action available unless show prop is active.
  */
 export default {
   mixins: [Button],
@@ -67,7 +67,7 @@ export default {
         this.refresh(this.resource);
 
         /**
-         * Triggered on successful deletetion of ressource item.
+         * Triggered on successful deletion of resource item.
          */
         this.$emit("deleted");
       }

@@ -509,7 +509,7 @@ export default {
 
         /**
          * This is field of relation
-         * Recurcivity for nested relation
+         * Recursively for nested relation
          */
         let relation = s.substr(0, lastIndex);
         let f = fields[relation] || [];

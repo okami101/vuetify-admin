@@ -34,7 +34,7 @@ export default {
     label: String,
     /**
      * Default route resource action to redirect after saving.
-     * Disable the default submit behavior if setted.
+     * Disable the default submit behavior if set.
      * For specific redirect on submit, prefer `redirect` prop on `VaForm`
      * @values list, create, show, edit
      */

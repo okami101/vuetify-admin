@@ -134,7 +134,7 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   props: {
     /**
-     * Replace default admin app title setted on VtecAdmin constructor.
+     * Replace default admin app title set on VtecAdmin constructor.
      */
     title: String,
     /**

@@ -218,7 +218,7 @@ Will render :
 ![select](/assets/inputs/select.png)
 
 :::tip LOCALIZED ENUMS
-You may centralized all choices for reuse directly inside you locales as [explain here](../i18n.md#resources). If no choices setted, `VaSelectInput` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
+You may centralized all choices for reuse directly inside you locales as [explain here](../i18n.md#resources). If no choices set, `VaSelectInput` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
 :::
 
 :::tip REFERENCES
@@ -286,7 +286,7 @@ Will render :
 :::tip SEARCH
 Use `minChars` and `searchQuery` to configure the minimal char needed before search and the query search parameter key which is `q` by default. It will reuse `getList` data provider method with a custom search filter.
 
-Use `fields` prop to reduce API query overfetching for better performance.
+Use `fields` prop to reduce API query over fetching for better performance.
 :::
 
 :::tip TAGGABLE
@@ -401,7 +401,7 @@ And it should work perfectly fine :
 
 ## Custom component
 
-You can prefectly create your own VA input component by using [`input`](mixins.md#input) mixin component. Very useful for editing complex property object or custom advanced input UI for primitives.
+You can perfectly create your own VA input component by using [`input`](mixins.md#input) mixin component. Very useful for editing complex property object or custom advanced input UI for primitives.
 
 **`src/components/inputs/MyCustomInput.vue`**
 

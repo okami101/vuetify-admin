@@ -28,7 +28,7 @@
 
 <script>
 /**
- * Customizable admin aside component where you put some contextualized additional informations.
+ * Customizable admin aside component where you put some contextualized additional information.
  * Use the associated `VaAsideLayout` component for content integration from anywhere on any context.
  */
 export default {

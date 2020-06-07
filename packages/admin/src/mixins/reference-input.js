@@ -80,7 +80,7 @@ export default {
       this.loading = true;
 
       /**
-       * Load paginated and sortad data list
+       * Load paginated and sorted data list
        */
       let { data } = await this.getList({
         resource: this.reference,

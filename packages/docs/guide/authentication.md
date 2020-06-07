@@ -56,7 +56,7 @@ All included providers can be used the same way, if you want to use JWT provider
 :::tip GLOBAL ADMIN AXIOS
 Pass axios instance into [VtecAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
 
-Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusivly use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
+Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusively use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
 :::
 
 In addition to axios, a second `params` optional argument can be used for various parameters as authentication routes, credentials format, etc.
@@ -77,8 +77,8 @@ The [Laravel Sanctum Provider](https://github.com/okami101/vtec-admin/blob/maste
 This is actually the recommended provider for Laravel if your app is on the same main domain (which is 99% use cases), because it's more secure (insensitive to XSS attacks thanks to HttpOnly cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
 
 :::warning CSRF
-As always with all based-cookies authentication system, you'll need a specific `csrf` route in order to get the XSRF token. Default is setted to `/sanctum/csrf-cookie` so you have not to do anything if you use Laravel Sanctum with default config.  
-By calling this URL, a local `XSRF-TOKEN` cookies will be stored with HttpOnly setted to `false`. This allows axios to fetch it and set it as header request via `X-XSRF-TOKEN` for every next requests.  
+As always with all based-cookies authentication system, you'll need a specific `csrf` route in order to get the XSRF token. Default is set to `/sanctum/csrf-cookie` so you have not to do anything if you use Laravel Sanctum with default config.  
+By calling this URL, a local `XSRF-TOKEN` cookies will be stored with HttpOnly set to `false`. This allows axios to fetch it and set it as header request via `X-XSRF-TOKEN` for every next requests.  
 Don't forget to set `withCredentials` axios config to `true` order to include session cookies on ever XHR request.
 :::
 
@@ -96,7 +96,7 @@ In order to work on fresh Laravel project, simply run `composer require laravel/
 
 ### JWT for stateless authentication
 
-Use the [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/jwt.js) for HTTP stateless authentication. It was fully tested on Laravel with [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package. It should work with official [Laravel Passwort](https://github.com/laravel/passport) as well.
+Use the [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/jwt.js) for HTTP stateless authentication. It was fully tested on Laravel with [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package. It should work with official [Laravel Passport](https://github.com/laravel/passport) as well.
 
 With this provider, a simple bearer token will be injected on `Authorization` header for every next XHR requests. The JWT will be stored inside user localStorage under a configurable key. A specific `refresh` routes can be used if you want auto refresh token on every page change.
 
@@ -108,7 +108,7 @@ If you prefer to use JWT (or even basic...) authentication mode instead of Sanct
 
 The [Basic HTTP Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/basic.js) can be used for basic cases. The full basic auth credentials will be simply sent to every XHR requests.
 
-By default, basic auth will just return the username used for credentials. If you prefer use a specific API endpoint in order to give to VA more user informations, which is recommended if you need functional profile editing, you must set the user route as follow :
+By default, basic auth will just return the username used for credentials. If you prefer use a specific API endpoint in order to give to VA more user information, which is recommended if you need functional profile editing, you must set the user route as follow :
 
 **`src/plugins/admin.js`**
 
@@ -140,7 +140,7 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 ![login](/assets/login.jpg)
 
 :::tip VUE CLI PLUGIN
-[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functionnal login page !  
+[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functional login page !  
 If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/admin/src/views/Login.vue) for your own.
 :::
 
@@ -173,7 +173,7 @@ export default {
 ```
 
 :::warning LOGIN REDIRECTION
-For unauthenticated login redirection, in order to localize login URL path, Vtec Admin search for a route called "login", so be sure to have this name setted on your login route !
+For unauthenticated login redirection, in order to localize login URL path, Vtec Admin search for a route called "login", so be sure to have this name set on your login route !
 :::
 
 :::tip REGISTRATION AND PASSWORD RESET
@@ -185,11 +185,11 @@ If you need to add this features, login page is the perfect place to do it. Simp
 ![profile](/assets/profile.png)
 
 :::tip VUE CLI PLUGIN
-[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functionnal profile page !
+[Vue CLI VA Plugin](getting-started.md) will generate for you all fully functional profile page !
 If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/admin/src/views/Profile.vue) for your own.
 :::
 
-As explained above, this authenticated page should be registred into `src/router/admin.js` for getting admin layout inheritance. The idea here is to get user informations stored inside VA auth state and prefill all account form from it.  
+As explained above, this authenticated page should be registered into `src/router/admin.js` for getting admin layout inheritance. The idea here is to get user information stored inside VA auth state and pre fill all account form from it.  
 Because saving account information can be very different according to project context, there is no specific auth provider method available. So this the good showcase for using the global admin axios instance which owns all authorization context to made authenticated API requests.
 
 Default api URLs are `/api/account/update` for account update and `/api/account/password` for password change. So don't forget to change their according to you suited API endpoints :
@@ -242,8 +242,8 @@ export default {
 };
 ```
 
-:::tip CHECKAUTH
-After successful account update, you should refresh new user informations into the Vuex store by simply recall `checkAuth` from your auth provider method. Anyway, even without that, this method will be called internally after each navigation change.  
+:::tip CHECK AUTH
+After successful account update, you should refresh new user information into the Vuex store by simply recall `checkAuth` from your auth provider method. Anyway, even without that, this method will be called internally after each navigation change.  
 Use `this.$admin.toast` in order to show quick information state of API response.
 :::
 
@@ -275,8 +275,8 @@ All of this methods can be described as following :
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **login**          | Send credentials information to your API. Should return a rejected promise if response status code is out of 2xx range. If success, `checkAuth` is called                                                                                                          |
 | **logout**         | Explicit logout from your API. If success, `checkAuth` is called                                                                                                                                                                                                   |
-| **checkAuth**      | Check current auth validity by retrieving user infos from a specific API endpoint. Called after each client-side route navigation. If success, refresh user infos on global auth store. If failed, cleanup auth store informations and redirect to login page      |
+| **checkAuth**      | Check current auth validity by retrieving user infos from a specific API endpoint. Called after each client-side route navigation. If success, refresh user infos on global auth store. If failed, cleanup auth store information and redirect to login page       |
 | **checkError**     | Called after each API error (4xx, 5xx), allows you to make custom actions depending on the API error status. Do automatic logout if reject promise is returned. The most common use case is to force automatic logout in case of API return 401 or 403 status code |
-| **getName**        | Return the fullname of user from authenticated user object. Used for showing username inside user header dropdown                                                                                                                                                  |
+| **getName**        | Return the full name of user from authenticated user object. Used for showing username inside user header dropdown                                                                                                                                                 |
 | **getEmail**       | Return the email of user from authenticated user object. Used for showing email inside user header dropdown                                                                                                                                                        |
-| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization.md)                                                                                                                                             |
+| **getPermissions** | Return the permissions or roles of user from authenticated user object. Used for [authorization system](authorization.md)                                                                                                                                          |

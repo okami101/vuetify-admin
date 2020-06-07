@@ -5,7 +5,7 @@ export default {
   props: {
     /**
      * Name of the resource to use.
-     * Required for good localized labelization and context action activators.
+     * Required for good label localization and context action activators.
      * Default behavior is to fetch it from router context.
      */
     resource: {

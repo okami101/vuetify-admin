@@ -15,7 +15,7 @@ export default {
      */
     icon: Boolean,
     /**
-     * Customizable background or text color, dependly of text prop value.
+     * Customizable background or text color, dependably of text prop value.
      */
     color: String,
   },

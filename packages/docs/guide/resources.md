@@ -43,7 +43,7 @@ A resource object must follow this structure :
 | **label**              | `string`, `function` | Return an identifiable label of resource.                                                                                                  |
 | **include**            | `array`, `object`    | Some additional object or array that will be added to data providers for all `GET` based methods for further actions inside data provider. |
 | **actions**            | `array`              | List of all valid actions for this resource.                                                                                               |
-| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly setted.                                                       |
+| **except**             | `array`              | Same as `actions` but on blacklist mode, not used if `actions` is explicitly set.                                                          |
 | **translatable**       | `boolean`            | Indicate if this resource can be [translated](i18n.md#translation).                                                                        |
 | **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization.md#resource).                                                 |
 | **autocompleteFields** | `array`              | List of resource fields to return from API from autocomplete for avoiding over-fetching.                                                   |
@@ -55,7 +55,7 @@ This label will be used for default page title for every show and edit CRUD page
 :::
 
 :::tip ACTIONS
-For actions, you have to choose between `list` / `show` / `create` / `edit` / `delete`. If none `actions` or `except` is setted, all 5 operations are active by default.
+For actions, you have to choose between `list` / `show` / `create` / `edit` / `delete`. If none `actions` or `except` is set, all 5 operations are active by default.
 
 All removed actions will be reflected on all crud pages and Vue Router will be adapted accordingly as well. For example, if you set `except` to `["show"]`, it will disable `show` route and all `show` actions (mainly buttons) associates to the concerned resource.
 :::
@@ -96,11 +96,11 @@ The `archived_users` resource will reuse the same API endpoints as `users` resou
 
 ## Resource CRUD pages and API modules
 
-With the above resources informations, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures.
+With the above resources information, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures.
 
-Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. If not found it fallbacks to a [copiable guesser page](getting-started.md#at-a-glance). All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
+Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. If not found it fallbacks to a [copyable guesser page](getting-started.md#at-a-glance). All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
 
-In order to facilitate this boring task, use the provided loader to do this automatically by importing it with `import "vtec-admin/src/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the sluggified name of resource.
+In order to facilitate this boring task, use the provided loader to do this automatically by importing it with `import "vtec-admin/src/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the slugged name of resource.
 
 Example for a `monster_children` and `users` resources :
 
@@ -122,7 +122,7 @@ resources
 :::
 
 :::tip COMPOUND NAME
-If the name resource is a compound format, use a hyphen between each word (this is the kebab-case format). Example `monster-chrildren` for a resource named as `monster_children`.
+If the name resource is a compound format, use a hyphen between each word (this is the kebab-case format). Example `monster-children` for a resource named as `monster_children`.
 :::
 
 ### Action mapping
@@ -174,7 +174,7 @@ export default {
 
 You may need to put some links through your app that point to list or create resource pages, mainly in the sidebar. For that you can use `getResourceLink` and `getResourceLinks` helpers that will build for you a working link object that follow [this format](crud/layout.md#links). Moreover, this helpers will test the current users permissions for this specific action of this resource. If failed, it returns false.
 
-For exemple this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in the `sidebar-menu` as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
+For example this piece of code will return a link object to the user page list with localized resource label as well as resource icon. Simply put this function in the `sidebar-menu` as it was a link object. No need to deal with permissions or adding nulling test since a false menu will simply not be rendered.
 
 ```js
 [
