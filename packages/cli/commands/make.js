@@ -9,9 +9,9 @@ const kebabCase = require("lodash/kebabCase");
 
 const options = {
   description: "resource ui crud maker",
-  usage: "vue-cli-service crud:make [resource_name] [options]",
+  usage: "vue-cli-service crud:make [resourceName] [options]",
   options: {
-    resource_name:
+    resourceName:
       "Required resource name. Should be on plural snake_case format, ex. monsters, monster_children, etc. This unique name will be used inside API URL calls and ui client router slug.",
     output:
       "Output directory of resource generated crud pages. Default is 'src/resources'",
@@ -34,10 +34,11 @@ const options = {
     filterable:
       "Fields that can be filtered individually. Will appear on advanced filter on list page.",
     include: "Related resources to include on list page with eager loading.",
+    lint: "Automatic lint after end of command.",
   },
 };
 
-async function service(resourceName, args = {}) {
+function service(resourceName, args = {}, api) {
   if (!resourceName) {
     console.log(chalk.red(`not specified resource 'name' argument.`));
     return;
@@ -320,6 +321,13 @@ async function service(resourceName, args = {}) {
       content.substring(startOffset);
 
     fs.writeFileSync(navFile, content);
+  }
+
+  if (args.lint) {
+    /**
+     * Call lint command
+     */
+    api.service.run("lint");
   }
 }
 

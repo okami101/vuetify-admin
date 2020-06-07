@@ -177,7 +177,7 @@ We will not use them for this tutorial, but for real app it's heavily recommende
 
 ### UI generator commands
 
-Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable data table list, show, create and edit forms.
+Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en --lint` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable data table list, show, create and edit forms.
 
 > In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.
 

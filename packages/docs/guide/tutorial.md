@@ -34,6 +34,7 @@ First prepare new Vue CLI admin project as explained on [getting started guide](
 ```bash
 vue create vtec-admin-tutorial
 cd vtec-admin-tutorial
+vue add eslint
 vue add router
 vue add vuex
 vue add vuetify

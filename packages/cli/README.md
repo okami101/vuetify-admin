@@ -13,10 +13,11 @@ Initialize your brand new Vue CLI admin project by `vue create admin` and go ent
 Then install all required plugins.
 
 ```bash
-vue add router # if not already selected at project init
-vue add vuex # if not already selected at project init
-vue add vuetify # the main UI framework
-vue add i18n # the internationalization plugin
+vue add eslint
+vue add router
+vue add vuex
+vue add vuetify
+vue add i18n
 ```
 
 ## Installation

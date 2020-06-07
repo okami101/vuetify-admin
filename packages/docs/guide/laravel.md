@@ -468,6 +468,7 @@ yarn crud:make books --locale="en" --name="Book | Books" --icon="mdi-book" --lab
   --columns="isbn, title, author, commentable, price, publication_date" \
   --filterable="title, author, commentable" \
   --sortable="isbn, title, author, sortable, publication_date"
+  --lint
 ```
 
 :::tip HELP COMMAND

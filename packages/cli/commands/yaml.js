@@ -6,16 +6,17 @@ const isEmpty = require("lodash/isEmpty");
 
 const options = {
   description: "resource ui crud generator",
-  usage: "vue-cli-service crud:yaml [file_path] [options]",
+  usage: "vue-cli-service crud:yaml [filePath] [options]",
   options: {
-    file_path: "Required path of YAML file descriptor.",
+    filePath: "Required path of YAML file descriptor.",
     name: "Optional name of model to import, if not set, all will be imported.",
     output:
       "Output directory of resource generated crud pages. Default is 'src/resources'",
+    lint: "Automatic lint after end of command.",
   },
 };
 
-async function service(file, args = {}) {
+function service(file, args = {}, api) {
   if (!file) {
     console.log(chalk.red(`not specified 'file' argument.`));
     return;
@@ -45,22 +46,33 @@ async function service(file, args = {}) {
           };
         });
 
-      make.service(name, {
-        output: args.output || "./src/resources",
-        name: resource.name,
-        api: resource.api,
-        icon: resource.icon,
-        label: resource.label,
-        actions: resource.actions,
-        translatable: !isEmpty(resource.translatable),
-        columns: resource.columns,
-        include: resource.include,
-        filterable: resource.filterable,
-        sortable: resource.sortable,
-        locale: args.locale || "en",
-        fields,
-      });
+      make.service(
+        name,
+        {
+          output: args.output || "./src/resources",
+          name: resource.name,
+          api: resource.api,
+          icon: resource.icon,
+          label: resource.label,
+          actions: resource.actions,
+          translatable: !isEmpty(resource.translatable),
+          columns: resource.columns,
+          include: resource.include,
+          filterable: resource.filterable,
+          sortable: resource.sortable,
+          locale: args.locale || "en",
+          fields,
+        },
+        api
+      );
     });
+
+  if (args.lint) {
+    /**
+     * Call lint command
+     */
+    api.service.run("lint");
+  }
 }
 
 module.exports = {
