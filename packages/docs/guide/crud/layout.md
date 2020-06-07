@@ -1,6 +1,6 @@
 # Layout
 
-By using Vue CLI plugin, your project will be initialized with a pre made default admin layout. The vue template of this layout is located into `src/layout/admin.vue` and linked into parent authenticated route inside `src/routes/admin.js` as following :
+By using Vue CLI plugin, your project will be initialized with a pre made default admin layout. The vue template of this layout is located into `src/layout/Admin.vue` and linked into parent authenticated route inside `src/routes/admin.js` as following :
 
 **`src/routes/admin.js`**
 
@@ -24,7 +24,7 @@ export default {
 
 ## Regions
 
-The main layout, alias VaLayout, is composed of different regions as shown here :
+The main layout, alias `VaLayout`, is composed of different regions as shown here :
 
 ![layout](/assets/layout.png)
 
@@ -45,7 +45,7 @@ The main layout, alias VaLayout, is composed of different regions as shown here 
 
 This slot composition system allows a complete customization possibility. By default Vue CLI Plugin will generate functional basic layout with all default components placed for each slot. You can totally customize or replace each component by your own.
 
-**`src/layout/admin.vue`**
+**`src/layout/Admin.vue`**
 
 ```vue
 <template>
@@ -54,9 +54,15 @@ This slot composition system allows a complete customization possibility. By def
       slot="app-bar"
       :header-menu="headerMenu"
       :profile-menu="profileMenu"
-      @mini="mini = !mini"
+      @drawer="drawer = !drawer"
+      @mini-variant="mini = !mini"
     ></va-app-bar>
-    <va-sidebar slot="sidebar" :menu="sidebarMenu" :mini="mini"></va-sidebar>
+    <va-sidebar
+      slot="sidebar"
+      :menu="sidebarMenu"
+      v-model="drawer"
+      :mini-variant="mini"
+    ></va-sidebar>
     <va-breadcrumbs slot="header"></va-breadcrumbs>
     <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu"></va-footer>
@@ -67,10 +73,10 @@ This slot composition system allows a complete customization possibility. By def
 :::tip OPTIONAL
 You can totally replace the layout component by your own if you need total personalization !
 
-In this case you'll need to use at least the below [`VaMessages`](#messages) component in order to have all toaster notifications and confirmation dialogs.
+In this case you may use at least the below [`VaMessages`](#messages) component in order to have all toaster notifications and confirmation dialogs.
 :::
 
-:::tip LINKS
+:::tip MENU LINKS
 See [below section](#links).
 :::
 
@@ -92,8 +98,8 @@ The show, create, edit page will reload the route linked resource and refresh al
 
 |> docgen sidebar
 
-:::tip MINIMIZE
-Use `mini` event from `VaAppBar` and play with `mini` prop in order to toggle sidebar minimization state.
+:::tip HIDE OR MINIMIZE
+Use `drawer` event from `VaAppBar` in order to toggle sidebar.
 :::
 
 ### Footer

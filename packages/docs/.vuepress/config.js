@@ -163,10 +163,10 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
       sidebarDepth: 2,
       children: [
         "data-providers",
-        "authentication",
         "admin",
         "resources",
         "i18n",
+        "authentication",
         "authorization",
         "generators",
       ],

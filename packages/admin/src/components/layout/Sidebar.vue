@@ -1,4 +1,8 @@
 <template>
+  <!--
+    Toggle sidebar.
+    @event input
+  -->
   <v-navigation-drawer
     :clipped="$vuetify.breakpoint.lgAndUp"
     app
