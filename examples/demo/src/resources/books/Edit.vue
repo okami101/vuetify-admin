@@ -15,7 +15,7 @@
         :filters="filters"
       >
         <va-data-table :fields="fields">
-          <template v-slot:quality="{ item }">
+          <template v-slot:field.quality="{ item }">
             {{ item.rating >= 3 ? $t("good") : $t("bad") }}
           </template>
         </va-data-table>
