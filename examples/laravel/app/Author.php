@@ -6,8 +6,8 @@ use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 use Vtec\Crud\Traits\RequestMediaTrait;
-use Vtec\Crud\Traits\RequestTranslatableTrait;
 
 /**
  * App\Author
@@ -31,9 +31,9 @@ use Vtec\Crud\Traits\RequestTranslatableTrait;
  */
 class Author extends Model implements HasMedia
 {
-    use UserAccessTrait;
-    use RequestTranslatableTrait;
+    use HasTranslations;
     use RequestMediaTrait;
+    use UserAccessTrait;
 
     public $timestamps = false;
 
@@ -48,6 +48,11 @@ class Author extends Model implements HasMedia
     ];
 
     public $translatable = ['description'];
+
+    protected function getLocale(): string
+    {
+        return request()->get('locale') ?: app()->getLocale();
+    }
 
     public function registerMediaCollections(): void
     {

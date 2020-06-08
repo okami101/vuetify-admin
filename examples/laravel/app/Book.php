@@ -8,8 +8,8 @@ use Illuminate\Support\Carbon;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 use Vtec\Crud\Traits\RequestMediaTrait;
-use Vtec\Crud\Traits\RequestTranslatableTrait;
 
 /**
  * App\Book
@@ -46,7 +46,7 @@ use Vtec\Crud\Traits\RequestTranslatableTrait;
  */
 class Book extends Model implements HasMedia
 {
-    use RequestTranslatableTrait;
+    use HasTranslations;
     use RequestMediaTrait;
 
     public $timestamps = false;
@@ -74,6 +74,11 @@ class Book extends Model implements HasMedia
     ];
 
     public $translatable = ['title', 'description', 'summary'];
+
+    protected function getLocale(): string
+    {
+        return request()->get('locale') ?: app()->getLocale();
+    }
 
     public function registerMediaCollections(): void
     {

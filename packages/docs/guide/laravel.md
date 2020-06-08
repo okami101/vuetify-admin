@@ -227,21 +227,26 @@ class CreateBooksTable extends Migration
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Vtec\Crud\Traits\RequestTranslatableTrait;
+use Spatie\Translatable\HasTranslations;
 
 class Book extends Model
 {
-    use RequestTranslatableTrait;
+    use HasTranslations;
 
     protected $fillable = ['isbn', 'category', 'title', 'description', 'author', 'price', 'commentable', 'formats', 'publication_date'];
 
     protected $casts = ['price' => 'float', 'commentable' => 'boolean', 'formats' => 'array', 'publication_date' => 'date'];
 
     public $translatable = ['title', 'description', 'summary'];
+
+    protected function getLocale(): string
+    {
+        return request()->get('locale') ?: app()->getLocale();
+    }
 }
 ```
 
-> Guess all fillable, casts, translatable, as well as media (single or multiple) fields.
+> Guess all fillable, casts, translatable, as well as media (single or multiple) fields. The `getLocale` method is important in order to get the current asked Locale from request for good targeted locale translation (get or set).
 :::
 
 :::details CONTROLLER
@@ -748,13 +753,6 @@ public function registerMediaCollections(): void
 This trait will automatically search for all `logo` and `local` for uploaded file.  
 For media deletion, he looks for `logo_delete` and `local_delete` with valid media ids (can be array or single value).  
 The Vtec Admin file upload component `va-file-input` will take care of all of that.
-
-#### RequestTranslatableTrait
-
-Import `HasTranslations` from [Spatie Translatable](https://github.com/spatie/laravel-translatable) with addition of default locale detection from request for translatable fields saving or fetching.
-
-This trait will intercept all `locale` request input and set his value as default locale for saving. If not set default locale will be the user browser language in case you use included `Locale` middleware, if not this will be the app default locale.
-It should be used in conjunction with Vtec Admin resource translation feature as explained in [dedicated section](i18n.md#resource-translation).
 
 ### Search filter
 
