@@ -24,9 +24,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['middleware' => Impersonate::class], function () {
     Route::get('/user', function (Request $request) {
-        return array_merge((new UserResource($request->user()))->toArray($request), [
-            'impersonate' => $request->session()->has('impersonate'),
-        ]);
+        return new UserResource($request->user(), true);
     });
 
     Route::account();
