@@ -8,6 +8,7 @@ import admin from "./plugins/admin";
 import "./plugins/base";
 import "./plugins/chartist";
 import "./plugins/i18n";
+import "./sass/overrides.sass";
 
 Vue.config.productionTip = false;
 

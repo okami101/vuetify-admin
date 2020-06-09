@@ -1,4 +1,4 @@
-import ejs from "ejs";
+import ejs from "ejs/ejs.min.js";
 import util from "util";
 import upperFirst from "lodash/upperFirst";
 import kebabCase from "lodash/kebabCase";

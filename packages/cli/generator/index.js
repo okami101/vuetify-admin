@@ -15,8 +15,8 @@ module.exports = (api, options) => {
     dependencies: {
       axios: "^0.19.2",
       "portal-vue": "^2.1.0",
-      "vtec-admin": "../../vtec-admin/packages/admin",
-      "vue-chartist": "^2.2.0",
+      "vtec-admin": "^0.2.0",
+      "vue-chartist": "<2.3.0",
       vuedraggable: "^2.23.0",
     },
   });
@@ -96,9 +96,7 @@ module.exports = (api, options) => {
     api.injectImports(api.entryFile, [
       `import "./plugins/base";`,
       `import "./plugins/chartist";`,
-    ]);
-    api.injectImports("src/plugins/vuetify.js", [
-      `import "@/sass/overrides.sass";`,
+      `import "./sass/overrides.sass";`,
     ]);
 
     api.render("./material");
