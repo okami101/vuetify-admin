@@ -928,16 +928,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.14.1",
+            "version": "v7.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "469b7719a8dca40841a74f59f2e9f30f01d3a106"
+                "reference": "739c44a3f7041430a3fb357f2dcfdb78f55005d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/469b7719a8dca40841a74f59f2e9f30f01d3a106",
-                "reference": "469b7719a8dca40841a74f59f2e9f30f01d3a106",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/739c44a3f7041430a3fb357f2dcfdb78f55005d7",
+                "reference": "739c44a3f7041430a3fb357f2dcfdb78f55005d7",
                 "shasum": ""
             },
             "require": {
@@ -1080,7 +1080,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-06-02T22:34:18+00:00"
+            "time": "2020-06-09T14:00:25+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -5697,12 +5697,13 @@
             "dist": {
                 "type": "path",
                 "url": "../../vtec-laravel-crud",
-                "reference": "36101533e9ac1ffe00b7a7f24e1c3c0c212a7d91"
+                "reference": "1323db8db9b9d08f7ed10694613c262f67896ace"
             },
             "require": {
                 "illuminate/routing": "^7.5",
                 "illuminate/support": "^7.5",
                 "illuminate/validation": "^7.5",
+                "laravel/ui": "^2.0",
                 "php": "^7.4",
                 "spatie/laravel-medialibrary": "^8.1",
                 "spatie/laravel-query-builder": "^2.8",
@@ -5712,6 +5713,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "fzaninotto/faker": "^1.9",
+                "laracasts/generators": "^1.1",
                 "phpunit/phpunit": "^9.0"
             },
             "type": "library",
