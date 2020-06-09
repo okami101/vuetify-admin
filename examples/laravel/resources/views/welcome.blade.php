@@ -90,7 +90,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            <img src="https://vtec.okami101.io/hero.png"
+            <img src="https://vtec.okami101.io/logo.svg"
                  alt="Vtec Admin"
                  width="300"
                  height="300">
