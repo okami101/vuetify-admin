@@ -69,7 +69,35 @@ See [this getting started section](getting-started.md#directory-structure) for m
 
 ### Run backend API
 
+**`composer.json`**
+
+```json
+"scripts": {
+    "post-update-cmd": [
+        "Illuminate\Foundation\ComposerScripts::postUpdate",
+        "@php artisan ide-helper:generate",
+        "@php artisan ide-helper:meta"
+    ]
+}
+```
+
 After the installation, if you selected docker, simply launch `docker-compose up`. Don't forget to adapt your environment variables with those outputted by installer when finished.
+
+```bash
+DB_HOST=mysql
+DB_DATABASE=bookstore-demo
+DB_USERNAME=bookstore-demo
+DB_PASSWORD=bookstore-demo
+
+REDIS_HOST=redis
+CACHE_DRIVER=redis
+SESSION_DRIVER=redis
+
+NGINX_HTTP_PORT=8000
+PMA_PORT=9000
+MYSQL_ROOT_PASSWORD=root
+APP_TIMEZONE=UTC
+```
 
 :::tip DOCKER
 If you use docker, use `docker-compose exec laravel` before each next artisan commands.

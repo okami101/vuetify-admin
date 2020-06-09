@@ -27,7 +27,7 @@ COPY docker/laravel/php.ini /usr/local/etc/php/php.ini
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /srv/api/laravel
+WORKDIR /srv/api
 
 # copy init script
 COPY docker/laravel/init.sh /usr/local/bin/init
@@ -35,6 +35,10 @@ RUN chmod +x /usr/local/bin/init
 COPY docker/laravel/seed.sh /usr/local/bin/seed
 RUN chmod +x /usr/local/bin/seed
 
+COPY docker/laravel/entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
+
+ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
 
 EXPOSE 9000
