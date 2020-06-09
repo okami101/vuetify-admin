@@ -22,7 +22,6 @@
       >
         <va-data-table
           :fields="fields"
-          :options.sync="options"
           disable-create-redirect
           disable-show-redirect
           disable-edit-redirect
