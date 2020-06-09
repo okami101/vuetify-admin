@@ -43,6 +43,21 @@ Then follow wizard.
   * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
 
+:::tip IDE HELPER
+If you have selected ide helper package, you may add this lines into your main `composer.json` file :
+
+```json
+"scripts": {
+    "post-update-cmd": [
+        "Illuminate\Foundation\ComposerScripts::postUpdate",
+        "@php artisan ide-helper:generate",
+        "@php artisan ide-helper:meta"
+    ]
+}
+```
+
+:::
+
 ### Provided features and generated code
 
 Finally, the installer will integrate some additional boilerplate code to get basic features working within Vtec Admin :
@@ -69,25 +84,15 @@ See [this getting started section](getting-started.md#directory-structure) for m
 
 ### Run backend API
 
-**`composer.json`**
-
-```json
-"scripts": {
-    "post-update-cmd": [
-        "Illuminate\Foundation\ComposerScripts::postUpdate",
-        "@php artisan ide-helper:generate",
-        "@php artisan ide-helper:meta"
-    ]
-}
-```
-
-After the installation, if you selected docker, simply launch `docker-compose up`. Don't forget to adapt your environment variables with those outputted by installer when finished.
+After the installation, if you selected docker, don't forget to adapt your environment variables with those outputted by installer when finished as following :
 
 ```bash
+APP_TIMEZONE=UTC
+
 DB_HOST=mysql
-DB_DATABASE=bookstore-demo
-DB_USERNAME=bookstore-demo
-DB_PASSWORD=bookstore-demo
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=laravel
 
 REDIS_HOST=redis
 CACHE_DRIVER=redis
@@ -96,25 +101,26 @@ SESSION_DRIVER=redis
 NGINX_HTTP_PORT=8000
 PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
-APP_TIMEZONE=UTC
 ```
 
-:::tip DOCKER
-If you use docker, use `docker-compose exec laravel` before each next artisan commands.
-:::
+Then simply launch `docker-compose up`.
 
 Then you have to prepare laravel installation with migration and all dummy data :
 
 ```bash
-php artisan storage:link
-php artisan migrate:fresh --seed
+docker-compose exec laravel php artisan storage:link
+docker-compose exec laravel php artisan migrate:fresh --seed
 ```
 
-If not included on your dummy data, you may need to create your first user by `php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
+If not included on your dummy data, you may need to create your first user by `docker-compose exec laravel php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
 
 :::tip ADMIN URL
 By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
 Don't forget to edit it on production. Just edit ADMIN_URL environment variable for that.
+:::
+
+:::tip DOCKER
+As you have seen, if you use docker, use `docker-compose exec laravel` before each artisan commands.
 :::
 
 ### Run Admin UI
