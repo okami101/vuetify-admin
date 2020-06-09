@@ -16,10 +16,6 @@ class User extends JsonResource
     {
         $attributes = parent::toArray($request);
 
-        if ($request->hasSession()) {
-            $attributes['impersonate'] = $request->session()->has('impersonate');
-        }
-
         return $attributes;
     }
 }

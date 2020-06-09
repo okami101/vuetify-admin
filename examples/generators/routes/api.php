@@ -17,7 +17,9 @@ use Vtec\Crud\Http\Middleware\Impersonate;
 
 Route::group(['middleware' => Impersonate::class], function () {
     Route::get('/user', function (Request $request) {
-        return new UserResource($request->user());
+        return array_merge((new UserResource($request->user()))->toArray($request), [
+            'impersonate' => $request->session()->has('impersonate'),
+        ]);
     });
 
     Route::account();
