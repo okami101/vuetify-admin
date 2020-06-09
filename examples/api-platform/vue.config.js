@@ -1,6 +1,5 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
-
+  transpileDependencies: ["vuetify", "vtec-admin"],
   pluginOptions: {
     i18n: {
       locale: "en",
@@ -8,5 +7,8 @@ module.exports = {
       localeDir: "locales",
       enableInSFC: false,
     },
+  },
+  devServer: {
+    disableHostCheck: true,
   },
 };

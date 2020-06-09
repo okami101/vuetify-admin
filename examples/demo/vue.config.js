@@ -1,8 +1,6 @@
 module.exports = {
   publicPath: process.env.BASE_URL,
-
-  transpileDependencies: ["vuetify"],
-
+  transpileDependencies: ["vuetify", "vtec-admin"],
   pluginOptions: {
     i18n: {
       locale: "en",
@@ -11,7 +9,6 @@ module.exports = {
       enableInSFC: false,
     },
   },
-
   devServer: {
     disableHostCheck: true,
   },

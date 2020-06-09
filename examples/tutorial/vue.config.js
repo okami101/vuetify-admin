@@ -1,7 +1,5 @@
 module.exports = {
-  devServer: {
-    disableHostCheck: true,
-  },
+  transpileDependencies: ["vuetify", "vtec-admin"],
   pluginOptions: {
     i18n: {
       locale: "en",
@@ -10,5 +8,7 @@ module.exports = {
       enableInSFC: "false",
     },
   },
-  transpileDependencies: ["vuetify"],
+  devServer: {
+    disableHostCheck: true,
+  },
 };

@@ -19,6 +19,9 @@ module.exports = (api, options) => {
       "vue-chartist": "<2.3.0",
       vuedraggable: "^2.23.0",
     },
+    vue: {
+      transpileDependencies: ["vtec-admin"],
+    },
   });
 
   api.render("./admin", {
@@ -102,30 +105,6 @@ module.exports = (api, options) => {
     api.render("./material");
   }
 
-  let updateOrCreateVueConfig = () => {
-    const config = api.resolve("vue.config.js");
-
-    if (!fs.existsSync(config)) {
-      fs.writeFileSync(config, "module.exports = {}", "utf8");
-    }
-
-    const file = require(config);
-
-    if (!file.transpileDependencies) {
-      file.transpileDependencies = [];
-    }
-
-    if (!file.transpileDependencies.includes("vtec-admin")) {
-      file.transpileDependencies.push("vtec-admin");
-    }
-
-    fs.writeFileSync(
-      config,
-      `module.exports = ${JSON.stringify(file, 2, 2)}`,
-      "utf8"
-    );
-  };
-
   api.onCreateComplete(() => {
     /**
      * Cleanup unused component and views files
@@ -140,10 +119,5 @@ module.exports = (api, options) => {
         fs.unlinkSync(file);
       }
     });
-
-    /**
-     * Add vtec admin to babel transpile
-     */
-    updateOrCreateVueConfig();
   });
 };
