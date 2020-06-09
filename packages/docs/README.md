@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /hero.png
+heroImage: /logo.svg
 actionText: Get Started →
 actionLink: /guide/
 footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
