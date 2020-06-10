@@ -163,7 +163,7 @@ You can use a simple string for each field column, `"my-property"` is similar to
 
 In case of all above field options doesn't suit your needs, you can perfectly use advanced slot templating for each field. You can even use all VA fields inside it. Very useful when you need to nest this field component within parent component as shown next :
 
-```vue {5-18}
+```vue {5-18,31}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
@@ -186,6 +186,23 @@ In case of all above field options doesn't suit your needs, you can perfectly us
     </va-list>
   </base-material-card>
 </template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        //...
+        "authors",
+        //...
+      ],
+      //...
+    };
+  },
+  //...
+};
+</script>
 ```
 
 You just have to use a slot named as `field.{source}` for that, where `source` is the name of field. This slot will provide to you full row resource item and value of the cell that will be rendered as default.
@@ -318,7 +335,7 @@ As same way as field templating you can even template your filter directly by us
 
 Here is a full working sample :
 
-```vue {3,4-11,22,35-40}
+```vue {3,4-11,22,26,35-40}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
     <va-list :filters="filters" :filter.sync="filter">

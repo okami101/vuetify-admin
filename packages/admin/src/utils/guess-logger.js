@@ -41,9 +41,9 @@ export default {
             <v-card-text>
               <%_ for (field of fields) { _%>
               <%_ if (field.type === "text") { _%>
-                <va-field source="<%- field.source %>"></va-field>
+              <va-field source="<%- field.source %>"></va-field>
               <%_ } else { _%>
-                <va-field source="<%- field.source %>" type="<%- field.type %>"></va-field>
+              <va-field source="<%- field.source %>" type="<%- field.type %>"></va-field>
               <%_ } _%>
               <%_ } _%>
             </v-card-text>

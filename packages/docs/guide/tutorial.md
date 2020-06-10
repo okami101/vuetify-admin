@@ -125,7 +125,7 @@ You can of course use full Vue.js power for customize all columns instead of usi
 
 Imagine you want customize address cell with complete information :
 
-```vue {4-6}
+```vue {4-6,19}
 <template>
   <va-list>
     <va-data-table :fields="fields">
@@ -135,6 +135,24 @@ Imagine you want customize address cell with complete information :
     </va-data-table>
   </va-list>
 </template>
+
+
+<script>
+export default {
+  props: ["resource", "title"],
+  data() {
+    return {
+      fields: [
+        //...
+        "address",
+        //...
+      ],
+      //...
+    };
+  },
+  //...
+};
+</script>
 ```
 
 :::
