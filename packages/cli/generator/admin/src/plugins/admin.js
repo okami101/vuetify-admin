@@ -30,7 +30,9 @@ import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
 import axios from "axios";
+<%_ if (data === "laravel") { _%>
 import trimEnd from "lodash/trimEnd";
+<%_ } _%>
 
 /**
  * Load Admin UI components
