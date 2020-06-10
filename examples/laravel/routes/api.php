@@ -24,7 +24,9 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['middleware' => Impersonate::class], function () {
     Route::get('/user', function (Request $request) {
-        return new UserResource($request->user(), true);
+        if ($user = $request->user()) {
+            return new UserResource($user, true);
+        }
     });
 
     Route::account();

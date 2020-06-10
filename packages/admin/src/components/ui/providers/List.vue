@@ -90,7 +90,7 @@
           :resource="resource"
           text
           :options="listState.options"
-          :filter="currentFilter"
+          :filter="getCurrentFilter"
         ></va-export-button>
       </v-toolbar>
     </template>
@@ -265,6 +265,21 @@ export default {
     ...mapState({
       refresh: (state) => state.api.refresh,
     }),
+    getCurrentFilter() {
+      /**
+       * Get clean filter, do not take empty value but booleans
+       */
+      return Object.keys(this.currentFilter).reduce((o, key) => {
+        let value = this.currentFilter[key];
+
+        return {
+          ...o,
+          ...((!isEmpty(value) || typeof value === "boolean") && {
+            [key]: value,
+          }),
+        };
+      }, {});
+    },
     getFilters() {
       let filters = [];
 
@@ -425,20 +440,8 @@ export default {
         query.sortDesc = sortDesc.join(",");
       }
 
-      let filter = Object.keys(this.currentFilter).reduce((o, key) => {
-        let f = {
-          ...o,
-        };
-        let value = this.currentFilter[key];
-
-        if (value !== undefined && value !== "") {
-          f[key] = value;
-        }
-        return f;
-      }, {});
-
-      if (!isEmpty(filter)) {
-        query.filter = JSON.stringify(filter);
+      if (!isEmpty(this.getCurrentFilter)) {
+        query.filter = JSON.stringify(this.getCurrentFilter);
       }
 
       this.$router.push({ query }).catch(() => {});
@@ -460,7 +463,7 @@ export default {
         sort: (sortBy || []).map((by, index) => {
           return { by, desc: sortDesc[index] };
         }),
-        filter: this.currentFilter,
+        filter: this.getCurrentFilter,
       };
 
       if (!this.disablePagination) {

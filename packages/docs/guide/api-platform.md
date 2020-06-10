@@ -116,6 +116,8 @@ export default [
 
 Next add new resource links :
 
+**`src/_nav.js`**
+
 ```js {8,9}
 export default (i18n, admin) => [
   {
@@ -181,6 +183,8 @@ class Book
 ```
 
 So let's add them to our books list UI :
+
+**`src/resources/books/List.js`**
 
 ```vue {21-27}
 <template>
@@ -385,6 +389,8 @@ class Review
 ```
 
 The optimized reviews list page will be :
+
+**`src/resources/reviews/List.js`**
 
 ```vue {21-38}
 <template>

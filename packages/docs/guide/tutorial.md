@@ -125,6 +125,8 @@ You can of course use full Vue.js power for customize all columns instead of usi
 
 Imagine you want customize address cell with complete information :
 
+**`src/resources/users/List.vue`**
+
 ```vue {4-6,19}
 <template>
   <va-list>
@@ -616,6 +618,8 @@ Contrary to React Admin equivalent, reference field doesn't support auto fetchin
 
 So how can use it ? Simply by using specific `include` prop of `VaList` component. In case of JSON server data provider, it's an object which accepts both `expand` and `embed` property. Then don't forget to change `userId` to `user` as source prop for reference field.
 
+**`src/resources/posts/List.vue`**
+
 ```vue {5,19}
 <template>
   <base-material-card :icon="resource.icon" :title="title">
@@ -674,6 +678,8 @@ Then you should have nice linkable labelled chip for users :
 :::tip RELATIONSHIP IN SHOW PAGE
 Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaList` will use it as well if not defined, but it still can be overridden.
 
+**`src/resources/index.js`**
+
 ```js {6}
 export default [
   {
@@ -691,6 +697,8 @@ export default [
 ### Form
 
 Now we may add the possibility of attach user on any posts. We can use a simple select input for that :
+
+**`src/resources/posts/Form.vue`**
 
 ```vue {8-11}
 <template>
@@ -726,6 +734,8 @@ Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User
 ## Filters
 
 So we have global search as default filter from posts page list. It would be trivial to have the possibility to filter by user too. It's also as simple as adding fields. Simply add a new select filter object and bind it to `VaList` component as next :
+
+**`src/resources/posts/List.vue`**
 
 ```vue {3,14-21}
 <template>
@@ -795,6 +805,8 @@ Use `actions` property for disabling client related routes as we'll not use them
 :::
 
 Next go to show page and add a new list iterator component after show card :
+
+**`src/resources/posts/Show.vue`**
 
 ```vue {10-19,26,29-33}
 <template>

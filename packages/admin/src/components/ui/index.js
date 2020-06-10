@@ -1,9 +1,9 @@
 import Field from "./wrappers/Field";
 import Input from "./wrappers/Input";
 
-import List from "./injectors/List";
-import Show from "./injectors/Show";
-import Form from "./injectors/Form";
+import List from "./providers/List";
+import Show from "./providers/Show";
+import Form from "./providers/Form";
 
 import DataTable from "./list/DataTable";
 

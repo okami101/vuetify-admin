@@ -62,10 +62,6 @@ export default {
       this.$emit("input", value);
     },
     update(item, value) {
-      if (value === undefined) {
-        this.remove(item);
-        return;
-      }
       this.$emit("input", {
         ...this.value,
         [item.source]: value,
