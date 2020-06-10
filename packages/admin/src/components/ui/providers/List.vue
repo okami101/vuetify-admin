@@ -274,7 +274,9 @@ export default {
 
         return {
           ...o,
-          ...((!isEmpty(value) || typeof value === "boolean") && {
+          ...((!isEmpty(value) ||
+            typeof value === "number" ||
+            typeof value === "boolean") && {
             [key]: value,
           }),
         };

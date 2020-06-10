@@ -12010,10 +12010,10 @@ void-elements@^2.0.1:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
-vue-chartist@^2.2.0, vue-chartist@^2.2.1:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/vue-chartist/-/vue-chartist-2.3.0.tgz#b2cdb3b074e7aa8e9b84581dffe883c9557b5052"
-  integrity sha512-0uGADXuFNuR2I+bJIG3G3bvlEoUCPK/1eliNPdG760HLD7C/VD1Y8o7yIusz/c/9OE0ON+pMk/aiqDl2fCMu3g==
+vue-chartist@<2.3.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/vue-chartist/-/vue-chartist-2.2.1.tgz#c110f06c252467c5682634265abab543fb9c730f"
+  integrity sha512-JM7zQ9Y1PaRKF5sf82+bVuyL4qjDi+1eidOYbUlOHkzyQ3YhSUZGONDeO5ae+SISE6INvuL5js5hLOKxQMh+Vg==
   dependencies:
     chartist "^0.11.0"
 
