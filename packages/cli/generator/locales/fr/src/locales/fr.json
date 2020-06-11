@@ -7,7 +7,8 @@
     "home": "Accueil",
     "login": "Login",
     "profile": "Compte",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "not_found": "Non trouvé"
   },
   "login": {
     "username": "Utilisateur",

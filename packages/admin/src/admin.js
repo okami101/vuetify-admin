@@ -257,8 +257,8 @@ export default class VtecAdmin {
     /**
      * Add resources routes dynamically
      */
-    routes.children = (routes.children || []).concat(
-      this.resources.map((resource) =>
+    routes.children = this.resources
+      .map((resource) =>
         resourceCrudRoutes({
           store,
           i18n,
@@ -266,7 +266,7 @@ export default class VtecAdmin {
           title: this.title,
         })
       )
-    );
+      .concat(routes.children || []);
 
     router.addRoutes([routes]);
 

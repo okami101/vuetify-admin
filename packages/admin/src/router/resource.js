@@ -110,7 +110,7 @@ export default ({ store, resource, title }) => {
       title: pluralName,
     },
     children: [
-      { name: "list", path: "/" },
+      { name: "list", path: "" },
       { name: "create", path: "create" },
       { name: "show", path: ":id" },
       { name: "edit", path: ":id/edit" },

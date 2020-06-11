@@ -15,7 +15,8 @@
     "dashboard": "Dashboard",
     "help": "Help",
     "settings": "Settings",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "not_found": "Not found"
   },
   "login": {
     "username": "Username",

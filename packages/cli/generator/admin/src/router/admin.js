@@ -3,17 +3,21 @@ import Dashboard from "@/views/Dashboard";
 <%_ if (profile) { _%>
 import Profile from "@/views/Profile";
 <%_ } _%>
+import NotFound from "@/views/404";
 import i18n from "@/i18n";
 
 export default {
   path: "/",
   name: "home",
-  redirect: "/dashboard",
   component: AdminLayout,
   meta: {
     title: i18n.t("routes.home"),
   },
   children: [
+    {
+      path: "",
+      redirect: "/dashboard",
+    },
     {
       path: "/dashboard",
       name: "dashboard",
@@ -32,5 +36,12 @@ export default {
       },
     },
     <%_ } _%>
+    {
+      path: "*",
+      component: NotFound,
+      meta: {
+        title: i18n.t("routes.not_found"),
+      },
+    },
   ],
 };

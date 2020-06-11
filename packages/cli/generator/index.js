@@ -110,6 +110,7 @@ module.exports = (api, options) => {
      * Cleanup unused component and views files
      */
     [
+      "src/assets/logo.png",
       "src/components/HelloWorld.vue",
       "src/components/HelloI18n.vue",
       "src/views/Home.vue",

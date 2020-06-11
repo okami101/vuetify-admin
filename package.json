@@ -20,8 +20,5 @@
     "examples/tutorial",
     "examples/api-platform",
     "examples/generators/admin"
-  ],
-  "resolutions": {
-    "watchpack": "1.6.1"
-  }
+  ]
 }

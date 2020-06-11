@@ -140,6 +140,12 @@ module.exports = (ctx) => ({
         after: "</code></pre>",
       },
     ],
+    [
+      "@vuepress/google-analytics",
+      {
+        ga: "UA-169208301-1",
+      },
+    ],
   ],
   markdown: {
     lineNumbers: true,

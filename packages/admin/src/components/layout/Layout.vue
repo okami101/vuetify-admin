@@ -11,11 +11,10 @@
           <!-- @slot Content top header region, ideal place for VBreadcrumbs and/or additional custom messages or important notification as impersonation state, etc. -->
           <slot name="header"></slot>
           <va-messages></va-messages>
-          <v-container fluid>
+
+          <v-container fluid class="flex">
             <router-view />
           </v-container>
-
-          <v-spacer></v-spacer>
 
           <!-- @slot Footer region, put here some corporate information and links. -->
           <slot name="footer"></slot>

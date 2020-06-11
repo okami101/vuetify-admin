@@ -15,7 +15,8 @@
     "dashboard": "Tableau de bord",
     "help": "Aide",
     "settings": "Paramètres",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "not_found": "Non trouvé"
   },
   "login": {
     "username": "Utilisateur",

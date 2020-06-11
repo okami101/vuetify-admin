@@ -1,1 +1,18 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.5 100"><defs><style>.cls-1{fill:#1697f6;}.cls-2{fill:#7bc6ff;}.cls-3{fill:#1867c0;}.cls-4{fill:#aeddff;}</style></defs><title>Artboard 46</title><polyline class="cls-1" points="43.75 0 23.31 0 43.75 48.32"/><polygon class="cls-2" points="43.75 62.5 43.75 100 0 14.58 22.92 14.58 43.75 62.5"/><polyline class="cls-3" points="43.75 0 64.19 0 43.75 48.32"/><polygon class="cls-4" points="64.58 14.58 87.5 14.58 43.75 100 43.75 62.5 64.58 14.58"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(-1.3333,1.63282e-16,1.63282e-16,1.3333,286.479,392.491)">
+        <path d="M-63.451,-36.599L-45.493,-67.927L31.293,-68.23L49.665,-36.463L-63.451,-36.599Z" style="fill:rgb(52,73,94);fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1.3333,0,0,-1.3333,7.839,455.995)">
+        <g transform="matrix(1,0,0,1,178.06,235.01)">
+            <path d="M68.633,54.832L-22.466,-102.557L-97.643,27.794L-127.11,10.879L-43.592,-133.779L-82.825,-205.285L-53.071,-222.589L36.19,-68.247L106.865,-191.544L138.018,-171.771L55.593,-32.591L96.333,38.706L68.633,54.832Z" style="fill:rgb(65,184,131);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,178.81,235.01)">
+            <path d="M40.952,71.118L-22.544,-39.481L-70.767,44.209L-98.543,27.708L-23.216,-102.557L68.047,55.115L40.952,71.118Z" style="fill:rgb(52,73,94);fill-rule:nonzero;"/>
+        </g>
+    </g>
+    <g transform="matrix(3.46046,0,0,3.41195,-187.516,-91.1653)">
+        <path d="M127.669,38.614L180.988,69.836L180.988,132.28L127.669,163.501L74.349,132.28L74.349,69.836L127.669,38.614Z" style="fill:rgb(156,39,176);fill-opacity:0;stroke:rgb(52,73,94);stroke-width:11.63px;"/>
+    </g>
+</svg>
