@@ -5,7 +5,6 @@ import i18n from "@/i18n";
 
 export default {
   path: "/",
-  name: "home",
   component: AdminLayout,
   meta: {
     title: i18n.t("routes.home"),

@@ -14,7 +14,7 @@ export default {
         return {
           text: route.meta ? route.meta.title : route.name,
           exact: true,
-          to: route,
+          to: route.path === "" ? "/" : route,
         };
       });
     },
