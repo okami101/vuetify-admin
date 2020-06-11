@@ -3,6 +3,7 @@
  */
 import * as layout from "./components/layout";
 import * as ui from "./components/ui";
+import * as guessers from "./components/guessers";
 
 /**
  * Main JS App
@@ -21,7 +22,7 @@ VtecAdmin.install = (Vue) => {
   /**
    * Register Admin UI components
    */
-  [layout, ui].forEach((c) => {
+  [layout, ui, guessers].forEach((c) => {
     Object.keys(c).forEach((name) => {
       Vue.component(`Va${name}`, c[name]);
     });

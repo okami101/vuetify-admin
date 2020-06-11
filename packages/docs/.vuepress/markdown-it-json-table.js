@@ -1,7 +1,11 @@
 const fs = require("fs");
-const { get, upperFirst, camelCase } = require("lodash");
+const { getDocComponents, getDocMixins } = require("../../admin/docgen");
+const { get, upperFirst, camelCase, kebabCase } = require("lodash");
 
-module.exports = (md) => {
+module.exports = async (md) => {
+  let docComponents = await getDocComponents("../admin");
+  let docMixins = await getDocMixins("../admin");
+
   let getJsonSchemaData = (type, definition) => {
     let data = JSON.parse(
       fs.readFileSync(`.vuepress/public/schemas/${type}.json`)
@@ -30,13 +34,17 @@ module.exports = (md) => {
   };
 
   let getDocgenData = (component) => {
-    let file = `../admin/dist/json/docs/${component}.json`;
+    let isMixin = component.endsWith("mixin");
 
-    if (!fs.existsSync(file)) {
-      return null;
+    if (isMixin) {
+      return docMixins.find(
+        (doc) => component === `${kebabCase(doc.displayName)}-mixin`
+      );
     }
 
-    return JSON.parse(fs.readFileSync(file));
+    return docComponents.find(
+      (doc) => component === kebabCase(doc.displayName)
+    );
   };
 
   let generateSchemaTable = (state, startLine, type, definition) => {

@@ -12,11 +12,6 @@ import ShowLayout from "./layouts/ShowLayout";
 import EditLayout from "./layouts/EditLayout";
 import AsideLayout from "./layouts/AsideLayout";
 
-import ListGuesser from "./guessers/List";
-import ShowGuesser from "./guessers/Show";
-import CreateGuesser from "./guessers/Create";
-import EditGuesser from "./guessers/Edit";
-
 import ListButton from "./buttons/ListButton";
 import CreateButton from "./buttons/CreateButton";
 import ShowButton from "./buttons/ShowButton";
@@ -72,10 +67,6 @@ export {
   ShowLayout,
   EditLayout,
   AsideLayout,
-  ListGuesser,
-  ShowGuesser,
-  CreateGuesser,
-  EditGuesser,
   ListButton,
   CreateButton,
   ShowButton,

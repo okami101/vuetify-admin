@@ -62,15 +62,10 @@ build-demo: ## compile the demo example to static js
 build-admin: ## compile the admin library to static js
 	@cd ./packages/admin && yarn -s build
 
-docgen-api: ## generate api docs
-	@cd ./packages/admin && node docgen
-
 run-docs: ## run the docs
-	@make docgen-api
 	@cd ./packages/docs && yarn dev --port 9000
 
 build-docs: ## compile the docs into to static js
-	@make docgen-api
 	@cd ./packages/docs && yarn -s build
 
 build-all: ## build all admin lib, demo and docs

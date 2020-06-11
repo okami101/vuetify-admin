@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { guessFields } from "../../../utils/guesser";
+import { guessFields } from "../../utils/guesser";
 
 export default {
   props: ["title", "resource", "item"],

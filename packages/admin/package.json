@@ -19,7 +19,7 @@
   "license": "MIT",
   "scripts": {
     "build": "vue-cli-service build --name admin --target lib src/index.js --report",
-    "prepublishOnly": "npm run build && node docgen"
+    "prepublishOnly": "npm run build && node meta"
   },
   "vetur": {
     "tags": "dist/json/tags.json",
