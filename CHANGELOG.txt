@@ -1,0 +1,7 @@
+# Changelog
+
+## v0.3.0 - Initial release
+
+## v0.2.12 - Initial release
+
+* Add 404 page support
