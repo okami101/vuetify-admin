@@ -14,7 +14,7 @@ Check [API Platform tutorial](#api-platform) or more advanced [Laravel guide](la
 
 ### Backend API
 
-First you will need a function local API in order to test Vtec Admin. We will use JSONPlaceholder as DB sample but it's really advised to run it locally instead of current online version for preventing slow response. Don't worry it's done in less than 2 minutes in 3 steps :
+First you will need a functional local API in order to test Vtec Admin. We will use JSONPlaceholder as DB sample but it's really advised to run it locally instead of current online version for preventing slow response. Don't worry it's done in less than 2 minutes in 3 steps :
 
 ```bash
 npm install -g json-server

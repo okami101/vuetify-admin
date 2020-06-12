@@ -3,15 +3,8 @@
 Even if Vtec Admin can be used as standalone NPM package via `yarn add vtec-admin`, the recommended way is to use dedicated [Vue CLI plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin) on fresh Vuetify app project.  
 It takes care of all minimal boilerplate code generation for quick start admin development as well as including material theme and UI CRUD generators scripts.
 
-:::tip API
-You should have a separate API backend project before using this package.
-
-Go to the [tutorial](tutorial.md) for step-by-step Vtec Admin showcase using a fake API server.
-
-For more advanced real API, fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. As a bonus, this package will used an integrated Vue CLI preset for even less install steps.
-
-If you choose Laravel as API backend, jump to the more optimized [Laravel installation section](laravel.md).  
-To use it on your custom API, you will need to write your own [data provider](data-providers.md).
+:::tip TUTORIAL
+If first discover, I recommend to go to the [tutorial](tutorial.md) for step-by-step Vtec Admin showcase using a fake API server.
 :::
 
 ## Use Vue CLI Plugin
@@ -21,6 +14,14 @@ To use it on your custom API, you will need to write your own [data provider](da
 > As a CLI project, be sure to have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 
 ### Prepare
+
+:::tip BACKEND API
+You should have a separate API backend project before using this package.
+
+Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. As a bonus, this package will use an integrated laravel optimized Vue CLI preset for even less install steps. Go [here](laravel.md) for full showcase.
+
+To use it on your custom API, you will need to write your own [data provider](data-providers.md).
+:::
 
 Initialize your brand new Vue CLI admin project by `vue create admin` and go enter by `cd admin`.
 
@@ -42,15 +43,15 @@ Then you can finally launch `vue add vtec-admin` which will do all this steps :
 * Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 * Add UI CRUD generators scripts
 * Generate inside your project all minimal boilerplate by selecting them via on-demand wizard for quickly start :
-  * Any data provider, select [custom implementation](data-provider.md) if you intend to use within your own API. It will prepare for you basic implemented data provider file, that let you just fill in the holes.
-  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use your [custom provider](authentication.md) by starting with an empty implemented file.
+  * Data provider, select [custom implementation](data-provider.md) if you intend to use it with your own API. It will prepare for you a basic implemented data provider file.
+  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use a [custom provider](authentication.md) by starting with an empty implemented file.
   * Pre configured API URL endpoint for above providers using axios.
   * Supported UI locales.
   * Basic profile edition page with password change support. You'll need to [configure endpoints](authentication.md#profile-page) for profile update on API side.
   * User management single page list default template with direct aside creation / show / edition.
   * Add impersonation components if your API support it.
-  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as superset on Vuetify with nice static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/).
-  * Finally initialize admin plugin with automatic crud pages webpack context load and create base admin layout page on your App.vue entry file.
+  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as a superset theme on Vuetify with nice static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/).
+  * Finally initialize admin plugin with automatic crud pages webpack context load and create base admin layout page.
 
 If your backend run at different address than [http://localhost:8000](http://localhost:8000), edit `VUE_APP_API_URL` environment variable according to a valid API inside `.env.local`.
 
@@ -61,14 +62,8 @@ VUE_APP_API_URL=/
 BASE_URL=/admin
 ```
 
-> For TinyMCE 5 usage, you may add your own api key :
+Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
 
-```env
-VUE_APP_TINYMCE_API_KEY=my_api_key
-VUE_APP_TINYMCE_LANGUAGE=my_default_locale
-```
-
-Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.  
 Now you have a full basic admin working and are ready to start !
 
 :::tip NEW NPM SCRIPTS
@@ -132,12 +127,13 @@ src
 └── main.js
 :::
 
-As you can guess, main working directory will be the `resources` folder. Use `views` for your custom public or private pages.  
+Your main working directory will be the `resources` folder. Use `views` for your custom public or private pages.
+
 The next steps is to [register your backend resources and write your CRUD pages](#at-a-glance).
 
 ## Bare metal installation
 
-If you can't use dedicated Vue CLI plugin, you have to install main Vtec Admin library as-is. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then import and register them as following :
+If you can't use dedicated Vue CLI plugin, you can still try to install main Vtec Admin library as-is but it will be far more complex to get it properly configured. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then import and register them as following :
 
 **`src/plugins/admin.js`**
 
@@ -150,7 +146,7 @@ import "vtec-admin/src/loader";
 Vue.use(VtecAdmin);
 ```
 
-Next you must instantiate Vtec Admin as [explained here](admin.md).
+Next you must instantiate Vtec Admin with proper providers and options. Follow [full guide here](admin.md).
 
 ## At a glance
 
@@ -194,7 +190,7 @@ This guesser pages have one big utility. They display full generated Vue compone
 
 ![guesser](/assets/guesser.png)
 
-Here some samples for `reviews` resource :
+Here some full CRUD page samples for `reviews` resource :
 
 :::details LIST
 **`src/resources/reviews/List.vue`**

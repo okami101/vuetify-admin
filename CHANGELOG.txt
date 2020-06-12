@@ -2,6 +2,11 @@
 
 ## v0.3.0 - Initial release
 
+## v0.2.13
+
+* 📝 Documentation review
+* 🚀 Upgrade to Vuetify 2.3.0
+
 ## v0.2.12
 
 * 🚀 Add 404 page support

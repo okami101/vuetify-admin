@@ -1,6 +1,6 @@
 # Laravel
 
-This guide is a demonstration of how official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) can heavily facilitates Vtec Admin integration within laravel backend. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
+This guide is a demonstration of how official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) can heavily facilitates Vtec Admin integration within laravel backend for full top to bottom development experience. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
 
 :::warning REQUIREMENTS
 
@@ -31,6 +31,7 @@ Then follow wizard.
 * [Laravel Spatie Query Builder](https://github.com/spatie/laravel-query-builder) for api resource browsing with all pagination, fields select, sorting and filters support.
 * [Laravel Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) for easier centralized media files solution.
 * [Laravel Spatie Translatable](https://github.com/spatie/laravel-translatable) for simple translatable model support saved on JSON format.
+* [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended) for advanced migration with fields and foreign generation feature.
 
 **The installer will suggest you to install :**
 
@@ -38,7 +39,6 @@ Then follow wizard.
   * [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), for IDE integration and laravel intellisense.
   * [PHP CS Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) for coding formatter with Laravel preset.
   * [Clockwork](https://github.com/itsgoingd/clockwork), for easy API debugging.
-  * [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended) for advanced migration with fields and foreign generation feature.
 * Other suggested production packages :
   * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
@@ -77,7 +77,7 @@ You can still regenerate new admin UI without reuse full installer by using `php
 :::
 
 :::tip DIRECTORY STRUCTURE
-See [this getting started section](getting-started.md#directory-structure) for more detail of what you got inside the `admin` folder.
+See [this getting started section](getting-started.md#directory-structure) for more detail of what you get inside the `admin` folder.
 :::
 
 ## Usage
@@ -105,9 +105,9 @@ PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
 ```
 
-Then simply launch `docker-compose up`.
+After this you can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis).
 
-Then you have to prepare laravel installation with migration and all dummy data :
+Then you have to prepare laravel installation with migration and all dummy data (if you have some) :
 
 ```bash
 docker-compose exec laravel php artisan storage:link
@@ -127,7 +127,7 @@ As you have seen, if you use docker, use `docker-compose exec laravel` before ea
 
 ### Run Admin UI
   
-You're finally ready to get up and running the Admin UI by `cd admin && yarn serve --open`. It will redirect you to this login page :
+You're finally ready to get up and running the Admin UI by `cd admin && yarn serve --open`. It will redirect you to this [customizable login page](authentication.md#login-page) :
 
 ![login](/assets/laravel/login.jpg)
 
@@ -135,11 +135,13 @@ After login you will be redirect to this nice static dashboard, which is entirel
 
 ![dashboard](/assets/laravel/dashboard.png)
 
-Profile page that allow basic user editing and password change is also fully functional and available under top right user dropdown menu :
+[Customizable profile page](authentication.md#login-page) that allow basic user editing and password change is also fully functional and available under top right user dropdown menu :
 
 ![dashboard](/assets/laravel/profile.png)
 
 Finally a users section that allows users management with direct aside edit is also provided, as well as possibility of impersonation.
+
+![users](/assets/laravel/users.png)
 
 ## Generators
 

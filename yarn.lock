@@ -1875,10 +1875,10 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-app@^4.1.2", "@vue/babel-preset-app@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-4.4.1.tgz#97c6796183cd0abf96a17297dc335c4c702fd8c4"
-  integrity sha512-VHVROEBBiW0dnuNuzlFElkncXo+zxh5Px0MZ51Th5da8UPbQodf43mnpotMnFtmCPTXAFL58tzDttu1FgrgfpQ==
+"@vue/babel-preset-app@^4.1.2", "@vue/babel-preset-app@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-4.4.4.tgz#e40929ca89ea3d547ea20cf0a15c222c9ad1ba38"
+  integrity sha512-9b74d/lz4GEc9zkF3C+vjgEXYqu9ITq1DimUT+IVRJDvhgnV+a3C+pQY4Kl4PZSOyqkTHM7jE6eG2K5DUwKpWg==
   dependencies:
     "@babel/core" "^7.9.6"
     "@babel/helper-compilation-targets" "^7.9.6"
@@ -1943,60 +1943,60 @@
     "@vue/babel-plugin-transform-vue-jsx" "^1.1.2"
     camelcase "^5.0.0"
 
-"@vue/cli-overlay@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-4.4.1.tgz#f1f51f31f7a00d371e9a5b5a941525184475bf8b"
-  integrity sha512-EQqAVy7O/qqGOfSYIGL073FWlr/s6QFA0wA1wY8pHnTS5WPwAiHT+D+xe+fgXKZ3KeL7v7u/le7YFIEVXFVXOg==
+"@vue/cli-overlay@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-4.4.4.tgz#43268a8cdcd3ad741dfa51006b576064fbbe6e8e"
+  integrity sha512-cTvtifIpsSVF2dPF+ibUoAq+hMkEbg4EYTsf6dUuUrBKi1G2tyZ3Pnx54U2NpqXjJMykqMGX+i+BxpIG5tJCGw==
 
 "@vue/cli-plugin-babel@^4.4.1", "@vue/cli-plugin-babel@~4.4.0", "@vue/cli-plugin-babel@~4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-4.4.1.tgz#2c6e969fe51f1b4b211bea84afb7cad18240f70f"
-  integrity sha512-dmhymfm2UnZDw13k/zKT6YIj7je53mE37Y+jEJxpRUlCKFmZUDuYkJ8i5HmO0SnaCnEGqNELaBkoIFnY3aE2Gw==
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-4.4.4.tgz#18904b5e38173291b37054c2f0393fb8c748f37b"
+  integrity sha512-VctlKy5oEYhI+AiPpzlorjDmuhbpoRQcKXpBdf2bXvq0+uuTQg7UXmPX0RKJejnFTKSJZvuPTihgfCWiyh9C3Q==
   dependencies:
     "@babel/core" "^7.9.6"
-    "@vue/babel-preset-app" "^4.4.1"
-    "@vue/cli-shared-utils" "^4.4.1"
+    "@vue/babel-preset-app" "^4.4.4"
+    "@vue/cli-shared-utils" "^4.4.4"
     babel-loader "^8.1.0"
     cache-loader "^4.1.0"
     thread-loader "^2.1.3"
     webpack "^4.0.0"
 
 "@vue/cli-plugin-eslint@^4.4.1", "@vue/cli-plugin-eslint@~4.4.0", "@vue/cli-plugin-eslint@~4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.4.1.tgz#e39d6517da6de231195d227f995f495e2958a74a"
-  integrity sha512-T+9+q44iajQEbe59z6Io3otFOsWnPOEVU+/hrDyC6aOToJbQo6P4VacByDDcuGYENAjAd8ENLSt18TaPNSIyRw==
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.4.4.tgz#19fd1da1863a90584b78939cce1ce94c49ed4388"
+  integrity sha512-B+l3smq3Lyob9qiuywC/IymCCyV2Gm/l1ZtxRzQI98RDTKei1PrRriIi3Hrg/AkK59HirwR7P7wiNhF2Pqg3VA==
   dependencies:
-    "@vue/cli-shared-utils" "^4.4.1"
+    "@vue/cli-shared-utils" "^4.4.4"
     eslint-loader "^2.2.1"
     globby "^9.2.0"
     inquirer "^7.1.0"
     webpack "^4.0.0"
     yorkie "^2.0.0"
 
-"@vue/cli-plugin-router@^4.4.1", "@vue/cli-plugin-router@~4.4.0", "@vue/cli-plugin-router@~4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-router/-/cli-plugin-router-4.4.1.tgz#07d09df0f4bea816e637da814f578b808f1f93b2"
-  integrity sha512-kCSsJG7pjDvCJDjGtcCI5l0UjmqwNigOR41RkeGSjSUvzV4ArSniXjFqrOmtpMp36S5xCtwtt9MFm/K4fCubkQ==
+"@vue/cli-plugin-router@^4.4.4", "@vue/cli-plugin-router@~4.4.0", "@vue/cli-plugin-router@~4.4.1":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-router/-/cli-plugin-router-4.4.4.tgz#59e11dd55df854618616ad4f013b20c52e4a3a68"
+  integrity sha512-jZTupo+zFz1YHH3Q4WC5nJW5wlNEDqX//m+atwUISPahVEG6/EV8HwJnQDT7EQ9re4v78xI27eOtyNw+qSyiSA==
   dependencies:
-    "@vue/cli-shared-utils" "^4.4.1"
+    "@vue/cli-shared-utils" "^4.4.4"
 
-"@vue/cli-plugin-vuex@^4.4.1", "@vue/cli-plugin-vuex@~4.4.0", "@vue/cli-plugin-vuex@~4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.4.1.tgz#98d18fc5d36fa6e0d1fc2ecaeea37aa965564f19"
-  integrity sha512-FtOFsDP0qznwVaCz0BZmTzUm5vhHSJzX2/XD3L5dLTkrNxyDEbZmbKoX0n1OzBcQwZC7dkJZP2tdoCQx0mX//g==
+"@vue/cli-plugin-vuex@^4.4.4", "@vue/cli-plugin-vuex@~4.4.0", "@vue/cli-plugin-vuex@~4.4.1":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.4.4.tgz#42328c161978823a1eac97a07832a7aa225cbb9b"
+  integrity sha512-A2SZD0B5yPz60W7go2ZYTIHooQse7bhhNUlinGQrdYeQCuURKUqqUbl/zF8u/8Qqo6nZ4F469fHNH6XWRN9Nnw==
 
 "@vue/cli-service@^4.4.1", "@vue/cli-service@~4.4.0", "@vue/cli-service@~4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-4.4.1.tgz#b26a435d8c953bc7efaf7b784c9835c1415bcf1c"
-  integrity sha512-DVV0zr5Sw7pzdm3z3PRrfqihLgoJP/d9AgNFcSSQF/J9Gtvjf1t0PTJJFeLANHSL3kDWte+3kjc22sXayu0BJQ==
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-4.4.4.tgz#256c990e49a2ff8dc533b773c504a65435c75c4c"
+  integrity sha512-AKWpBpBAB+LHJ8JpArM2BJ0I2REy9lG7xIkJn9k3Vw9gadejx+y74P0bJh/J8hY65kDTFltO1BW1Kv3URw/ifQ==
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
     "@soda/friendly-errors-webpack-plugin" "^1.7.1"
     "@soda/get-current-script" "^1.0.0"
-    "@vue/cli-overlay" "^4.4.1"
-    "@vue/cli-plugin-router" "^4.4.1"
-    "@vue/cli-plugin-vuex" "^4.4.1"
-    "@vue/cli-shared-utils" "^4.4.1"
+    "@vue/cli-overlay" "^4.4.4"
+    "@vue/cli-plugin-router" "^4.4.4"
+    "@vue/cli-plugin-vuex" "^4.4.4"
+    "@vue/cli-shared-utils" "^4.4.4"
     "@vue/component-compiler-utils" "^3.1.2"
     "@vue/preload-webpack-plugin" "^1.1.0"
     "@vue/web-component-wrapper" "^1.2.0"
@@ -2043,10 +2043,10 @@
     webpack-dev-server "^3.11.0"
     webpack-merge "^4.2.2"
 
-"@vue/cli-shared-utils@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.1.tgz#930304ade5a9f9bf0d2fd67d9305cad83d04aae1"
-  integrity sha512-teevHgI7XUsKVMOncx3M+6iLjO28woGfRwgUG4hR83moVBHQe5x2OCr2i5t/58bwpv269RD5RYXBQCGtIXuxZw==
+"@vue/cli-shared-utils@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.4.4.tgz#b9685b73a604c8a7ee82d6fc3319fe7bb2cdb274"
+  integrity sha512-ccMZtTMSutR35V5nrU/eyj+zRMomTRGBTLwJPmaJ2sRiW/93MTggQGXDWC8JRAA8yiU1N8xza8mjBxS0O2wIAA==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
@@ -2470,9 +2470,9 @@ acorn@^6.4.1:
   integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 acorn@^7.1.1, acorn@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.2.0.tgz#17ea7e40d7c8640ff54a694c889c26f31704effe"
-  integrity sha512-apwXVmYVpQ34m/i71vrApRrRKCWQnZZF1+npOD0WV5xZFfwWOmKGQ2RWlfdy9vWITsenisM8M0Qeq8agcFHNiQ==
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.3.1.tgz#85010754db53c3fbaf3b9ea3e083aa5c5d147ffd"
+  integrity sha512-tLc0wSnatxAQHVHUapaHdz72pi9KUyHjq5KyHjGg9Y8Ifdc79pTh2XvI6I1/chZbnM7QtNKzh66ooDogPZSleA==
 
 address@^1.1.2:
   version "1.1.2"
@@ -3539,7 +3539,7 @@ check-types@^8.0.3:
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
   integrity sha512-YpeKZngUmG65rLudJ4taU7VLkOCTMhNl/u4ctNC56LQS/zJTyNH0Lrtwm1tfTsbLlwvlfsA2d1c8vCf/Kh2KwQ==
 
-"chokidar@>=2.0.0 <4.0.0":
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
   integrity sha512-aXAaho2VJtisB/1fg1+3nlLJqGOuewTzQpd/Tz0yTg2R0e4IGtshYvtjowyEumcBv2z+y4+kc75Mz7j5xJskcQ==
@@ -3933,9 +3933,9 @@ connect-history-api-fallback@^1.5.0, connect-history-api-fallback@^1.6.0:
   integrity sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==
 
 consola@^2.6.0:
-  version "2.12.2"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.12.2.tgz#9610f158e7b0a9ecc8f8bb0c4fc8e7c52bf41d05"
-  integrity sha512-c9mzemrAk57s3UIjepn8KKkuEH5fauMdot5kFSJUnqHcnApVS9Db8Rbv5AZ1Iz6lXzaGe9z1crQXhJtGX4h/Og==
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.13.0.tgz#5a4dc75e1b1fddbd8b10728e7790a2e54efeeeb7"
+  integrity sha512-Jw+8qpL0yrpfqH9m90fWoDRQyn8TYU6Aegpl4UofoP81VYvQLoOWMpFw2vQ3U/cyLRRzTc/CyNC6YYVzZFU8Eg==
 
 console-browserify@^1.1.0:
   version "1.2.0"
@@ -4905,9 +4905,9 @@ ejs@^3.1.3:
     jake "^10.6.1"
 
 electron-to-chromium@^1.3.413:
-  version "1.3.466"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.466.tgz#89f716db3afc4bb482ea2aaaa16c4808f89f762a"
-  integrity sha512-eieqkoM2hCkZZRhETKyCouMziDV3l4XEKHRLuzcHG+HV+P7PeODU/z9HAmBgMQkzvHg2DoyQhfIDmmeguLZT/Q==
+  version "1.3.469"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.469.tgz#05a06ec9c915127ed6c9f5b657cd1d7e11a3f944"
+  integrity sha512-O9JM6ZsFhS0uy0S2Y3G8EoNfqio3srdxCuwuJh8tKgQKa6rf7je/xQ3TIoiEaEtpf2/qFFLAGt/xB4MjuUZqRw==
 
 elliptic@^6.0.0, elliptic@^6.5.2:
   version "6.5.2"
@@ -12105,9 +12105,9 @@ vue-loader@^15.7.1, vue-loader@^15.9.2:
     vue-style-loader "^4.1.0"
 
 vue-router@^3.1.3, vue-router@^3.2.0, vue-router@^3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.3.2.tgz#0099de402edb2fe92f9711053ab5a2156f239cad"
-  integrity sha512-5sEbcfb7MW8mY8lbUVbF4kgcipGXsagkM/X+pb6n0MhjP+RorWIUTPAPSqgPaiPOxVCXgAItBl8Vwz8vq78faA==
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.3.3.tgz#92603966921f3f0c7e9ff3881cf0b7ab311533df"
+  integrity sha512-Qmzkurgmy9Muy8HItNQcMYAeANHi/NY4ppOJ/qhTWtrg4mFan+VLX+LEv5DqoYOX1XEabN3m3lLPOEEgUpRr0A==
 
 vue-server-renderer@^2.6.10:
   version "2.6.11"
@@ -12201,31 +12201,40 @@ vuepress@^1.4.0:
     update-notifier "^4.0.0"
 
 vuetify-loader@^1.3.0, vuetify-loader@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/vuetify-loader/-/vuetify-loader-1.4.4.tgz#f31196c631f259f3e42cc1a892ed8ea4594a42ee"
-  integrity sha512-ryEtVZ/t+zvTM9UscEX5mWsbTOH5HGWITxlysYkkXtcgzgV21t7rRLHBhReH8oMBYddAij4AOosimhcfKnxFHQ==
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/vuetify-loader/-/vuetify-loader-1.5.0.tgz#511173c4d1498761210708f7e475dff60fcee8bb"
+  integrity sha512-JC2EVAblox2FFWE8NIUoHvQmGnnGJLrHISo2Ngciov3mWEWpt2B3qfQ3CYwmUJ7nM99DQgYDdNs26Dg3bgKzEQ==
   dependencies:
     file-loader "^4.0.0"
     loader-utils "^1.2.0"
 
 vuetify@^2.2.32:
-  version "2.2.34"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.2.34.tgz#070458a9424a4aa48ca5769cd8837265c90766c3"
-  integrity sha512-YE2gMGs2QvY/HsnVfUtYGoA6Nq7Pt6W7MuToJgSNMFmSHvCcjApZW39mebGKfVY2llLDbmrnL8d2AvOmUk8hcg==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.3.0.tgz#c78854c7e7abe2674d88d8832950f951789e9193"
+  integrity sha512-55lQr5878vACGD+jldcttpaGybZf4Qb1uo8WPdT97a179TuDCkPPxWEThRfMlgcpf5kfxae4c5ox+mfgmb/V6Q==
 
 vuex@^3.1.3, vuex@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.4.0.tgz#20cc086062d750769fce1febb34e7fceeaebde45"
   integrity sha512-ajtqwEW/QhnrBZQsZxCLHThZZaa+Db45c92Asf46ZDXu6uHXgbfVuBaJ4gzD2r4UX0oMJHstFwd2r2HM4l8umg==
 
-watchpack@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.6.1.tgz#280da0a8718592174010c078c7585a74cd8cd0e2"
-  integrity sha512-+IF9hfUFOrYOOaKyfaI7h7dquUIOgyEMoQMLA7OP5FxegKA2+XdXThAZ9TU2kucfhDH7rfMHs1oPYziVGWRnZA==
+watchpack-chokidar2@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/watchpack-chokidar2/-/watchpack-chokidar2-2.0.0.tgz#9948a1866cbbd6cb824dea13a7ed691f6c8ddff0"
+  integrity sha512-9TyfOyN/zLUbA288wZ8IsMZ+6cbzvsNyEzSBp6e/zkifi6xxbl8SmQ/CxQq32k8NNqrdVEVUVSEf56L4rQ/ZxA==
   dependencies:
     chokidar "^2.1.8"
+
+watchpack@^1.6.1:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.2.tgz#c02e4d4d49913c3e7e122c3325365af9d331e9aa"
+  integrity sha512-ymVbbQP40MFTp+cNMvpyBpBtygHnPzPkHqoIwRRj/0B8KhqQwV8LaKjtbaxF2lK4vl8zN9wCxS46IFCU5K4W0g==
+  dependencies:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
+  optionalDependencies:
+    chokidar "^3.4.0"
+    watchpack-chokidar2 "^2.0.0"
 
 wbuf@^1.1.0, wbuf@^1.7.3:
   version "1.7.3"

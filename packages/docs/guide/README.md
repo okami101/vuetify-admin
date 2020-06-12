@@ -18,11 +18,11 @@ His main purpose is to accelerate resources CRUD UI development in a full SPA, w
 * Best balance between productivity and customization.
 * Maximize usage of many other open source projects.
 
-This is a sort of Vue.js little brother equivalent to well known [React Admin](https://github.com/marmelab/react-admin/), which uses even more extensive DSL approach.
+See it as a Vue.js little brother equivalent to well known [React Admin](https://github.com/marmelab/react-admin/).
 
 ## How It Works
 
-**Vtec Admin :**
+**Vtec Admin Library :**
 
 * VAConstructor : resources builder of Vtec Admin, transform resources object ino CRUD VueRoutes and Vuex modules
 * VAComponents : contextual resources aware components
@@ -54,44 +54,45 @@ To summary :
 
 **Quick starter :**
 
-* [Vue CLI Plugin](getting-started.md) : for immediate start
-* [Vtec Laravel Crud](laravel.md) : for complete top to bottom development experience that includes backend
-* [Tutorial](tutorial.md) : follow this quick tutorial if you want a good starting point
+* [Vue CLI Plugin](getting-started.md) : for immediate start.
+* [Tutorial](tutorial.md) : follow this quick tutorial if you want a good starting point.
+* [API Platform](api-platform.md) : tutorial with advanced backend API for more real use case.
+* [Vtec Laravel Crud](laravel.md) : for complete top to bottom development experience with Laravel backend.
 
 **Resources builder :**
 
 VA will try to integrate within all of your existing plugins without hoisted them.
 
-* [VA usage](admin.md) : How to use VA constructor
-* [Resources](resources.md) : expected format of resource object
-* [Internationalization](i18n.md) : 100% translatable resources via vue-i18n by following simple rules
-* [Layout](crud/layout.md) : Customizable menus
+* [VA usage](admin.md) : How to use VA constructor.
+* [Resources](resources.md) : expected format of resource object.
+* [Internationalization](i18n.md) : 100% translatable resources via vue-i18n by following simple rules.
+* [Layout](crud/layout.md) : Customizable menus.
 
 **All essential components :**
 
-* [Full-featured DataTable](crud/list.md) : multi-sort, pagination, global search, advanced filters, CSV export
-* [Show view](crud/show.md) : For show detail of any resources
-* [Form](crud/form.md) : Global unique form V-model and server-side validation
-* [Fields](components/fields.md) : for list or show views, extensible with your own fields
-* [Inputs](components/inputs.md) : for all create / edit forms, extensible with your own inputs
+* [Full-featured DataTable](crud/list.md) : multi-sort, pagination, global search, advanced filters, CSV export.
+* [Show view](crud/show.md) : For show detail of any resources.
+* [Form](crud/form.md) : Global unique form V-model and server-side validation.
+* [Fields](components/fields.md) : for list or show views, extensible with your own fields.
+* [Inputs](components/inputs.md) : for all create / edit forms, extensible with your own inputs.
 
 **Free of any backend :**
 
 Customizable providers by implementing a simple contract :
 
-* [Auth providers](authentication.md)
-* [Data providers](data-providers.md)
-* [Authorization](authorization.md) : User permissions available everywhere
+* [Data providers](data-providers.md).
+* [Auth providers](authentication.md).
+* [Authorization](authorization.md) : User permissions available everywhere.
 
 **Code generators :**
 
-* [Generators](generators.md) : YAML driven development that follows a JSON schema
+* [Generators](generators.md) : YAML driven development that follows a JSON schema.
 
 ## Other admin builders
 
 ### React Admin
 
-* [React Admin](https://github.com/marmelab/react-admin/) for React world. Obviously far more mature than VA, well tested, with bigger and bigger community. Actually the funniest way for admin development and is the SPA admin framework I highly recommend.
+* [React Admin](https://github.com/marmelab/react-admin/) for React world. Obviously far more mature than VA, highly tested, with bigger and bigger community. Actually the funniest way for admin development and is the SPA admin framework I highly recommend.
 
 ### Nova
 
@@ -103,19 +104,19 @@ Customizable providers by implementing a simple contract :
 
 ### EasyAdmin
 
-* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), open sourced and free admin builder for Symfony, very YAML configuration-oriented development. Not many widgets by default but productive, heavily configurable and extensible via twig templates.
+* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), open sourced and free admin builder for Symfony, very YAML configuration-oriented development. Not many widgets by default but productive and extensible via twig templates.
 
-## A very subjective comparison
+### A very subjective comparison
 
-| Features               | Vtec Admin | React Admin  | EasyAdmin | Nova | Backpack |
-| ---------------------- | ---------- | ------------ | --------- | ---- | -------- |
-| SPA                    | X          | X            |           | X    |          |
-| Standalone UI          | X          | X            |           |      |          |
-| Backend helpers        | X          | Api Platform | X         | X    | X        |
-| Fun (personal opinion) | +++        | +++          | +         | ++   | -        |
-| Ready-to-go features * | ++         | -            | +         | +++  | +++      |
-| Edge case development  | ++         | +++          | -         | ++   | +        |
-| Maturity / Community   | ---        | +++          | +         | ++   | +        |
-| Free Licence           | X          | X            | X         |      |          |
+| Features             | Vtec Admin | React Admin | EasyAdmin | Nova    | Backpack |
+| -------------------- | ---------- | ----------- | --------- | ------- | -------- |
+| SPA                  | X          | X           |           | X       |          |
+| Standalone UI        | X          | X           |           |         |          |
+| Backend helpers      | Laravel    | -           | Symfony   | Laravel | Laravel  |
+| Fun (subjective)     | +++        | +++         | +         | ++      | +        |
+| Ready-to-go*         | ++         | -           | +         | +++     | +++      |
+| Customization        | ++         | +++         | +         | ++      | +        |
+| Maturity / Community | ---        | +++         | +         | ++      | +        |
+| Free Licence         | X          | X           | X         |         |          |
 
 > \* Comes with ready top to bottom functional backend site with basic working Admin UI, with authentication, profile, impersonation, file browser, users management, real Wysiwyg with image upload handling (no base64), resources translations, etc.

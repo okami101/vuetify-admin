@@ -6,7 +6,7 @@
       <!-- @slot Sidebar region, ideal place for VNavigationDrawer. -->
       <slot name="sidebar"></slot>
 
-      <v-content>
+      <v-main>
         <div class="d-flex flex-column fill-height">
           <!-- @slot Content top header region, ideal place for VBreadcrumbs and/or additional custom messages or important notification as impersonation state, etc. -->
           <slot name="header"></slot>
@@ -20,7 +20,7 @@
           <!-- @slot Footer region, put here some corporate information and links. -->
           <slot name="footer"></slot>
         </div>
-      </v-content>
+      </v-main>
 
       <!-- @slot Right aside region, where you can put anything you need. -->
       <slot name="aside"></slot>
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style>
-.v-content {
+.v-main {
   background-color: #fafafa;
 }
 </style>
