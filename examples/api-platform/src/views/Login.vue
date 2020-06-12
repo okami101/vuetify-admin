@@ -6,6 +6,8 @@
           <v-form ref="form" @submit.prevent="validate">
             <v-card class="text-center">
               <v-card-text>
+                <img src="../assets/logo.svg" width="80" height="80" />
+
                 <v-text-field
                   :label="$t('login.username')"
                   prepend-icon="mdi-account"

@@ -122,6 +122,7 @@ src
 │
 ├── `views` _(**Best place for specific custom public or private pages**)_
 │   ├── Dashboard.vue _(**Static dashboard sample**)_
+│   ├── [Error.vue](admin.md#error-page) _(**Generic error page**)_
 │   ├── [Login.vue](authentication.md#login-page) _(**Public page**)_
 │   └── [Profile.vue](authentication.md#profile-page) _(**Private page**)_
 │

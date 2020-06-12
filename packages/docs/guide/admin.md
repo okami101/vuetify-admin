@@ -201,9 +201,15 @@ This is here you can put all your authenticated custom pages as dashboard, [prof
 
 ```js
 import AdminLayout from "@/layouts/Admin";
-import Profile from "@/views/Profile";
 import Dashboard from "@/views/Dashboard";
+import Profile from "@/views/Profile";
+import Error from "@/views/Error";
 import i18n from "@/i18n";
+
+/**
+ * Error component
+ */
+Vue.component("Error", Error);
 
 export default {
   path: "/",
@@ -230,6 +236,13 @@ export default {
         title: i18n.t("routes.profile"),
       },
     },
+    {
+      path: "*",
+      component: Error,
+      meta: {
+        title: i18n.t("routes.not_found"),
+      },
+    },
   ],
 };
 ```
@@ -243,6 +256,12 @@ Use title property inside meta route object for title page. This title will be a
 :::tip DEFAULT REDIRECT
 Add an automatic redirect on the main parent route towards authenticated home page, i.e. most of the time your dashboard page.
 :::
+
+### Error page
+
+Vue CLI will generate a default generic customizable error page to `src/views/Error.vue`. It's used as default 404 page and takes an `error` prop that VA can inject for more detailed error. It's mainly used for related model route as Show and Edit page that are bind to a valid model. If any error is thrown by the related `getOne` API response, it pass the status and the attached response message into error object that will be passed to the error page component. IT can be any 404 or generic 500 for server error.
+
+![error](/assets/error.png)
 
 ### Options
 

@@ -11,6 +11,8 @@
                 </div>
               </template>
               <v-card-text>
+                <img src="../assets/logo.svg" width="80" height="80" />
+
                 <v-text-field
                   :label="$t('login.username')"
                   prepend-icon="mdi-account"
@@ -35,7 +37,8 @@
                 type="submit"
                 text
                 rounded
-                >{{ $t("login.sign_in") }}</v-btn
+              >
+                {{ $t("login.sign_in") }}</v-btn
               >
             </base-material-card>
           </v-form>
