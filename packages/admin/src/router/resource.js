@@ -2,7 +2,7 @@ import camelCase from "lodash/camelCase";
 import kebabCase from "lodash/kebabCase";
 import upperFirst from "lodash/upperFirst";
 
-export default ({ store, resource, title }) => {
+export default ({ store, i18n, resource, title }) => {
   let { name, include, actions, translatable, getTitle, pluralName } = resource;
 
   const setTitle = (to, action, item = null) => {
@@ -80,14 +80,21 @@ export default ({ store, resource, title }) => {
                 setTitle(to, action, data);
                 return next();
               }
-            } catch ({ status }) {
-              if (status === 404) {
-                return next({
-                  name: "not_found",
-                  params: [to.path],
-                  replace: true,
-                });
-              }
+            } catch ({ status, message }) {
+              to.meta.title = message;
+              document.title = message;
+
+              store.commit(`messages/setError`, {
+                status,
+                message:
+                  status === 404
+                    ? i18n.t("va.pages.not_found", {
+                        resource: resource.singularName,
+                        id,
+                      })
+                    : message,
+              });
+              return next();
             }
           }
 

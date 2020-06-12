@@ -11,7 +11,8 @@
     "list": "Liste {resource}",
     "create": "Créer {resource}",
     "show": "Détail {resource} {label}",
-    "edit": "Editer {resource} {label}"
+    "edit": "Editer {resource} {label}",
+    "not_found": "{resource} #{id} inexistant"
   },
   "actions": {
     "list": "Liste",

@@ -1,5 +1,6 @@
 {
   "logout": "Logout",
+  "not_found": "Not found",
   "close": "Close",
   "file_manager": "File manager",
   "datatable": {
@@ -11,7 +12,8 @@
     "list": "List of {resource}",
     "create": "Create new {resource}",
     "show": "Detail of {resource} {label}",
-    "edit": "Edit {resource} {label}"
+    "edit": "Edit {resource} {label}",
+    "not_found": "{resource} #{id} not found"
   },
   "actions": {
     "list": "List",

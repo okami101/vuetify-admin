@@ -261,6 +261,7 @@ export default class VtecAdmin {
       .map((resource) =>
         resourceCrudRoutes({
           store,
+          i18n,
           resource,
           title: this.title,
         })
@@ -294,6 +295,8 @@ export default class VtecAdmin {
      * Check Auth after each navigation
      */
     router.beforeEach(async (to, from, next) => {
+      store.commit("messages/cleanError");
+
       if (to.name !== from.name) {
         /**
          * Set main and document title

@@ -4,8 +4,18 @@
       <img src="../assets/logo.svg" alt="Vtec Admin" width="300" height="300" />
 
       <div class="display-4">
-        404 {{ $t("routes.not_found").toLowerCase() }}
+        <span v-if="error">
+          {{ error.status }}
+          {{ error.message }}
+        </span>
+        <span v-else>404 {{ $t("routes.not_found").toLowerCase() }}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["error"],
+};
+</script>

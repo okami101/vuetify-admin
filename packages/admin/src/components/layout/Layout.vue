@@ -13,7 +13,8 @@
           <va-messages></va-messages>
 
           <v-container fluid class="flex">
-            <router-view />
+            <component :is="'error'" v-if="error" :error="error"></component>
+            <router-view v-else />
           </v-container>
 
           <!-- @slot Footer region, put here some corporate information and links. -->
@@ -28,10 +29,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 /**
  * Admin composable component layout with one slot for each region.
  */
-export default {};
+export default {
+  computed: {
+    ...mapState({
+      error: (state) => state.messages.error,
+    }),
+  },
+};
 </script>
 
 <style>

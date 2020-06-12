@@ -1,6 +1,7 @@
 export default {
   namespaced: true,
   state: {
+    error: null,
     confirm: null,
     resolve: null,
     reject: null,
@@ -18,6 +19,12 @@ export default {
     },
     setReject(state, reject) {
       state.reject = reject;
+    },
+    setError(state, error) {
+      state.error = error;
+    },
+    cleanError(state) {
+      state.error = null;
     },
     showToast(state, { color, message }) {
       state.toast = { color, message };
