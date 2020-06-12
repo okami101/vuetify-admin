@@ -15,65 +15,65 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/vue-dot-js.svg" alt="vuetify" />
     <h2>Built on top of Vuetify</h2>
-    <p>Ready-to-go Vuetify UI theme with nice <a href="https://github.com/creativetimofficial/vuetify-material-dashboard">Material Theme</a> by Creative Tim. Fully customizable theme by using your existing Vuetify plugin.</p>
+    <p>Ready-to-go <strong>Vuetify</strong> UI theme with nice <a href="https://github.com/creativetimofficial/vuetify-material-dashboard"><strong>Material Theme</strong></a> by <strong>Creative Tim</strong>. Fully customizable theme by using your existing Vuetify plugin.</p>
   </div>
   <div class="feature">
     <img src="/icons/power-cord.svg" alt="decoupled" />
     <h2>Standalone SPA Admin</h2>
-    <p>Full responsive SPA Admin UI decoupled from backend. Rely on low-level data and auth providers which can pe replaced by your own simply by implementing specific interface compatibility layer.</p>
+    <p>Full responsive <strong>SPA</strong> Admin UI <strong>decoupled</strong> from backend. Rely on low-level <strong>data and auth providers</strong> which can pe replaced by your own simply by implementing specific interface compatibility layer.</p>
   </div>
   <div class="feature">
     <img src="/icons/embed2.svg" alt="code" />
     <h2>Minimal code</h2>
-    <p>Bare minimal Vue.js code needed to get your CRUD pages working via <a href="https://en.wikipedia.org/wiki/Domain-specific_language">Domain Specific Language</a> approach.</p>
+    <p>Bare <strong>minimal boilerplate code</strong> needed to get your CRUD pages working via <a href="https://en.wikipedia.org/wiki/Domain-specific_language"><strong>Domain Specific Language</strong></a> approach.</p>
   </div>
   <div class="feature">
     <img src="/icons/power.svg" alt="rad" />
     <h2>High productivity</h2>
-    <p>Immediate quick start by using <a href="https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin">Vue CLI plugin</a> with additional UI CRUD code generators. Guesser CRUD pages which give you all generated Vue template code for quick starting. YAML driven code generation given a JSON schema available !</p>
+    <p>Immediate quick start by using <a href="https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin"><strong>Vue CLI plugin</strong></a> with additional <strong>UI CRUD code generators</strong>. Guesser CRUD pages which give you all <strong>generated Vue template code</strong> for quick starting. <strong>YAML driven code generation</strong> given a JSON schema available !</p>
   </div>
   <div class="feature">
     <img src="/icons/equalizer.svg" alt="control" />
     <h2>Keep control</h2>
-    <p>Use your existing Vue CLI plugins. Keep total control of your Vue app by adding your own routes with custom pages, custom store modules, and Vuetify theme as you are used to on Vue CLI base project.</p>
+    <p>Integrates <strong>seamlessly</strong> within your existing Vue CLI plugins. Keep total control of your Vue app by adding your own routes with <strong>custom pages, custom store modules, and Vuetify theme</strong> as you are used to on Vue CLI base project.</p>
   </div>
   <div class="feature">
     <img src="/icons/laravel.svg" alt="laravel" />
     <h2>Laravel ready</h2>
-    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/vtec-laravel-crud">Vtec Laravel Crud</a> composer package for even more immediate start from top to bottom. Server-side API CRUD code generators included as a bonus !</p>
+    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/vtec-laravel-crud"><strong>Vtec Laravel Crud</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. Server-side API CRUD code generators included as a bonus !</p>
   </div>
   <div class="feature">
     <img src="/icons/books.svg" alt="documented" />
     <h2>Respectful and documented</h2>
     <p>No black magic pitfall, if you know well Laravel and Vue CLI basics, you're ready to go !</p>
-    <p>All VA components has intellisense integration within VSCode Vetur and all Jetbrains products.</p>
+    <p>All VA components has <strong>intellisense integration</strong> within VSCode <strong>Vetur</strong> and all <strong>Jetbrains</strong> products.</p>
   </div>
   <div class="feature">
     <img src="/icons/lab.svg" alt="alchemy" />
     <h2>The ultimate alchemy</h2>
-    <p>With combination of Vtec Admin, code generators as well as Vue.js power, feel the better mix between productivity, nice development experience and limitless customization.</p>
+    <p>With combination of Vtec Admin, code generators as well as Vue.js power, feel the <strong>better mix between productivity, nice development experience and limitless customization</strong>.</p>
   </div>
   <div class="feature">
     <img src="/icons/table2.svg" alt="datatable" />
     <h2>Full-featured DataTable</h2>
-    <p>Full-featured DataTable, including multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context. Possibility of total list layout customization thanks to separate data iterator !</p>
+    <p>Full-featured DataTable, including <strong>multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context</strong>. Possibility of total <strong>list layout customization</strong> thanks to separate data iterator !</p>
   </div>
   <div class="feature">
     <img src="/icons/wrench.svg" alt="customizable" />
     <h2>Custom fields</h2>
-    <p>All basic fields and inputs components for various data types: select, autocomplete with resource relations, boolean, number, rich text, etc. TinyMCE 5 as default Wysiwyg.</p>
-    <p>Create your own fields and inputs simply by extending mixins.</p>
+    <p>All basic fields and inputs components for various data types: <strong>select, autocomplete with resource relations, boolean, number, rich text</strong>, etc. <strong>TinyMCE</strong> 5 as default Wysiwyg.</p>
+    <p>Create <strong>your own fields and inputs</strong> simply by extending mixins.</p>
   </div>
   <div class="feature">
     <img src="/icons/earth.svg" alt="i18n" />
     <h2>Internationalization</h2>
-    <p>Internationalization support via Vue I18n, with full english and french translations provided.</p>
-    <p>Even more, translatable resource fields by contextual language selection on each crud page is supported !</p>
+    <p>Internationalization support via <strong>Vue I18n</strong>, with full english and french translations provided.</p>
+    <p>Even more, <strong>translatable resource fields</strong> by contextual language selection on each crud page is supported !</p>
   </div>
   <div class="feature">
     <img src="/icons/key.svg" alt="permissions" />
     <h2>Advanced permissions</h2>
-    <p>All specific user roles or permissions can be accessible on every CRUD pages for show/hide specific UI sections. All sidebar menu can be filtered as well as general resources operations.</p>
+    <p>All specific <strong>user roles or permissions</strong> can be accessible on every CRUD pages for show/hide specific UI sections. All sidebar menu can be filtered as well as generic resources CRUD operations.</p>
   </div>
 </div>
 
