@@ -261,7 +261,6 @@ export default class VtecAdmin {
       .map((resource) =>
         resourceCrudRoutes({
           store,
-          i18n,
           resource,
           title: this.title,
         })

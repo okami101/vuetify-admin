@@ -65,19 +65,29 @@ export default ({ store, resource, title }) => {
             /**
              * Route model binding
              */
-            let { data } = await store.dispatch(`${name}/getOne`, {
-              id,
-              include,
-            });
+            try {
+              let { data } = await store.dispatch(`${name}/getOne`, {
+                id,
+                include,
+              });
 
-            /**
-             * Insert model into route & resource store
-             */
-            store.commit(`${name}/setItem`, data);
+              /**
+               * Insert model into route & resource store
+               */
+              store.commit(`${name}/setItem`, data);
 
-            if (to.params.id) {
-              setTitle(to, action, data);
-              return next();
+              if (to.params.id) {
+                setTitle(to, action, data);
+                return next();
+              }
+            } catch ({ status }) {
+              if (status === 404) {
+                return next({
+                  name: "not_found",
+                  params: [to.path],
+                  replace: true,
+                });
+              }
             }
           }
 

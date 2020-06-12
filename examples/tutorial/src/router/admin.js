@@ -24,6 +24,7 @@ export default {
     },
     {
       path: "*",
+      name: "not_found",
       component: NotFound,
       meta: {
         title: i18n.t("routes.not_found"),
