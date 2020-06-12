@@ -2,6 +2,15 @@
 
 ## v0.3.0 - Initial release
 
-## v0.2.12 - Initial release
+## v0.2.12
 
-* Add 404 page support
+* 🚀 Add 404 page support
+
+## v0.2.9
+
+* 🐛 Fix admin filter
+* 🏠 Rename injectors to providers
+
+## v0.2.6
+
+* 📝 Add logo brand
