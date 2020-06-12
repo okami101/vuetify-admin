@@ -92,19 +92,18 @@ Customizable providers by implementing a simple contract :
 
 ### React Admin
 
-* [React Admin](https://github.com/marmelab/react-admin/) for React world. Obviously far more mature than VA, highly tested, with bigger and bigger community. Actually the funniest way for admin development and is the SPA admin framework I highly recommend.
+* [React Admin](https://github.com/marmelab/react-admin/) for React world. Far more mature than VA, highly tested, with bigger and bigger community. Free licence and actually the funniest way for admin development and is the SPA admin framework I highly recommend. Not the most productive as is (no backend helpers if we exclude [API Platform](https://github.com/api-platform/api-platform)), and highest learning curve compared to the others.
 
-### Nova
+### Free Symfony admin panels
+
+* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), standard open sourced admin builder, not many widgets by default but very efficient and heavily configurable by YML config files and extendable with twig templates.
+* [Sonata Admin](https://github.com/sonata-project/SonataAdminBundle), super massive admin builder, maybe one of the most powerful and full featured free admin panel on the market, but not really the most seamless development experience (personal opinion).
+
+### Laravel admin panels
 
 * [Official Laravel Nova](https://nova.laravel.com/), commercial product, full featured, good community and very efficient SPA admin builder for Laravel with Vue.js. Beautiful UI Framework and nice Laravel-ish development experience. But tends to be a Nova-way for development.
-
-### Backpack
-
 * [Backpack](https://backpackforlaravel.com/), not free for commercial projects, with the good old school Bootstrap/jQuery combo with CoreUI theme. Can have quickly bloated code in case of specific custom development needs, but still stay one of the most productive admin panel on the market with a tons of widgets.
-
-### EasyAdmin
-
-* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), open sourced and free admin builder for Symfony, very YAML configuration-oriented development. Not many widgets by default but productive and extensible via twig templates.
+* [Voyager](https://voyager.devdojo.com/), free admin panel for Laravel.
 
 ### A very subjective comparison
 

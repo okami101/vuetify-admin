@@ -105,6 +105,10 @@ PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
 ```
 
+:::warning SANCTUM
+`SANCTUM_STATEFUL_DOMAINS` environnement variable is needed on local dev for allow cookie auth sharing between local client app and API server. In most of cases you will not using it on production as this 2 apps will be probably on same domain.
+:::
+
 After this you can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis).
 
 Then you have to prepare laravel installation with migration and all dummy data (if you have some) :

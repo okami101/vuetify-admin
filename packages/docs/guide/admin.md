@@ -263,6 +263,18 @@ Vue CLI will generate a default generic customizable error page to `src/views/Er
 
 ![error](/assets/error.png)
 
+:::warning
+In order to properly working, you must register error page as global `Error` component name as following :
+
+```js
+import Error from "@/views/Error";
+
+Vue.component("Error", Error);
+```
+
+It's already done by Vue CLI inside above `src/router/admin.js` file.
+:::
+
 ### Options
 
 See all supported specific options :

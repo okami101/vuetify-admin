@@ -86,7 +86,7 @@ If nothing is returned, the default behavior is executed.
 
 You can access to current user permissions everywhere in your apps, which allows you to make custom actions according to user rights, as hide some UI elements as component, entire section, etc. To access this permissions, the simplest way is to add `permissions` props if you are in CRUD page.
 
-```vue {2}
+```vue {3}
 <script>
 export default {
   props: ["permissions"],
