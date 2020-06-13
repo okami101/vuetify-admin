@@ -1,3 +1,5 @@
+import isEmpty from "lodash/isEmpty";
+
 let objectToFormData = (obj, form, namespace) => {
   let fd = form || new FormData();
 
@@ -8,9 +10,15 @@ let objectToFormData = (obj, form, namespace) => {
 
     let formKey = namespace ? `${namespace}[${property}]` : property;
 
-    // if the property is an object, but not a File,
-    // use recursively.
+    // if the property is an object or array, but not a File
     if (typeof obj[property] === "object" && !(obj[property] instanceof File)) {
+      if (isEmpty(obj[property])) {
+        // explicit null
+        fd.append(formKey, "");
+        continue;
+      }
+
+      // set recursively
       objectToFormData(obj[property], fd, formKey);
       continue;
     }

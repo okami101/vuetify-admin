@@ -69,7 +69,10 @@ class PublisherController extends Controller
     public function store(StorePublisher $request)
     {
         $publisher = Publisher::create($request->all());
-        $publisher->users()->sync($request->input('user_ids'));
+
+        if ($request->has('user_ids')) {
+            $publisher->users()->sync($request->input('user_ids'));
+        }
 
         return new PublisherResource($publisher);
     }
@@ -84,7 +87,10 @@ class PublisherController extends Controller
     public function update(UpdatePublisher $request, Publisher $publisher)
     {
         $publisher->update($request->all());
-        $publisher->users()->sync($request->input('user_ids'));
+
+        if ($request->has('user_ids')) {
+            $publisher->users()->sync($request->input('user_ids'));
+        }
 
         return new PublisherResource($publisher);
     }
