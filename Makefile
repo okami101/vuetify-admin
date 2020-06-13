@@ -63,10 +63,10 @@ build-admin: ## compile the admin library to static js
 	@cd ./packages/admin && yarn -s build
 
 run-docs: ## run the docs
-	@cd ./packages/docs && yarn dev --port 9000
+	@cd ./docs && yarn docs:dev --port 9000
 
 build-docs: ## compile the docs into to static js
-	@cd ./packages/docs && yarn -s build
+	@cd ./docs && yarn -s docs:build
 
 build-all: ## build all admin lib, demo and docs
 	@make build-admin

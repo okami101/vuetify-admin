@@ -2,7 +2,6 @@
 node_modules
 lib
 dist
-/docs
 
 # Log files
 npm-debug.log*

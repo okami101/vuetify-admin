@@ -30,12 +30,12 @@
 			"path": "packages\\cli"
 		},
 		{
-			"path": "packages\\docs"
+			"path": "docs"
 		}
 	],
 	"settings": {
 		"yaml.schemas": {
-			"packages/docs/.vuepress/public/schemas/generator.json": ["examples/generators/admin/generators/*"],
+			"docs/.vuepress/public/schemas/generator.json": ["examples/generators/admin/generators/*"],
 		}
 	}
 }

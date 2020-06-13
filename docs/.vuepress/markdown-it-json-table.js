@@ -1,14 +1,15 @@
 const fs = require("fs");
-const { getDocComponents, getDocMixins } = require("../../admin/docgen");
+const path = require("path");
+const { getDocComponents, getDocMixins } = require("../../packages/admin/docgen");
 const { get, upperFirst, camelCase, kebabCase } = require("lodash");
 
 module.exports = async (md) => {
-  let docComponents = await getDocComponents("../admin");
-  let docMixins = await getDocMixins("../admin");
+  let docComponents = await getDocComponents("./packages/admin");
+  let docMixins = await getDocMixins("./packages/admin");
 
   let getJsonSchemaData = (type, definition) => {
     let data = JSON.parse(
-      fs.readFileSync(`.vuepress/public/schemas/${type}.json`)
+      fs.readFileSync(path.resolve(__dirname, `public/schemas/${type}.json`))
     );
 
     let def = get(data.definitions, definition);
