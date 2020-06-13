@@ -357,7 +357,7 @@ Hydra provider will automatically send data form model to API Platform and retur
 
 Server ISBN validation will return error as well if invalid.
 
-Go to [hydra provider source code](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/hydra.js) in order to get deeper on how it works. See [errors handling section](data-provider.md#errors-handling).
+Go to [hydra provider source code](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/hydra.js) in order to get deeper on how it works. See [errors handling section](data-providers.md#errors-handling).
 
 ### Reviews list
 
