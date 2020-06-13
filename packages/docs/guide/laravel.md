@@ -87,6 +87,7 @@ See [this getting started section](getting-started.md#directory-structure) for m
 After the installation, if you selected docker, don't forget to adapt your environment variables with those outputted by installer when finished as following :
 
 ```bash
+APP_URL=http://localhost:8000
 APP_TIMEZONE=UTC
 
 SANCTUM_STATEFUL_DOMAINS=localhost:8080
