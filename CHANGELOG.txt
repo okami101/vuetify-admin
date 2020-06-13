@@ -2,6 +2,11 @@
 
 ## v0.3.0 - Initial release
 
+## v0.2.14
+
+* 📝 Documentation review
+* 🐛 Fix empty array form data case
+
 ## v0.2.13
 
 * 📝 Documentation review
