@@ -318,10 +318,10 @@ function service(resourceName, args = {}, api) {
   let code = `admin.getResourceLink("${resourceName}")`;
 
   if (content.indexOf(code) === -1) {
-    let startOffset = content.indexOf("];");
+    let startOffset = content.lastIndexOf(",\n  ") + 1;
     content =
       content.substring(0, startOffset) +
-      `  ${code},\n` +
+      `${code},` +
       content.substring(startOffset);
 
     fs.writeFileSync(navFile, content);
