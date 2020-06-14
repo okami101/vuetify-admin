@@ -1,5 +1,10 @@
 FROM php:7.4-fpm-alpine
 
+ARG PUID=1000
+ENV PUID ${PUID}
+ARG PGID=1000
+ENV PGID ${PGID}
+
 # persistent / runtime deps
 RUN apk add --no-cache \
 		acl \
@@ -27,18 +32,18 @@ COPY docker/laravel/php.ini /usr/local/etc/php/php.ini
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /srv/api
-
 # copy init script
 COPY docker/laravel/init.sh /usr/local/bin/init
 RUN chmod +x /usr/local/bin/init
 COPY docker/laravel/seed.sh /usr/local/bin/seed
 RUN chmod +x /usr/local/bin/seed
 
-COPY docker/laravel/entrypoint.sh /usr/local/bin/docker-entrypoint
-RUN chmod +x /usr/local/bin/docker-entrypoint
+RUN addgroup -S -g "$PGID" vtec && adduser -S -u "$PUID" vtec -G vtec
 
-ENTRYPOINT ["docker-entrypoint"]
+USER vtec
+
+WORKDIR /srv/api
+
 CMD ["php-fpm"]
 
 EXPOSE 9000

@@ -101,6 +101,8 @@ REDIS_HOST=redis
 CACHE_DRIVER=redis
 SESSION_DRIVER=redis
 
+DOCKER_PUID=1000
+DOCKER_PGID=1000
 NGINX_HTTP_PORT=8000
 PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
@@ -108,6 +110,10 @@ MYSQL_ROOT_PASSWORD=root
 
 :::warning SANCTUM
 `SANCTUM_STATEFUL_DOMAINS` environnement variable is needed on local dev for allow cookie auth sharing between local client app and API server. In most of cases you will not using it on production as this 2 apps will be probably on same domain.
+:::
+
+:::warning DOCKER_PUID AND DOCKER_PGID
+You need to set properly this IDs according to your local linux user IDs in order to prevent all boring permissions issues inside Laravel storage folder. In general the first created linux user is 1000 by default.
 :::
 
 After this you can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis).
