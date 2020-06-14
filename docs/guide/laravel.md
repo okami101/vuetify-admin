@@ -109,7 +109,7 @@ MYSQL_ROOT_PASSWORD=root
 ```
 
 :::warning SANCTUM
-`SANCTUM_STATEFUL_DOMAINS` environnement variable is needed on local dev for allow cookie auth sharing between local client app and API server. In most of cases you will not using it on production as this 2 apps will be probably on same domain.
+`SANCTUM_STATEFUL_DOMAINS` environnement variable is always needed even if admin app is on same API domain. It allows cookie auth sharing between local client app and API server. On production you may set the full domain. For example if your app will be accessible on **https://my.company.com** : `SANCTUM_STATEFUL_DOMAINS=my.company.com`.
 :::
 
 :::warning DOCKER_PUID AND DOCKER_PGID

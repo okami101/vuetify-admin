@@ -20,6 +20,7 @@ Route::group(['middleware' => Impersonate::class], function () {
         if ($user = $request->user()) {
             return new UserResource($user, true);
         }
+        abort(401);
     });
 
     Route::account();
