@@ -248,6 +248,10 @@ function service(resourceName, args = {}, api) {
   );
   let locale = JSON.parse(fs.readFileSync(localFilePath));
 
+  if (!locale.resources) {
+    locale.resources = {};
+  }
+
   locale.resources[resourceName] = {
     name: args.name,
     fields: fields.reduce(
