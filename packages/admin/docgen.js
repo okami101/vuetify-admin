@@ -8,8 +8,9 @@ let getDocComponents = (relative = ".") => {
       .map(async (path) => {
         let doc = await parse(path);
         doc.mixins = [];
+
         /**
-         * Get mixins.
+         * Move props and events to proper mixins.
          */
         ["props", "events"].forEach((type) => {
           if (doc[type]) {
@@ -21,9 +22,6 @@ let getDocComponents = (relative = ".") => {
           }
         });
 
-        /**
-         * Generate json doc into VuePress for automatic markdown API.
-         */
         return doc;
       })
   );
@@ -31,14 +29,7 @@ let getDocComponents = (relative = ".") => {
 
 let getDocMixins = (relative = ".") =>
   Promise.all(
-    glob.sync(`${relative}/src/mixins/**/*.js`).map(async (path) => {
-      let doc = await parse(path);
-
-      /**
-       * Generate json doc into VuePress for automatic markdown API.
-       */
-      return doc;
-    })
+    glob.sync(`${relative}/src/mixins/**/*.js`).map((path) => parse(path))
   );
 
 module.exports = { getDocComponents, getDocMixins };
