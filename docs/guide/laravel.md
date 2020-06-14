@@ -515,7 +515,7 @@ yarn crud:make books --locale="en" --name="Book | Books" --icon="mdi-book" --lab
   --fields="isbn, category:select, title, description, summary, author, price:number, commentable:boolean, formats:array, publication_date:date" \
   --columns="isbn, title, author, commentable, price, publication_date" \
   --filterable="title, author, commentable" \
-  --sortable="isbn, title, author, sortable, publication_date"
+  --sortable="isbn, title, author, sortable, publication_date" \
   --lint
 ```
 
