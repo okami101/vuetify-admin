@@ -12,6 +12,10 @@ This guide is a demonstration of how official [Vtec Laravel Crud](https://github
 
 :::
 
+:::tip SOURCE CODE
+You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/generators).
+:::
+
 ## Installation
 
 Simply init your project by this simple steps :
@@ -510,7 +514,7 @@ php artisan db:seed --class BookSeeder
 
 You're now ready to implement the admin UI !
 
-## Admin UI
+## Generate CRUD UI
 
 We can of course use the same way of previous tutorials for generate our CRUD book pages via guesser's code, but now you've been thinking can we generate UI side same as previously for API ?
 
@@ -765,9 +769,92 @@ For even more auto generation power and reusability, a direct resources yaml fil
 
 Use `name` option in order to import only targeted resource.
 
-:::tip YAML TUTORIAL
-Go to [separate YAML guide](generators.md#yaml) for full showcase with yaml samples.
+### API & UI resources development
+
+The first step is to create a YAML resource descriptor file that must validate specific [JSON schema](generators.md#json-schema), which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuff all by hand.
+
+In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
+
+* Monsters : sample for show all different type of fields.
+* Child monsters : essentially for resource relationship purpose.
+
+### API generator commands
+
+:::tip DOCKER
+For all next artisan commands, don't forget to add `docker-compose exec laravel` before.
 :::
+
+Finally it's time to generate our basic CRUD boilerplate code.
+
+First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](laravel.md#generators) for all detail of what's going on.
+
+### Add specific model relations
+
+Foreign DB keys are already done by migration, but you need to manually add all needed eloquent relationship for each model.
+
+**`app/Monster.php`**
+
+```php
+public function children()
+{
+    return $this->hasMany(MonsterChild::class);
+}
+```
+
+**`app/MonsterChild.php`**
+
+```php
+public function monster()
+{
+    return $this->belongsTo(Monster::class);
+}
+```
+
+### Additional dummy data
+
+The next step is to write you seed data. Use generated factory and seeder for that. For get quicker start, pick this files from tutorial source code :
+
+* [MonsterFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterFactory.php)
+* [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterChildFactory.php)
+* [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/MonsterSeeder.php)
+
+:::tip USER SEEDER
+Take [this user seeder file](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/UserSeeder.php) in order to not have to create your admin each time you reset the database.
+:::
+
+:::tip FILE SAMPLES
+For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/DatabaseSeeder.php).
+:::
+
+:::warning COMPOSER AUTOLOAD
+Don't forget to launch `composer dump-autoload` if you don't pass via `php artisan make:seed` command.
+:::
+
+Then generate all DB with dummy data by `php artisan migrate:fresh --seed`.
+
+### Server-side data validation
+
+We will not use them for this tutorial, but for real app it's heavily recommended to write your server-side validations on both store and update form requests for each resource (generated inside `app/Http/Requests`).
+
+### UI generator commands
+
+Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en --lint` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable data table list, show, create and edit forms.
+
+> In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.
+
+Now you can run all backend API as well as admin UI and see the result !
+
+Example of generated list of monsters page :
+
+![list](/assets/laravel/list.png)
+
+The show view :
+
+![show](/assets/laravel/show.png)
+
+And finally the form view :
+
+![form](/assets/laravel/form.png)
 
 ## Internal services and traits included
 

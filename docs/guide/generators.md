@@ -32,7 +32,7 @@ Use `yarn vue-cli-service help crud:make` for all options documentation.
 :::
 
 :::tip TUTORIAL
-You can find a full tutorial which made use of this command [here](laravel.md).
+You can find a full tutorial which made use of this command [here](laravel.md#generate-crud-ui).
 :::
 
 ## YAML
@@ -81,116 +81,6 @@ Same for advanced `filter` property :
 For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have automatic validation, as well as autocompletion with above documentation !
 :::
 
-## Tutorial
-
-In this tutorial, we will show you how to get quick ready for admin development, including API backend (based on Laravel) and usage of a YAML file descriptor for quick API and UI CRUD code generation.
-
-:::tip SOURCE CODE
-You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/generators).
+:::tip TUTORIAL
+You can find a full tutorial which made use of this command [here](laravel.md#yaml).
 :::
-
-### Installation
-
-First start a new Laravel project by following [this installation guide](laravel.md#installation).
-Then start your admin [as explained here](laravel.md#run-admin-ui).
-
-:::warning REQUIREMENTS
-We will use docker as default for running backend API, [so install it first](https://www.docker.com/get-started).
-If you won't this, follow classical laravel installation.
-:::
-
-To summary we have done this :
-
-```sh
-# Laravel installation
-laravel new my-brand-new-project && cd my-brand-new-project
-composer require vtec/laravel-crud
-php artisan vtec:install # with all wizard default
-
-# Laravel run
-docker-compose up # backend will run default at localhost:8000
-docker-compose exec laravel php artisan storage:link
-docker-compose exec laravel php artisan migrate
-docker-compose exec laravel php artisan vtec:user admin@example.com # create admin user
-
-# Vtec Admin serve
-cd admin
-yarn serve
-```
-
-Now you should already have all basic full admin project working with functional API backend !
-
-### API & UI resources development
-
-The next step is to create a YAML resource descriptor file that will validate above JSON schema, which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuff all by hand.
-
-In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
-
-* Monsters : sample for show all different type of fields.
-* Child monsters : essentially for resource relationship purpose.
-
-### API generator commands
-
-:::tip DOCKER
-For all next artisan commands, don't forget to add `docker-compose exec laravel` before.
-:::
-
-Finally it's time to generate our basic CRUD boilerplate code.
-
-First begin with server-side commands by using `php artisan crud:yaml admin/generators/monsters.en.yml -mfs`. That will generate all API based backend files as well as registering all crud resource API routes. See [laravel specific section](laravel.md#generators) for all detail of what's going on.
-
-### Add specific model relations
-
-Foreign DB keys are already done by migration, but you need to manually add all needed eloquent relationship for each model.
-
-**`app/Monster.php`**
-
-```php
-public function children()
-{
-    return $this->hasMany(MonsterChild::class);
-}
-```
-
-**`app/MonsterChild.php`**
-
-```php
-public function monster()
-{
-    return $this->belongsTo(Monster::class);
-}
-```
-
-### Dummy data
-
-The next step is to write you seed data. Use generated factory and seeder for that. For get quicker start, pick this files from tutorial source code :
-
-* [MonsterFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterFactory.php)
-* [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterChildFactory.php)
-* [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/MonsterSeeder.php)
-
-Then generate all DB with dummy data by `php artisan migrate:fresh --seed`.
-
-### Server-side data validation
-
-We will not use them for this tutorial, but for real app it's heavily recommended to write your server-side validations on both store and update form requests for each resource (generated inside `app/Http/Requests`).
-
-### UI generator commands
-
-Note at this above commands generate only API side code. For UI side go to `admin` folder and launch `yarn crud:yaml generators/monsters.en.yml --locale en --lint` (for english sample). This will generate all CRUD pages for each entity inside `src/resources` with full searchable data table list, show, create and edit forms.
-
-> In short, only factory, seed data, validation rules and model eloquent relation on server-side has been written by hand.
-
-Now you can run all backend API as well as admin UI and see the result !
-
-Example of generated list of monsters page :
-
-![list](/assets/laravel/list.png)
-
-The show view :
-
-![show](/assets/laravel/show.png)
-
-And finally the form view :
-
-![form](/assets/laravel/form.png)
