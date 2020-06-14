@@ -581,7 +581,7 @@ First of all, you're not forced to add label for all fields, as VA will try to h
 }
 ```
 
-:::details LIST
+:::
 
 :::details LIST
 **`src/resources/books/List.vue`**
