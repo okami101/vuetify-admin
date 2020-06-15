@@ -22,6 +22,11 @@ export default {
      */
     value: Array,
   },
+  computed: {
+    currentResource() {
+      return this.$admin.getResource(this.listState.resource);
+    },
+  },
   methods: {
     ...mapActions({
       deleteMany: "api/deleteMany",
