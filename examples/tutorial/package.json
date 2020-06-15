@@ -1,6 +1,6 @@
 {
   "name": "tutorial",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -38,7 +38,7 @@
     "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-i18n": "latest",
-    "vue-cli-plugin-vtec-admin": "^0.2.18",
+    "vue-cli-plugin-vtec-admin": "^0.2.20",
     "vue-cli-plugin-vuetify": "latest",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.3.0"
