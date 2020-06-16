@@ -1,7 +1,6 @@
 <template>
   <va-input v-bind="$props" class="va-rich-text-input">
     <editor
-      :api-key="apiKey"
       :init="getInit"
       :value="input"
       @change="change"
@@ -74,16 +73,12 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {
-      apiKey: process.env.VUE_APP_TINYMCE_API_KEY,
-      language: process.env.VUE_APP_TINYMCE_LANGUAGE,
-    };
-  },
   computed: {
     getInit() {
+      let options = this.$admin.options?.tinyMCE || {};
+
       let init = this.init || {
-        language: this.language,
+        language: options.language,
         height: this.height,
         menubar: this.menubar,
         plugins: this.plugins,
@@ -94,7 +89,7 @@ export default {
       /**
        * Image upload.
        */
-      let imageUploadUrl = this.$admin.options.imageUploadUrl;
+      let imageUploadUrl = options.imageUploadUrl;
 
       if (imageUploadUrl) {
         /**
@@ -130,13 +125,11 @@ export default {
       /**
        * File browser config.
        */
-      let fileBrowserUrl = this.$admin.options.fileBrowserUrl;
-
-      if (fileBrowserUrl) {
+      if (options.fileBrowserUrl) {
         init.file_picker_callback = (callback, value, meta) => {
           window.tinymce.activeEditor.windowManager.openUrl({
             title: this.$t("va.file_manager"),
-            url: fileBrowserUrl,
+            url: options.fileBrowserUrl,
             /**
              * On message will be triggered by the child window
              *

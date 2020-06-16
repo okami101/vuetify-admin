@@ -33,13 +33,6 @@ VUE_APP_API_URL=/
 BASE_URL=/admin
 ```
 
-> For TinyMCE 5 usage, you may add your own api key :
-
-```env
-VUE_APP_TINYMCE_API_KEY=my_api_key
-VUE_APP_TINYMCE_LANGUAGE=my_default_locale
-```
-
 Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
 
 ## Available generators commands

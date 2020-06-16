@@ -47,7 +47,10 @@ export default new VtecAdmin({
   axios: http,
   options: {
     dateFormat: "long",
-    imageUploadUrl: "/api/upload",
-    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    tinyMCE: {
+      language: navigator.language.replace("-", "_"),
+      imageUploadUrl: "/api/upload",
+      fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    },
   },
 });

@@ -985,16 +985,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.15.0",
+            "version": "v7.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "739c44a3f7041430a3fb357f2dcfdb78f55005d7"
+                "reference": "dc9cd8338d222dec2d9962553639e08c4585fa5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/739c44a3f7041430a3fb357f2dcfdb78f55005d7",
-                "reference": "739c44a3f7041430a3fb357f2dcfdb78f55005d7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dc9cd8338d222dec2d9962553639e08c4585fa5b",
+                "reference": "dc9cd8338d222dec2d9962553639e08c4585fa5b",
                 "shasum": ""
             },
             "require": {
@@ -1082,6 +1082,7 @@
             "suggest": {
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
+                "ext-ftp": "Required to use the Flysystem FTP driver.",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
                 "ext-memcached": "Required to use the memcache cache driver.",
                 "ext-pcntl": "Required to use all features of the queue worker.",
@@ -1137,7 +1138,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-06-09T14:00:25+00:00"
+            "time": "2020-06-16T14:31:25+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -5346,16 +5347,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "e7f9bd5deff09a57318f9b900ab33a05acfcf4d3"
+                "reference": "618631dc601d8eb6ea0a9fbf654ec82f066c4e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/e7f9bd5deff09a57318f9b900ab33a05acfcf4d3",
-                "reference": "e7f9bd5deff09a57318f9b900ab33a05acfcf4d3",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/618631dc601d8eb6ea0a9fbf654ec82f066c4e97",
+                "reference": "618631dc601d8eb6ea0a9fbf654ec82f066c4e97",
                 "shasum": ""
             },
             "require": {
@@ -5408,7 +5409,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-26T06:40:44+00:00"
+            "time": "2020-06-15T23:49:30+00:00"
         },
         {
             "name": "vtec/laravel-crud",
@@ -8974,16 +8975,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
+                "reference": "9dc4f203e36f2b486149058bade43c851dd97451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
-                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/9dc4f203e36f2b486149058bade43c851dd97451",
+                "reference": "9dc4f203e36f2b486149058bade43c851dd97451",
                 "shasum": ""
             },
             "require": {
@@ -8991,6 +8992,7 @@
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
+                "phpstan/phpstan": "<0.12.20",
                 "vimeo/psalm": "<3.9.1"
             },
             "require-dev": {
@@ -9018,7 +9020,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2020-04-18T12:12:48+00:00"
+            "time": "2020-06-16T10:16:42+00:00"
         }
     ],
     "aliases": [],

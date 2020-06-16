@@ -15,7 +15,12 @@ export default {
     /**
      * Name of number format to use. Must be predefined on your VueI18n plugin.
      */
-    format: String,
+    format: {
+      type: String,
+      default() {
+        return this.$admin.options.numberFormat;
+      },
+    },
   },
   methods: {
     numberFormatted(val) {

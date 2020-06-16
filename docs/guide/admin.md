@@ -62,8 +62,18 @@ export default new VtecAdmin({
   axios: http,
   options: {
     dateFormat: "long",
-    imageUploadUrl: "/api/upload",
-    fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    numberFormat: "numeric",
+    list: {
+      disableGlobalSearch: true,
+      disableItemsPerPage: true,
+      itemsPerPage: 30,
+      itemsPerPageOptions: [30],
+    },
+    tinyMCE: {
+      language: navigator.language.replace("-", "_"),
+      imageUploadUrl: "/api/upload",
+      fileBrowserUrl: `${trimEnd(baseURL, "/")}/elfinder/tinymce5`,
+    },
   },
 });
 ```
@@ -279,9 +289,17 @@ It's already done by Vue CLI inside above `src/router/admin.js` file.
 
 See all supported specific options :
 
-| Property           | Type     | Description                                                                                                                                                          |
-| ------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **dateFormat**     | `string` | Default date format for all date fields and inputs. Must be predefined on your VueI18n plugin.                                                                       |
-| **imageUploadUrl** | `string` | Optional upload file URL for TinyMCE Wysiwyg. Can be a path if same backend.                                                                                         |
-| **fileBrowserUrl** | `string` | Optional file browser URL, which will appear on included TinyMCE file picker.                                                                                        |
-| **list**           | `object` | Some global options for list behavior. List of valid options : `disableGlobalSearch`, `disableItemsPerPage`, `itemsPerPage`, `itemsPerPageOptions`, `disableExport`. |
+| Property         | Type     | Description                                                                                                                                                          |
+| ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **dateFormat**   | `string` | Default date format for all date fields and inputs. Must be predefined on your VueI18n plugin.                                                                       |
+| **numberFormat** | `string` | Default date format for all number fields. Must be predefined on your VueI18n plugin.                                                                                |
+| **list**         | `object` | Some global options for list behavior. List of valid options : `disableGlobalSearch`, `disableItemsPerPage`, `itemsPerPage`, `itemsPerPageOptions`, `disableExport`. |
+| **tinyMCE**      | `object` | Some global options for TinyMCE Wysiwyg. All supported options detailed below.                                                                                       |
+
+#### TinyMCE
+
+| Property           | Type     | Description                                                                     |
+| ------------------ | -------- | ------------------------------------------------------------------------------- |
+| **language**       | `string` | Default language of Wysiwyg, ideal place for placing language based on browser. |
+| **imageUploadUrl** | `string` | Optional upload file URL for TinyMCE Wysiwyg. Can be a path if same backend.    |
+| **fileBrowserUrl** | `string` | Optional file browser URL, which will appear on included TinyMCE file picker.   |

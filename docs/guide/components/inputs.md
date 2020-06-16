@@ -135,14 +135,17 @@ Will render :
 
 ![rich-text](/assets/inputs/rich-text.png)
 
-:::warning API KEY
-You'll probably need a API key. Add it to you `.env.local` file with the default language to use :
+:::warning CDN ASSET
+In order to work, this input needs the URL of main TinyMCE JS bundle with a proper API key preloaded. Configure it on your tiny cloud account and add the relevant script to the `public/index.html` :
 
-```env
-VUE_APP_TINYMCE_API_KEY=my_api_key
-VUE_APP_TINYMCE_LANGUAGE=my_default_locale
+```html
+<script src="https://cdn.tiny.cloud/1/my-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 ```
 
+:::
+
+:::tip GLOBAL OPTIONS
+You may set global actions for TinyMCE in main `VtecAdmin` constructor as [explained here](../admin.md). See all [supported options](../admin.md#tinymce).
 :::
 
 :::tip TINYMCE 5 DOCUMENTATION
@@ -152,7 +155,6 @@ Default init value for `init` :
 
 ```js
 {
-  language: process.env.VUE_APP_TINYMCE_LANGUAGE,
   height: 500,
   menubar: false,
   plugins: [
@@ -171,7 +173,7 @@ Default init value for `init` :
 :::
 
 :::tip IMAGE UPLOAD HANDLER
-You may need a real backend image upload handler in order to avoid the default base64. Use global `imageUploadUrl` admin options [as explain here](../admin.md#options) for setting a handler URL compatible with TinyMCE 5. It will add a direct upload zone on images plugin and as well as enable drag and drop.
+You may need a real backend image upload handler in order to avoid the default base64. Use global `imageUploadUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a handler URL compatible with TinyMCE 5. It will add a direct upload zone on images plugin and as well as enable drag and drop.
 
 [Vtec Laravel Crud](../laravel.md) already integrate a functional upload handler that you can activate by adding the upload route :
 
@@ -194,7 +196,7 @@ You may provide admin axios instance to [VtecAdmin constructor](../admin.md#inst
 :::
 
 :::tip FILE BROWSER
-You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowserUrl` admin options [as explain here](../admin.md#options) for setting a backend file browser solution. It will add a picker button for images and media that allows file selection from the file browser.
+You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowserUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a backend file browser solution. It will add a picker button for images and media that allows file selection from the file browser.
 
 If you use any PHP framework you should try `elFinder` which is already integrated on official [Vtec Laravel Crud](../laravel.md) package :
 
