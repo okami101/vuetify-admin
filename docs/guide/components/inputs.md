@@ -136,10 +136,11 @@ Will render :
 ![rich-text](/assets/inputs/rich-text.png)
 
 :::warning CDN ASSET
-In order to work, this input needs the URL of main TinyMCE JS bundle with a proper API key preloaded. Configure it on your tiny cloud account and add the relevant script to the `public/index.html` :
+In order to work, this input needs the URL of main TinyMCE JS bundles with a proper API key preloaded. Configure it on your tiny cloud account and add this 2 scripts to the `public/index.html` :
 
 ```html
 <script src="https://cdn.tiny.cloud/1/my-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/my-api-key/tinymce/5/themes/silver/theme.min.js" referrerpolicy="origin"></script>
 ```
 
 :::
