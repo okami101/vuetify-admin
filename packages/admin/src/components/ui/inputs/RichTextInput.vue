@@ -52,7 +52,7 @@ export default {
       default: () => [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table paste code help wordcount",
+        "insertdatetime media paste code help wordcount",
       ],
     },
     /**

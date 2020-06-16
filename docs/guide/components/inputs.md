@@ -136,11 +136,12 @@ Will render :
 ![rich-text](/assets/inputs/rich-text.png)
 
 :::warning CDN ASSET
-In order to work, this input needs the URL of main TinyMCE JS bundles with a proper API key preloaded. Configure it on your tiny cloud account and add this 2 scripts to the `public/index.html` :
+In order to work, this input needs the URL of main TinyMCE JS bundles with a proper API key preloaded. Configure it on your tiny cloud account and add this scripts to the `public/index.html` :
 
 ```html
 <script src="https://cdn.tiny.cloud/1/my-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdn.tiny.cloud/1/my-api-key/tinymce/5/themes/silver/theme.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/my-api-key/tinymce/5/icons/default/icons.min.js" referrerpolicy="origin"></script>
 ```
 
 :::
@@ -161,7 +162,7 @@ Default init value for `init` :
   plugins: [
     "advlist autolink lists link image charmap print preview anchor",
     "searchreplace visualblocks code fullscreen",
-    "insertdatetime media table paste code help wordcount",
+    "insertdatetime media paste code help wordcount",
   ],
   toolbar: "undo redo | formatselect | bold italic backcolor | \
     alignleft aligncenter alignright alignjustify | \
