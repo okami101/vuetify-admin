@@ -49,21 +49,29 @@ export default {
      */
     plugins: {
       type: Array,
-      default: () => [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media paste code help wordcount",
-      ],
+      default() {
+        return (
+          this.$admin.options?.tinyMCE?.plugins || [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media paste code help wordcount",
+          ]
+        );
+      },
     },
     /**
      * Toolbar config, see TinyMCE docs.
      */
     toolbar: {
       type: String,
-      default:
-        "undo redo | formatselect | bold italic backcolor | \
-           alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | image media | removeformat | help",
+      default() {
+        return (
+          this.$admin.options?.tinyMCE?.toolbar ||
+          "undo redo | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | image media | removeformat | help"
+        );
+      },
     },
     /**
      * The full TinyMCE object, check official docs.

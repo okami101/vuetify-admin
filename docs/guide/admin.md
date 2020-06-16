@@ -301,5 +301,7 @@ See all supported specific options :
 | Property           | Type     | Description                                                                     |
 | ------------------ | -------- | ------------------------------------------------------------------------------- |
 | **language**       | `string` | Default language of Wysiwyg, ideal place for placing language based on browser. |
+| **plugins**        | `array`  | List of default plugins to enable.                                              |
+| **toolbar**        | `string` | Default toolbar setting.                                                        |
 | **imageUploadUrl** | `string` | Optional upload file URL for TinyMCE Wysiwyg. Can be a path if same backend.    |
 | **fileBrowserUrl** | `string` | Optional file browser URL, which will appear on included TinyMCE file picker.   |
