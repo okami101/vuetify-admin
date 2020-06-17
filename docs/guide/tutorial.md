@@ -32,9 +32,8 @@ This simple server provides multiple CRUD API endpoints for multiple resources a
 First prepare new Vue CLI admin project as explained on [getting started guide](getting-started.md) by using dedicated Vue CLI Plugin. To summary :
 
 ```bash
-vue create vtec-admin-tutorial
+vue create vtec-admin-tutorial -d
 cd vtec-admin-tutorial
-vue add eslint
 vue add router
 vue add vuex
 vue add vuetify
@@ -73,6 +72,10 @@ Vue CLI plugin comes with default simple CRUD templates pages for users resource
 You can **create** new users, **show** and **edit** them on direct **aside region**, as well as **clone** them, **paginate** all list, **sort** by name, using **full text search** for **filtering** and finally **export** all data with current filtering and sorting inside CSV file. All current context search is updated into URL as **query string** for keeping state on refresh. You can also **bulk delete** them by simply select multiple rows.
 
 All users CRUD code templates can be found inside `src/resources/users`. `src/resources` will be your main working directory for all resources related CRUD pages development.
+
+:::tip DIRECTORY STRUCTURE
+Check [directory structure graph](getting-started.md#directory-structure) in order to get a quick global view of admin CLI project.
+:::
 
 ## Enhance user list
 

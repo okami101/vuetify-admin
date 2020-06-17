@@ -8,12 +8,11 @@ Include scripts for quick scaffolding crud pages of specific resource.
 
 ## Prepare
 
-Initialize your brand new Vue CLI admin project by `vue create admin` and go enter by `cd admin`.
-
-Then install all required plugins.
+Initialize your brand new Vue CLI admin project :
 
 ```bash
-vue add eslint
+vue create admin -d
+cd admin
 vue add router
 vue add vuex
 vue add vuetify

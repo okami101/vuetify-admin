@@ -4,7 +4,9 @@
 
 This is simply doable by implementing specific contract which will ensure compatibility within VA. Follow [dedicated guide](data-providers.md) for further detail.
 
-> For next guide, a "resource" means a given server entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted.
+:::tip RESOURCE
+For next guide, a **resource** means a given server API entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted.
+:::
 
 ## Purpose
 
@@ -18,7 +20,11 @@ His main purpose is to accelerate resources CRUD UI development in a full SPA, w
 * Best balance between productivity and customization.
 * Maximize usage of many other open source projects.
 
-See it as a Vue.js little brother equivalent to well known [React Admin](https://github.com/marmelab/react-admin/).
+See it as a Vue.js little brother equivalent to well known battle tested [React Admin](https://github.com/marmelab/react-admin/).
+
+:::danger ALPHA STATUS
+This project is still experimental on alpha version and BC can be frequent. Actually without any test suite and therefore not really suited for production unless you feel adventurous.
+:::
 
 ## How It Works
 
@@ -104,6 +110,11 @@ Customizable providers by implementing a simple contract :
 * [Official Laravel Nova](https://nova.laravel.com/), commercial product, full featured, good community and very efficient SPA admin builder for Laravel with Vue.js. Beautiful UI Framework and nice Laravel-ish development experience. But tends to be a Nova-way for development.
 * [Backpack](https://backpackforlaravel.com/), not free for commercial projects, with the good old school Bootstrap/jQuery combo with CoreUI theme. Can have quickly bloated code in case of specific custom development needs, but still stay one of the most productive admin panel on the market with a tons of widgets.
 * [Voyager](https://voyager.devdojo.com/), free admin panel for Laravel.
+
+### Experimental Vuetify SPA Admin projects
+
+* [Vue Admin](https://github.com/Cambalab/vue-admin)
+* [Vue Crud](https://github.com/what-crud/vue-crud)
 
 ### A very subjective comparison
 
