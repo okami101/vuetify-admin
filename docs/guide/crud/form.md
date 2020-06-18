@@ -12,7 +12,7 @@ Both create and edit layouts share similar layout as [show page](show.md) with s
 
 |> docgen create-layout
 
-:::tip CLONE
+::: tip CLONE
 Note that the create page support copy of values from other existing resource, i.e. cloning, as soon as a specific `source` query string with a valid existing id is present. This is automatically done via `VaCloneButton` present by default on `VaDataTable`. This is why a `item` prop is available on `Create` vue component that allows you to inject it into `VaForm`.
 
 ```vue {3,11}
@@ -37,7 +37,7 @@ export default {
 
 |> docgen edit-layout
 
-:::tip USE ID
+::: tip USE ID
 Compared to to create page, you gain a new `id` prop that correspond to the resource to edit and patch on the API side. Don't forget to put it on form via the same prop in order to use `update` data provider method under the hood.
 
 ```vue {3,11}
@@ -145,7 +145,7 @@ This form page will use special VA input components that are aware of current ro
 
 Note that the main internal form model will be auto generated from all inputs that will be present on this form. If you inject an existing item into `VaForm`, the main form model will takes his actual values that will be reflected for each input.
 
-:::tip ALL INPUT COMPONENTS
+::: tip ALL INPUT COMPONENTS
 Go to separated [inputs guide reference](../components/inputs.md) to get all supported components for edit data.
 You can still create your [own input component](../components/inputs.md#custom-input-component) if none suit your needs.
 :::
@@ -195,7 +195,7 @@ It will render 2 different buttons, the default one that will submit on enter an
 
 ![saving](/assets/saving.png)
 
-:::tip NO DEFAULT REDIRECT
+::: tip NO DEFAULT REDIRECT
 Use `disable-redirect` prop on `VaForm` in order to prevent default submit redirect. No effect on save buttons with redirect.
 :::
 
@@ -238,7 +238,7 @@ export default {
 </script>
 ```
 
-:::tip DEFAULT VALUE
+::: tip DEFAULT VALUE
 Note that you're not forced to put all properties inside exposed model. If not present, they will still auto created by all present VA inputs component.
 
 If you explicitly set a property, the related input will take this value as default in case of no item is injected into `VaForm`. Ideal for pre filling a create item.
@@ -283,7 +283,7 @@ export default {
 
 ### Server-side validation
 
-:::tip ERRORS HANDLING
+::: tip ERRORS HANDLING
 See [separated section](../data-providers.md#errors-handling) before continue.
 :::
 

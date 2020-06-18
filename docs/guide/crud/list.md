@@ -4,7 +4,7 @@ The list page is the main UI entry point of your resource where you can do all s
 
 ![list](/assets/list.png)
 
-:::tip PAGE CUSTOMIZATION
+::: tip PAGE CUSTOMIZATION
 Note that for every CRUD pages you are free to put anything you want, and you have not forced to use provided optimized components.
 
 Since all data provider methods are available in a dedicated store module for each resource, it's not that complicated to create your own list components that will fetch your data. And you can of course use the current global `$axios` instance if you need to fetch all sort of custom data that coming out of data provider logic. See [usage here](../data-providers.md#store).
@@ -51,7 +51,7 @@ It will produce this simple structure :
 
 Note that `VaList` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
-:::warning DISPLAY DATA
+::: warning DISPLAY DATA
 `VaList` is only responsible for data iteration UI controls. You still need to display the data list on your own or use the provided `VaDataTable`.
 :::
 
@@ -59,7 +59,7 @@ Note that `VaList` will try to be synchronized on real time within query string 
 
 |> docgen data-table
 
-:::warning CONTEXT SYNCHRONIZATION
+::: warning CONTEXT SYNCHRONIZATION
 As the `VaDataTable` is a dumb component, it needs to be synchronized with a context data. As seen at the above code example, the simplest way is to use `VaList` as data browsing control that will automatically inject following behaviors :
 
 * **Current resource and items** : Pass all result data from iterator into data table with total.
@@ -155,7 +155,7 @@ See all supported field properties :
 | **attributes** | `object`  | All props or attributes to merge to the [field component](../components/fields.md).          |
 | **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.              |
 
-:::tip SHORTHAND
+::: tip SHORTHAND
 You can use a simple string for each field column, `"my-property"` is similar to `{ source: "my-property" }`.
 :::
 
@@ -257,7 +257,7 @@ This filter will send the string search query on backend via the key configured 
 
 Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the [Vtec Laravel package](https://github.com/okami101/vtec-laravel-crud) for your Laravel app, you can use the dedicated [`SearchFilter`](../laravel.md#search-filter) for that.
 
-:::tip INTERNAL FILTERS
+::: tip INTERNAL FILTERS
 In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.
 :::
 
@@ -385,7 +385,7 @@ export default {
 
 This `VaList` component comes with 2 provided global actions, which are `create` and `export`. The create button will only appear if current resource has create action and if authenticated user has create permission on this resource.
 
-:::tip ACTION EVENTS
+::: tip ACTION EVENTS
 You're not forced keep the default redirect behavior button. If you prefer a create event, just subscribe to `action` event and disable create redirect via `disableCreateRedirect` prop for preventing create button to redirect to linked action page.
 
 You will have the same behavior for `show`, `edit` and `clone` actions inside `VaDataTable`. Use `item-action` event and disable default redirect if you need custom behavior on your side as aside or dialog edition.
@@ -399,7 +399,7 @@ This action events will always provide you the freshed item from the API as well
 
 The export button will process a CSV file download on client side. It simply takes the current search context and refetch data on server side, while keeping current filters and sorts without any pagination infos.
 
-:::tip SERVER-SIDE EXPORT
+::: tip SERVER-SIDE EXPORT
 Because the client-side exports has it's own limits and limited to basic CSV, you can always create a custom action that do an export on server-side. Create a custom `href` button as shown below and use `disableExport` prop. Your href should contain all search context provided by `options` without any pagination infos and redirect to a valid API endpoint that return a response with attachment content in order to provoke a file download.
 :::
 
@@ -458,7 +458,7 @@ The next example will show you a bulk publish / unpublish bulk actions :
 </template>
 ```
 
-:::tip SELECTED ITEMS
+::: tip SELECTED ITEMS
 `VaBulkActionButton` will automatically use injected search state to get all items to interact.
 :::
 
@@ -499,7 +499,7 @@ Next example shows a good use case of `VaList` inside a `VaEditLayout` page in o
 
 Note that the only thing to do is to provide explicitly the resource to fetch and use the `filter` which allows us to add internal filters, perfect place for adding the current resource as filter.
 
-:::warning QUERY STRING
+::: warning QUERY STRING
 For this case usage, you may disable default query string update in order to prevent unexpected behavior. Use `disable-query-string` for that.
 :::
 
@@ -575,7 +575,7 @@ Expected properties of `association` :
 
 For both associate and dissociate actions, the `update` data provider method will be called on the listed resource (which is `books` for this example) with this data : `{ <type>_<source>: <id> }`. `type` will correspond to the type of operation, which is `add` or `remove`. It's up to you to make the effective association from server-side.
 
-:::tip LARAVEL EXAMPLE
+::: tip LARAVEL EXAMPLE
 Here is a code sample you can use on your `update` endpoint of your controller for a pivot relation :
 
 ```php
@@ -637,7 +637,7 @@ Instead of have separate CRUD pages for each action, it's possible to regroup al
 
 |> docgen aside-layout
 
-:::tip USELESS ROUTES
+::: tip USELESS ROUTES
 If you use aside for crud operations, you may disable related `show`, `create` and `edit` routes. As shown in [resources guide section](../resources.md), use `actions` or `except` resource properties for that :
 
 **`src/resources/index.js`**

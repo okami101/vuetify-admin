@@ -131,6 +131,7 @@ module.exports = (ctx) => ({
         color: "#41b883",
       },
     ],
+    'vuepress-plugin-element-tabs',
     [
       "container",
       {

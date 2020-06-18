@@ -70,13 +70,13 @@ This slot composition system allows a complete customization possibility. By def
 </template>
 ```
 
-:::tip OPTIONAL
+::: tip OPTIONAL
 You can totally replace the layout component by your own if you need total personalization !
 
 In this case you may use at least the below [`VaMessages`](#messages) component in order to have all toaster notifications and confirmation dialogs.
 :::
 
-:::tip MENU LINKS
+::: tip MENU LINKS
 See [below section](#links).
 :::
 
@@ -84,11 +84,11 @@ See [below section](#links).
 
 |> docgen app-bar
 
-:::tip CREATE RESOURCE LINKS
+::: tip CREATE RESOURCE LINKS
 The create action links will be automatically generated from your registered resources if the current user has permissions for it.
 :::
 
-:::tip RELOAD BUTTON
+::: tip RELOAD BUTTON
 The reload button will dynamically spin for every fetch calls from you data provider, i.e. `getList`, `getOne` or `getMany`. A manual click will redo the call from current state for freshed content. It will be apply on all CRUD pages.
 
 The show, create, edit page will reload the route linked resource and refresh all related field or input components, while list page will reload current resources list from current iterator context.
@@ -98,7 +98,7 @@ The show, create, edit page will reload the route linked resource and refresh al
 
 |> docgen sidebar
 
-:::tip HIDE OR MINIMIZE
+::: tip HIDE OR MINIMIZE
 Use `drawer` event from `VaAppBar` in order to toggle sidebar.
 :::
 
@@ -150,17 +150,17 @@ Object link structure :
 | **heading**  | `string`          | Transform link into section label heading, for sidebar menu only. Will disable all other properties.        |
 | **divider**  | `boolean`         | Transform link into divider, for sidebar menu only. Will disable all other properties.                      |
 
-:::tip SIDEBAR NAV
+::: tip SIDEBAR NAV
 Because sidebar hierarchical menu can be cumbersome, Vue CLI Plugin will set it on a separated `src/_nav.js` file. In addition to standard link, sidebar nav support 2 specifics items :
 
 * Heading title, a simple object with a heading property. Ideal for many links section.
 * Divider, just put `{ divider: true }` for making a simple section divider.
 :::
 
-:::tip LINKS TO RESOURCES
+::: tip LINKS TO RESOURCES
 You can easily build resources actions links thanks to [resources link helpers](../resources.md#link-helpers).
 :::
 
-:::tip PERMISSIONS ON LINKS
+::: tip PERMISSIONS ON LINKS
 You can easily show hide each link by using [some authorization helpers](../authorization.md#helpers).
 :::

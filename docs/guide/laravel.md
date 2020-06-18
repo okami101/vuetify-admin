@@ -2,7 +2,7 @@
 
 This guide is a demonstration of how official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) can heavily facilitates Vtec Admin integration within laravel backend for full top to bottom development experience. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
 
-:::warning REQUIREMENTS
+::: warning REQUIREMENTS
 
 * You must have at least PHP 7.4 (required by spatie media library package).
 * [Laravel installer](https://laravel.com/docs#installing-laravel).
@@ -12,7 +12,7 @@ This guide is a demonstration of how official [Vtec Laravel Crud](https://github
 
 :::
 
-:::tip SOURCE CODE
+::: tip SOURCE CODE
 You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/generators).
 :::
 
@@ -47,7 +47,7 @@ Then follow wizard.
   * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
 
-:::tip IDE HELPER
+::: tip IDE HELPER
 If you have selected ide helper package, you may add this lines into your main `composer.json` file :
 
 ```json
@@ -76,11 +76,11 @@ Finally, the installer will integrate some additional boilerplate code to get ba
 
 **At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/vtec-laravel-crud/blob/master/preset.json).**
 
-:::tip UI ADMIN GENERATE COMMAND
+::: tip UI ADMIN GENERATE COMMAND
 You can still regenerate new admin UI without reuse full installer by using `php artisan vtec:ui`.
 :::
 
-:::tip DIRECTORY STRUCTURE
+::: tip DIRECTORY STRUCTURE
 See [this getting started section](getting-started.md#directory-structure) for more detail of what you get inside the `admin` folder.
 :::
 
@@ -112,11 +112,11 @@ PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
 ```
 
-:::warning SANCTUM
+::: warning SANCTUM
 `SANCTUM_STATEFUL_DOMAINS` environnement variable is always needed even if admin app is on same API domain. It allows cookie auth sharing between local client app and API server. On production you may set the full domain. For example if your app will be accessible on **https://my.company.com** : `SANCTUM_STATEFUL_DOMAINS=my.company.com`.
 :::
 
-:::warning DOCKER_PUID AND DOCKER_PGID
+::: warning DOCKER_PUID AND DOCKER_PGID
 You need to set properly this IDs according to your local linux user IDs in order to prevent all boring permissions issues inside Laravel storage folder. In general the first created linux user is 1000 by default.
 :::
 
@@ -131,12 +131,12 @@ docker-compose exec laravel php artisan migrate:fresh --seed
 
 If not included on your dummy data, you may need to create your first user by `docker-compose exec laravel php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
 
-:::tip ADMIN URL
+::: tip ADMIN URL
 By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
 Don't forget to edit it on production. Just edit ADMIN_URL environment variable for that.
 :::
 
-:::tip DOCKER
+::: tip DOCKER
 As you have seen, if you use docker, use `docker-compose exec laravel` before each artisan commands.
 :::
 
@@ -179,27 +179,27 @@ Route::apiResources([
 ]);
 ```
 
-:::tip HELP COMMAND
+::: tip HELP COMMAND
 Launch `php artisan crud:make --help` for all options documentation.
 :::
 
-:::tip IDE AUTOCOMPLETION
+::: tip IDE AUTOCOMPLETION
 Use `php artisan ide-helper:models` after in order to have full model autocompletion !
 :::
 
-:::tip OVERRIDES
+::: tip OVERRIDES
 Use `--force` option for overwrite existing files.
 :::
 
-:::tip DATABASE RELATED FILES
+::: tip DATABASE RELATED FILES
 For both generator commands, you may add `-mfs` options to generate full migration file with all pre-generated fields, in addition to factory and seeder files.
 :::
 
-:::warning RELATIONSHIP
+::: warning RELATIONSHIP
 In case of model relation, even if foreign keys can be generated in migration file by `foreign` on schema, you must manually add related eloquent relation in you model.
 :::
 
-:::warning VALIDATION
+::: warning VALIDATION
 For server-side validation, you must manually add rules to generated store and update request files inside `app/Http/Requests` directory.
 :::
 
@@ -216,13 +216,15 @@ php artisan crud:make Book \
   -mfs --force
 ```
 
-:::warning JSON
+::: warning JSON
 As `title` and `description` are translatable, we'll use JSON for storing all localized labels keyed by locale code.
 :::
 
 All necessary files are now generated :
 
-:::details MIGRATION
+:::: tabs
+
+::: tab MIGRATION
 **`database/migrations/{timestamp}_create_books_table.php`**
 
 ```php
@@ -271,7 +273,7 @@ class CreateBooksTable extends Migration
 > Generated thanks to [Laracasts Generators](https://github.com/laracasts/Laravel-5-Generators-Extended).
 :::
 
-:::details MODEL
+::: tab MODEL
 **`app/Book.php`**
 
 ```php
@@ -302,7 +304,7 @@ class Book extends Model
 > Guess all fillable, casts, translatable, as well as media (single or multiple) fields. The `getLocale` method is important in order to get the current asked Locale from request for good targeted locale translation (get or set).
 :::
 
-:::details CONTROLLER
+::: tab CONTROLLER
 **`app/Http/Controllers/BookController`**
 
 ```php
@@ -404,7 +406,7 @@ class BookController extends Controller
 > Use [Laravel Spatie Query Builder](https://github.com/spatie/laravel-query-builder) for index method, while keeping standard Laravel-ish for other REST methods.
 :::
 
-:::details RESOURCE
+::: tab RESOURCE
 **`app/Http/Resources/Book.php`**
 
 ```php
@@ -431,6 +433,8 @@ class Book extends BaseResource
 
 > Use [Laravel eloquent resource](https://laravel.com/docs/eloquent-resources) and extend specific Vtec base resource mainly for translatable and media API handling.
 :::
+
+::::
 
 Additional generated files : **BookPolicy**, **StoreBook**, **UpdateBook**, **BookSeeder** and **BookFactory**.
 
@@ -529,7 +533,7 @@ yarn crud:make books --locale="en" --name="Book | Books" --icon="mdi-book" --lab
   --lint
 ```
 
-:::tip HELP COMMAND
+::: tip HELP COMMAND
 Use `yarn vue-cli-service help crud:make` for all options documentation.
 :::
 
@@ -549,7 +553,9 @@ To finish you may readapt some fields or inputs for better representation :
 
 Here the final code templates of all locales and book CRUD views, all above manual modifications are highlighted.
 
-:::details LOCALES
+:::: tabs
+
+::: tab LOCALES
 First of all, you're not forced to add label for all fields, as VA will try to humanized them by default from the `source` prop. However for enums, you'll need to add all the list because its help all `VaSelectInput` to get automatically the full choices list from the given source.
 
 **`src/locales/en.json`**
@@ -587,7 +593,7 @@ First of all, you're not forced to add label for all fields, as VA will try to h
 
 :::
 
-:::details LIST
+::: tab LIST
 **`src/resources/books/List.vue`**
 
 ```vue {17,25}
@@ -630,7 +636,7 @@ Final render :
 ![books-list](/assets/laravel/books-list.png)
 :::
 
-:::details SHOW
+::: tab SHOW
 **`src/resources/books/List.vue`**
 
 ```vue {14,17,22,25}
@@ -680,7 +686,7 @@ Final render :
 ![books-show](/assets/laravel/books-show.png)
 :::
 
-:::details CREATE
+::: tab CREATE
 **`src/resources/books/List.vue`**
 
 ```vue
@@ -699,7 +705,7 @@ export default {
 
 :::
 
-:::details EDIT
+::: tab EDIT
 **`src/resources/books/List.vue`**
 
 ```vue
@@ -718,7 +724,7 @@ export default {
 
 :::
 
-:::details FORM
+::: tab FORM
 **`src/resources/books/List.vue`**
 
 ```vue {15,16,20}
@@ -763,6 +769,8 @@ Final render :
 ![books-form](/assets/laravel/books-form.png)
 :::
 
+::::
+
 ## YAML
 
 For even more auto generation power and reusability, a direct resources yaml file descriptor can be used via `php artisan crud:yaml my-new-resource.yml [options]` for API and `yarn crud:yaml my-new-resource.yml [options]` for UI. You can also directly provide a directory which contains all necessary YAML resource descriptor files as needed.
@@ -780,7 +788,7 @@ In this tutorial we will use existing YAML files as sample. Take one of this [YA
 
 ### API generator commands
 
-:::tip DOCKER
+::: tip DOCKER
 For all next artisan commands, don't forget to add `docker-compose exec laravel` before.
 :::
 
@@ -818,15 +826,15 @@ The next step is to write you seed data. Use generated factory and seeder for th
 * [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterChildFactory.php)
 * [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/MonsterSeeder.php)
 
-:::tip USER SEEDER
+::: tip USER SEEDER
 Take [this user seeder file](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/UserSeeder.php) in order to not have to create your admin each time you reset the database.
 :::
 
-:::tip FILE SAMPLES
+::: tip FILE SAMPLES
 For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/DatabaseSeeder.php).
 :::
 
-:::warning COMPOSER AUTOLOAD
+::: warning COMPOSER AUTOLOAD
 Don't forget to launch `composer dump-autoload` if you don't pass via `php artisan make:seed` command.
 :::
 
@@ -894,7 +902,7 @@ The Vtec Admin file upload component `va-file-input` will take care of all of th
 
 If you want use global search in [Vtec Admin Iterator](crud/list.md), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
-```php{4}
+```php {4}
 return new BookCollection(
   QueryBuilder::for(Book::class)
       ->allowedFilters([
@@ -904,7 +912,7 @@ return new BookCollection(
 }
 ```
 
-:::tip
+::: tip
 Use `exportOrPaginate` specific macro after end of each QueryBuilder in order to add both export and pagination with only one line of code. It will apply pagination only in case of `perPage` detection on request query string. In all cases, filtering and sorting are kept.
 :::
 
@@ -912,7 +920,7 @@ Use `exportOrPaginate` specific macro after end of each QueryBuilder in order to
 
 You can use `Vtec\Crud\Faker\Provider\Html` for easy html generation your factories :
 
-```php{6,15,16}
+```php {6,15,16}
 use App\Book;
 use Faker\Generator as Faker;
 use Vtec\Crud\Faker\Provider\Html;

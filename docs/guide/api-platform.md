@@ -2,7 +2,7 @@
 
 In order to demonstrate how we can easily change server API while keeping same Admin UI, let's try another more advanced API backend with stateless JWT authentication.
 
-:::tip SOURCE CODE
+::: tip SOURCE CODE
 You will find complete source code of this sample [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/api-platform).
 :::
 
@@ -69,7 +69,7 @@ To resume we add a specific `application/ld+json` as `accept` header for proper 
 
 Try now to login as `admin@example.com` / `admin` and you should be redirected at an empty dashboard page.
 
-:::warning
+::: warning
 API Platform Demo doesn't provide user information routes, explicit logout, users or profile management, it's up to you to add this features.
 :::
 
@@ -137,8 +137,9 @@ Then create all crud pages for both resources by copy paste template code from c
 
 ### Books list
 
-API Platform demo support sorting on all fields for books. We can also filter on both title and author. For that it uses PHP annotation :
+API Platform demo support sorting on all fields for books. We can also filter on both title and author. For that it uses some PHP annotations.
 
+::: details BOOK
 **`api/src/Entity/Book.php`**
 
 ```php {6,7,16,22,29,35}
@@ -181,6 +182,8 @@ class Book
     //...
 }
 ```
+
+:::
 
 So let's add them to our books list UI :
 
@@ -255,6 +258,7 @@ All review chip will link to the full default review show page.
 
 Symfony constraints can be defined on any entity property via the specific `Assert` PHP annotation.
 
+::: details ASSERT
 **`api/src/Entity/Book.php`**
 
 ```php {8,19,29,40,50,51}
@@ -317,8 +321,9 @@ class Book
 
     //...
 }
-
 ```
+
+:::
 
 On admin UI side, here is the final code for a functional book form :
 
@@ -363,6 +368,7 @@ Go to [hydra provider source code](https://github.com/okami101/vtec-admin/blob/m
 
 For reviews, demo allows sort by publication date and filtering by book.
 
+::: details FILTER
 **`api/src/Entity/Review.php`**
 
 ```php {3,11}
@@ -387,6 +393,8 @@ class Review
     //...
 }
 ```
+
+:::
 
 The optimized reviews list page will be :
 

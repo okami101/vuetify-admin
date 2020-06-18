@@ -4,7 +4,7 @@
 
 This is simply doable by implementing specific contract which will ensure compatibility within VA. Follow [dedicated guide](data-providers.md) for further detail.
 
-:::tip RESOURCE
+::: tip RESOURCE
 For next guide, a **resource** means a given server API entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted.
 :::
 
@@ -22,7 +22,7 @@ His main purpose is to accelerate resources CRUD UI development in a full SPA, w
 
 See it as a Vue.js little brother equivalent to well known battle tested [React Admin](https://github.com/marmelab/react-admin/).
 
-:::danger ALPHA STATUS
+::: danger ALPHA STATUS
 This project is still experimental on alpha version and BC can be frequent. Actually without any test suite and therefore not really suited for production unless you feel adventurous.
 :::
 

@@ -2,11 +2,11 @@
 
 VA input components allow editing of particular property of existing API resource object. Mainly used on [forms](../crud/form.md) for create and edit views. Can also be used as filter input for [`VaList`](../crud/list.md#data-iterator). For resource edition, it must be used within [`VaForm`](../crud/form.md#injector), which handle item injection and form model supply with error messages.
 
-:::tip SOURCE AND MODEL
+::: tip SOURCE AND MODEL
 Va inputs support both `source` and `model` prop. Source is the original property object where to fetch the value and model will be the final property name with the new value that will be sent on your data provider.
 :::
 
-:::tip DOT NOTATION SUPPORT
+::: tip DOT NOTATION SUPPORT
 VA inputs accept dot notation for `source` prop. Very useful for nested object :
 
 ```vue
@@ -135,7 +135,7 @@ Will render :
 
 ![rich-text](/assets/inputs/rich-text.png)
 
-:::warning CDN ASSET
+::: warning CDN ASSET
 In order to work, this input needs the URL of main TinyMCE JS bundles with a proper API key preloaded. Configure it on your tiny cloud account and add this scripts to the `public/index.html` :
 
 ```html
@@ -146,11 +146,11 @@ In order to work, this input needs the URL of main TinyMCE JS bundles with a pro
 
 :::
 
-:::tip GLOBAL OPTIONS
+::: tip GLOBAL OPTIONS
 You may set global actions for TinyMCE in main `VtecAdmin` constructor as [explained here](../admin.md). See all [supported options](../admin.md#tinymce).
 :::
 
-:::tip TINYMCE 5 DOCUMENTATION
+::: details TINYMCE 5 DOCUMENTATION
 Check the [official documentation](https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/) for further details on `plugins` and `toolbar` configuration. Use `init` prop for full control, it will replace other props.
 
 Default init value for `init` :
@@ -174,7 +174,7 @@ Default init value for `init` :
 
 :::
 
-:::tip IMAGE UPLOAD HANDLER
+::: details IMAGE UPLOAD HANDLER
 You may need a real backend image upload handler in order to avoid the default base64. Use global `imageUploadUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a handler URL compatible with TinyMCE 5. It will add a direct upload zone on images plugin and as well as enable drag and drop.
 
 [Vtec Laravel Crud](../laravel.md) already integrate a functional upload handler that you can activate by adding the upload route :
@@ -197,7 +197,7 @@ You may provide admin axios instance to [VtecAdmin constructor](../admin.md#inst
 
 :::
 
-:::tip FILE BROWSER
+::: details FILE BROWSER
 You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowserUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a backend file browser solution. It will add a picker button for images and media that allows file selection from the file browser.
 
 If you use any PHP framework you should try `elFinder` which is already integrated on official [Vtec Laravel Crud](../laravel.md) package :
@@ -221,11 +221,11 @@ Will render :
 
 ![select](/assets/inputs/select.png)
 
-:::tip LOCALIZED ENUMS
+::: tip LOCALIZED ENUMS
 You may centralized all choices for reuse directly inside you locales as [explain here](../i18n.md#resources). If no choices set, `VaSelectInput` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
 :::
 
-:::tip REFERENCES
+::: tip REFERENCES
 If you want select from existing resource reference, use `reference` prop as follow :
 
 ```vue
@@ -258,11 +258,11 @@ Will render :
 
 ![radio-group](/assets/inputs/radio-group.png)
 
-:::tip NO CHECKBOX GROUP
+::: tip NO CHECKBOX GROUP
 Use above select with `multiple` prop enabled.
 :::
 
-:::tip REFERENCES
+::: tip REFERENCES
 Same above related `VaSelectInput` references tip applies, without multiple support obviously.
 :::
 
@@ -287,13 +287,13 @@ Will render :
 
 ![autocomplete](/assets/inputs/autocomplete.png)
 
-:::tip SEARCH
+::: tip SEARCH
 Use `minChars` and `searchQuery` to configure the minimal char needed before search and the query search parameter key which is `q` by default. It will reuse `getList` data provider method with a custom search filter.
 
 Use `fields` prop to reduce API query over fetching for better performance.
 :::
 
-:::tip TAGGABLE
+::: tip TAGGABLE
 Autocomplete will be transformed into combobox component as soon as you enable `taggable` prop. It will allow you to create new tags on the fly.
 :::
 
@@ -320,11 +320,11 @@ Will render :
 
 ![file](/assets/inputs/file.png)
 
-:::tip IMAGES
+::: tip IMAGES
 Use `preview` for image gallery support, use [`VaImageField`](fields.md#image) under the hood.
 :::
 
-:::tip DATA PROVIDER FILE UPLOAD
+::: tip DATA PROVIDER FILE UPLOAD
 2 different solutions :
 
 * Base64 : JSON friendly but more payload size and generally poorly integrated on server-side.
@@ -335,7 +335,7 @@ Laravel data provider of VtecAdmin use the second method for easier server-side 
 Raw files will be send into your update or create API according to given `source` or `model` prop.
 :::
 
-:::tip DATA PROVIDER FILE DELETION
+::: tip DATA PROVIDER FILE DELETION
 This file input will use `VaFileField` or `VaImageField` with `clearable` prop enabled under the hood which allows file removing. It will fill an array which contains media id that should be deleted on backend. You can use `itemValue` prop if media value different than `id`. Then this array will be send to your update API with a specific delete property which will take this name format : `{source}_delete`.
 
 If using Vtec Laravel Crud, this [RequestMediaTrait](../laravel.md#requestmediatrait) will done already everything for you.
@@ -366,7 +366,7 @@ Will render :
 
 ![array](/assets/inputs/array.png)
 
-:::tip LABEL
+::: details LABEL
 For proper inner localization, use nested structure :
 
 ```json
@@ -384,7 +384,7 @@ For proper inner localization, use nested structure :
 As we cannot have proper label for `backlinks`, use `label` prop for explicit label.
 :::
 
-:::tip API VALIDATION HANDLING
+::: details API VALIDATION HANDLING
 The final form model will stay a classic array. In the above example, if encoded in FormData, it will be sent on this format : `backlinks[$i][(date|url)]`. In case of Laravel using, you may use this validation rule :
 
 ```php
@@ -449,11 +449,11 @@ export default {
 </script>
 ```
 
-:::warning V-MODEL
+::: warning V-MODEL
 You should use `update` method provided by input mixin with the new value in order to update the injected parent model on `VaForm`.
 :::
 
-:::tip INPUT WRAPPER
+::: tip INPUT WRAPPER
 You may use [`VaInput`](#wrapper) wrapper if you want full error display handling without any effort.
 :::
 
@@ -467,7 +467,7 @@ import MyCustomInput from "./components/fields/MyCustomInput";
 Vue.component("VaMyCustomInput", MyCustomInput)
 ```
 
-:::tip NAMESPACE
+::: details NAMESPACE
 Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for `VaDataTable` [filters](../crud/list.md#advanced-filters) if suitable. So next code will perfectly working :
 
 ```vue

@@ -2,7 +2,7 @@
 
 For many admin app, you will often need of users with different roles or permissions whose will have only access to some parts of admin with limited access to resources management or specific component as some fields. VA support this feature at few levels.
 
-:::danger BACKEND PRIORITY
+::: danger BACKEND PRIORITY
 This authorization that we discuss here is only about display or hide links, actions, UI components, or change some client side logic. You always must consider that any user will have access to a full admin UI in case of SPA admin, just because all JS bundle code is here, so it's only a matter of activating some permissions via javascript for unlock all UI.
 
 Therefore **always prioritize the permissions on the backend** at first before any UI concerns !
@@ -10,7 +10,7 @@ Therefore **always prioritize the permissions on the backend** at first before a
 
 ## Get user permissions
 
-:::tip AUTHENTICATION
+::: tip AUTHENTICATION
 Before continue you should consider to check the related [authentication section](authentication.md) of this guide. It contains all you should know about user authentication and user information fetching.
 :::
 
@@ -18,7 +18,7 @@ As you have seen on authentication guide, every auth providers must implement a 
 
 It can be anything you want, from a low level specific permission as `create_book` up to a more global role as `editor`. It's up tu you to find the suited granularity you need. For example we can imagine generic role-based as `["editor", "author"]` or more granular permission-based as `["list_author", "show_author", "list_book", "show_book", "create_book"]`.
 
-:::tip INCLUDED PROVIDERS
+::: tip INCLUDED PROVIDERS
 All included providers of VA can have a `getPermissions` callback which allows you to customize the implemented method. It takes a user object from your API and looks by default for an existing `roles` property and return it as-is.
 :::
 
@@ -44,11 +44,11 @@ export default [
 
 The `permissions` property is a simple array of strings or objects. Use simple string when you want this permission to apply to all actions. The object format allows you to define more granular permission for each action of resources. Just use `name` for permission name and `actions` for list of allowed actions when user own this permission.
 
-:::tip DEFAULT BEHAVIOR
+::: tip DEFAULT BEHAVIOR
 By default, if no permissions are set, all authenticated users can access to any operations of this resource.
 :::
 
-:::warning EXCLUDED ACTIONS
+::: warning EXCLUDED ACTIONS
 Global `actions` or `except` are prioritized to `permissions` option only for excluded actions. So if you use `actions` or `except` properties, then specific `permissions` for excluded actions will have no effect.
 :::
 
@@ -76,7 +76,7 @@ export default new VtecAdmin({
   },
 ```
 
-:::warning OVERRIDES OR DEFAULT
+::: warning OVERRIDES OR DEFAULT
 If this callback return a valid boolean, the action will be considered as valid or not whatever the permissions value set on the concerned resource.
 
 If nothing is returned, the default behavior is executed.
@@ -95,7 +95,7 @@ export default {
 </script>
 ```
 
-:::warning ONLY CRUD PAGE
+::: warning ONLY CRUD PAGE
 This prop is only available on CRUD pages, as this props is injected from VA routes.
 :::
 
@@ -116,7 +116,7 @@ export default {
 </script>
 ```
 
-:::tip USE CAN HELPER
+::: tip USE CAN HELPER
 It is often enough to use the [dedicated can helper](#helpers) which allows you to make quick permissions ability assertions against the authenticated user.
 :::
 
@@ -145,7 +145,7 @@ export default {
 </script>
 ```
 
-:::warning OR condition
+::: warning OR condition
 It tests the list of abilities with a `OR` condition, so if only one permission is owned by current user, then it return `true`.
 :::
 
@@ -175,6 +175,6 @@ export default (i18n, admin) => [
 ];
 ```
 
-:::warning ADMIN
+::: warning ADMIN
 Don't forget to pass `this.$admin` on `nav` call inside `src/layouts/Admin.vue`
 :::

@@ -10,7 +10,7 @@ VA provides 3 configurable auth providers :
 * `jwtAuthProvider` : JWT for stateless authentication.
 * `sanctumAuthProvider` : Full state cookie authentication which is the recommended way if you use Laravel.
 
-:::tip GUEST MODE
+::: tip GUEST MODE
 Note that the auth provider is of course totally optional !  
 If your API don't need auth at all, simply don't set the `authProvider` option in `VtecAdmin` constructor and VA will directly use a `guest` mode auth that will let you manage your resources as if we were connected.
 :::
@@ -51,7 +51,7 @@ export default new VtecAdmin({
 
 All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
 
-:::tip GLOBAL ADMIN AXIOS
+::: tip GLOBAL ADMIN AXIOS
 Pass axios instance into [VtecAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
 
 Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusively use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
@@ -74,7 +74,7 @@ In addition to axios, a second `params` optional argument can be used for variou
 The [Laravel Sanctum Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/sanctum.js) offers full integration with [Laravel Sanctum](https://github.com/laravel/sanctum), the ideal official package for full state SPA authentication support.  
 This is actually the recommended provider for Laravel if your app is on the same main domain (which is 99% use cases), because it's more secure (insensitive to XSS attacks thanks to HttpOnly cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
 
-:::warning CSRF
+::: warning CSRF
 As always with all based-cookies authentication system, you'll need a specific `csrf` route in order to get the XSRF token. Default is set to `/sanctum/csrf-cookie` so you have not to do anything if you use Laravel Sanctum with default config.  
 By calling this URL, a local `XSRF-TOKEN` cookies will be stored with HttpOnly set to `false`. This allows axios to fetch it and set it as header request via `X-XSRF-TOKEN` for every next requests.  
 Don't forget to set `withCredentials` axios config to `true` order to include session cookies on ever XHR request.
@@ -84,7 +84,7 @@ In order to work on fresh Laravel project, simply run `composer require laravel/
 
 **`app/Http/Kernel.php`**
 
-```php{2}
+```php {2}
 'api' => [
     \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
     'throttle:300,1',
@@ -98,7 +98,7 @@ Use the [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packag
 
 With this provider, a simple bearer token will be injected on `Authorization` header for every next XHR requests. The JWT will be stored inside user localStorage under a configurable key. A specific `refresh` routes can be used if you want auto refresh token on every page change.
 
-:::warning LESS FEATURES
+::: warning LESS FEATURES
 If you use JWT authentication (same for next basic HTTP) mode instead of Sanctum, you'll lose elFinder integration as well as impersonation feature.
 :::
 
@@ -137,7 +137,7 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 
 ![login](/assets/login.jpg)
 
-:::tip VUE CLI PLUGIN
+::: tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you fully functional login page !  
 If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/login/src/views/Login.vue) for your own.
 :::
@@ -170,11 +170,11 @@ export default {
 };
 ```
 
-:::warning LOGIN REDIRECTION
+::: warning LOGIN REDIRECTION
 For unauthenticated login redirection, in order to localize login URL path, Vtec Admin search for a route called `login`, so be sure to have this name set on your login route !
 :::
 
-:::tip REGISTRATION AND PASSWORD RESET
+::: tip REGISTRATION AND PASSWORD RESET
 If you need to add this features, login page is the perfect place to do it. Simply add related forms, then call your API specific register or password reset endpoint by using global admin axios instance, as shown on next section for the profile page.
 :::
 
@@ -182,7 +182,7 @@ If you need to add this features, login page is the perfect place to do it. Simp
 
 ![profile](/assets/profile.png)
 
-:::tip VUE CLI PLUGIN
+::: tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you fully functional profile page !
 If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/profile/src/views/Profile.vue) for your own.
 :::
@@ -240,7 +240,7 @@ export default {
 };
 ```
 
-:::tip CHECK AUTH
+::: tip CHECK AUTH
 After successful account update, you may refresh new user information into the Vuex store by simply recall `checkAuth` from your auth provider method. Anyway, even without that, this method will be called internally after each navigation change.  
 Use `this.$admin.toast` in order to show quick information state of API response.
 :::

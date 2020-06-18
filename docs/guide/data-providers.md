@@ -46,33 +46,37 @@ const dataProvider = {
 
 ### Supported API operation methods
 
-#### getList
+:::: tabs
 
+::: tab getList
 Used for all resources browsing context, as
 
 * [Data iterator component](crud/list.md) for showing list of resources inside data table or any custom list layout component. Should support specific field selection, as well as filtering, sorting and on-demand relation fetching.
 * [Export button](crud/list.md#export) for pre filtered resources exporting.
 * Auto choices fetching for component that support it as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
+:::
 
-#### getOne
-
+::: tab getOne
 For showing detail of resource, mainly for [Show page](crud/show.md) or data table show actions.
+:::
 
-#### getMany
-
+::: tab getMany
 Only used for [Autocomplete](components/inputs.md#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/form.md) or [query context filtering](crud/list.md#filter). As opposed to [RA reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [`VAReferenceField`](components/fields.md#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
+:::
 
-#### create, update
-
+::: tab create & update
 Used by [`VaForm`](crud/form.md) for creating new or updating existing resource.
+:::
 
-#### delete
-
+::: tab delete
 Simple delete action called when interacting with [`VADeleteButton`](components/buttons.md#delete).
+:::
 
-#### updateMany, deleteMany
-
+::: tab updateMany & deleteMany
 Bulk actions on [list page](crud/list.md). If your backend doesn't support a bulk action API, the simplest way is to push a Promise.all towards all unique simple operation method (update or delete.md) as you will find on Laravel Data Provider source code.
+:::
+
+::::
 
 ### Translatable resources
 
@@ -84,7 +88,7 @@ In case of a [translatable resource](i18n.md#resource-translation), Vtec Admin w
 
 This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel.md).
 
-:::tip EXISTING LARAVEL PROJECT
+::: tip EXISTING LARAVEL PROJECT
 You can even use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.
 :::
 
@@ -125,7 +129,7 @@ let dataProvider = laravelDataProvider(http)
 
 It allows you to have consistent request client across all providers, by taking cookies credentials, set baseURL, adding any custom HTTP headers as JWT token, using axios request interceptors, etc. You can even add specific provider baseURL if needed via second function arguments `laravelDataProvider(http, '/api')`.
 
-:::warning FORM DATA
+::: warning FORM DATA
 Laravel Data Provider use classic FormData for all api calls instead of simple JSON. It provides better Laravel integration for file uploads with ready-to-go file validation as well as UploadedFile auto conversion object.  
 For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vtec-admin/src/providers/utils/objectToFormData";`
 :::
@@ -186,7 +190,7 @@ Each provider's method must return a Provider on given format.
 | **delete**     | `empty`                               |
 | **deleteMany** | `empty`                               |
 
-:::warning PAGING COUNT
+::: warning PAGING COUNT
 As showed here, in order to make [data iterator](crud/list.md) aware of pager count you'll need to return the total of dataset from server-side.
 :::
 

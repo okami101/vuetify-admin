@@ -48,19 +48,19 @@ A resource object must follow this structure :
 | **permissions**        | `array`              | Enable resource according to user permissions, as shown [here](authorization.md#resource).                                                 |
 | **autocompleteFields** | `array`              | List of resource fields to return from API inside [`VaAutocompleteInput`](components/inputs.md#autocomplete) for avoiding over-fetching.   |
 
-:::tip LABEL
+::: tip LABEL
 The `label` property can take a string or function, and is equal to `label` by default. Use string for simple case which represents a valid property of the targeted resource, as `name` for a `users` resource. Using a function, which is a simple callback that takes the full resource API object, allows you to return more complex combination of properties, as ``(r) => `${r.title} (${r.isbn})` ``.
 
 This label will be used for default page title for every show and edit CRUD pages as well as every reference-based fields and inputs (`VaReferenceField`, `VaReferenceArrayField`, `VaAutocompleteInput`, `VaSelectInput`, `VaRadioGroupInput`).
 :::
 
-:::tip ACTIONS
+::: tip ACTIONS
 For actions, you have to choose between `list` / `show` / `create` / `edit` / `delete`. If none `actions` or `except` is set, all 5 operations are active by default.
 
 All removed actions will be reflected on all crud pages and Vue Router will be adapted accordingly as well. For example, if you set `except` to `["show"]`, it will disable `show` route and all `show` actions (mainly buttons) associates to the concerned resource.
 :::
 
-:::danger DISABLING ACTIONS
+::: danger DISABLING ACTIONS
 Note that it will only disable routes client-side generation and change action buttons behavior. The resource API module has always all actions method available. **Adapt your backend accordingly** for prevent any unintended actions.
 :::
 
@@ -121,7 +121,7 @@ resources
 └── `index.js` _(**Resources file descriptor as seen above**)_
 :::
 
-:::tip COMPOUND NAME
+::: tip COMPOUND NAME
 If the name resource is a compound format, use a hyphen between each word (this is the kebab-case format). Example `monster-children` for a resource named as `monster_children`.
 :::
 

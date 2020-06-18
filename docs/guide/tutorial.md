@@ -2,11 +2,11 @@
 
 This tutorial will show you how to get quick ready for admin development, by using the faking API server [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 
-:::tip SOURCE CODE
+::: tip SOURCE CODE
 You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial).
 :::
 
-:::tip I PREFER PLAY WITH REAL API BACKEND
+::: tip I PREFER PLAY WITH REAL API BACKEND
 Check [API Platform tutorial](#api-platform) or more advanced [Laravel guide](laravel.md) for quick starting with generators samples or [create your own provider](data-providers.md) for your custom API. This tutorial stay useful as it's more focused on how to play with Vtec Admin with any existing API.
 :::
 
@@ -53,11 +53,11 @@ Then launch app by `yarn serve --open` you should arrive to this step :
 
 ![dashboard](/assets/tutorial/dashboard.png)
 
-:::tip CUSTOMIZE THE LAYOUT
+::: tip CUSTOMIZE THE LAYOUT
 You can perfectly customize the layout, which is a simple template component in `src/layouts/Admin.vue` file. Go to [dedicated section](crud/layout.md) for further detail.
 :::
 
-:::tip CUSTOMIZE THE DASHBOARD
+::: tip CUSTOMIZE THE DASHBOARD
 The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching.
 :::
 
@@ -73,7 +73,7 @@ You can **create** new users, **show** and **edit** them on direct **aside regio
 
 All users CRUD code templates can be found inside `src/resources/users`. `src/resources` will be your main working directory for all resources related CRUD pages development.
 
-:::tip DIRECTORY STRUCTURE
+::: tip DIRECTORY STRUCTURE
 Check [directory structure graph](getting-started.md#directory-structure) in order to get a quick global view of admin CLI project.
 :::
 
@@ -115,15 +115,15 @@ As you can see, fields for data table are just an list of object. `source` corre
 
 ![users-list](/assets/tutorial/users-list.png)
 
-:::tip FIELDS DOCUMENTATION
+::: tip FIELDS DOCUMENTATION
 More detail [here](crud/list.md#fields). See [all supported fields](components/fields.md).
 :::
 
-:::tip LABEL CUSTOMIZATION
+::: tip LABEL CUSTOMIZATION
 You can use `label` property to customize header column label. However, it's more appropriate to use locales of Vue I18n, because you will have to think about it only once for all fields and inputs, as the default `source` prop will be the main key. Each property of each resource must follow a convention in order to be recognized. See [dedicated section](i18n.md) if you want more.
 :::
 
-:::tip CELL TEMPLATING
+::: details CELL TEMPLATING
 You can of course use full Vue.js power for customize all columns instead of using field type thanks to [cell slots](crud/list.md#field-templating).
 
 Imagine you want customize address cell with complete information :
@@ -162,7 +162,7 @@ export default {
 
 :::
 
-:::tip CUSTOM FIELDS
+::: details CUSTOM FIELDS
 You're not limited to the existing fields. You have the possibility of [creating your own fields](components/fields.md#custom-component).
 
 Next a example of a custom specific address field :
@@ -248,7 +248,7 @@ export default [
 
 `name` is the unique identifier of resource that will be used as default route path as well as base URL for API calls. `icon` will be user for link icon identifier or any custom use for your own CRUD pages.
 
-:::tip RESOURCES DOCUMENTATION
+::: tip RESOURCES DOCUMENTATION
 See [this dedicated section](resources.md) for all available options.
 :::
 
@@ -309,7 +309,7 @@ export default {
 </script>
 ```
 
-:::tip MATERIAL CARD
+::: details MATERIAL CARD
 Vtec Admin will print basic `VCard` by default. If you have selected material theme superset from above Vue CLI wizard, you may use nicer `BaseMaterialCard` component instead, just replace `VCard` as next :
 
 ```vue {2,6,11}
@@ -429,7 +429,7 @@ It's enough to render :
 
 ![show](/assets/tutorial/show.png)
 
-:::tip SHOW DOCUMENTATION
+::: tip SHOW DOCUMENTATION
 See [dedicated section](crud/show.md).
 :::
 
@@ -531,7 +531,7 @@ It's enough to render :
 
 As you can see, `VaForm` is simply a injector component that will register an internal full form model initialized by all VA inputs child components. This model is the one that will be sent to the API. For all supported inputs, go [here](components/inputs.md).
 
-:::tip FORM DOCUMENTATION
+::: tip FORM DOCUMENTATION
 See [dedicated section](crud/form.md).
 :::
 
@@ -615,7 +615,7 @@ Now it will be better with a real name instead of basic ID. But the API don't gi
 }
 ```
 
-:::warning NO AUTO FETCH FROM USERS ?
+::: warning NO AUTO FETCH FROM USERS ?
 Contrary to React Admin equivalent, reference field doesn't support auto fetching target resource from API. Instead we prefer to rely on backend capacity to give full object on demand that allows internal eager loading for better performance.
 :::
 
@@ -678,7 +678,7 @@ Then you should have nice linkable labelled chip for users :
 
 ![relationships](/assets/tutorial/relationships.png)
 
-:::tip RELATIONSHIP IN SHOW PAGE
+::: details RELATIONSHIP IN SHOW PAGE
 Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaList` will use it as well if not defined, but it still can be overridden.
 
 **`src/resources/index.js`**
@@ -730,7 +730,7 @@ Just use `userId` as source, `users` as reference and you're done :
 
 ![relationships-select](/assets/tutorial/relationships-select.png)
 
-:::tip AUTOCOMPLETE
+::: tip AUTOCOMPLETE
 Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User search will be already functional by using default `q` query parameter for full text search of JSON Server.
 :::
 
@@ -773,11 +773,11 @@ It's a simple object that will be translated as valid supported input that react
 
 ![filters](/assets/tutorial/filters.png)
 
-:::tip FILTERS DOCUMENTATION
+::: tip FILTERS DOCUMENTATION
 More detail [here](crud/list.md#filters). See [all supported inputs](components/inputs.md).
 :::
 
-:::tip FILTER TEMPLATING
+::: tip FILTER TEMPLATING
 It's possible to use direct Vue.js code for filters via [filter slots](crud/list.md#filter-templating).
 :::
 
@@ -803,7 +803,7 @@ export default [
 ];
 ```
 
-:::tip ACTIONS
+::: tip ACTIONS
 Use `actions` property for disabling client related routes as we'll not use them. It will automatically disable all related action buttons.
 :::
 
@@ -857,7 +857,7 @@ Will render :
 
 The most important part is to precise the resource to fetch on `VaList` component and put the id of current post into internal filter of list. All crud action buttons will be auto hidden according to above resource config. You can now do the same for posts linked to a user at user show or edit page as exercise !
 
-:::tip ASSOCIATIONS
+::: tip ASSOCIATIONS
 It's not relevant for this case, but you can also add association support directly from this list ! It will add a new autocomplete for associate as well as dissociate button on each data table row. Ideal for pivot relations. See [more](crud/list.md#associations).
 :::
 

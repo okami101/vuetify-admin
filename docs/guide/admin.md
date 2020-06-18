@@ -1,6 +1,6 @@
 # Admin
 
-:::tip PROJECT STRUCTURE
+::: tip PROJECT STRUCTURE
 Check [directory structure](getting-started.md#directory-structure) for big picture of all files location that we will talk about after.  
 :::
 
@@ -88,7 +88,7 @@ The main steps are :
 * Load VA UI components.
 * Initiate VA by his constructor.
 
-:::tip BOILERPLATE
+::: tip BOILERPLATE
 All this boring stuff as well as all next pieces of code shown in this page are already prepared for you by the official [Vue CLI Plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin), go to [getting started section](getting-started.md) for installation detail.
 :::
 
@@ -175,7 +175,7 @@ export default new VueRouter({
 });
 ```
 
-:::tip
+::: tip
 Generally, you should have least a login page, which also can have any registration or password reset included. [Check here](authentication.md#login-page) for more info in his integration within your auth provider.
 :::
 
@@ -259,11 +259,11 @@ export default {
 
 > As you can see here, this is a single route which use a fully customizable `AdminLayout` component which allows all children pages to inherit of all admin authenticated structure, with app bar header, sidebar menu, etc. More information [here](crud/layout.md).
 
-:::tip PAGE TITLE
+::: tip PAGE TITLE
 Use title property inside meta route object for title page. This title will be appear on document title as well as admin breadcrumb.
 :::
 
-:::tip DEFAULT REDIRECT
+::: tip DEFAULT REDIRECT
 Add an automatic redirect on the main parent route towards authenticated home page, i.e. most of the time your dashboard page.
 :::
 
@@ -273,7 +273,7 @@ Vue CLI will generate a default generic customizable error page to `src/views/Er
 
 ![error](/assets/error.png)
 
-:::warning
+::: warning
 In order to properly working, you must register error page as global `Error` component name as following :
 
 ```js

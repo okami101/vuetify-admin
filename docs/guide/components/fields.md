@@ -2,17 +2,17 @@
 
 VA field components allow custom and optimized display of specific resource property. It's mainly means to be used on [show](../crud/show.md) and [list](../crud/list.md) views. Use required `source` prop as resource property to fetch and display. Must be used with [`VaShow`](../crud/show.md#injector) component injector or with an explicit item object via `item` prop.
 
-:::tip CELL TEMPLATING
+::: tip CELL TEMPLATING
 You may use this VA fields as cells template for `VaDataTable`, see [this section](../crud/list.md#fields).
 :::
 
-:::tip FIELD WRAPPER
+::: tip FIELD WRAPPER
 Contrary to VA inputs, the typed VA fields doesn't include any wrapper with label, only simple inline display formatter. You may use [`VaField`](../crud/show.md#field-wrapper) for that. It gets the localized label and will instantiate the proper field component via `type` prop, which is avoid us to rewrite it on default slot.
 
 All additional attributes will be merged into child field component. See [more](../crud/show.md#field-wrapper) for further detail.
 :::
 
-:::tip DOT NOTATION SUPPORT
+::: tip DOT NOTATION SUPPORT
 VA fields accept dot notation for `source` prop. Useful for nested object :
 
 ```vue
@@ -121,7 +121,7 @@ Will render an formatted number inside span :
 <span>49,92&nbsp;€</span>
 ```
 
-:::warning FORMAT
+::: warning FORMAT
 You must register a valid number format first for targeted i18n locale as next :
 
 ```js
@@ -160,7 +160,7 @@ Will render an formatted date inside span :
 <span>Sunday, November 18, 1984</span>
 ```
 
-:::warning FORMAT
+::: warning FORMAT
 You must register a valid date format first for targeted i18n locale as next :
 
 ```js
@@ -225,7 +225,7 @@ Will render a [vuetify readonly rating component](https://vuetifyjs.com/en/compo
 
 Will render a [chip](https://vuetifyjs.com/en/components/chips/)
 
-:::tip ENUMS
+::: tip ENUMS
 If you need format value in terms of choices or enums, use [`VaSelectField`](#select) with `chip` prop.
 :::
 
@@ -254,7 +254,7 @@ export default {
 </script>
 ```
 
-:::tip LOCALIZED ENUMS
+::: tip LOCALIZED ENUMS
 You may centralized all choices for reuse directly inside you locales as [explain here](../i18n.md#resources). If no choices setted, `VaSelectField` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
 :::
 
@@ -298,11 +298,11 @@ You can play with `lg` and `height` for sort of gallery when multiple files :
 </template>
 ```
 
-:::tip ENUMS
+::: tip ENUMS
 You can combine this field with `VaSelectField` for enums or choices support by activating `select` prop.
 :::
 
-:::tip NESTED OBJECT
+::: tip NESTED OBJECT
 Use default slot for inner chip templating :
 
 ```vue
@@ -334,7 +334,7 @@ For more complex case, use a simple `v-for` custom template.
 </template>
 ```
 
-:::tip DEFAULT SLOT
+::: tip DEFAULT SLOT
 Use default slot for custom resource labelization. It takes by default the value of property configured on `label` of [main resource object property](../resources.md#resource-object-structure). If you want just ID instead :
 
 ```vue
@@ -354,7 +354,7 @@ Use default slot for custom resource labelization. It takes by default the value
 
 :::
 
-:::warning NO AUTOFETCH SUPPORT
+::: warning NO AUTOFETCH SUPPORT
 Contrary to React Admin reference field equivalent, this field doesn't support resource autofetch via `getMany`, because too much code needed for aggregation support in my taste. Your backend must eager-load all related resources at once. For list via `VaList` you can lean on `include` prop for on asking eager loading.
 :::
 
@@ -380,7 +380,7 @@ Will render :
 
 ![references](/assets/references.png)
 
-:::tip DEFAULT SLOT
+::: tip DEFAULT SLOT
 Use default slot for custom resource labelization.
 :::
 
@@ -416,7 +416,7 @@ import MyCustomField from "./components/fields/MyCustomField";
 Vue.component("VaMyCustomField", MyCustomField);
 ```
 
-:::tip NAMESPACE
+::: tip NAMESPACE
 Note as we add `Va` as prefix component name. That allows us to have a functional `type` prop for [`VaDataTable`](../crud/list.md#data-table) and [`VaField`](../crud/show.md#field-wrapper) components. So next code will perfectly working :
 
 ```vue
