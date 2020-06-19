@@ -102,14 +102,14 @@ Customizable providers by implementing a simple contract :
 
 ### Free Symfony admin panels
 
-* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), standard open sourced admin builder, not many widgets by default but very efficient and heavily configurable by YML config files and extendable with twig templates.
-* [Sonata Admin](https://github.com/sonata-project/SonataAdminBundle), super massive admin builder, maybe one of the most powerful and full featured free admin panel on the market, but not really the most seamless development experience (personal opinion).
+* [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle), very efficient and heavily configurable. The recent V3 finally [give up the YAML hell](https://symfony.com/doc/master/bundles/EasyAdminBundle/upgrade.html) and return to more configurable pure PHP code setup inside controllers. This way is therefore very similar to below Laravel Backpack but with the pro of free licence and nicer API and the con of less available widgets by default although you can easily create some custom one. Powerful maker generators included as well.
+* [Sonata Admin](https://github.com/sonata-project/SonataAdminBundle), maybe one of the most powerful free admin panel on the market, but slow evolution, no Symfony 5 compatibility yet and not really the best seamless development experience (personal opinion) with still old Admin LTE with Bootstrap 3... With the last V3 release, the above EasyAdmin has clearly taken the lead as far as I'm concerned.
 
 ### Laravel admin panels
 
 * [Official Laravel Nova](https://nova.laravel.com/), commercial product, full featured, good community and very efficient SPA admin builder for Laravel with Vue.js. Beautiful UI Framework and nice Laravel-ish development experience. But tends to be a Nova-way for development.
 * [Backpack](https://backpackforlaravel.com/), not free for commercial projects, with the good old school Bootstrap/jQuery combo with CoreUI theme. Can have quickly bloated code in case of specific custom development needs, but still stay one of the most productive admin panel on the market with a tons of widgets.
-* [Voyager](https://voyager.devdojo.com/), free admin panel for Laravel.
+* [Voyager](https://voyager.devdojo.com/), another free admin panel for Laravel, more CMS oriented with all field configs stored inside database.
 
 ### Experimental Vuetify SPA Admin projects
 
@@ -123,9 +123,9 @@ Customizable providers by implementing a simple contract :
 | SPA                  | X          | X           |           | X       |          |
 | Standalone UI        | X          | X           |           |         |          |
 | Backend helpers      | Laravel    | -           | Symfony   | Laravel | Laravel  |
-| Fun (subjective)     | +++        | +++         | +         | ++      | +        |
+| Fun (subjective)     | +++        | +++         | ++        | ++      | +        |
 | Ready-to-go*         | ++         | -           | +         | +++     | +++      |
-| Customization        | ++         | +++         | +         | ++      | +        |
+| Customization        | ++         | +++         | ++        | ++      | +        |
 | Maturity / Community | ---        | +++         | +         | ++      | +        |
 | Free Licence         | X          | X           | X         |         |          |
 
