@@ -112,6 +112,8 @@ PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
 ```
 
+If not using docker don't forget to put `SANCTUM_STATEFUL_DOMAINS=localhost:8080` inside `.env`, where `localhost:8080` is the default local url of Vue CLI admin app.
+
 ::: warning SANCTUM
 `SANCTUM_STATEFUL_DOMAINS` environnement variable is always needed even if admin app is on same API domain. It allows cookie auth sharing between local client app and API server. On production you may set the full domain. For example if your app will be accessible on **https://my.company.com** : `SANCTUM_STATEFUL_DOMAINS=my.company.com`.
 :::
@@ -120,7 +122,7 @@ MYSQL_ROOT_PASSWORD=root
 You need to set properly this IDs according to your local linux user IDs in order to prevent all boring permissions issues inside Laravel storage folder. In general the first created linux user is 1000 by default.
 :::
 
-After this you can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis).
+If using docker you can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis). Don't forget to put `docker-compose exec laravel` before each artisan command.
 
 Then you have to prepare laravel installation with migration and all dummy data (if you have some) :
 
