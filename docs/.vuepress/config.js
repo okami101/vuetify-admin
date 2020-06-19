@@ -3,7 +3,7 @@ module.exports = (ctx) => ({
     "/": {
       lang: "en-US",
       title: "Vtec Admin",
-      description: "🚀 Integrate Vue-powered Admin Library",
+      description: "🚀 Integrate Vue-powered Admin Framework",
     },
     /*"/fr/": {
       lang: "fr-FR",
