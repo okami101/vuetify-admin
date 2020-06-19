@@ -1,6 +1,10 @@
 # Changelog
 
-## v0.3.0 - Initial release
+## 0.2.24
+
+* 📝 Documentation review
+* 💥 Change AppBar API event
+* 🚀 Global options for TinyMCE
 
 ## v0.2.18
 
@@ -30,3 +34,5 @@
 ## v0.2.6
 
 * 📝 Add logo brand
+
+## v0.2.0 - Initial release

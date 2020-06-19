@@ -4,8 +4,9 @@
       slot="app-bar"
       dense
       dark
-      @drawer="drawer = !drawer"
-      @mini-variant="mini = !mini"
+      @toggle="
+        $vuetify.breakpoint.lgAndUp ? (mini = !mini) : (drawer = !drawer)
+      "
     ></va-app-bar>
     <va-sidebar
       slot="sidebar"

@@ -54,8 +54,9 @@ This slot composition system allows a complete customization possibility. By def
       slot="app-bar"
       :header-menu="headerMenu"
       :profile-menu="profileMenu"
-      @drawer="drawer = !drawer"
-      @mini-variant="mini = !mini"
+      @toggle="
+        $vuetify.breakpoint.lgAndUp ? (mini = !mini) : (drawer = !drawer)
+      "
     ></va-app-bar>
     <va-sidebar
       slot="sidebar"

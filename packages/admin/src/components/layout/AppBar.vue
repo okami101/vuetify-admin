@@ -7,7 +7,11 @@
     :color="color"
     :dense="dense"
   >
-    <v-app-bar-nav-icon @click.stop="onClick" />
+    <!--
+      Triggered on VAppBar icon click, use it for VaSidebar toggling or minimizing.
+      @event toggle
+    -->
+    <v-app-bar-nav-icon @click.stop="$emit('toggle')" />
     <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
       <span class="hidden-sm-and-down">{{ title || $admin.title }}</span>
     </v-toolbar-title>
@@ -190,19 +194,6 @@ export default {
       logout: "auth/logout",
       checkAuth: "auth/checkAuth",
     }),
-    onClick() {
-      if (this.$vuetify.breakpoint.lgAndUp) {
-        /**
-         * Triggered on VAppBar icon click, use it with VaSidebar for minimize it.
-         */
-        this.$emit("mini-variant");
-      }
-
-      /**
-       * Triggered on VAppBar icon click when on mobile, use it for VaSidebar toggling.
-       */
-      return this.$emit("drawer");
-    },
   },
 };
 </script>
