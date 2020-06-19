@@ -32,10 +32,9 @@ This simple server provides multiple CRUD API endpoints for multiple resources a
 First prepare new Vue CLI admin project as explained on [getting started guide](getting-started.md) by using dedicated Vue CLI Plugin. To summary :
 
 ```bash
-vue create vtec-admin-tutorial -d
+vue create vtec-admin-tutorial
+# select Router, Vuex as well as Prettier for code styling
 cd vtec-admin-tutorial
-vue add router
-vue add vuex
 vue add vuetify
 vue add i18n
 vue add vtec-admin

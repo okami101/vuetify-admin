@@ -26,13 +26,16 @@ In case you want to use it on your custom API, you may probably need to write yo
 Initialize your brand new Vue CLI admin project :
 
 ```bash
-vue create admin -d
+vue create admin
+# select at least the Router, the Vuex as well as a code style formatter like Prettier
 cd admin
-vue add router # vue router, required for CRUD resources routes
-vue add vuex # vue store, required for module API registering
 vue add vuetify # the main UI framework
 vue add i18n # the internationalization plugin
 ```
+
+:::warning CODE STYLING
+A CS for Eslint is heavily recommended, besides without this a strange `transpileDependencies` duplication error will occurs on Vtec install because a shitty hack of official [Vuetify CLI plugin](https://github.com/vuetifyjs/vue-cli-plugins/blob/master/packages/vue-cli-plugin-vuetify/generator/tools/vuetify.js) which rewrite all `vue.config.js` instead of using `extendPackage` Vue CLI API...
+:::
 
 ### Installation
 
