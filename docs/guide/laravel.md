@@ -88,7 +88,9 @@ See [this getting started section](getting-started.md#directory-structure) for m
 
 ### Run backend API
 
-After the installation, if you selected docker, don't forget to adapt your environment variables with those outputted by installer when finished as following :
+#### With docker
+
+After the installation, don't forget to adapt your environment variables with those outputted by installer when finished as following :
 
 ```bash
 APP_URL=http://localhost:8000
@@ -112,7 +114,7 @@ PMA_PORT=9000
 MYSQL_ROOT_PASSWORD=root
 ```
 
-If not using docker don't forget to put `SANCTUM_STATEFUL_DOMAINS=localhost:8080` inside `.env`, where `localhost:8080` is the default local url of Vue CLI admin app.
+Adapt `SANCTUM_STATEFUL_DOMAINS` to your local url of Vue CLI admin app.
 
 ::: warning SANCTUM
 `SANCTUM_STATEFUL_DOMAINS` environnement variable is always needed even if admin app is on same API domain. It allows cookie auth sharing between local client app and API server. On production you may set the full domain. For example if your app will be accessible on **https://my.company.com** : `SANCTUM_STATEFUL_DOMAINS=my.company.com`.
@@ -122,7 +124,7 @@ If not using docker don't forget to put `SANCTUM_STATEFUL_DOMAINS=localhost:8080
 You need to set properly this IDs according to your local linux user IDs in order to prevent all boring permissions issues inside Laravel storage folder. In general the first created linux user is 1000 by default.
 :::
 
-If using docker you can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis). Don't forget to put `docker-compose exec laravel` before each artisan command.
+You can finally launch `docker-compose up` and take a [pastis](https://en.wikipedia.org/wiki/Pastis). Don't forget to put `docker-compose exec laravel` before each next artisan command.
 
 Then you have to prepare laravel installation with migration and all dummy data (if you have some) :
 
@@ -138,8 +140,21 @@ By default admin URL is configured at [http://localhost:8080](http://localhost:8
 Don't forget to edit it on production. Just edit ADMIN_URL environment variable for that.
 :::
 
+#### Classic install
+
+First don't forget to put `SANCTUM_STATEFUL_DOMAINS=localhost:8080` inside `.env`, where `localhost:8080` is the default local url of Vue CLI admin app.
+
+Then you have to prepare laravel installation as usual with all migrations and seeders :
+
+```bash
+php artisan storage:link
+php artisan migrate:fresh --seed
+php artisan vtec:user admin@example.com # only if no already dummy users from your seeders
+php artisan serve
+```
+
 ### Run Admin UI
-  
+
 You're finally ready to get up and running the Admin UI by `cd admin && yarn serve --open`. It will redirect you to this [customizable login page](authentication.md#login-page) :
 
 ![login](/assets/laravel/login.jpg)
