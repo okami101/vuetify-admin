@@ -32,12 +32,12 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^9.0"
     },
-    "repositories": [
-        {
+    "repositories": {
+        "vtec/laravel-crud": {
             "type": "path",
             "url": "../../vtec-laravel-crud"
         }
-    ],
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
