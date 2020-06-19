@@ -138,10 +138,6 @@ By default admin URL is configured at [http://localhost:8080](http://localhost:8
 Don't forget to edit it on production. Just edit ADMIN_URL environment variable for that.
 :::
 
-::: tip DOCKER
-As you have seen, if you use docker, use `docker-compose exec laravel` before each artisan commands.
-:::
-
 ### Run Admin UI
   
 You're finally ready to get up and running the Admin UI by `cd admin && yarn serve --open`. It will redirect you to this [customizable login page](authentication.md#login-page) :
