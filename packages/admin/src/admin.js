@@ -62,7 +62,7 @@ export default class VtecAdmin {
       })
       .map((r) => {
         /**
-         * Get valid actions by whitelist and blacklist
+         * Get valid actions
          */
         let actions = ["list", "show", "create", "edit", "delete"].filter(
           (a) => {
