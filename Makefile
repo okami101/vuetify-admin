@@ -28,7 +28,6 @@ migrate-demo-laravel: ## migrate database laravel demo
 	@cd ./examples/demo-laravel && docker-compose exec laravel php artisan migrate --force
 
 up-demo-laravel: ## run laravel demo through Docker
-	@make install-demo-laravel
 	@cd ./examples/demo-laravel && cp -n .env.example .env && docker-compose up -d
 
 stop-demo-laravel: ## stop laravel demo
