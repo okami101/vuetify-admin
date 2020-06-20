@@ -43,8 +43,8 @@ seed-demo-laravel: ## seed laravel demo with dummy data
 	@cd ./examples/demo-laravel && docker-compose exec laravel seed
 
 prepare-demo-laravel: ## initialize laravel with dummy data
-	@make init-laravel
-	@make seed-laravel
+	@make init-demo-laravel
+	@make seed-demo-laravel
 
 reset-demo-laravel: ## reset laravel with dummy data
 	@cd ./examples/demo-laravel && docker-compose exec laravel php artisan migrate:fresh --seed
