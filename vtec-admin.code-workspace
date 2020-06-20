@@ -20,8 +20,8 @@
 			"path": "vue-cli-base"
 		},
 		{
-      "name": "generators",
-			"path": "examples\\generators\\admin"
+      "name": "laravel",
+			"path": "examples\\laravel\\admin"
 		},
 		{
 			"path": "packages\\admin"
@@ -35,7 +35,7 @@
 	],
 	"settings": {
 		"yaml.schemas": {
-			"docs/.vuepress/public/schemas/generator.json": ["examples/generators/admin/generators/*"],
+			"docs/.vuepress/public/schemas/generator.json": ["examples/laravel/admin/generators/*"],
 		}
 	}
 }

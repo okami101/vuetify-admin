@@ -32,6 +32,6 @@
     "examples/demo",
     "examples/tutorial",
     "examples/api-platform",
-    "examples/generators/admin"
+    "examples/laravel/admin"
   ]
 }

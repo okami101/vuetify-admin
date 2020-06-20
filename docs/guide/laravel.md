@@ -13,7 +13,7 @@ This guide is a demonstration of how official [Vtec Laravel Crud](https://github
 :::
 
 ::: tip SOURCE CODE
-You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/generators).
+You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/laravel).
 :::
 
 ## Installation
@@ -794,7 +794,7 @@ Use `name` option in order to import only targeted resource.
 
 The first step is to create a YAML resource descriptor file that must validate specific [JSON schema](generators.md#json-schema), which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuff all by hand.
 
-In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/generators/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
+In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/laravel/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
 
 * Monsters : sample for show all different type of fields.
 * Child monsters : essentially for resource relationship purpose.
@@ -835,16 +835,16 @@ public function monster()
 
 The next step is to write you seed data. Use generated factory and seeder for that. For get quicker start, pick this files from tutorial source code :
 
-* [MonsterFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterFactory.php)
-* [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/factories/MonsterChildFactory.php)
-* [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/MonsterSeeder.php)
+* [MonsterFactory](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/factories/MonsterFactory.php)
+* [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/factories/MonsterChildFactory.php)
+* [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/seeds/MonsterSeeder.php)
 
 ::: tip USER SEEDER
-Take [this user seeder file](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/UserSeeder.php) in order to not have to create your admin each time you reset the database.
+Take [this user seeder file](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/seeds/UserSeeder.php) in order to not have to create your admin each time you reset the database.
 :::
 
 ::: tip FILE SAMPLES
-For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vtec-admin/blob/master/examples/generators/database/seeds/DatabaseSeeder.php).
+For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/seeds/DatabaseSeeder.php).
 :::
 
 ::: warning COMPOSER AUTOLOAD
