@@ -44,9 +44,9 @@ You'll got 2 new npm scripts :
 > Use `yarn vue-cli-service help crud:make` for all options documentation  
 > See [dedicated guide](https://vtec.okami101.io/guide/generators.html)
 
-## Full documentation
+## Documentation
 
-Full documentation can be found on the [Vtec docs website](https://vtec.okami101.io).
+Documentation for Vtec Admin can be found on the [Vtec website](https://vtec.okami101.io).
 
 ## License
 

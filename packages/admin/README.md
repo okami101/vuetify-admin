@@ -91,9 +91,9 @@ API documentation for all VA components are auto generated from source code than
 
 Use `node docgen` command in order to generate it inside `dist/json` folder for VuePress. All meta file autocompletion for Vetur and Jetbrains products will be generated as well.
 
-## Full documentation
+## Documentation
 
-Full documentation can be found on the [Vtec docs website](https://vtec.okami101.io).
+Documentation for Vtec Admin can be found on the [Vtec website](https://vtec.okami101.io).
 
 ## License
 
