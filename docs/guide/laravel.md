@@ -23,7 +23,7 @@ Simply init your project by this simple steps :
 ```bash
 laravel new my-brand-new-project && cd my-brand-new-project
 composer require vtec/laravel-crud
-php artisan vtec:install
+php artisan crud:install
 ```
 
 Then follow wizard.
@@ -77,7 +77,7 @@ Finally, the installer will integrate some additional boilerplate code to get ba
 **At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/vtec-laravel-crud/blob/master/preset.json).**
 
 ::: tip UI ADMIN GENERATE COMMAND
-You can still regenerate new admin UI without reuse full installer by using `php artisan vtec:ui`.
+You can still regenerate new admin UI without reuse full installer by using `php artisan crud:ui`.
 :::
 
 ::: tip DIRECTORY STRUCTURE
@@ -133,7 +133,7 @@ docker-compose exec laravel php artisan storage:link
 docker-compose exec laravel php artisan migrate:fresh --seed
 ```
 
-If not included on your dummy data, you may need to create your first user by `docker-compose exec laravel php artisan vtec:user admin@example.com`. You will be prompted for the user name and password.
+If not included on your dummy data, you may need to create your first user by `docker-compose exec laravel php artisan crud:user admin@example.com`. You will be prompted for the user name and password.
 
 ::: tip ADMIN URL
 By default admin URL is configured at [http://localhost:8080](http://localhost:8080) which is default Vue CLI dev serve URL.  
@@ -149,7 +149,7 @@ Then you have to prepare laravel installation as usual with all migrations and s
 ```bash
 php artisan storage:link
 php artisan migrate:fresh --seed
-php artisan vtec:user admin@example.com # only if no already dummy users from your seeders
+php artisan crud:user admin@example.com # only if no already dummy users from your seeders
 php artisan serve
 ```
 
