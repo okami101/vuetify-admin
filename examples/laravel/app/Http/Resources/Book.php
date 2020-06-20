@@ -14,18 +14,6 @@ class Book extends BaseResource
      */
     public function toArray($request)
     {
-        $attributes = parent::toArray($request);
-
-        $attributes['publisher'] = Publisher::make($this->whenLoaded('publisher'));
-        $attributes['authors'] = Author::collection($this->whenLoaded('authors'));
-        $attributes['reviews'] = Review::collection($this->whenLoaded('reviews'));
-
-        $attributes += [
-            'links' => [
-                'self' => route('books.show', $this->id),
-            ],
-        ];
-
-        return $attributes;
+        return parent::toArray($request);
     }
 }

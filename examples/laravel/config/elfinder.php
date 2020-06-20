@@ -10,7 +10,7 @@ return [
     | The dir where to store the images (relative from public)
     |
     */
-    'dir' => ['storage/files'],
+    'dir' => ['files'],
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     */
 
     'options' => [],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Root Options

@@ -15,13 +15,6 @@ use Vtec\Crud\Http\Middleware\Impersonate;
 |
 */
 
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-});
-
 Route::group(['middleware' => Impersonate::class], function () {
     Route::get('/user', function (Request $request) {
         if ($user = $request->user()) {
@@ -39,9 +32,8 @@ Route::group(['middleware' => Impersonate::class], function () {
      */
     Route::apiResources([
         'users' => 'UserController',
-        'authors' => 'AuthorController',
+        'monsters' => 'MonsterController',
+        'monster_children' => 'MonsterChildController',
         'books' => 'BookController',
-        'reviews' => 'ReviewController',
-        'publishers' => 'PublisherController',
     ]);
 });

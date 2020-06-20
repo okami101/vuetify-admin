@@ -16,12 +16,12 @@
     <!-- elFinder JS (REQUIRED) -->
     <script src="{{ asset($dir.'/js/elfinder.min.js') }}"></script>
 
-@if($locale)
-    <!-- elFinder translation (OPTIONAL) -->
+    @if($locale)
+        <!-- elFinder translation (OPTIONAL) -->
         <script src="{{ asset($dir."/js/i18n/elfinder.$locale.js") }}"></script>
-@endif
+    @endif
 
-<!-- elFinder initialization (REQUIRED) -->
+    <!-- elFinder initialization (REQUIRED) -->
     <script type="text/javascript">
         var FileBrowserDialogue = {
             init: function() {
@@ -41,7 +41,7 @@
             var elf = $('#elfinder').elfinder({
                 // set your elFinder options here
                 @if($locale)
-                lang: '{{ $locale }}', // locale
+                    lang: '{{ $locale }}', // locale
                 @endif
                 customData: {
                     _token: '{{ csrf_token() }}'

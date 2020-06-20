@@ -15,29 +15,18 @@ class DatabaseSeeder extends Seeder
         /**
          * Cleanup media
          */
-        foreach (Storage::disk('public')->allDirectories('media') as $dir) {
+        foreach (Storage::disk('public')->allDirectories() as $dir) {
             Storage::disk('public')->deleteDirectory($dir);
         }
 
         $this->call(UserSeeder::class);
-        $this->call(PublisherSeeder::class);
-        $this->call(AuthorSeeder::class);
         $this->call(BookSeeder::class);
-        $this->call(ReviewSeeder::class);
+        $this->call(MonsterSeeder::class);
     }
 
-    /**
-     * Random media
-     *
-     * @param Generator|\Faker\UniqueGenerator $faker
-     * @param string                           $type
-     * @param string                           $extension
-     *
-     * @return string
-     */
-    public static function randomMedia($faker, $type, $max, $extension = 'jpg'): string
+    public static function randomMedia($type, $max, $extension = 'jpg'): string
     {
-        $i = str_pad($faker->numberBetween(1, $max), 2, '0', STR_PAD_LEFT);
+        $i = str_pad(random_int(1, $max), 2, '0', STR_PAD_LEFT);
 
         return database_path("/seeds/media/{$type}/{$i}.{$extension}");
     }

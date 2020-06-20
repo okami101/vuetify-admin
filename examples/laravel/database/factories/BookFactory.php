@@ -24,13 +24,13 @@ $factory->define(Book::class, function (Faker $faker) {
             'en' => $faker->htmlParagraphs(10, 10, 10),
             'fr' => $faker->htmlParagraphs(10, 10, 10),
         ],
+        'author' => $faker->name,
         'formats' => $faker->randomElements(
             ['pocket', 'paperback', 'pdf', 'epub', 'kindle'],
             $faker->numberBetween(1, 5)
         ),
         'price' => $faker->randomFloat(2, 10, 50),
         'commentable' => $faker->boolean(80),
-        'tags' => $faker->unique()->words($faker->numberBetween(2, 5)),
         'publication_date' => $faker->dateTime,
     ];
 });

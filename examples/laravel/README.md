@@ -1,54 +1,32 @@
-# Bookstore API Demo
+# Vtec Admin Generators
 
-This demo project is the API backend used by separate Vue CLI [bookstore admin demo](../demo) project, and is a good showcase for backend-side development.
-It's also a good platform for developing external [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package.
+Generators showcase project with both Laravel backend and admin Vue CLI. Most code of this project has been generated as shown in this [dedicated guide](https://vtec.okami101.io/guide/generators.html).
 
-> [Access to online demo](https://vtec-bookstore-demo.okami101.io)  
-> The [vtec/laravel-crud](https://github.com/okami101/vtec-laravel-crud) composer package is directly symlinked to `vtec-laravel-crud` root git submodule folder of this repo.  
-> So direct live package development is fully working, even inside docker !
-
-## Features
-
-* Common API bookstore resources with :
-  * Publishers
-  * Authors
-  * Books
-  * Reviews
-* All [Vtec Crud features](https://github.com/okami101/vtec-laravel-crud#features) (account profile, sanctum auth, impersonation, docker files, etc.)
+This is the perfect way to show the power of both backend and client generators. Ideal place for code generation testing by using [included YAML sample generators](admin/generators).
 
 ## How to run
 
-### [The coolest way via docker](#docker)
+### Laravel
 
 ```bash
 cp .env.example .env
-# adapt docker environment variables for your own available free host port  
-docker-compose up
-# initialize laravel app and db schema
-docker-compose exec laravel init
-# for development purpose, initialize
-docker-compose exec laravel seed
-```
-
-Laravel app should be loaded at default [http://localhost:8000](http://localhost:8000).  
-You can access phpMyAdmin via default [http://localhost:9000](http://localhost:9000).
-
-For artisan commands, just use `docker-compose exec laravel php artisan my:command`.  
-Access to tinker : `docker-compose exec laravel php artisan tinker`  
-For full DB reset + dummy data : `docker-compose exec laravel php artisan migrate:fresh --seed`
-
-### [The boring way](#classic)
-
-```bash
-cp .env.example .env
-# remove DB_HOST,REDIS_HOST,CACHE_DRIVER,SESSION_DRIVER variables which ar default setted for docker
-# adapt other environment variables to your local settings, check Laravel documentation
 composer install
 php artisan key:generate
 php artisan storage:link
 php artisan elfinder:publish
-php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed # configure DB according to your local before inside .env
+php artisan serve # Should run at localhost:8000 as default
 ```
+
+### Admin UI
+
+```bash
+cd admin
+yarn
+yarn serve
+```
+
+Then on localhost:8080, you should be able to login as admin@example.com / password
 
 ## License
 

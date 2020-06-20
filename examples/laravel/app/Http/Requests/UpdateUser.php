@@ -29,8 +29,6 @@ class UpdateUser extends FormRequest
             'name' => 'sometimes|required',
             'password' => 'nullable|confirmed|min:8|strong_password',
             'email' => 'sometimes|required|email|unique:users,email,'.$user->id,
-            'active' => 'sometimes|boolean',
-            'roles.*' => 'sometimes|in:admin,editor,author',
         ];
     }
 }

@@ -10,15 +10,8 @@ class BookPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user)
-    {
-        if ($user->hasRole('admin')) {
-            return true;
-        }
-    }
-
     /**
-     * Determine whether the user can view any books.
+     * Determine whether the user can view any models.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -29,7 +22,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can view the book.
+     * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
      * @param  \App\Book  $book
@@ -37,11 +30,11 @@ class BookPolicy
      */
     public function view(User $user, Book $book)
     {
-        return $book->canAccess($user);
+        return true;
     }
 
     /**
-     * Determine whether the user can create books.
+     * Determine whether the user can create models.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -52,7 +45,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can update the book.
+     * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
      * @param  \App\Book  $book
@@ -60,11 +53,11 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        return $book->canAccess($user);
+        return true;
     }
 
     /**
-     * Determine whether the user can delete the book.
+     * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
      * @param  \App\Book  $book
@@ -72,6 +65,6 @@ class BookPolicy
      */
     public function delete(User $user, Book $book)
     {
-        return $book->canAccess($user);
+        return true;
     }
 }
