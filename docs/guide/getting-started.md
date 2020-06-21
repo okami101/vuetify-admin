@@ -1,6 +1,6 @@
 # Getting Started
 
-Even if Vtec Admin can be used as standalone NPM package via `yarn add vtec-admin`, the recommended way is to use dedicated [Vue CLI plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin) on fresh Vuetify app project.  
+Even if Vtec Admin can be used as standalone NPM package via `yarn add vtec-admin`, the recommended way is to use dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) on fresh Vuetify app project.  
 It takes care of all minimal boilerplate code generation for quick start admin development as well as including material theme and UI CRUD generators scripts.
 
 ::: tip TUTORIAL

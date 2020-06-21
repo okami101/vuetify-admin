@@ -54,8 +54,5 @@
     "lodash": "^4.17.15",
     "papaparse": "^5.2.0",
     "qs": "^6.9.4"
-  },
-  "publishConfig": {
-    "registry": "https://npm.okami101.io"
   }
 }

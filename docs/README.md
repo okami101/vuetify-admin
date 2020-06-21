@@ -30,7 +30,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/power.svg" alt="rad" />
     <h2>High productivity</h2>
-    <p>Immediate quick start by using <a href="https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin"><strong>Vue CLI plugin</strong></a> with additional <strong>UI CRUD code generators</strong>. Guesser CRUD pages which give you all <strong>generated Vue template code</strong> for quick starting. <strong>YAML driven code generation</strong> given a JSON schema available !</p>
+    <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vtec-admin"><strong>Vue CLI plugin</strong></a> with additional <strong>UI CRUD code generators</strong>. Guesser CRUD pages which give you all <strong>generated Vue template code</strong> for quick starting. <strong>YAML driven code generation</strong> given a JSON schema available !</p>
   </div>
   <div class="feature">
     <img src="/icons/equalizer.svg" alt="control" />

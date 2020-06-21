@@ -1,6 +1,6 @@
 # Bookstore Admin
 
-This demo project is the best showcase of [Vtec Admin](https://npm.okami101.io/-/web/detail/vtec-admin), an admin library written in Vue.js and based on Vuetify.
+This demo project is the best showcase of [Vtec Admin](https://www.npmjs.com/package/vtec-admin), an admin library written in Vue.js and based on Vuetify.
 The backend side API is served by other included [Laravel API demo](../laravel) project.
 This project is also a perfect way for developing main [Vtec Admin](../../packages/admin) lib of this repo.
 

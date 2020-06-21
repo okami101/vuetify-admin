@@ -1,6 +1,6 @@
 # Introduction
 
-[Vtec Admin](https://npm.okami101.io/-/web/detail/vtec-admin) (VA) is an standalone [SPA](https://en.wikipedia.org/wiki/Single-page_application) admin UI framework for Vue.js designed for building CRUD pages for managing remote server resources with minimal amount of code while allowing large customization. It's built on Vuetify, runs on top of REST APIs and comes with dedicated [Vue CLI plugin](https://npm.okami101.io/-/web/detail/vue-cli-plugin-vtec-admin) for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development).
+[Vtec Admin](https://www.npmjs.com/package/vtec-admin) (VA) is an standalone [SPA](https://en.wikipedia.org/wiki/Single-page_application) admin UI framework for Vue.js designed for building CRUD pages for managing remote server resources with minimal amount of code while allowing large customization. It's built on Vuetify, runs on top of REST APIs and comes with dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development).
 
 It relies on replaceable low-level data and auth providers which allows you to stay independent of any backend framework. This is simply doable by implementing specific contract which will ensure compatibility within VA. Follow [dedicated guide](data-providers.md) for further detail.
 
