@@ -11,12 +11,11 @@ Include scripts for quick scaffolding crud pages of specific resource.
 Initialize your brand new Vue CLI admin project :
 
 ```bash
-vue create admin -d
+vue create admin
+# select at least the Router, the Vuex as well as a code style formatter like Prettier
 cd admin
-vue add router
-vue add vuex
-vue add vuetify
-vue add i18n
+vue add vuetify # the main UI framework
+vue add i18n # the internationalization plugin
 ```
 
 ## Installation
