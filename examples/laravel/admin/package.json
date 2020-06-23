@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "version": "0.2.30",
+  "version": "0.2.31",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,7 +14,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "portal-vue": "^2.1.0",
-    "vtec-admin": "^0.2.30",
+    "vtec-admin": "^0.2.31",
     "vue": "^2.6.11",
     "vue-chartist": "^2.3.0",
     "vue-i18n": "^8.18.1",
@@ -38,7 +38,7 @@
     "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-i18n": "latest",
-    "vue-cli-plugin-vtec-admin": "^0.2.30",
+    "vue-cli-plugin-vtec-admin": "^0.2.31",
     "vue-cli-plugin-vuetify": "latest",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.4.4"
