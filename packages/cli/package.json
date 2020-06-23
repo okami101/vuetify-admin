@@ -16,6 +16,7 @@
   "repository": "https://github.com/okami101/vtec-admin",
   "author": "Adrien Beaudouin <adrien.beaudouin@outlook.com>",
   "license": "MIT",
+  "homepage": "https://vtec.okami101.io/",
   "dependencies": {
     "esm": "^3.2.25"
   },
