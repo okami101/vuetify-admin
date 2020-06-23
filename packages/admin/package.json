@@ -17,7 +17,7 @@
   "repository": "https://github.com/okami101/vtec-admin",
   "author": "Adrien Beaudouin <adrien.beaudouin@outlook.com>",
   "license": "MIT",
-  "homepage": "https://vtec.okami101.io/",
+  "homepage": "https://vtec.okami101.io",
   "scripts": {
     "build": "vue-cli-service build --name admin --target lib src/index.js --report",
     "prepublishOnly": "npm run build && node meta"
