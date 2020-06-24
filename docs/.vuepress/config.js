@@ -53,6 +53,7 @@ module.exports = (ctx) => ({
     // #697 Provided by the official algolia team.
     algolia: ctx.isProd
       ? {
+          appId: "8GJW59LEHF",
           apiKey: "d12d25e8d8e68781b4f2cff49aea7645",
           indexName: "docs_vtec",
         }
