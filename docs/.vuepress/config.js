@@ -45,6 +45,8 @@ module.exports = (ctx) => ({
     ],
     ["meta", { name: "msapplication-TileColor", content: "#da532c" }],
     ["meta", { name: "theme-color", content: "#41b883" }],
+    ["meta", { name: "docsearch:language", content: "en-US" }],
+    ["meta", { name: "docsearch:version", content: "0.2.0" }],
   ],
   themeConfig: {
     repo: "okami101/vtec-admin",
