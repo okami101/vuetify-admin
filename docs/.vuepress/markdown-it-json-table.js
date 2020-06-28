@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-const { getDocComponents, getDocMixins } = require("../../packages/admin/docgen");
+const {
+  getDocComponents,
+  getDocMixins,
+} = require("../../packages/admin/docgen");
 const { get, upperFirst, camelCase, kebabCase } = require("lodash");
 
 module.exports = async (md) => {

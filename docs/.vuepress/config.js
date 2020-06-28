@@ -78,8 +78,7 @@ module.exports = (ctx) => ({
           },
           {
             text: "Vue CLI Plugin",
-            link:
-              "https://www.npmjs.com/package/vue-cli-plugin-vtec-admin",
+            link: "https://www.npmjs.com/package/vue-cli-plugin-vtec-admin",
           },
           {
             text: "Laravel",
@@ -133,7 +132,7 @@ module.exports = (ctx) => ({
         color: "#41b883",
       },
     ],
-    'vuepress-plugin-element-tabs',
+    "vuepress-plugin-element-tabs",
     [
       "container",
       {
@@ -146,6 +145,12 @@ module.exports = (ctx) => ({
       "@vuepress/google-analytics",
       {
         ga: "UA-169208301-1",
+      },
+    ],
+    [
+      "sitemap",
+      {
+        hostname: "https://vtec.okami101.io",
       },
     ],
   ],
