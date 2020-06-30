@@ -24,6 +24,9 @@ run-laravel-admin: ## run the admin UI of laravel tutorial example
 run-demo-laravel: ## serve laravel demo
 	@cd ./examples/demo-laravel && php artisan serve
 
+dump-demo-laravel: ## dump laravel demo
+	@cd ./examples/demo-laravel && php artisan dump-server
+
 migrate-demo-laravel: ## migrate database laravel demo
 	@cd ./examples/demo-laravel && docker-compose exec laravel php artisan migrate --force
 
