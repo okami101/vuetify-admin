@@ -42,7 +42,8 @@ Then follow wizard.
 * Very helpful optional dev packages as :
   * [IDE Helper](https://github.com/barryvdh/laravel-ide-helper), for IDE integration and laravel intellisense.
   * [PHP CS Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer) for coding formatter with Laravel preset.
-  * [Clockwork](https://github.com/itsgoingd/clockwork), for easy API debugging.
+  * [Clockwork](https://github.com/itsgoingd/clockwork), for easy API profiling.
+  * [Dump Server](https://github.com/beyondcode/laravel-dump-server), for CLI dump, ideal for API debugging.
 * Other suggested production packages :
   * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
