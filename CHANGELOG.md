@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.2.32
+## 0.2.34
+
+* 🐛 Fix query pagination bug
+
+## 0.2.33
 
 * 🐛 Fix double load on data table
 
