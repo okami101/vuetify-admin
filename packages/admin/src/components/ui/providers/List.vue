@@ -12,6 +12,8 @@
       showFirstLastPage: true,
       disableItemsPerPage,
     }"
+    @update:items-per-page="listState.reload"
+    @update:page="listState.reload"
   >
     <template v-slot:header v-if="!hideHeader">
       <v-toolbar flat color="blue lighten-5" v-if="listState.selected.length">
@@ -253,6 +255,10 @@ export default {
         total: 0,
         selected: [],
         options: {},
+        reload: () => {
+          this.fetchData();
+          this.updateQuery();
+        },
       },
     };
   },
@@ -341,9 +347,6 @@ export default {
       }
     },
     "listState.options"(val) {
-      this.fetchData();
-      this.updateQuery();
-
       /**
        * Triggered on pagination change.
        */

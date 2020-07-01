@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.32
+
+* 🐛 Fix double load on data table
+
 ## 0.2.24
 
 * 📝 Documentation review

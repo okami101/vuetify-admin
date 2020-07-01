@@ -14,6 +14,7 @@
     @click:row="onRowClick"
     :options.sync="listState.options"
     @input="(s) => (listState.selected = s)"
+    @update:sort-desc="listState.reload"
     :class="{ 'clickable-rows': rowClick || !!$listeners['row-click'] }"
   >
     <template
