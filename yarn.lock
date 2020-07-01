@@ -3476,9 +3476,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001087, caniuse-lite@^1.0.30001088:
-  version "1.0.30001090"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001090.tgz#ff7766332f60e80fea4903f30d360622e5551850"
-  integrity sha512-QzPRKDCyp7RhjczTPZaqK3CjPA5Ht2UnXhZhCI4f7QiB5JK6KEuZBxIzyWnB3wO4hgAj4GMRxAhuiacfw0Psjg==
+  version "1.0.30001091"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001091.tgz#84908c67b98e02c2a56d4afa51e6458b53fb5321"
+  integrity sha512-ECd8gfBBpv0GKsEYY5052+8PBjExiugDoi3dfkJcxujh2mf7kiuDvb1o27GXlOOGopKiIPYEX8XDPYj7eo3E9w==
 
 case-sensitive-paths-webpack-plugin@^2.3.0:
   version "2.3.0"
@@ -10204,12 +10204,11 @@ regenerator-runtime@^0.13.4:
   integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
 
 regenerator-transform@^0.14.2:
-  version "0.14.4"
-  resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.14.4.tgz#5266857896518d1616a78a0479337a30ea974cc7"
-  integrity sha512-EaJaKPBI9GvKpvUz2mz4fhx7WPgvwRLY9v3hlNHWmAuJHI13T4nwKnNvm5RWJzEdnI5g5UwtOww+S8IdoUC2bw==
+  version "0.14.5"
+  resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.14.5.tgz#c98da154683671c9c4dcb16ece736517e1b7feb4"
+  integrity sha512-eOf6vka5IO151Jfsw2NO9WpGX58W6wWmefK3I1zEGr0lOD0u8rwPaNqQL1aRxUaxLeKO3ArNh3VYg1KbaD+FFw==
   dependencies:
     "@babel/runtime" "^7.8.4"
-    private "^0.1.8"
 
 regex-not@^1.0.0, regex-not@^1.0.2:
   version "1.0.2"
@@ -12369,9 +12368,9 @@ vuetify-loader@^1.3.0, vuetify-loader@^1.4.4:
     loader-utils "^1.2.0"
 
 vuetify@^2.2.32:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.3.2.tgz#b06f6ffff4fe04e3dd41c9c1fc484df5e8a16ead"
-  integrity sha512-LgTuUN9IBrR47rLC5NnoameawjV1+KM2KqgZh3lammYKx6yA/AFysHcvXdkfro5vNXxnybKQOuHOsRJ8+e52mA==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.3.3.tgz#b517e77c35f5f89d91b4d95b025131f1c5cdf35d"
+  integrity sha512-N9Rwx/cscIdHfBItHxiwkhmoxIVyZLBRWd/5LJJs4aVZIX6qkjQV6ThhxzqCYgFDb2jKMftavWX5hNQTxA9qEA==
 
 vuex@^3.1.3, vuex@^3.4.0:
   version "3.5.1"
