@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.35
+
+* 🐛 Fix initial data table pagination
+
 ## 0.2.34
 
 * 🐛 Fix query pagination bug

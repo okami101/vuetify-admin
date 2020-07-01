@@ -12,6 +12,7 @@
     :single-expand="singleExpand"
     :show-expand="showExpand"
     @click:row="onRowClick"
+    :items-per-page="listState.options.itemsPerPage"
     :sort-by.sync="listState.options.sortBy"
     :sort-desc.sync="listState.options.sortDesc"
     @input="(s) => (listState.selected = s)"
