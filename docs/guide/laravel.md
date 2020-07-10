@@ -310,12 +310,12 @@ class Book extends Model
 
     protected function getLocale(): string
     {
-        return request()->get('locale') ?: app()->getLocale();
+        return request()->header('locale') ?: app()->getLocale();
     }
 }
 ```
 
-> Guess all fillable, casts, translatable, as well as media (single or multiple) fields. The `getLocale` method is important in order to get the current asked Locale from request for good targeted locale translation (get or set).
+> Guess all fillable, casts, translatable, as well as media (single or multiple) fields. The `getLocale` method is important in order to get the current asked Locale from request header for good targeted locale translation (get or set).
 :::
 
 ::: tab CONTROLLER
