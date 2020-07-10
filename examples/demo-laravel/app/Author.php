@@ -51,7 +51,7 @@ class Author extends Model implements HasMedia
 
     protected function getLocale(): string
     {
-        return request()->get('locale') ?: app()->getLocale();
+        return request()->header('locale') ?: app()->getLocale();
     }
 
     public function registerMediaCollections(): void

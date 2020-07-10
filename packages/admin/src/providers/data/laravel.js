@@ -14,16 +14,13 @@ import objectToFormData from "../utils/objectToFormData";
 export default (axios, baseURL = "/api") => {
   const getRequest = (type, resource, params = {}) => {
     const resourceURL = `${baseURL}/${resource}`;
-    let query = {
-      locale: params.locale,
-    };
 
     switch (type) {
       case GET_LIST:
       case GET_MANY: {
         const { fields, include, pagination, sort, filter } = params;
 
-        query = {
+        let query = {
           ...query,
           fields,
           include,
@@ -57,13 +54,12 @@ export default (axios, baseURL = "/api") => {
       }
 
       case GET_ONE: {
-        return { url: `${resourceURL}/${params.id}`, query };
+        return { url: `${resourceURL}/${params.id}` };
       }
 
       case CREATE: {
         return {
           url: resourceURL,
-          query,
           method: "post",
           data: objectToFormData(params.data),
         };
@@ -75,7 +71,6 @@ export default (axios, baseURL = "/api") => {
 
         return {
           url: `${resourceURL}/${params.id}`,
-          query,
           method: "post",
           data: form,
         };
@@ -84,7 +79,6 @@ export default (axios, baseURL = "/api") => {
       case DELETE: {
         return {
           url: `${resourceURL}/${params.id}`,
-          query,
           method: "delete",
         };
       }
@@ -103,7 +97,12 @@ export default (axios, baseURL = "/api") => {
     }
 
     try {
-      response = await axios[method || "get"](url, data);
+      response = await axios({
+        method,
+        data,
+        url,
+        headers: params.locale ? { locale: params.locale } : {},
+      });
     } catch ({ response }) {
       let { data, status, statusText } = response;
       return Promise.reject({
