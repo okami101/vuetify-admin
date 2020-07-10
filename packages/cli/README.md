@@ -6,21 +6,15 @@ Include scripts for quick scaffolding crud pages of specific resource.
 
 > See [dedicated guide](https://vtec.okami101.io/guide/getting-started.html)
 
-## Prepare
+## 💿 Install
 
-Initialize your brand new Vue CLI admin project :
+Initialize your brand new Vue CLI admin project with this single line install :
 
 ```bash
-vue create admin
-# select at least the Router, the Vuex as well as a code style formatter like Prettier
-cd admin
-vue add vuetify # the main UI framework
-vue add i18n # the internationalization plugin
+vue create my-project --preset okami101/vtec-admin
 ```
 
-## Installation
-
-Then you can finally launch `vue add vtec-admin`. [Check here](https://vtec.okami101.io/guide/getting-started.html#installation) for explanation of what this plugin does.
+Then follow the wizard.
 
 If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
 
