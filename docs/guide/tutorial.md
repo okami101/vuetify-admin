@@ -29,18 +29,17 @@ This simple server provides multiple CRUD API endpoints for multiple resources a
 
 ### Admin UI
 
-First prepare new Vue CLI admin project as explained on [getting started guide](getting-started.md) by using dedicated Vue CLI Plugin. To summary :
+First prepare new Vue CLI admin project as explained on  by using dedicated Vue CLI Plugin. To summary :
 
 ```bash
-vue create vtec-admin-tutorial
-# select Router, Vuex as well as Prettier for code styling
-cd vtec-admin-tutorial
-vue add vuetify
-vue add i18n
-vue add vtec-admin
+vue create vtec-admin-tutorial --preset okami101/vtec-admin-preset
 ```
 
-The last step will finish installation process with additional questions :
+::: tip HOW IT WORKS
+See [detail here](getting-started.md#under-the-hood) for what's going on when you launch this command.
+:::
+
+In the end you should arrive to a wizard installer. Select following options for this tutorial :
 
 * Select `JSON Server` as **data provider** for this tutorial.
 * In this tutorial we don't need any **authentication** so we can directly use guest mode. Or you can use the faker one that use only local storage without need of any API server for testing purpose, any login will be accepted.

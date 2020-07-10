@@ -8,22 +8,13 @@ Include scripts for quick scaffolding crud pages of specific resource.
 
 ## 💿 Install
 
-Initialize your brand new Vue CLI admin project with this single line install :
+Initialize your brand new Vue CLI admin project with this single line command :
 
 ```bash
-vue create my-project --preset okami101/vtec-admin
+vue create my-admin-project --preset okami101/vtec-admin-preset
 ```
 
-Then follow the wizard.
-
-If your backend run different address than [http://localhost:8000](http://localhost:8000) (which is admin API default url), edit `VUE_APP_API_URL` environment variable according to inside `.env.local`.
-
-> On production, don't forget to adapt BASE_URL and VUE_APP_API_URL variables. The general use case is to put this inside `.env.local` :
-
-```env
-VUE_APP_API_URL=/
-BASE_URL=/admin
-```
+Then select suited options according to your needs.
 
 Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
 

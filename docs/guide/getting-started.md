@@ -13,7 +13,7 @@ If first discover, I highly recommend you to go through the [tutorial](tutorial.
 
 > As a CLI project, be sure to have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 
-### Prepare
+### Install
 
 ::: tip BACKEND API
 You should have a separate API backend project before using this package.
@@ -23,39 +23,15 @@ Fortunately you can quickly start with a fully functional Laravel API backend th
 In case you want to use it on your custom API, you may probably need to write your own [data provider](data-providers.md).
 :::
 
-Initialize your brand new Vue CLI admin project :
+Initialize your brand new Vue CLI admin project with this single line command :
 
 ```bash
-vue create admin
-# select at least the Router, the Vuex as well as a code style formatter like Prettier
-cd admin
-vue add vuetify # the main UI framework
-vue add i18n # the internationalization plugin
+vue create my-admin-project --preset okami101/vtec-admin-preset
 ```
 
-:::warning CODE STYLING
-A CS for Eslint is heavily recommended, besides without this a strange `transpileDependencies` duplication error will occurs on Vtec install because a shitty hack of official [Vuetify CLI plugin](https://github.com/vuetifyjs/vue-cli-plugins/blob/master/packages/vue-cli-plugin-vuetify/generator/tools/vuetify.js) which rewrite all `vue.config.js` instead of using `extendPackage` Vue CLI API...
-:::
+In the end you should arrive to a wizard installer. Select suited options according to your needs.
 
-### Installation
-
-Then you can finally launch `vue add vtec-admin` which will do all this steps :
-
-* Install main Vtec Admin library
-* Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
-* Add UI CRUD generators scripts
-* Generate inside your project all minimal boilerplate by selecting them via on-demand wizard for quick start :
-  * Data provider, select [custom implementation](data-providers.md) if you intend to use it with your own API. It will prepare for you a basic implemented data provider file.
-  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use a [custom provider](authentication.md) by starting with an empty implemented file.
-  * Pre configured API URL endpoint for above providers using axios.
-  * Supported UI locales.
-  * Basic profile edition page with password change support. You'll need to [configure endpoints](authentication.md#profile-page) for profile update on API side.
-  * User management single page list default template with direct aside creation / show / edition.
-  * Add impersonation components if your API support it.
-  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as a superset theme on Vuetify with nice static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/).
-  * Finally initialize admin plugin with automatic crud pages webpack context load and create base admin layout page.
-
-If your backend run at different address than [http://localhost:8000](http://localhost:8000), edit `VUE_APP_API_URL` environment variable according to a valid API inside `.env.local`.
+Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to. Now you have a full basic admin working and are ready to start !
 
 ::: tip PRODUCTION
 On production, you may need to adapt `BASE_URL` and `VUE_APP_API_URL` variables. If your admin app relies on specific `admin` sub folder of main API backend, the general use case is to put next values inside `.env.local` :
@@ -67,13 +43,40 @@ BASE_URL=/admin
 
 :::
 
-Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
+#### Under the hood
 
-Now you have a full basic admin working and are ready to start !
+This above command use [this online preset](https://github.com/okami101/vtec-admin-preset/blob/master/preset.json) which will initialize all admin project by preparing a valid basic Vuetify project with proper Vue router and Vuex as well as installing Vtec Admin CLI plugin.
 
-::: tip NEW NPM SCRIPTS
-This plugin will also add 2 new npm code generator scripts, [see dedicated section](generators.md) for more detail.
+It's equivalent to :
+
+```bash
+vue create admin
+# select at least the Router, the Vuex as well as a code style formatter like Prettier
+cd admin
+vue add vuetify # the main UI framework
+vue add i18n # the internationalization plugin
+vue add vtec-admin # install the main admin library
+```
+
+:::warning CODE STYLING
+A CS for Eslint is heavily recommended, besides without this a strange `transpileDependencies` duplication error will occurs on Vtec install because a shitty hack of official [Vuetify CLI plugin](https://github.com/vuetifyjs/vue-cli-plugins/blob/master/packages/vue-cli-plugin-vuetify/generator/tools/vuetify.js) which rewrite all `vue.config.js` instead of using `extendPackage` Vue CLI API...
 :::
+
+The final Vtec Admin installer command will do all this steps :
+
+* Install main Vtec Admin library.
+* Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable).
+* Add UI CRUD generators scripts, [see dedicated section](generators.md) for more detail.
+* Generate inside your project all minimal boilerplate by selecting them via on-demand wizard for quick start :
+  * Data provider, select [custom implementation](data-providers.md) if you intend to use it with your own API. It will prepare for you a basic implemented data provider file.
+  * Auth provider, between stateless JWT, basic HTTP, fake testing or full state auth with cookies for [Laravel Sanctum](https://github.com/laravel/sanctum). Provide a login page unless you choose guest mode. Select custom for if you intend to use a [custom provider](authentication.md) by starting with an empty implemented file.
+  * Pre configured API URL endpoint for above providers using axios.
+  * Supported UI locales.
+  * Basic profile edition page with password change support. You'll need to [configure endpoints](authentication.md#profile-page) for profile update on API side.
+  * User management single page list default template with direct aside creation / show / edition.
+  * Add impersonation components if your API support it.
+  * [Material theme by Creative Tim](https://github.com/creativetimofficial/vuetify-material-dashboard) as a superset theme on Vuetify with nice static dashboard sample using [Chartist.js](https://gionkunz.github.io/chartist-js/).
+  * Finally initialize admin plugin with automatic crud pages webpack context load and create base admin layout page.
 
 ### Directory structure
 
