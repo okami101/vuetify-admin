@@ -21,7 +21,8 @@ Vue.use(VtecAdmin);
 /**
  * Axios instance
  */
-const baseURL = process.env.VUE_APP_API_URL || "http://localhost:3000";
+const baseURL =
+  process.env.VUE_APP_API_URL || "https://jsonplaceholder.okami101.io";
 
 const http = axios.create({
   baseURL,

@@ -14,7 +14,14 @@ Check [API Platform tutorial](#api-platform) or more advanced [Laravel guide](la
 
 ### Backend API
 
-First you will need a functional local API in order to test Vtec Admin. We will use JSONPlaceholder as DB sample but it's really advised to run it locally instead of current online version for preventing slow response. Don't worry it's done in less than 2 minutes in 3 steps :
+First you'll need a functional API server in order to play with Vtec Admin. We will use JSONPlaceholder as API json server hosted on [dedicated Okami101 server](https://jsonplaceholder.okami101.io).
+
+Note as it's a read-only server. However all non-GET HTTP request methods are still available although all create/update/delete operations will not be reflected on server-side.
+
+This simple server provides multiple CRUD API endpoints for multiple resources as `posts`, `comments`, `users`, etc. You can find a format description of each route [here](https://github.com/typicode/json-server#routes). Vtec Admin will allows us to implement an nice material admin UI for manage them as quickest as possible.
+
+::: tip RUN LOCALLY
+If you want truly writeable API CRUD server, it's very easy to launch your own JSON server locally by this simple steps :
 
 ```bash
 npm install -g json-server
@@ -24,8 +31,7 @@ json-server --watch data.json
 ```
 
 And voilà ! You should have a working API. Example of endpoint : [http://localhost:3000/posts?_start=0&_end=15](http://localhost:3000/posts?_start=0&_end=15).
-
-This simple server provides multiple CRUD API endpoints for multiple resources as `posts`, `comments`, `users`, etc. You can find a format description of each route [here](https://github.com/typicode/json-server#routes). Vtec Admin will allows us to implement an nice material admin UI for manage them as quickest as possible.
+:::
 
 ### Admin UI
 
