@@ -49,7 +49,7 @@ In the end you should arrive to a wizard installer. Select following options for
 
 * Select `JSON Server` as **data provider** for this tutorial.
 * In this tutorial we don't need any **authentication** so we can directly use guest mode. Or you can use the faker one that use only local storage without need of any API server for testing purpose, any login will be accepted.
-* Sets appropriate **API endpoint** according to the previous launched JSON server.
+* Sets appropriate **API endpoint** according to the URL of JSON server, i.e. [https://jsonplaceholder.okami101.io](https://jsonplaceholder.okami101.io) if remote or [http://localhost:3000](http://localhost:3000) if local. You can always change it later.
 * Enable **users** and **material** theme.
 * We don't need of any **profile** or **impersonation** feature.
 
