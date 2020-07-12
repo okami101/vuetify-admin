@@ -12,6 +12,7 @@
 <script>
 import Input from "../../../mixins/input";
 import Editor from "@tinymce/tinymce-vue";
+import get from "lodash/get";
 
 /**
  * Full Wysiwyg HTML editor by using TinyMCE 5.
@@ -51,7 +52,7 @@ export default {
       type: Array,
       default() {
         return (
-          this.$admin.options?.tinyMCE?.plugins || [
+          get(this.$admin.options, "tinyMCE.plugins") || [
             "advlist autolink lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
             "insertdatetime media paste code help wordcount",
@@ -66,7 +67,7 @@ export default {
       type: String,
       default() {
         return (
-          this.$admin.options?.tinyMCE?.toolbar ||
+          get(this.$admin.options, "tinyMCE.toolbar") ||
           "undo redo | formatselect | bold italic backcolor | \
             alignleft aligncenter alignright alignjustify | \
             bullist numlist outdent indent | image media | removeformat | help"
@@ -83,7 +84,7 @@ export default {
   },
   computed: {
     getInit() {
-      let options = this.$admin.options?.tinyMCE || {};
+      let options = get(this.$admin.options, "tinyMCE") || {};
 
       let init = this.init || {
         language: options.language,

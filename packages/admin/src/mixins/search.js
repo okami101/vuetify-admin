@@ -1,4 +1,5 @@
 import { mapActions } from "vuex";
+import get from "lodash/get";
 
 /**
  * Common props for resource search components, as `VaList` or `VaAutocompleteInput`.
@@ -53,7 +54,7 @@ export default {
     itemsPerPage: {
       type: Number,
       default() {
-        return this.$admin.options?.list?.itemsPerPage || 15;
+        return get(this.$admin.options, "list.itemsPerPage") || 15;
       },
     },
     /**
@@ -63,7 +64,7 @@ export default {
     disableItemsPerPage: {
       type: Boolean,
       default() {
-        return this.$admin.options?.list?.disableItemsPerPage || false;
+        return get(this.$admin.options, "list.disableItemsPerPage") || false;
       },
     },
   },

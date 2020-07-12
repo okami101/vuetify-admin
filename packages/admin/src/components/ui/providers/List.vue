@@ -134,6 +134,7 @@ import Resource from "../../../mixins/resource";
 import Search from "../../../mixins/search";
 import FormFilter from "../../internal/FormFilter";
 import isEmpty from "lodash/isEmpty";
+import get from "lodash/get";
 import { mapState, mapActions } from "vuex";
 
 /**
@@ -169,7 +170,7 @@ export default {
       type: Array,
       default() {
         return (
-          this.$admin.options?.list?.itemsPerPageOptions || [
+          get(this.$admin.options, "list.itemsPerPageOptions") || [
             5,
             10,
             15,
@@ -207,7 +208,7 @@ export default {
     disableExport: {
       type: Boolean,
       default() {
-        return this.$admin.options?.list?.disableExport || false;
+        return get(this.$admin.options, "list.disableExport") || false;
       },
     },
     /**
@@ -220,10 +221,7 @@ export default {
     disableGlobalSearch: {
       type: Boolean,
       default() {
-        if (this.$admin.options.list) {
-          return this.$admin.options.list.disableGlobalSearch || false;
-        }
-        return false;
+        return get(this.$admin.options, "list.disableGlobalSearch") || false;
       },
     },
     /**
