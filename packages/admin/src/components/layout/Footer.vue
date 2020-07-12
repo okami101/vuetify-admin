@@ -17,10 +17,10 @@
           />
         </v-col>
 
-        <v-spacer class="hidden-sm-and-down" />
+        <v-spacer class="hidden-xs-and-down" />
 
-        <v-col cols="12" md="auto">
-          <div class="font-weight-light pt-6 pt-md-0 text-center">
+        <v-col cols="12" sm="auto">
+          <div class="font-weight-light pt-6 pt-sm-0 text-center">
             <!-- @slot Right side information. -->
             <slot></slot>
           </div>
