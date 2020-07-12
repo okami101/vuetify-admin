@@ -2,12 +2,7 @@
   <va-form :id="id" :item="item">
     <v-row justify="center">
       <v-col sm="6">
-        <base-material-card>
-          <template v-slot:heading>
-            <div class="display-2">
-              {{ title }}
-            </div>
-          </template>
+        <v-card>
           <v-card-text>
             <va-text-input source="name"></va-text-input>
             <v-row>
@@ -38,7 +33,7 @@
             <va-text-input source="company.name"></va-text-input>
             <va-save-button></va-save-button>
           </v-card-text>
-        </base-material-card>
+        </v-card>
       </v-col>
     </v-row>
   </va-form>
@@ -46,6 +41,6 @@
 
 <script>
 export default {
-  props: ["id", "title", "item"],
+  props: ["id", "title", "item"]
 };
 </script>

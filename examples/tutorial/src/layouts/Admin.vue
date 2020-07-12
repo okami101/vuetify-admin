@@ -2,6 +2,8 @@
   <va-layout>
     <va-app-bar
       slot="app-bar"
+      :header-menu="headerMenu"
+      :profile-menu="profileMenu"
       dense
       dark
       @toggle="
@@ -16,8 +18,7 @@
     ></va-sidebar>
     <va-breadcrumbs slot="header"></va-breadcrumbs>
     <va-aside slot="aside"></va-aside>
-    <va-footer slot="footer">
-      &copy; 2020,
+    <va-footer slot="footer" :menu="footerMenu">
       <v-icon size="18">
         mdi-xml
       </v-icon>
@@ -26,7 +27,12 @@
         mdi-heart
       </v-icon>
       by
-      <a href="https://www.company.com">My Awesome Company</a> for a better web.
+      <a
+        href="https://vtec.okami101.io"
+        target="_blank"
+        class="font-weight-bold"
+        >Okami 101</a
+      >
     </va-footer>
   </va-layout>
 </template>
@@ -40,6 +46,31 @@ export default {
     return {
       drawer: null,
       mini: false,
+      headerMenu: [
+        {
+          link: "/",
+          text: this.$t("menu.dashboard"),
+        },
+      ],
+      footerMenu: [
+        {
+          href: "https://github.com/okami101/vtec-admin",
+          text: "Github",
+        },
+        {
+          href: "https://vtec.okami101.io",
+          text: "Docs",
+        },
+        {
+          href: "https://vtec-bookstore-demo.okami101.io",
+          text: "Demo",
+        },
+        {
+          href: "https://adr1enbe4udou1n.mit-license.org",
+          text: "License",
+        },
+      ],
+      profileMenu: [],
       sidebarMenu: nav(this.$i18n, this.$admin),
     };
   },

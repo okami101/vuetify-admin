@@ -7,9 +7,6 @@ import vuetify from "./plugins/vuetify";
 import admin from "./plugins/admin";
 
 import "./plugins/i18n";
-import "./plugins/base";
-import "./plugins/chartist";
-import "./sass/overrides.sass";
 import AddressField from "./components/fields/AddressField";
 
 Vue.component("VaAddressField", AddressField);

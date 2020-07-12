@@ -1,9 +1,12 @@
 import Vue from "vue";
 import VtecAdmin from "vtec-admin";
 
-import "vtec-admin/src/loader";
+import "../loader";
 
-import { jsonServerDataProvider } from "vtec-admin/src/providers";
+import {
+  jsonServerDataProvider,
+  fakeAuthProvider,
+} from "vtec-admin/src/providers";
 import { en, fr } from "vtec-admin/src/locales";
 
 import router from "@/router";
@@ -41,6 +44,7 @@ export default new VtecAdmin({
   routes,
   locales: { en, fr },
   dataProvider: jsonServerDataProvider(http),
+  authProvider: fakeAuthProvider(),
   resources,
   axios: http,
   options: {

@@ -1,14 +1,9 @@
 <template>
-  <va-show-layout>
+  <va-show-layout :title="title">
     <va-show :item="item">
       <v-row justify="center">
         <v-col sm="4">
-          <base-material-card>
-            <template v-slot:heading>
-              <div class="display-2">
-                {{ title }}
-              </div>
-            </template>
+          <v-card>
             <v-card-text>
               <va-field
                 source="user"
@@ -19,25 +14,29 @@
               <va-field source="title"></va-field>
               <va-field source="body"></va-field>
             </v-card-text>
-          </base-material-card>
+          </v-card>
         </v-col>
       </v-row>
     </va-show>
-    <base-material-card
-      :icon="$admin.getResource('comments').icon"
-      :title="$admin.getResource('comments').pluralName"
-    >
-      <va-list
-        resource="comments"
-        disable-pagination
-        disable-query-string
-        :filter="{
-          postId: id,
-        }"
-      >
-        <va-data-table :fields="fields" disable-select></va-data-table>
-      </va-list>
-    </base-material-card>
+    <v-card>
+      <v-card-title>
+        <h1 class="display-1">
+          {{ $admin.getResource("comments").pluralName }}
+        </h1>
+      </v-card-title>
+      <v-card-text>
+        <va-list
+          resource="comments"
+          disable-pagination
+          disable-query-string
+          :filter="{
+            postId: id
+          }"
+        >
+          <va-data-table :fields="fields" disable-select></va-data-table>
+        </va-list>
+      </v-card-text>
+    </v-card>
   </va-show-layout>
 </template>
 
@@ -49,9 +48,9 @@ export default {
       fields: [
         { source: "name", sortable: true },
         { source: "email", type: "email" },
-        "body",
-      ],
+        "body"
+      ]
     };
-  },
+  }
 };
 </script>
