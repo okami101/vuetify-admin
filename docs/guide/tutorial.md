@@ -2,8 +2,10 @@
 
 This tutorial will show you how to get quick ready for admin development, by using the faking API server [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 
-::: tip SOURCE CODE
-You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial).
+::: tip CODESANDBOX
+Finished tutorial is directly available on [codesanbox](https://codesandbox.io/s/github/okami101/vtec-admin/tree/master/examples/tutorial) !  
+Use it if you want to play directly with final code. But for deeper understanding it's still recommended to follow full local install steps.
+You will find complete source code [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial).
 :::
 
 ::: tip I PREFER PLAY WITH REAL API BACKEND
