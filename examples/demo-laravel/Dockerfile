@@ -42,7 +42,7 @@ RUN addgroup -S -g "$PGID" vtec && adduser -S -u "$PUID" vtec -G vtec
 
 USER vtec
 
-WORKDIR /srv/api
+WORKDIR /srv/api/laravel
 
 CMD ["php-fpm"]
 
