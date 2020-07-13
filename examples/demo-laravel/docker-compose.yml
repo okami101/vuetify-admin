@@ -9,7 +9,7 @@ services:
       - PUID=${DOCKER_PUID}
       - PGID=${DOCKER_PGID}
     volumes:
-      - ./:/srv/api/laravel
+      - ./:/srv/api
       - ../../vtec-laravel-crud:/srv/vtec-laravel-crud
     depends_on:
       - mysql
