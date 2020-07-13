@@ -10,7 +10,7 @@ services:
       - PGID=${DOCKER_PGID}
     volumes:
       - ./:/srv/api
-      - ../../vtec-laravel-crud:/srv/vtec-laravel-crud
+      - ../vtec-laravel-crud:/srv/vtec-laravel-crud
     depends_on:
       - mysql
 
