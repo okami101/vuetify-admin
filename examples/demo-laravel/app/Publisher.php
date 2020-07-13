@@ -4,8 +4,8 @@ namespace App;
 
 use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\Models\Media;
 use Spatie\Translatable\HasTranslations;
 use Vtec\Crud\Traits\RequestMediaTrait;
 
@@ -30,7 +30,7 @@ use Vtec\Crud\Traits\RequestMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Publisher query()
  * @mixin \Eloquent
  * @property-read mixed $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  * @property-read int|null $users_count

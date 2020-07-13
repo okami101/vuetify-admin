@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\Translatable\HasTranslations;
 use Vtec\Crud\Traits\RequestMediaTrait;
-use Vtec\Crud\Traits\RequestTranslatableTrait;
 
 class Monster extends Model implements HasMedia
 {
+    use HasTranslations;
     use RequestMediaTrait;
-    use RequestTranslatableTrait;
 
     protected $fillable = ['name', 'email', 'label', 'active', 'level', 'rating', 'price', 'description', 'body', 'category', 'tags', 'publication_date'];
 

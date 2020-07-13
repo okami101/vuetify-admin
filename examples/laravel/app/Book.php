@@ -3,11 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Vtec\Crud\Traits\RequestTranslatableTrait;
+use Spatie\Translatable\HasTranslations;
 
 class Book extends Model
 {
-    use RequestTranslatableTrait;
+    use HasTranslations;
 
     protected $fillable = ['isbn', 'category', 'title', 'description', 'summary', 'author', 'price', 'commentable', 'formats', 'publication_date'];
 

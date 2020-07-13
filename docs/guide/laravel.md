@@ -4,10 +4,10 @@ This guide is a demonstration of how official [Vtec Laravel Crud](https://github
 
 ::: warning REQUIREMENTS
 
-* You must have at least PHP 7.4 (required by spatie media library package).
-* [Laravel installer](https://laravel.com/docs#installing-laravel).
-* [Vue CLI](https://cli.vuejs.org/guide/installation.html).
-* Should be installed on fresh laravel 7 installation.
+* You must have at least PHP 7.2
+* [Laravel installer](https://laravel.com/docs#installing-laravel)
+* [Vue CLI](https://cli.vuejs.org/guide/installation.html)
+* Should be installed on fresh laravel 7 installation
 * [Docker](https://www.docker.com/get-started) as option
 
 :::
