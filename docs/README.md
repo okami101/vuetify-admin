@@ -7,6 +7,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 ---
 
 > Check [online demo](https://vtec-bookstore-demo.okami101.io) -> go to admin and use pre-filled login (read only)  
+> Check [tutorial CodeSandbox](https://codesandbox.io/s/github/okami101/vtec-admin/tree/master/examples/tutorial) -> use any login (fake writeable API)  
 > Heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
 
 ![demo](/assets/screenshot.png)

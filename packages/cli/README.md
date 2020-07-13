@@ -4,9 +4,9 @@ Vue CLI plugin of main [Vtec Admin](https://www.npmjs.com/package/vtec-admin) li
 
 Include scripts for quick scaffolding crud pages of specific resource.
 
-> See [dedicated guide](https://vtec.okami101.io/guide/getting-started.html)
+## Install
 
-## 💿 Install
+> You must have valid API backend in order to use this project. You can start with [https://jsonplaceholder.okami101.io](https://jsonplaceholder.okami101.io) which is a fake writeable API.
 
 Initialize your brand new Vue CLI admin project with this single line command :
 
@@ -14,9 +14,23 @@ Initialize your brand new Vue CLI admin project with this single line command :
 vue create my-admin-project --preset okami101/vtec-admin-preset
 ```
 
-Then select suited options according to your needs.
+> On any existing Vue CLI Vuetify project you can try `vue add vtec-admin`.  
 
-Finally start your admin panel by `yarn serve`. Don't forget to have your backend running next to.
+Then select suited options according to your needs and start your admin panel by `yarn serve`.
+
+## Getting started
+
+* [How it works](https://vtec.okami101.io/guide/)
+* [Usage](https://vtec.okami101.io/guide/getting-started.html)
+* [Tutorial](https://vtec.okami101.io/guide/tutorial.html)
+* [Data providers](https://vtec.okami101.io/guide/data-providers.html)
+* [Instantiation](https://vtec.okami101.io/guide/admin.html)
+* [Resources](https://vtec.okami101.io/guide/resources.html)
+* [Internationalization](https://vtec.okami101.io/guide/i18n.html)
+* [Authentication](https://vtec.okami101.io/guide/authentication.html)
+* [Authorization](https://vtec.okami101.io/guide/authorization.html)
+
+> Check [Laravel tutorial](https://vtec.okami101.io/guide/laravel.html) for complete top-to-bottom development experience showcase with separate [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package.
 
 ## Available generators commands
 
