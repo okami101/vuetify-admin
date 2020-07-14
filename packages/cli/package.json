@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-vtec-admin",
-  "version": "0.2.40",
+  "version": "0.2.41",
   "description": "Vue CLI plugin for Vtec Admin",
   "main": "index.js",
   "keywords": [

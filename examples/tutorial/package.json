@@ -1,6 +1,6 @@
 {
   "name": "tutorial",
-  "version": "0.2.40",
+  "version": "0.2.41",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -35,7 +35,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.0.5",
     "vue-cli-plugin-i18n": "latest",
-    "vue-cli-plugin-vtec-admin": "^0.2.40",
+    "vue-cli-plugin-vtec-admin": "^0.2.41",
     "vue-cli-plugin-vuetify": "latest",
     "vue-template-compiler": "^2.6.11"
   }
