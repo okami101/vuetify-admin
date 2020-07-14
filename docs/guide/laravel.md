@@ -895,7 +895,7 @@ This package includes some third party request related model traits in order to 
 
 #### RequestMediaTrait
 
-Import `InteractsWithMedia` from [Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) with addition of request save management.  
+This trait will import `HasMediaTrait` from [Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) with additional of request file save management.  
 This trait will be responsible for taking all valid request files that correspond to a valid collection name, as well as delete asked media for given collection.
 
 Let's take this model media registration :
