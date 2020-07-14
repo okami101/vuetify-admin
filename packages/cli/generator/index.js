@@ -120,5 +120,10 @@ module.exports = (api, options) => {
         fs.unlinkSync(file);
       }
     });
+
+    api.exitLog("Full documentation: https://vtec.okami101.io");
+    api.exitLog(
+      "Please let a star if you liked it on Github: https://github.com/okami101/vtec-admin"
+    );
   });
 };

@@ -71,6 +71,8 @@ export default {
             this.errorMessages.email = [e.message];
           } else if (e.response.data.errors) {
             this.errorMessages = e.response.data.errors;
+          } else if (e.response.data.message) {
+            this.errorMessages = { email: [e.response.data.message] };
           }
         }
         this.loading = false;
