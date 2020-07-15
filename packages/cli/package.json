@@ -12,7 +12,10 @@
     "vuetify",
     "vuetify-admin",
     "vtec",
-    "vtec-admin"
+    "vtec-admin",
+    "front-end",
+    "framework",
+    "cli"
   ],
   "repository": "https://github.com/okami101/vtec-admin",
   "author": "Adrien Beaudouin <adrien.beaudouin@outlook.com>",
