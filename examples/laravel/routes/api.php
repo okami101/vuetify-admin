@@ -2,6 +2,7 @@
 
 use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Vtec\Crud\Http\Middleware\Impersonate;
 
 /*
