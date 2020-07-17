@@ -192,7 +192,6 @@ export default {
     ...mapActions({
       refresh: "api/refresh",
       logout: "auth/logout",
-      checkAuth: "auth/checkAuth",
     }),
   },
 };

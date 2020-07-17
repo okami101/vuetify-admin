@@ -297,21 +297,30 @@ export default class VtecAdmin {
     router.beforeEach(async (to, from, next) => {
       store.commit("messages/cleanError");
 
-      if (to.name !== from.name) {
-        /**
-         * Set main and document title
-         */
-        document.title = to.meta.title
-          ? `${to.meta.title} | ${this.title}`
-          : this.title;
+      /**
+       * Set main and document title
+       */
+      document.title = to.meta.title
+        ? `${to.meta.title} | ${this.title}`
+        : this.title;
 
-        /**
-         * Check and refresh authenticated user with last permissions
-         * after each navigation
-         */
-        await store.dispatch("auth/checkAuth", to);
+      /**
+       * Check and refresh authenticated user with last permissions
+       * after each navigation
+       */
+      let user = await store.dispatch("auth/checkAuth");
+
+      if (to.name !== "login") {
+        if (!user) {
+          return next({ name: "login" });
+        }
+
+        return next();
       }
 
+      if (user) {
+        return next("/");
+      }
       next();
     });
   }

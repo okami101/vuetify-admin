@@ -40,39 +40,32 @@ export default (provider, router) => {
        * Server login with given credentials
        * checkAuth action will set fresh user infos on store automatically
        */
-      [LOGIN]: async ({ dispatch }, credentials) => {
+      // eslint-disable-next-line no-empty-pattern
+      [LOGIN]: async ({}, credentials) => {
         await provider[LOGIN](credentials);
-        dispatch("checkAuth");
+        router.push("/");
       },
       /**
        * Explicit logout action, remove user from storage
        */
-      [LOGOUT]: async ({ dispatch }) => {
+      [LOGOUT]: async () => {
         await provider[LOGOUT]();
-        dispatch("checkAuth");
+        router.push({ name: "login" });
       },
       /**
        * Check valid auth on target route server by retrieving user infos
        * Set fresh user infos on store
        * Called after each URL navigation
        */
-      [CHECK_AUTH]: async ({ commit }, route = null) => {
-        const isLoginPage = (route || router.currentRoute).name === "login";
-
+      [CHECK_AUTH]: async ({ commit }) => {
         try {
           let response = await provider[CHECK_AUTH]();
-
-          if (isLoginPage) {
-            await router.push("/");
-          }
 
           if (response) {
             commit("setUser", response.data);
           }
+          return response.data;
         } catch (e) {
-          if (!isLoginPage) {
-            await router.push({ name: "login" });
-          }
           commit("setUser", null);
         }
       },
