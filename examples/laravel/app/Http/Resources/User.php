@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class User extends JsonResource
 {
-    private bool $impersonate;
+    private $impersonate;
 
     public function __construct($resource, $impersonate = false)
     {
