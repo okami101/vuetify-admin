@@ -1,45 +1,27 @@
 <template>
   <div>
-    <main
-      class="home"
-      aria-labelledby="main-title"
-    >
+    <main class="home" aria-labelledby="main-title">
       <header class="hero">
         <img
           v-if="data.heroImage"
           :src="$withBase(data.heroImage)"
           :alt="data.heroAlt || 'hero'"
-        >
+        />
 
-        <h1
-          v-if="data.heroText !== null"
-          id="main-title"
-        >
-          {{ data.heroText || $title || 'Hello' }}
+        <h1 v-if="data.heroText !== null" id="main-title">
+          {{ data.heroText || $title || "Hello" }}
         </h1>
 
-        <p
-          v-if="data.tagline !== null"
-          class="description"
-        >
-          {{ data.tagline || $description || 'Welcome to your VuePress site' }}
+        <p v-if="data.tagline !== null" class="description">
+          {{ data.tagline || $description || "Welcome to your VuePress site" }}
         </p>
 
-        <p
-          v-if="data.actionText && data.actionLink"
-          class="action"
-        >
-          <NavLink
-            class="action-button"
-            :item="actionLink"
-          />
+        <p v-if="data.actionText && data.actionLink" class="action">
+          <NavLink class="action-button" :item="actionLink" />
         </p>
       </header>
 
-      <div
-        v-if="data.features && data.features.length"
-        class="features"
-      >
+      <div v-if="data.features && data.features.length" class="features">
         <div
           v-for="(feature, index) in data.features"
           :key="index"
@@ -58,7 +40,13 @@
     <div class="live-preview">
       <iframe
         src="https://codesandbox.io/embed/github/okami101/vtec-admin/tree/master/examples/tutorial?fontsize=14&hidenavigation=1&theme=dark"
-        style="width:100%; height:900px; border:0; border-radius: 4px; overflow:hidden;"
+        style="
+          width: 100%;
+          height: 900px;
+          border: 0;
+          border-radius: 4px;
+          overflow: hidden;
+        "
         title="okami101/vtec-admin: tutorial"
         allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
         sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -66,10 +54,7 @@
     </div>
 
     <div class="home">
-      <div
-        v-if="data.footer"
-        class="footer"
-      >
+      <div v-if="data.footer" class="footer">
         {{ data.footer }}
       </div>
     </div>
@@ -77,26 +62,26 @@
 </template>
 
 <script>
-import NavLink from '@theme/components/NavLink.vue'
+import NavLink from "@theme/components/NavLink.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
 
   components: { NavLink },
 
   computed: {
-    data () {
-      return this.$page.frontmatter
+    data() {
+      return this.$page.frontmatter;
     },
 
-    actionLink () {
+    actionLink() {
       return {
         link: this.data.actionLink,
-        text: this.data.actionText
-      }
-    }
-  }
-}
+        text: this.data.actionText,
+      };
+    },
+  },
+};
 </script>
 
 <style lang="stylus">
