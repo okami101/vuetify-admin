@@ -66,7 +66,7 @@ class BookController extends Controller
                         });
                     }
                 })
-                ->exportOrPaginate()
+                ->paginate()
         );
     }
 

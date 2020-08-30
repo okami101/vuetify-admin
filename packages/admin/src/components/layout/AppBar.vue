@@ -12,7 +12,7 @@
       @event toggle
     -->
     <v-app-bar-nav-icon @click.stop="$emit('toggle')" />
-    <v-toolbar-title class="ml-0 pl-4" style="width: 200px;">
+    <v-toolbar-title class="ml-0 pl-4" style="width: 200px">
       <span class="hidden-sm-and-down">{{ title || $admin.title }}</span>
     </v-toolbar-title>
     <v-row v-if="headerMenu.length && $vuetify.breakpoint.lgAndUp">
