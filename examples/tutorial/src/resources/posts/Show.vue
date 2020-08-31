@@ -30,7 +30,7 @@
           disable-pagination
           disable-query-string
           :filter="{
-            postId: id
+            postId: id,
           }"
         >
           <va-data-table :fields="fields" disable-select></va-data-table>
@@ -48,9 +48,9 @@ export default {
       fields: [
         { source: "name", sortable: true },
         { source: "email", type: "email" },
-        "body"
-      ]
+        "body",
+      ],
     };
-  }
+  },
 };
 </script>

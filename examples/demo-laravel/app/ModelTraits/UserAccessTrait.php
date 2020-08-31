@@ -21,17 +21,8 @@ trait UserAccessTrait
 
     public function scopeHasUser(Builder $query, User $user): Builder
     {
-        if (! $user->hasRole('admin')) {
-            return $query->whereHas('users', function (Builder $query) use ($user) {
-                $query->where('user_id', '=', $user->id);
-            });
-        }
-
-        return $query;
-    }
-
-    public function canAccess(User $user)
-    {
-        return $this->users->contains('id', '=', $user->id);
+        return $query->whereHas('users', function (Builder $query) use ($user) {
+            $query->where('user_id', '=', $user->id);
+        });
     }
 }

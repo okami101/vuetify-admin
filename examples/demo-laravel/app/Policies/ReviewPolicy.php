@@ -37,7 +37,7 @@ class ReviewPolicy
      */
     public function view(User $user, Review $review)
     {
-        return $review->book->canAccess($user);
+        return true;
     }
 
     /**
@@ -60,7 +60,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review)
     {
-        return $review->book->canAccess($user);
+        return true;
     }
 
     /**
@@ -72,6 +72,6 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review)
     {
-        return $review->book->canAccess($user);
+        return true;
     }
 }

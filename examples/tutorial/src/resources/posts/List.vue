@@ -23,19 +23,19 @@ export default {
           source: "userId",
           type: "select",
           alwaysOn: true,
-          attributes: { reference: "users" }
-        }
+          attributes: { reference: "users" },
+        },
       ],
       fields: [
         {
           source: "user",
           type: "reference",
-          attributes: { reference: "users", action: "edit", chip: true }
+          attributes: { reference: "users", action: "edit", chip: true },
         },
         { source: "title", sortable: true },
-        "body"
-      ]
+        "body",
+      ],
     };
-  }
+  },
 };
 </script>

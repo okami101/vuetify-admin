@@ -6,8 +6,6 @@ use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
 use App\Review;
-use App\User;
-use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Vtec\Crud\Filters\SearchFilter;
@@ -26,11 +24,6 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        /**
-         * @var User
-         */
-        $user = auth()->user();
-
         return ReviewResource::collection(
             QueryBuilder::for(Review::class)
                 ->allowedFields(['id', 'author'])
@@ -46,18 +39,6 @@ class ReviewController extends Controller
                 ])
                 ->allowedSorts(['id', 'rating', 'author', 'publication_date'])
                 ->allowedIncludes(['book'])
-                ->where(function (Builder $query) use ($user) {
-                    if ($user->hasRole('editor')) {
-                        $query->whereHas('book', function (Builder $query) use ($user) {
-                            $query->whereIn('publisher_id', $user->publishers()->pluck('id'));
-                        });
-                    }
-                    if ($user->hasRole('author')) {
-                        $query->whereHas('book.authors', function (Builder $query) use ($user) {
-                            $query->whereIn('id', $user->authors()->pluck('id'));
-                        });
-                    }
-                })
                 ->exportOrPaginate()
         );
     }

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Vtec\Crud\Traits\ImpersonateTrait;
 
 /**
  * App\User
@@ -36,7 +35,6 @@ use Vtec\Crud\Traits\ImpersonateTrait;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    use ImpersonateTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -66,6 +64,15 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'roles' => 'array',
     ];
+
+    protected $appends = [
+        'impersonate',
+    ];
+
+    public function getImpersonateAttribute()
+    {
+        return session()->get('impersonate') === $this->id;
+    }
 
     public function hasRole(...$roles)
     {

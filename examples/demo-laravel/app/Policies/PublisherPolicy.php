@@ -41,7 +41,7 @@ class PublisherPolicy
      */
     public function view(User $user, Publisher $publisher)
     {
-        return $publisher->canAccess($user);
+        return true;
     }
 
     /**
@@ -64,7 +64,7 @@ class PublisherPolicy
      */
     public function update(User $user, Publisher $publisher)
     {
-        return $publisher->canAccess($user);
+        return true;
     }
 
     /**

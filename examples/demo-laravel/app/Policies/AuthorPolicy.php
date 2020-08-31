@@ -41,7 +41,7 @@ class AuthorPolicy
      */
     public function view(User $user, Author $author)
     {
-        return $author->canAccess($user);
+        return true;
     }
 
     /**
@@ -64,7 +64,7 @@ class AuthorPolicy
      */
     public function update(User $user, Author $author)
     {
-        return $author->canAccess($user);
+        return true;
     }
 
     /**

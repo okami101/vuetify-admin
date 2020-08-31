@@ -37,7 +37,7 @@ class BookPolicy
      */
     public function view(User $user, Book $book)
     {
-        return $book->canAccess($user);
+        return true;
     }
 
     /**
@@ -60,7 +60,7 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        return $book->canAccess($user);
+        return true;
     }
 
     /**
@@ -72,6 +72,6 @@ class BookPolicy
      */
     public function delete(User $user, Book $book)
     {
-        return $book->canAccess($user);
+        return true;
     }
 }

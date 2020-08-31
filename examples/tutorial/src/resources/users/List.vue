@@ -26,9 +26,9 @@ export default {
         { source: "address", type: "address" },
         "phone",
         { source: "website", type: "url" },
-        "company.name"
-      ]
+        "company.name",
+      ],
     };
-  }
+  },
 };
 </script>

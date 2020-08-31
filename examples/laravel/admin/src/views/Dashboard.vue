@@ -14,9 +14,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ attrs, on }">
                 <v-btn v-bind="attrs" color="info" icon v-on="on">
-                  <v-icon color="info">
-                    mdi-refresh
-                  </v-icon>
+                  <v-icon color="info"> mdi-refresh </v-icon>
                 </v-btn>
               </template>
 
@@ -34,18 +32,14 @@
             </v-tooltip>
           </template>
 
-          <h4 class="card-title font-weight-light mt-2 ml-2">
-            Website Views
-          </h4>
+          <h4 class="card-title font-weight-light mt-2 ml-2">Website Views</h4>
 
           <p class="d-inline-flex font-weight-light ml-2 mt-1">
             Last Campaign Performance
           </p>
 
           <template v-slot:actions>
-            <v-icon class="mr-1" small>
-              mdi-clock-outline
-            </v-icon>
+            <v-icon class="mr-1" small> mdi-clock-outline </v-icon>
             <span class="caption grey--text font-weight-light"
               >updated 10 minutes ago</span
             >
@@ -65,9 +59,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ attrs, on }">
                 <v-btn v-bind="attrs" color="info" icon v-on="on">
-                  <v-icon color="info">
-                    mdi-refresh
-                  </v-icon>
+                  <v-icon color="info"> mdi-refresh </v-icon>
                 </v-btn>
               </template>
 
@@ -85,21 +77,15 @@
             </v-tooltip>
           </template>
 
-          <h4 class="card-title font-weight-light mt-2 ml-2">
-            Daily Sales
-          </h4>
+          <h4 class="card-title font-weight-light mt-2 ml-2">Daily Sales</h4>
 
           <p class="d-inline-flex font-weight-light ml-2 mt-1">
-            <v-icon color="green" small>
-              mdi-arrow-up
-            </v-icon>
+            <v-icon color="green" small> mdi-arrow-up </v-icon>
             <span class="green--text">55%</span>&nbsp; increase in today's sales
           </p>
 
           <template v-slot:actions>
-            <v-icon class="mr-1" small>
-              mdi-clock-outline
-            </v-icon>
+            <v-icon class="mr-1" small> mdi-clock-outline </v-icon>
             <span class="caption grey--text font-weight-light"
               >updated 4 minutes ago</span
             >
@@ -119,9 +105,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ attrs, on }">
                 <v-btn v-bind="attrs" color="info" icon v-on="on">
-                  <v-icon color="info">
-                    mdi-refresh
-                  </v-icon>
+                  <v-icon color="info"> mdi-refresh </v-icon>
                 </v-btn>
               </template>
 
@@ -148,9 +132,7 @@
           </p>
 
           <template v-slot:actions>
-            <v-icon class="mr-1" small>
-              mdi-clock-outline
-            </v-icon>
+            <v-icon class="mr-1" small> mdi-clock-outline </v-icon>
             <span class="caption grey--text font-weight-light"
               >campaign sent 26 minutes ago</span
             >
@@ -206,9 +188,7 @@
       <v-col cols="12" md="6">
         <base-material-card color="warning" class="px-5 py-3">
           <template v-slot:heading>
-            <div class="display-2 font-weight-light">
-              Employees Stats
-            </div>
+            <div class="display-2 font-weight-light">Employees Stats</div>
 
             <div class="subtitle-1 font-weight-light">
               New employees on 15th September, 2016
@@ -230,25 +210,19 @@
             >
               <span
                 class="subheading font-weight-light mx-3"
-                style="align-self: center;"
+                style="align-self: center"
                 >Tasks:</span
               >
               <v-tab class="mr-3">
-                <v-icon class="mr-2">
-                  mdi-bug
-                </v-icon>
+                <v-icon class="mr-2"> mdi-bug </v-icon>
                 Bugs
               </v-tab>
               <v-tab class="mr-3">
-                <v-icon class="mr-2">
-                  mdi-code-tags
-                </v-icon>
+                <v-icon class="mr-2"> mdi-code-tags </v-icon>
                 Website
               </v-tab>
               <v-tab>
-                <v-icon class="mr-2">
-                  mdi-cloud
-                </v-icon>
+                <v-icon class="mr-2"> mdi-cloud </v-icon>
                 Server
               </v-tab>
             </v-tabs>
@@ -270,12 +244,8 @@
                     </v-col>
 
                     <v-col cols="2" class="text-right">
-                      <v-icon class="mx-1">
-                        mdi-pencil
-                      </v-icon>
-                      <v-icon color="error" class="mx-1">
-                        mdi-close
-                      </v-icon>
+                      <v-icon class="mx-1"> mdi-pencil </v-icon>
+                      <v-icon color="error" class="mx-1"> mdi-close </v-icon>
                     </v-col>
                   </v-row>
                 </template>

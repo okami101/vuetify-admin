@@ -11,6 +11,18 @@ class AccountController extends Controller
     use AccountTrait;
 
     /**
+     * User infos
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \App\Http\Resources\User
+     */
+    public function index(Request $request)
+    {
+        return new UserResource($request->user());
+    }
+
+    /**
      * Update account infos
      *
      * @param \Illuminate\Http\Request $request

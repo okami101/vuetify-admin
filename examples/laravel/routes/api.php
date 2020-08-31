@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Resources\User as UserResource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Vtec\Crud\Http\Middleware\Impersonate;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +13,7 @@ use Vtec\Crud\Http\Middleware\Impersonate;
 |
 */
 
-Route::group(['middleware' => Impersonate::class], function () {
-    Route::get('/user', function (Request $request) {
-        if ($user = $request->user()) {
-            return new UserResource($user, true);
-        }
-        abort(401);
-    });
-
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::account();
     Route::impersonate();
     Route::upload();

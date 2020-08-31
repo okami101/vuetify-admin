@@ -101,14 +101,14 @@ class UserController extends Controller
 
     public function impersonate(User $user)
     {
-        auth()->user()->setImpersonating($user->id);
+        session()->put('impersonate', $user->id);
 
-        return new UserResource($user);
+        return response()->noContent();
     }
 
     public function stopImpersonate()
     {
-        auth()->user()->stopImpersonating();
+        session()->forget('impersonate');
 
         return response()->noContent();
     }

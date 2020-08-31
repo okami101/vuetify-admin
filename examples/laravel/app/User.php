@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Vtec\Crud\Traits\ImpersonateTrait;
 
 class User extends Authenticatable
 {
-    use ImpersonateTrait;
     use Notifiable;
 
     /**
@@ -37,4 +35,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'impersonate',
+    ];
+
+    public function getImpersonateAttribute()
+    {
+        return session()->get('impersonate') === $this->id;
+    }
 }

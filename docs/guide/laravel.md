@@ -70,8 +70,36 @@ Finally, the installer will integrate some additional boilerplate code to get ba
 * Modify some configs as cors for ready-to-go API SPA plugging.
 * User controller for admin users management.
 * Simple account controller for profile editing and password change.
-* User impersonation with dedicated middleware registered inside `routes/api.php` file.
 * Inject docker files with ready to use MySQL, phpMyAdmin, Nginx and Redis !
+
+::: tip Impersonation
+In order to get impersonation feature, you must register `Impersonate` middleware into following Http Kernel file :
+
+**`app/Http/Kernel.php`**
+
+```php {12}
+<?php
+
+namespace App\Http;
+
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
+
+class Kernel extends HttpKernel
+{
+    /* ... */
+        'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Vtec\Crud\Http\Middleware\Impersonate::class,
+            'throttle:60,1',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+    /* ... */
+}
+```
+
+Note as it must be place just right **AFTER** the `EnsureFrontendRequestsAreStateful` middleware which is provided by Laravel Sanctum.
+
+:::
 
 ### Vue CLI admin UI project
 

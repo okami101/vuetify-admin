@@ -44,7 +44,6 @@ class PublisherController extends Controller
                     AllowedInclude::count('books_count'),
                 ])
                 ->allowedSorts(['id', 'name', 'founder', 'headquarter', 'opening_date', 'books_count'])
-                ->hasUser(auth()->user())
                 ->exportOrPaginate()
         );
     }

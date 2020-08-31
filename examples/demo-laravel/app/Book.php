@@ -142,16 +142,4 @@ class Book extends Model implements HasMedia
             ->height(600)
             ->nonOptimized();
     }
-
-    public function canAccess(User $user)
-    {
-        if ($user->hasRole('editor')) {
-            return $this->publisher->canAccess($user);
-        }
-        if ($user->hasRole('author')) {
-            return $this->authors->filter->canAccess($user)->isNotEmpty();
-        }
-
-        return false;
-    }
 }

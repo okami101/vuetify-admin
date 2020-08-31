@@ -19,13 +19,9 @@
     <va-breadcrumbs slot="header"></va-breadcrumbs>
     <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu">
-      <v-icon size="18">
-        mdi-xml
-      </v-icon>
+      <v-icon size="18"> mdi-xml </v-icon>
       with
-      <v-icon size="18">
-        mdi-heart
-      </v-icon>
+      <v-icon size="18"> mdi-heart </v-icon>
       by
       <a
         href="https://vtec.okami101.io"

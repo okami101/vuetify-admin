@@ -29,7 +29,7 @@
           disable-pagination
           disable-query-string
           :filter="{
-            userId: id
+            userId: id,
           }"
         >
           <va-data-table :fields="fields" disable-select></va-data-table>
@@ -44,8 +44,8 @@ export default {
   props: ["id", "title", "item"],
   data() {
     return {
-      fields: [{ source: "title", sortable: true }, "body"]
+      fields: [{ source: "title", sortable: true }, "body"],
     };
-  }
+  },
 };
 </script>
