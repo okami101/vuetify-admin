@@ -68,16 +68,17 @@ If you have selected ide helper package, you may add this lines into your main `
 Finally, the installer will integrate some additional boilerplate code to get basic features working within Vtec Admin :
 
 * Modify some configs as cors for ready-to-go API SPA plugging.
+* Impersonation feature
 * User controller for admin users management.
 * Simple account controller for profile editing and password change.
 * Inject docker files with ready to use MySQL, phpMyAdmin, Nginx and Redis !
 
-::: tip Impersonation
-In order to get impersonation feature, you must register `Impersonate` middleware into following Http Kernel file :
+::: tip SPA auth & impersonation
+If you choose to install Laravel Sanctum, the installer will inject both `EnsureFrontendRequestsAreStateful` as well as `Impersonate` middlewares into following Http Kernel file :
 
 **`app/Http/Kernel.php`**
 
-```php {12}
+```php {11-12}
 <?php
 
 namespace App\Http;
@@ -97,7 +98,7 @@ class Kernel extends HttpKernel
 }
 ```
 
-Note as it must be place just right **AFTER** the `EnsureFrontendRequestsAreStateful` middleware which is provided by Laravel Sanctum.
+Note as `Impersonate` must be placed just right **AFTER** the `EnsureFrontendRequestsAreStateful` middleware in order to fetch initial main authenticated admin user.
 
 :::
 

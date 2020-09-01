@@ -61,9 +61,6 @@ export default {
       search: null,
     };
   },
-  created() {
-    this.loadCurrentChoices(this.input);
-  },
   methods: {
     async loadCurrentChoices(value) {
       if (this.reference && value) {
@@ -74,6 +71,15 @@ export default {
     },
   },
   watch: {
+    input: {
+      handler(newVal) {
+        /**
+         * Fetch full object as soon as we get input value
+         */
+        this.loadCurrentChoices(newVal);
+      },
+      immediate: true,
+    },
     async search(val, old) {
       if (old === null) {
         return;
