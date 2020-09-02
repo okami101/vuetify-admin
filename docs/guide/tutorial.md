@@ -140,7 +140,7 @@ Imagine you want customize address cell with complete information :
 <template>
   <va-list>
     <va-data-table :fields="fields">
-      <template v-slot:field.address="{ value }">
+      <template v-slot:[`field.address`]="{ value }">
         {{ value.street }} {{ value.zipcode }} {{ value.city }}
       </template>
     </va-data-table>

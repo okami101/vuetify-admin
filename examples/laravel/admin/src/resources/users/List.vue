@@ -13,7 +13,7 @@
           disable-edit-redirect
           @item-action="onAction"
         >
-          <template v-slot:item.actions="{ resource, item }">
+          <template v-slot:[`item.actions`]="{ resource, item }">
             <impersonate-button
               :resource="resource"
               :item="item"

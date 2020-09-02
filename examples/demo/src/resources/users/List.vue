@@ -34,14 +34,14 @@
           disable-edit-redirect
           @item-action="onAction"
         >
-          <template v-slot:field.roles="{ value }">
+          <template v-slot:[`field.roles`]="{ value }">
             <v-chip-group column>
               <v-chip color="yellow" small v-for="(item, i) in value" :key="i">
                 <va-select-field source="roles" :item="item"></va-select-field>
               </v-chip>
             </v-chip-group>
           </template>
-          <template v-slot:item.actions="{ resource, item }">
+          <template v-slot:[`item.actions`]="{ resource, item }">
             <impersonate-button
               :resource="resource"
               :item="item"

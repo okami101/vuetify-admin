@@ -168,7 +168,7 @@ In case of all above field options doesn't suit your needs, you can perfectly us
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
       <va-data-table :fields="fields">
-        <template v-slot:field.authors="{ value }">
+        <template v-slot:[`field.authors`]="{ value }">
           <v-chip-group column>
             <va-reference-field
               reference="authors"
@@ -236,7 +236,7 @@ If you need other item actions in addition to classic crud operations, use the d
   <base-material-card :icon="resource.icon" :title="title">
     <va-list>
       <va-data-table :fields="fields">
-        <template v-slot:item.actions="{ resource, item }">
+        <template v-slot:[`item.actions`]="{ resource, item }">
           <impersonate-button
             :resource="resource"
             :item="item"

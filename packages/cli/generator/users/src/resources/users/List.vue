@@ -28,7 +28,7 @@
           @item-action="onAction"
         >
           <%_ if (impersonation) { _%>
-          <template v-slot:item.actions="{ resource, item }">
+          <template v-slot:[`item.actions`]="{ resource, item }">
             <impersonate-button
               :resource="resource"
               :item="item"
