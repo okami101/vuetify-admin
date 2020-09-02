@@ -13,12 +13,9 @@
           book: id,
         }"
         :filters="filters"
+        disable-create
       >
-        <va-data-table :fields="fields">
-          <template v-slot:[`field.quality`]="{ item }">
-            {{ item.rating >= 3 ? $t("good") : $t("bad") }}
-          </template>
-        </va-data-table>
+        <va-data-table row-create row-edit :fields="fields"></va-data-table>
       </va-list>
     </base-material-card>
   </va-edit-layout>
@@ -58,7 +55,11 @@ export default {
           },
         },
         { source: "rating", type: "rating" },
-        "quality",
+        {
+          source: "body",
+          type: "text",
+          attributes: { truncate: 100, multiline: true },
+        },
         "author",
         {
           source: "publication_date",

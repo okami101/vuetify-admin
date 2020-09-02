@@ -144,16 +144,17 @@ export default {
 
 See all supported field properties :
 
-| Property       | Type      | Description                                                                                  |
-| -------------- | --------- | -------------------------------------------------------------------------------------------- |
-| **source**     | `string`  | Resource property to display.                                                                |
-| **type**       | `string`  | Type of [field](../components/fields.md) to use.                                             |
-| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.                 |
-| **sortable**   | `boolean` | Activate server-side sort.                                                                   |
-| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                       |
-| **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link. |
-| **attributes** | `object`  | All props or attributes to merge to the [field component](../components/fields.md).          |
-| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.              |
+| Property       | Type      | Description                                                                                                                  |
+| -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **source**     | `string`  | Resource property to display.                                                                                                |
+| **type**       | `string`  | Type of [field](../components/fields.md) to use.                                                                             |
+| **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.                                                 |
+| **sortable**   | `boolean` | Activate server-side sort.                                                                                                   |
+| **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                                                       |
+| **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link.                                 |
+| **input**      | `string`  | Type of [input](../components/input.md) to use for editable form rows. Override above `type` props which is used by default. |
+| **attributes** | `object`  | All props or attributes to merge to the under field or input component.                                                      |
+| **editable**   | `boolean` | Replace field by a live edit input. Ideal for quick live toggle switch updates.                                              |
 
 ::: tip SHORTHAND
 You can use a simple string for each field column, `"my-property"` is similar to `{ source: "my-property" }`.
@@ -590,9 +591,45 @@ if ($id = $request->input('remove_author_id')) {
 
 :::
 
+## Editable rows
+
+For simple resources, you can enable the direct row form mode :
+
+![editable-rows](/assets/editable-rows.png)
+
+Use both `row-create` and `row-edit` props to enable it :
+
+* `row-create` will add a new **plus** button inside header actions column. You may use `disable-create` inside direct parent `VaList` in order to disable normal creation behavior or simply disable `create` action for the concerned resource. On click it will show a empty new form at first row.
+* `row-edit` will change the default edit button behavior. On click it will transform the entire row into form row with pre filled values.
+
+```vue {16,18}
+<template>
+  <va-edit-layout>
+    <books-form :id="id" :title="title" :item="item"></books-form>
+    <base-material-card
+      icon="mdi-comment"
+      :title="$admin.getResource('reviews').pluralName"
+    >
+      <va-list
+        resource="reviews"
+        disable-query-string
+        :items-per-page="10"
+        :filter="{
+          book: id,
+        }"
+        :filters="filters"
+        disable-create
+      >
+        <va-data-table row-create row-edit :fields="fields"></va-data-table>
+      </va-list>
+    </base-material-card>
+  </va-edit-layout>
+</template>
+```
+
 ## Custom layout
 
-As you can see, `VaList` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
+As you have seen, `VaList` is mainly a data iterator that will provide items result into his default slot children components, which is `VaDataTable` here. As the browsing UI structure is totally separated from the data list display, you can use any custom list layout as you want.
 
 It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters.
 

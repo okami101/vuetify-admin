@@ -23,7 +23,7 @@ export default {
     return {
       acceptValue: true,
       input: null,
-      errorMessages: [],
+      internalErrorMessages: [],
     };
   },
   watch: {
@@ -58,7 +58,7 @@ export default {
     },
     "formState.errors"(val) {
       if (val) {
-        this.errorMessages = val[this.uniqueFormId] || [];
+        this.internalErrorMessages = val[this.uniqueFormId] || [];
       }
     },
   },
@@ -80,7 +80,7 @@ export default {
         appendIcon: this.appendIcon,
         hint: this.hint,
         rules: this.rules,
-        errorMessages: this.errorMessages,
+        errorMessages: [...this.errorMessages, ...this.internalErrorMessages],
         hideDetails: this.hideDetails,
         dense: this.dense,
         placeholder: this.placeholder,

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.49
+
+* 🚀 Add quick edition by row feature on data table
+
 ## 0.2.35
 
 * 🐛 Fix initial data table pagination

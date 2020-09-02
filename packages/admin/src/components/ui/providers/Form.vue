@@ -63,7 +63,7 @@ export default {
         item: this.item,
         model: {},
         saving: false,
-        errors: [],
+        errors: {},
         update: ({ source, value }) => {
           let model = { ...this.formState.model };
           set(model, source, value);
@@ -126,7 +126,7 @@ export default {
               data: this.formState.model,
             });
 
-        this.formState.saving = false;
+        this.formState.errors = {};
 
         /**
          * Sent after success saving.
@@ -158,11 +158,11 @@ export default {
             break;
         }
       } catch (e) {
-        this.formState.saving = false;
-
         if (e.errors) {
           this.formState.errors = e.errors;
         }
+      } finally {
+        this.formState.saving = false;
       }
     },
   },

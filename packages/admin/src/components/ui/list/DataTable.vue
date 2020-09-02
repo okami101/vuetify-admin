@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="listState.items"
+    :items="items"
     :show-select="!disableSelect"
     :disable-sort="disableSort"
     :value="listState.selected"
@@ -23,45 +23,81 @@
       v-for="field in getFields"
       v-slot:[`item.${field.source}`]="{ item, value }"
     >
-      <component
-        v-if="field.editable"
-        :key="field.source"
-        :is="`va-${field.type || 'text'}-input`"
-        :resource="listState.resource"
-        :source="field.source"
-        editable
-        :item="item"
-        :value="value"
-        dense
-        label=""
-        v-bind="field.attributes"
-      ></component>
-      <router-link
-        v-else-if="field.link"
-        :key="field.source"
-        :to="{
-          name: `${listState.resource}_${field.link}`,
-          params: { id: item.id },
-        }"
-      >
+      <template v-if="item._new || item.id === editRowId">
         <component
-          v-if="field.type"
           :key="field.source"
-          :is="`va-${field.type}-field`"
+          :is="`va-${field.input || field.type || 'text'}-input`"
           :resource="listState.resource"
-          :item="item"
           :source="field.source"
+          :item="item"
+          v-model="form[field.source]"
+          dense
+          label=""
           v-bind="field.attributes"
-          :truncate="150"
-          v-slot="props"
+          :error-messages="errors[field.source]"
+          class="mt-6"
+        ></component>
+      </template>
+      <template v-else>
+        <component
+          v-if="field.editable"
+          :key="field.source"
+          :is="`va-${field.input || field.type || 'text'}-input`"
+          :resource="listState.resource"
+          :source="field.source"
+          editable
+          :item="item"
+          :value="value"
+          dense
+          label=""
+          v-bind="field.attributes"
+          hide-details
+        ></component>
+        <router-link
+          v-else-if="field.link"
+          :key="field.source"
+          :to="{
+            name: `${listState.resource}_${field.link}`,
+            params: { id: item.id },
+          }"
         >
-          <!--
+          <component
+            v-if="field.type"
+            :key="field.source"
+            :is="`va-${field.type}-field`"
+            :resource="listState.resource"
+            :item="item"
+            :source="field.source"
+            v-bind="field.attributes"
+            v-slot="props"
+          >
+            <!--
             @slot Use for field cell templating.
             @binding {string} resource Name of resource.
             @binding {string} source Property source.
             @binding {string} item Full object item.
             @binding {string} value Value of property source.
           -->
+            <slot
+              :name="`field.${field.source}`"
+              :item="props.item || item"
+              v-bind="props"
+            ></slot>
+          </component>
+          <slot v-else :name="`field.${field.source}`" v-bind="{ item, value }">
+            {{ value }}
+          </slot>
+        </router-link>
+        <component
+          v-else-if="field.type"
+          :key="field.source"
+          :is="`va-${field.type}-field`"
+          :resource="listState.resource"
+          :item="item"
+          :source="field.source"
+          v-bind="field.attributes"
+          v-slot="props"
+        >
           <slot
             :name="`field.${field.source}`"
             :item="props.item || item"
@@ -71,83 +107,98 @@
         <slot v-else :name="`field.${field.source}`" v-bind="{ item, value }">
           {{ value }}
         </slot>
-      </router-link>
-      <component
-        v-else-if="field.type"
-        :key="field.source"
-        :is="`va-${field.type}-field`"
-        :resource="listState.resource"
-        :item="item"
-        :source="field.source"
-        v-bind="field.attributes"
-        :truncate="150"
-        v-slot="props"
-      >
-        <slot
-          :name="`field.${field.source}`"
-          :item="props.item || item"
-          v-bind="props"
-        ></slot>
-      </component>
-      <slot v-else :name="`field.${field.source}`" v-bind="{ item, value }">
-        {{ value }}
-      </slot>
+      </template>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
       <div class="item-actions">
         <!-- @slot Full cell template which contains all row actions. -->
         <slot name="cell.actions" v-bind="{ item }">
-          <va-show-button
-            v-if="!disableShow"
-            :disable-redirect="disableShowRedirect"
-            :resource="listState.resource"
-            :item="item"
-            icon
-            @click="(item) => onAction('show', item)"
-          ></va-show-button>
-          <va-edit-button
-            v-if="!disableEdit"
-            :disable-redirect="disableEditRedirect"
-            :resource="listState.resource"
-            :item="item"
-            icon
-            @click="(item) => onAction('edit', item)"
-          ></va-edit-button>
-          <!-- @slot Use it for additional custom row actions with components based on VaActionButton. -->
-          <slot name="item.actions" v-bind="{ item }"></slot>
-          <va-clone-button
-            v-if="!disableClone"
-            :disable-redirect="disableCreateRedirect"
-            :resource="listState.resource"
-            :item="item"
-            icon
-            @click="(item) => onAction('create', item)"
-          ></va-clone-button>
-          <!--
+          <template v-if="item._new || item.id === editRowId">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  color="success"
+                  icon
+                  v-on="on"
+                  @click="save"
+                  :loading="saving"
+                >
+                  <v-icon>mdi-floppy</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t("va.actions.save") }}</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  @click="
+                    editRowId = null;
+                    form = null;
+                    errors = {};
+                  "
+                  color="red"
+                  icon
+                  v-on="on"
+                >
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t("va.actions.cancel") }}</span>
+            </v-tooltip>
+          </template>
+          <template v-else>
+            <va-show-button
+              v-if="!disableShow"
+              :disable-redirect="disableShowRedirect"
+              :resource="listState.resource"
+              :item="item"
+              icon
+              @click="(item) => onAction('show', item)"
+            ></va-show-button>
+            <va-edit-button
+              v-if="!disableEdit"
+              :disable-redirect="disableEditRedirect || rowEdit"
+              :resource="listState.resource"
+              :item="item"
+              icon
+              @click="(item) => onAction('edit', item)"
+            ></va-edit-button>
+            <!-- @slot Use it for additional custom row actions with components based on VaActionButton. -->
+            <slot name="item.actions" v-bind="{ item }"></slot>
+            <va-clone-button
+              v-if="!disableClone"
+              :disable-redirect="disableCreateRedirect"
+              :resource="listState.resource"
+              :item="item"
+              icon
+              @click="(item) => onAction('create', item)"
+            ></va-clone-button>
+            <!--
             Triggered on successful dissociation of resource item.
             @event dissociated
           -->
-          <va-dissociate-button
-            v-if="association"
-            :resource="listState.resource"
-            :item="item"
-            :source-resource="association.resource"
-            :source="association.source"
-            :source-id="association.id"
-            icon
-            @dissociated="$emit('dissociated', item)"
-          ></va-dissociate-button>
-          <!--
+            <va-dissociate-button
+              v-if="association"
+              :resource="listState.resource"
+              :item="item"
+              :source-resource="association.resource"
+              :source="association.source"
+              :source-id="association.id"
+              icon
+              @dissociated="$emit('dissociated', item)"
+            ></va-dissociate-button>
+            <!--
             Triggered on successful deletetion of ressource item.
             @event deleted
           -->
-          <va-delete-button
-            v-if="!disableDelete"
-            :resource="listState.resource"
-            :item="item"
-            icon
-            @deleted="$emit('deleted', item)"
-          ></va-delete-button>
+            <va-delete-button
+              v-if="!disableDelete"
+              :resource="listState.resource"
+              :item="item"
+              icon
+              @deleted="$emit('deleted', item)"
+            ></va-delete-button>
+          </template>
         </slot>
       </div>
     </template>
@@ -157,6 +208,14 @@
         <slot name="expanded-item" v-bind="{ item }"></slot>
       </td>
     </template>
+    <v-tooltip bottom slot="header.actions" v-if="rowCreate">
+      <template v-slot:activator="{ on }">
+        <v-btn @click="createRowForm()" color="success" icon v-on="on">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </template>
+      <span>{{ $t("va.actions.create") }}</span>
+    </v-tooltip>
   </v-data-table>
 </template>
 
@@ -262,8 +321,30 @@ export default {
       type: Object,
       default: () => {},
     },
+    /**
+     * Allow new item row.
+     */
+    rowCreate: Boolean,
+    /**
+     * Allow editable row.
+     */
+    rowEdit: Boolean,
+  },
+  data() {
+    return {
+      editRowId: null,
+      form: null,
+      errors: {},
+      saving: false,
+    };
   },
   computed: {
+    items() {
+      if (this.form && !this.editRowId) {
+        return [{ _new: true }, ...this.listState.items];
+      }
+      return this.listState.items;
+    },
     headers() {
       let fields = this.getFields.map((field) => {
         return {
@@ -343,6 +424,11 @@ export default {
       }
     },
     async onAction(action, item) {
+      if (action === "edit" && this.rowEdit) {
+        this.createRowForm(item);
+        return;
+      }
+
       if (!this[`disable${upperFirst(action)}Redirect`]) {
         return;
       }
@@ -368,6 +454,46 @@ export default {
        * This event will return a freshed item Object from your API.
        */
       this.$emit("item-action", { action, title, id, item: data });
+    },
+    createRowForm(item = null) {
+      this.editRowId = item ? item.id : null;
+
+      this.form = this.getFields
+        .map((f) => f.source)
+        .reduce((o, source) => {
+          return {
+            ...o,
+            [source]: item ? item[source] : null,
+          };
+        }, {});
+
+      this.errors = {};
+    },
+    async save() {
+      this.saving = true;
+
+      try {
+        this.editRowId
+          ? await this.$store.dispatch(`${this.listState.resource}/update`, {
+              id: this.editRowId,
+              data: this.form,
+            })
+          : await this.$store.dispatch(`${this.listState.resource}/create`, {
+              data: this.form,
+            });
+
+        this.editRowId = null;
+        this.form = null;
+        this.errors = {};
+
+        this.listState.reload();
+      } catch (e) {
+        if (e.errors) {
+          this.errors = e.errors;
+        }
+      } finally {
+        this.saving = false;
+      }
     },
   },
 };

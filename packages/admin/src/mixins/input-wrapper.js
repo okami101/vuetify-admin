@@ -77,5 +77,12 @@ export default {
      * Use it with `parentSource` prop in order to update the value at a good place in the form model.
      */
     index: Number,
+    /**
+     * List of custom error validation messages to show as hint
+     */
+    errorMessages: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
