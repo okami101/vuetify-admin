@@ -1,6 +1,6 @@
 {
   "name": "tutorial",
-  "version": "0.2.49",
+  "version": "0.2.50",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,7 +14,7 @@
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "portal-vue": "^2.1.0",
-    "vtec-admin": "^0.2.49",
+    "vtec-admin": "^0.2.50",
     "vue": "^2.6.12",
     "vue-i18n": "^8.20.0",
     "vue-router": "^3.2.0",
@@ -35,7 +35,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.1.1",
     "vue-cli-plugin-i18n": "latest",
-    "vue-cli-plugin-vtec-admin": "^0.2.48",
+    "vue-cli-plugin-vtec-admin": "^0.2.50",
     "vue-cli-plugin-vuetify": "latest",
     "vue-template-compiler": "^2.6.12"
   }

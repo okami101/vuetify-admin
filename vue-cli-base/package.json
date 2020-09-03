@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-base",
-  "version": "0.2.49",
+  "version": "0.2.50",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vtec-admin": "^0.2.49",
+    "vtec-admin": "^0.2.50",
     "vue": "^2.6.12",
     "vue-i18n": "^8.20.0",
     "vue-router": "^3.2.0",
@@ -32,7 +32,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^10.0.1",
     "vue-cli-plugin-i18n": "~1.0.1",
-    "vue-cli-plugin-vtec-admin": "^0.2.48",
+    "vue-cli-plugin-vtec-admin": "^0.2.50",
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-template-compiler": "^2.6.12",
     "vuetify-loader": "^1.3.0"
