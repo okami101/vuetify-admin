@@ -1,22 +1,27 @@
 # Changelog
 
-## 0.2.49
+## v0.2.50
+
+* 🚀 Add remember support
+* 🐛 Fix create data row for demo
+
+## v0.2.49
 
 * 🚀 Add quick edition by row feature on data table
 
-## 0.2.35
+## v0.2.35
 
 * 🐛 Fix initial data table pagination
 
-## 0.2.34
+## v0.2.34
 
 * 🐛 Fix query pagination bug
 
-## 0.2.33
+## v0.2.33
 
 * 🐛 Fix double load on data table
 
-## 0.2.24
+## v0.2.24
 
 * 📝 Documentation review
 * 💥 Change AppBar API event
