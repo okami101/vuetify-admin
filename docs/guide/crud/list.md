@@ -602,7 +602,7 @@ Use both `row-create` and `row-edit` props to enable it :
 * `row-create` will add a new **plus** button inside header actions column. You may use `disable-create` inside direct parent `VaList` in order to disable normal creation behavior or simply disable `create` action for the concerned resource. On click it will show a empty new form at first row.
 * `row-edit` will change the default edit button behavior. On click it will transform the entire row into form row with pre filled values.
 
-```vue {16,18}
+```vue {16,20-24}
 <template>
   <va-edit-layout>
     <books-form :id="id" :title="title" :item="item"></books-form>
@@ -620,12 +620,23 @@ Use both `row-create` and `row-edit` props to enable it :
         :filters="filters"
         disable-create
       >
-        <va-data-table row-create row-edit :fields="fields"></va-data-table>
+        <va-data-table
+          :fields="fields"
+          row-create
+          row-edit
+          :create-data="{
+            book_id: id,
+          }"
+        ></va-data-table>
       </va-list>
     </base-material-card>
   </va-edit-layout>
 </template>
 ```
+
+::: tip FORM DATA
+You may use `create-data` and `edit-data` props for merging some external data into respective create and edit forms. Ideal for passing required properties for creation as the mandatory related book for any reviews.
+:::
 
 ## Custom layout
 

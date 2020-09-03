@@ -11,7 +11,7 @@
                 <v-text-field
                   :label="$t('login.username')"
                   prepend-icon="mdi-account"
-                  v-model="username"
+                  v-model="form.username"
                   required
                   :error-messages="errorMessages.email"
                 ></v-text-field>
@@ -20,7 +20,7 @@
                   :label="$t('login.password')"
                   prepend-icon="mdi-lock"
                   type="password"
-                  v-model="password"
+                  v-model="form.password"
                   required
                 ></v-text-field>
 
@@ -48,8 +48,10 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: "admin@example.com",
-      password: "admin",
+      form: {
+        username: "admin@example.com",
+        password: "admin",
+      },
       errorMessages: {},
       loading: false,
     };
@@ -62,10 +64,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
         try {
-          await this.login({
-            username: this.username,
-            password: this.password,
-          });
+          await this.login(this.form);
         } catch (e) {
           if (!e.response) {
             this.errorMessages.email = [e.message];

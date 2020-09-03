@@ -54,6 +54,7 @@ module.exports = (api, options) => {
      */
     api.render("./login", {
       material: options.material,
+      remember: options.authProvider === "sanctum",
     });
   }
 

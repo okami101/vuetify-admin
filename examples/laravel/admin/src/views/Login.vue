@@ -16,7 +16,7 @@
                 <v-text-field
                   :label="$t('login.username')"
                   prepend-icon="mdi-account"
-                  v-model="username"
+                  v-model="form.username"
                   required
                   :error-messages="errorMessages.email"
                 ></v-text-field>
@@ -25,9 +25,15 @@
                   :label="$t('login.password')"
                   prepend-icon="mdi-lock"
                   type="password"
-                  v-model="password"
+                  v-model="form.password"
                   required
                 ></v-text-field>
+
+                <v-checkbox
+                  v-model="form.remember"
+                  :label="$t('login.remember')"
+                  hide-details
+                ></v-checkbox>
               </v-card-text>
 
               <v-btn
@@ -37,7 +43,8 @@
                 type="submit"
                 text
                 rounded
-                >{{ $t("login.sign_in") }}</v-btn
+              >
+                {{ $t("login.sign_in") }}</v-btn
               >
             </base-material-card>
           </v-form>
@@ -53,8 +60,11 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: null,
-      password: null,
+      form: {
+        username: null,
+        password: null,
+        remember: false,
+      },
       errorMessages: {},
       loading: false,
     };
@@ -67,10 +77,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
         try {
-          await this.login({
-            username: this.username,
-            password: this.password,
-          });
+          await this.login(this.form);
         } catch (e) {
           if (!e.response) {
             this.errorMessages.email = [e.message];

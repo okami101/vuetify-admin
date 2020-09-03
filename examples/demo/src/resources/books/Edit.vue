@@ -15,7 +15,14 @@
         :filters="filters"
         disable-create
       >
-        <va-data-table row-create row-edit :fields="fields"></va-data-table>
+        <va-data-table
+          :fields="fields"
+          row-create
+          row-edit
+          :create-data="{
+            book_id: id,
+          }"
+        ></va-data-table>
       </va-list>
     </base-material-card>
   </va-edit-layout>

@@ -17,7 +17,7 @@
                 <v-text-field
                   :label="$t('login.username')"
                   prepend-icon="mdi-account"
-                  v-model="username"
+                  v-model="form.username"
                   required
                   :error-messages="errorMessages.email"
                 ></v-text-field>
@@ -26,9 +26,17 @@
                   :label="$t('login.password')"
                   prepend-icon="mdi-lock"
                   type="password"
-                  v-model="password"
+                  v-model="form.password"
                   required
                 ></v-text-field>
+
+                <%_ if (remember) { _%>
+                <v-checkbox
+                  v-model="form.remember"
+                  :label="$t('login.remember')"
+                  hide-details
+                ></v-checkbox>
+                <%_ } _%>
               </v-card-text>
 
               <v-btn
@@ -49,7 +57,7 @@
                 <v-text-field
                   :label="$t('login.username')"
                   prepend-icon="mdi-account"
-                  v-model="username"
+                  v-model="form.username"
                   required
                   :error-messages="errorMessages.email"
                 ></v-text-field>
@@ -58,9 +66,17 @@
                   :label="$t('login.password')"
                   prepend-icon="mdi-lock"
                   type="password"
-                  v-model="password"
+                  v-model="form.password"
                   required
                 ></v-text-field>
+
+                <%_ if (remember) { _%>
+                <v-checkbox
+                  v-model="form.remember"
+                  :label="$t('login.remember')"
+                  hide-details
+                ></v-checkbox>
+                <%_ } _%>
 
                 <v-btn
                   :loading="loading"
@@ -87,8 +103,13 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: null,
-      password: null,
+      form: {
+        username: null,
+        password: null,
+        <%_ if (remember) { _%>
+        remember: false,
+        <%_ } _%>
+      },
       errorMessages: {},
       loading: false,
     };
@@ -101,10 +122,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
         try {
-          await this.login({
-            username: this.username,
-            password: this.password,
-          });
+          await this.login(this.form);
         } catch (e) {
           if (!e.response) {
             this.errorMessages.email = [e.message];

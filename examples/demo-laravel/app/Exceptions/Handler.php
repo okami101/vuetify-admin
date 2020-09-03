@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -53,9 +54,14 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ValidationException && $request->expectsJson()) {
             return response()->json([
-                'message' => __('The given data was invalid.'),
+                'message' => __($exception->getMessage()),
                 'errors' => $exception->errors(),
-            ], $exception->status);
+            ], 422);
+        }
+        if ($exception instanceof AuthorizationException && $request->expectsJson()) {
+            return response()->json([
+                'message' => __($exception->getMessage()),
+            ], 403);
         }
 
         return parent::render($request, $exception);

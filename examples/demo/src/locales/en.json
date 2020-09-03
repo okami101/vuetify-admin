@@ -21,6 +21,7 @@
   "login": {
     "username": "Username",
     "password": "Password",
+    "remember": "Remember",
     "sign_in": "Sign in"
   },
   "profile": {

@@ -16,10 +16,11 @@ export default (axios, params = {}) => {
       user: "/api/user",
       csrf: "/sanctum/csrf-cookie",
     },
-    getCredentials: ({ username, password }) => {
+    getCredentials: ({ username, password, remember }) => {
       return {
         email: username,
         password,
+        remember,
       };
     },
     getName: (u) => u.name,
@@ -31,7 +32,7 @@ export default (axios, params = {}) => {
   let { routes, getCredentials, getName, getEmail, getPermissions } = params;
 
   return {
-    [LOGIN]: async ({ username, password }) => {
+    [LOGIN]: async ({ username, password, remember }) => {
       /**
        * Get CSRF cookie
        */
@@ -39,7 +40,7 @@ export default (axios, params = {}) => {
 
       let response = await axios.post(
         routes.login,
-        getCredentials({ username, password })
+        getCredentials({ username, password, remember })
       );
 
       if (response.status < 200 || response.status >= 300) {
