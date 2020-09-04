@@ -6,17 +6,17 @@ Include scripts for quick scaffolding crud pages of specific resource.
 
 ## Install
 
-> You must have valid API backend in order to use this project. You can start with [https://jsonplaceholder.okami101.io](https://jsonplaceholder.okami101.io) which is a fake writeable API.
-
 Initialize your brand new Vue CLI admin project with this single line command :
 
 ```bash
 vue create my-admin-project --preset okami101/vtec-admin-preset
 ```
 
-> On any existing Vue CLI Vuetify project you can try `vue add vtec-admin`.  
+> On any existing Vue CLI Vuetify project you can try `vue add vtec-admin`.
 
 Then select suited options according to your needs and start your admin panel by `yarn serve`.
+
+> You must have valid API backend in order to use this project. You can start with [https://jsonplaceholder.okami101.io](https://jsonplaceholder.okami101.io) which is a fake writeable API. Don't hesitate to go through the [the tutorial](https://vtec.okami101.io/guide/tutorial.html#admin-ui) which use this API.
 
 ## Getting started
 
