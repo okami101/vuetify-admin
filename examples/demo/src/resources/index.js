@@ -15,6 +15,13 @@ export default [
     autocompleteFields: ["id", "title", "isbn"],
   },
   {
+    name: "categories",
+    icon: "mdi-tag",
+    label: "name",
+    translatable: true,
+    permissions: ["admin"],
+  },
+  {
     name: "authors",
     icon: "mdi-account",
     label: "name",

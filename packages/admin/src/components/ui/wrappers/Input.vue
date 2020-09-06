@@ -1,6 +1,6 @@
 <template>
   <v-input
-    :label="label"
+    :label="getLabel"
     :hint="hint"
     :rules="rules"
     :error-messages="errorMessages"

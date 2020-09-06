@@ -14,7 +14,9 @@ class AddBooksCategoryColumn extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('category')->after('title');
+            $table->unsignedBigInteger('category_id')->after('title')->nullable();
+
+            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
         });
     }
 

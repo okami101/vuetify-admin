@@ -75,7 +75,7 @@ export default {
     },
     commonProps() {
       return {
-        label: this.label,
+        label: this.getLabel,
         value: this.input,
         appendIcon: this.appendIcon,
         hint: this.hint,

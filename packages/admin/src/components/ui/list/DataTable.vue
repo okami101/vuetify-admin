@@ -73,12 +73,12 @@
               v-slot="props"
             >
               <!--
-            @slot Use for field cell templating.
-            @binding {string} resource Name of resource.
-            @binding {string} source Property source.
-            @binding {string} item Full object item.
-            @binding {string} value Value of property source.
-          -->
+                @slot Use for field cell templating.
+                @binding {string} resource Name of resource.
+                @binding {string} source Property source.
+                @binding {string} item Full object item.
+                @binding {string} value Value of property source.
+              -->
               <slot
                 :name="`field.${field.source}`"
                 :item="props.item || item"
@@ -193,9 +193,9 @@
                 @dissociated="$emit('dissociated', item)"
               ></va-dissociate-button>
               <!--
-            Triggered on successful deletetion of ressource item.
-            @event deleted
-          -->
+                Triggered on successful deletetion of ressource item.
+                @event deleted
+              -->
               <va-delete-button
                 v-if="!disableDelete"
                 :resource="listState.resource"
@@ -398,7 +398,10 @@ export default {
             type: f.type,
             label:
               f.label ||
-              this.$admin.getSourceLabel(this.listState.resource, f.source),
+              this.$admin.getSourceLabel(
+                this.listState.resource,
+                f.labelKey || f.source
+              ),
           };
         });
     },

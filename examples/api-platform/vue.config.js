@@ -1,5 +1,5 @@
 module.exports = {
-  transpileDependencies: ["vuetify", "vtec-admin"],
+  transpileDependencies: ["vuetify"],
   pluginOptions: {
     i18n: {
       locale: "en",

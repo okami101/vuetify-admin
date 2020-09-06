@@ -12,16 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /**
-         * Cleanup media
-         */
-        foreach (Storage::disk('public')->allDirectories('media') as $dir) {
-            Storage::disk('public')->deleteDirectory($dir);
-        }
+        Storage::disk('public')->deleteDirectory('media');
 
         $this->call(UserSeeder::class);
         $this->call(PublisherSeeder::class);
         $this->call(AuthorSeeder::class);
+        $this->call(CategorySeeder::class);
         $this->call(BookSeeder::class);
         $this->call(ReviewSeeder::class);
     }

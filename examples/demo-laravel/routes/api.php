@@ -34,5 +34,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         'books' => 'BookController',
         'reviews' => 'ReviewController',
         'publishers' => 'PublisherController',
+        'categories' => 'CategoryController',
     ]);
 });

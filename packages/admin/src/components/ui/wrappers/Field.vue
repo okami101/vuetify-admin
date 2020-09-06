@@ -1,5 +1,5 @@
 <template>
-  <v-input v-if="record" :label="label" class="va-input">
+  <v-input v-if="record" :label="getLabel" class="va-input">
     <div>
       <!--
         @slot Field placeholder. By default use field component according to `type` props with all other attributes merged.
@@ -32,18 +32,25 @@ export default {
      * Override default label behavior.
      * Default is to get the localized VueI18n label from both resource and property source.
      */
-    label: {
-      type: String,
-      default() {
-        return this.$admin.getSourceLabel(this.resource, this.source);
-      },
-    },
+    label: String,
+    /**
+     * Override default source key as translated label.
+     */
+    labelKey: String,
     /**
      * Type of field to use. Not used if you use default slot for advanced custom needs.
      */
     type: {
       type: String,
       default: "text",
+    },
+  },
+  computed: {
+    getLabel() {
+      return (
+        this.label ||
+        this.$admin.getSourceLabel(this.resource, this.labelKey || this.source)
+      );
     },
   },
 };

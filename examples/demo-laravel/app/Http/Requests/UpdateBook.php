@@ -31,7 +31,6 @@ class UpdateBook extends FormRequest
             'publisher_id' => 'sometimes|required',
             'isbn' => 'sometimes|required|isbn',
             'title' => 'sometimes|required',
-            'category' => 'sometimes|required|in:novel,comic,cook,economy,politics,history,fantasy,biography',
             'description' => 'sometimes|required',
             'formats.*' => 'sometimes|in:pocket,paperback,pdf,epub,kindle',
             'price' => 'sometimes|required|numeric',

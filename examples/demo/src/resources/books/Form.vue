@@ -17,7 +17,12 @@
                   reference="publishers"
                 ></va-select-input>
                 <va-text-input source="isbn"></va-text-input>
-                <va-select-input source="category"></va-select-input>
+                <va-select-input
+                  source="category"
+                  model="category_id"
+                  reference="categories"
+                  :filter="{ type: 'book' }"
+                ></va-select-input>
                 <va-text-input source="title"></va-text-input>
                 <va-number-input
                   source="price"

@@ -48,22 +48,11 @@ export default {
      * Override default label behavior.
      * Default is to get the localized VueI18n label from both resource and property source.
      */
-    label: {
-      type: String,
-      default() {
-        if (!this.source) {
-          return "";
-        }
-
-        let source = this.source;
-
-        if (this.parentSource) {
-          source = `${this.parentSource}.${this.source}`;
-        }
-
-        return this.$admin.getSourceLabel(this.resource, source);
-      },
-    },
+    label: String,
+    /**
+     * Override default source key as translated label.
+     */
+    labelKey: String,
     /**
      * Placeholder if input support it.
      */
@@ -83,6 +72,25 @@ export default {
     errorMessages: {
       type: Array,
       default: () => [],
+    },
+  },
+  computed: {
+    getLabel() {
+      if (this.label) {
+        return this.label;
+      }
+
+      if (!this.labelKey && !this.source) {
+        return "";
+      }
+
+      let source = this.labelKey || this.source;
+
+      if (this.parentSource) {
+        source = `${this.parentSource}.${this.source}`;
+      }
+
+      return this.$admin.getSourceLabel(this.resource, source);
     },
   },
 };

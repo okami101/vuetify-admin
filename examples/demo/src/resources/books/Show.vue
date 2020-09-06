@@ -26,7 +26,11 @@
                     color="orange"
                   ></va-field>
                   <va-field source="title"></va-field>
-                  <va-field source="category" type="select" chip></va-field>
+                  <va-field
+                    source="category.name"
+                    labelKey="category"
+                    type="chip"
+                  ></va-field>
                 </v-col>
                 <v-col>
                   <va-field source="formats" type="array" select></va-field>

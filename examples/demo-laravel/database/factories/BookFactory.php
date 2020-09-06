@@ -15,7 +15,6 @@ $factory->define(Book::class, function (Faker $faker) {
             'en' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
             'fr' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
         ],
-        'category' => $faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
         'description' => [
             'en' => $faker->paragraph(10),
             'fr' => $faker->paragraph(10),
@@ -30,7 +29,7 @@ $factory->define(Book::class, function (Faker $faker) {
         ),
         'price' => $faker->randomFloat(2, 10, 50),
         'commentable' => $faker->boolean(80),
-        'tags' => $faker->unique()->words($faker->numberBetween(2, 5)),
+        'tags' => collect($faker->words($faker->numberBetween(2, 5)))->unique(),
         'publication_date' => $faker->dateTime,
     ];
 });

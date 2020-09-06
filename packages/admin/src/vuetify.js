@@ -1,119 +1,142 @@
-import Vue from "vue";
-import Vuetify from "vuetify/lib";
-
 import {
-  VApp,
-  VContent,
-  VSpacer,
-  VContainer,
-  VInput,
-  VDataIterator,
-  VToolbar,
-  VToolbarTitle,
-  VMenu,
-  VBtn,
-  VIcon,
-  VList,
-  VListGroup,
-  VListItem,
-  VListItemIcon,
-  VListItemTitle,
-  VListItemSubtitle,
-  VListItemContent,
-  VListItemAction,
-  VDivider,
-  VRow,
-  VCol,
-  VNavigationDrawer,
-  VBreadcrumbs,
-  VFooter,
-  VAppBar,
-  VAppBarNavIcon,
-  VSnackbar,
-  VSubheader,
-  VDialog,
-  VCard,
-  VCardTitle,
-  VCardText,
-  VCardActions,
-  VTooltip,
-  VChip,
-  VChipGroup,
-  VHover,
-  VRating,
-  VSwitch,
-  VTextField,
-  VTextarea,
-  VDatePicker,
-  VRadio,
-  VRadioGroup,
-  VFileInput,
-  VSelect,
-  VForm,
-  VDataTable,
-  VDataFooter,
   VAutocomplete,
   VCombobox,
-  VImg,
+  VTreeview,
+  VTreeviewNode,
 } from "vuetify/lib";
 
+import { getObjectValueByPath } from "vuetify/lib/util/helpers";
+
 /**
- * Register all used vuetify components by Vtec Admin
+ * Add draggable feature to Vuetify Treeview
  */
-Vue.use(Vuetify, {
-  components: {
-    VApp,
-    VContent,
-    VSpacer,
-    VContainer,
-    VInput,
-    VDataIterator,
-    VToolbar,
-    VToolbarTitle,
-    VMenu,
-    VBtn,
-    VIcon,
-    VList,
-    VListGroup,
-    VListItem,
-    VListItemIcon,
-    VListItemTitle,
-    VListItemSubtitle,
-    VListItemContent,
-    VListItemAction,
-    VDivider,
-    VRow,
-    VCol,
-    VNavigationDrawer,
-    VBreadcrumbs,
-    VFooter,
-    VAppBar,
-    VAppBarNavIcon,
-    VSnackbar,
-    VSubheader,
-    VDialog,
-    VCard,
-    VCardTitle,
-    VCardText,
-    VCardActions,
-    VTooltip,
-    VChip,
-    VChipGroup,
-    VHover,
-    VRating,
-    VSwitch,
-    VTextField,
-    VTextarea,
-    VDatePicker,
-    VRadio,
-    VRadioGroup,
-    VFileInput,
-    VSelect,
-    VForm,
-    VDataTable,
-    VDataFooter,
-    VAutocomplete,
-    VCombobox,
-    VImg,
+const VDraggableTreeviewNode = VTreeviewNode.extend({
+  props: {
+    draggable: Boolean,
+  },
+  methods: {
+    genChild(item, parentIsDisabled) {
+      return this.$createElement(VDraggableTreeviewNode, {
+        key: getObjectValueByPath(item, this.itemKey),
+        props: {
+          activatable: this.activatable,
+          activeClass: this.activeClass,
+          item,
+          selectable: this.selectable,
+          selectedColor: this.selectedColor,
+          color: this.color,
+          expandIcon: this.expandIcon,
+          indeterminateIcon: this.indeterminateIcon,
+          offIcon: this.offIcon,
+          onIcon: this.onIcon,
+          loadingIcon: this.loadingIcon,
+          itemKey: this.itemKey,
+          itemText: this.itemText,
+          itemDisabled: this.itemDisabled,
+          itemChildren: this.itemChildren,
+          loadChildren: this.loadChildren,
+          transition: this.transition,
+          openOnClick: this.openOnClick,
+          rounded: this.rounded,
+          shaped: this.shaped,
+          level: this.level + 1,
+          selectionType: this.selectionType,
+          draggable: this.draggable,
+          parentIsDisabled,
+        },
+        scopedSlots: this.$scopedSlots,
+      });
+    },
+    genChildrenWrapper() {
+      let children = [
+        this.children.map((c) => this.genChild(c, this.disabled)),
+      ];
+      if (!this.isOpen) {
+        children = [];
+      }
+      return this.$createElement(
+        "draggable",
+        {
+          props: {
+            list: this.item.children,
+          },
+          attrs: {
+            group: "description",
+            disabled: !this.draggable,
+          },
+          staticClass: "v-treeview-node__children",
+          on: {
+            change: (e) => {
+              if (!this.isOpen) {
+                this.open();
+              }
+              this.treeview.onChange(e, this);
+            },
+          },
+        },
+        children
+      );
+    },
   },
 });
+
+const VDraggableTreeview = VTreeview.extend({
+  props: {
+    draggable: Boolean,
+  },
+  methods: {
+    onChange(e, node = null) {
+      if (e.added) {
+        this.$emit("change", { ...e.added, parent: node.item });
+      }
+      if (e.moved) {
+        this.$emit("change", { ...e.moved, parent: node.item });
+      }
+    },
+  },
+  render(h) {
+    const children = this.items.length
+      ? this.items
+          .filter((item) => {
+            return !this.isExcluded(getObjectValueByPath(item, this.itemKey));
+          })
+          .map((item) => {
+            const genChild = VDraggableTreeviewNode.options.methods.genChild.bind(
+              this
+            );
+            return genChild(
+              item,
+              getObjectValueByPath(item, this.itemDisabled)
+            );
+          })
+      : /* istanbul ignore next */
+        this.$slots.default; // TODO: remove type annotation with TS 3.2
+
+    return h(
+      "draggable",
+      {
+        props: {
+          list: this.items,
+        },
+        attrs: {
+          group: "description",
+          disabled: !this.draggable,
+        },
+        staticClass: "v-treeview",
+        class: {
+          "v-treeview--hoverable": this.hoverable,
+          "v-treeview--dense": this.dense,
+          ...this.themeClasses,
+        },
+        on: {
+          change: (e) => {
+            this.onChange(e);
+          },
+        },
+      },
+      children
+    );
+  },
+});
+
+export { VAutocomplete, VCombobox, VDraggableTreeview };

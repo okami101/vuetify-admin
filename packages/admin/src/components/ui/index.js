@@ -6,6 +6,7 @@ import Show from "./providers/Show";
 import Form from "./providers/Form";
 
 import DataTable from "./list/DataTable";
+import Treeview from "./list/Treeview";
 
 import CreateLayout from "./layouts/CreateLayout";
 import ShowLayout from "./layouts/ShowLayout";
@@ -63,6 +64,7 @@ export {
   Form,
   Show,
   DataTable,
+  Treeview,
   CreateLayout,
   ShowLayout,
   EditLayout,

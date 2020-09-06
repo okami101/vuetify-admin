@@ -1,5 +1,8 @@
 <?php
 
+use App\Author;
+use App\Book;
+use App\Category;
 use App\Publisher;
 use Illuminate\Database\Seeder;
 
@@ -14,10 +17,12 @@ class BookSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
+        $categories = Category::all();
         $publishers = Publisher::all();
-        $authors = \App\Author::all();
+        $authors = Author::all();
 
-        factory(\App\Book::class, 500)->make()->each(function (\App\Book $book) use ($publishers, $authors, $faker) {
+        factory(Book::class, 500)->make()->each(function (Book $book) use ($categories, $publishers, $authors, $faker) {
+            $book->category()->associate($categories->random());
             $book->publisher()->associate($publishers->random());
             $book->save();
 

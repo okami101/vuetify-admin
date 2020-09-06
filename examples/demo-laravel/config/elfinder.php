@@ -10,7 +10,7 @@ return [
     | The dir where to store the images (relative from public)
     |
     */
-    'dir' => ['storage/files'],
+    'dir' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,9 @@ return [
     |    ]
     */
     'disks' => [
-
+        'files' => [
+            'alias' => 'Local storage',
+        ],
     ],
 
     /*

@@ -316,7 +316,8 @@ export default {
             ...f,
             type: f.type || "text",
             label:
-              f.label || this.$admin.getSourceLabel(this.resource, f.source),
+              f.label ||
+              this.$admin.getSourceLabel(this.resource, f.labelKey || f.source),
           };
         });
     },

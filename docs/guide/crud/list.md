@@ -149,6 +149,7 @@ See all supported field properties :
 | **source**     | `string`  | Resource property to display.                                                                                                |
 | **type**       | `string`  | Type of [field](../components/fields.md) to use.                                                                             |
 | **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.                                                 |
+| **labelKey**   | `string`  | Override default source as i18n key message                                                                                  |
 | **sortable**   | `boolean` | Activate server-side sort.                                                                                                   |
 | **align**      | `string`  | You can Use `left`, `right`, `center` for each cell `align` attribute.                                                       |
 | **link**       | `string`  | Use any valid `show` or `edit` action if you want to wrap field inside resource action link.                                 |
@@ -327,6 +328,7 @@ See all supported field properties :
 | **source**     | `string`  | Resource property to display.                                                       |
 | **type**       | `string`  | Type of [input](../components/inputs.md) to use.                                    |
 | **label**      | `string`  | Column title header, use [localized property source](../i18n.md) by default.        |
+| **labelKey**   | `string`  | Override default source as i18n key message                                         |
 | **alwaysOn**   | `boolean` | Keep filter always active and visible. Not removable.                               |
 | **attributes** | `object`  | All props or attributes to merge to the [input component](../components/inputs.md). |
 

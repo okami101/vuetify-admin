@@ -16,6 +16,7 @@ class Book extends BaseResource
     {
         $attributes = parent::toArray($request);
 
+        $attributes['category'] = Category::make($this->whenLoaded('category'));
         $attributes['publisher'] = Publisher::make($this->whenLoaded('publisher'));
         $attributes['authors'] = Author::collection($this->whenLoaded('authors'));
         $attributes['reviews'] = Review::collection($this->whenLoaded('reviews'));

@@ -16,21 +16,25 @@ use Vtec\Crud\Traits\RequestMediaTrait;
  *
  * @property int $id
  * @property int $publisher_id
+ * @property int $category_id
  * @property string|null $isbn
  * @property string $title
  * @property string $description
  * @property string $summary
- * @property string $category
  * @property array $formats
  * @property float $price
  * @property bool $commentable
  * @property array $tags
  * @property Carbon $publication_date
+ * @property-read Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
  * @property-read int|null $reviews_count
  * @property-read \App\Publisher $publisher
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $authors
  * @property-read int|null $authors_count
+ * @property-read mixed $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media
+ * @property-read int|null $media_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book query()
@@ -40,9 +44,6 @@ use Vtec\Crud\Traits\RequestMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book pricierThan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book commentables()
  * @mixin \Eloquent
- * @property-read mixed $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media
- * @property-read int|null $media_count
  */
 class Book extends Model implements HasMedia
 {
@@ -58,7 +59,7 @@ class Book extends Model implements HasMedia
         'description',
         'summary',
         'price',
-        'category',
+        'category_id',
         'formats',
         'commentable',
         'tags',
@@ -84,6 +85,11 @@ class Book extends Model implements HasMedia
     {
         $this->addMediaCollection('cover')->singleFile();
         $this->addMediaCollection('extract')->singleFile();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function publisher()

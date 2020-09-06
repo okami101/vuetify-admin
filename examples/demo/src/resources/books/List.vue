@@ -1,6 +1,9 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-list :filters="filters" :include="['publisher', 'authors', 'media']">
+    <va-list
+      :filters="filters"
+      :include="['category', 'publisher', 'authors', 'media']"
+    >
       <va-data-table :fields="fields" show-expand>
         <template v-slot:expanded-item="{ item }">
           {{ item.description }}
@@ -57,7 +60,7 @@ export default {
             src: "thumbnails.small",
           },
         },
-        { source: "category", type: "select", attributes: { chip: true } },
+        { source: "category.name", labelKey: "category", type: "chip" },
         {
           source: "publisher",
           type: "reference",

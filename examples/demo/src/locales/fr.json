@@ -156,16 +156,6 @@
         "cheaper_than": "Moins cher que"
       },
       "enums": {
-        "category": {
-          "novel": "Roman",
-          "comic": "BD",
-          "cook": "Cuisine",
-          "economy": "Economie",
-          "politics": "Politique",
-          "history": "Histoire",
-          "fantasy": "Fantastique",
-          "biography": "Biographie"
-        },
         "formats": {
           "pocket": "Poche",
           "paperback": "Broché",
