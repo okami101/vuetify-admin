@@ -3,7 +3,7 @@ import kebabCase from "lodash/kebabCase";
 import upperFirst from "lodash/upperFirst";
 
 export default ({ store, i18n, resource, title }) => {
-  let { name, include, actions, translatable, getTitle, pluralName } = resource;
+  let { name, include, routes, translatable, getTitle, pluralName } = resource;
 
   const setTitle = (to, action, item = null) => {
     to.meta.title = getTitle(action, item);
@@ -132,7 +132,7 @@ export default ({ store, i18n, resource, title }) => {
       { name: "show", path: ":id" },
       { name: "edit", path: ":id/edit" },
     ]
-      .filter(({ name }) => actions.includes(name))
+      .filter(({ name }) => !routes || routes.includes(name))
       .map(({ name, path }) => buildRoute(name, path)),
   };
 };

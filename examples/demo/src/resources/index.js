@@ -4,7 +4,28 @@ export default [
     icon: "mdi-globe-model",
     label: "name",
     translatable: true,
-    permissions: ["admin", "editor"],
+    permissions: [
+      "admin",
+      { name: "editor", actions: ["list", "show", "edit"] },
+    ],
+  },
+  {
+    name: "authors",
+    icon: "mdi-account",
+    label: "name",
+    translatable: true,
+    permissions: [
+      "admin",
+      { name: "author", actions: ["list", "show", "edit"] },
+    ],
+  },
+  {
+    name: "categories",
+    icon: "mdi-tag",
+    label: "name",
+    translatable: true,
+    routes: ["list"],
+    permissions: ["admin"],
   },
   {
     name: "books",
@@ -13,20 +34,6 @@ export default [
     translatable: true,
     permissions: ["admin", "editor", "author"],
     autocompleteFields: ["id", "title", "isbn"],
-  },
-  {
-    name: "categories",
-    icon: "mdi-tag",
-    label: "name",
-    translatable: true,
-    permissions: ["admin"],
-  },
-  {
-    name: "authors",
-    icon: "mdi-account",
-    label: "name",
-    translatable: true,
-    permissions: ["admin", "author"],
   },
   {
     name: "reviews",
@@ -42,7 +49,7 @@ export default [
     name: "users",
     icon: "mdi-account",
     label: "name",
-    actions: ["list", "delete"],
+    routes: ["list"],
     permissions: ["admin"],
   },
 ];

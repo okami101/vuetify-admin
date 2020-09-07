@@ -30,5 +30,14 @@ export default {
        */
       return this.currentResource.canAction(action);
     },
+    hasRoute(route) {
+      /**
+       * Check if CRUD route is defined for this resource
+       */
+      return (
+        !this.currentResource.routes ||
+        this.currentResource.routes.includes(route)
+      );
+    },
   },
 };

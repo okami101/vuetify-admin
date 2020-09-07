@@ -141,6 +141,13 @@ export default class VtecAdmin {
             }
 
             /**
+             * OK if no permissions set
+             */
+            if (!r.permissions) {
+              return true;
+            }
+
+            /**
              * Get permissions for asked action
              */
             let permissions = (r.permissions || [])
@@ -152,7 +159,7 @@ export default class VtecAdmin {
               });
 
             // Test if current user can access
-            return this.can(permissions);
+            return permissions.length && this.can(permissions);
           },
         };
       });

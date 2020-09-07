@@ -247,7 +247,7 @@ export default [
   {
     name: "users",
     icon: "mdi-account",
-    actions: ["list", "delete"],
+    routes: ["list"],
   },
 ];
 ```
@@ -338,7 +338,7 @@ export default {
 
 ## Use dedicated show, create and edit pages for users
 
-If you don't like the default aside for users, we can use the same above methods for quickly create dedicated CRUD pages for users. Simply remove actions filter from next file :
+If you don't like the default aside for users, we can use the same above methods for quickly create dedicated CRUD pages for users. Simply remove routes filter from next file :
 
 **`src/resources/index.js`**
 
@@ -351,7 +351,7 @@ export default [
   {
     name: "users",
     icon: "mdi-account",
--    actions: ["list", "delete"],
+-    routes: ["list"],
   },
 ];
 ```

@@ -3,7 +3,7 @@ export default [
   {
     name: "users",
     icon: "mdi-account",
-    actions: ["list", "delete"],
+    routes: ["list"],
   },
   <%_ } _%>
 ];

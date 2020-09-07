@@ -11,7 +11,7 @@
         disable-create-redirect
         @action="onAction"
       >
-        <template v-slot:bulk.actions>
+        <template v-slot:[`bulk.actions`]>
           <va-bulk-action-button
             :label="$t('users.enable')"
             icon="mdi-publish"

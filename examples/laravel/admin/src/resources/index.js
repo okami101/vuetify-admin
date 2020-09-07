@@ -3,13 +3,12 @@ export default [
     name: "users",
     icon: "mdi-account",
     label: "name",
-    actions: ["list", "delete"],
+    routes: ["list"],
   },
   {
     name: "monsters",
     icon: "mdi-alien",
     label: "name",
-    actions: undefined,
     translatable: true,
   },
   {

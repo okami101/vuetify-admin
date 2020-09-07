@@ -15,10 +15,13 @@ export default {
   },
   methods: {
     canShow(action) {
-      return this.disableRedirect || this.hasAction(action);
+      return (
+        (this.disableRedirect || this.hasRoute(action)) &&
+        this.hasAction(action)
+      );
     },
     getRoute(action, params) {
-      if (!this.disableRedirect && this.hasAction(action)) {
+      if (!this.disableRedirect && this.hasRoute(action)) {
         return {
           name: `${this.resource}_${action}`,
           ...params,

@@ -12,7 +12,7 @@ export default [
     name: "users",
     icon: "mdi-account",
     label: "name",
-    actions: ["list", "delete"],
+    routes: ["list"],
     permissions: ["admin"],
   },
   {
@@ -42,6 +42,7 @@ A resource object must follow this structure :
 | **icon**               | `string`             | A identifier icon in sidebar or list page, should be a valid [MDI](https://materialdesignicons.com/).                                      |
 | **label**              | `string`, `function` | Return the target property that identify an instantiated resource (`toString`).                                                            |
 | **include**            | `array`, `object`    | Some additional object or array that will be added to data providers for all `GET` based methods for further actions inside data provider. |
+| **routes**             | `array`              | List of available routes for this resource. All available by default.                                                                      |
 | **actions**            | `array`              | List of valid actions for this resource. All available by default.                                                                         |
 | **except**             | `array`              | Denied actions, not used if `actions` is explicitly set.                                                                                   |
 | **translatable**       | `boolean`            | Indicates if this resource can be [translated](i18n.md#translation).                                                                       |
@@ -78,7 +79,7 @@ export default [
     name: "users",
     icon: "mdi-account",
     label: "name",
-    actions: ["list", "delete"],
+    routes: ["list"],
     permissions: ["admin"],
   },
   {
@@ -86,7 +87,7 @@ export default [
     api: "users",
     icon: "mdi-account",
     label: "name",
-    actions: ["list", "delete"],
+    routes: ["list"],
     permissions: ["admin"],
   },
 ];
