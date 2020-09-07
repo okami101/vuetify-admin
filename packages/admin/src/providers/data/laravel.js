@@ -1,15 +1,16 @@
 import {
   GET_LIST,
-  GET_TREE,
   GET_MANY,
+  GET_TREE,
+  GET_ROOT_NODES,
+  GET_CHILD_NODES,
   GET_ONE,
   CREATE,
   UPDATE,
   UPDATE_MANY,
   DELETE,
   DELETE_MANY,
-  GET_ROOT_NODES,
-  GET_CHILD_NODES,
+  MOVE_NODE,
 } from "./actions";
 import qs from "qs";
 import objectToFormData from "../utils/objectToFormData";
@@ -95,6 +96,17 @@ export default (axios, baseURL = "/api") => {
         };
       }
 
+      case MOVE_NODE: {
+        return {
+          url: `${resourceURL}/move/${params.id}`,
+          method: "patch",
+          data: {
+            parent_id: params.destination ? params.destination.id : null,
+            position: params.position,
+          },
+        };
+      }
+
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
     }
@@ -146,7 +158,8 @@ export default (axios, baseURL = "/api") => {
       case GET_ROOT_NODES:
       case GET_CHILD_NODES:
       case CREATE:
-      case UPDATE: {
+      case UPDATE:
+      case MOVE_NODE: {
         return Promise.resolve(response.data);
       }
     }
@@ -174,5 +187,6 @@ export default (axios, baseURL = "/api") => {
       Promise.all(
         params.ids.map((id) => fetchApi(DELETE, resource, { id }))
       ).then(() => Promise.resolve()),
+    [MOVE_NODE]: (resource, params) => fetchApi(MOVE_NODE, resource, params),
   };
 };

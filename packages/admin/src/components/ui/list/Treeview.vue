@@ -75,11 +75,18 @@ export default {
       getTree: "api/getTree",
       getRootNodes: "api/getRootNodes",
       getChildNodes: "api/getChildNodes",
+      moveNode: "api/moveNode",
     }),
     onChange({ newIndex, element, parent }) {
-      console.log(newIndex);
-      console.log(element);
-      console.log(parent);
+      this.moveNode({
+        resource: this.resource,
+        params: {
+          id: element.id,
+          source: element,
+          destination: parent,
+          position: newIndex,
+        },
+      });
     },
     async fetchTree() {
       this.loading = true;

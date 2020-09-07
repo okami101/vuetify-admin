@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
+use App\Http\Requests\MoveCategory;
 use App\Http\Resources\Category as CategoryResource;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -107,6 +108,21 @@ class CategoryController extends Controller
     public function update(UpdateCategory $request, Category $category)
     {
         $category->update($request->all());
+
+        return new CategoryResource($category);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param MoveCategory $request
+     * @param \App\Category $category
+     * @return CategoryResource
+     */
+    public function move(MoveCategory $request, Category $category)
+    {
+        $category->update($request->only('parent_id'));
+        $category->moveToPosition($request->input('position') + 1);
 
         return new CategoryResource($category);
     }

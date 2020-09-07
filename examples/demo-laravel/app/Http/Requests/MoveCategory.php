@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategory extends FormRequest
+class MoveCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class UpdateCategory extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|required',
-            'type' => 'sometimes|required|in:book',
+            'parent_id' => 'nullable|exists:categories,id',
+            'position' => 'required|integer',
         ];
     }
 }

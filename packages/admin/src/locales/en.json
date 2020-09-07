@@ -39,6 +39,7 @@
     "created": "New {resource} successfully created !",
     "updated": "{resource} #{id} successfully updated !",
     "deleted": "{resource} #{id} successfully deleted !",
+    "moved": "{resource} #{id} successfully moved !",
     "updated_many": "{count} {resource} successfully updated !",
     "deleted_many": "{count} {resource} successfully deleted !"
   },

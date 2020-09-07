@@ -12,6 +12,7 @@ let {
   UPDATE_MANY,
   DELETE,
   DELETE_MANY,
+  MOVE_NODE,
 } = methods;
 
 export default ({ provider, resource, i18n }) => {
@@ -137,6 +138,11 @@ export default ({ provider, resource, i18n }) => {
             i18n.t("va.messages.deleted_many", {
               resource: getName(params.ids.length).toLowerCase(),
               count: params.ids.length,
+            }),
+          [MOVE_NODE]: () =>
+            i18n.t("va.messages.moved", {
+              resource: getName(1),
+              id: params.id,
             }),
         };
 

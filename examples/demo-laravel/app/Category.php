@@ -31,7 +31,7 @@ class Category extends Model implements Sortable
     use HasTranslations;
     use SortableTrait;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'parent_id'];
 
     public $translatable = ['name'];
 
@@ -68,6 +68,32 @@ class Category extends Model implements Sortable
     public function newCollection(array $models = [])
     {
         return new TreeCollection($models);
+    }
+
+    public function moveToPosition($targetPosition)
+    {
+        $orderColumnName = $this->determineOrderColumnName();
+        $oldOrder = $this->$orderColumnName;
+        if ($oldOrder === $targetPosition) {
+            return $this;
+        }
+
+        if ($oldOrder >= $targetPosition) {
+            $this->buildSortQuery()
+                ->where($orderColumnName, '>=', $targetPosition)
+                ->where($orderColumnName, '<', $oldOrder)
+                ->increment($orderColumnName);
+        } else {
+            $this->buildSortQuery()
+                ->where($orderColumnName, '<=', $targetPosition)
+                ->where($orderColumnName, '>', $oldOrder)
+                ->decrement($orderColumnName);
+        }
+
+        $this->$orderColumnName = $targetPosition;
+        $this->save();
+
+        return $this;
     }
 
     public function toArray()

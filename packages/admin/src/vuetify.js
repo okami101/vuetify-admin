@@ -50,12 +50,14 @@ const VDraggableTreeviewNode = VTreeviewNode.extend({
       });
     },
     genChildrenWrapper() {
-      let children = [
-        (this.children || []).map((c) => this.genChild(c, this.disabled)),
+      const children = [
+        this.children.map((c) =>
+          !this.isOpen || !this.children
+            ? this.$createElement("div")
+            : this.genChild(c, this.disabled)
+        ),
       ];
-      if (!this.isOpen) {
-        children = [];
-      }
+
       return this.$createElement(
         "draggable",
         {
@@ -91,10 +93,10 @@ const VDraggableTreeview = VTreeview.extend({
   methods: {
     onChange(e, node = null) {
       if (e.added) {
-        this.$emit("change", { ...e.added, parent: node.item });
+        this.$emit("change", { ...e.added, parent: node ? node.item : null });
       }
       if (e.moved) {
-        this.$emit("change", { ...e.moved, parent: node.item });
+        this.$emit("change", { ...e.moved, parent: node ? node.item : null });
       }
     },
   },

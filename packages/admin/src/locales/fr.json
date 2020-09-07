@@ -38,6 +38,7 @@
     "created": "{resource} créé avec succès !",
     "updated": "{resource} #{id} mis à jour avec succès !",
     "deleted": "{resource} #{id} supprimé avec succès !",
+    "moved": "{resource} #{id} déplacé avec succès !",
     "updated_many": "{count} {resource} mis à jour avec succès !",
     "deleted_many": "{count} {resource} supprimé avec succès !"
   },
