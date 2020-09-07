@@ -26,7 +26,6 @@ class CategoryController extends Controller
     {
         return CategoryResource::collection(
             QueryBuilder::for(Category::class)
-                ->allowedFields(['id', 'name'])
                 ->allowedFilters([
                     AllowedFilter::exact('id'),
                     AllowedFilter::exact('type'),
@@ -34,6 +33,7 @@ class CategoryController extends Controller
                 ])
                 ->ordered()
                 ->get()
+                ->toFlatTree()
         );
     }
 

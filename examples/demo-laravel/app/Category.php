@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Utils\TreeCollection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -14,6 +16,7 @@ use Spatie\Translatable\HasTranslations;
  * @property string $name
  * @property string $type
  * @property int|null $parent_id
+ * @property int|null $depth
  * @property int|null $order_column
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -54,12 +57,15 @@ class Category extends Model implements Sortable
             ->where('parent_id', $this->parent_id);
     }
 
-    public function toArray()
+    /**
+     * Create a Eloquent Collection instance with tree support.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function newCollection(array $models = [])
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-        ];
+        return new TreeCollection($models);
     }
 
     public function __toString()

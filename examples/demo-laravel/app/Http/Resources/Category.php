@@ -14,6 +14,10 @@ class Category extends BaseResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $attributes = parent::toArray($request);
+
+        $attributes['name'] = str_repeat('├──', $this->depth) . $this->name;
+
+        return $attributes;
     }
 }
