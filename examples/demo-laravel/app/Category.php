@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Utils\TreeCollection;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -21,6 +20,7 @@ use Spatie\Translatable\HasTranslations;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property Category $parent
+ * @property \Illuminate\Database\Eloquent\Collection|Category[] $children
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
@@ -66,6 +66,16 @@ class Category extends Model implements Sortable
     public function newCollection(array $models = [])
     {
         return new TreeCollection($models);
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'parent_id' => $this->parent_id,
+            'name' => str_repeat('├──', $this->depth) . $this->name,
+            'children' => $this->children,
+        ];
     }
 
     public function __toString()

@@ -65,6 +65,7 @@ export default {
         ...this.$admin.getResourceLinks([
           "publishers",
           "authors",
+          "categories",
           "books",
           "reviews",
         ]),

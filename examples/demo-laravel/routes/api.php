@@ -26,6 +26,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::upload();
 
     /**
+     * Tree specific routes
+     */
+    Route::get('categories/tree', 'CategoryController@tree');
+    Route::get('categories/nodes/{parentId?}', 'CategoryController@nodes');
+    Route::patch('categories/move/{category}', 'CategoryController@move');
+
+    /**
      * API resources controllers
      */
     Route::apiResources([

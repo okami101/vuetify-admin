@@ -52,7 +52,6 @@
             dense
             label=""
             v-bind="field.attributes"
-            hide-details
           ></component>
           <router-link
             v-else-if="field.link"

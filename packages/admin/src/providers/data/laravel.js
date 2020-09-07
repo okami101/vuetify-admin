@@ -1,5 +1,6 @@
 import {
   GET_LIST,
+  GET_TREE,
   GET_MANY,
   GET_ONE,
   CREATE,
@@ -7,6 +8,8 @@ import {
   UPDATE_MANY,
   DELETE,
   DELETE_MANY,
+  GET_ROOT_NODES,
+  GET_CHILD_NODES,
 } from "./actions";
 import qs from "qs";
 import objectToFormData from "../utils/objectToFormData";
@@ -51,6 +54,10 @@ export default (axios, baseURL = "/api") => {
         }
 
         return { url: resourceURL, query };
+      }
+
+      case GET_TREE: {
+        return { url: `${resourceURL}/tree` };
       }
 
       case GET_ONE: {
@@ -130,6 +137,9 @@ export default (axios, baseURL = "/api") => {
       }
 
       case GET_ONE:
+      case GET_TREE:
+      case GET_ROOT_NODES:
+      case GET_CHILD_NODES:
       case CREATE:
       case UPDATE: {
         return Promise.resolve(response.data);
@@ -139,6 +149,7 @@ export default (axios, baseURL = "/api") => {
 
   return {
     [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
+    [GET_TREE]: (resource, params) => fetchApi(GET_TREE, resource, params),
     [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
     [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
     [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),

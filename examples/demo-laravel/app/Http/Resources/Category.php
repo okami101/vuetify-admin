@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Vtec\Crud\Http\Resources\BaseResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class Category extends BaseResource
+class Category extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class Category extends BaseResource
      */
     public function toArray($request)
     {
-        $attributes = parent::toArray($request);
-
-        $attributes['name'] = str_repeat('├──', $this->depth) . $this->name;
-
-        return $attributes;
+        return parent::toArray($request);
     }
 }

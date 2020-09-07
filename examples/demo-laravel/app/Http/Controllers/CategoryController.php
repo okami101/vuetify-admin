@@ -22,6 +22,21 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
+    public function tree()
+    {
+        return CategoryResource::collection(
+            Category::query()
+                ->ordered()
+                ->get()
+                ->toTree()
+        );
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index()
     {
         return CategoryResource::collection(

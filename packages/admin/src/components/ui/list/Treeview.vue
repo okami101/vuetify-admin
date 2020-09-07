@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-draggable-treeview
+      ref="treeview"
       :items="items"
       :item-key="itemKey"
       :item-text="itemText"
@@ -16,6 +17,7 @@
 
 <script>
 import Resource from "../../../mixins/resource";
+import { mapActions } from "vuex";
 
 /**
  * Treeview component with draggable feature
@@ -46,6 +48,9 @@ export default {
       items: [],
     };
   },
+  mounted() {
+    this.fetchData();
+  },
   computed: {
     getValue: {
       get() {
@@ -57,6 +62,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      getTree: "api/getTree",
+    }),
     onChange({ newIndex, element, parent }) {
       console.log(newIndex);
       console.log(element);
@@ -68,13 +76,19 @@ export default {
       /**
        * Load hierarchical data list
        */
-      let { data } = await this.getList({
+      let { data } = await this.getTree({
         resource: this.resource,
       });
 
       this.loading = false;
 
       this.items = data;
+
+      if (this.openAll) {
+        this.$nextTick(() => {
+          this.$refs.treeview.updateAll(true);
+        });
+      }
     },
   },
 };

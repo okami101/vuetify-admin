@@ -49,7 +49,7 @@ const VDraggableTreeviewNode = VTreeviewNode.extend({
     },
     genChildrenWrapper() {
       let children = [
-        this.children.map((c) => this.genChild(c, this.disabled)),
+        (this.children || []).map((c) => this.genChild(c, this.disabled)),
       ];
       if (!this.isOpen) {
         children = [];

@@ -125,6 +125,16 @@
         }
       }
     },
+    "categories": {
+      "name": "Catégorie | Catégories",
+      "titles": {
+        "list": "Liste des catégories"
+      },
+      "fields": {
+        "id": "ID",
+        "name": "Nom"
+      }
+    },
     "books": {
       "name": "Livre | Livres",
       "titles": {
