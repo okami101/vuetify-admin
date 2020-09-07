@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
 use App\Http\Resources\Category as CategoryResource;
-use App\Category;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -18,7 +18,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display full listing of the resource as tree format.
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -29,6 +29,27 @@ class CategoryController extends Controller
                 ->ordered()
                 ->get()
                 ->toTree()
+        );
+    }
+
+    /**
+     * Display a listing of nodes of specific parent node.
+     *
+     * @param null $parentId
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function nodes($parentId = null)
+    {
+        $query = Category::query();
+
+        if ($parentId) {
+            $query->where('parent_id', '=', $parentId);
+        } else {
+            $query->whereNull('parent_id');
+        }
+
+        return CategoryResource::collection(
+            $query->ordered()->get()
         );
     }
 

@@ -13,6 +13,7 @@ import { getObjectValueByPath } from "vuetify/lib/util/helpers";
 const VDraggableTreeviewNode = VTreeviewNode.extend({
   props: {
     draggable: Boolean,
+    handle: String,
   },
   methods: {
     genChild(item, parentIsDisabled) {
@@ -42,6 +43,7 @@ const VDraggableTreeviewNode = VTreeviewNode.extend({
           level: this.level + 1,
           selectionType: this.selectionType,
           draggable: this.draggable,
+          handle: this.handle,
           parentIsDisabled,
         },
         scopedSlots: this.$scopedSlots,
@@ -63,6 +65,7 @@ const VDraggableTreeviewNode = VTreeviewNode.extend({
           attrs: {
             group: "description",
             disabled: !this.draggable,
+            handle: this.handle,
           },
           staticClass: "v-treeview-node__children",
           on: {
@@ -83,6 +86,7 @@ const VDraggableTreeviewNode = VTreeviewNode.extend({
 const VDraggableTreeview = VTreeview.extend({
   props: {
     draggable: Boolean,
+    handle: String,
   },
   methods: {
     onChange(e, node = null) {
@@ -121,6 +125,7 @@ const VDraggableTreeview = VTreeview.extend({
         attrs: {
           group: "description",
           disabled: !this.draggable,
+          handle: this.handle,
         },
         staticClass: "v-treeview",
         class: {

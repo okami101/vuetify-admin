@@ -35,6 +35,8 @@ class Category extends Model implements Sortable
 
     public $translatable = ['name'];
 
+    protected $visible = ['id', 'parent_id'];
+
     protected function getLocale(): string
     {
         return request()->header('locale') ?: app()->getLocale();
@@ -70,12 +72,13 @@ class Category extends Model implements Sortable
 
     public function toArray()
     {
-        return [
-            'id' => $this->id,
-            'parent_id' => $this->parent_id,
+        $attributes = parent::toArray();
+
+        $attributes += [
             'name' => str_repeat('├──', $this->depth) . $this->name,
-            'children' => $this->children,
         ];
+
+        return $attributes;
     }
 
     public function __toString()

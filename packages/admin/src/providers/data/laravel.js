@@ -60,6 +60,11 @@ export default (axios, baseURL = "/api") => {
         return { url: `${resourceURL}/tree` };
       }
 
+      case GET_ROOT_NODES:
+        return { url: `${resourceURL}/nodes` };
+      case GET_CHILD_NODES:
+        return { url: `${resourceURL}/nodes/${params.parentId}` };
+
       case GET_ONE: {
         return { url: `${resourceURL}/${params.id}` };
       }
@@ -149,8 +154,12 @@ export default (axios, baseURL = "/api") => {
 
   return {
     [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
-    [GET_TREE]: (resource, params) => fetchApi(GET_TREE, resource, params),
     [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
+    [GET_ROOT_NODES]: (resource, params) =>
+      fetchApi(GET_ROOT_NODES, resource, params),
+    [GET_CHILD_NODES]: (resource, params) =>
+      fetchApi(GET_CHILD_NODES, resource, params),
+    [GET_TREE]: (resource, params) => fetchApi(GET_TREE, resource, params),
     [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
     [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),
     [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),

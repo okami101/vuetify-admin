@@ -4,6 +4,7 @@
 namespace App\Utils;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class TreeCollection extends Collection
 {
@@ -28,6 +29,8 @@ class TreeCollection extends Collection
         $groupedNodes = $this->groupBy('parent_id');
 
         foreach ($this->items as $node) {
+            /** @var Model $node */
+            $node->makeVisible('children');
             $node->children = $groupedNodes->get($node->getKey(), []);
         }
 
