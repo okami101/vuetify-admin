@@ -1,6 +1,12 @@
 <template>
   <base-material-card :icon="resource.icon" :title="title">
-    <va-treeview open-all dense draggable></va-treeview>
+    <va-treeview
+      open-all
+      dense
+      draggable
+      :filter="{ type: 'book' }"
+      :create-data="{ type: 'book' }"
+    ></va-treeview>
   </base-material-card>
 </template>
 

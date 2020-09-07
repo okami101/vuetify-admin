@@ -72,6 +72,6 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category)
     {
-        return false;
+        return true;
     }
 }

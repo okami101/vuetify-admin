@@ -26,7 +26,10 @@ class CategoryController extends Controller
     public function tree()
     {
         return CategoryResource::collection(
-            Category::query()
+            QueryBuilder::for(Category::class)
+                ->allowedFilters([
+                    AllowedFilter::exact('type'),
+                ])
                 ->ordered()
                 ->get()
                 ->toTree()
@@ -41,7 +44,10 @@ class CategoryController extends Controller
      */
     public function nodes($parentId = null)
     {
-        $query = Category::query();
+        $query = QueryBuilder::for(Category::class)
+            ->allowedFilters([
+                AllowedFilter::exact('type'),
+            ]);
 
         if ($parentId) {
             $query->where('parent_id', '=', $parentId);

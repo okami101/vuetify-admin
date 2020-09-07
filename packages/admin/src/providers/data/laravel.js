@@ -58,13 +58,19 @@ export default (axios, baseURL = "/api") => {
       }
 
       case GET_TREE: {
-        return { url: `${resourceURL}/tree` };
+        return { url: `${resourceURL}/tree`, query: { filter: params.filter } };
       }
 
       case GET_ROOT_NODES:
-        return { url: `${resourceURL}/nodes` };
+        return {
+          url: `${resourceURL}/nodes`,
+          query: { filter: params.filter },
+        };
       case GET_CHILD_NODES:
-        return { url: `${resourceURL}/nodes/${params.parentId}` };
+        return {
+          url: `${resourceURL}/nodes/${params.parentId}`,
+          query: { filter: params.filter },
+        };
 
       case GET_ONE: {
         return { url: `${resourceURL}/${params.id}` };

@@ -24,8 +24,7 @@ class UpdateCategory extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|required',
-            'type' => 'sometimes|required|in:book',
+            'name' => 'required',
         ];
     }
 }

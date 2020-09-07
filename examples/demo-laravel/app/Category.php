@@ -31,7 +31,7 @@ class Category extends Model implements Sortable
     use HasTranslations;
     use SortableTrait;
 
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['name', 'type', 'parent_id'];
 
     public $translatable = ['name'];
 
