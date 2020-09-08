@@ -13,6 +13,7 @@
   "login": {
     "username": "Utilisateur",
     "password": "Mot de passe",
+    "remember": "Se souvenir",
     "sign_in": "Se connecter"
   },
   "profile": {

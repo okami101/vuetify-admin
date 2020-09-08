@@ -8,7 +8,7 @@ Vue.use(Vuetify);
 export default new Vuetify({
   lang: {
     locales: { en, fr },
-    current: process.env.VUE_APP_I18N_LOCALE,
+    current: process.env.VUE_APP_I18N_LOCALE || navigator.language.substr(0, 2),
   },
   theme: {
     options: {
