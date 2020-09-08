@@ -1,12 +1,6 @@
 import Vue from "vue";
 
 /**
- * Load external libs
- */
-import PortalVue from "portal-vue";
-import draggable from "vuedraggable";
-
-/**
  * Users
  */
 import UsersList from "./resources/users/List";
@@ -23,12 +17,6 @@ import PostsShow from "./resources/posts/Show";
 import PostsCreate from "./resources/posts/Create";
 import PostsEdit from "./resources/posts/Edit";
 import PostsForm from "./resources/posts/Form";
-
-/**
- * Register portal and draggable
- */
-Vue.use(PortalVue);
-Vue.component("draggable", draggable);
 
 /**
  * Users

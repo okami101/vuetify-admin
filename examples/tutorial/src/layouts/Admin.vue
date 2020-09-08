@@ -17,7 +17,6 @@
       :mini-variant="mini"
     ></va-sidebar>
     <va-breadcrumbs slot="header"></va-breadcrumbs>
-    <va-aside slot="aside"></va-aside>
     <va-footer slot="footer" :menu="footerMenu">
       <v-icon size="18"> mdi-xml </v-icon>
       with
