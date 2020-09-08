@@ -4,8 +4,7 @@ let storeActions = {};
 let {
   GET_LIST,
   GET_TREE,
-  GET_ROOT_NODES,
-  GET_CHILD_NODES,
+  GET_NODES,
   GET_ONE,
   CREATE,
   UPDATE,
@@ -33,15 +32,7 @@ export default ({ provider, resource, i18n }) => {
           /**
            * Only set global loading when read actions
            */
-          if (
-            [
-              GET_LIST,
-              GET_TREE,
-              GET_ROOT_NODES,
-              GET_CHILD_NODES,
-              GET_ONE,
-            ].includes(action)
-          ) {
+          if ([GET_LIST, GET_TREE, GET_NODES, GET_ONE].includes(action)) {
             commit("api/setLoading", true, {
               root: true,
             });

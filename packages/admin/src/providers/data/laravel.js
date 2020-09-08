@@ -2,8 +2,7 @@ import {
   GET_LIST,
   GET_MANY,
   GET_TREE,
-  GET_ROOT_NODES,
-  GET_CHILD_NODES,
+  GET_NODES,
   GET_ONE,
   CREATE,
   UPDATE,
@@ -61,14 +60,9 @@ export default (axios, baseURL = "/api") => {
         return { url: `${resourceURL}/tree`, query: { filter: params.filter } };
       }
 
-      case GET_ROOT_NODES:
+      case GET_NODES:
         return {
-          url: `${resourceURL}/nodes`,
-          query: { filter: params.filter },
-        };
-      case GET_CHILD_NODES:
-        return {
-          url: `${resourceURL}/nodes/${params.parentId}`,
+          url: `${resourceURL}/nodes/${params.parent ? params.parent.id : ""}`,
           query: { filter: params.filter },
         };
 
@@ -104,7 +98,7 @@ export default (axios, baseURL = "/api") => {
 
       case MOVE_NODE: {
         return {
-          url: `${resourceURL}/move/${params.id}`,
+          url: `${resourceURL}/${params.source.id}/move`,
           method: "patch",
           data: {
             parent_id: params.destination ? params.destination.id : null,
@@ -161,8 +155,7 @@ export default (axios, baseURL = "/api") => {
 
       case GET_ONE:
       case GET_TREE:
-      case GET_ROOT_NODES:
-      case GET_CHILD_NODES:
+      case GET_NODES:
       case CREATE:
       case UPDATE:
       case MOVE_NODE: {
@@ -174,10 +167,7 @@ export default (axios, baseURL = "/api") => {
   return {
     [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
     [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
-    [GET_ROOT_NODES]: (resource, params) =>
-      fetchApi(GET_ROOT_NODES, resource, params),
-    [GET_CHILD_NODES]: (resource, params) =>
-      fetchApi(GET_CHILD_NODES, resource, params),
+    [GET_NODES]: (resource, params) => fetchApi(GET_NODES, resource, params),
     [GET_TREE]: (resource, params) => fetchApi(GET_TREE, resource, params),
     [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
     [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),

@@ -3,7 +3,7 @@
     <va-treeview
       open-all
       dense
-      draggable
+      editable
       :filter="{ type: 'book' }"
       :create-data="{ type: 'book' }"
     ></va-treeview>

@@ -14,6 +14,5 @@ export const DELETE_MANY = "deleteMany";
  * Specific optional tree actions
  */
 export const GET_TREE = "getTree";
-export const GET_ROOT_NODES = "getRootNodes";
-export const GET_CHILD_NODES = "getChildNodes";
+export const GET_NODES = "getNodes";
 export const MOVE_NODE = "moveNode";

@@ -9,78 +9,89 @@
       :selectable="selectable"
       :open-all="openAll"
       :dense="dense"
-      :draggable="draggable"
+      :draggable="editable"
       handle=".handle"
-      :load-children="async ? fetchNodes : null"
+      :load-children="lazy ? fetchNodes : null"
       @change="onChange"
     >
-      <template v-slot:prepend="{}">
-        <v-btn icon text class="handle" v-if="draggable">
+      <template v-slot:prepend="{}" v-if="editable">
+        <v-btn icon text class="handle">
           <v-icon small>mdi-cursor-move</v-icon>
         </v-btn>
       </template>
       <template v-slot:label="{ item }">
+        <!--
+          @slot Use for full node templating.
+          @binding {object} item Item linked to the node.
+        -->
         <slot name="item" :item="item">
-          <template v-if="editNodeKey === item[itemKey]">
-            <form @submit.prevent="onUpdate(item)" class="edit-form">
-              <v-text-field
-                :placeholder="currentResource.singularName"
-                v-model="editNodeText"
-                hide-details
-                class="mr-2"
-                filled
-                dense
-                required
-              ></v-text-field>
+          <template v-if="editable">
+            <template v-if="editNodeKey === item[itemKey]">
+              <form @submit.prevent="onUpdate(item)" class="edit-form">
+                <v-text-field
+                  :placeholder="currentResource.singularName"
+                  v-model="editNodeText"
+                  hide-details
+                  class="mr-2"
+                  filled
+                  dense
+                  required
+                ></v-text-field>
+                <v-btn
+                  icon
+                  text
+                  type="submit"
+                  color="success"
+                  :loading="updatePending"
+                >
+                  <v-icon>mdi-floppy</v-icon>
+                </v-btn>
+                <v-btn
+                  icon
+                  text
+                  color="red"
+                  @click="
+                    editNodeKey = null;
+                    editNodeText = null;
+                  "
+                >
+                  <v-icon>mdi-cancel</v-icon>
+                </v-btn>
+              </form>
+            </template>
+            <template v-else>
+              <span class="mr-4">{{ item[itemText] }}</span>
               <v-btn
                 icon
                 text
-                type="submit"
-                color="success"
-                :loading="updatePending"
+                color="blue"
+                v-if="!disableEdit"
+                @click="onEdit(item)"
               >
-                <v-icon>mdi-floppy</v-icon>
+                <v-icon>mdi-pencil</v-icon>
               </v-btn>
               <v-btn
                 icon
                 text
                 color="red"
-                @click="
-                  editNodeKey = null;
-                  editNodeText = null;
-                "
+                v-if="!disableDelete"
+                :loading="deletePending === item[itemKey]"
+                @click="onDelete(item)"
               >
-                <v-icon>mdi-cancel</v-icon>
+                <v-icon>mdi-trash-can</v-icon>
               </v-btn>
-            </form>
+            </template>
           </template>
-          <template v-else>
-            <span class="mr-4">{{ item[itemText] }}</span>
-            <v-btn
-              icon
-              text
-              color="blue"
-              v-if="!disableEdit"
-              @click="onEdit(item)"
-            >
-              <v-icon>mdi-pencil</v-icon>
-            </v-btn>
-            <v-btn
-              icon
-              text
-              color="red"
-              v-if="!disableDelete"
-              :loading="deletePending === item[itemKey]"
-              @click="onDelete(item)"
-            >
-              <v-icon>mdi-trash-can</v-icon>
-            </v-btn>
-          </template>
+          <span v-else>{{ item[itemText] }}</span>
         </slot>
       </template>
     </v-draggable-treeview>
 
-    <form v-if="!disableCreate" @submit.prevent="onCreate" class="create-form">
+    <form
+      v-if="!disableCreate && editable"
+      @submit.prevent="onCreate"
+      class="create-form"
+    >
       <v-text-field
         :label="currentResource.singularName"
         v-model="newNodeText"
@@ -101,31 +112,69 @@ import Resource from "../../../mixins/resource";
 import { mapActions } from "vuex";
 
 /**
- * Treeview component with draggable feature
+ * Treeview component which support fully editable items with draggable feature and hierarchical data.
  */
 export default {
   mixins: [Resource],
   props: {
+    /**
+     * All selected items via checkbox, can be use via v-model.
+     */
     value: {
       type: Array,
       default: () => [],
     },
+    /**
+     * Unique identifier for each node, `id` by default.
+     */
     itemKey: {
       type: String,
       default: "id",
     },
+    /**
+     * Label text for each node, `name` by default.
+     */
     itemText: {
       type: String,
       default: "name",
     },
+    /**
+     * Enable checkbox selection.
+     */
     selectable: Boolean,
+    /**
+     * Open all nodes by default. Can't be used with `lazy`.
+     */
     openAll: Boolean,
+    /**
+     * Reduce height of each node.
+     */
     dense: Boolean,
-    draggable: Boolean,
-    async: Boolean,
+    /**
+     * Enable lazy items loading while node opening.
+     * Use `getNodes` data provider method instead of `getTree`.
+     */
+    lazy: Boolean,
+    /**
+     * Enable full editable mode with drag & drop.
+     */
+    editable: Boolean,
+    /**
+     * Disable new item creation form.
+     */
     disableCreate: Boolean,
+    /**
+     * Disable item edit button.
+     */
     disableEdit: Boolean,
+    /**
+     * Disable item deletion button.
+     */
     disableDelete: Boolean,
+    /**
+     * Disable default inline edit form behavior.
+     * You may use `item-edit` event in order to add your custom edit logic.
+     */
     disableInlineEdit: Boolean,
     /**
      * Internal active filter.
@@ -136,16 +185,16 @@ export default {
       default: () => {},
     },
     /**
-     * Additional form object data to merge with row-create form.
+     * Additional form object data to merge when new item created.
      */
     createData: {
       type: Object,
       default: () => {},
     },
     /**
-     * Additional form object data to merge with row-edit form.
+     * Additional form object data to merge when specific item updated.
      */
-    editData: {
+    updateData: {
       type: Object,
       default: () => {},
     },
@@ -171,6 +220,9 @@ export default {
         return this.value;
       },
       set(value) {
+        /**
+         * Triggered when nodes are selected via checkboxes.
+         */
         return this.$emit("input", value);
       },
     },
@@ -178,23 +230,26 @@ export default {
   methods: {
     ...mapActions({
       getTree: "api/getTree",
-      getRootNodes: "api/getRootNodes",
-      getChildNodes: "api/getChildNodes",
+      getNodes: "api/getNodes",
       moveNode: "api/moveNode",
     }),
-    onChange({ newIndex, element, parent }) {
-      this.moveNode({
+    async onChange({ newIndex, element, parent }) {
+      let { data } = await this.moveNode({
         resource: this.resource,
         params: {
-          id: element[this.itemKey],
           source: element,
           destination: parent,
           position: newIndex,
         },
       });
+
+      /**
+       * Triggered when node moved.
+       */
+      this.$emit("item-moved", data);
     },
     fetchData() {
-      this.async ? this.fetchRootNodes() : this.fetchTree();
+      this.lazy ? this.fetchRootNodes() : this.fetchTree();
     },
     async fetchTree() {
       this.loading = true;
@@ -225,7 +280,7 @@ export default {
       /**
        * Load hierarchical data list
        */
-      let { data } = await this.getRootNodes({
+      let { data } = await this.getNodes({
         resource: this.resource,
         params: {
           filter: this.filter,
@@ -240,11 +295,11 @@ export default {
       /**
        * Load child nodes of parent
        */
-      let { data } = await this.getChildNodes({
+      let { data } = await this.getNodes({
         resource: this.resource,
         params: {
           filter: this.filter,
-          parentId: item[this.itemKey],
+          parent: item,
         },
       });
 
@@ -254,6 +309,9 @@ export default {
       item.children.push(...data.map((i) => ({ ...i, children: [] })));
     },
     onEdit(item) {
+      /**
+       * Triggered when node enter edit mode.
+       */
       this.$emit("item-edit", item);
 
       if (!this.disableInlineEdit) {
@@ -265,7 +323,7 @@ export default {
       this.createPending = true;
 
       try {
-        await this.$store.dispatch(`${this.resource}/create`, {
+        let { data } = await this.$store.dispatch(`${this.resource}/create`, {
           data: {
             [this.itemText]: this.newNodeText,
             ...this.createData,
@@ -273,6 +331,11 @@ export default {
         });
 
         this.fetchData();
+
+        /**
+         * Triggered when new node created.
+         */
+        this.$emit("item-created", data);
       } finally {
         this.newNodeText = null;
         this.createPending = false;
@@ -282,15 +345,20 @@ export default {
       this.updatePending = true;
 
       try {
-        await this.$store.dispatch(`${this.resource}/update`, {
+        let { data } = await this.$store.dispatch(`${this.resource}/update`, {
           id: item[this.itemKey],
           data: {
             [this.itemText]: this.editNodeText,
-            ...this.editData,
+            ...this.updateData,
           },
         });
 
         this.fetchData();
+
+        /**
+         * Triggered when node updated.
+         */
+        this.$emit("item-updated", data);
       } finally {
         this.editNodeKey = null;
         this.editNodeText = null;
@@ -306,6 +374,11 @@ export default {
         });
 
         this.fetchData();
+
+        /**
+         * Triggered when node deleted.
+         */
+        this.$emit("item-deleted", item);
       } finally {
         this.deletePending = false;
       }

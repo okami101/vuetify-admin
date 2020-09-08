@@ -56,8 +56,9 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   </div>
   <div class="feature">
     <img src="/icons/table2.svg" alt="datatable" />
-    <h2>Full-featured DataTable</h2>
-    <p>Full-featured DataTable, including <strong>multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context</strong>. Possibility of total <strong>list layout customization</strong> thanks to separate data iterator !</p>
+    <h2>DataTable & Treeview</h2>
+    <p>Full-featured DataTable, including <strong>multi-sort, pagination, global search, advanced filters, basic CSV export, bulk actions, live query string context, inline row form edit</strong>.</p>
+    <p>Possibility of total <strong>list layout customization</strong> thanks to separate data iterator. <strong>Draggable treeview</strong> for hierarchical data included !</p>
   </div>
   <div class="feature">
     <img src="/icons/wrench.svg" alt="customizable" />

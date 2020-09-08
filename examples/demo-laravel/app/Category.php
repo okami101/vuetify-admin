@@ -35,7 +35,7 @@ class Category extends Model implements Sortable
 
     public $translatable = ['name'];
 
-    protected $visible = ['id', 'parent_id'];
+    protected $visible = ['id'];
 
     protected function getLocale(): string
     {

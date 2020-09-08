@@ -44,19 +44,14 @@ class CategoryController extends Controller
      */
     public function nodes($parentId = null)
     {
-        $query = QueryBuilder::for(Category::class)
-            ->allowedFilters([
-                AllowedFilter::exact('type'),
-            ]);
-
-        if ($parentId) {
-            $query->where('parent_id', '=', $parentId);
-        } else {
-            $query->whereNull('parent_id');
-        }
-
         return CategoryResource::collection(
-            $query->ordered()->get()
+            QueryBuilder::for(Category::class)
+                ->allowedFilters([
+                    AllowedFilter::exact('type'),
+                ])
+                ->whereParentId($parentId)
+                ->ordered()
+                ->get()
         );
     }
 

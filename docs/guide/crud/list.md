@@ -637,7 +637,7 @@ Use both `row-create` and `row-edit` props to enable it :
 ```
 
 ::: tip FORM DATA
-You may use `create-data` and `edit-data` props for merging some external data into respective create and edit forms. Ideal for passing required properties for creation as the mandatory related book for any reviews.
+You may use `create-data` and `update-data` props for merging some external data into respective create and edit forms. Ideal for passing required properties for creation as the mandatory related book for any reviews.
 :::
 
 ## Custom layout
@@ -765,3 +765,117 @@ export default {
 ```
 
 It's mainly a combination of all available event actions via `action` and `item-action` which retrieve the freshed item from the API and CRUD title. Then all that's left is to disable default redirect and made some additional logic for show or hide the view or form while auto open aside via `value` prop of `VaAsideLayout`. Check the users CRUD sample for further detail.
+
+## Treeview
+
+This component will be ideal for all hierarchical data management as categories, menus or any generic taxonomies. It supports inline node edition and deletion with additional create form at the bottom, while keeping each node fully customizable via slots. Moreover it uses the customized Vuetify original Treeview under the hood which adds draggable support !
+
+![treeview](/assets/treeview.png)
+
+### API
+
+|> docgen treeview
+
+### Tree data provider methods
+
+Know that you will need to implement following specific data providers methods in order to allow hierarchical data manipulation.
+
+```js
+const dataProvider = {
+  getTree:    (resource, params) => Promise,
+  getNodes:   (resource, params) => Promise,
+  moveNode:   (resource, params) => Promise,
+}
+```
+
+#### Tree methods call signatures
+
+| Method       | Description                                                                       | Parameters format                                                 |
+| ------------ | --------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **getTree**  | Get full hierarchical data as tree format.                                        | `{ filter: Object }`                                              |
+| **getNodes** | Get sibling nodes of optional given parent. load only root nodes if parent empty. | `{ filter: Object, parent: Object }`                               |
+| **moveNode** | Allow node moving to specific position of specific optional parent.               | `{ id: Any, source: Object, destination: Object, position: int }` |
+
+```js
+// Fetching categories as tree
+let { data } = await provider.getTree("categories", { filter: { type: 'book' } });
+console.log(data)
+
+// Fetching root categories
+let { data } = await provider.getNodes("categories", { filter: { type: 'book' } });
+console.log(data)
+
+// Fetching children of given parent category
+let { data } = await provider.getNodes("categories", { parent: { id: 1, name: "BD" } });
+console.log(data)
+
+// Move category to specific position at specific other category
+await provider.moveNode("categories", { source: { id: 10, name: "Marvel" }, destination: { id: 1, name: "BD" }, position: 3 });
+```
+
+#### Tree API call formats
+
+| Operation    | API call format                           | Response format        |
+| ------------ | ----------------------------------------- | ---------------------- |
+| **getTree**  | **GET** `/categories/tree`                | `{ data: Resource[] }` |
+| **getNodes** | **GET** `/categories/nodes/{parentId?}`   | `{ data: Resource[] }` |
+| **moveNode** | **PATCH** `/categories/{categoryId}/move` | `{ data: Resource }`   |
+
+Note as the `getTree` method will wait for a valid tree formatted list. Each node item must have a specific `children` property which contain all sub-nodes as following :
+
+```js
+[
+  {
+    id: 1,
+    name: "Comics",
+    children: [
+      { id: 3, name: "Detective Comics" },
+      { id: 4, name: "Manga" },
+      { id: 2, name: "Marvel" },
+    ],
+  },
+  {
+    id: 10,
+    name: "Culture",
+    children: [
+      { id: 11, name: "History" },
+      { id: 12, name: "Biography" },
+      { id: 13, name: "Cinema" },
+      { id: 14, name: "Music" },
+      { id: 15, name: "Politics" },
+      { id: 16, name: "Economy" },
+    ],
+  },
+  ...
+];
+```
+
+::: tip KEY AND DISPLAYED TEXT
+By default treeview will use `id` as key and `name` as displayed label. But it can be changed thanks to `itemKey` and `itemText` props.
+:::
+
+### Component usage
+
+Once all above data provider methods implemented, you can finally use treeview component as following :
+
+```vue {3-9}
+<template>
+  <base-material-card :icon="resource.icon" :title="title">
+    <va-treeview
+      open-all
+      dense
+      editable
+      :filter="{ type: 'book' }"
+      :create-data="{ type: 'book' }"
+    ></va-treeview>
+  </base-material-card>
+</template>
+
+<script>
+export default {
+  props: ["resource", "title"],
+};
+</script>
+```
+
+As other resource based components, treeview will use linked resource of current route as default (use `resource` prop for override). It will automatically fetch all nodes (or only root nodes if `lazy` prop active) as tree format.

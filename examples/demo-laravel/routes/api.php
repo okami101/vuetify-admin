@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
      */
     Route::get('categories/tree', 'CategoryController@tree');
     Route::get('categories/nodes/{parentId?}', 'CategoryController@nodes');
-    Route::patch('categories/move/{category}', 'CategoryController@move');
+    Route::patch('categories/{category}/move', 'CategoryController@move');
 
     /**
      * API resources controllers

@@ -344,7 +344,7 @@ export default {
     /**
      * Additional form object data to merge with row-edit form.
      */
-    editData: {
+    updateData: {
       type: Object,
       default: () => {},
     },
@@ -498,7 +498,7 @@ export default {
         this.editRowId
           ? await this.$store.dispatch(`${this.listState.resource}/update`, {
               id: this.editRowId,
-              data: { ...this.form, ...this.editData },
+              data: { ...this.form, ...this.updateData },
             })
           : await this.$store.dispatch(`${this.listState.resource}/create`, {
               data: { ...this.form, ...this.createData },

@@ -44,6 +44,10 @@ const dataProvider = {
 }
 ```
 
+::: tip HIERARCHICAL DATA SUPPORT
+Note as you can add additional specific methods for hierarchical data support. See dedicated section on main [treeview component](crud/list.md#treeview) which made use of this methods.
+:::
+
 ### Supported API operation methods
 
 :::: tabs
@@ -96,16 +100,16 @@ You can even use it easily without official package if you use [Laravel Query Bu
 
 See next table for the final endpoint API call format used on each method of this Laravel data provider.
 
-| Operation      | API Call Format                                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------------------------- |
+| Operation      | API call format                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- |
 | **getList**    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=name,-date&filter={"q":"douglas"}` |
-| **getOne**     | **GET** `/books/1`                                                                                             |
-| **getMany**    | **GET** `/books?filter={"id":[1,2,3]}`                                                                         |
-| **create**     | **POST** `/books`                                                                                              |
-| **update**     | **PUT** `/books/1`                                                                                             |
-| **updateMany** | Multiple calls to **PUT** `/books/{id}`                                                                        |
-| **delete**     | **DELETE** `/books/1`                                                                                          |
-| **deleteMany** | Multiple calls to **DELETE** `/books/{id}`                                                                     |
+| **getOne**     | **GET** `/books/1`                                                                                                  |
+| **getMany**    | **GET** `/books?filter={"id":[1,2,3]}`                                                                              |
+| **create**     | **POST** `/books`                                                                                                   |
+| **update**     | **PUT** `/books/1`                                                                                                  |
+| **updateMany** | Multiple calls to **PUT** `/books/{id}`                                                                             |
+| **delete**     | **DELETE** `/books/1`                                                                                               |
+| **deleteMany** | Multiple calls to **DELETE** `/books/{id}`                                                                          |
 
 > For `DESC` sorting, we use a simple dash before the sortable field. Multiple sort is supported by simply adding more sortable fields separated by comma.
 > The `include` parameter is used for on demand eager loading relation.
@@ -145,7 +149,7 @@ As seen [previously](#api-contract), each provider method takes 2 arguments :
 
 Next board represents what object format you should expects as second `params` function arguments for each provider method.
 
-| Method         | Usage                          | Parameters format                                                                                                                                                  |
+| Method         | Description                    | Parameters format                                                                                                                                                  |
 | -------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **getList**    | Search for resources           | `{ pagination: { page: Number , perPage: Number }, sort: [{ by: String, desc: Boolean }], filter: Object }, include: String[], fields: { [resource]: String[] } }` |
 | **getOne**     | Fetch one resource by id       | `{ id: Any }`                                                                                                                                                      |
