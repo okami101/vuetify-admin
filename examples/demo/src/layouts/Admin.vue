@@ -21,7 +21,7 @@
       <template v-slot:img="props">
         <v-img
           src="../assets/splash.jpg"
-          gradient="to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)"
+          gradient="to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)"
           v-bind="props"
         />
       </template>
