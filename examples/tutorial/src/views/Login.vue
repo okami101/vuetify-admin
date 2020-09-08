@@ -83,6 +83,6 @@ export default {
 
 <style scoped>
 #login-page {
-  background-color: var(--v-primary-lighten5);
+  background-color: #34495e;
 }
 </style>
