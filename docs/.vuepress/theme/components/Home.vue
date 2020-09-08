@@ -38,15 +38,8 @@
     </main>
 
     <div class="live-preview">
-      <iframe
-        src="https://codesandbox.io/embed/github/okami101/vtec-admin/tree/master/examples/tutorial?fontsize=14&hidenavigation=1&theme=dark"
-        style="
-          width: 100%;
-          height: 900px;
-          border: 0;
-          border-radius: 4px;
-          overflow: hidden;
-        "
+      <iframe src="https://codesandbox.io/embed/github/okami101/vtec-admin/tree/master/examples/tutorial?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:800px; border:0; border-radius: 4px; overflow:hidden;"
         title="okami101/vtec-admin: tutorial"
         allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
         sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
