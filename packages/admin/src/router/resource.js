@@ -132,7 +132,7 @@ export default ({ store, i18n, resource, title }) => {
       { name: "show", path: ":id" },
       { name: "edit", path: ":id/edit" },
     ]
-      .filter(({ name }) => !routes || routes.includes(name))
+      .filter(({ name }) => routes.includes(name))
       .map(({ name, path }) => buildRoute(name, path)),
   };
 };

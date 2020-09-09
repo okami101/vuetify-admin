@@ -62,16 +62,23 @@ export default class VtecAdmin {
       })
       .map((r) => {
         /**
+         * Get valid routes
+         */
+        let routes = ["list", "show", "create", "edit"].filter((name) => {
+          return !r.routes || r.routes.includes(name);
+        });
+
+        /**
          * Get valid actions
          */
         let actions = ["list", "show", "create", "edit", "delete"].filter(
-          (a) => {
+          (name) => {
             if ((r.actions || []).length) {
-              return r.actions.includes(a);
+              return r.actions.includes(name);
             }
 
             if ((r.except || []).length) {
-              return !r.except.includes(a);
+              return !r.except.includes(name);
             }
 
             return true;
@@ -88,6 +95,7 @@ export default class VtecAdmin {
         return {
           ...r,
           icon: r.icon || "mdi-view-grid",
+          routes,
           actions,
           getName,
           singularName: getName(1),
@@ -191,8 +199,19 @@ export default class VtecAdmin {
         if (!resource) {
           return false;
         }
-        let { canAction, singularName, pluralName } = resource;
 
+        let { routes, canAction, singularName, pluralName } = resource;
+
+        /**
+         * Route must exist
+         */
+        if (!routes.includes(action)) {
+          return false;
+        }
+
+        /**
+         * Current user must have permission for this action
+         */
         if (!canAction(action)) {
           return false;
         }
