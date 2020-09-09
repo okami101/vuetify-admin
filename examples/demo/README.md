@@ -1,14 +1,14 @@
 # Bookstore Admin
 
-This demo project is the best showcase of [Vtec Admin](https://www.npmjs.com/package/vtec-admin), an admin library written in Vue.js and based on Vuetify.
+This demo project is the best showcase of [Vuetify Admin](https://www.npmjs.com/package/vuetify-admin), an admin library written in Vue.js and based on Vuetify.
 The backend side API is served by other included [Laravel API demo](../laravel) project.
-This project is also a perfect way for developing main [Vtec Admin](../../packages/admin) lib of this repo.
+This project is also a perfect way for developing main [Vuetify Admin](../../packages/admin) lib of this repo.
 
-[Access to online demo](https://vtec-bookstore-demo.okami101.io)
+[Access to online demo](https://va-demo.okami101.io)
 
-[![demo](https://vtec.okami101.io/assets/screenshot.png)](https://vtec-bookstore-demo.okami101.io)
+[![demo](https://www.okami101.io/vuetify-admin/assets/screenshot.png)](https://va-demo.okami101.io)
 
-> The separated [vtec-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
+> The separated [vuetify-admin](../../packages/admin) NPM package is directly symlinked via yarn workspaces.  
 > By this way, HMR from this demo to the library is fully functional which is ideal for lib development with quick visual feedback !
 
 ## Features
@@ -60,7 +60,7 @@ Next, comment `EnsureFrontendRequestsAreStateful` middleware :
     //\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
     'throttle:300,1',
     \Illuminate\Routing\Middleware\SubstituteBindings::class,
-    \Vtec\Crud\Http\Middleware\ReadOnly::class,
+    \Okami101\LaravelVuetifyAdmin\Http\Middleware\ReadOnly::class,
 ],
 ```
 
@@ -71,9 +71,9 @@ Replace `sanctumAuthProvider` by `jwtAuthProvider` :
 **`src/plugins/admin.js`**
 
 ```js
-import { laravelDataProvider, jwtAuthProvider } from "vtec-admin/providers";
+import { laravelDataProvider, jwtAuthProvider } from "vuetify-admin/providers";
 //...
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   authProvider: jwtAuthProvider(http),
   //...
@@ -96,7 +96,7 @@ On server-side, replace `EnsureFrontendRequestsAreStateful` middleware by `auth.
     'auth.basic',
     'throttle:300,1',
     \Illuminate\Routing\Middleware\SubstituteBindings::class,
-    \Vtec\Crud\Http\Middleware\ReadOnly::class,
+    \Okami101\LaravelVuetifyAdmin\Http\Middleware\ReadOnly::class,
 ],
 ```
 
@@ -105,9 +105,9 @@ Finally, replace `sanctumAuthProvider` by `basicAuthProvider` as following :
 **`src/plugins/admin.js`**
 
 ```js
-import { laravelDataProvider, basicAuthProvider } from "vtec-admin/providers";
+import { laravelDataProvider, basicAuthProvider } from "vuetify-admin/providers";
 //...
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   authProvider: basicAuthProvider(http, {
     routes: {

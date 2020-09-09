@@ -1,6 +1,6 @@
 # Laravel
 
-This guide is a demonstration of how official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) can heavily facilitates Vtec Admin integration within laravel backend for full top to bottom development experience. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
+This guide is a demonstration of how official [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) can heavily facilitates Vuetify Admin integration within laravel backend for full top to bottom development experience. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
 
 ::: warning REQUIREMENTS
 
@@ -13,7 +13,7 @@ This guide is a demonstration of how official [Vtec Laravel Crud](https://github
 :::
 
 ::: tip SOURCE CODE
-You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/laravel).
+You will find complete source code of this tutorial [in the main repo](https://github.com/okami101/vuetify-admin/tree/master/examples/laravel).
 :::
 
 ## Installation
@@ -22,7 +22,7 @@ Simply init your project by this simple steps :
 
 ```bash
 laravel new my-brand-new-project && cd my-brand-new-project
-composer require vtec/laravel-crud
+composer require okami101/laravel-vuetify-admin
 php artisan crud:install
 ```
 
@@ -45,7 +45,7 @@ Then follow wizard.
   * [Clockwork](https://github.com/itsgoingd/clockwork), for easy API profiling.
   * [Dump Server](https://github.com/beyondcode/laravel-dump-server), for CLI dump, ideal for API debugging.
 * Other suggested production packages :
-  * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vtec Admin.
+  * [Laravel Sanctum](https://github.com/laravel/sanctum), a secured cookie-based authentication for SPA apps, which is ideal for Vuetify Admin.
   * [Laravel elFinder](https://github.com/barryvdh/laravel-elfinder) for file browser support with Wysiwyg bridges.
 
 ::: tip IDE HELPER
@@ -65,7 +65,7 @@ If you have selected ide helper package, you may add this lines into your main `
 
 ### Provided features and generated code
 
-Finally, the installer will integrate some additional boilerplate code to get basic features working within Vtec Admin :
+Finally, the installer will integrate some additional boilerplate code to get basic features working within Vuetify Admin :
 
 * Modify some configs as cors for ready-to-go API SPA plugging.
 * Impersonation feature
@@ -90,7 +90,7 @@ class Kernel extends HttpKernel
     /* ... */
         'api' => [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Vtec\Crud\Http\Middleware\Impersonate::class,
+            \Okami101\LaravelVuetifyAdmin\Http\Middleware\Impersonate::class,
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -104,7 +104,7 @@ Note as `Impersonate` must be placed just right **AFTER** the `EnsureFrontendReq
 
 ### Vue CLI admin UI project
 
-**At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/vtec-laravel-crud/blob/master/preset.json).**
+**At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/laravel-vuetify-admin/blob/master/preset.json).**
 
 ::: tip UI ADMIN GENERATE COMMAND
 You can still regenerate new admin UI without reuse full installer by using `php artisan crud:ui`.
@@ -361,7 +361,7 @@ use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Vtec\Crud\Filters\SearchFilter;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class BookController extends Controller
 {
@@ -457,7 +457,7 @@ class BookController extends Controller
 
 namespace App\Http\Resources;
 
-use Vtec\Crud\Http\Resources\BaseResource;
+use Okami101\LaravelVuetifyAdmin\Http\Resources\BaseResource;
 
 class Book extends BaseResource
 {
@@ -474,7 +474,7 @@ class Book extends BaseResource
 }
 ```
 
-> Use [Laravel eloquent resource](https://laravel.com/docs/eloquent-resources) and extend specific Vtec base resource mainly for translatable and media API handling.
+> Use [Laravel eloquent resource](https://laravel.com/docs/eloquent-resources) and extend specific LaravelVuetifyAdmin base resource mainly for translatable and media API handling.
 :::
 
 ::::
@@ -494,7 +494,7 @@ You may needs to write some factory code for dummy data. Let's write it on next 
 
 use App\Book;
 use Faker\Generator as Faker;
-use Vtec\Crud\Faker\Provider\Html;
+use Okami101\LaravelVuetifyAdmin\Faker\Provider\Html;
 
 $factory->define(Book::class, function (Faker $faker) {
     $faker->addProvider(new Html($faker));
@@ -824,7 +824,7 @@ Use `name` option in order to import only targeted resource.
 
 The first step is to create a YAML resource descriptor file that must validate specific [JSON schema](generators.md#json-schema), which will be consumed by API and UI CRUD commands that will generate all basic working code, instead of creating all boring stuff all by hand.
 
-In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vtec-admin/tree/master/examples/laravel/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
+In this tutorial we will use existing YAML files as sample. Take one of this [YAML files descriptors](https://github.com/okami101/vuetify-admin/tree/master/examples/laravel/admin/generators) according to your preferred locale and put it inside `admin/generators` folder (or anywhere you want). This file contains 2 resources :
 
 * Monsters : sample for show all different type of fields.
 * Child monsters : essentially for resource relationship purpose.
@@ -865,16 +865,16 @@ public function monster()
 
 The next step is to write you seed data. Use generated factory and seeder for that. For get quicker start, pick this files from tutorial source code :
 
-* [MonsterFactory](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/factories/MonsterFactory.php)
-* [MonsterChildFactory](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/factories/MonsterChildFactory.php)
-* [MonsterSeeder](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/seeds/MonsterSeeder.php)
+* [MonsterFactory](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/factories/MonsterFactory.php)
+* [MonsterChildFactory](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/factories/MonsterChildFactory.php)
+* [MonsterSeeder](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/seeds/MonsterSeeder.php)
 
 ::: tip USER SEEDER
-Take [this user seeder file](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/seeds/UserSeeder.php) in order to not have to create your admin each time you reset the database.
+Take [this user seeder file](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/seeds/UserSeeder.php) in order to not have to create your admin each time you reset the database.
 :::
 
 ::: tip FILE SAMPLES
-For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vtec-admin/blob/master/examples/laravel/database/seeds/DatabaseSeeder.php).
+For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/seeds/DatabaseSeeder.php).
 :::
 
 ::: warning COMPOSER AUTOLOAD
@@ -911,7 +911,7 @@ And finally the form view :
 
 ### Specific resource base
 
-For API resource definition, you may use [Eloquent Resources](https://laravel.com/docs/eloquent-resources) that extends `Vtec\Crud\Http\Resources\BaseResource` in case you need media or translatable fields support within Vtec Admin.
+For API resource definition, you may use [Eloquent Resources](https://laravel.com/docs/eloquent-resources) that extends `Okami101\LaravelVuetifyAdmin\Http\Resources\BaseResource` in case you need media or translatable fields support within Vuetify Admin.
 
 This class will do 2 things :
 
@@ -939,11 +939,11 @@ public function registerMediaCollections(): void
 
 This trait will automatically search for all `logo` and `local` for uploaded file.  
 For media deletion, he looks for `logo_delete` and `local_delete` with valid media ids (can be array or single value).  
-The Vtec Admin file upload component `va-file-input` will take care of all of that.
+The Vuetify Admin file upload component `va-file-input` will take care of all of that.
 
 ### Search filter
 
-If you want use global search in [Vtec Admin Iterator](crud/list.md), use `Vtec\Crud\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
+If you want use global search in [Vuetify Admin Iterator](crud/list.md), use `Okami101\LaravelVuetifyAdmin\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
 ```php {4}
 return new BookCollection(
@@ -961,12 +961,12 @@ Use `exportOrPaginate` specific macro after end of each QueryBuilder in order to
 
 ### Html Faker provider
 
-You can use `Vtec\Crud\Faker\Provider\Html` for easy html generation your factories :
+You can use `Okami101\LaravelVuetifyAdmin\Faker\Provider\Html` for easy html generation your factories :
 
 ```php {6,15,16}
 use App\Book;
 use Faker\Generator as Faker;
-use Vtec\Crud\Faker\Provider\Html;
+use Okami101\LaravelVuetifyAdmin\Faker\Provider\Html;
 
 $factory->define(Book::class, function (Faker $faker) {
     $faker->addProvider(new Html($faker));

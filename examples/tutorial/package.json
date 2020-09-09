@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "vtec-admin": "^0.3.5",
+    "vuetify-admin": "^0.3.5",
     "vue": "^2.6.12",
     "vue-i18n": "^8.20.0",
     "vue-router": "^3.2.0",
@@ -33,7 +33,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.1.1",
     "vue-cli-plugin-i18n": "latest",
-    "vue-cli-plugin-vtec-admin": "^0.3.2",
+    "vue-cli-plugin-vuetify-admin": "^0.3.2",
     "vue-cli-plugin-vuetify": "latest",
     "vue-template-compiler": "^2.6.12"
   }

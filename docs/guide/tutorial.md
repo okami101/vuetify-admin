@@ -3,24 +3,24 @@
 This tutorial will show you how to get quick ready for admin development, by using the faking API server [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 
 ::: tip CODESANDBOX
-Finished tutorial is directly available on [codesanbox](https://codesandbox.io/s/github/okami101/vtec-admin/tree/master/examples/tutorial) !  
+Finished tutorial is directly available on [codesanbox](https://codesandbox.io/s/github/okami101/vuetify-admin/tree/master/examples/tutorial) !  
 Use it if you want to play directly with final code. But for deeper understanding it's still recommended to follow full local install steps.
-You will find complete source code [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/tutorial).
+You will find complete source code [in the main repo](https://github.com/okami101/vuetify-admin/tree/master/examples/tutorial).
 :::
 
 ::: tip I PREFER PLAY WITH REAL API BACKEND
-Check [API Platform tutorial](#api-platform) or more advanced [Laravel guide](laravel.md) for quick starting with generators samples or [create your own provider](data-providers.md) for your custom API. This tutorial stay useful as it's more focused on how to play with Vtec Admin with any existing API.
+Check [API Platform tutorial](#api-platform) or more advanced [Laravel guide](laravel.md) for quick starting with generators samples or [create your own provider](data-providers.md) for your custom API. This tutorial stay useful as it's more focused on how to play with Vuetify Admin with any existing API.
 :::
 
 ## Installation
 
 ### Backend API
 
-First you'll need a functional API server in order to play with Vtec Admin. We will use JSONPlaceholder as API json server hosted on [dedicated Okami101 server](https://jsonplaceholder.okami101.io).
+First you'll need a functional API server in order to play with Vuetify Admin. We will use JSONPlaceholder as API json server hosted on [dedicated Okami101 server](https://jsonplaceholder.okami101.io).
 
 Note as it's a read-only server. However all non-GET HTTP request methods are still available although all create/update/delete operations will not be reflected on server-side.
 
-This simple server provides multiple CRUD API endpoints for multiple resources as `posts`, `comments`, `users`, etc. You can find a format description of each route [here](https://github.com/typicode/json-server#routes). Vtec Admin will allows us to implement an nice material admin UI for manage them as quickest as possible.
+This simple server provides multiple CRUD API endpoints for multiple resources as `posts`, `comments`, `users`, etc. You can find a format description of each route [here](https://github.com/typicode/json-server#routes). Vuetify Admin will allows us to implement an nice material admin UI for manage them as quickest as possible.
 
 ::: tip RUN LOCALLY
 If you want truly writeable API CRUD server, it's very easy to launch your own JSON server locally by this simple steps :
@@ -40,7 +40,7 @@ And voilà ! You should have a working API. Example of endpoint : [http://localh
 First prepare new Vue CLI admin project as explained on  by using dedicated Vue CLI Plugin. To summary :
 
 ```bash
-vue create vtec-admin-tutorial --preset okami101/vtec-admin-preset
+vue create vuetify-admin-tutorial --preset okami101/vuetify-admin-preset
 ```
 
 ::: tip HOW IT WORKS
@@ -69,7 +69,7 @@ The default dashboard home page is generated at `src/views/Dashboard.vue` file. 
 
 ## Data Provider
 
-As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vtec Admin can understand. For that each provider must follow a specific implementation as [explained here](data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/json-server.js)
+As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vuetify Admin can understand. For that each provider must follow a specific implementation as [explained here](data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/json-server.js)
 
 Vue CLI plugin comes with default simple CRUD templates pages for users resources. It's a basic functional single CRUD page interface with aside that should already working with actual `users` object of previously downloaded `data.json` database, by using standard `name` and `email` properties.
 
@@ -183,7 +183,7 @@ Next a example of a custom specific address field :
 </template>
 
 <script>
-import Field from "vtec-admin/src/mixins/field";
+import Field from "vuetify-admin/src/mixins/field";
 
 export default {
   mixins: [Field],
@@ -234,7 +234,7 @@ export default {
 
 Now why not to try adding new resource as `posts` ?
 
-All resources must be registered inside `src/resources/index.js`. This will allow Vtec Admin to build all necessary CRUD client side routes as well as API call bridges towards registered data provider. If you have selected related option through above Vue CLI wizard, `users` should be already registered. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
+All resources must be registered inside `src/resources/index.js`. This will allow Vuetify Admin to build all necessary CRUD client side routes as well as API call bridges towards registered data provider. If you have selected related option through above Vue CLI wizard, `users` should be already registered. For adding `posts` resource, all we have to do is to add a new resource descriptor object :
 
 **`src/resources/index.js`**
 
@@ -316,7 +316,7 @@ export default {
 ```
 
 ::: details MATERIAL CARD
-Vtec Admin will print basic `VCard` by default. If you have selected material theme superset from above Vue CLI wizard, you may use nicer `BaseMaterialCard` component instead, just replace `VCard` as next :
+Vuetify Admin will print basic `VCard` by default. If you have selected material theme superset from above Vue CLI wizard, you may use nicer `BaseMaterialCard` component instead, just replace `VCard` as next :
 
 ```vue {2,6,11}
 <template>

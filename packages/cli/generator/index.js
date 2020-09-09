@@ -15,7 +15,7 @@ module.exports = (api, options) => {
     dependencies: {
       axios: "^0.20.0",
       "portal-vue": "^2.1.0",
-      "vtec-admin": "^0.3.0",
+      "vuetify-admin": "^0.3.0",
       "vue-chartist": "^2.3.0",
       vuedraggable: "^2.23.0",
     },
@@ -119,9 +119,9 @@ module.exports = (api, options) => {
       }
     });
 
-    api.exitLog("Full documentation: https://vtec.okami101.io");
+    api.exitLog("Full documentation: https://www.okami101.io/vuetify-admin");
     api.exitLog(
-      "Please let a star if you liked it on Github: https://github.com/okami101/vtec-admin"
+      "Please let a star if you liked it on Github: https://github.com/okami101/vuetify-admin"
     );
   });
 };

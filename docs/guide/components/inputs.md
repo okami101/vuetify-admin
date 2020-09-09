@@ -147,7 +147,7 @@ In order to work, this input needs the URL of main TinyMCE JS bundles with a pro
 :::
 
 ::: tip GLOBAL OPTIONS
-You may set global actions for TinyMCE in main `VtecAdmin` constructor as [explained here](../admin.md). See all [supported options](../admin.md#tinymce).
+You may set global actions for TinyMCE in main `VuetifyAdmin` constructor as [explained here](../admin.md). See all [supported options](../admin.md#tinymce).
 :::
 
 ::: details TINYMCE 5 DOCUMENTATION
@@ -177,7 +177,7 @@ Default init value for `init` :
 ::: details IMAGE UPLOAD HANDLER
 You may need a real backend image upload handler in order to avoid the default base64. Use global `imageUploadUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a handler URL compatible with TinyMCE 5. It will add a direct upload zone on images plugin and as well as enable drag and drop.
 
-[Vtec Laravel Crud](../laravel.md) already integrate a functional upload handler that you can activate by adding the upload route :
+[Laravel Vuetify Admin](../laravel.md) already integrate a functional upload handler that you can activate by adding the upload route :
 
 **`routes/api.php`**
 
@@ -193,14 +193,14 @@ Route::group(['middleware' => Impersonate::class], function () {
 });
 ```
 
-You may provide admin axios instance to [VtecAdmin constructor](../admin.md#instantiation) for CSRF integration. If you don't use axios, don't forget to exclude upload route from CSRF inside `app/Http/Middleware/VerifyCsrfToken.php`.
+You may provide admin axios instance to [VuetifyAdmin constructor](../admin.md#instantiation) for CSRF integration. If you don't use axios, don't forget to exclude upload route from CSRF inside `app/Http/Middleware/VerifyCsrfToken.php`.
 
 :::
 
 ::: details FILE BROWSER
 You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowserUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a backend file browser solution. It will add a picker button for images and media that allows file selection from the file browser.
 
-If you use any PHP framework you should try `elFinder` which is already integrated on official [Vtec Laravel Crud](../laravel.md) package :
+If you use any PHP framework you should try `elFinder` which is already integrated on official [Laravel Vuetify Admin](../laravel.md) package :
 
 ![file-browser](/assets/inputs/file-browser.png)
 :::
@@ -330,7 +330,7 @@ Use `preview` for image gallery support, use [`VaImageField`](fields.md#image) u
 * Base64 : JSON friendly but more payload size and generally poorly integrated on server-side.
 * FormData : Send raw binary file as-is inside classic `multipart/form-data`. Poor FormData API but better native server-side integration thanks to `UploadedFile` with native MIME validation.
 
-Laravel data provider of VtecAdmin use the second method for easier server-side integration. It uses a `objectToFormData` helper for this, more info [here](../data-providers.md#usage) in case you want use it for your custom data provider.
+Laravel data provider of VuetifyAdmin use the second method for easier server-side integration. It uses a `objectToFormData` helper for this, more info [here](../data-providers.md#usage) in case you want use it for your custom data provider.
 
 Raw files will be send into your update or create API according to given `source` or `model` prop.
 :::
@@ -338,7 +338,7 @@ Raw files will be send into your update or create API according to given `source
 ::: tip DATA PROVIDER FILE DELETION
 This file input will use `VaFileField` or `VaImageField` with `clearable` prop enabled under the hood which allows file removing. It will fill an array which contains media id that should be deleted on backend. You can use `itemValue` prop if media value different than `id`. Then this array will be send to your update API with a specific delete property which will take this name format : `{source}_delete`.
 
-If using Vtec Laravel Crud, this [RequestMediaTrait](../laravel.md#requestmediatrait) will done already everything for you.
+If using Laravel Vuetify Admin, this [RequestMediaTrait](../laravel.md#requestmediatrait) will done already everything for you.
 :::
 
 ### Array
@@ -423,7 +423,7 @@ You can perfectly create your own VA input component by using [`input`](mixins.m
 </template>
 
 <script>
-import Input from "vtec-admin/src/mixins/input";
+import Input from "vuetify-admin/src/mixins/input";
 
 export default {
   mixins: [Input],

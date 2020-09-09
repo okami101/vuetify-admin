@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Vtec Admin</title>
+    <title>Vuetify Admin</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -90,16 +90,16 @@
 
     <div class="content">
         <div class="title m-b-md">
-            <img src="https://vtec.okami101.io/logo.svg"
-                 alt="Vtec Admin"
+            <img src="https://www.okami101.io/vuetify-admin/logo.svg"
+                 alt="Vuetify Admin"
                  width="300"
                  height="300">
         </div>
 
         <div class="links">
             <a href="{{ config('admin.url') }}">Admin</a>
-            <a target="_blank" href="https://vtec.okami101.io">Docs</a>
-            <a target="_blank" href="https://github.com/okami101/vtec-admin">GitHub</a>
+            <a target="_blank" href="https://www.okami101.io/vuetify-admin">Docs</a>
+            <a target="_blank" href="https://github.com/okami101/vuetify-admin">GitHub</a>
             <a target="_blank" href="https://github.com/adr1enbe4udou1n">Contact</a>
         </div>
 

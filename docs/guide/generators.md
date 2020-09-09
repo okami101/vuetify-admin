@@ -1,8 +1,8 @@
 # Generators
 
-Vtec Admin offers powerful generators commands that can considerably accelerate admin development. That is particularly useful as VA uses a highly customizable Vue templating development approach rather than configuration oriented development (i.e. develop UI on a full JSON or YAML file as [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle) do) which tends to be harder to extend.
+Vuetify Admin offers powerful generators commands that can considerably accelerate admin development. That is particularly useful as VA uses a highly customizable Vue templating development approach rather than configuration oriented development (i.e. develop UI on a full JSON or YAML file as [EasyAdmin](https://github.com/EasyCorp/EasyAdminBundle) do) which tends to be harder to extend.
 
-Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://vtec.okami101.io/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development and **maintaining full template customization** at hand, while encouraging **reusability** for quick starting next projects.
+Thanks to all resource-aware VA components, the DSL approach helps to reduce many boilerplate code but it's still not as efficient than writing you UI on YAML file. That's here the generators comes in. You write Admin UI on YAML format, by following a [JSON schema validator](https://www.okami101.io/vuetify-admin/schemas/generator.json), and then you generate all API code and Vue templates from it. So it embraces the **initial high productivity** of YAML development and **maintaining full template customization** at hand, while encouraging **reusability** for quick starting next projects.
 
 ::: danger FIRST STEP ONLY
 Consequently, this YAML file will mainly be used for your first resource code generation. After each each generation, all customizations made inside related resource templates will be lost.
@@ -17,7 +17,7 @@ See specific section of each supported API package :
 ## Admin UI
 
 ::: warning Vue CLI Plugin
-Next commands are only available if you install Vtec Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started.md).
+Next commands are only available if you install Vuetify Admin by his Vue CLI plugin, so install it first by [following this guide](getting-started.md).
 :::
 
 Vue CLI plugin will provide to you a new npm command `yarn crud:make [options]`, which helps for initial resources CRUD pages generation :
@@ -92,7 +92,7 @@ Same for advanced `filter` property :
 ::::
 
 ::: tip YAML DEVELOPMENT
-For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://vtec.okami101.io/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have automatic validation, as well as autocompletion with above documentation !
+For better YAML development experience you should use this [VSCode extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). Next set `https://www.okami101.io/vuetify-admin/schemas/generator.json` value on your workspace settings for each generator YAML file inside `yaml.schemas` settings. Now you have automatic validation, as well as autocompletion with above documentation !
 :::
 
 ::: tip TUTORIAL

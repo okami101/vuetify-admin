@@ -1,13 +1,13 @@
 import Vue from "vue";
-import VtecAdmin from "vtec-admin";
+import VuetifyAdmin from "vuetify-admin";
 
-import "vtec-admin/src/loader";
+import "vuetify-admin/src/loader";
 
 import {
   laravelDataProvider,
   sanctumAuthProvider,
-} from "vtec-admin/src/providers";
-import { en, fr } from "vtec-admin/src/locales";
+} from "vuetify-admin/src/providers";
+import { en, fr } from "vuetify-admin/src/locales";
 
 import router from "@/router";
 import routes from "@/router/admin";
@@ -20,7 +20,7 @@ import trimEnd from "lodash/trimEnd";
 /**
  * Load Admin UI components
  */
-Vue.use(VtecAdmin);
+Vue.use(VuetifyAdmin);
 
 /**
  * Axios instance
@@ -36,11 +36,11 @@ const http = axios.create({
 /**
  * Init admin
  */
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   router,
   store,
   i18n,
-  title: "Vtec Admin",
+  title: "Vuetify Admin",
   routes,
   locales: { en, fr },
   translations: ["en", "fr"],

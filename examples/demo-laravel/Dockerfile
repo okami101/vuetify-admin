@@ -38,9 +38,9 @@ RUN chmod +x /usr/local/bin/init
 COPY docker/laravel/seed.sh /usr/local/bin/seed
 RUN chmod +x /usr/local/bin/seed
 
-RUN addgroup -S -g "$PGID" vtec && adduser -S -u "$PUID" vtec -G vtec
+RUN addgroup -S -g "$PGID" okami101 && adduser -S -u "$PUID" okami101 -G okami101
 
-USER vtec
+USER okami101
 
 WORKDIR /srv/api/laravel
 

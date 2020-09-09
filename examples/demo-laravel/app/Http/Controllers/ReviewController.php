@@ -8,7 +8,7 @@ use App\Http\Resources\Review as ReviewResource;
 use App\Review;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Vtec\Crud\Filters\SearchFilter;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class ReviewController extends Controller
 {

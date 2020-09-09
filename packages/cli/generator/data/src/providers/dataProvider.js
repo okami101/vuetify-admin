@@ -7,7 +7,7 @@ import {
   UPDATE_MANY,
   DELETE,
   DELETE_MANY,
-} from "vtec-admin/src/providers/data/actions";
+} from "vuetify-admin/src/providers/data/actions";
 import qs from "qs";
 
 export default (axios) => {

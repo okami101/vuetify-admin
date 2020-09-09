@@ -1,11 +1,11 @@
 # Introduction
 
-[Vtec Admin](https://www.npmjs.com/package/vtec-admin) (VA) is an standalone [SPA](https://en.wikipedia.org/wiki/Single-page_application) admin UI framework for Vue.js designed for building CRUD pages for managing remote server resources with minimal amount of code while allowing large customization. It's built on Vuetify, runs on top of REST APIs and comes with dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development).
+[Vuetify Admin](https://www.npmjs.com/package/vuetify-admin) (VA) is an standalone [SPA](https://en.wikipedia.org/wiki/Single-page_application) admin UI framework for Vue.js designed for building CRUD pages for managing remote server resources with minimal amount of code while allowing large customization. It's built on Vuetify, runs on top of REST APIs and comes with dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vuetify-admin) for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development).
 
 It relies on replaceable low-level data and auth providers which allows you to stay independent of any backend framework. This is simply doable by implementing specific contract which will ensure compatibility within VA. Follow [dedicated guide](data-providers.md) for further detail.
 
 ::: tip RESOURCE
-For next guide, a **resource** means a given server API entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted.
+For next guide, a **resource** means a given server API entity which can be managed by Vuetify Admin, i.e. created/read/updated/deleted.
 :::
 
 ## Purpose
@@ -28,9 +28,9 @@ This project is still experimental on alpha version and BC can be frequent. Actu
 
 ## How It Works
 
-**Vtec Admin :**
+**Vuetify Admin :**
 
-* VAConstructor : resources builder of Vtec Admin, transform resources object ino CRUD VueRoutes and Vuex modules
+* VAConstructor : resources builder of Vuetify Admin, transform resources object ino CRUD VueRoutes and Vuex modules
 * VAComponents : contextual resources aware components
 
 **Your codebase :**
@@ -63,7 +63,7 @@ To summary :
 * [Vue CLI Plugin](getting-started.md) : for immediate start.
 * [Tutorial](tutorial.md) : follow this quick tutorial if you want a good starting point.
 * [API Platform](api-platform.md) : tutorial with advanced backend API for more real use case.
-* [Vtec Laravel Crud](laravel.md) : for complete top to bottom development experience with Laravel backend.
+* [Laravel Vuetify Admin](laravel.md) : for complete top to bottom development experience with Laravel backend.
 
 **Resources builder :**
 
@@ -118,7 +118,7 @@ Customizable providers by implementing a simple contract :
 
 ### A very subjective comparison
 
-| Features             | Vtec Admin | React Admin | EasyAdmin | Nova    | Backpack |
+| Features             | Vuetify Admin | React Admin | EasyAdmin | Nova    | Backpack |
 | -------------------- | ---------- | ----------- | --------- | ------- | -------- |
 | SPA                  | X          | X           |           | X       |          |
 | Standalone UI        | X          | X           |           |         |          |

@@ -8,7 +8,7 @@ import {
   GET_NAME,
   GET_EMAIL,
   GET_PERMISSIONS,
-} from "vtec-admin/src/providers/auth/actions";
+} from "vuetify-admin/src/providers/auth/actions";
 
 /**
  * Implement compatible auth provider

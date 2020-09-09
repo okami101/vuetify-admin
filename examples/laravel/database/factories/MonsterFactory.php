@@ -4,7 +4,7 @@
 
 use App\Monster;
 use Faker\Generator as Faker;
-use Vtec\Crud\Faker\Provider\Html;
+use Okami101\LaravelVuetifyAdmin\Faker\Provider\Html;
 
 $factory->define(Monster::class, function (Faker $faker) {
     $faker->addProvider(new Html($faker));

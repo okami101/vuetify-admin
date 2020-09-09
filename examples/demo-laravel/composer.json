@@ -21,7 +21,7 @@
         "spatie/eloquent-sortable": "^3.8",
         "symfony/yaml": "^5.0",
         "tymon/jwt-auth": "^1.0",
-        "vtec/laravel-crud": "dev-master"
+        "okami101/laravel-vuetify-admin": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -35,9 +35,9 @@
         "phpunit/phpunit": "^9.0"
     },
     "repositories": {
-        "vtec/laravel-crud": {
+        "okami101/laravel-vuetify-admin": {
             "type": "path",
-            "url": "../../vtec-laravel-crud"
+            "url": "../../packages/laravel"
         }
     },
     "config": {

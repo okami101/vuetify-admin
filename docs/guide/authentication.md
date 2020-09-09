@@ -1,6 +1,6 @@
 # Authentication
 
-Vtec Admin is first of all an admin app, so it offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers.md), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
+Vuetify Admin is first of all an admin app, so it offers few batteries helpers in order to integrate well with all different kind of authentication system, aka basic HTTP auth, JWT, OAUTH, full state cookies, etc. Similar as [data providers](data-providers.md), an adapter approach pattern is also used, which allows VA to communicate with you own API server authentication by writing your own auth provider.
 
 ## Included auth providers
 
@@ -12,7 +12,7 @@ VA provides 3 configurable auth providers :
 
 ::: tip GUEST MODE
 Note that the auth provider is of course totally optional !  
-If your API don't need auth at all, simply don't set the `authProvider` option in `VtecAdmin` constructor and VA will directly use a `guest` mode auth that will let you manage your resources as if we were connected.
+If your API don't need auth at all, simply don't set the `authProvider` option in `VuetifyAdmin` constructor and VA will directly use a `guest` mode auth that will let you manage your resources as if we were connected.
 :::
 
 All of this providers need an instance of axios in order to work. The easiest way is to create an admin axios instance and passthrough it into both auth and data providers :
@@ -20,12 +20,12 @@ All of this providers need an instance of axios in order to work. The easiest wa
 **`src/plugins/admin.js`**
 
 ```js
-import VtecAdmin from "vtec-admin";
+import VuetifyAdmin from "vuetify-admin";
 
 import {
   laravelDataProvider,
   sanctumAuthProvider,
-} from "vtec-admin/src/providers";
+} from "vuetify-admin/src/providers";
 
 import axios from "axios";
 
@@ -40,7 +40,7 @@ const http = axios.create({
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
@@ -52,9 +52,9 @@ export default new VtecAdmin({
 All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
 
 ::: tip GLOBAL ADMIN AXIOS
-Pass axios instance into [VtecAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
+Pass axios instance into [VuetifyAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
 
-Don't forget that only providers are aware of this axios instance, Vtec Admin doesn't know about it and exclusively use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
+Don't forget that only providers are aware of this axios instance, Vuetify Admin doesn't know about it and exclusively use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
 :::
 
 In addition to axios, a second `params` optional argument can be used for various parameters as authentication routes, credentials format, etc.
@@ -71,7 +71,7 @@ In addition to axios, a second `params` optional argument can be used for variou
 
 ### Full state cookies authentication
 
-The [Laravel Sanctum Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/sanctum.js) offers full integration with [Laravel Sanctum](https://github.com/laravel/sanctum), the ideal official package for full state SPA authentication support.  
+The [Laravel Sanctum Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/auth/sanctum.js) offers full integration with [Laravel Sanctum](https://github.com/laravel/sanctum), the ideal official package for full state SPA authentication support.  
 This is actually the recommended provider for Laravel if your app is on the same main domain (which is 99% use cases), because it's more secure (insensitive to XSS attacks thanks to HttpOnly cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
 
 ::: warning CSRF
@@ -94,7 +94,7 @@ In order to work on fresh Laravel project, simply run `composer require laravel/
 
 ### JWT for stateless authentication
 
-Use the [JWT Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/jwt.js) for HTTP stateless authentication. It was fully tested on Laravel with [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package. It should work with official [Laravel Passport](https://github.com/laravel/passport) as well.
+Use the [JWT Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/auth/jwt.js) for HTTP stateless authentication. It was fully tested on Laravel with [Laravel JWT](https://github.com/tymondesigns/jwt-auth) package. It should work with official [Laravel Passport](https://github.com/laravel/passport) as well.
 
 With this provider, a simple bearer token will be injected on `Authorization` header for every next XHR requests. The JWT will be stored inside user localStorage under a configurable key. A specific `refresh` routes can be used if you want auto refresh token on every page change.
 
@@ -104,7 +104,7 @@ If you use JWT authentication (same for next basic HTTP) mode instead of Sanctum
 
 ### Basic HTTP authentication
 
-The [Basic HTTP Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/auth/basic.js) can be used for basic cases. The full basic auth credentials will be simply sent to every XHR requests.
+The [Basic HTTP Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/auth/basic.js) can be used for basic cases. The full basic auth credentials will be simply sent to every XHR requests.
 
 By default, basic auth will just return the username used for credentials. If you prefer use a specific API endpoint in order to give to VA more user information, which is recommended if you need functional profile editing, you must set the user route as follow :
 
@@ -114,9 +114,9 @@ By default, basic auth will just return the username used for credentials. If yo
 import {
   laravelDataProvider,
   basicAuthProvider,
-} from "vtec-admin/src/providers";
+} from "vuetify-admin/src/providers";
 //...
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   authProvider: basicAuthProvider(http, {
     routes: {
@@ -139,7 +139,7 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 
 ::: tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you fully functional login page !  
-If not using it, you can start with [login boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/login/src/views/Login.vue) for your own.
+If not using it, you can start with [login boilerplate page](https://github.com/okami101/vuetify-admin/blob/master/packages/cli/generator/login/src/views/Login.vue) for your own.
 :::
 
 In order to work, login page must have a classic login form. Then all you have to do is to submit credentials into `login` VA auth module action which will pass them to the `login` auth provider method.
@@ -171,7 +171,7 @@ export default {
 ```
 
 ::: warning LOGIN REDIRECTION
-For unauthenticated login redirection, in order to localize login URL path, Vtec Admin search for a route called `login`, so be sure to have this name set on your login route !
+For unauthenticated login redirection, in order to localize login URL path, Vuetify Admin search for a route called `login`, so be sure to have this name set on your login route !
 :::
 
 ::: tip REGISTRATION AND PASSWORD RESET
@@ -184,7 +184,7 @@ If you need to add this features, login page is the perfect place to do it. Simp
 
 ::: tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you fully functional profile page !
-If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vtec-admin/blob/master/packages/cli/generator/profile/src/views/Profile.vue) for your own.
+If not using it, you can start with [profile boilerplate page](https://github.com/okami101/vuetify-admin/blob/master/packages/cli/generator/profile/src/views/Profile.vue) for your own.
 :::
 
 As explained above, this authenticated page should be registered into `src/router/admin.js` for getting admin layout inheritance. The idea here is to get user information stored inside VA auth state and pre fill all account form from it.  
@@ -251,7 +251,7 @@ If none of this configurable auth provider doesn't suit you, you can always writ
 
 ### API Contract
 
-Auth providers must respect a given contract in order to allow communication with Vtec Admin. Next object represents the minimal contract that must be implemented :
+Auth providers must respect a given contract in order to allow communication with Vuetify Admin. Next object represents the minimal contract that must be implemented :
 
 ```js
 const authProvider = {

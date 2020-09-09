@@ -1,8 +1,8 @@
 # Resources
 
-A "resource" means a given server entity which can be managed by Vtec Admin, i.e. created/read/updated/deleted. It must correspond to a valid API endpoint that allows all of this CRUD operations.
+A "resource" means a given server entity which can be managed by Vuetify Admin, i.e. created/read/updated/deleted. It must correspond to a valid API endpoint that allows all of this CRUD operations.
 
-The next piece of code represent an example of expected structure that must be sent to Vtec Admin constructor [as seen previously](admin.md) :
+The next piece of code represent an example of expected structure that must be sent to Vuetify Admin constructor [as seen previously](admin.md) :
 
 **`src/resources/index.js`**
 
@@ -97,11 +97,11 @@ The `archived_users` resource will reuse the same API endpoints as `users` resou
 
 ## Resource CRUD pages and API modules
 
-With the above resources information, it's enough for Vtec Admin to recreate all necessary CRUD routes and API actions structures.
+With the above resources information, it's enough for Vuetify Admin to recreate all necessary CRUD routes and API actions structures.
 
 Each CRUD route search for a component named as `${ResourceName}${Action}`, both on `StudlyCase`. 4 action pages are supported : `List`, `Show`, `Create` and `Edit`. So for a given resource called `monsters` and for a `create` route, VA search for a `MonstersCreate` page component. If not found it fallbacks to a [copyable guesser page](getting-started.md#at-a-glance). All you have to do is to register all your CRUD resources pages with this component naming convention in mind.
 
-In order to facilitate this boring task, use the provided loader to do this automatically by importing it with `import "vtec-admin/src/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the slugged name of resource.
+In order to facilitate this boring task, use the provided loader to do this automatically by importing it with `import "vuetify-admin/src/loader"`. It will search for all `vue` files inside `src/resources` directory and register them to main Vue instance by given a proper component name. With this loader, you just have to create one vue component for each action inside a resource folder which will take the slugged name of resource.
 
 Example for a `monster_children` and `users` resources :
 

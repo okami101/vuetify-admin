@@ -1,10 +1,10 @@
 # Bookstore API Demo
 
 This demo project is the API backend used by separate Vue CLI [bookstore admin demo](../demo) project, and is a good showcase for backend-side development.
-It's also a good platform for developing external [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package.
+It's also a good platform for developing external [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) composer package.
 
-> [Access to online demo](https://vtec-bookstore-demo.okami101.io)  
-> The [vtec/laravel-crud](https://github.com/okami101/vtec-laravel-crud) composer package is directly symlinked to `vtec-laravel-crud` root git submodule folder of this repo.  
+> [Access to online demo](https://va-demo.okami101.io)  
+> The [okami101/laravel-vuetify-admin](https://github.com/okami101/laravel-vuetify-admin) composer package is directly symlinked to `packages/laravel` root git submodule folder of this repo.  
 > So direct live package development is fully working, even inside docker !
 
 ## Features
@@ -14,7 +14,7 @@ It's also a good platform for developing external [Vtec Laravel Crud](https://gi
   * Authors
   * Books
   * Reviews
-* All [Vtec Crud features](https://github.com/okami101/vtec-laravel-crud#features) (account profile, sanctum auth, impersonation, docker files, etc.)
+* All [Laravel package features](https://github.com/okami101/laravel-vuetify-admin#features) (account profile, sanctum auth, impersonation, docker files, etc.)
 
 ## How to run
 

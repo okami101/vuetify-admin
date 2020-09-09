@@ -1,7 +1,7 @@
 import Vue from "vue";
-import VtecAdmin from "vtec-admin";
+import VuetifyAdmin from "vuetify-admin";
 
-import "vtec-admin/src/loader";
+import "vuetify-admin/src/loader";
 
 <%_ if (data === "custom") { _%>
 import dataProvider from "@/providers/dataProvider";
@@ -17,12 +17,12 @@ import {
   <%_ if (auth && auth !== "custom") { _%>
   <%- auth %>AuthProvider,
   <%_ } _%>
-} from "vtec-admin/src/providers";
+} from "vuetify-admin/src/providers";
 import {
   <%_ for (locale of locales) { _%>
   <%- locale %>,
   <%_ } _%>
-} from "vtec-admin/src/locales";
+} from "vuetify-admin/src/locales";
 
 import router from "@/router";
 import routes from "@/router/admin";
@@ -37,7 +37,7 @@ import trimEnd from "lodash/trimEnd";
 /**
  * Load Admin UI components
  */
-Vue.use(VtecAdmin);
+Vue.use(VuetifyAdmin);
 
 /**
  * Axios instance
@@ -55,11 +55,11 @@ const http = axios.create({
 /**
  * Init admin
  */
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   router,
   store,
   i18n,
-  title: "Vtec Admin",
+  title: "Vuetify Admin",
   routes,
   locales: {
     <%_ for (locale of locales) { _%>

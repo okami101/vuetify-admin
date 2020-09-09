@@ -1,10 +1,10 @@
 # Getting Started
 
-Even if Vtec Admin can be used as standalone NPM package via `yarn add vtec-admin`, the recommended way is to use dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin) on fresh Vuetify app project.  
+Even if Vuetify Admin can be used as standalone NPM package via `yarn add vuetify-admin`, the recommended way is to use dedicated [Vue CLI plugin](https://www.npmjs.com/package/vue-cli-plugin-vuetify-admin) on fresh Vuetify app project.  
 It takes care of all minimal boilerplate code generation for quick start admin development as well as including material theme and UI CRUD generators scripts.
 
 ::: tip TUTORIAL
-If first discover, I highly recommend you to go through the [tutorial](tutorial.md) for step-by-step Vtec Admin showcase using a fake API server.
+If first discover, I highly recommend you to go through the [tutorial](tutorial.md) for step-by-step Vuetify Admin showcase using a fake API server.
 :::
 
 ## Use Vue CLI Plugin
@@ -18,7 +18,7 @@ If first discover, I highly recommend you to go through the [tutorial](tutorial.
 ::: tip BACKEND API
 You should have a separate API backend project before using this package.
 
-Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package. As a bonus, this package will use an integrated laravel optimized Vue CLI preset for even less install steps. Go [here](laravel.md) for full showcase.
+Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) composer package. As a bonus, this package will use an integrated laravel optimized Vue CLI preset for even less install steps. Go [here](laravel.md) for full showcase.
 
 In case you want to use it on your custom API, you may probably need to write your own [data provider](data-providers.md).
 :::
@@ -26,7 +26,7 @@ In case you want to use it on your custom API, you may probably need to write yo
 Initialize your brand new Vue CLI admin project with this single line command :
 
 ```bash
-vue create my-admin-project --preset okami101/vtec-admin-preset
+vue create my-admin-project --preset okami101/vuetify-admin-preset
 ```
 
 In the end you should arrive to a wizard installer. Select suited options according to your needs.
@@ -45,7 +45,7 @@ BASE_URL=/admin
 
 #### Under the hood
 
-This above command use [this online preset](https://github.com/okami101/vtec-admin-preset/blob/master/preset.json) which will initialize all admin project by preparing a valid basic Vuetify project with proper Vue router and Vuex as well as installing Vtec Admin CLI plugin.
+This above command use [this online preset](https://github.com/okami101/vuetify-admin-preset/blob/master/preset.json) which will initialize all admin project by preparing a valid basic Vuetify project with proper Vue router and Vuex as well as installing Vuetify Admin CLI plugin.
 
 It's equivalent to :
 
@@ -55,16 +55,12 @@ vue create admin
 cd admin
 vue add vuetify # the main UI framework
 vue add i18n # the internationalization plugin
-vue add vtec-admin # install the main admin library
+vue add vuetify-admin # install the main admin library
 ```
 
-:::warning CODE STYLING
-A CS for Eslint is heavily recommended, besides without this a strange `transpileDependencies` duplication error will occurs on Vtec install because a shitty hack of official [Vuetify CLI plugin](https://github.com/vuetifyjs/vue-cli-plugins/blob/master/packages/vue-cli-plugin-vuetify/generator/tools/vuetify.js) which rewrite all `vue.config.js` instead of using `extendPackage` Vue CLI API...
-:::
+The final Vuetify Admin installer command will do all this steps :
 
-The final Vtec Admin installer command will do all this steps :
-
-* Install main Vtec Admin library.
+* Install main Vuetify Admin library.
 * Install third-party required dependencies as [PortalVue](https://portal-vue.linusb.org/), [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable).
 * Add UI CRUD generators scripts, [see dedicated section](generators.md) for more detail.
 * Generate inside your project all minimal boilerplate by selecting them via on-demand wizard for quick start :
@@ -149,20 +145,20 @@ The next steps is to [register your backend resources and write your CRUD pages]
 
 ## Bare metal installation
 
-If you can't use dedicated Vue CLI plugin, you can still try to install main Vtec Admin library as-is but it will be far more complex to get it properly configured. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vtec-admin portal-vue vuedraggable`. Then import and register them as following :
+If you can't use dedicated Vue CLI plugin, you can still try to install main Vuetify Admin library as-is but it will be far more complex to get it properly configured. First add all required dependencies by `yarn add vue-router vuex vuetify vue-i18n vuetify-admin portal-vue vuedraggable`. Then import and register them as following :
 
 **`src/plugins/admin.js`**
 
 ```js
 import Vue from "vue";
-import VtecAdmin from "vtec-admin";
+import VuetifyAdmin from "vuetify-admin";
 
-import "vtec-admin/src/loader";
+import "vuetify-admin/src/loader";
 
-Vue.use(VtecAdmin);
+Vue.use(VuetifyAdmin);
 ```
 
-Next you must instantiate Vtec Admin with proper providers and options. Follow [full guide here](admin.md).
+Next you must instantiate Vuetify Admin with proper providers and options. Follow [full guide here](admin.md).
 
 ## At a glance
 
@@ -196,7 +192,7 @@ export default [
 
 Then next step is to define CRUD pages for each resource by following this naming convention : `src/resources/{resource}/{action}.vue`.
 
-By default if no custom page action component is found, Vtec Admin uses basic CRUD page action that will try to guess all suited typed fields or inputs according to type of each property value of the first found resource item via `getList` data provider method.
+By default if no custom page action component is found, Vuetify Admin uses basic CRUD page action that will try to guess all suited typed fields or inputs according to type of each property value of the first found resource item via `getList` data provider method.
 
 ::: warning GUESSER MODE
 Note that it's more a quick starter mode and it should never be used on production ! So create your own CRUD page as below stay heavily recommended.

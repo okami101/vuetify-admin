@@ -6,8 +6,8 @@ actionLink: /guide/
 footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
 ---
 
-> Check [online demo](https://vtec-bookstore-demo.okami101.io) -> go to admin and use pre-filled login (read only)  
-> Check [tutorial CodeSandbox](https://codesandbox.io/s/github/okami101/vtec-admin/tree/master/examples/tutorial) -> use any login (fake writeable API)  
+> Check [online demo](https://va-demo.okami101.io) -> go to admin and use pre-filled login (read only)  
+> Check [tutorial CodeSandbox](https://codesandbox.io/s/github/okami101/vuetify-admin/tree/master/examples/tutorial) -> use any login (fake writeable API)  
 > Heavily inspired by [React Admin](https://github.com/marmelab/react-admin/) made by awesome [Marmelab Team](https://marmelab.com/)
 
 ![demo](/assets/screenshot.png)
@@ -31,7 +31,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/power.svg" alt="rad" />
     <h2>High productivity</h2>
-    <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vtec-admin"><strong>Vue CLI plugin</strong></a> with additional <strong>UI CRUD code generators</strong>. Guesser CRUD pages which give you all <strong>generated Vue template code</strong> for quick starting. <strong>YAML driven code generation</strong> given a JSON schema available !</p>
+    <p>Immediate quick start by using <a href="https://www.npmjs.com/package/vue-cli-plugin-vuetify-admin"><strong>Vue CLI plugin</strong></a> with additional <strong>UI CRUD code generators</strong>. Guesser CRUD pages which give you all <strong>generated Vue template code</strong> for quick starting. <strong>YAML driven code generation</strong> given a JSON schema available !</p>
   </div>
   <div class="feature">
     <img src="/icons/equalizer.svg" alt="control" />
@@ -41,7 +41,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/laravel.svg" alt="laravel" />
     <h2>Laravel ready</h2>
-    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/vtec-laravel-crud"><strong>Vtec Laravel Crud</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. <strong>Docker support and Server-side API CRUD code generators</strong> included as a bonus !</p>
+    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/laravel-vuetify-admin"><strong>Laravel Vuetify Admin</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. <strong>Docker support and Server-side API CRUD code generators</strong> included as a bonus !</p>
   </div>
   <div class="feature">
     <img src="/icons/books.svg" alt="documented" />
@@ -52,7 +52,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/lab.svg" alt="alchemy" />
     <h2>The ultimate alchemy</h2>
-    <p>With combination of Vtec Admin, code generators as well as Vue.js power, feel the <strong>better mix between productivity, nice development experience and limitless customization</strong>.</p>
+    <p>With combination of Vuetify Admin, code generators as well as Vue.js power, feel the <strong>better mix between productivity, nice development experience and limitless customization</strong>.</p>
   </div>
   <div class="feature">
     <img src="/icons/table2.svg" alt="datatable" />

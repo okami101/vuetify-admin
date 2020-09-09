@@ -2,12 +2,12 @@ module.exports = (ctx) => ({
   locales: {
     "/": {
       lang: "en-US",
-      title: "Vtec Admin",
+      title: "Vuetify Admin",
       description: "🚀 Integrate Vue-powered Admin Framework",
     },
     /*"/fr/": {
       lang: "fr-FR",
-      title: "Vtec Admin",
+      title: "Vuetify Admin",
       description: "Librairie Admin SPA"
     }*/
   },
@@ -48,7 +48,7 @@ module.exports = (ctx) => ({
     ["meta", { name: "docsearch:lang", content: "en-US" }],
   ],
   themeConfig: {
-    repo: "okami101/vtec-admin",
+    repo: "okami101/vuetify-admin",
     editLinks: true,
     docsDir: "docs",
     // #697 Provided by the official algolia team.
@@ -56,7 +56,7 @@ module.exports = (ctx) => ({
       ? {
           appId: "8GJW59LEHF",
           apiKey: "d12d25e8d8e68781b4f2cff49aea7645",
-          indexName: "docs_vtec",
+          indexName: "docs_vuetify_admin",
         }
       : null,
     smoothScroll: true,
@@ -73,20 +73,20 @@ module.exports = (ctx) => ({
             link: "/guide/",
           },
           {
-            text: "Vtec Admin",
-            link: "https://www.npmjs.com/package/vtec-admin",
+            text: "Vuetify Admin",
+            link: "https://www.npmjs.com/package/vuetify-admin",
           },
           {
             text: "Vue CLI Plugin",
-            link: "https://www.npmjs.com/package/vue-cli-plugin-vtec-admin",
+            link: "https://www.npmjs.com/package/vue-cli-plugin-vuetify-admin",
           },
           {
             text: "Laravel",
-            link: "https://github.com/okami101/vtec-laravel-crud",
+            link: "https://github.com/okami101/laravel-vuetify-admin",
           },
           {
             text: "Demo",
-            link: "https://vtec-bookstore-demo.okami101.io",
+            link: "https://va-demo.okami101.io",
           },
         ],
         sidebar: {
@@ -150,7 +150,7 @@ module.exports = (ctx) => ({
     [
       "sitemap",
       {
-        hostname: "https://vtec.okami101.io",
+        hostname: "https://www.okami101.io/vuetify-admin",
       },
     ],
   ],

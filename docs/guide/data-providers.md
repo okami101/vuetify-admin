@@ -1,6 +1,6 @@
 # Data Providers
 
-Main purpose of Vtec Admin is to manage remote resources from a given API. As soon as it has to communicate with your backend API for any standardized CRUD operation, it calls the adapted method on your provider that will be responsible for fetching or updating resource data.
+Main purpose of Vuetify Admin is to manage remote resources from a given API. As soon as it has to communicate with your backend API for any standardized CRUD operation, it calls the adapted method on your provider that will be responsible for fetching or updating resource data.
 
 ```js
 // Fetching books
@@ -21,15 +21,15 @@ await provider.update("books", { id: book.id, data: { title: "New title" } });
 await provider.delete("books", { id: book.id });
 ```
 
-All fetching methods of a data provider are standardized in order to ensure compatibility between Vtec Admin with any API server. This is the adapter pattern which allows all kind of different provider for each type of backend of any exchange protocol, whether it be REST, GraphQL, or even SOAP...
+All fetching methods of a data provider are standardized in order to ensure compatibility between Vuetify Admin with any API server. This is the adapter pattern which allows all kind of different provider for each type of backend of any exchange protocol, whether it be REST, GraphQL, or even SOAP...
 
 ![Data Provider](/diagrams/data-provider.svg)
 
-In order to give to Vtec Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin.md).
+In order to give to Vuetify Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin.md).
 
 ## API Contract
 
-As always for any adapter pattern approach, all data providers must respect a given contract in order to allow communication with Vtec Admin. Next object represents the minimal contract that must be implemented :
+As always for any adapter pattern approach, all data providers must respect a given contract in order to allow communication with Vuetify Admin. Next object represents the minimal contract that must be implemented :
 
 ```js
 const dataProvider = {
@@ -84,13 +84,13 @@ Bulk actions on [list page](crud/list.md). If your backend doesn't support a bul
 
 ### Translatable resources
 
-In case of a [translatable resource](i18n.md#resource-translation), Vtec Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the backend to do the remaining job, i.e. fetching the targeted field locale in case of resource reading, or save the text field on targeted locale in case of resource creating/editing.
+In case of a [translatable resource](i18n.md#resource-translation), Vuetify Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the backend to do the remaining job, i.e. fetching the targeted field locale in case of resource reading, or save the text field on targeted locale in case of resource creating/editing.
 
 ## Laravel Data Provider
 
-[Laravel Data Provider](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/laravel.js) is one of the available data provider that implements previous contract. You can use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part and error handling.
+[Laravel Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/laravel.js) is one of the available data provider that implements previous contract. You can use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part and error handling.
 
-This provider is intended to be use by official [Vtec Laravel Crud](https://github.com/okami101/vtec-laravel-crud) composer package as [explained on Laravel guide](laravel.md).
+This provider is intended to be use by official [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) composer package as [explained on Laravel guide](laravel.md).
 
 ::: tip EXISTING LARAVEL PROJECT
 You can even use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.
@@ -119,7 +119,7 @@ See next table for the final endpoint API call format used on each method of thi
 In order to work, this provider needs an specific `axios` instance :
 
 ```js
-import { laravelDataProvider } from "vtec-admin/src/providers";
+import { laravelDataProvider } from "vuetify-admin/src/providers";
 import axios from "axios";
 
 const http = axios.create({
@@ -135,7 +135,7 @@ It allows you to have consistent request client across all providers, by taking 
 
 ::: warning FORM DATA
 Laravel Data Provider use classic FormData for all api calls instead of simple JSON. It provides better Laravel integration for file uploads with ready-to-go file validation as well as UploadedFile auto conversion object.  
-For better reusability, a dedicated converter is available [here](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vtec-admin/src/providers/utils/objectToFormData";`
+For better reusability, a dedicated converter is available [here](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/utils/objectToFormData.js). To use it for your own provider, simply import it by `import objectToFormData from "vuetify-admin/src/providers/utils/objectToFormData";`
 :::
 
 ## Writing your own data provider
@@ -160,7 +160,7 @@ Next board represents what object format you should expects as second `params` f
 | **delete**     | Delete existing resource       | `{ id: Any }`                                                                                                                                                      |
 | **deleteMany** | Delete multiple resources      | `{ ids: Array }`                                                                                                                                                   |
 
-Here is some valid call examples of Vtec Admin inside each resource store module :
+Here is some valid call examples of Vuetify Admin inside each resource store module :
 
 ```js
 dataProvider.getList("books", {

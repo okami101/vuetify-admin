@@ -23,7 +23,7 @@
       <v-icon size="18"> mdi-heart </v-icon>
       by
       <a
-        href="https://vtec.okami101.io"
+        href="https://www.okami101.io/vuetify-admin"
         target="_blank"
         class="font-weight-bold"
         >Okami 101</a
@@ -49,15 +49,15 @@ export default {
       ],
       footerMenu: [
         {
-          href: "https://github.com/okami101/vtec-admin",
+          href: "https://github.com/okami101/vuetify-admin",
           text: "Github",
         },
         {
-          href: "https://vtec.okami101.io",
+          href: "https://www.okami101.io/vuetify-admin",
           text: "Docs",
         },
         {
-          href: "https://vtec-bookstore-demo.okami101.io",
+          href: "https://va-demo.okami101.io",
           text: "Demo",
         },
         {

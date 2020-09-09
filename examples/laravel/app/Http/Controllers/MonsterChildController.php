@@ -8,7 +8,7 @@ use App\Http\Resources\MonsterChild as MonsterChildResource;
 use App\MonsterChild;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Vtec\Crud\Filters\SearchFilter;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class MonsterChildController extends Controller
 {

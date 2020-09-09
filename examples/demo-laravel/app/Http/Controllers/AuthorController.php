@@ -9,7 +9,7 @@ use App\Http\Resources\Author as AuthorResource;
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Vtec\Crud\Filters\SearchFilter;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class AuthorController extends Controller
 {

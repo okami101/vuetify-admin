@@ -1,6 +1,6 @@
 # Buttons
 
-You will find here all buttons components reference used inside VtecAdmin.
+You will find here all buttons components reference used inside VuetifyAdmin.
 
 ## Action
 

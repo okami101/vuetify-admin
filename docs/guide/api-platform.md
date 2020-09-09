@@ -3,7 +3,7 @@
 In order to demonstrate how we can easily change server API while keeping same Admin UI, let's try another more advanced API backend with stateless JWT authentication.
 
 ::: tip SOURCE CODE
-You will find complete source code of this sample [in the main repo](https://github.com/okami101/vtec-admin/tree/master/examples/api-platform).
+You will find complete source code of this sample [in the main repo](https://github.com/okami101/vuetify-admin/tree/master/examples/api-platform).
 :::
 
 ## Run backend
@@ -21,7 +21,7 @@ This API demo serves mainly 2 entities `Book` and `Review`.
 
 ## Prepare admin UI
 
-First install a new Vue CLI project, as same way as previous tutorial. On Vtec wizard :
+First install a new Vue CLI project, as same way as previous tutorial. Then on wizard :
 
 * Select `Hydra` as **data provider** and `JWT` for stateless **authentication**.
 * Sets appropriate **API endpoint** to `http://localhost:8080`.
@@ -52,7 +52,7 @@ const http = axios.create({
 /**
  * Init admin
  */
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   dataProvider: hydraDataProvider(http),
   authProvider: jwtAuthProvider(http, {
@@ -75,11 +75,11 @@ API Platform Demo doesn't provide user information routes, explicit logout, user
 
 ## Disable unsupported features
 
-API Platform demo doesn't support by default global search or any configurable items per page for pagination which is forced to 30 items on server side. So let's disable this globally for all `VaList` components by default. For that use the `options.list` parameter on Vtec Admin constructor :
+API Platform demo doesn't support by default global search or any configurable items per page for pagination which is forced to 30 items on server side. So let's disable this globally for all `VaList` components by default. For that use the `options.list` parameter on Vuetify Admin constructor :
 
 ```js {6-11}
 //...
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   options: {
     dateFormat: "long",
@@ -356,13 +356,13 @@ export default {
 </script>
 ```
 
-Hydra provider will automatically send data form model to API Platform and return formatted Symfony constraint validations that Vtec Admin can process :
+Hydra provider will automatically send data form model to API Platform and return formatted Symfony constraint validations that Vuetify Admin can process :
 
 ![validation](/assets/api-platform/validation.png)
 
 Server ISBN validation will return error as well if invalid.
 
-Go to [hydra provider source code](https://github.com/okami101/vtec-admin/blob/master/packages/admin/src/providers/data/hydra.js) in order to get deeper on how it works. See [errors handling section](data-providers.md#errors-handling).
+Go to [hydra provider source code](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/hydra.js) in order to get deeper on how it works. See [errors handling section](data-providers.md#errors-handling).
 
 ### Reviews list
 
@@ -497,4 +497,4 @@ The final result :
 
 ## Conclusion
 
-You now have all a basic concepts for integration of Vtec Admin with real API backend. Go to the next [Laravel section](laravel.md) which is the most ready to go backend for Vtec Admin thanks to a powerful composer package that provides all minimal stuff for a real admin with file manager, user and profile management, impersonation and so on. It will also demonstrate the power of included code generators from top to bottom.
+You now have all a basic concepts for integration of Vuetify Admin with real API backend. Go to the next [Laravel section](laravel.md) which is the most ready to go backend for Vuetify Admin thanks to a powerful composer package that provides all minimal stuff for a real admin with file manager, user and profile management, impersonation and so on. It will also demonstrate the power of included code generators from top to bottom.

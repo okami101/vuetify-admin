@@ -1,6 +1,6 @@
 # API Platform Tutorial
 
-Purpose of this project is to test Vtec Admin within [API Platform](https://api-platform.com/) based on Symfony. Use provided hydra data provider and JWT authentication. Serve as demonstration with real API backend for main tutorial. See [dedicated part of documentation](https://vtec.okami101.io/guide/api-platform.html).
+Purpose of this project is to test Vuetify Admin within [API Platform](https://api-platform.com/) based on Symfony. Use provided hydra data provider and JWT authentication. Serve as demonstration with real API backend for main tutorial. See [dedicated part of documentation](https://www.okami101.io/vuetify-admin/guide/api-platform.html).
 
 ## How to run
 

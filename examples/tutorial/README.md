@@ -1,12 +1,12 @@
-# Vtec Admin Tutorial
+# Vuetify Admin Tutorial
 
-Tutorial project which uses [JSONPlaceholder](https://jsonplaceholder.typicode.com/). This should be the final state after following the [dedicated docs](https://vtec.okami101.io/guide/tutorial.html).
+Tutorial project which uses [JSONPlaceholder](https://jsonplaceholder.typicode.com/). This should be the final state after following the [dedicated docs](https://www.okami101.io/vuetify-admin/guide/tutorial.html).
 
-Also a good way to quickly test Vtec Admin with a fake backend.
+Also a good way to quickly test Vuetify Admin with a fake backend.
 
 ## How to run
 
-You can run tutorial directly inside [codesanbox](https://codesandbox.io/s/github/okami101/vtec-admin/tree/master/examples/tutorial).
+You can run tutorial directly inside [codesanbox](https://codesandbox.io/s/github/okami101/vuetify-admin/tree/master/examples/tutorial).
 
 If you want to run it locally :
 

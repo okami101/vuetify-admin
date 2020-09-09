@@ -70,7 +70,7 @@ getDocComponents().then((docs) => {
       $schema:
         "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
       framework: "vue",
-      name: "vtec-admin",
+      name: "vuetify-admin",
       version: "0.1.0",
       contributions: {
         html: {

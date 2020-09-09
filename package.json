@@ -1,7 +1,7 @@
 {
   "name": "root",
-  "description": "Vtec Admin",
-  "repository": "https://github.com/okami101/vtec-admin",
+  "description": "Vuetify Admin",
+  "repository": "https://github.com/okami101/vuetify-admin",
   "author": "Adrien Beaudouin",
   "license": "MIT",
   "private": true,

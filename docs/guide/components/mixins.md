@@ -1,6 +1,6 @@
 # Mixins
 
-You will find here all mixins reference used inside VtecAdmin.
+You will find here all mixins reference used inside VuetifyAdmin.
 
 ## Page
 

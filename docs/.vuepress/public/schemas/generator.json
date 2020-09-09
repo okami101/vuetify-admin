@@ -1,5 +1,5 @@
 {
-	"title": "JSON schema for Vtec generator files",
+	"title": "JSON schema for Vuetify Admin generator files",
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"type": "object",
   "additionalProperties": false,

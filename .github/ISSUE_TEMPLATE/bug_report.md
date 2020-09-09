@@ -30,7 +30,7 @@ If applicable, add screenshots to help explain your problem.
 - Browser with version [e.g. chrome 80, firefox 77]
 - Vue CLI version
 - Any NPM package version that can be useful as version of Vuetify, Vue I18n, etc.
-- Version of Vtec Admin Library or his Vue CLI plugin if applicable [e.g. 0.2.25]
+- Version of Vuetify Admin Library or his Vue CLI plugin if applicable [e.g. 0.2.25]
 
 **Additional context**
 Add any other context about the problem here.

@@ -54,7 +54,7 @@ Global `actions` or `except` are prioritized to `permissions` option only for ex
 
 ### Advanced usage
 
-In case of this resource permission API above is not enough for you, you can still pass to VtecAdmin options a specific `canAction` callback, which allows you to have more control for permission action filtering. It's executed on each resource link (if you use `$admin.getResourceLink` or `$admin.getResourceLinks`) or any resource CRUD action button in order to know if it must be active according the user permissions.
+In case of this resource permission API above is not enough for you, you can still pass to VuetifyAdmin options a specific `canAction` callback, which allows you to have more control for permission action filtering. It's executed on each resource link (if you use `$admin.getResourceLink` or `$admin.getResourceLinks`) or any resource CRUD action button in order to know if it must be active according the user permissions.
 
 This callback takes an `params` object with 3 properties :
 
@@ -65,7 +65,7 @@ This callback takes an `params` object with 3 properties :
 **`src/plugins/admin.js`**
 
 ```js
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   //...
   canAction: ({ resource, action, can }) => {
     if (can(["admin"])) {

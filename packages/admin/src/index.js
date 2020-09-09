@@ -8,17 +8,17 @@ import * as guessers from "./components/guessers";
 /**
  * Main JS App
  */
-import VtecAdmin from "./admin";
+import VuetifyAdmin from "./admin";
 
 /**
  * Main admin entry
  */
-export default VtecAdmin;
+export default VuetifyAdmin;
 
 /**
  * Vue install plugin
  */
-VtecAdmin.install = (Vue) => {
+VuetifyAdmin.install = (Vue) => {
   /**
    * Register Admin UI components
    */

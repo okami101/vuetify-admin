@@ -10,7 +10,7 @@ import api from "./store/api";
 import resourceCrudModule from "./store/resource";
 import resourceCrudRoutes from "./router/resource";
 
-export default class VtecAdmin {
+export default class VuetifyAdmin {
   constructor({
     router,
     store,

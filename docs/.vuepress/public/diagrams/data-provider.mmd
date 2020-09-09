@@ -1,9 +1,9 @@
 stateDiagram
   state DataTransfer {
-    CRUDPages --> VtecAdmin: Interaction
-    VtecAdmin --> CRUDPages: Show / Message
-    VtecAdmin --> DataProvider: Data query
+    CRUDPages --> VuetifyAdmin: Interaction
+    VuetifyAdmin --> CRUDPages: Show / Message
+    VuetifyAdmin --> DataProvider: Data query
     DataProvider --> API: HTTP
     API --> DataProvider: Response
-    DataProvider --> VtecAdmin: JSON Data
+    DataProvider --> VuetifyAdmin: JSON Data
   }

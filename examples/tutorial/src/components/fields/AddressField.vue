@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Field from "vtec-admin/src/mixins/field";
+import Field from "vuetify-admin/src/mixins/field";
 
 export default {
   mixins: [Field],

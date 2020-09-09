@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\Translatable\HasTranslations;
-use Vtec\Crud\Traits\RequestMediaTrait;
+use Okami101\LaravelVuetifyAdmin\Traits\RequestMediaTrait;
 
 /**
  * App\Author

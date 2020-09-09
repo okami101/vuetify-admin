@@ -4,28 +4,28 @@
 Check [directory structure](getting-started.md#directory-structure) for big picture of all files location that we will talk about after.  
 :::
 
-Here is a typical code in order to get VtecAdmin working :
+Here is a typical code in order to get VuetifyAdmin working :
 
 **`src/plugins/admin.js`**
 
 ```js
 import Vue from "vue";
-import VtecAdmin from "vtec-admin";
+import VuetifyAdmin from "vuetify-admin";
 
 /**
  * Register all third-party components as Portal Vue, Vuedraggable
  * Will automatically load all CRUD pages resources as well
  */
-import "vtec-admin/src/loader";
+import "vuetify-admin/src/loader";
 
 // Load data and auth providers to use with your API
 import {
   laravelDataProvider,
   sanctumAuthProvider,
-} from "vtec-admin/src/providers";
+} from "vuetify-admin/src/providers";
 
 // UI locales your want to support
-import { en, fr } from "vtec-admin/src/locales";
+import { en, fr } from "vuetify-admin/src/locales";
 
 // Custom authenticated admin pages as dashboard, profile, etc.
 import routes from "@/router/admin";
@@ -42,13 +42,13 @@ import i18n from "@/i18n";
 import axios from "axios";
 
 // Load Admin UI components
-Vue.use(VtecAdmin);
+Vue.use(VuetifyAdmin);
 
 // Create global axios instance, it will bridged into above providers
 const http = axios.create();
 
 // Main VA constructor that will build resources routes and modules
-export default new VtecAdmin({
+export default new VuetifyAdmin({
   router,
   store,
   i18n,
@@ -89,12 +89,12 @@ The main steps are :
 * Initiate VA by his constructor.
 
 ::: tip BOILERPLATE
-All this boring stuff as well as all next pieces of code shown in this page are already prepared for you by the official [Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vtec-admin), go to [getting started section](getting-started.md) for installation detail.
+All this boring stuff as well as all next pieces of code shown in this page are already prepared for you by the official [Vue CLI Plugin](https://www.npmjs.com/package/vue-cli-plugin-vuetify-admin), go to [getting started section](getting-started.md) for installation detail.
 :::
 
 ## Components & resources loading
 
-You have to import VA loader which import some external third-party components as well as all your CRUD pages, which will avoid us boring manual import. All you have to do is to add `import "vtec-admin/src/loader"` inside **`src/plugins/admin.js`**.
+You have to import VA loader which import some external third-party components as well as all your CRUD pages, which will avoid us boring manual import. All you have to do is to add `import "vuetify-admin/src/loader"` inside **`src/plugins/admin.js`**.
 
 Finally, in you entry point, don't forget to add `vuetify` and `admin` into main Vue constructor options. It will register `$admin` global object into all of your Vue components, which allows you to use some useful helper functions.
 
@@ -118,7 +118,7 @@ new Vue({
 
 ## Instantiation
 
-In order to operate, VtecAdmin constructor needs all of this parameters :
+In order to operate, VuetifyAdmin constructor needs all of this parameters :
 
 | Property         | Type         | Description                                                                                                                                                                                   |
 | ---------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -138,11 +138,11 @@ In order to operate, VtecAdmin constructor needs all of this parameters :
 
 ![instantiation](/diagrams/instantiation.svg)
 
-> Vtec Admin will transform your resources into client-side CRUD routes and Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](README.md#how-it-works).
+> Vuetify Admin will transform your resources into client-side CRUD routes and Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](README.md#how-it-works).
 
 ### Vue Router
 
-Your main Vue Router should only have public pages (or all other non-vtec-admin related pages). This pages are totally free of any Admin Layout, so you can use your own layout.  
+Your main Vue Router should only have public pages (or all other non-vuetify-admin related pages). This pages are totally free of any Admin Layout, so you can use your own layout.  
 You can even create here you frontend site app here if you really don't care about SEO, although it is not really recommended as the frontend bundle size would include the admin, unless you use the [Vue CLI multi-page feature](https://cli.vuejs.org/config/#pages)...
 
 VA will need full instantiated Vue Router in order to add his builded CRUD resources routes via [`addRoutes`](https://router.vuejs.org/api/#router-addroutes). Here are a basic example :
@@ -203,7 +203,7 @@ export default new Vuex.Store({
 
 ### Authenticated routes
 
-VA needs a basic route format object separate from above public routes that will contains all authenticated route as children. This separation is mainly due because of because of [Vue Router children registration limitation](https://github.com/vuejs/vue-router/issues/1156). That's why it must be at least for now injected manually into [VtecAdmin constructor](#instantiation).
+VA needs a basic route format object separate from above public routes that will contains all authenticated route as children. This separation is mainly due because of because of [Vue Router children registration limitation](https://github.com/vuejs/vue-router/issues/1156). That's why it must be at least for now injected manually into [VuetifyAdmin constructor](#instantiation).
 
 This is here you can put all your authenticated custom pages as dashboard, [profile page](authentication.md#profile-page), etc.
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Vtec\Crud\Http\Resources\BaseResource;
+use Okami101\LaravelVuetifyAdmin\Http\Resources\BaseResource;
 
 class Book extends BaseResource
 {

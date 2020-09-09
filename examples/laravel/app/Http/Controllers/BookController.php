@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Vtec\Crud\Filters\SearchFilter;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class BookController extends Controller
 {

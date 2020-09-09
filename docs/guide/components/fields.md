@@ -79,7 +79,7 @@ Will render a mailto anchor :
 Will render an anchor :
 
 ```html
-<a href="https://vtec.okamo101.io">https://vtec.okamo101.io</a>
+<a href="https://www.example.org">https://www.example.org</a>
 ```
 
 ### Rich text
@@ -398,7 +398,7 @@ You can prefectly create your own VA field component by using [`field`](mixins.m
 </template>
 
 <script>
-import Field from "vtec-admin/src/mixins/field";
+import Field from "vuetify-admin/src/mixins/field";
 
 export default {
   mixins: [Field],
