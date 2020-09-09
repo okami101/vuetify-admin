@@ -59,7 +59,7 @@ Standard admin layout with :
 
 Classic crud pages that can be generated with CLI plugin :
 
-* [List](https://vtec.okami101.io/guide/crud/list.html) : classic resource browser, pagination, filtrable as-you-type, multi-sortable and exportable. Can have global SQL like search filter as well as advanced specific filters. Use data table component by default that can be replaced by your own custom data-iterable layout list component.
+* [List](https://vtec.okami101.io/guide/crud/list.html) : classic resource browser, pagination, filtrable as-you-type, multi-sortable and exportable. Can have global SQL like search filter as well as advanced specific filters. Use data table component by default that can be replaced by your own custom data-iterable layout list component. Hierarchical data support with treeview component.
 * [Show](https://vtec.okami101.io/guide/crud/show.html) : entirely customizable layout show page. Use fields components as formatter for each resource properties. Ideal place (as edit page) for adding other related resources with contextualized data table or any other layout you want.
 * [Create and Edit](https://vtec.okami101.io/guide/crud/form.html) : customizable form page for new resource creation or resource edition. Can use an other existing resource as source for input pre filling (clone).
 
