@@ -13,8 +13,10 @@
           <va-messages></va-messages>
 
           <v-container fluid class="flex">
-            <component :is="'error'" v-if="error" :error="error"></component>
-            <router-view v-else />
+            <transition name="fade" mode="out-in">
+              <component :is="'error'" v-if="error" :error="error"></component>
+              <router-view v-else />
+            </transition>
           </v-container>
 
           <!-- @slot Footer region, put here some corporate information and links. -->
@@ -46,5 +48,14 @@ export default {
 <style>
 .v-main {
   background-color: #fafafa;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.4
+
+* 🚀 Add default routes fade transition
+
+## v0.3.0
+
+* 🚀 Add treeview component & hierarchical data support
+
 ## v0.2.50
 
 * 🚀 Add remember support
