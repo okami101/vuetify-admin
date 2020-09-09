@@ -19,9 +19,6 @@ module.exports = (api, options) => {
       "vue-chartist": "^2.3.0",
       vuedraggable: "^2.23.0",
     },
-    vue: {
-      transpileDependencies: ["vtec-admin"],
-    },
   });
 
   api.render("./admin", {
