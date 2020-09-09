@@ -6,9 +6,9 @@ use App\Http\Requests\StoreMonster;
 use App\Http\Requests\UpdateMonster;
 use App\Http\Resources\Monster as MonsterResource;
 use App\Monster;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class MonsterController extends Controller
 {

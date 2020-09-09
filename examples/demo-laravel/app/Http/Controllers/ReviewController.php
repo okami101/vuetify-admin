@@ -6,9 +6,9 @@ use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
 use App\Review;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class ReviewController extends Controller
 {

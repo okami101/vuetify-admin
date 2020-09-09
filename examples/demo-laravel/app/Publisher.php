@@ -4,10 +4,10 @@ namespace App;
 
 use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
+use Okami101\LaravelVuetifyAdmin\Traits\RequestMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\Translatable\HasTranslations;
-use Okami101\LaravelVuetifyAdmin\Traits\RequestMediaTrait;
 
 /**
  * App\Publisher

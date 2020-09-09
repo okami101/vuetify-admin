@@ -7,9 +7,9 @@ use App\Http\Requests\UpdateUser;
 use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class UserController extends Controller
 {

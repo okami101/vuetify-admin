@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Okami101\LaravelVuetifyAdmin\Traits\RequestMediaTrait;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\Translatable\HasTranslations;
-use Okami101\LaravelVuetifyAdmin\Traits\RequestMediaTrait;
 
 /**
  * App\Book

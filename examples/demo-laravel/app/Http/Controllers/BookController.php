@@ -9,9 +9,9 @@ use App\Http\Resources\Book as BookResource;
 use App\Http\Resources\BookCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
 
 class BookController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\MoveCategory;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
-use App\Http\Requests\MoveCategory;
 use App\Http\Resources\Category as CategoryResource;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
