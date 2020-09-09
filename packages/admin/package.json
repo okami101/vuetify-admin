@@ -1,6 +1,6 @@
 {
   "name": "vtec-admin",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "SPA admin framework for Vue.js running on top of REST APIs, built on Vuetify",
   "main": "dist/admin.common.js",
   "module": "src/index.js",
