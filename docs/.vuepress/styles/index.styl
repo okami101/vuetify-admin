@@ -25,3 +25,20 @@ pre.vue-container
     display: block;
     margin: 0 auto;
     margin-bottom: 1.5rem;
+
+.navbar
+  background-color: $accentColor
+  color: #fff
+  border-bottom: 0
+
+  .home-link .site-name
+    color: #fff
+
+  .links
+    background-color: inherit !important
+
+  .nav-link, .repo-link
+    &.router-link-active, &:hover
+      color: inherit
+    .icon
+      color: #fff
