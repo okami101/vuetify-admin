@@ -13,9 +13,9 @@ module.exports = (api, options) => {
       "crud:yaml": "vue-cli-service crud:yaml",
     },
     dependencies: {
-      axios: "^0.19.2",
+      axios: "^0.20.0",
       "portal-vue": "^2.1.0",
-      "vtec-admin": "^0.2.0",
+      "vtec-admin": "^0.3.0",
       "vue-chartist": "^2.3.0",
       vuedraggable: "^2.23.0",
     },
