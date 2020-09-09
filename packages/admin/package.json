@@ -22,7 +22,7 @@
   "license": "MIT",
   "homepage": "https://vtec.okami101.io",
   "scripts": {
-    "build": "vue-cli-service build --name admin --target lib src/index.js --report",
+    "build": "vue-cli-service build --name admin --target lib src/index.js",
     "prepublishOnly": "npm run build && node meta"
   },
   "vetur": {
