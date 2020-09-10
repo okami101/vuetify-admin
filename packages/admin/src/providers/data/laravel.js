@@ -24,7 +24,6 @@ export default (axios, baseURL = "/api") => {
         const { fields, include, pagination, sort, filter } = params;
 
         let query = {
-          ...query,
           fields,
           include,
         };
