@@ -15,7 +15,7 @@ module.exports = (api, options) => {
     dependencies: {
       axios: "^0.20.0",
       "portal-vue": "^2.1.0",
-      "vuetify-admin": "^0.3.0",
+      "vuetify-admin": "^0.4.0",
       "vue-chartist": "^2.3.0",
       vuedraggable: "^2.23.0",
     },
