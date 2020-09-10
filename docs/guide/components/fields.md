@@ -284,7 +284,7 @@ You may centralized all choices for reuse directly inside you locales as [explai
 
 You can play with `lg` and `height` for sort of gallery when multiple files :
 
-![images](/assets/images.png)
+![images](../../assets/images.png)
 
 ### Array
 
@@ -378,7 +378,7 @@ Contrary to React Admin reference field equivalent, this field doesn't support r
 
 Will render :
 
-![references](/assets/references.png)
+![references](../../assets/references.png)
 
 ::: tip DEFAULT SLOT
 Use default slot for custom resource labelization.

@@ -2,7 +2,7 @@
 
 The create and edit pages will allow creation of new resource item or modification of existing method, by using respectively `create` and `update` data provider methods. In general this pages will share same form although it is not required. With Vuetify Admin, development of form can be done with minimal code thanks to many available input components that have knowledge of current form context.
 
-![form](/assets/form.png)
+![form](../../assets/form.png)
 
 ## Layouts
 
@@ -62,7 +62,7 @@ export default {
 
 As the same way for the show view, you have total freedom for page templating. Example with a tabbed style form :
 
-![tabs-form](/assets/tabs-form.png)
+![tabs-form](../../assets/tabs-form.png)
 
 Here a code sample :
 
@@ -193,7 +193,7 @@ export default {
 
 It will render 2 different buttons, the default one that will submit on enter and redirect to list, and an additional save and add button :
 
-![saving](/assets/saving.png)
+![saving](../../assets/saving.png)
 
 ::: tip NO DEFAULT REDIRECT
 Use `disable-redirect` prop on `VaForm` in order to prevent default submit redirect. No effect on save buttons with redirect.
@@ -308,4 +308,4 @@ Here an example of compatible object error :
 
 It will render as next :
 
-![form-validation](/assets/form-validation.png)
+![form-validation](../../assets/form-validation.png)

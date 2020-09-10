@@ -2,7 +2,7 @@
 
 The show page is used to be display full detail of particular resource item via usage of `getOne` data provider method. Vuetify Admin facilitates his development by providing a standard layout as well as many field components as value resource property formatters. As always, it's stay a standard view page component, so no real limit for delivering any advanced show view you can imagine.
 
-![show](/assets/show.png)
+![show](../../assets/show.png)
 
 ## Show layout
 
@@ -25,7 +25,7 @@ You can add specific global item actions on top header of `VaShowLayout` by usin
 
 ### Tabbed layout
 
-![tabs](/assets/tabs.png)
+![tabs](../../assets/tabs.png)
 
 As you have total freedom on the layout, it's really easy to create a tabbed style show by using any vuetify or custom components. By example you can use the material tabs card component provided by Vue CLI Plugin :
 

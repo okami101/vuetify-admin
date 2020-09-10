@@ -57,7 +57,7 @@ In the end you should arrive to a wizard installer. Select following options for
 
 Then launch app by `yarn serve --open` you should arrive to this step :
 
-![dashboard](/assets/tutorial/dashboard.png)
+![dashboard](../assets/tutorial/dashboard.png)
 
 ::: tip CUSTOMIZE THE LAYOUT
 You can perfectly customize the layout, which is a simple template component in `src/layouts/Admin.vue` file. Go to [dedicated section](crud/layout.md) for further detail.
@@ -73,7 +73,7 @@ As you will see, the JSON Server data provider is a simple JS object that does a
 
 Vue CLI plugin comes with default simple CRUD templates pages for users resources. It's a basic functional single CRUD page interface with aside that should already working with actual `users` object of previously downloaded `data.json` database, by using standard `name` and `email` properties.
 
-![users](/assets/tutorial/users.png)
+![users](../assets/tutorial/users.png)
 
 You can **create** new users, **show** and **edit** them on direct **aside region**, as well as **clone** them, **paginate** all list, **sort** by name, using **full text search** for **filtering** and finally **export** all data with current filtering and sorting inside CSV file. All current context search is updated into URL as **query string** for keeping state on refresh. You can also **bulk delete** them by simply select multiple rows.
 
@@ -119,7 +119,7 @@ export default {
 
 As you can see, fields for data table are just an list of object. `source` correspond to the targeted property of resource item where to get the value and `type` is the best suited field for display it on table cells. For basic text a simple string can be put in place of full object. `source` support dot notation as well.
 
-![users-list](/assets/tutorial/users-list.png)
+![users-list](../assets/tutorial/users-list.png)
 
 ::: tip FIELDS DOCUMENTATION
 More detail [here](crud/list.md#fields). See [all supported fields](components/fields.md).
@@ -279,7 +279,7 @@ Now you should have direct link to a default already functional posts page list.
 
 As you can guess, by theirs own nature, this kind of fallback pages should not be used on production at any way. Their greatest utility is to print a direct full usable Vue template code to your browser console with a link to the target CRUD page file where to paste this code.
 
-![console](/assets/tutorial/console.png)
+![console](../assets/tutorial/console.png)
 
 As soon you create this file and paste your code inside it, VA will recognize it and it will take place of guesser page (you should not have specific console message anymore). Do the same for each CRUD pages, i.e. **List**, **Create**, **Show**, **Edit**. Now you're ready for full customization !
 
@@ -433,7 +433,7 @@ export default {
 
 It's enough to render :
 
-![show](/assets/tutorial/show.png)
+![show](../assets/tutorial/show.png)
 
 ::: tip SHOW DOCUMENTATION
 See [dedicated section](crud/show.md).
@@ -533,7 +533,7 @@ export default {
 
 It's enough to render :
 
-![form](/assets/tutorial/form.png)
+![form](../assets/tutorial/form.png)
 
 As you can see, `VaForm` is simply a injector component that will register an internal full form model initialized by all VA inputs child components. This model is the one that will be sent to the API. For all supported inputs, go [here](components/inputs.md).
 
@@ -682,7 +682,7 @@ export default [
 
 Then you should have nice linkable labelled chip for users :
 
-![relationships](/assets/tutorial/relationships.png)
+![relationships](../assets/tutorial/relationships.png)
 
 ::: details RELATIONSHIP IN SHOW PAGE
 Use the `include` property on global resource object descriptor to define it globally. It will be used as default for all `GET` based method for data fetching. `VaList` will use it as well if not defined, but it still can be overridden.
@@ -734,7 +734,7 @@ Now we may add the possibility of attach user on any posts. We can use a simple 
 
 Just use `userId` as source, `users` as reference and you're done :
 
-![relationships-select](/assets/tutorial/relationships-select.png)
+![relationships-select](../assets/tutorial/relationships-select.png)
 
 ::: tip AUTOCOMPLETE
 Just replace `va-select-input` by `va-autocomplete-input` and you're done ! User search will be already functional by using default `q` query parameter for full text search of JSON Server.
@@ -777,7 +777,7 @@ export default {
 
 It's a simple object that will be translated as valid supported input that reacts as you type. Same behavior than fields apply for `source`, `type`, and `attributes`. Note as by default filter is hidden under a dropdowns next to global actions on right side. It will allow filter activation on demand, without UI pollution with many inputs. the `alwaysOn` prop will always reveal filter without being able to remove it.
 
-![filters](/assets/tutorial/filters.png)
+![filters](../assets/tutorial/filters.png)
 
 ::: tip FILTERS DOCUMENTATION
 More detail [here](crud/list.md#filters). See [all supported inputs](components/inputs.md).
@@ -859,7 +859,7 @@ export default {
 
 Will render :
 
-![nested-relationships](/assets/tutorial/nested-relationships.png)
+![nested-relationships](../assets/tutorial/nested-relationships.png)
 
 The most important part is to precise the resource to fetch on `VaList` component and put the id of current post into internal filter of list. All crud action buttons will be auto hidden according to above resource config. You can now do the same for posts linked to a user at user show or edit page as exercise !
 

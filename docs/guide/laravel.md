@@ -187,19 +187,19 @@ php artisan serve
 
 You're finally ready to get up and running the Admin UI by `cd admin && yarn serve --open`. It will redirect you to this [customizable login page](authentication.md#login-page) :
 
-![login](/assets/laravel/login.jpg)
+![login](../assets/laravel/login.jpg)
 
 After login you will be redirect to this nice static dashboard, which is entirely customizable at `src/views/Dashboard.vue` file :
 
-![dashboard](/assets/laravel/dashboard.png)
+![dashboard](../assets/laravel/dashboard.png)
 
 [Customizable profile page](authentication.md#login-page) that allow basic user editing and password change is also fully functional and available under top right user dropdown menu :
 
-![dashboard](/assets/laravel/profile.png)
+![dashboard](../assets/laravel/profile.png)
 
 Finally a users section that allows users management with direct aside edit is also provided, as well as possibility of impersonation.
 
-![users](/assets/laravel/users.png)
+![users](../assets/laravel/users.png)
 
 ## Generators
 
@@ -676,7 +676,7 @@ export default {
 
 Final render :
 
-![books-list](/assets/laravel/books-list.png)
+![books-list](../assets/laravel/books-list.png)
 :::
 
 ::: tab SHOW
@@ -726,7 +726,7 @@ export default {
 
 Final render :
 
-![books-show](/assets/laravel/books-show.png)
+![books-show](../assets/laravel/books-show.png)
 :::
 
 ::: tab CREATE
@@ -809,7 +809,7 @@ export default {
 
 Final render :
 
-![books-form](/assets/laravel/books-form.png)
+![books-form](../assets/laravel/books-form.png)
 :::
 
 ::::
@@ -874,7 +874,7 @@ Take [this user seeder file](https://github.com/okami101/vuetify-admin/blob/mast
 :::
 
 ::: tip FILE SAMPLES
-For proper media files generation, you may need to download [this sample media directory](/assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/seeds/DatabaseSeeder.php).
+For proper media files generation, you may need to download [this sample media directory](../assets/media.zip) and copy this [main DatabaseSeeder file](https://github.com/okami101/vuetify-admin/blob/master/examples/laravel/database/seeds/DatabaseSeeder.php).
 :::
 
 ::: warning COMPOSER AUTOLOAD
@@ -897,15 +897,15 @@ Now you can run all backend API as well as admin UI and see the result !
 
 Example of generated list of monsters page :
 
-![list](/assets/laravel/list.png)
+![list](../assets/laravel/list.png)
 
 The show view :
 
-![show](/assets/laravel/show.png)
+![show](../assets/laravel/show.png)
 
 And finally the form view :
 
-![form](/assets/laravel/form.png)
+![form](../assets/laravel/form.png)
 
 ## Internal services and traits included
 

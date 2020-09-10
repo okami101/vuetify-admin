@@ -41,7 +41,7 @@ Vue CLI plugin provides an additional advanced `crud:yaml` command which is a su
 
 This is how it works :
 
-![generators](/diagrams/generators.svg)
+![generators](../diagrams/generators.svg)
 
 ### JSON Schema
 

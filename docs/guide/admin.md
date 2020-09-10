@@ -136,7 +136,7 @@ In order to operate, VuetifyAdmin constructor needs all of this parameters :
 | **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                                  |
 | **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                                |
 
-![instantiation](/diagrams/instantiation.svg)
+![instantiation](../diagrams/instantiation.svg)
 
 > Vuetify Admin will transform your resources into client-side CRUD routes and Vuex modules for data fetching. This modules will be able to seamlessly communicate to your API server thanks to your injected providers which will do the conversion work. See [how it works](README.md#how-it-works).
 
@@ -271,7 +271,7 @@ Add an automatic redirect on the main parent route towards authenticated home pa
 
 Vue CLI will generate a default generic customizable error page to `src/views/Error.vue`. It's used as default 404 page and takes an `error` prop that VA can inject for more detailed error. It's mainly used for related model route as Show and Edit page that are bind to a valid model. If any error is thrown by the related `getOne` API response, it pass the status and the attached response message into error object that will be passed to the error page component. IT can be any 404 or generic 500 for server error.
 
-![error](/assets/error.png)
+![error](../assets/error.png)
 
 ::: warning
 In order to properly working, you must register error page as global `Error` component name as following :

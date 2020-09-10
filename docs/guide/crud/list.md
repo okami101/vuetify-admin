@@ -2,7 +2,7 @@
 
 The list page is the main UI entry point of your resource where you can do all sort of resources browsing operations, as paginating, sorting, filtering, exporting, etc. It's the best place to put a `VaList` data iterator component that will use `getList` data provider with all the search context. The traditional UI layout data list stay the good old full data table by using `VaDataTable` components, but it can be totally replaced by anything you want.
 
-![list](/assets/list.png)
+![list](../../assets/list.png)
 
 ::: tip PAGE CUSTOMIZATION
 Note that for every CRUD pages you are free to put anything you want, and you have not forced to use provided optimized components.
@@ -47,7 +47,7 @@ export default {
 
 It will produce this simple structure :
 
-![list](/assets/list-sample.png)
+![list](../../assets/list-sample.png)
 
 Note that `VaList` will try to be synchronized on real time within query string in order to allow any bookmark or keep state on every browser refresh. All browsing action as paginate, filter and sorting will be updated into the URL query string.
 
@@ -70,7 +70,7 @@ As the `VaDataTable` is a dumb component, it needs to be synchronized with a con
 
 ### Fields
 
-![fields](/assets/fields.png)
+![fields](../../assets/fields.png)
 
 Use `fields` prop in order to define all columns. It's an array of string or object where can precise the best suited field formatter for data display. You need at least to set `source` property which defined the field of resources you want to fetch, then the type for data formatter if different than simple text format. For all supported fields, check the [fields section](../components/fields.md).
 
@@ -211,7 +211,7 @@ You just have to use a slot named as `field.{source}` for that, where `source` i
 
 ### Expandable row
 
-![expandable](/assets/expandable.png)
+![expandable](../../assets/expandable.png)
 
 You can use the `expanded-item` slot with enabled `show-expand` prop for an additional full colspan cell under the item row. Ideal for quick view.
 
@@ -267,7 +267,7 @@ In addition to exposed filters, you may need some internal filters that user can
 
 In addition to global search, `VaList` supports advanced custom filters as well with many supported inputs as shown here :
 
-![filters](/assets/filters.png)
+![filters](../../assets/filters.png)
 
 Use the "Add filter" button for adding more filters that will add a new `AND` condition. The supported inputs for filtering are `text`, `number`, `boolean`, `date`, `rating`, `select`, `autocomplete`. Each filter are removable.
 
@@ -427,7 +427,7 @@ You can add custom actions via `actions` slot :
 
 The data iterator support all sort of bulk operations, whether it be updating or deleting. This feature will use `updateMany` and `deleteMany` methods of you data provider. All available bulk actions will appear at header as soon as you have selected some items.
 
-![bulk-actions](/assets/bulk-actions.png)
+![bulk-actions](../../assets/bulk-actions.png)
 
 ### Custom bulk actions
 
@@ -473,7 +473,7 @@ This default control is totally replaceable by your own pagination control. Use 
 
 ## Usage outside list page
 
-![relationship](/assets/relationship.png)
+![relationship](../../assets/relationship.png)
 
 You're not forced to use `VaList` on list page ! As the same way for most of VA components, it can be used anywhere on any page or context thanks to `resource` prop which is present on all resource aware VA components. When not defined, the default resource will be the one linked to the current route.
 
@@ -508,7 +508,7 @@ For this case usage, you may disable default query string update in order to pre
 
 ### Associations
 
-![associations](/assets/associations.png)
+![associations](../../assets/associations.png)
 
 You can go even further by managing associations thanks to provided `association` prop object that give us the ability of attach or detach relationship between related resources directly from the list. It will automatically generate a autocomplete search on given list resource that allow us to attach via the associate button. Each row item can be detach via dissociate button.
 
@@ -597,7 +597,7 @@ if ($id = $request->input('remove_author_id')) {
 
 For simple resources, you can enable the direct row form mode :
 
-![editable-rows](/assets/editable-rows.png)
+![editable-rows](../../assets/editable-rows.png)
 
 Use both `row-create` and `row-edit` props to enable it :
 
@@ -646,7 +646,7 @@ As you have seen, `VaList` is mainly a data iterator that will provide items res
 
 It will allow you to have this kind of nice card list layout while conserving all UI resource browsing controls with full pagination and filters.
 
-![custom-list-layout](/assets/custom-list-layout.png)
+![custom-list-layout](../../assets/custom-list-layout.png)
 
 The only thing to do is to use the default slot of `VaList` which allows you to implement your custom template item list from the provided `items` binding value as shown here :
 
@@ -681,7 +681,7 @@ The only thing to do is to use the default slot of `VaList` which allows you to 
 
 Instead of have separate CRUD pages for each action, it's possible to regroup all CRUD view operations into single page list thanks to `VaAsideLayout` component. It's perfect if you show and form views are relatively small.
 
-![aside](/assets/aside.png)
+![aside](../../assets/aside.png)
 
 ### AsideLayout
 
@@ -770,7 +770,7 @@ It's mainly a combination of all available event actions via `action` and `item-
 
 This component will be ideal for all hierarchical data management as categories, menus or any generic taxonomies. It supports inline node edition and deletion with additional create form at the bottom, while keeping each node fully customizable via slots. Moreover it uses the customized Vuetify original Treeview under the hood which adds draggable support !
 
-![treeview](/assets/treeview.png)
+![treeview](../../assets/treeview.png)
 
 ### API
 

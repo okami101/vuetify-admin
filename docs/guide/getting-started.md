@@ -9,7 +9,7 @@ If first discover, I highly recommend you to go through the [tutorial](tutorial.
 
 ## Use Vue CLI Plugin
 
-![demo](/assets/dashboard.png)
+![demo](../assets/dashboard.png)
 
 > As a CLI project, be sure to have installed [Vue CLI](https://cli.vuejs.org/guide/installation.html).
 
@@ -200,7 +200,7 @@ Note that it's more a quick starter mode and it should never be used on producti
 
 This guesser pages have one big utility. They display full generated Vue component template code as well as the target file where to paste it on browser console ! It will overriding default current page, and you're already ready to customize it as normal Vue page.
 
-![guesser](/assets/guesser.png)
+![guesser](../assets/guesser.png)
 
 Here some full CRUD page samples for `reviews` resource :
 

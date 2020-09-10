@@ -39,7 +39,7 @@ This project is still experimental on alpha version and BC can be frequent. Actu
 * VueRouter : CRUD pages which uses VAComponents and API resources objects
 * Providers : Bridge between resources modules and your API which ensure compatibility within VA
 
-![Architecture](/diagrams/architecture.svg)
+![Architecture](../diagrams/architecture.svg)
 
 VA is composed of this basic elements :
 

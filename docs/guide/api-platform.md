@@ -30,7 +30,7 @@ First install a new Vue CLI project, as same way as previous tutorial. Then on w
 
 Then launch app by `yarn serve --open --port 8000` you should arrive to this login page :
 
-![login](/assets/api-platform/login.jpg)
+![login](../assets/api-platform/login.jpg)
 
 ## Authentication
 
@@ -248,7 +248,7 @@ export default {
 
 It's enough to render this final page :
 
-![books](/assets/api-platform/books.png)
+![books](../assets/api-platform/books.png)
 
 Title and author filter will appear under `Add filter` dropdown. You can use `alwaysOn` if you prefer to keep them always visible on left side.
 
@@ -358,7 +358,7 @@ export default {
 
 Hydra provider will automatically send data form model to API Platform and return formatted Symfony constraint validations that Vuetify Admin can process :
 
-![validation](/assets/api-platform/validation.png)
+![validation](../assets/api-platform/validation.png)
 
 Server ISBN validation will return error as well if invalid.
 
@@ -449,7 +449,7 @@ We'll use the reference field in order to have a direct link to a given book. Th
 
 The result will be :
 
-![reviews](/assets/api-platform/reviews.png)
+![reviews](../assets/api-platform/reviews.png)
 
 ### Reviews form
 
@@ -493,7 +493,7 @@ The main particularity is the autocomplete for setting the book to be attached t
 
 The final result :
 
-![form](/assets/api-platform/form.png)
+![form](../assets/api-platform/form.png)
 
 ## Conclusion
 

@@ -45,7 +45,7 @@ The final form model data that will be sent on your data provider will also resp
 
 Will render :
 
-![text-input](/assets/inputs/text.png)
+![text-input](../../assets/inputs/text.png)
 
 ### Password
 
@@ -61,7 +61,7 @@ Will render :
 
 Will render :
 
-![password](/assets/inputs/password.png)
+![password](../../assets/inputs/password.png)
 
 ### Number
 
@@ -89,7 +89,7 @@ Will render :
 
 Will render :
 
-![date](/assets/inputs/date.png)
+![date](../../assets/inputs/date.png)
 
 ### Boolean
 
@@ -117,7 +117,7 @@ Will render :
 
 Will render :
 
-![rating](/assets/inputs/rating.png)
+![rating](../../assets/inputs/rating.png)
 
 ### Rich text
 
@@ -133,7 +133,7 @@ Will render :
 
 Will render :
 
-![rich-text](/assets/inputs/rich-text.png)
+![rich-text](../../assets/inputs/rich-text.png)
 
 ::: warning CDN ASSET
 In order to work, this input needs the URL of main TinyMCE JS bundles with a proper API key preloaded. Configure it on your tiny cloud account and add this scripts to the `public/index.html` :
@@ -202,7 +202,7 @@ You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowse
 
 If you use any PHP framework you should try `elFinder` which is already integrated on official [Laravel Admin](../laravel.md) package :
 
-![file-browser](/assets/inputs/file-browser.png)
+![file-browser](../../assets/inputs/file-browser.png)
 :::
 
 ### Select
@@ -219,7 +219,7 @@ If you use any PHP framework you should try `elFinder` which is already integrat
 
 Will render :
 
-![select](/assets/inputs/select.png)
+![select](../../assets/inputs/select.png)
 
 ::: tip LOCALIZED ENUMS
 You may centralized all choices for reuse directly inside you locales as [explain here](../i18n.md#resources). If no choices set, `VaSelectInput` will lookup for this valid translated key format : `resources.{resource}.enums.{source}.{value}`.
@@ -256,7 +256,7 @@ It will automatically fetch all publishers and integrate them as choices. Multip
 
 Will render :
 
-![radio-group](/assets/inputs/radio-group.png)
+![radio-group](../../assets/inputs/radio-group.png)
 
 ::: tip NO CHECKBOX GROUP
 Use above select with `multiple` prop enabled.
@@ -285,7 +285,7 @@ Same above related `VaSelectInput` references tip applies, without multiple supp
 
 Will render :
 
-![autocomplete](/assets/inputs/autocomplete.png)
+![autocomplete](../../assets/inputs/autocomplete.png)
 
 ::: tip SEARCH
 Use `minChars` and `searchQuery` to configure the minimal char needed before search and the query search parameter key which is `q` by default. It will reuse `getList` data provider method with a custom search filter.
@@ -318,7 +318,7 @@ Autocomplete will be transformed into combobox component as soon as you enable `
 
 Will render :
 
-![file](/assets/inputs/file.png)
+![file](../../assets/inputs/file.png)
 
 ::: tip IMAGES
 Use `preview` for image gallery support, use [`VaImageField`](fields.md#image) under the hood.
@@ -364,7 +364,7 @@ If using Laravel Admin, this [RequestMediaTrait](../laravel.md#requestmediatrait
 
 Will render :
 
-![array](/assets/inputs/array.png)
+![array](../../assets/inputs/array.png)
 
 ::: details LABEL
 For proper inner localization, use nested structure :
@@ -400,7 +400,7 @@ public function rules()
 
 And it should work perfectly fine :
 
-![array-validation](/assets/inputs/array-validation.png)
+![array-validation](../../assets/inputs/array-validation.png)
 :::
 
 ## Custom component

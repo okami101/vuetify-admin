@@ -1,9 +1,0 @@
-stateDiagram
-  state DataTransfer {
-    CRUDPages --> VuetifyAdmin: Interaction
-    VuetifyAdmin --> CRUDPages: Show / Message
-    VuetifyAdmin --> DataProvider: Data query
-    DataProvider --> API: HTTP
-    API --> DataProvider: Response
-    DataProvider --> VuetifyAdmin: JSON Data
-  }

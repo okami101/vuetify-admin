@@ -135,7 +135,7 @@ Custom authenticated pages should use dedicated `src/router/admin.js`. This file
 
 ### Login page
 
-![login](/assets/login.jpg)
+![login](../assets/login.jpg)
 
 ::: tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you fully functional login page !  
@@ -180,7 +180,7 @@ If you need to add this features, login page is the perfect place to do it. Simp
 
 ### Profile page
 
-![profile](/assets/profile.png)
+![profile](../assets/profile.png)
 
 ::: tip VUE CLI PLUGIN
 [Vue CLI VA Plugin](getting-started.md) will generate for you fully functional profile page !

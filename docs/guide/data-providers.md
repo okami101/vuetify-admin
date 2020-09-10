@@ -23,7 +23,7 @@ await provider.delete("books", { id: book.id });
 
 All fetching methods of a data provider are standardized in order to ensure compatibility between Vuetify Admin with any API server. This is the adapter pattern which allows all kind of different provider for each type of backend of any exchange protocol, whether it be REST, GraphQL, or even SOAP...
 
-![Data Provider](/diagrams/data-provider.svg)
+![Data Provider](../diagrams/data-provider.svg)
 
 In order to give to Vuetify Admin the ability of fetching remote resource data, you must inject a specific data provider into his constructor as explained in [next chapiter](admin.md).
 
