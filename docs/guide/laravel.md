@@ -22,7 +22,7 @@ Simply init your project by this simple steps :
 
 ```bash
 composer create-project laravel/laravel my-laravel-admin-app 7.*
-cd my-brand-new-project
+cd my-laravel-admin-app
 composer require okami101/laravel-admin
 php artisan admin:install
 ```
