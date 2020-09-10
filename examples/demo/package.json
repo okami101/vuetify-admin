@@ -1,6 +1,6 @@
 {
   "name": "bookstore-admin",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,13 +14,13 @@
     "axios": "^0.20.0",
     "core-js": "^3.4.4",
     "portal-vue": "^2.1.7",
-    "vuetify-admin": "^0.3.5",
     "vue": "^2.6.12",
     "vue-chartist": "^2.3.0",
     "vue-i18n": "^8.20.0",
     "vue-router": "^3.3.2",
     "vuedraggable": "^2.24.1",
     "vuetify": "^2.3.10",
+    "vuetify-admin": "^0.4.0",
     "vuex": "^3.1.3"
   },
   "devDependencies": {
@@ -36,8 +36,8 @@
     "sass": "^1.26.7",
     "sass-loader": "^10.0.1",
     "vue-cli-plugin-i18n": "~1.0.1",
-    "vue-cli-plugin-vuetify-admin": "^0.3.2",
     "vue-cli-plugin-vuetify": "^2.0.5",
+    "vue-cli-plugin-vuetify-admin": "^0.4.0",
     "vue-template-compiler": "^2.6.12",
     "vuetify-loader": "^1.4.4"
   }
