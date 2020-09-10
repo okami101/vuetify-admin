@@ -5,10 +5,10 @@ This guide is a demonstration of how official [Laravel Admin](https://github.com
 ::: warning REQUIREMENTS
 
 * You must have at least PHP 7.2
-* [Laravel installer](https://laravel.com/docs#installing-laravel)
-* [Vue CLI](https://cli.vuejs.org/guide/installation.html)
-* Should be installed on fresh laravel 7 installation
-* [Docker](https://www.docker.com/get-started) as option
+* [Laravel installer](https://laravel.com/docs#installing-laravel).
+* [Vue CLI](https://cli.vuejs.org/guide/installation.html).
+* Should be installed on fresh Laravel 7 installation, Laravel 8 isn't supported yet.
+* [Docker](https://www.docker.com/get-started) as option.
 
 :::
 
@@ -21,7 +21,8 @@ You will find complete source code of this tutorial [in the main repo](https://g
 Simply init your project by this simple steps :
 
 ```bash
-laravel new my-brand-new-project && cd my-brand-new-project
+composer create-project laravel/laravel my-laravel-admin-app 7.*
+cd my-brand-new-project
 composer require okami101/laravel-admin
 php artisan admin:install
 ```
