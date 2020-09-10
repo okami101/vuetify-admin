@@ -1,3 +1,3 @@
-[submodule "laravel-vuetify-admin"]
+[submodule "laravel-admin"]
 	path = packages/laravel
-	url = git@github.com:okami101/laravel-vuetify-admin.git
+	url = git@github.com:okami101/laravel-admin.git

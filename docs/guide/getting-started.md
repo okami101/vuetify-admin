@@ -18,7 +18,7 @@ If first discover, I highly recommend you to go through the [tutorial](tutorial.
 ::: tip BACKEND API
 You should have a separate API backend project before using this package.
 
-Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) composer package. As a bonus, this package will use an integrated laravel optimized Vue CLI preset for even less install steps. Go [here](laravel.md) for full showcase.
+Fortunately you can quickly start with a fully functional Laravel API backend thanks to separated [Laravel Admin](https://github.com/okami101/laravel-admin) composer package. As a bonus, this package will use an integrated laravel optimized Vue CLI preset for even less install steps. Go [here](laravel.md) for full showcase.
 
 In case you want to use it on your custom API, you may probably need to write your own [data provider](data-providers.md).
 :::

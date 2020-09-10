@@ -18,7 +18,7 @@
         "laravel/sanctum": "^2.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "okami101/laravel-vuetify-admin": "dev-master"
+        "okami101/laravel-admin": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -32,7 +32,7 @@
         "phpunit/phpunit": "^9.0"
     },
     "repositories": {
-        "okami101/laravel-vuetify-admin": {
+        "okami101/laravel-admin": {
             "type": "path",
             "url": "../../packages/laravel"
         }

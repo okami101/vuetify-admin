@@ -7,7 +7,7 @@ use App\Http\Requests\StoreAuthor;
 use App\Http\Requests\UpdateAuthor;
 use App\Http\Resources\Author as AuthorResource;
 use Illuminate\Database\Eloquent\Builder;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
+use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 

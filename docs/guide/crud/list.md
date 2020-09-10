@@ -257,7 +257,7 @@ A global search filter will be enabled by default. To disable it, use `disableGl
 
 This filter will send the string search query on backend via the key configured on `globalSearchQuery`, which is `q` by default.
 
-Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the [separate Laravel package](https://github.com/okami101/laravel-vuetify-admin) for your Laravel app, you can use the dedicated [`SearchFilter`](../laravel.md#search-filter) for that.
+Then you have to deal on backend side for SQL processing, for example via a multi columns `LIKE` search. If you use the [separate Laravel package](https://github.com/okami101/laravel-admin) for your Laravel app, you can use the dedicated [`SearchFilter`](../laravel.md#search-filter) for that.
 
 ::: tip INTERNAL FILTERS
 In addition to exposed filters, you may need some internal filters that user cannot modify through UI. Use `filter` prop for that. It's an simple key-value object that will be automatically sent to your data provider, merged with any other active filters.

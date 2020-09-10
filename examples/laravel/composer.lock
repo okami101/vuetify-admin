@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ceb78103a8567159a9a033eeb77030c",
+    "content-hash": "4f35043b68ab65437f35ee449ab52e8a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2008,12 +2008,12 @@
             "time": "2020-08-30T16:15:20+00:00"
         },
         {
-            "name": "okami101/laravel-vuetify-admin",
+            "name": "okami101/laravel-admin",
             "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "../../packages/laravel",
-                "reference": "35b8bf3d3cab3e97ef570f3daf6a923099c9ae1d"
+                "reference": "e12c36a6c5f62cdc63866557c3bb062ae3597973"
             },
             "require": {
                 "illuminate/routing": "^7.0",
@@ -2034,18 +2034,18 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Okami101\\LaravelVuetifyAdmin\\AdminServiceProvider"
+                        "Okami101\\LaravelAdmin\\AdminServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Okami101\\LaravelVuetifyAdmin\\": "src"
+                    "Okami101\\LaravelAdmin\\": "src"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Okami101\\LaravelVuetifyAdmin\\Tests\\": "tests"
+                    "Okami101\\LaravelAdmin\\Tests\\": "tests"
                 }
             },
             "scripts": {
@@ -9708,7 +9708,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "okami101/laravel-vuetify-admin": 20
+        "okami101/laravel-admin": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

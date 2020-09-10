@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Request;
-use Okami101\LaravelVuetifyAdmin\Traits\AccountTrait;
+use Okami101\LaravelAdmin\Traits\AccountTrait;
 
 class AccountController extends Controller
 {

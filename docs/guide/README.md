@@ -63,7 +63,7 @@ To summary :
 * [Vue CLI Plugin](getting-started.md) : for immediate start.
 * [Tutorial](tutorial.md) : follow this quick tutorial if you want a good starting point.
 * [API Platform](api-platform.md) : tutorial with advanced backend API for more real use case.
-* [Laravel Vuetify Admin](laravel.md) : for complete top to bottom development experience with Laravel backend.
+* [Laravel Admin](laravel.md) : for complete top to bottom development experience with Laravel backend.
 
 **Resources builder :**
 

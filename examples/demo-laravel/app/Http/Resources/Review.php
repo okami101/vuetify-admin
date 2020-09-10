@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Okami101\LaravelVuetifyAdmin\Http\Resources\BaseResource;
+use Okami101\LaravelAdmin\Http\Resources\BaseResource;
 
 class Review extends BaseResource
 {

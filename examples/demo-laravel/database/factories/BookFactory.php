@@ -4,7 +4,7 @@
 
 use App\Book;
 use Faker\Generator as Faker;
-use Okami101\LaravelVuetifyAdmin\Faker\Provider\Html;
+use Okami101\LaravelAdmin\Faker\Provider\Html;
 
 $factory->define(Book::class, function (Faker $faker) {
     $faker->addProvider(new Html($faker));

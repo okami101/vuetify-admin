@@ -60,7 +60,7 @@ Next, comment `EnsureFrontendRequestsAreStateful` middleware :
     //\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
     'throttle:300,1',
     \Illuminate\Routing\Middleware\SubstituteBindings::class,
-    \Okami101\LaravelVuetifyAdmin\Http\Middleware\ReadOnly::class,
+    \Okami101\LaravelAdmin\Http\Middleware\ReadOnly::class,
 ],
 ```
 
@@ -96,7 +96,7 @@ On server-side, replace `EnsureFrontendRequestsAreStateful` middleware by `auth.
     'auth.basic',
     'throttle:300,1',
     \Illuminate\Routing\Middleware\SubstituteBindings::class,
-    \Okami101\LaravelVuetifyAdmin\Http\Middleware\ReadOnly::class,
+    \Okami101\LaravelAdmin\Http\Middleware\ReadOnly::class,
 ],
 ```
 

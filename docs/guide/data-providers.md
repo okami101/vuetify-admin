@@ -90,7 +90,7 @@ In case of a [translatable resource](i18n.md#resource-translation), Vuetify Admi
 
 [Laravel Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/laravel.js) is one of the available data provider that implements previous contract. You can use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part and error handling.
 
-This provider is intended to be use by official [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) composer package as [explained on Laravel guide](laravel.md).
+This provider is intended to be use by official [Laravel Admin](https://github.com/okami101/laravel-admin) composer package as [explained on Laravel guide](laravel.md).
 
 ::: tip EXISTING LARAVEL PROJECT
 You can even use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.

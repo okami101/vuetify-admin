@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Okami101\LaravelVuetifyAdmin\Http\Middleware\Impersonate::class,
+            \Okami101\LaravelAdmin\Http\Middleware\Impersonate::class,
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],

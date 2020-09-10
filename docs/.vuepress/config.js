@@ -82,7 +82,7 @@ module.exports = (ctx) => ({
           },
           {
             text: "Laravel",
-            link: "https://github.com/okami101/laravel-vuetify-admin",
+            link: "https://github.com/okami101/laravel-admin",
           },
           {
             text: "Demo",

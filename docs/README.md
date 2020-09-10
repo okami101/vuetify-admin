@@ -41,7 +41,7 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   <div class="feature">
     <img src="/icons/laravel.svg" alt="laravel" />
     <h2>Laravel ready</h2>
-    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/laravel-vuetify-admin"><strong>Laravel Vuetify Admin</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. <strong>Docker support and Server-side API CRUD code generators</strong> included as a bonus !</p>
+    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/laravel-admin"><strong>Laravel Admin</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. <strong>Docker support and Server-side API CRUD code generators</strong> included as a bonus !</p>
   </div>
   <div class="feature">
     <img src="/icons/books.svg" alt="documented" />

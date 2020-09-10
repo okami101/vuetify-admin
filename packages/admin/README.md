@@ -38,7 +38,7 @@ Then select suited options according to your needs and start your admin panel by
 * [Authentication](https://www.okami101.io/vuetify-admin/guide/authentication.html)
 * [Authorization](https://www.okami101.io/vuetify-admin/guide/authorization.html)
 
-> Check [Laravel tutorial](https://www.okami101.io/vuetify-admin/guide/laravel.html) for complete top-to-bottom development experience showcase with separate [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) composer package.
+> Check [Laravel tutorial](https://www.okami101.io/vuetify-admin/guide/laravel.html) for complete top-to-bottom development experience showcase with separate [Laravel Admin](https://github.com/okami101/laravel-admin) composer package.
 
 ## Included components
 

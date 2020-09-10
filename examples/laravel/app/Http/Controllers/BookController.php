@@ -6,7 +6,7 @@ use App\Book;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
+use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 

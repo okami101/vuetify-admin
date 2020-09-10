@@ -1,6 +1,6 @@
 # Laravel
 
-This guide is a demonstration of how official [Laravel Vuetify Admin](https://github.com/okami101/laravel-vuetify-admin) can heavily facilitates Vuetify Admin integration within laravel backend for full top to bottom development experience. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
+This guide is a demonstration of how official [Laravel Admin](https://github.com/okami101/laravel-admin) can heavily facilitates Vuetify Admin integration within laravel backend for full top to bottom development experience. We will also made usage of server and client code generator commands for YAML driven development showcase. Simply quick and done !
 
 ::: warning REQUIREMENTS
 
@@ -22,7 +22,7 @@ Simply init your project by this simple steps :
 
 ```bash
 laravel new my-brand-new-project && cd my-brand-new-project
-composer require okami101/laravel-vuetify-admin
+composer require okami101/laravel-admin
 php artisan admin:install
 ```
 
@@ -90,7 +90,7 @@ class Kernel extends HttpKernel
     /* ... */
         'api' => [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Okami101\LaravelVuetifyAdmin\Http\Middleware\Impersonate::class,
+            \Okami101\LaravelAdmin\Http\Middleware\Impersonate::class,
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -104,7 +104,7 @@ Note as `Impersonate` must be placed just right **AFTER** the `EnsureFrontendReq
 
 ### Vue CLI admin UI project
 
-**At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/laravel-vuetify-admin/blob/master/preset.json).**
+**At the end of installation, a full ready Vue CLI Admin project will be installed inside `admin` sub folder (default) with all required dependencies by using [this preset](https://github.com/okami101/laravel-admin/blob/master/preset.json).**
 
 ::: tip UI ADMIN GENERATE COMMAND
 You can still regenerate new admin UI without reuse full installer by using `php artisan admin:ui`.
@@ -361,7 +361,7 @@ use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Okami101\LaravelVuetifyAdmin\Filters\SearchFilter;
+use Okami101\LaravelAdmin\Filters\SearchFilter;
 
 class BookController extends Controller
 {
@@ -457,7 +457,7 @@ class BookController extends Controller
 
 namespace App\Http\Resources;
 
-use Okami101\LaravelVuetifyAdmin\Http\Resources\BaseResource;
+use Okami101\LaravelAdmin\Http\Resources\BaseResource;
 
 class Book extends BaseResource
 {
@@ -474,7 +474,7 @@ class Book extends BaseResource
 }
 ```
 
-> Use [Laravel eloquent resource](https://laravel.com/docs/eloquent-resources) and extend specific LaravelVuetifyAdmin base resource mainly for translatable and media API handling.
+> Use [Laravel eloquent resource](https://laravel.com/docs/eloquent-resources) and extend specific LaravelAdmin base resource mainly for translatable and media API handling.
 :::
 
 ::::
@@ -494,7 +494,7 @@ You may needs to write some factory code for dummy data. Let's write it on next 
 
 use App\Book;
 use Faker\Generator as Faker;
-use Okami101\LaravelVuetifyAdmin\Faker\Provider\Html;
+use Okami101\LaravelAdmin\Faker\Provider\Html;
 
 $factory->define(Book::class, function (Faker $faker) {
     $faker->addProvider(new Html($faker));
@@ -911,7 +911,7 @@ And finally the form view :
 
 ### Specific resource base
 
-For API resource definition, you may use [Eloquent Resources](https://laravel.com/docs/eloquent-resources) that extends `Okami101\LaravelVuetifyAdmin\Http\Resources\BaseResource` in case you need media or translatable fields support within Vuetify Admin.
+For API resource definition, you may use [Eloquent Resources](https://laravel.com/docs/eloquent-resources) that extends `Okami101\LaravelAdmin\Http\Resources\BaseResource` in case you need media or translatable fields support within Vuetify Admin.
 
 This class will do 2 things :
 
@@ -943,7 +943,7 @@ The Vuetify Admin file upload component `va-file-input` will take care of all of
 
 ### Search filter
 
-If you want use global search in [Vuetify Admin Iterator](crud/list.md), use `Okami101\LaravelVuetifyAdmin\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
+If you want use global search in [Vuetify Admin Iterator](crud/list.md), use `Okami101\LaravelAdmin\Filters\SearchFilter` with all searchable fields inside allowedFilters method of [Spatie Query Builder](https://docs.spatie.be/laravel-query-builder/v2/features/filtering/) as next :
 
 ```php {4}
 return new BookCollection(
@@ -961,12 +961,12 @@ Use `exportOrPaginate` specific macro after end of each QueryBuilder in order to
 
 ### Html Faker provider
 
-You can use `Okami101\LaravelVuetifyAdmin\Faker\Provider\Html` for easy html generation your factories :
+You can use `Okami101\LaravelAdmin\Faker\Provider\Html` for easy html generation your factories :
 
 ```php {6,15,16}
 use App\Book;
 use Faker\Generator as Faker;
-use Okami101\LaravelVuetifyAdmin\Faker\Provider\Html;
+use Okami101\LaravelAdmin\Faker\Provider\Html;
 
 $factory->define(Book::class, function (Faker $faker) {
     $faker->addProvider(new Html($faker));

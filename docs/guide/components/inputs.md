@@ -177,7 +177,7 @@ Default init value for `init` :
 ::: details IMAGE UPLOAD HANDLER
 You may need a real backend image upload handler in order to avoid the default base64. Use global `imageUploadUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a handler URL compatible with TinyMCE 5. It will add a direct upload zone on images plugin and as well as enable drag and drop.
 
-[Laravel Vuetify Admin](../laravel.md) already integrate a functional upload handler that you can activate by adding the upload route :
+[Laravel Admin](../laravel.md) already integrate a functional upload handler that you can activate by adding the upload route :
 
 **`routes/api.php`**
 
@@ -200,7 +200,7 @@ You may provide admin axios instance to [VuetifyAdmin constructor](../admin.md#i
 ::: details FILE BROWSER
 You may want to bridge the Wysiwyg within a file browser. Use global `fileBrowserUrl` admin TinyMCE options [as explain here](../admin.md#options) for setting a backend file browser solution. It will add a picker button for images and media that allows file selection from the file browser.
 
-If you use any PHP framework you should try `elFinder` which is already integrated on official [Laravel Vuetify Admin](../laravel.md) package :
+If you use any PHP framework you should try `elFinder` which is already integrated on official [Laravel Admin](../laravel.md) package :
 
 ![file-browser](/assets/inputs/file-browser.png)
 :::
@@ -338,7 +338,7 @@ Raw files will be send into your update or create API according to given `source
 ::: tip DATA PROVIDER FILE DELETION
 This file input will use `VaFileField` or `VaImageField` with `clearable` prop enabled under the hood which allows file removing. It will fill an array which contains media id that should be deleted on backend. You can use `itemValue` prop if media value different than `id`. Then this array will be send to your update API with a specific delete property which will take this name format : `{source}_delete`.
 
-If using Laravel Vuetify Admin, this [RequestMediaTrait](../laravel.md#requestmediatrait) will done already everything for you.
+If using Laravel Admin, this [RequestMediaTrait](../laravel.md#requestmediatrait) will done already everything for you.
 :::
 
 ### Array
