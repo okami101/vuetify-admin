@@ -30,11 +30,11 @@ getDocComponents().then((docs) => {
      */
     tagsJson[`va-${tag}`] = {
       description: doc.description,
-      attributes: (doc.props || []).map((p) => p.name),
+      attributes: (doc.props || []).map((p) => kebabCase(p.name)),
     };
 
     (doc.props || []).forEach((p) => {
-      attributesJson[`va-${tag}/${p.name}`] = {
+      attributesJson[`va-${tag}/${kebabCase(p.name)}`] = {
         description: p.description,
         type: p.type.name,
       };
