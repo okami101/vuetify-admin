@@ -9,7 +9,7 @@ import {
   DELETE_MANY,
 } from "./actions";
 
-import { fetchJson } from "../../utils/fetch";
+import { fetchJson } from "../utils/fetch";
 import qs from "qs";
 import trimEnd from "lodash/trimEnd";
 
