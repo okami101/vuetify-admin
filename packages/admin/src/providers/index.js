@@ -7,6 +7,9 @@ import basicAuthProvider from "./auth/basic";
 import fakeAuthProvider from "./auth/fake";
 import sanctumAuthProvider from "./auth/sanctum";
 
+import FetchJson from "./utils/fetch";
+import objectToFormData from "./utils/objectToFormData";
+
 export {
   laravelDataProvider,
   jsonServerDataProvider,
@@ -16,4 +19,6 @@ export {
   jwtAuthProvider,
   fakeAuthProvider,
   sanctumAuthProvider,
+  FetchJson,
+  objectToFormData,
 };

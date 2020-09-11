@@ -1,4 +1,6 @@
-export const createHeadersFromOptions = (options) => {
+import trimEnd from "lodash/trimEnd";
+
+const createHeadersFromOptions = (options) => {
   const requestHeaders =
     options.headers ||
     new Headers({
@@ -18,20 +20,49 @@ export const createHeadersFromOptions = (options) => {
   return requestHeaders;
 };
 
-export const fetchJson = async (url, options = {}) => {
-  const requestHeaders = createHeadersFromOptions(options);
-
-  let response = await fetch(url, { ...options, headers: requestHeaders });
-
-  let json = await response.json();
-
-  let { status, statusText, headers } = response;
-
-  if (status < 200 || status >= 300) {
-    return Promise.reject({
-      message: (json && json.message) || statusText,
-      status,
-    });
+export default class FetchJson {
+  constructor(url) {
+    this.url = trimEnd(url, "/");
   }
-  return Promise.resolve({ status, headers, json });
-};
+
+  get(path, options = {}) {
+    return this.call(path, options);
+  }
+
+  post(path, data, options = {}) {
+    return this.call(path, { ...options, method: "POST", body: data });
+  }
+
+  put(path, data, options = {}) {
+    return this.call(path, { ...options, method: "PUT", body: data });
+  }
+
+  patch(path, data, options = {}) {
+    return this.call(path, { ...options, method: "PATCH", body: data });
+  }
+
+  delete(path, options = {}) {
+    return this.call(path, { ...options, method: "DELETE" });
+  }
+
+  async call(path, options = {}) {
+    const requestHeaders = createHeadersFromOptions(options);
+
+    let response = await fetch(`${this.url}/${path}`, {
+      ...options,
+      headers: requestHeaders,
+    });
+
+    let json = await response.json();
+
+    let { status, statusText, headers } = response;
+
+    if (status < 200 || status >= 300) {
+      return Promise.reject({
+        message: (json && json.message) || statusText,
+        status,
+      });
+    }
+    return Promise.resolve({ status, headers, json });
+  }
+}

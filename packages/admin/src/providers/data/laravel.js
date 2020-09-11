@@ -11,8 +11,9 @@ import {
   DELETE_MANY,
   MOVE_NODE,
 } from "./actions";
-import qs from "qs";
+
 import objectToFormData from "../utils/objectToFormData";
+import qs from "qs";
 
 export default (axios, baseURL = "/api") => {
   const getRequest = (type, resource, params = {}) => {

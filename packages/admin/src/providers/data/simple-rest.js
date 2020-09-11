@@ -9,12 +9,13 @@ import {
   DELETE_MANY,
 } from "./actions";
 
-import { fetchJson } from "../utils/fetch";
+import FetchJson from "../utils/fetch";
 import qs from "qs";
-import trimEnd from "lodash/trimEnd";
 
-export default (apiURL, httpClient = fetchJson) => {
-  const baseURL = trimEnd(apiURL, "/");
+export default (httpClient) => {
+  if (typeof httpClient === "string") {
+    httpClient = new FetchJson(httpClient);
+  }
 
   const fetchApi = async (type, resource, params = {}) => {
     switch (type) {
@@ -41,8 +42,8 @@ export default (apiURL, httpClient = fetchJson) => {
           };
         }
 
-        let { json, headers } = await httpClient(
-          `${baseURL}/${resource}?${qs.stringify(query)}`
+        let { json, headers } = await httpClient.get(
+          `${resource}?${qs.stringify(query)}`
         );
 
         return {
@@ -52,8 +53,8 @@ export default (apiURL, httpClient = fetchJson) => {
       }
 
       case GET_MANY: {
-        let { json } = await httpClient(
-          `${baseURL}/${resource}?${qs.stringify({
+        let { json } = await httpClient.get(
+          `${resource}?${qs.stringify({
             filter: JSON.stringify({ id: params.ids }),
           })}`
         );
@@ -62,31 +63,23 @@ export default (apiURL, httpClient = fetchJson) => {
       }
 
       case GET_ONE: {
-        let { json } = await httpClient(`${baseURL}/${resource}/${params.id}`);
+        let { json } = await httpClient.get(`${resource}/${params.id}`);
 
         return { data: json };
       }
 
       case CREATE: {
-        let { json } = await httpClient(`${baseURL}/${resource}`, {
-          method: "POST",
-          data: params.data,
-        });
+        let { json } = await httpClient.post(`${resource}`, params.data);
         return { data: json };
       }
 
       case UPDATE: {
-        let { json } = await httpClient(`${baseURL}/${resource}/${params.id}`, {
-          method: "PUT",
-          data: params.data,
-        });
+        let { json } = await httpClient.put(`${resource}`, params.data);
         return { data: json };
       }
 
       case DELETE: {
-        let { json } = await httpClient(`${baseURL}/${resource}/${params.id}`, {
-          method: "DELETE",
-        });
+        let { json } = httpClient.delete(`${resource}`);
         return { data: json };
       }
 
