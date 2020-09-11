@@ -11,7 +11,6 @@ import routes from "@/router/admin";
 import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
-import axios from "axios";
 
 /**
  * Load Admin UI components
@@ -19,14 +18,9 @@ import axios from "axios";
 Vue.use(VuetifyAdmin);
 
 /**
- * Axios instance
+ * API url
  */
-const baseURL = process.env.VUE_APP_API_URL || "http://localhost:3000";
-
-const http = axios.create({
-  baseURL,
-  headers: { "X-Requested-With": "XMLHttpRequest" },
-});
+const apiURL = process.env.VUE_APP_API_URL || "http://localhost:3000";
 
 /**
  * Init admin
@@ -41,9 +35,8 @@ export default new VuetifyAdmin({
     en,
   },
   translations: ["en"],
-  dataProvider: simpleRestDataProvider(http),
+  dataProvider: simpleRestDataProvider(apiURL),
   resources,
-  axios: http,
   options: {
     dateFormat: "long",
   },

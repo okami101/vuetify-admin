@@ -11,7 +11,6 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "date-fns": "^2.16.1",
     "faker": "^5.1.0",

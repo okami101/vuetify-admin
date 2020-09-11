@@ -18,7 +18,7 @@ export const createHeadersFromOptions = (options) => {
   return requestHeaders;
 };
 
-export const fetchJson = async (url, options) => {
+export const fetchJson = async (url, options = {}) => {
   const requestHeaders = createHeadersFromOptions(options);
 
   let response = await fetch(url, { ...options, headers: requestHeaders });

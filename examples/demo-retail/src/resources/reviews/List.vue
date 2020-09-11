@@ -53,7 +53,13 @@ export default {
           type: "date",
           sortable: true,
         },
-        "comment",
+        {
+          source: "comment",
+          type: "text",
+          attributes: {
+            truncate: 200,
+          },
+        },
       ],
     };
   },

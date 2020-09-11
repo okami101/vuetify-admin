@@ -8,7 +8,7 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "lint": "eslint --ext .js,.vue packages/cli packages/admin docs/.vuepress"
+    "lint": "eslint --ext .js,.vue packages/admin packages/cli docs/.vuepress"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "^4.5.6",
@@ -29,9 +29,11 @@
     "vuepress-plugin-sitemap": "^2.3.1"
   },
   "workspaces": [
-    "packages/*",
+    "packages/admin",
+    "packages/cli",
     "vue-cli-base",
     "examples/demo",
+    "examples/demo-retail",
     "examples/tutorial",
     "examples/api-platform",
     "examples/laravel/admin"

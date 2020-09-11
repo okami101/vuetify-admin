@@ -11,20 +11,18 @@ import {
 
 import { fetchJson } from "../../utils/fetch";
 import qs from "qs";
+import trimEnd from "lodash/trimEnd";
 
-export default (apiUrl, httpClient = fetchJson) => {
-  const getRequest = (type, resource, params = {}) => {
+export default (apiURL, httpClient = fetchJson) => {
+  const baseURL = trimEnd(apiURL, "/");
+
+  const fetchApi = async (type, resource, params = {}) => {
     switch (type) {
-      case GET_LIST:
-      case GET_MANY: {
+      case GET_LIST: {
         const { pagination, sort, filter } = params;
 
-        if (type === GET_MANY) {
-          return { url: resource, query: { filter: { id: params.ids } } };
-        }
-
         let query = {
-          filter,
+          filter: JSON.stringify(filter),
         };
 
         if (pagination) {
@@ -32,94 +30,68 @@ export default (apiUrl, httpClient = fetchJson) => {
 
           query = {
             ...query,
-            range: [(page - 1) * perPage, page * perPage],
+            range: JSON.stringify([(page - 1) * perPage, page * perPage]),
           };
         }
 
         if (sort && sort.length) {
           query = {
             ...query,
-            sort: [sort[0].by, sort[0].desc ? "DESC" : "ASC"],
+            sort: JSON.stringify([sort[0].by, sort[0].desc ? "DESC" : "ASC"]),
           };
         }
 
+        let { json, headers } = await httpClient(
+          `${baseURL}/${resource}?${qs.stringify(query)}`
+        );
+
         return {
-          url: resource,
-          query,
+          data: json,
+          total: parseInt(headers.get("content-range").split("/").pop(), 10),
         };
+      }
+
+      case GET_MANY: {
+        let { json } = await httpClient(
+          `${baseURL}/${resource}?${qs.stringify({
+            filter: JSON.stringify({ id: params.ids }),
+          })}`
+        );
+
+        return { data: json };
       }
 
       case GET_ONE: {
-        return { url: `${resource}/${params.id}` };
+        let { json } = await httpClient(`${baseURL}/${resource}/${params.id}`);
+
+        return { data: json };
       }
 
       case CREATE: {
-        return {
-          url: resource,
+        let { json } = await httpClient(`${baseURL}/${resource}`, {
           method: "POST",
           data: params.data,
-        };
+        });
+        return { data: json };
       }
 
       case UPDATE: {
-        return {
-          url: `${resource}/${params.id}`,
+        let { json } = await httpClient(`${baseURL}/${resource}/${params.id}`, {
           method: "PUT",
           data: params.data,
-        };
+        });
+        return { data: json };
       }
 
       case DELETE: {
-        return {
-          url: `${resource}/${params.id}`,
+        let { json } = await httpClient(`${baseURL}/${resource}/${params.id}`, {
           method: "DELETE",
-        };
+        });
+        return { data: json };
       }
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
-    }
-  };
-
-  const fetchApi = async (type, resource, params) => {
-    let { url, query, method, data } = getRequest(type, resource, params);
-
-    if (query) {
-      url += `?${qs.stringify(query, { arrayFormat: "brackets" })}`;
-    }
-
-    let options = {
-      method: method || "GET",
-    };
-
-    if (data) {
-      options.body = JSON.stringify(data);
-    }
-
-    let response = await httpClient(url, options);
-
-    /**
-     * Get compatible response for Admin
-     */
-    switch (type) {
-      case GET_LIST:
-      case GET_MANY: {
-        let { data, headers } = response;
-
-        return Promise.resolve({
-          data,
-          total: parseInt(headers.get("content-range").split("/").pop(), 10),
-        });
-      }
-      case DELETE: {
-        return Promise.resolve();
-      }
-
-      case GET_ONE:
-      case CREATE:
-      case UPDATE: {
-        return Promise.resolve(response);
-      }
     }
   };
 
