@@ -5,18 +5,18 @@
 			"path": "."
 		},
 		{
+			"path": "examples\\demo-retail"
+		},
+		{
 			"path": "examples\\demo"
 		},
 		{
-      "name": "tutorial",
 			"path": "examples\\tutorial"
 		},
 		{
-      "name": "api-platform",
 			"path": "examples\\api-platform"
 		},
 		{
-      "name": "vue-cli-base",
 			"path": "vue-cli-base"
 		},
 		{
