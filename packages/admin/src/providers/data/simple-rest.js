@@ -42,45 +42,45 @@ export default (httpClient) => {
           };
         }
 
-        let { json, headers } = await httpClient.get(
+        let { data, headers } = await httpClient.get(
           `${resource}?${qs.stringify(query)}`
         );
 
         return {
-          data: json,
-          total: parseInt(headers.get("content-range").split("/").pop(), 10),
+          data,
+          total: parseInt(headers["content-range"].split("/").pop(), 10),
         };
       }
 
       case GET_MANY: {
-        let { json } = await httpClient.get(
+        let { data } = await httpClient.get(
           `${resource}?${qs.stringify({
             filter: JSON.stringify({ id: params.ids }),
           })}`
         );
 
-        return { data: json };
+        return { data };
       }
 
       case GET_ONE: {
-        let { json } = await httpClient.get(`${resource}/${params.id}`);
+        let { data } = await httpClient.get(`${resource}/${params.id}`);
 
-        return { data: json };
+        return { data };
       }
 
       case CREATE: {
-        let { json } = await httpClient.post(`${resource}`, params.data);
-        return { data: json };
+        let { data } = await httpClient.post(`${resource}`, params.data);
+        return { data };
       }
 
       case UPDATE: {
-        let { json } = await httpClient.put(`${resource}`, params.data);
-        return { data: json };
+        let { data } = await httpClient.put(`${resource}`, params.data);
+        return { data };
       }
 
       case DELETE: {
-        let { json } = httpClient.delete(`${resource}`);
-        return { data: json };
+        let { data } = httpClient.delete(`${resource}`);
+        return { data };
       }
 
       default:

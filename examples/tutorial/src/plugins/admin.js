@@ -14,7 +14,6 @@ import routes from "@/router/admin";
 import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
-import axios from "axios";
 
 /**
  * Load Admin UI components
@@ -27,12 +26,6 @@ Vue.use(VuetifyAdmin);
 const baseURL =
   process.env.VUE_APP_API_URL || "https://jsonplaceholder.okami101.io";
 
-const http = axios.create({
-  baseURL,
-  withCredentials: true,
-  headers: { "X-Requested-With": "XMLHttpRequest" },
-});
-
 /**
  * Init admin
  */
@@ -43,10 +36,9 @@ export default new VuetifyAdmin({
   title: "Vuetify Admin",
   routes,
   locales: { en, fr },
-  dataProvider: jsonServerDataProvider(http),
+  dataProvider: jsonServerDataProvider(baseURL),
   authProvider: fakeAuthProvider(),
   resources,
-  axios: http,
   options: {
     dateFormat: "long",
   },

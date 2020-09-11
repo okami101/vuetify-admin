@@ -30,15 +30,27 @@ export default class FetchJson {
   }
 
   post(path, data, options = {}) {
-    return this.call(path, { ...options, method: "POST", body: data });
+    return this.call(path, {
+      ...options,
+      method: "POST",
+      body: JSON.stringify(data),
+    });
   }
 
   put(path, data, options = {}) {
-    return this.call(path, { ...options, method: "PUT", body: data });
+    return this.call(path, {
+      ...options,
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
   }
 
   patch(path, data, options = {}) {
-    return this.call(path, { ...options, method: "PATCH", body: data });
+    return this.call(path, {
+      ...options,
+      method: "PATCH",
+      body: JSON.stringify(data),
+    });
   }
 
   delete(path, options = {}) {
@@ -63,6 +75,15 @@ export default class FetchJson {
         status,
       });
     }
-    return Promise.resolve({ status, headers, json });
+    return Promise.resolve({
+      status,
+      headers: [...headers.keys()].reduce((o, key) => {
+        return {
+          ...o,
+          [key]: headers.get(key),
+        };
+      }, {}),
+      data: json,
+    });
   }
 }
