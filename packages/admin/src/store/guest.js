@@ -20,7 +20,7 @@ export default {
     },
   },
   actions: {
-    [CHECK_AUTH]: () => {},
+    [CHECK_AUTH]: () => Promise.resolve(true),
     [CHECK_ERROR]: () => {},
   },
 };
