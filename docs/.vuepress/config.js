@@ -1,5 +1,5 @@
 module.exports = (ctx) => ({
-  base: '/vuetify-admin/',
+  base: "/vuetify-admin/",
   locales: {
     "/": {
       lang: "en-US",
