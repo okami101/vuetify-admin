@@ -20,7 +20,7 @@ export default {
   methods: {
     async stopImpersonate() {
       try {
-        await this.$admin.axios.post("/api/users/stopImpersonate");
+        await this.$admin.http.post("/api/users/stopImpersonate");
 
         /**
          * Full reload to home

@@ -24,7 +24,7 @@ export default class VuetifyAdmin {
     resources,
     options,
     canAction,
-    axios,
+    http,
   }) {
     /**
      * Options properties
@@ -35,7 +35,7 @@ export default class VuetifyAdmin {
     this.authProvider = authProvider;
     this.dataProvider = dataProvider;
     this.options = options || {};
-    this.axios = axios;
+    this.http = http;
 
     /**
      * Permissions helper & directive

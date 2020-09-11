@@ -44,7 +44,7 @@ export default new VuetifyAdmin({
   //...
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
-  axios: http,
+  http,
   //...
 });
 ```
@@ -52,7 +52,7 @@ export default new VuetifyAdmin({
 All included providers can be used the same way, if you want to use JWT provider instead, just replace `sanctumAuthProvider` by `jwtAuthProvider`.
 
 ::: tip GLOBAL ADMIN AXIOS
-Pass axios instance into [VuetifyAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.axios`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
+Pass axios instance into [VuetifyAdmin constructor](admin.md#instantiation) in order to access it everywhere on your custom Vue components by `$admin.http`. Very useful for any non standard data provider call and allows reusing of current active authentication state (cookies or token).
 
 Don't forget that only providers are aware of this axios instance, Vuetify Admin doesn't know about it and exclusively use providers for API communication. There is just one exception for specific TinyMCE Wysiwyg for upload image handling but it's not even required for made it work, as it's just offer a better CSRF integration.
 :::

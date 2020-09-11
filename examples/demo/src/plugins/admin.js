@@ -44,7 +44,7 @@ export default new VuetifyAdmin({
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   resources,
-  axios: http,
+  http,
   options: {
     dateFormat: "long",
     tinyMCE: {

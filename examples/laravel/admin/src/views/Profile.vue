@@ -121,7 +121,7 @@ export default {
     }),
     async update(method, url, data) {
       try {
-        await this.$admin.axios({ method, url, data });
+        await this.$admin.http({ method, url, data });
 
         this.errorMessages = {};
         return true;

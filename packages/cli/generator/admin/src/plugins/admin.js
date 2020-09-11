@@ -90,7 +90,7 @@ export default new VuetifyAdmin({
   <%_ } _%>
   <%_ } _%>
   resources,
-  axios: http,
+  http,
   options: {
     dateFormat: "long",
     <%_ if (data === "laravel") { _%>

@@ -64,7 +64,7 @@ You can perfectly customize the layout, which is a simple template component in 
 :::
 
 ::: tip CUSTOMIZE THE DASHBOARD
-The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.axios` http client for any data fetching.
+The default dashboard home page is generated at `src/views/Dashboard.vue` file. Feel free to add anything you want ! You have access to global `$admin.http` http client for any data fetching.
 :::
 
 ## Data Provider

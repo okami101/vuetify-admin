@@ -102,9 +102,9 @@ export default {
 
       if (imageUploadUrl) {
         /**
-         * Use existing axios instance if present, allows better authentication and CSRF integration.
+         * Use existing http instance if present, allows better authentication and CSRF integration.
          */
-        init = this.$admin.axios
+        init = this.$admin.http
           ? {
               ...init,
               paste_data_images: true,
@@ -112,7 +112,7 @@ export default {
                 try {
                   let formData = new FormData();
                   formData.append("file", blobInfo.blob(), blobInfo.filename());
-                  let { data } = await this.$admin.axios.post(
+                  let { data } = await this.$admin.http.post(
                     imageUploadUrl,
                     formData
                   );

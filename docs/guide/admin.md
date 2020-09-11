@@ -59,7 +59,7 @@ export default new VuetifyAdmin({
   authProvider: sanctumAuthProvider(http),
   dataProvider: laravelDataProvider(http),
   resources,
-  axios: http,
+  http,
   options: {
     dateFormat: "long",
     numberFormat: "numeric",
@@ -120,21 +120,21 @@ new Vue({
 
 In order to operate, VuetifyAdmin constructor needs all of this parameters :
 
-| Property         | Type         | Description                                                                                                                                                                                   |
-| ---------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **router**       | `VueRouter`  | Vue Router instance, which can contains all your public custom routes.                                                                                                                        |
-| **store**        | `Vuex.Store` | Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.                                                                        |
-| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n.md).                                                   |
-| **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                                                  |
-| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout.md). All resources routes CRUD pages will be registered here as children.                               |
-| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported. See [here](i18n.md#ui) for further detail.                                                                           |
-| **translations** | `array`      | All supported traduction for your resources. More detail [here](i18n.md#resources).                                                                                                           |
-| **authProvider** | `object`     | [Auth](authentication.md) provider that must implements [auth contract](authentication.md#api-contract).                                                                                      |
-| **dataProvider** | `object`     | [Data](data-providers.md) provider that must implements [data contract](data-providers.md#api-contract).                                                                                      |
-| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of expected resource object structure [here](resources.md).                                                          |
-| **axios**        | `object`     | Optional, can provide better auth and CSRF integration for advanced input components as Wysiwyg for image upload. Additionally set a available global axios instance via `this.$admin.axios`. |
-| **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                                  |
-| **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                                |
+| Property         | Type         | Description                                                                                                                                                                     |
+| ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **router**       | `VueRouter`  | Vue Router instance, which can contains all your public custom routes.                                                                                                          |
+| **store**        | `Vuex.Store` | Vue Store instance, which can contains all your custom modules, for automatic resource API modules bridge registering.                                                          |
+| **i18n**         | `VueI18n`    | Vue I18n instance, which can contains all your custom localized labels, for full internationalization support. More detail [here](i18n.md).                                     |
+| **title**        | `string`     | Title of your admin app, will be show on app bar header and document title after page title.                                                                                    |
+| **routes**       | `object`     | List of authenticated routes, which should inherit from an [admin layout](crud/layout.md). All resources routes CRUD pages will be registered here as children.                 |
+| **locales**      | `object`     | At least one provided VA locales, only `en` and `fr` are 100% supported. See [here](i18n.md#ui) for further detail.                                                             |
+| **translations** | `array`      | All supported traduction for your resources. More detail [here](i18n.md#resources).                                                                                             |
+| **authProvider** | `object`     | [Auth](authentication.md) provider that must implements [auth contract](authentication.md#api-contract).                                                                        |
+| **dataProvider** | `object`     | [Data](data-providers.md) provider that must implements [data contract](data-providers.md#api-contract).                                                                        |
+| **resources**    | `array`      | A resources array which contain all resources to administer. More detail of expected resource object structure [here](resources.md).                                            |
+| **http**         | `object`     | Optional injected custom HTTP client, available via `this.$admin.http`. Can provide better auth and CSRF integration for advanced input components as Wysiwyg for image upload. |
+| **options**      | `object`     | Some global options for fields or inputs. See [supported options](#options).                                                                                                    |
+| **canAction**    | `function`   | Callback for [advanced permissions](authorization.md#advanced-usage) testing for each action of any resources.                                                                  |
 
 ![instantiation](../diagrams/instantiation.svg)
 
