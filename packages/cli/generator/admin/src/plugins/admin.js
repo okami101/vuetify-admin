@@ -73,14 +73,14 @@ export default new VuetifyAdmin({
   ],
   <%_ if (data) { _%>
   <%_ if (data === "custom") { _%>
-  dataProvider: dataProvider(axios),
+  dataProvider: dataProvider(http),
   <%_ } else { _%>
   dataProvider: <%- data %>DataProvider(http),
   <%_ } _%>
   <%_ } _%>
   <%_ if (auth) { _%>
   <%_ if (data === "custom") { _%>
-  authProvider: authProvider(axios),
+  authProvider: authProvider(http),
   <%_ } else { _%>
   authProvider: <%- auth %>AuthProvider(
     <%_ if (auth !== "fake") { _%>

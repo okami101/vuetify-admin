@@ -1,0 +1,24 @@
+{
+  "translations": {
+    "en": "English"
+  },
+  "routes": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "not_found": "Not found"
+  },
+  "menu": {
+    "dashboard": "Dashboard"
+  },
+  "resources": {
+    "reviews": {
+      "enums": {
+        "status": {
+          "accepted": "Accepted",
+          "pending": "Pending",
+          "rejected": "Rejected"
+        }
+      }
+    }
+  }
+}

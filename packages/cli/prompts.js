@@ -25,6 +25,10 @@ module.exports = [
         name: "JSON Server as fake REST API",
         value: "jsonServer",
       },
+      {
+        name: "Simple REST API",
+        value: "simpleRest",
+      },
     ],
   },
   {
