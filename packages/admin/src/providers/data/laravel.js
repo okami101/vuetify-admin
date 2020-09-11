@@ -16,9 +16,27 @@ import objectToFormData from "../utils/objectToFormData";
 import qs from "qs";
 
 export default (axios, baseURL = "/api") => {
-  const getRequest = (type, resource, params = {}) => {
-    const resourceURL = `${baseURL}/${resource}`;
+  const httpClient = async (method, url, params = {}) => {
+    try {
+      let { data } = await axios({
+        method,
+        url: `${baseURL}/${url}`,
+        data: params.data,
+        headers: params.locale ? { locale: params.locale } : {},
+      });
 
+      return data;
+    } catch ({ response }) {
+      let { data, status, statusText } = response;
+      return Promise.reject({
+        message: statusText,
+        status,
+        ...(data || {}),
+      });
+    }
+  };
+
+  const fetchApi = async (type, resource, params = {}) => {
     switch (type) {
       case GET_LIST:
       case GET_MANY: {
@@ -33,7 +51,11 @@ export default (axios, baseURL = "/api") => {
           query.filter = {
             id: params.ids,
           };
-          return { url: resourceURL, query };
+
+          return httpClient(
+            "get",
+            `${resource}?${qs.stringify(query, { arrayFormat: "comma" })}`
+          );
         }
 
         query = {
@@ -53,114 +75,80 @@ export default (axios, baseURL = "/api") => {
           });
         }
 
-        return { url: resourceURL, query };
+        let { data, meta } = await httpClient(
+          "get",
+          `${resource}?${qs.stringify(query, { arrayFormat: "comma" })}`,
+          params
+        );
+
+        return {
+          data,
+          total: meta ? meta.total : data.length,
+        };
       }
 
       case GET_TREE: {
-        return { url: `${resourceURL}/tree`, query: { filter: params.filter } };
+        return httpClient(
+          "get",
+          `${resource}/tree?${qs.stringify(
+            { filter: params.filter },
+            { arrayFormat: "comma" }
+          )}`,
+          params
+        );
       }
 
-      case GET_NODES:
-        return {
-          url: `${resourceURL}/nodes/${params.parent ? params.parent.id : ""}`,
-          query: { filter: params.filter },
-        };
+      case GET_NODES: {
+        return httpClient(
+          "get",
+          `${resource}/nodes/${
+            params.parent ? params.parent.id : ""
+          }?${qs.stringify(
+            { filter: params.filter },
+            { arrayFormat: "comma" }
+          )}`,
+          params
+        );
+      }
 
       case GET_ONE: {
-        return { url: `${resourceURL}/${params.id}` };
+        return httpClient("get", `${resource}/${params.id}`, params);
       }
 
       case CREATE: {
-        return {
-          url: resourceURL,
-          method: "post",
-          data: objectToFormData(params.data),
-        };
+        let form = objectToFormData(params.data);
+
+        return httpClient("post", resource, {
+          ...params,
+          data: form,
+        });
       }
 
       case UPDATE: {
         let form = objectToFormData(params.data);
         form.append("_method", "PUT");
 
-        return {
-          url: `${resourceURL}/${params.id}`,
-          method: "post",
+        return httpClient("post", `${resource}/${params.id}`, {
+          ...params,
           data: form,
-        };
+        });
       }
 
       case DELETE: {
-        return {
-          url: `${resourceURL}/${params.id}`,
-          method: "delete",
-        };
+        return httpClient("delete", `${resource}/${params.id}`);
       }
 
       case MOVE_NODE: {
-        return {
-          url: `${resourceURL}/${params.source.id}/move`,
-          method: "patch",
+        return httpClient("patch", `${resource}/${params.source.id}/move`, {
           data: {
             parent_id: params.destination ? params.destination.id : null,
             position: params.position,
           },
-        };
+        });
       }
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
-    }
-  };
-
-  const fetchApi = async (type, resource, params) => {
-    let response = null;
-    let { url, query, method, data } = getRequest(type, resource, params);
-
-    if (query) {
-      url += `?${qs.stringify(query, { arrayFormat: "comma" })}`;
-    }
-
-    try {
-      response = await axios({
-        method,
-        data,
-        url,
-        headers: params.locale ? { locale: params.locale } : {},
-      });
-    } catch ({ response }) {
-      let { data, status, statusText } = response;
-      return Promise.reject({
-        message: statusText,
-        status,
-        ...(data || {}),
-      });
-    }
-
-    /**
-     * Get compatible response for Admin
-     */
-    switch (type) {
-      case GET_LIST:
-      case GET_MANY: {
-        let { data, meta } = response.data;
-
-        return Promise.resolve({
-          data,
-          total: meta ? meta.total : data.length,
-        });
-      }
-      case DELETE: {
-        return Promise.resolve();
-      }
-
-      case GET_ONE:
-      case GET_TREE:
-      case GET_NODES:
-      case CREATE:
-      case UPDATE:
-      case MOVE_NODE: {
-        return Promise.resolve(response.data);
-      }
     }
   };
 

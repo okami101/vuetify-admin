@@ -13,7 +13,7 @@
           publisher: id,
         }"
         :filters="filters"
-        :include="['authors']"
+        :include="['category', 'authors']"
       >
         <va-data-table :fields="fields"></va-data-table>
       </va-list>
@@ -51,7 +51,7 @@ export default {
       ],
       fields: [
         { source: "isbn", link: "show" },
-        { source: "category", type: "select", attributes: { chip: true } },
+        { source: "category.name", labelKey: "category", type: "chip" },
         "title",
         {
           source: "price",

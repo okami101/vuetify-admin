@@ -33,7 +33,7 @@ export default (httpClient) => {
         }
 
         if (type === GET_MANY) {
-          let { data } = await httpClient.get(
+          return httpClient.get(
             `${resource}?${qs.stringify(
               {
                 ...query,
@@ -42,8 +42,6 @@ export default (httpClient) => {
               { arrayFormat: "repeat" }
             )}`
           );
-
-          return { data };
         }
 
         query = {
@@ -90,29 +88,21 @@ export default (httpClient) => {
           };
         }
 
-        let { data } = await httpClient.get(
+        return httpClient.get(
           `${resource}/${params.id}?${qs.stringify(query)}`
         );
-
-        return { data };
       }
 
       case CREATE: {
-        let { data } = await httpClient.post(resource, params.data);
-        return { data };
+        return httpClient.post(resource, params.data);
       }
 
       case UPDATE: {
-        let { data } = await httpClient.put(
-          `${resource}/${params.id}`,
-          params.data
-        );
-        return { data };
+        return httpClient.put(`${resource}/${params.id}`, params.data);
       }
 
       case DELETE: {
-        let { data } = httpClient.delete(`${resource}/${params.id}`);
-        return { data };
+        return httpClient.delete(`${resource}/${params.id}`);
       }
 
       default:

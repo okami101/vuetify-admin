@@ -16,7 +16,7 @@
         :filter="{
           authors: id,
         }"
-        :include="['publisher', 'reviews']"
+        :include="['category', 'publisher', 'reviews']"
       >
         <va-data-table
           disable-sort
@@ -38,7 +38,7 @@ export default {
     return {
       fields: [
         { source: "isbn", link: "show" },
-        { source: "category", type: "select", attributes: { chip: true } },
+        { source: "category.name", labelKey: "category", type: "chip" },
         "title",
         {
           source: "price",
