@@ -9,7 +9,7 @@ import {
   DELETE_MANY,
 } from "./actions";
 
-import FetchJson from "../utils/fetch";
+import FetchJson from "../utils/fetchJson";
 import qs from "qs";
 
 export default (httpClient) => {
@@ -33,7 +33,7 @@ export default (httpClient) => {
         }
 
         if (type === GET_MANY) {
-          let { json } = await httpClient.get(
+          let { data } = await httpClient.get(
             `${resource}?${qs.stringify(
               {
                 ...query,
@@ -43,7 +43,7 @@ export default (httpClient) => {
             )}`
           );
 
-          return { data: json };
+          return { data };
         }
 
         query = {
@@ -98,17 +98,20 @@ export default (httpClient) => {
       }
 
       case CREATE: {
-        let { data } = await httpClient.post(`${resource}`, params.data);
+        let { data } = await httpClient.post(resource, params.data);
         return { data };
       }
 
       case UPDATE: {
-        let { data } = await httpClient.put(`${resource}`, params.data);
+        let { data } = await httpClient.put(
+          `${resource}/${params.id}`,
+          params.data
+        );
         return { data };
       }
 
       case DELETE: {
-        let { data } = httpClient.delete(`${resource}`);
+        let { data } = httpClient.delete(`${resource}/${params.id}`);
         return { data };
       }
 

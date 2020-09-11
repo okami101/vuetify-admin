@@ -2,7 +2,9 @@ import trimEnd from "lodash/trimEnd";
 
 const createHeadersFromOptions = (options) => {
   const requestHeaders =
-    options.headers ||
+    (typeof options.headers === "function"
+      ? options.headers()
+      : options.headers) ||
     new Headers({
       Accept: "application/json",
     });
@@ -21,8 +23,9 @@ const createHeadersFromOptions = (options) => {
 };
 
 export default class FetchJson {
-  constructor(url) {
+  constructor(url, options = {}) {
     this.url = trimEnd(url, "/");
+    this.options = options;
   }
 
   get(path, options = {}) {
@@ -58,10 +61,14 @@ export default class FetchJson {
   }
 
   async call(path, options = {}) {
-    const requestHeaders = createHeadersFromOptions(options);
+    const requestHeaders = createHeadersFromOptions({
+      ...options,
+      ...this.options,
+    });
 
     let response = await fetch(`${this.url}/${path}`, {
       ...options,
+      ...this.options,
       headers: requestHeaders,
     });
 
@@ -71,8 +78,9 @@ export default class FetchJson {
 
     if (status < 200 || status >= 300) {
       return Promise.reject({
-        message: (json && json.message) || statusText,
         status,
+        message: (json && json.message) || statusText,
+        data: json,
       });
     }
     return Promise.resolve({

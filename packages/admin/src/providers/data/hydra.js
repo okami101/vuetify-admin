@@ -8,10 +8,16 @@ import {
   DELETE,
   DELETE_MANY,
 } from "./actions";
+
+import FetchHydra from "../utils/fetchHydra";
 import qs from "qs";
 
-export default (axios) => {
-  const getRequest = (type, resource, params = {}) => {
+export default (httpClient) => {
+  if (typeof httpClient === "string") {
+    httpClient = new FetchHydra(httpClient);
+  }
+
+  const fetchApi = async (type, resource, params = {}) => {
     switch (type) {
       case GET_LIST: {
         const { pagination, sort, filter } = params;
@@ -36,132 +42,38 @@ export default (axios) => {
           });
         }
 
-        return { url: resource, query };
+        let { data, total } = await httpClient.get(
+          `${resource}?${qs.stringify(query, { arrayFormat: "repeat" })}`
+        );
+
+        return { data, total };
       }
 
       case GET_ONE: {
-        return { url: `${resource}/${params.id}` };
+        let { data } = await httpClient.get(`${resource}/${params.id}`);
+        return { data };
       }
 
       case CREATE: {
-        return {
-          url: resource,
-          method: "post",
-          data: params.data,
-        };
+        let { data } = await httpClient.post(resource, params.data);
+        return { data };
       }
 
       case UPDATE: {
-        return {
-          url: `${resource}/${params.id}`,
-          method: "put",
-          data: params.data,
-        };
+        let { data } = await httpClient.put(
+          `${resource}/${params.id}`,
+          params.data
+        );
+        return { data };
       }
 
       case DELETE: {
-        return {
-          url: `${resource}/${params.id}`,
-          method: "delete",
-        };
+        let { data } = httpClient.delete(`${resource}/${params.id}`);
+        return { data };
       }
 
       default:
         throw new Error(`Unsupported fetch action type ${type}`);
-    }
-  };
-
-  const fetchApi = async (type, resource, params) => {
-    let response = null;
-    let { url, query, method, data } = getRequest(type, resource, params);
-
-    if (query) {
-      url += `?${qs.stringify(query, { arrayFormat: "repeat" })}`;
-    }
-
-    try {
-      response = await axios[method || "get"](url, data);
-    } catch ({ response }) {
-      /**
-       * TODO validation
-       */
-      let { data, status, statusText } = response;
-      return Promise.reject({
-        message: statusText,
-        status,
-        ...{
-          message: data["hydra:title"],
-          errors: data.violations
-            ? data.violations.reduce(
-                (o, error) => ({
-                  ...o,
-                  [error.propertyPath]: [
-                    ...(o[error.propertyPath] || []),
-                    error.message,
-                  ],
-                }),
-                {}
-              )
-            : {},
-        },
-      });
-    }
-
-    /**
-     * Parse the guid
-     */
-    let getResourceWithId = (resource) => {
-      let data = {
-        ...resource,
-      };
-
-      if (resource["@id"]) {
-        let id = resource["@id"];
-
-        data.id = id.substring(id.lastIndexOf("/") + 1);
-      }
-
-      Object.keys(resource).forEach((p) => {
-        let value = resource[p];
-
-        /**
-         * Manage nested hydra object reference if applicable
-         */
-        data[p] = Array.isArray(value)
-          ? value.map((v) => getResourceWithId(v))
-          : typeof value === "object" && value["@id"]
-          ? getResourceWithId(value)
-          : value;
-      });
-
-      return data;
-    };
-
-    /**
-     * Get compatible response for Admin
-     */
-    switch (type) {
-      case GET_LIST:
-      case GET_MANY: {
-        let data = response.data["hydra:member"];
-        let total = response.data["hydra:totalItems"];
-
-        return Promise.resolve({
-          data: data.map((r) => getResourceWithId(r)),
-          total,
-        });
-      }
-      case DELETE: {
-        return Promise.resolve();
-      }
-
-      case GET_ONE:
-      case CREATE:
-      case UPDATE: {
-        return Promise.resolve({
-          data: getResourceWithId(response.data),
-        });
-      }
     }
   };
 

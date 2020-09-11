@@ -7,7 +7,8 @@ import basicAuthProvider from "./auth/basic";
 import fakeAuthProvider from "./auth/fake";
 import sanctumAuthProvider from "./auth/sanctum";
 
-import FetchJson from "./utils/fetch";
+import FetchJson from "./utils/fetchJson";
+import FetchHydra from "./utils/fetchHydra";
 import objectToFormData from "./utils/objectToFormData";
 
 export {
@@ -20,5 +21,6 @@ export {
   fakeAuthProvider,
   sanctumAuthProvider,
   FetchJson,
+  FetchHydra,
   objectToFormData,
 };

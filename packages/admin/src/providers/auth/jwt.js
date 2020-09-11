@@ -8,7 +8,13 @@ import {
   GET_PERMISSIONS,
 } from "./actions";
 
-export default (axios, params = {}) => {
+import FetchHydra from "../utils/fetchHydra";
+
+export default (httpClient, params = {}) => {
+  if (typeof httpClient === "string") {
+    httpClient = new FetchHydra(httpClient);
+  }
+
   params = {
     routes: {
       login: "api/auth/login",
@@ -40,23 +46,9 @@ export default (axios, params = {}) => {
     getToken,
   } = params;
 
-  /**
-   * Set token from localStorage to axios authorization header
-   */
-  const updateToken = () => {
-    delete axios.defaults.headers.common["Authorization"];
-    let token = localStorage.getItem(storageKey);
-
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-  };
-
-  updateToken();
-
   return {
     [LOGIN]: async ({ username, password }) => {
-      let response = await axios.post(
+      let response = await httpClient.post(
         routes.login,
         getCredentials({ username, password })
       );
@@ -66,16 +58,14 @@ export default (axios, params = {}) => {
       }
 
       localStorage.setItem(storageKey, getToken(response.data));
-      updateToken();
       return Promise.resolve();
     },
     [LOGOUT]: async () => {
       if (routes.logout) {
-        await axios.post(routes.logout);
+        await httpClient.post(routes.logout);
       }
 
       localStorage.removeItem(storageKey);
-      updateToken();
       return Promise.resolve();
     },
     [CHECK_AUTH]: async () => {
@@ -83,16 +73,15 @@ export default (axios, params = {}) => {
        * Refresh token
        */
       if (routes.refresh) {
-        let response = await axios.post(routes.refresh);
+        let response = await httpClient.post(routes.refresh);
         localStorage.setItem(storageKey, getToken(response.data));
-        updateToken();
       }
 
       /**
        * Get user infos
        */
       if (routes.user) {
-        let response = await axios.post(routes.user);
+        let response = await httpClient.post(routes.user);
 
         if (response.status < 200 || response.status >= 300) {
           throw new Error(response.statusText);
@@ -110,7 +99,6 @@ export default (axios, params = {}) => {
     [CHECK_ERROR]: ({ status }) => {
       if (status === 401 || status === 403) {
         localStorage.removeItem(storageKey);
-        updateToken();
         return Promise.reject();
       }
       return Promise.resolve();

@@ -3,7 +3,11 @@ import VuetifyAdmin from "vuetify-admin";
 
 import "vuetify-admin/src/loader";
 
-import { hydraDataProvider, jwtAuthProvider } from "vuetify-admin/src/providers";
+import {
+  hydraDataProvider,
+  jwtAuthProvider,
+} from "vuetify-admin/src/providers";
+import { FetchHydra } from "vuetify-admin/src/providers";
 import { en, fr } from "vuetify-admin/src/locales";
 
 import router from "@/router";
@@ -11,22 +15,29 @@ import routes from "@/router/admin";
 import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
-import axios from "axios";
 
 /**
  * Load Admin UI components
  */
 Vue.use(VuetifyAdmin);
 
-/**
- * Axios instance
- */
-const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8080";
+const apiURL = process.env.VUE_APP_API_URL || "http://localhost:8080";
 
-const http = axios.create({
-  baseURL,
-  headers: {
-    Accept: "application/ld+json",
+/**
+ * Create fetch instance with custom authentication headers
+ */
+const httpClient = new FetchHydra(apiURL, {
+  headers: () => {
+    let headers = new Headers({
+      Accept: "application/ld+json",
+    });
+
+    let token = localStorage.getItem("jwt_token");
+
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+    return headers;
   },
 });
 
@@ -44,15 +55,14 @@ export default new VuetifyAdmin({
     fr,
   },
   translations: ["en", "fr"],
-  dataProvider: hydraDataProvider(http),
-  authProvider: jwtAuthProvider(http, {
+  dataProvider: hydraDataProvider(httpClient),
+  authProvider: jwtAuthProvider(httpClient, {
     routes: {
-      login: "/authentication_token",
+      login: "authentication_token",
     },
     getToken: (r) => r.token,
   }),
   resources,
-  axios: http,
   options: {
     dateFormat: "long",
     list: {

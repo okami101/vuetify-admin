@@ -21,7 +21,7 @@ import resources from "@/resources";
 Vue.use(VuetifyAdmin);
 
 /**
- * Axios instance
+ * Api URL
  */
 const baseURL =
   process.env.VUE_APP_API_URL || "https://jsonplaceholder.okami101.io";
