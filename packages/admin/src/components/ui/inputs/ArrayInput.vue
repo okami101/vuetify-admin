@@ -1,7 +1,6 @@
 <template>
   <va-input v-bind="$props" class="va-array-input" v-if="input">
     <draggable
-      v-if="input.length"
       :value="input"
       draggable=".item"
       handle=".handle"
@@ -69,7 +68,7 @@ export default {
       /**
        * Generate fake id for drag tracking
        */
-      return value.map((v, i) => {
+      return (value || []).map((v, i) => {
         return { ...v, id: i };
       });
     },
