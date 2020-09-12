@@ -1,3 +1,4 @@
+import Vue from "vue";
 import {
   VAutocomplete,
   VCombobox,
@@ -146,4 +147,9 @@ const VDraggableTreeview = VTreeview.extend({
   },
 });
 
-export { VAutocomplete, VCombobox, VDraggableTreeview };
+/**
+ * Explicit registering of this components because dynamic
+ */
+Vue.component("VAutocomplete", VAutocomplete);
+Vue.component("VCombobox", VCombobox);
+Vue.component("VDraggableTreeview", VDraggableTreeview);

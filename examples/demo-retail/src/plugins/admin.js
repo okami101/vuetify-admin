@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VuetifyAdmin from "vuetify-admin";
 
-import "vuetify-admin/src/loader";
+import "vuetify-admin/src/loader/external";
 
 import { simpleRestDataProvider } from "vuetify-admin/src/providers";
 import { en } from "vuetify-admin/src/locales";
@@ -11,6 +11,14 @@ import routes from "@/router/admin";
 import store from "@/store";
 import i18n from "@/i18n";
 import resources from "@/resources";
+
+// #region Resources
+/**
+ * Reviews
+ */
+import ReviewsList from "@/resources/reviews/List";
+Vue.component("ReviewsList", ReviewsList);
+// #endregion
 
 /**
  * Load Admin UI components

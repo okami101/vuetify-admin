@@ -1,24 +1,22 @@
-# vue-cli-base
+# Retail Admin
 
-## Project setup
-```
-yarn install
-```
+Mini Ecommerce Demo project which uses auto generated data from official [React Admin Demo](https://marmelab.com/react-admin-demo). Use [FakeRest](https://github.com/marmelab/FakeRest), a 100% browser REST server which takes fake JS data and compatible with Simple REST data provider.
 
-### Compiles and hot-reloads for development
-```
+This fake server is combined to [FetchMock](https://github.com/wheresrhys/fetch-mock) which ensures transparent local binding through `fetch` API. Also a good way to allow full browser e2e testing.
+
+## How to run
+
+You can run tutorial directly inside [codesanbox](https://codesandbox.io/s/github/okami101/vuetify-admin/tree/master/examples/demo-retail).
+
+If you want to run it locally :
+
+```bash
+yarn
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+This should run at [http://localhost:8080](http://localhost:8080).
 
-### Lints and fixes files
-```
-yarn lint
-```
+## License
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This project is open-sourced software licensed under the [MIT license](https://adr1enbe4udou1n.mit-license.org).
