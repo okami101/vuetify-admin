@@ -29,7 +29,7 @@ Vue.component("draggable", draggable);
  * Include guess logger on dev only
  */
 if (process.env.NODE_ENV === "development") {
-  import("./utils/guess-logger").then(({ logger }) => {
+  import("./utils/guessLogger").then(({ logger }) => {
     Vue.prototype.$guessLogger = logger;
   });
 }

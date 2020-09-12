@@ -9,48 +9,53 @@ import {
   DELETE_MANY,
 } from "./actions";
 
-import FetchHydra from "../utils/fetchHydra";
+import FetchJson from "../utils/fetchJson";
 import qs from "qs";
 
 export default (httpClient) => {
   if (typeof httpClient === "string") {
-    httpClient = new FetchHydra(httpClient);
+    httpClient = new FetchJson(httpClient);
   }
 
   return {
-    [GET_LIST]: (resource, params) => {
+    [GET_LIST]: async (resource, params) => {
       const { pagination, sort, filter } = params;
 
-      let query = filter || {};
+      let query = {
+        filter: JSON.stringify(filter),
+      };
 
       if (pagination) {
+        let { page, perPage } = pagination;
+
         query = {
           ...query,
-          page: pagination.page,
-          itemsPerPage: pagination.perPage,
+          range: JSON.stringify([(page - 1) * perPage, page * perPage]),
         };
       }
 
       if (sort && sort.length) {
-        query.order = {};
-
-        sort.forEach((item) => {
-          let { by, desc } = item;
-
-          query.order[by] = desc ? "desc" : "asc";
-        });
+        query = {
+          ...query,
+          sort: JSON.stringify([sort[0].by, sort[0].desc ? "DESC" : "ASC"]),
+        };
       }
 
-      return httpClient.get(
-        `${resource}?${qs.stringify(query, { arrayFormat: "repeat" })}`
+      let { data, headers } = await httpClient.get(
+        `${resource}?${qs.stringify(query)}`
       );
+
+      return {
+        data,
+        total: parseInt(headers["content-range"].split("/").pop(), 10),
+      };
     },
     [GET_MANY]: (resource, params) =>
-      Promise.all(
-        params.ids.map((id) =>
-          httpClient.get(`${resource}/${id.substring(id.lastIndexOf("/") + 1)}`)
-        )
-      ).then((responses) => ({ data: responses.map(({ data }) => data) })),
+      httpClient.get(
+        `${resource}?${qs.stringify({
+          filter: JSON.stringify({ id: params.ids }),
+        })}`
+      ),
     [GET_ONE]: (resource, params) => httpClient.get(`${resource}/${params.id}`),
     [CREATE]: (resource, params) => httpClient.post(resource, params.data),
     [UPDATE]: (resource, params) =>

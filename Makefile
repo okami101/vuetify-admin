@@ -15,6 +15,9 @@ run-tutorial: ## run the tutorial example
 run-api-platform: ## run the api-platform example
 	@cd ./examples/api-platform && yarn serve --open --port 8000
 
+run-demo-retail: ## run the retail demo example
+	@cd ./examples/demo-retail && yarn serve --open
+
 run-laravel: ## serve laravel tutorial
 	@cd ./examples/laravel && php artisan serve
 

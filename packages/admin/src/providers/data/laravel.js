@@ -16,161 +16,159 @@ import objectToFormData from "../utils/objectToFormData";
 import qs from "qs";
 
 export default (axios, baseURL = "/api") => {
-  const httpClient = async (method, url, params = {}) => {
-    try {
-      let { data } = await axios({
-        method,
-        url: `${baseURL}/${url}`,
-        data: params.data,
-        headers: params.locale ? { locale: params.locale } : {},
-      });
+  /**
+   * Add axios interceptors
+   */
 
-      return data;
-    } catch ({ response }) {
-      let { data, status, statusText } = response;
-      return Promise.reject({
-        message: statusText,
-        status,
-        ...(data || {}),
-      });
+  axios.interceptors.request.use((config) => {
+    if (config.locale) {
+      config.headers.locale = config.locale;
     }
-  };
+    return config;
+  });
 
-  const fetchApi = async (type, resource, params = {}) => {
-    switch (type) {
-      case GET_LIST:
-      case GET_MANY: {
-        const { fields, include, pagination, sort, filter } = params;
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    ({ message, response }) => {
+      if (response) {
+        let { status, statusText, data } = response;
 
-        let query = {
-          fields,
-          include,
-        };
-
-        if (type === GET_MANY) {
-          query.filter = {
-            id: params.ids,
-          };
-
-          return httpClient(
-            "get",
-            `${resource}?${qs.stringify(query, { arrayFormat: "comma" })}`
-          );
-        }
-
-        query = {
-          ...query,
-          ...pagination,
-          filter,
-        };
-
-        if (sort && sort.length) {
-          query.sort = sort.map((item) => {
-            let { by, desc } = item;
-
-            if (desc) {
-              return `-${by}`;
-            }
-            return by;
-          });
-        }
-
-        let { data, meta } = await httpClient(
-          "get",
-          `${resource}?${qs.stringify(query, { arrayFormat: "comma" })}`,
-          params
-        );
-
-        return {
-          data,
-          total: meta ? meta.total : data.length,
-        };
+        return Promise.reject({
+          status,
+          message: statusText,
+          ...data,
+        });
       }
 
-      case GET_TREE: {
-        return httpClient(
-          "get",
-          `${resource}/tree?${qs.stringify(
+      return Promise.reject({
+        message,
+      });
+    }
+  );
+
+  const getResponse = (Promise) => Promise.then(({ data }) => data);
+
+  return {
+    [GET_LIST]: async (resource, params) => {
+      const { fields, include, pagination, sort, filter } = params;
+
+      let query = {
+        fields,
+        include,
+        ...pagination,
+        filter,
+      };
+
+      if (sort && sort.length) {
+        query.sort = sort.map((item) => {
+          let { by, desc } = item;
+
+          if (desc) {
+            return `-${by}`;
+          }
+          return by;
+        });
+      }
+
+      return getResponse(
+        axios.get(
+          `${baseURL}/${resource}?${qs.stringify(query, {
+            arrayFormat: "comma",
+          })}`,
+          params
+        )
+      ).then(({ data, meta }) => ({
+        data,
+        total: meta ? meta.total : data.length,
+      }));
+    },
+    [GET_MANY]: (resource, params) => {
+      const { fields, include } = params;
+
+      let query = {
+        fields,
+        include,
+        filter: {
+          id: params.ids,
+        },
+      };
+
+      return getResponse(
+        axios.get(
+          `${baseURL}/${resource}?${qs.stringify(query, {
+            arrayFormat: "comma",
+          })}`,
+          { locale: params.locale }
+        )
+      );
+    },
+    [GET_TREE]: (resource, params) =>
+      getResponse(
+        axios.get(
+          `${baseURL}/${resource}/tree?${qs.stringify(
             { filter: params.filter },
             { arrayFormat: "comma" }
           )}`,
-          params
-        );
-      }
-
-      case GET_NODES: {
-        return httpClient(
-          "get",
-          `${resource}/nodes/${
+          { locale: params.locale }
+        )
+      ),
+    [GET_NODES]: (resource, params) =>
+      getResponse(
+        axios.get(
+          `${baseURL}/${resource}/nodes/${
             params.parent ? params.parent.id : ""
           }?${qs.stringify(
             { filter: params.filter },
             { arrayFormat: "comma" }
           )}`,
-          params
-        );
-      }
+          { locale: params.locale }
+        )
+      ),
+    [GET_ONE]: (resource, params) =>
+      getResponse(
+        axios.get(`${baseURL}/${resource}/${params.id}`, {
+          locale: params.locale,
+        })
+      ),
+    [CREATE]: (resource, params) => {
+      let data = objectToFormData(params.data);
 
-      case GET_ONE: {
-        return httpClient("get", `${resource}/${params.id}`, params);
-      }
+      return getResponse(
+        axios.post(`${baseURL}/${resource}`, data, { locale: params.locale })
+      );
+    },
+    [UPDATE]: (resource, params) => {
+      let data = objectToFormData(params.data);
+      data.append("_method", "PUT");
 
-      case CREATE: {
-        let form = objectToFormData(params.data);
-
-        return httpClient("post", resource, {
-          ...params,
-          data: form,
-        });
-      }
-
-      case UPDATE: {
-        let form = objectToFormData(params.data);
-        form.append("_method", "PUT");
-
-        return httpClient("post", `${resource}/${params.id}`, {
-          ...params,
-          data: form,
-        });
-      }
-
-      case DELETE: {
-        return httpClient("delete", `${resource}/${params.id}`);
-      }
-
-      case MOVE_NODE: {
-        return httpClient("patch", `${resource}/${params.source.id}/move`, {
-          data: {
-            parent_id: params.destination ? params.destination.id : null,
-            position: params.position,
-          },
-        });
-      }
-
-      default:
-        throw new Error(`Unsupported fetch action type ${type}`);
-    }
-  };
-
-  return {
-    [GET_LIST]: (resource, params) => fetchApi(GET_LIST, resource, params),
-    [GET_MANY]: (resource, params) => fetchApi(GET_MANY, resource, params),
-    [GET_NODES]: (resource, params) => fetchApi(GET_NODES, resource, params),
-    [GET_TREE]: (resource, params) => fetchApi(GET_TREE, resource, params),
-    [GET_ONE]: (resource, params) => fetchApi(GET_ONE, resource, params),
-    [CREATE]: (resource, params) => fetchApi(CREATE, resource, params),
-    [UPDATE]: (resource, params) => fetchApi(UPDATE, resource, params),
+      return getResponse(
+        axios.post(`${baseURL}/${resource}/${params.id}`, data, {
+          locale: params.locale,
+        })
+      );
+    },
     [UPDATE_MANY]: (resource, params) =>
       Promise.all(
         params.ids.map((id) =>
-          fetchApi(UPDATE, resource, { id, data: params.data })
+          axios.patch(`${baseURL}/${resource}/${id}`, params.data, {
+            locale: params.locale,
+          })
         )
       ).then(() => Promise.resolve()),
-    [DELETE]: (resource, params) => fetchApi(DELETE, resource, params),
+    [DELETE]: (resource, params) =>
+      getResponse(axios.delete(`${baseURL}/${resource}/${params.id}`)),
     [DELETE_MANY]: (resource, params) =>
       Promise.all(
-        params.ids.map((id) => fetchApi(DELETE, resource, { id }))
+        params.ids.map((id) => axios.delete(`${baseURL}/${resource}/${id}`))
       ).then(() => Promise.resolve()),
-    [MOVE_NODE]: (resource, params) => fetchApi(MOVE_NODE, resource, params),
+    [MOVE_NODE]: (resource, params) =>
+      getResponse(
+        axios.patch(`${baseURL}/${resource}/${params.source.id}/move`, {
+          parent_id: params.destination ? params.destination.id : null,
+          position: params.position,
+        })
+      ),
   };
 };
