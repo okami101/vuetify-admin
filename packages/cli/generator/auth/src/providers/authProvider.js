@@ -13,7 +13,7 @@ import {
 /**
  * Implement compatible auth provider
  */
-export default (axios) => {
+export default (httpClient) => {
   return {
     [LOGIN]: ({ username, password }) => Promise.resolve(),
     [LOGOUT]: () => Promise.resolve(),
