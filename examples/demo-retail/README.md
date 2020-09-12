@@ -6,8 +6,6 @@ This fake server is combined to [FetchMock](https://github.com/wheresrhys/fetch-
 
 ## How to run
 
-You can run tutorial directly inside [codesanbox](https://codesandbox.io/s/github/okami101/vuetify-admin/tree/master/examples/demo-retail).
-
 If you want to run it locally :
 
 ```bash
