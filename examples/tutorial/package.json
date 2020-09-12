@@ -1,6 +1,6 @@
 {
   "name": "tutorial",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -17,7 +17,7 @@
     "vue-i18n": "^8.21.1",
     "vue-router": "^3.2.0",
     "vuetify": "^2.3.10",
-    "vuetify-admin": "^0.4.5",
+    "vuetify-admin": "^0.4.6",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "prettier": "^2.1.1",
     "vue-cli-plugin-i18n": "latest",
     "vue-cli-plugin-vuetify": "latest",
-    "vue-cli-plugin-vuetify-admin": "^0.4.5",
+    "vue-cli-plugin-vuetify-admin": "^0.4.6",
     "vue-template-compiler": "^2.6.12"
   }
 }
