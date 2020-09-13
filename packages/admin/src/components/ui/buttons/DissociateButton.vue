@@ -11,7 +11,6 @@
 
 <script>
 import Button from "../../../mixins/button";
-import { mapActions } from "vuex";
 
 /**
  * Action button for resource dissociation. Used on data tables with association enabled.
@@ -34,10 +33,6 @@ export default {
     sourceResource: String,
   },
   methods: {
-    ...mapActions({
-      update: "api/update",
-      refresh: "api/refresh",
-    }),
     async onDissociate() {
       if (
         await this.$admin.confirm(
@@ -55,15 +50,12 @@ export default {
           })
         )
       ) {
-        await this.update({
-          resource: this.resource,
-          params: {
-            id: this.item.id,
-            data: { [`remove_${this.source}`]: this.sourceId },
-          },
+        await this.$store.dispatch(`${this.resource}/update`, {
+          id: this.item.id,
+          data: { [`remove_${this.source}`]: this.sourceId },
         });
 
-        this.refresh(this.resource);
+        this.$store.dispatch("api/refresh", this.resource);
 
         /**
          * Triggered on successful dissociation of resource item.

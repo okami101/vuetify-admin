@@ -14,7 +14,6 @@
 import Resource from "../../../mixins/resource";
 import Button from "../../../mixins/button";
 import Papa from "papaparse";
-import { mapActions } from "vuex";
 
 /**
  * Action button for export all data from a list iterator, aka VaList.
@@ -40,9 +39,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      getList: "api/getList",
-    }),
     async onExport() {
       /**
        * Generate CSV string from JSON api
@@ -59,10 +55,10 @@ export default {
         });
       }
 
-      let { data } = await this.getList({
-        resource: this.resource,
-        params,
-      });
+      let { data } = await this.$store.dispatch(
+        `${this.resource}/getList`,
+        params
+      );
 
       const csv = Papa.unparse(
         data.map((item) => {

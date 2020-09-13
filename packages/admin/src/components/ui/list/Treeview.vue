@@ -109,7 +109,6 @@
 
 <script>
 import Resource from "../../../mixins/resource";
-import { mapActions } from "vuex";
 
 /**
  * Treeview component which support fully editable items with draggable feature and hierarchical data.
@@ -228,19 +227,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      getTree: "api/getTree",
-      getNodes: "api/getNodes",
-      moveNode: "api/moveNode",
-    }),
     async onChange({ newIndex, element, parent }) {
-      let { data } = await this.moveNode({
-        resource: this.resource,
-        params: {
-          source: element,
-          destination: parent,
-          position: newIndex,
-        },
+      let { data } = await this.$store.dispatch(`${this.resource}/moveNode`, {
+        source: element,
+        destination: parent,
+        position: newIndex,
       });
 
       /**
@@ -257,11 +248,8 @@ export default {
       /**
        * Load hierarchical data list
        */
-      let { data } = await this.getTree({
-        resource: this.resource,
-        params: {
-          filter: this.filter,
-        },
+      let { data } = await this.$store.dispatch(`${this.resource}/getTree`, {
+        filter: this.filter,
       });
 
       this.loading = false;
@@ -280,11 +268,8 @@ export default {
       /**
        * Load hierarchical data list
        */
-      let { data } = await this.getNodes({
-        resource: this.resource,
-        params: {
-          filter: this.filter,
-        },
+      let { data } = await this.$store.dispatch(`${this.resource}/getNodes`, {
+        filter: this.filter,
       });
 
       this.loading = false;
@@ -295,12 +280,9 @@ export default {
       /**
        * Load child nodes of parent
        */
-      let { data } = await this.getNodes({
-        resource: this.resource,
-        params: {
-          filter: this.filter,
-          parent: item,
-        },
+      let { data } = await this.$store.dispatch(`${this.resource}/getNodes`, {
+        filter: this.filter,
+        parent: item,
       });
 
       /**

@@ -135,7 +135,6 @@ import Search from "../../../mixins/search";
 import FormFilter from "../../internal/FormFilter";
 import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
-import { mapState, mapActions } from "vuex";
 
 /**
  * List data iterator component, perfect for list CRUD page as well as any resource browsing standalone component.
@@ -266,9 +265,6 @@ export default {
     this.fetchData();
   },
   computed: {
-    ...mapState({
-      refresh: (state) => state.api.refresh,
-    }),
     getCurrentFilter() {
       /**
        * Get clean filter, do not take empty value but booleans
@@ -340,7 +336,7 @@ export default {
       immediate: true,
       deep: true,
     },
-    refresh(newVal) {
+    "$store.state.api.refresh"(newVal) {
       if (newVal) {
         this.fetchData();
       }
@@ -362,9 +358,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      update: "api/update",
-    }),
     async initFiltersFromQuery() {
       let options = {
         page: 1,
@@ -480,10 +473,10 @@ export default {
       /**
        * Load paginated and sorted data list
        */
-      let { data, total } = await this.getList({
-        resource: this.resource,
-        params,
-      });
+      let { data, total } = await this.$store.dispatch(
+        `${this.resource}/getList`,
+        params
+      );
 
       /**
        * Update state without cloning
@@ -544,13 +537,10 @@ export default {
       });
     },
     async onAssociate() {
-      await this.update({
-        resource: this.resource,
-        params: {
-          id: this.associationId,
-          data: {
-            [`add_${this.association.source}`]: this.association.id,
-          },
+      await this.$store.dispatch(`${this.resource}/update`, {
+        id: this.associationId,
+        data: {
+          [`add_${this.association.source}`]: this.association.id,
         },
       });
 

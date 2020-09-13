@@ -11,7 +11,6 @@
 
 <script>
 import ActionButton from "../../../mixins/action-button";
-import { mapActions } from "vuex";
 
 /**
  * Generic customizable button for update bulk actions in VaList component.
@@ -37,16 +36,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      updateMany: "api/updateMany",
-      refresh: "api/refresh",
-    }),
     async onBulkUpdate() {
       let value = this.value || this.listState.selected;
 
-      await this.updateMany({
-        resource: this.listState.resource,
-        params: { ids: value.map(({ id }) => id), data: this.action },
+      await this.$store.dispatch(`${this.listState.resource}/updateMany`, {
+        ids: value.map(({ id }) => id),
+        data: this.action,
       });
 
       /**
@@ -54,7 +49,7 @@ export default {
        */
       this.$emit("input", []);
       this.listState.selected = [];
-      this.refresh(this.listState.resource);
+      this.$store.dispatch("api/refresh", this.listState.resource);
     },
   },
 };

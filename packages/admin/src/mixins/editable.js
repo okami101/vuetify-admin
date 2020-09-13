@@ -1,5 +1,3 @@
-import { mapActions } from "vuex";
-
 /**
  * Allow any input to have editable behavior.
  */
@@ -17,9 +15,6 @@ export default {
     editable: Boolean,
   },
   methods: {
-    ...mapActions({
-      updateItem: "api/update",
-    }),
     /**
      * Interaction event
      */
@@ -33,13 +28,10 @@ export default {
         /**
          * Quick update model on server
          */
-        this.updateItem({
-          resource: this.resource,
-          params: {
-            id: this.item.id,
-            data: {
-              [this.uniqueFormId]: value,
-            },
+        this.$store.dispatch(`${this.resource}/update`, {
+          id: this.item.id,
+          data: {
+            [this.uniqueFormId]: value,
           },
         });
       }

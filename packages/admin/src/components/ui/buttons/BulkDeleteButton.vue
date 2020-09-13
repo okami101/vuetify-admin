@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 /**
  * Button for delete bulk actions for VaList. Shown after items selections.
  * Keep all VaDeleteButton feature and use `deleteMany` data provider method under the hood.
@@ -28,10 +26,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      deleteMany: "api/deleteMany",
-      refresh: "api/refresh",
-    }),
     async onBulkDelete() {
       let value = this.value || this.listState.selected;
 
@@ -47,9 +41,8 @@ export default {
           })
         )
       ) {
-        await this.deleteMany({
-          resource: this.listState.resource,
-          params: { ids: value.map(({ id }) => id) },
+        await this.$store.dispatch(`${this.listState.resource}/deleteMany`, {
+          ids: value.map(({ id }) => id),
         });
 
         /**
@@ -57,7 +50,7 @@ export default {
          */
         this.$emit("input", []);
         this.listState.selected = [];
-        this.refresh(this.listState.resource);
+        this.$store.dispatch("api/refresh", this.listState.resource);
       }
     },
   },

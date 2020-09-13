@@ -58,6 +58,8 @@ Used for all resources browsing context, as
 * [Data iterator component](crud/list.md) for showing list of resources inside data table or any custom list layout component. Should support specific field selection, as well as filtering, sorting and on-demand relation fetching.
 * [Export button](crud/list.md#export) for pre filtered resources exporting.
 * Auto choices fetching for component that support it as [Autocomplete](components/inputs.md#autocomplete), [Select](components/inputs.md#select), or [RadioGroup](components/inputs.md#radio-group).
+
+> Each getList provider implementation should return the total number of resources along to the data collection. This allows Vuetify Admin to know how many pages of resources there are in total, and build the pagination controls.
 :::
 
 ::: tab getOne
@@ -65,7 +67,7 @@ For showing detail of resource, mainly for [Show page](crud/show.md) or data tab
 :::
 
 ::: tab getMany
-Only used for [Autocomplete](components/inputs.md#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/form.md) or [query context filtering](crud/list.md#filter). As opposed to [RA reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [`VAReferenceField`](components/fields.md#reference) doesn't actually have a the ability of fetching data via getMany by privileging more efficient full server-side eager-loading.
+Only used for [Autocomplete](components/inputs.md#autocomplete) in order to fetch all current choices by ids at first load, whether it be on [editing page context](crud/form.md) or [query context filtering](crud/list.md#filter). As opposed to [RA reference field](https://marmelab.com/react-admin/Fields.html#referencefield), the [`VAReferenceField`](components/fields.md#reference) doesn't actually have a the ability of aggregation fetching via getMany by privileging more efficient full server-side eager-loading.
 :::
 
 ::: tab create & update
@@ -86,37 +88,192 @@ Bulk actions on [list page](crud/list.md). If your backend doesn't support a bul
 
 In case of a [translatable resource](i18n.md#resource-translation), Vuetify Admin will add an additional `locale` property into `params` object. It's up to you to push this locale context to your API server inside your provider. For instance you can just add a new `locale` parameter in API query string as next : `/books/1?locale=fr`. Then it's the backend to do the remaining job, i.e. fetching the targeted field locale in case of resource reading, or save the text field on targeted locale in case of resource creating/editing.
 
-## Laravel Data Provider
+## Included data providers
 
-[Laravel Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/laravel.js) is one of the available data provider that implements previous contract. You can use it as a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part and error handling.
+Vuetify Admin includes a few different data providers for some common backend that implements previous contract. Each of those translates the VA JS arguments to API calls for fetching data.
 
-This provider is intended to be use by official [Laravel Admin](https://github.com/okami101/laravel-admin) composer package as [explained on Laravel guide](laravel.md).
+You can use it them a base example for implementing yours. If you use standard REST API protocol, only few lines has to be changed, mainly for GET_LIST part and error handling.
 
-::: tip EXISTING LARAVEL PROJECT
-You can even use it easily without official package if you use [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) which is the perfect package for implementing api resource browsing, mainly for list pages and data iterator component. All rest of crud operations are standard Laravel CRUD operations.
+### General data provider usage
+
+The usage of included data providers are very similar. As first constructor argument, they can takes either a simple API URL or a custom HTTP client of your choice. Both `axios` or included native `fetchJson` client are compatible. Use full object if you need to share some headers across all admin app, notably useful for any authentication related headers.
+
+#### With simple URL
+
+**`src/plugins/admin.js`**
+
+```js
+import { jsonServerDataProvider } from "vuetify-admin/src/providers";
+
+const baseURL = process.env.VUE_APP_API_URL || "https://jsonplaceholder.okami101.io";
+
+export default new VuetifyAdmin({
+  ...
+  dataProvider: jsonServerDataProvider(baseURL),
+  ...
+});
+```
+
+#### With fetchJson client
+
+`FetchJson` takes the API URL followed by some options are relative constructor arguments. The `options` allows you to share some common generic data across all api calls as authentication headers.
+
+**`src/plugins/admin.js`**
+
+```js
+import { jsonServerDataProvider, jwtAuthProvider } from "vuetify-admin/src/providers";
+import { FetchJson } from "vuetify-admin/src/providers";
+
+const apiURL = process.env.VUE_APP_API_URL || "http://localhost:8080";
+
+/**
+ * Create fetch instance with custom authentication headers
+ */
+const http = new FetchJson(apiURL, {
+  headers: () => {
+    let headers = new Headers({
+      Accept: "application/json",
+    });
+
+    let token = localStorage.getItem("jwt_token");
+
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
+export default new VuetifyAdmin({
+  ...
+  dataProvider: jsonServerDataProvider(http),
+  authProvider: jwtAuthProvider(http),
+  ...
+});
+```
+
+:::tip DYNAMIC HEADERS
+For authentication, you may use a function on `headers` for dynamic token fetching.
 :::
 
-### Methods to API call
+:::tip CUSTOM CLIENT
+If needed you can even have your custom HTTP client that follow generic same contracts as the above one. [Check the source](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/utils/fetchJson.js) of `fetchJson`.
+:::
 
-See next table for the final endpoint API call format used on each method of this Laravel data provider.
+#### With axios
 
-| Operation      | API call format                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **getList**    | **GET** `/books?fields[books]=id,isbn,title&include=media&page=1&perPage=15&sort=name,-date&filter={"q":"douglas"}` |
-| **getOne**     | **GET** `/books/1`                                                                                                  |
-| **getMany**    | **GET** `/books?filter={"id":[1,2,3]}`                                                                              |
-| **create**     | **POST** `/books`                                                                                                   |
-| **update**     | **PUT** `/books/1`                                                                                                  |
-| **updateMany** | Multiple calls to **PUT** `/books/{id}`                                                                             |
-| **delete**     | **DELETE** `/books/1`                                                                                               |
-| **deleteMany** | Multiple calls to **DELETE** `/books/{id}`                                                                          |
+**`src/plugins/admin.js`**
+
+```js
+import { jsonServerDataProvider } from "vuetify-admin/src/providers";
+import axios from "axios";
+
+const baseURL = process.env.VUE_APP_API_URL || "http://localhost:8080";
+
+/**
+ * Create axios instance which will send cookies for each request
+ */
+const http = axios.create({
+  baseURL,
+  withCredentials: true,
+  headers: { "X-Requested-With": "XMLHttpRequest" },
+});
+
+export default new VuetifyAdmin({
+  ...
+  dataProvider: jsonServerDataProvider(http),
+  ...
+});
+```
+
+### API calls
+
+Each next section will describe the VA methods to API calls dialects.
+
+#### Simple REST
+
+[This Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/simpleRest.js) fits REST APIs using simple GET parameters for filters and sorting. This is the dialect used for instance in [FakeRest](https://github.com/marmelab/FakeRest).
+
+| Method       | API calls                                                                  |
+| ------------ | -------------------------------------------------------------------------- |
+| `getList`    | **GET** `/posts?sort=["title","ASC"]&range=[0, 24]&filter={"title":"bar"}` |
+| `getOne`     | **GET** `/posts/123`                                                       |
+| `getMany`    | **GET** `/posts?filter={"id":[123,456,789]}`                               |
+| `create`     | **POST** `/posts`                                                          |
+| `update`     | **PUT** `/posts/123`                                                       |
+| `updateMany` | Multiple calls to **PUT** `/posts/{id}`                                    |
+| `delete`     | **DELETE** `/posts/123`                                                    |
+| `deleteMany` | Multiple calls to **DELETE** `/posts/{id}`                                 |
+
+::: tip TOTAL
+The simple REST data provider expects the API to include a `Content-Range` header in the response to `getList` as `Content-Range: posts 0-10/42`.
+:::
+
+#### JSON Server
+
+[This Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/jsonServer.js) fits REST APIs powered by [JSON Server](https://github.com/typicode/json-server), such as [JSONPlaceholder](http://jsonplaceholder.typicode.com/).
+
+| Method       | API calls                                                                                       |
+| ------------ | ----------------------------------------------------------------------------------------------- |
+| `getList`    | **GET** `/posts?_sort=title&_order=ASC&_start=0&_end=24&title=bar&_embed=comments&_expand=user` |
+| `getOne`     | **GET** `/posts/123`                                                                            |
+| `getMany`    | **GET** `/posts?id=123&id=456&id=789`                                                           |
+| `create`     | **POST** `/posts/123`                                                                           |
+| `update`     | **PUT** `/posts/123`                                                                            |
+| `updateMany` | Multiple calls to **PUT** `/posts/{id}`                                                         |
+| `delete`     | **DELETE** `/posts/123`                                                                         |
+| `deleteMany` | Multiple calls to **DELETE** `/posts/{id}`                                                      |
+
+::: tip TOTAL
+The JSON Server REST Data Provider expects the API to include a `X-Total-Count` header in the response to `getList` as `X-Total-Count: 42`.
+:::
+
+#### Hydra REST
+
+[This Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/hydra.js) fits REST APIs powered by [API Platform](https://api-platform.com/) on Hydra dialect.
+
+| Method       | API calls                                                                             |
+| ------------ | ------------------------------------------------------------------------------------- |
+| `getList`    | **GET** `/posts?page=1&itemsPerPage=15&order={"title":"desc"}&filter={"q":"douglas"}` |
+| `getOne`     | **GET** `/posts/123`                                                                  |
+| `getMany`    | Multiple calls to **GET** `/posts/123`                                                |
+| `create`     | **POST** `/posts/123`                                                                 |
+| `update`     | **PUT** `/posts/123`                                                                  |
+| `updateMany` | Multiple calls to **PUT** `PUT /posts/{id}`                                           |
+| `delete`     | **DELETE** `/posts/123`                                                               |
+| `deleteMany` | Multiple calls to **DELETE** `DELETE /posts/{id}`                                     |
+
+::: tip TOTAL
+The Hydra REST Data Provider expects the API to include a `hydra:totalItems` included to the Hydra body along to the `hydra:member` property which contains the data collection.
+:::
+
+#### Laravel Query Builder
+
+[This Data Provider](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/laravel.js) fits REST APIs powered by Laravel combined to [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) for resource browsing.
+
+It perfectly fits the backend provided by the official [Laravel Admin](https://github.com/okami101/laravel-admin) composer package as [explained on Laravel guide](laravel.md).
+
+| Method         | API calls                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **getList**    | **GET** `/posts?fields[posts]=id,title,summary&include=media&page=1&perPage=15&sort=title,-date&filter={"q":"douglas"}` |
+| **getOne**     | **GET** `/posts/123`                                                                                                    |
+| **getMany**    | **GET** `/posts?filter={"id":[123,456,789]}`                                                                            |
+| **create**     | **POST** `/posts`                                                                                                       |
+| **update**     | **PUT** `/posts/123`                                                                                                    |
+| **updateMany** | Multiple calls to **PUT** `/posts/{id}`                                                                                 |
+| **delete**     | **DELETE** `/posts/1`                                                                                                   |
+| **deleteMany** | Multiple calls to **DELETE** `/posts/{id}`                                                                              |
 
 > For `DESC` sorting, we use a simple dash before the sortable field. Multiple sort is supported by simply adding more sortable fields separated by comma.
 > The `include` parameter is used for on demand eager loading relation.
 
-### Usage
+::: tip TOTAL
+The Laravel Data Provider expects the API to include a `meta.total` property included to the final JSON body along to the data collection.
+:::
 
-In order to work, this provider needs an specific `axios` instance :
+In order to work, this provider needs an specific `axios` instance at first constructor argument :
+
+**`src/plugins/admin.js`**
 
 ```js
 import { laravelDataProvider } from "vuetify-admin/src/providers";

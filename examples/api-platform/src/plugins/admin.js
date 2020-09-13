@@ -26,7 +26,7 @@ const apiURL = process.env.VUE_APP_API_URL || "http://localhost:8080";
 /**
  * Create fetch instance with custom authentication headers
  */
-const httpClient = new FetchHydra(apiURL, {
+const http = new FetchHydra(apiURL, {
   headers: () => {
     let headers = new Headers({
       Accept: "application/ld+json",
@@ -55,8 +55,8 @@ export default new VuetifyAdmin({
     fr,
   },
   translations: ["en", "fr"],
-  dataProvider: hydraDataProvider(httpClient),
-  authProvider: jwtAuthProvider(httpClient, {
+  dataProvider: hydraDataProvider(http),
+  authProvider: jwtAuthProvider(http, {
     routes: {
       login: "authentication_token",
     },

@@ -9,10 +9,18 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red darken-1" text @click.native="agree">
+        <v-btn
+          color="red darken-1"
+          text
+          @click.native="$store.dispatch('messages/agree')"
+        >
           {{ $t("va.confirm.yes") }}
         </v-btn>
-        <v-btn color="green darken-1" text @click.native="cancel">
+        <v-btn
+          color="green darken-1"
+          text
+          @click.native="$store.dispatch('messages/cancel')"
+        >
           {{ $t("va.confirm.no") }}
         </v-btn>
       </v-card-actions>
@@ -21,21 +29,14 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-
 export default {
   data: () => ({
     dialog: false,
     title: null,
     message: null,
   }),
-  computed: {
-    ...mapState({
-      confirm: (state) => state.messages.confirm,
-    }),
-  },
   watch: {
-    confirm(newVal) {
+    "$store.state.messages.confirm"(newVal) {
       if (newVal) {
         this.dialog = true;
         this.title = newVal.title;
@@ -45,12 +46,6 @@ export default {
 
       this.dialog = false;
     },
-  },
-  methods: {
-    ...mapActions({
-      agree: "messages/agree",
-      cancel: "messages/cancel",
-    }),
   },
 };
 </script>

@@ -225,7 +225,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 import upperFirst from "lodash/upperFirst";
 
 /**
@@ -414,9 +413,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      getOne: "api/getOne",
-    }),
     getDefaultAlign(field) {
       if (["number"].includes(field.type)) {
         return "right";
@@ -465,10 +461,12 @@ export default {
       /**
        * Get freshed item
        */
-      let { data } = await this.getOne({
-        resource: this.listState.resource,
-        params: { id: item.id },
-      });
+      let { data } = await this.$store.dispatch(
+        `${this.listState.resource}/getOne`,
+        {
+          id: item.id,
+        }
+      );
       this.$store.commit(`${this.listState.resource}/setItem`, data);
 
       /**

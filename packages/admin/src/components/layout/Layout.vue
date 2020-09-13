@@ -14,7 +14,11 @@
 
           <v-container fluid class="flex">
             <transition name="fade" mode="out-in">
-              <component :is="'error'" v-if="error" :error="error"></component>
+              <component
+                :is="'error'"
+                v-if="$store.state.messages.error"
+                :error="$store.state.messages.error"
+              ></component>
               <router-view v-else />
             </transition>
           </v-container>
@@ -31,18 +35,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 /**
  * Admin composable component layout with one slot for each region.
  */
-export default {
-  computed: {
-    ...mapState({
-      error: (state) => state.messages.error,
-    }),
-  },
-};
+export default {};
 </script>
 
 <style>

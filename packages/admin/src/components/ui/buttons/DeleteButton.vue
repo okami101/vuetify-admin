@@ -12,7 +12,6 @@
 
 <script>
 import Button from "../../../mixins/button";
-import { mapActions } from "vuex";
 
 /**
  * Button for all delete resource action. Comes with confirm dialog.
@@ -28,10 +27,6 @@ export default {
     redirect: Boolean,
   },
   methods: {
-    ...mapActions({
-      delete: "api/delete",
-      refresh: "api/refresh",
-    }),
     async onDelete() {
       if (!this.item) {
         /**
@@ -54,9 +49,8 @@ export default {
           })
         )
       ) {
-        await this.delete({
-          resource: this.resource,
-          params: { id: this.item.id },
+        await this.$store.dispatch(`${this.resource}/delete`, {
+          id: this.item.id,
         });
 
         if (this.redirect) {
@@ -64,7 +58,7 @@ export default {
           return;
         }
 
-        this.refresh(this.resource);
+        this.$store.dispatch("api/refresh", this.resource);
 
         /**
          * Triggered on successful deletion of resource item.

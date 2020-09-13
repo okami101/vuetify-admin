@@ -12,7 +12,6 @@
 
 <script>
 import Confirm from "../internal/Confirm";
-import { mapState } from "vuex";
 
 /**
  * Internal VaMessages system for snackbar/toaster infos and confirm dialog.
@@ -31,13 +30,8 @@ export default {
       color: null,
     };
   },
-  computed: {
-    ...mapState({
-      toast: (state) => state.messages.toast,
-    }),
-  },
   watch: {
-    toast({ color, message }) {
+    "$store.state.messages.toast"({ color, message }) {
       this.snackbar = true;
       this.text = message;
       this.color = color;

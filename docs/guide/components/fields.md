@@ -354,8 +354,10 @@ Use default slot for custom resource labelization. It takes by default the value
 
 :::
 
-::: warning NO AUTOFETCH SUPPORT
-Contrary to React Admin reference field equivalent, this field doesn't support resource autofetch via `getMany`, because too much code needed for aggregation support in my taste. Your backend must eager-load all related resources at once. For list via `VaList` you can lean on `include` prop for on asking eager loading.
+::: warning NO AGGREGATION AUTOFETCH SUPPORT
+You can auto fetch the reference via `fetch` props in case you have only the ID. It's OK for a show view but evil for listing, as it will made N XHR requests for each record.
+
+Contrary to React Admin reference field equivalent, this field doesn't support resource autofetch aggregation via `getMany`. If possible your backend should eager-load all related resources at once. For list via `VaList` you can lean on `include` prop for on asking eager loading.
 :::
 
 ### Reference array

@@ -1,4 +1,3 @@
-import { mapActions } from "vuex";
 import get from "lodash/get";
 
 /**
@@ -67,11 +66,5 @@ export default {
         return get(this.$admin.options, "list.disableItemsPerPage") || false;
       },
     },
-  },
-  methods: {
-    ...mapActions({
-      getList: "api/getList",
-      getMany: "api/getMany",
-    }),
   },
 };

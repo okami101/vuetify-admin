@@ -63,12 +63,12 @@
         icon
         small
         class="ml-5"
-        :loading="loading"
-        @click="refresh($route.meta.resource)"
+        :loading="$store.state.api.loading"
+        @click="refresh"
       >
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
-      <v-menu offset-y v-if="user">
+      <v-menu offset-y v-if="$store.state.auth.user">
         <template v-slot:activator="{ on }">
           <v-btn icon small class="ml-5" v-on="on">
             <v-icon>mdi-account-circle</v-icon>
@@ -76,12 +76,14 @@
         </template>
 
         <v-list nav dense>
-          <template v-if="name">
+          <template v-if="getName">
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title class="title">{{ name }}</v-list-item-title>
-                <v-list-item-subtitle v-if="email">{{
-                  email
+                <v-list-item-title class="title">{{
+                  getName
+                }}</v-list-item-title>
+                <v-list-item-subtitle v-if="getEmail">{{
+                  getEmail
                 }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -120,8 +122,6 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-
 /**
  * Default customizable admin VAppBar.
  * Contains main app title, header menus, direct resource creation links, global refresh action, profile menu.
@@ -172,11 +172,6 @@ export default {
     dark: Boolean,
   },
   computed: {
-    ...mapState({
-      loading: (state) => state.api.loading,
-      user: (state) => state.auth.user,
-    }),
-    ...mapGetters({ name: "auth/getName", email: "auth/getEmail" }),
     createResourceLinks() {
       return this.$admin.getResourceLinks(
         this.$admin.resources.map((r) => {
@@ -187,12 +182,20 @@ export default {
         })
       );
     },
+    getName() {
+      return this.$store.getters["auth/getName"];
+    },
+    getEmail() {
+      return this.$store.getters["auth/getEmail"];
+    },
   },
   methods: {
-    ...mapActions({
-      refresh: "api/refresh",
-      logout: "auth/logout",
-    }),
+    refresh() {
+      this.$store.dispatch("api/refresh", this.$route.meta.resource);
+    },
+    logout() {
+      this.$store.dispatch("auth/logout");
+    },
   },
 };
 </script>

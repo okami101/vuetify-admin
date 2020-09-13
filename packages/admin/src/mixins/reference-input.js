@@ -82,24 +82,21 @@ export default {
       /**
        * Load paginated and sorted data list
        */
-      let { data } = await this.getList({
-        resource: this.reference,
-        params: {
-          fields: {
-            [this.reference]: this.getFields,
-          },
-          include: this.include,
-          pagination: {
-            page: 1,
-            perPage: this.itemsPerPage,
-          },
-          sort: this.sortBy.map((by, index) => {
-            return { by, desc: this.sortDesc[index] };
-          }),
-          filter: {
-            ...this.filter,
-            ...(this.searchQuery && search && { [this.searchQuery]: search }),
-          },
+      let { data } = await this.$store.dispatch(`${this.reference}/getList`, {
+        fields: {
+          [this.reference]: this.getFields,
+        },
+        include: this.include,
+        pagination: {
+          page: 1,
+          perPage: this.itemsPerPage,
+        },
+        sort: this.sortBy.map((by, index) => {
+          return { by, desc: this.sortDesc[index] };
+        }),
+        filter: {
+          ...this.filter,
+          ...(this.searchQuery && search && { [this.searchQuery]: search }),
         },
       });
 
@@ -117,15 +114,12 @@ export default {
        * Fetch related item records
        * Used for preloaded autocomplete inputs
        */
-      let { data } = await this.getMany({
-        resource: this.reference,
-        params: {
-          fields: {
-            [this.reference]: this.getFields,
-          },
-          include: this.include,
-          ids,
+      let { data } = await this.$store.dispatch(`${this.reference}/getMany`, {
+        fields: {
+          [this.reference]: this.getFields,
         },
+        include: this.include,
+        ids,
       });
 
       this.loading = false;
