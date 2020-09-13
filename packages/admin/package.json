@@ -1,6 +1,6 @@
 {
   "name": "vuetify-admin",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "SPA admin framework for Vue.js running on top of REST APIs, built on Vuetify",
   "main": "dist/admin.common.js",
   "module": "src/index.js",
