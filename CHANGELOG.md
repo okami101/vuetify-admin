@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.4.8
+
+* 🏠 Remove vuex deps
+* 🚀 Add auto fetching for reference field
+
+## v0.4.7
+
+* 🏠 Data providers refactor
+* 🚀 Custom fetch HTTP client support for each provider
+
 ## v0.3.4
 
 * 🚀 Add default routes fade transition
