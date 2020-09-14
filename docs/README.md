@@ -40,8 +40,8 @@ footer: MIT Licensed | Copyright © 2020 Adrien Beaudouin
   </div>
   <div class="feature">
     <img :src="$withBase('/icons/laravel.svg')" alt="laravel" />
-    <h2>Laravel ready</h2>
-    <p>If you select Laravel as API backend, use official <a href="https://github.com/okami101/laravel-admin"><strong>Laravel Admin</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. <strong>Docker support and Server-side API CRUD code generators</strong> included as a bonus !</p>
+    <h2>Laravel 8 ready</h2>
+    <p>If you use Laravel 8 as API backend, use official <a href="https://github.com/okami101/laravel-admin"><strong>Laravel Admin</strong></a> composer package for even more <strong>immediate start from top to bottom</strong>. <strong>Docker support and Server-side API CRUD code generators</strong> included as a bonus !</p>
   </div>
   <div class="feature">
     <img :src="$withBase('/icons/books.svg')" alt="documented" />
