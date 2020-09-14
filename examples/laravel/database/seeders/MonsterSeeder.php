@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Monster;
 use App\Models\MonsterChild;
 use Illuminate\Database\Seeder;
@@ -14,7 +16,7 @@ class MonsterSeeder extends Seeder
     public function run()
     {
         Monster::factory(100)->create()->each(function (Monster $monster) {
-            $monster->children()->createMany(MonsterChild::factory(random_int(2, 8))->raw());
+            $monster->children()->createMany(MonsterChild::factory(random_int(2, 8))->make()->toArray());
 
             $monster->addMedia(DatabaseSeeder::randomMedia('portraits', 5))
                 ->preservingOriginal()

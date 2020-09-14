@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Okami101\LaravelAdmin\Traits\RequestMediaTrait;
 use Spatie\MediaLibrary\HasMedia;
@@ -10,6 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Monster extends Model implements HasMedia
 {
+    use HasFactory;
     use HasTranslations;
     use RequestMediaTrait;
 

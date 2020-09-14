@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\ModelTraits\UserAccessTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Okami101\LaravelAdmin\Traits\RequestMediaTrait;
 use Spatie\MediaLibrary\HasMedia;
@@ -38,6 +39,7 @@ use Spatie\Translatable\HasTranslations;
  */
 class Publisher extends Model implements HasMedia
 {
+    use HasFactory;
     use HasTranslations;
     use RequestMediaTrait;
     use UserAccessTrait;

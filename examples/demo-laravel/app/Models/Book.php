@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Okami101\LaravelAdmin\Traits\RequestMediaTrait;
@@ -47,6 +48,7 @@ use Spatie\Translatable\HasTranslations;
  */
 class Book extends Model implements HasMedia
 {
+    use HasFactory;
     use HasTranslations;
     use RequestMediaTrait;
 

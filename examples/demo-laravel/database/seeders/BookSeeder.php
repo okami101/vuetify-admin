@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;

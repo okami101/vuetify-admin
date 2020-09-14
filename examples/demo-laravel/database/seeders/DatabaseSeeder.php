@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,11 +37,11 @@ class DatabaseSeeder extends Seeder
     {
         $i = str_pad($faker->numberBetween(1, $max), 2, '0', STR_PAD_LEFT);
 
-        return database_path("/seeds/media/{$type}/{$i}.{$extension}");
+        return database_path("/seeders/media/{$type}/{$i}.{$extension}");
     }
 
     public static function pdf(): string
     {
-        return database_path('/seeds/media/sample.pdf');
+        return database_path('/seeders/media/sample.pdf');
     }
 }
