@@ -4,10 +4,10 @@ This guide is a demonstration of how official [Laravel Admin](https://github.com
 
 ::: warning REQUIREMENTS
 
-* You must have at least PHP 7.2
-* [Laravel installer](https://laravel.com/docs#installing-laravel).
-* [Vue CLI](https://cli.vuejs.org/guide/installation.html).
-* Should be installed on fresh Laravel 7 installation, Laravel 8 isn't supported yet.
+* You must have **PHP 7.4**.
+* [Laravel installer](https://laravel.com/docs#installing-laravel) **4.x**.
+* [Vue CLI](https://cli.vuejs.org/guide/installation.html) **4.x**.
+* Should be installed on fresh **Laravel 8** installation.
 * [Docker](https://www.docker.com/get-started) as option.
 
 :::
@@ -21,7 +21,7 @@ You will find complete source code of this tutorial [in the main repo](https://g
 Simply init your project by this simple steps :
 
 ```bash
-composer create-project laravel/laravel my-laravel-admin-app 7.*
+laravel new my-laravel-admin-app
 cd my-laravel-admin-app
 composer require okami101/laravel-admin
 php artisan admin:install
@@ -925,7 +925,7 @@ This package includes some third party request related model traits in order to 
 
 #### RequestMediaTrait
 
-This trait will import `HasMediaTrait` from [Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) with additional of request file save management.  
+This trait will import `InteractsWithMedia` from [Spatie MediaLibrary](https://github.com/spatie/laravel-medialibrary) with additional of request file save management.  
 This trait will be responsible for taking all valid request files that correspond to a valid collection name, as well as delete asked media for given collection.
 
 Let's take this model media registration :
