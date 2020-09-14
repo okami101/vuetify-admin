@@ -12,20 +12,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'roles' => ['admin'],
         ]);
 
-        factory(User::class)->create([
+        User::factory()->create([
             'name' => 'Demo',
             'email' => 'demo@example.com',
             'roles' => ['admin'],
         ]);
 
         for ($i = 1; $i <= 50; $i++) {
-            factory(User::class)->create([
+            User::factory()->create([
                 'name' => "Editor $i",
                 'email' => "editor-$i@example.com",
                 'roles' => ['editor'],
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 200; $i++) {
-            factory(User::class)->create([
+            User::factory()->create([
                 'name' => "Author $i",
                 'email' => "author-$i@example.com",
                 'roles' => ['author'],

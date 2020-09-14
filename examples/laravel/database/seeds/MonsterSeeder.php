@@ -13,8 +13,8 @@ class MonsterSeeder extends Seeder
      */
     public function run()
     {
-        factory(Monster::class)->times(100)->create()->each(function (Monster $monster) {
-            $monster->children()->createMany(factory(MonsterChild::class, random_int(2, 8))->raw());
+        Monster::factory(100)->create()->each(function (Monster $monster) {
+            $monster->children()->createMany(MonsterChild::factory(random_int(2, 8))->raw());
 
             $monster->addMedia(DatabaseSeeder::randomMedia('portraits', 5))
                 ->preservingOriginal()

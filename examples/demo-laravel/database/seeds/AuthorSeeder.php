@@ -14,7 +14,7 @@ class AuthorSeeder extends Seeder
         $faker = \Faker\Factory::create();
         $authors = \App\User::role('author')->get();
 
-        factory(\App\Author::class, 100)->create()->each(function (\App\Author $author) use ($faker, $authors) {
+        Author::factory(100)->create()->each(function (\App\Author $author) use ($faker, $authors) {
             $author->addMedia(DatabaseSeeder::randomMedia($faker, 'portraits', 5))
                 ->preservingOriginal()
                 ->toMediaCollection('photo');

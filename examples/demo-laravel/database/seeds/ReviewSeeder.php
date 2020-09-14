@@ -14,7 +14,7 @@ class ReviewSeeder extends Seeder
     {
         $books = \App\Book::commentables()->get();
 
-        factory(Review::class, 5000)->make()->each(function (Review $review) use ($books) {
+        Review::factory(5000)->make()->each(function (Review $review) use ($books) {
             $review->book()->associate($books->random());
             $review->save();
         });

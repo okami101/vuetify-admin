@@ -14,6 +14,6 @@ class BookSeeder extends Seeder
     {
         DB::table('books')->truncate();
 
-        factory(\App\Book::class, 500)->create();
+        Book::factory(500)->create();
     }
 }

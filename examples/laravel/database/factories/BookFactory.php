@@ -1,36 +1,52 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Book;
-use Faker\Generator as Faker;
+use App\Models\Book;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Okami101\LaravelAdmin\Faker\Provider\Html;
 
-$factory->define(Book::class, function (Faker $faker) {
-    $faker->addProvider(new Html($faker));
+class BookFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Book::class;
 
-    return [
-        'isbn' => $faker->isbn13,
-        'title' => [
-            'en' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
-            'fr' => ucfirst($faker->words($faker->numberBetween(1, 5), true)),
-        ],
-        'category' => $faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
-        'description' => [
-            'en' => $faker->paragraph(10),
-            'fr' => $faker->paragraph(10),
-        ],
-        'summary' => [
-            'en' => $faker->htmlParagraphs(10, 10, 10),
-            'fr' => $faker->htmlParagraphs(10, 10, 10),
-        ],
-        'author' => $faker->name,
-        'formats' => $faker->randomElements(
-            ['pocket', 'paperback', 'pdf', 'epub', 'kindle'],
-            $faker->numberBetween(1, 5)
-        ),
-        'price' => $faker->randomFloat(2, 10, 50),
-        'commentable' => $faker->boolean(80),
-        'publication_date' => $faker->dateTime,
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $this->faker->addProvider(new Html($this->faker));
+
+        return [
+            'isbn' => $this->faker->isbn13,
+            'title' => [
+                'en' => ucfirst($this->faker->words($this->faker->numberBetween(1, 5), true)),
+                'fr' => ucfirst($this->faker->words($this->faker->numberBetween(1, 5), true)),
+            ],
+            'category' => $this->faker->randomElement(['novel', 'comic', 'cook', 'economy', 'politics', 'history', 'fantasy', 'biography']),
+            'description' => [
+                'en' => $this->faker->paragraph(10),
+                'fr' => $this->faker->paragraph(10),
+            ],
+            'summary' => [
+                'en' => $this->faker->htmlParagraphs(10, 10, 10),
+                'fr' => $this->faker->htmlParagraphs(10, 10, 10),
+            ],
+            'author' => $this->faker->name,
+            'formats' => $this->faker->randomElements(
+                ['pocket', 'paperback', 'pdf', 'epub', 'kindle'],
+                $this->faker->numberBetween(1, 5)
+            ),
+            'price' => $this->faker->randomFloat(2, 10, 50),
+            'commentable' => $this->faker->boolean(80),
+            'publication_date' => $this->faker->dateTime,
+        ];
+    }
+}

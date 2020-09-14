@@ -21,7 +21,7 @@ class BookSeeder extends Seeder
         $publishers = Publisher::all();
         $authors = Author::all();
 
-        factory(Book::class, 500)->make()->each(function (Book $book) use ($categories, $publishers, $authors, $faker) {
+        Book::factory(500)->make()->each(function (Book $book) use ($categories, $publishers, $authors, $faker) {
             $book->category()->associate($categories->random());
             $book->publisher()->associate($publishers->random());
             $book->save();
