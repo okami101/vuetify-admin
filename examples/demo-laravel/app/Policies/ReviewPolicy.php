@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Review;
-use App\User;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReviewPolicy
@@ -20,7 +20,7 @@ class ReviewPolicy
     /**
      * Determine whether the user can view any reviews.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -31,8 +31,8 @@ class ReviewPolicy
     /**
      * Determine whether the user can view the review.
      *
-     * @param  \App\User  $user
-     * @param  \App\Review  $review
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Review  $review
      * @return mixed
      */
     public function view(User $user, Review $review)
@@ -43,7 +43,7 @@ class ReviewPolicy
     /**
      * Determine whether the user can create reviews.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -54,8 +54,8 @@ class ReviewPolicy
     /**
      * Determine whether the user can update the review.
      *
-     * @param  \App\User  $user
-     * @param  \App\Review  $review
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Review  $review
      * @return mixed
      */
     public function update(User $user, Review $review)
@@ -66,8 +66,8 @@ class ReviewPolicy
     /**
      * Determine whether the user can delete the review.
      *
-     * @param  \App\User  $user
-     * @param  \App\Review  $review
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Review  $review
      * @return mixed
      */
     public function delete(User $user, Review $review)

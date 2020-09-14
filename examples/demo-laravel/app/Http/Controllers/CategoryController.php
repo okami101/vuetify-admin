@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Http\Requests\MoveCategory;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
 use App\Http\Resources\Category as CategoryResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Models\Category  $category
      * @return CategoryResource
      */
     public function show(Category $category)
@@ -103,7 +103,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateCategory $request
-     * @param \App\Category $category
+     * @param \App\Models\Category $category
      * @return CategoryResource
      */
     public function update(UpdateCategory $request, Category $category)
@@ -117,7 +117,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param MoveCategory $request
-     * @param \App\Category $category
+     * @param \App\Models\Category $category
      * @return CategoryResource
      */
     public function move(MoveCategory $request, Category $category)
@@ -131,7 +131,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Category $category
+     * @param \App\Models\Category $category
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

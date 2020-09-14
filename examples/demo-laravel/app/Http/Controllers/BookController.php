@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Book;
 use App\Http\Requests\StoreBook;
 use App\Http\Requests\UpdateBook;
 use App\Http\Resources\Book as BookResource;
 use App\Http\Resources\BookCollection;
+use App\Models\Book;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Okami101\LaravelAdmin\Filters\SearchFilter;
@@ -57,7 +57,7 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Book  $book
+     * @param  \App\Models\Book  $book
      * @return BookResource
      */
     public function show(Book $book)
@@ -83,7 +83,7 @@ class BookController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateBook $request
-     * @param \App\Book $book
+     * @param \App\Models\Book $book
      * @return BookResource
      */
     public function update(UpdateBook $request, Book $book)
@@ -108,7 +108,7 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Book $book
+     * @param \App\Models\Book $book
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

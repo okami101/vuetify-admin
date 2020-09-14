@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Author;
-use App\User;
+use App\Models\Author;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AuthorPolicy
@@ -24,7 +24,7 @@ class AuthorPolicy
     /**
      * Determine whether the user can view any authors.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -35,8 +35,8 @@ class AuthorPolicy
     /**
      * Determine whether the user can view the author.
      *
-     * @param  \App\User  $user
-     * @param  \App\Author  $author
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Author  $author
      * @return mixed
      */
     public function view(User $user, Author $author)
@@ -47,7 +47,7 @@ class AuthorPolicy
     /**
      * Determine whether the user can create authors.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -58,8 +58,8 @@ class AuthorPolicy
     /**
      * Determine whether the user can update the author.
      *
-     * @param  \App\User  $user
-     * @param  \App\Author  $author
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Author  $author
      * @return mixed
      */
     public function update(User $user, Author $author)
@@ -70,8 +70,8 @@ class AuthorPolicy
     /**
      * Determine whether the user can delete the author.
      *
-     * @param  \App\User  $user
-     * @param  \App\Author  $author
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Author  $author
      * @return mixed
      */
     public function delete(User $user, Author $author)

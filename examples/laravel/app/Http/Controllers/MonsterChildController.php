@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMonsterChild;
 use App\Http\Requests\UpdateMonsterChild;
 use App\Http\Resources\MonsterChild as MonsterChildResource;
-use App\MonsterChild;
+use App\Models\MonsterChild;
 use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -40,7 +40,7 @@ class MonsterChildController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MonsterChild  $monsterChild
+     * @param  \App\Models\MonsterChild  $monsterChild
      * @return MonsterChildResource
      */
     public function show(MonsterChild $monsterChild)
@@ -65,7 +65,7 @@ class MonsterChildController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MonsterChild  $monsterChild
+     * @param  \App\Models\MonsterChild  $monsterChild
      * @return MonsterChildResource
      */
     public function update(UpdateMonsterChild $request, MonsterChild $monsterChild)
@@ -78,7 +78,7 @@ class MonsterChildController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MonsterChild  $monsterChild
+     * @param  \App\Models\MonsterChild  $monsterChild
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

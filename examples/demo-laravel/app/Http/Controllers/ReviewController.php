@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use App\Http\Resources\Review as ReviewResource;
-use App\Review;
+use App\Models\Review;
 use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -46,7 +46,7 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Models\Review  $review
      * @return ReviewResource
      */
     public function show(Review $review)
@@ -71,7 +71,7 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateReview $request
-     * @param \App\Review $review
+     * @param \App\Models\Review $review
      * @return ReviewResource
      */
     public function update(UpdateReview $request, Review $review)
@@ -84,7 +84,7 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Review $review
+     * @param \App\Models\Review $review
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,9 +22,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $authors
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Author[] $authors
  * @property-read int|null $authors_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publisher[] $publishers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Publisher[] $publishers
  * @property-read int|null $publishers_count
  * @property-read bool $impersonate
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User role($role)

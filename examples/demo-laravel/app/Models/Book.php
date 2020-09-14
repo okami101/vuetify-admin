@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -27,10 +27,10 @@ use Spatie\Translatable\HasTranslations;
  * @property array $tags
  * @property Carbon $publication_date
  * @property-read Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Review[] $reviews
  * @property-read int|null $reviews_count
- * @property-read \App\Publisher $publisher
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Author[] $authors
+ * @property-read \App\Models\Publisher $publisher
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Author[] $authors
  * @property-read int|null $authors_count
  * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media

@@ -1,9 +1,9 @@
 <?php
 
-use App\Author;
-use App\Book;
-use App\Category;
-use App\Publisher;
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Publisher;
 use Illuminate\Database\Seeder;
 
 class BookSeeder extends Seeder

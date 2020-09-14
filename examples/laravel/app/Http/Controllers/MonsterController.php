@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMonster;
 use App\Http\Requests\UpdateMonster;
 use App\Http\Resources\Monster as MonsterResource;
-use App\Monster;
+use App\Models\Monster;
 use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -45,7 +45,7 @@ class MonsterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Monster  $monster
+     * @param  \App\Models\Monster  $monster
      * @return MonsterResource
      */
     public function show(Monster $monster)
@@ -70,7 +70,7 @@ class MonsterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Monster  $monster
+     * @param  \App\Models\Monster  $monster
      * @return MonsterResource
      */
     public function update(UpdateMonster $request, Monster $monster)
@@ -83,7 +83,7 @@ class MonsterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Monster  $monster
+     * @param  \App\Models\Monster  $monster
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

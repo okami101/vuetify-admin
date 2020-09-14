@@ -1,7 +1,7 @@
 <?php
 
-use App\Monster;
-use App\MonsterChild;
+use App\Models\Monster;
+use App\Models\MonsterChild;
 use Illuminate\Database\Seeder;
 
 class MonsterSeeder extends Seeder

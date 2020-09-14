@@ -1,6 +1,6 @@
 <?php
 
-use App\Review;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder
@@ -12,7 +12,7 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
-        $books = \App\Book::commentables()->get();
+        $books = \App\Models\Book::commentables()->get();
 
         Review::factory(5000)->make()->each(function (Review $review) use ($books) {
             $review->book()->associate($books->random());

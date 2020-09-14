@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +20,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review query()
  * @mixin \Eloquent
- * @property-read \App\Book $book
+ * @property-read \App\Models\Book $book
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review publishedAfter($date)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Review publishedBefore($date)
  */

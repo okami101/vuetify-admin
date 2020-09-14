@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Author;
-use App\Book;
-use App\Publisher;
-use App\Review;
-use App\User;
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Publisher;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Database\Eloquent\Builder;
 

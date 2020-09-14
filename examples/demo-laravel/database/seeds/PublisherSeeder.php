@@ -1,6 +1,6 @@
 <?php
 
-use App\Publisher;
+use App\Models\Publisher;
 use Illuminate\Database\Seeder;
 
 class PublisherSeeder extends Seeder
@@ -13,7 +13,7 @@ class PublisherSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-        $editors = \App\User::role('editor')->get();
+        $editors = \App\Models\User::role('editor')->get();
 
         Publisher::factory(10)->create()->each(function (Publisher $publisher) use ($faker, $editors) {
             $publisher->addMedia(DatabaseSeeder::randomMedia($faker, 'logos', 1, 'png'))

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\ModelTraits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -10,33 +10,26 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
 /**
- * App\Publisher
+ * App\Author
  *
  * @property int $id
  * @property string $name
- * @property string $type
  * @property string $description
- * @property string $founder
- * @property string $headquarter
- * @property string $url
- * @property string $email
- * @property object $address
- * @property bool $active
- * @property string $opening_date
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
+ * @property string $backlinks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Book[] $books
  * @property-read int|null $books_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publisher newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publisher newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publisher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author query()
  * @mixin \Eloquent
  * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media
  * @property-read int|null $media_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publisher hasUser(\App\User $user)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author hasUser(\App\Models\User $user)
  */
-class Publisher extends Model implements HasMedia
+class Author extends Model implements HasMedia
 {
     use HasTranslations;
     use RequestMediaTrait;
@@ -46,21 +39,12 @@ class Publisher extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'type',
         'description',
-        'founder',
-        'headquarter',
-        'url',
-        'email',
-        'active',
-        'address',
-        'opening_date',
+        'backlinks',
     ];
 
     protected $casts = [
-        'active' => 'boolean',
-        'address' => 'object',
-        'opening_date' => 'datetime:Y-m-d',
+        'backlinks' => 'array',
     ];
 
     public $translatable = ['description'];
@@ -72,13 +56,12 @@ class Publisher extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logo')->singleFile();
-        $this->addMediaCollection('local');
+        $this->addMediaCollection('photo')->singleFile();
     }
 
     public function books()
     {
-        return $this->hasMany(Book::class);
+        return $this->belongsToMany(Book::class);
     }
 
     public function registerMediaConversions(Media $media = null): void

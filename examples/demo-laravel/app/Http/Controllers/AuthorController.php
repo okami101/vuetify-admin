@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Author;
 use App\Http\Requests\StoreAuthor;
 use App\Http\Requests\UpdateAuthor;
 use App\Http\Resources\Author as AuthorResource;
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Builder;
 use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -47,7 +47,7 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Author  $author
+     * @param  \App\Models\Author  $author
      * @return AuthorResource
      */
     public function show(Author $author)
@@ -76,7 +76,7 @@ class AuthorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Author  $author
+     * @param  \App\Models\Author  $author
      * @return AuthorResource
      */
     public function update(UpdateAuthor $request, Author $author)
@@ -93,7 +93,7 @@ class AuthorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Author $author
+     * @param \App\Models\Author $author
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

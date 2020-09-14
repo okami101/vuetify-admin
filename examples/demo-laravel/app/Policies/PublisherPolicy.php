@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Publisher;
-use App\User;
+use App\Models\Publisher;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PublisherPolicy
@@ -24,7 +24,7 @@ class PublisherPolicy
     /**
      * Determine whether the user can view any publishers.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -35,8 +35,8 @@ class PublisherPolicy
     /**
      * Determine whether the user can view the publisher.
      *
-     * @param  \App\User  $user
-     * @param  \App\Publisher  $publisher
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Publisher  $publisher
      * @return mixed
      */
     public function view(User $user, Publisher $publisher)
@@ -47,7 +47,7 @@ class PublisherPolicy
     /**
      * Determine whether the user can create publishers.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -58,8 +58,8 @@ class PublisherPolicy
     /**
      * Determine whether the user can update the publisher.
      *
-     * @param  \App\User  $user
-     * @param  \App\Publisher  $publisher
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Publisher  $publisher
      * @return mixed
      */
     public function update(User $user, Publisher $publisher)
@@ -70,8 +70,8 @@ class PublisherPolicy
     /**
      * Determine whether the user can delete the publisher.
      *
-     * @param  \App\User  $user
-     * @param  \App\Publisher  $publisher
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Publisher  $publisher
      * @return mixed
      */
     public function delete(User $user, Publisher $publisher)

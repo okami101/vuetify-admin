@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Monster;
-use App\User;
+use App\Models\Monster;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MonsterPolicy
@@ -13,7 +13,7 @@ class MonsterPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,8 +24,8 @@ class MonsterPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Monster  $monster
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Monster  $monster
      * @return mixed
      */
     public function view(User $user, Monster $monster)
@@ -36,7 +36,7 @@ class MonsterPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -47,8 +47,8 @@ class MonsterPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Monster  $monster
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Monster  $monster
      * @return mixed
      */
     public function update(User $user, Monster $monster)
@@ -59,8 +59,8 @@ class MonsterPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Monster  $monster
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Monster  $monster
      * @return mixed
      */
     public function delete(User $user, Monster $monster)

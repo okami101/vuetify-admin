@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePublisher;
 use App\Http\Requests\UpdatePublisher;
 use App\Http\Resources\Publisher as PublisherResource;
-use App\Publisher;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 use Okami101\LaravelAdmin\Filters\SearchFilter;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -51,7 +51,7 @@ class PublisherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Publisher  $publisher
+     * @param  \App\Models\Publisher  $publisher
      * @return PublisherResource
      */
     public function show(Publisher $publisher)
@@ -80,7 +80,7 @@ class PublisherController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdatePublisher $request
-     * @param \App\Publisher $publisher
+     * @param \App\Models\Publisher $publisher
      * @return PublisherResource
      */
     public function update(UpdatePublisher $request, Publisher $publisher)
@@ -97,7 +97,7 @@ class PublisherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Publisher $publisher
+     * @param \App\Models\Publisher $publisher
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
