@@ -30,7 +30,7 @@
                   required
                 ></v-text-field>
 
-                <%_ if (remember) { _%>
+                <%_ if (sanctum) { _%>
                 <v-checkbox
                   v-model="form.remember"
                   :label="$t('login.remember')"
@@ -70,7 +70,7 @@
                   required
                 ></v-text-field>
 
-                <%_ if (remember) { _%>
+                <%_ if (sanctum) { _%>
                 <v-checkbox
                   v-model="form.remember"
                   :label="$t('login.remember')"
@@ -106,7 +106,7 @@ export default {
       form: {
         username: null,
         password: null,
-        <%_ if (remember) { _%>
+        <%_ if (sanctum) { _%>
         remember: false,
         <%_ } _%>
       },
@@ -124,6 +124,13 @@ export default {
         try {
           await this.login(this.form);
         } catch (e) {
+          <%_ if (sanctum) { _%>
+          if (e.errors) {
+            this.errorMessages = e.errors;
+          } else {
+            this.errorMessages = { email: [e.message] };
+          }
+          <%_ } else { _%>
           if (!e.response) {
             this.errorMessages.email = [e.message];
           } else if (e.response.data.errors) {
@@ -131,8 +138,10 @@ export default {
           } else if (e.response.data.message) {
             this.errorMessages = { email: [e.response.data.message] };
           }
+          <%_ } _%>
+        } finally {
+          this.loading = false;
         }
-        this.loading = false;
       }
     },
   },
