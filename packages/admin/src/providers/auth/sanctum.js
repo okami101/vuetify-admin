@@ -11,8 +11,8 @@ import {
 export default (axios, params = {}) => {
   params = {
     routes: {
-      login: "/auth/login",
-      logout: "/auth/logout",
+      login: "/login",
+      logout: "/logout",
       user: "/api/user",
       csrf: "/sanctum/csrf-cookie",
     },
