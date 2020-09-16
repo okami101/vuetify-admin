@@ -1064,16 +1064,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.2.0",
+            "version": "v8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "846d4dad13ed8cb535bf4058d53b2770647f9301"
+                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/846d4dad13ed8cb535bf4058d53b2770647f9301",
-                "reference": "846d4dad13ed8cb535bf4058d53b2770647f9301",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1c57ab5e375d0a897c22b29e8352453be514131e",
+                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e",
                 "shasum": ""
             },
             "require": {
@@ -1103,7 +1103,7 @@
                 "symfony/routing": "^5.1",
                 "symfony/var-dumper": "^5.1",
                 "tijsverkoyen/css-to-inline-styles": "^2.2.2",
-                "vlucas/phpdotenv": "^5.0",
+                "vlucas/phpdotenv": "^5.2",
                 "voku/portable-ascii": "^1.4.8"
             },
             "conflict": {
@@ -1223,7 +1223,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-09-14T13:36:13+00:00"
+            "time": "2020-09-16T16:13:13+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1954,16 +1954,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.39.2",
+            "version": "2.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "326efde1bc09077a26cb77f6e2e32e13f06c27f2"
+                "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/326efde1bc09077a26cb77f6e2e32e13f06c27f2",
-                "reference": "326efde1bc09077a26cb77f6e2e32e13f06c27f2",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/6c7646154181013ecd55e80c201b9fd873c6ee5d",
+                "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d",
                 "shasum": ""
             },
             "require": {
@@ -2039,7 +2039,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-10T12:16:42+00:00"
+            "time": "2020-09-11T19:00:58+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2099,7 +2099,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/laravel",
-                "reference": "facb0403c28ceba1bc0672383714d4b8056f7aae"
+                "reference": "b3c349a7d62cf43d1b83b2c926e37836936605e6"
             },
             "require": {
                 "illuminate/routing": "^8.0",
@@ -2154,7 +2154,7 @@
                     "email": "adrien.beaudouin@outlook.com"
                 }
             ],
-            "description": "Laravel admin panel generator using Vuetify Admin, a separate SPA admin framework running on top of REST APIs and built on Vuetify.",
+            "description": "Admin panel generator for Laravel 8 and based on Vuetify Admin, a separate SPA admin framework running on top of REST APIs.",
             "homepage": "https://www.okami101.io/vuetify-admin",
             "keywords": [
                 "admin",
@@ -7997,16 +7997,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.8",
+            "version": "9.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb"
+                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f98f8466126d83b55b924a94d2244c53c216b8fb",
-                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
+                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
                 "shasum": ""
             },
             "require": {
@@ -8014,7 +8014,7 @@
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",
                 "nikic/php-parser": "^4.8",
-                "php": "^7.3 || ^8.0",
+                "php": ">=7.3",
                 "phpunit/php-file-iterator": "^3.0.3",
                 "phpunit/php-text-template": "^2.0.2",
                 "sebastian/code-unit-reverse-lookup": "^2.0.2",
@@ -8066,7 +8066,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-07T08:07:10+00:00"
+            "time": "2020-09-15T06:14:11+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\ModelTraits\UserAccessTrait;
+use App\Models\Traits\UserAccessTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Okami101\LaravelAdmin\Traits\RequestMediaTrait;
