@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-vuetify-admin",
-  "version": "0.4.6",
+  "version": "0.4.10",
   "description": "Vue CLI plugin for Vuetify Admin",
   "main": "index.js",
   "keywords": [
