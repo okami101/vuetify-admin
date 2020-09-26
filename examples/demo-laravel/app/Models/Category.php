@@ -3,7 +3,11 @@
 namespace App\Models;
 
 use App\Utils\TreeCollection;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Translatable\HasTranslations;
@@ -17,14 +21,14 @@ use Spatie\Translatable\HasTranslations;
  * @property int|null $parent_id
  * @property int|null $depth
  * @property int|null $order_column
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property Category $parent
- * @property \Illuminate\Database\Eloquent\Collection|Category[] $children
- * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Category query()
- * @mixin \Eloquent
+ * @property Collection|Category[] $children
+ * @method static Builder|Category newModelQuery()
+ * @method static Builder|Category newQuery()
+ * @method static Builder|Category query()
+ * @mixin Eloquent
  */
 class Category extends Model implements Sortable
 {
@@ -63,7 +67,7 @@ class Category extends Model implements Sortable
      * Create a Eloquent Collection instance with tree support.
      *
      * @param  array  $models
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function newCollection(array $models = [])
     {

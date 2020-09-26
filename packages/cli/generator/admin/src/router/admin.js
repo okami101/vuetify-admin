@@ -13,16 +13,12 @@ import i18n from "@/i18n";
 Vue.component("Error", Error);
 
 export default {
-  path: "/",
+  path: "",
   component: AdminLayout,
   meta: {
     title: i18n.t("routes.home"),
   },
   children: [
-    {
-      path: "",
-      redirect: "/dashboard",
-    },
     {
       path: "/dashboard",
       name: "dashboard",

@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\Traits\UserAccessTrait;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Okami101\LaravelAdmin\Traits\RequestMediaTrait;
@@ -17,18 +20,18 @@ use Spatie\Translatable\HasTranslations;
  * @property string $name
  * @property string $description
  * @property string $backlinks
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Book[] $books
+ * @property-read Collection|Book[] $books
  * @property-read int|null $books_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author query()
- * @mixin \Eloquent
+ * @method static Builder|Author newModelQuery()
+ * @method static Builder|Author newQuery()
+ * @method static Builder|Author query()
+ * @mixin Eloquent
  * @property-read mixed $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media
+ * @property-read Collection|Media[] $media
  * @property-read int|null $media_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read Collection|User[] $users
  * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author hasUser(\App\Models\User $user)
+ * @method static Builder|Author hasUser(User $user)
  */
 class Author extends Model implements HasMedia
 {

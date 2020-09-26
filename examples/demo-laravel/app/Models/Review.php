@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,13 +18,13 @@ use Illuminate\Support\Carbon;
  * @property string|null $body
  * @property string $author
  * @property Carbon $publication_date
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Review newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Review newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Review query()
- * @mixin \Eloquent
- * @property-read \App\Models\Book $book
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Review publishedAfter($date)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Review publishedBefore($date)
+ * @method static Builder|Review newModelQuery()
+ * @method static Builder|Review newQuery()
+ * @method static Builder|Review query()
+ * @mixin Eloquent
+ * @property-read Book $book
+ * @method static Builder|Review publishedAfter($date)
+ * @method static Builder|Review publishedBefore($date)
  */
 class Review extends Model
 {

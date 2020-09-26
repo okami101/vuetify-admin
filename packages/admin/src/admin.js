@@ -292,7 +292,12 @@ export default class VuetifyAdmin {
           title: this.title,
         })
       )
-      .concat(routes.children || []);
+      .concat(
+        (routes.children || []).map((r) => {
+          r.meta = { ...(r.meta || {}), authenticated: true };
+          return r;
+        })
+      );
 
     router.addRoutes([routes]);
 
@@ -336,7 +341,7 @@ export default class VuetifyAdmin {
        */
       let user = await store.dispatch("auth/checkAuth");
 
-      if (to.name !== "login") {
+      if (to.meta.authenticated) {
         if (!user) {
           return next({ name: "login" });
         }
@@ -345,7 +350,7 @@ export default class VuetifyAdmin {
       }
 
       if (user) {
-        return next("/");
+        return next({ name: "dashboard" });
       }
       next();
     });

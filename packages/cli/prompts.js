@@ -1,5 +1,11 @@
 module.exports = [
   {
+    type: "input",
+    name: "apiURL",
+    message: "URL of you API endpoint :",
+    default: "http://localhost:3000",
+  },
+  {
     type: "list",
     name: "dataProvider",
     message: "Select your suited data provider type :",
@@ -64,31 +70,21 @@ module.exports = [
     ],
   },
   {
-    type: "input",
-    name: "apiURL",
-    message: "URL of you API endpoint :",
-    default: "http://localhost:3000",
+    type: "confirm",
+    name: "reset",
+    message: "Install reset form template for password reset :",
+    default: false,
   },
   {
-    type: "checkbox",
-    name: "locales",
-    message: "Select supported locales :",
-    default: ["en"],
-    choices: [
-      {
-        name: "English",
-        value: "en",
-      },
-      {
-        name: "French",
-        value: "fr",
-      },
-    ],
+    type: "confirm",
+    name: "register",
+    message: "Install registration form for public user creation :",
+    default: false,
   },
   {
     type: "confirm",
     name: "profile",
-    message: "Install profile pages template :",
+    message: "Install profile page template for account and password editing :",
     default: false,
   },
   {
@@ -108,5 +104,21 @@ module.exports = [
     name: "material",
     message: "Install nice material theme with dashboard by Tim Creative :",
     default: false,
+  },
+  {
+    type: "checkbox",
+    name: "locales",
+    message: "Select supported locales :",
+    default: ["en"],
+    choices: [
+      {
+        name: "English",
+        value: "en",
+      },
+      {
+        name: "French",
+        value: "fr",
+      },
+    ],
   },
 ];

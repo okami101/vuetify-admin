@@ -10,7 +10,7 @@
     "dashboard": "Dashboard",
     "not_found": "Not found"
   },
-  "login": {
+  "auth": {
     "username": "Username",
     "password": "Password",
     "remember": "Remember",

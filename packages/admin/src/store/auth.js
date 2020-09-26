@@ -43,7 +43,7 @@ export default (provider, router) => {
       // eslint-disable-next-line no-empty-pattern
       [LOGIN]: async ({}, credentials) => {
         await provider[LOGIN](credentials);
-        router.push("/");
+        router.push({ name: "dashboard" });
       },
       /**
        * Explicit logout action, remove user from storage

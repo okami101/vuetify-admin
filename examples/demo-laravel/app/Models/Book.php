@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -28,23 +30,23 @@ use Spatie\Translatable\HasTranslations;
  * @property array $tags
  * @property Carbon $publication_date
  * @property-read Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Review[] $reviews
+ * @property-read Collection|Review[] $reviews
  * @property-read int|null $reviews_count
- * @property-read \App\Models\Publisher $publisher
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Author[] $authors
+ * @property-read Publisher $publisher
+ * @property-read Collection|Author[] $authors
  * @property-read int|null $authors_count
  * @property-read mixed $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|Media[] $media
+ * @property-read Collection|Media[] $media
  * @property-read int|null $media_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book publishedAfter($date)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book publishedBefore($date)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book cheaperThan($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book pricierThan($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Book commentables()
- * @mixin \Eloquent
+ * @method static Builder|Book newModelQuery()
+ * @method static Builder|Book newQuery()
+ * @method static Builder|Book query()
+ * @method static Builder|Book publishedAfter($date)
+ * @method static Builder|Book publishedBefore($date)
+ * @method static Builder|Book cheaperThan($value)
+ * @method static Builder|Book pricierThan($value)
+ * @method static Builder|Book commentables()
+ * @mixin Eloquent
  */
 class Book extends Model implements HasMedia
 {

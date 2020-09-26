@@ -42,29 +42,29 @@
               <v-row>
                 <v-col>
                   <v-text-field
-                    :label="$t('profile.old_password')"
+                    :label="$t('profile.current_password')"
                     type="password"
-                    v-model="passwordForm.old_password"
+                    v-model="passwordForm.current_password"
                     required
-                    :error-messages="errorMessages.old_password"
+                    :error-messages="errorMessages.current_password"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    :label="$t('profile.new_password')"
+                    :label="$t('profile.password')"
                     type="password"
-                    v-model="passwordForm.new_password"
+                    v-model="passwordForm.password"
                     required
-                    :error-messages="errorMessages.new_password"
+                    :error-messages="errorMessages.password"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    :label="$t('profile.confirm_password')"
+                    :label="$t('profile.password_confirmation')"
                     type="password"
-                    v-model="passwordForm.new_password_confirmation"
+                    v-model="passwordForm.password_confirmation"
                     required
-                    :error-messages="errorMessages.new_password_confirmation"
+                    :error-messages="errorMessages.password_confirmation"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -92,9 +92,9 @@ export default {
         email: null,
       },
       passwordForm: {
-        old_password: null,
-        new_password: null,
-        new_password_confirmation: null,
+        current_password: null,
+        password: null,
+        password_confirmation: null,
       },
       errorMessages: {},
     };
@@ -106,11 +106,14 @@ export default {
   },
   watch: {
     user: {
-      handler({ name, email }) {
-        this.accountForm = {
-          name,
-          email,
-        };
+      handler(newVal) {
+        if (newVal) {
+          let { name, email } = newVal;
+          this.accountForm = {
+            name,
+            email,
+          };
+        }
       },
       immediate: true,
     },
@@ -125,42 +128,54 @@ export default {
 
         this.errorMessages = {};
         return true;
-      } catch ({ response }) {
-        this.$admin.toast.error(response.data.message);
+      } catch (e) {
+        this.$admin.toast.error(e.message);
 
-        if (response.data.errors) {
-          this.errorMessages = response.data.errors;
+        if (e.errors) {
+          this.errorMessages = e.errors;
         }
       }
       return false;
     },
     async updateAccount() {
       this.accountUpdating = true;
-      if (await this.update("patch", "/api/account/update", this.accountForm)) {
-        /**
-         * Recheck auth
-         */
-        this.checkAuth();
-        this.$admin.toast.success(this.$t("profile.account_updated"));
+
+      try {
+        if (
+          await this.update(
+            "put",
+            "/user/profile-information",
+            this.accountForm
+          )
+        ) {
+          /**
+           * Recheck auth
+           */
+          this.checkAuth();
+          this.$admin.toast.success(this.$t("profile.account_updated"));
+        }
+      } finally {
+        this.accountUpdating = false;
       }
-      this.accountUpdating = false;
     },
     async changePassword() {
       this.passwordChanging = true;
-      if (
-        await this.update("patch", "/api/account/password", this.passwordForm)
-      ) {
-        /**
-         * Reset
-         */
-        this.passwordForm = {
-          oldPassword: null,
-          newPassword: null,
-          newPasswordConfirmation: null,
-        };
-        this.$admin.toast.success(this.$t("profile.password_changed"));
+
+      try {
+        if (await this.update("put", "/user/password", this.passwordForm)) {
+          /**
+           * Reset
+           */
+          this.passwordForm = {
+            oldPassword: null,
+            newPassword: null,
+            newPasswordConfirmation: null,
+          };
+          this.$admin.toast.success(this.$t("profile.password_changed"));
+        }
+      } finally {
+        this.passwordChanging = false;
       }
-      this.passwordChanging = false;
     },
   },
 };

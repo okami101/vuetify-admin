@@ -11,6 +11,9 @@
   "routes": {
     "home": "Accueil",
     "login": "Login",
+    "forgot_password": "Oubli de mot de passe",
+    "reset_password": "Réinitialisation du mot de passe",
+    "register": "Inscription",
     "profile": "Compte",
     "dashboard": "Tableau de bord",
     "help": "Aide",
@@ -18,20 +21,26 @@
     "feedback": "Feedback",
     "not_found": "Non trouvé"
   },
-  "login": {
+  "auth": {
     "username": "Utilisateur",
     "password": "Mot de passe",
     "remember": "Se souvenir",
-    "sign_in": "Se connecter"
+    "sign_in": "Se connecter",
+    "forgot_password": "Oubli de mot de passe ?",
+    "send": "Envoyer",
+    "password_confirmation": "Confirmation du mot de passe",
+    "reset": "Réinitialiser",
+    "name": "Nom utilisateur",
+    "email": "Email",
+    "register": "S'inscrire"
   },
   "profile": {
     "account": "Mon compte",
     "password": "Mot de passe",
     "name": "Nom",
     "email": "Email",
-    "old_password": "Ancien mot de passe",
-    "new_password": "Nouveau mot de passe",
-    "confirm_password": "Confirmation du mot de passe",
+    "current_password": "Mot de passe courant",
+    "password_confirmation": "Confirmation du mot de passe",
     "update": "Mettre à jour",
     "account_updated": "Compte mis à jour",
     "password_changed": "Mot de passe changé"

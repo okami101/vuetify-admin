@@ -107,6 +107,7 @@ export default ({ store, i18n, resource, title }) => {
         },
       },
       meta: {
+        authenticated: true,
         resource: name,
         translatable,
       },

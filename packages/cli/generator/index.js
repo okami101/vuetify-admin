@@ -51,8 +51,24 @@ module.exports = (api, options) => {
      */
     api.render("./login", {
       material: options.material,
-      sanctum: options.authProvider === "sanctum",
+      register: options.register,
+      reset: options.reset,
+      remember: options.authProvider === "sanctum",
     });
+  }
+
+  if (options.register) {
+    /**
+     * Register page
+     */
+    api.render("./register");
+  }
+
+  if (options.reset) {
+    /**
+     * Resets pages
+     */
+    api.render("./reset");
   }
 
   if (options.profile) {
