@@ -167,9 +167,9 @@ export default {
            * Reset
            */
           this.passwordForm = {
-            oldPassword: null,
-            newPassword: null,
-            newPasswordConfirmation: null,
+            current_password: null,
+            password: null,
+            password_confirmation: null,
           };
           this.$admin.toast.success(this.$t("profile.password_changed"));
         }
