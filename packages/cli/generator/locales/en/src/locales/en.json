@@ -6,15 +6,25 @@
   "routes": {
     "home": "Home",
     "login": "Login",
+    "forgot_password": "Forgot password",
+    "reset_password": "Reset password",
+    "register": "Register",
     "profile": "Profile",
     "dashboard": "Dashboard",
     "not_found": "Not found"
   },
-  "login": {
+  "auth": {
     "username": "Username",
     "password": "Password",
     "remember": "Remember",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "forgot_password": "Forgot password ?",
+    "send": "Send",
+    "password_confirmation": "Password confirmation",
+    "reset": "Reset",
+    "name": "Account name",
+    "email": "Email",
+    "register": "Register"
   },
   "profile": {
     "account": "Account",

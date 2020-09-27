@@ -39,15 +39,17 @@
     ></v-checkbox>
     <%_ } _%>
 
-    <v-btn
-      :loading="loading"
-      color="primary"
-      large
-      type="submit"
-      text
-      rounded
-      >{{ $t("auth.sign_in") }}</v-btn
-    >
+    <div class="text-center">
+      <v-btn
+        :loading="loading"
+        color="primary"
+        large
+        type="submit"
+        text
+        rounded
+        >{{ $t("auth.sign_in") }}</v-btn
+      >
+    </div>
   </v-form>
 </template>
 
