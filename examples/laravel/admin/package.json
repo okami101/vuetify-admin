@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -39,7 +39,7 @@
     "sass-loader": "^10.0.2",
     "vue-cli-plugin-i18n": "latest",
     "vue-cli-plugin-vuetify": "latest",
-    "vue-cli-plugin-vuetify-admin": "^0.5.3",
+    "vue-cli-plugin-vuetify-admin": "^0.5.4",
     "vue-template-compiler": "^2.6.12",
     "vuetify-loader": "^1.4.4"
   }
