@@ -70,22 +70,25 @@ module.exports = [
     ],
   },
   {
-    type: "confirm",
-    name: "reset",
-    message: "Install reset form template for password reset :",
-    default: false,
-  },
-  {
-    type: "confirm",
-    name: "register",
-    message: "Install registration form for public user creation :",
-    default: false,
-  },
-  {
-    type: "confirm",
-    name: "profile",
-    message: "Install profile page template for account and password editing :",
-    default: false,
+    type: "checkbox",
+    name: "auth",
+    message: "Select additional authentication templates to add :",
+    default: [],
+    choices: [
+      {
+        name: "Registration form for public user creation",
+        value: "register",
+      },
+      {
+        name: "Reset forms templates for password reset",
+        value: "reset",
+      },
+      {
+        name: "Profile form template for account and password editing",
+        value: "profile",
+      },
+    ],
+    when: (input) => !!input.authProvider,
   },
   {
     type: "confirm",

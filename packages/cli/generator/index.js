@@ -51,27 +51,27 @@ module.exports = (api, options) => {
      */
     api.render("./login", {
       material: options.material,
-      register: options.register,
-      reset: options.reset,
+      register: options.auth.includes("register"),
+      reset: options.auth.includes("reset"),
       remember: options.authProvider === "sanctum",
     });
   }
 
-  if (options.register) {
+  if (options.auth.includes("register")) {
     /**
      * Register page
      */
     api.render("./register");
   }
 
-  if (options.reset) {
+  if (options.auth.includes("reset")) {
     /**
      * Resets pages
      */
     api.render("./reset");
   }
 
-  if (options.profile) {
+  if (options.auth.includes("profile")) {
     /**
      * Profile page
      */
