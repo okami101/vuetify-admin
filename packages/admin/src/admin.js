@@ -341,17 +341,27 @@ export default class VuetifyAdmin {
        */
       let user = await store.dispatch("auth/checkAuth");
 
-      if (to.meta.authenticated) {
-        if (!user) {
-          return next({ name: "login" });
+      /**
+       * If logged
+       */
+      if (user) {
+        /**
+         * Redirect to dashboard route by default if public or root path
+         */
+        if (to.path === "/" || !to.meta.authenticated) {
+          return next({ name: "dashboard" });
         }
 
         return next();
       }
 
-      if (user) {
-        return next({ name: "dashboard" });
+      /**
+       * Force redirect to login if not logged for authenticated routes
+       */
+      if (to.meta.authenticated) {
+        return next({ name: "login" });
       }
+
       next();
     });
   }

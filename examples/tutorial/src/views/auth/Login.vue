@@ -16,15 +16,17 @@
       required
     ></v-text-field>
 
-    <v-btn
-      :loading="loading"
-      color="primary"
-      large
-      type="submit"
-      text
-      rounded
-      >{{ $t("auth.sign_in") }}</v-btn
-    >
+    <div class="text-center">
+      <v-btn
+        :loading="loading"
+        color="primary"
+        large
+        type="submit"
+        text
+        rounded
+        >{{ $t("auth.sign_in") }}</v-btn
+      >
+    </div>
   </v-form>
 </template>
 
@@ -49,26 +51,10 @@ export default {
     async validate() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        try {
-          await this.login(this.form);
-        } catch (e) {
-          if (!e.response) {
-            this.errorMessages.email = [e.message];
-          } else if (e.response.data.errors) {
-            this.errorMessages = e.response.data.errors;
-          } else if (e.response.data.message) {
-            this.errorMessages = { email: [e.response.data.message] };
-          }
-        }
+        await this.login(this.form);
         this.loading = false;
       }
     },
   },
 };
 </script>
-
-<style scoped>
-#login-page {
-  background-color: #34495e;
-}
-</style>

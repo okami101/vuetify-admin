@@ -16,15 +16,17 @@
       required
     ></v-text-field>
 
-    <v-btn
-      :loading="loading"
-      color="primary"
-      large
-      type="submit"
-      text
-      rounded
-      >{{ $t("auth.sign_in") }}</v-btn
-    >
+    <div class="text-center">
+      <v-btn
+        :loading="loading"
+        color="primary"
+        large
+        type="submit"
+        text
+        rounded
+        >{{ $t("auth.sign_in") }}</v-btn
+      >
+    </div>
   </v-form>
 </template>
 
@@ -66,9 +68,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-#login-page {
-  background-color: var(--v-primary-lighten5);
-}
-</style>
