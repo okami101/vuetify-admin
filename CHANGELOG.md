@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.0
+
+* 🚀 Support all Laravel Fortify auth templates
+
 ## v0.4.8
 
 * 🏠 Remove vuex deps
