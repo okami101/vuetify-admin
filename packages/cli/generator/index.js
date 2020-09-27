@@ -22,10 +22,12 @@ module.exports = (api, options) => {
   });
 
   api.render("./admin", {
+    apiURL: options.apiURL,
     data: options.dataProvider,
     auth: options.authProvider,
-    apiURL: options.apiURL,
-    profile: options.profile,
+    register: options.auth.includes("register"),
+    reset: options.auth.includes("reset"),
+    profile: options.auth.includes("profile"),
     locales: options.locales,
     users: options.users,
     impersonation: options.impersonation,
