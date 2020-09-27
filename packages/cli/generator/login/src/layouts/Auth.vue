@@ -39,13 +39,6 @@
 
 <style scoped>
 #login-page {
-  background-image: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.3)
-    ),
-    url(../assets/splash.jpg);
-  background-position: center;
-  background-size: cover;
+  background-color: #34495e;
 }
 </style>
