@@ -8,7 +8,7 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "lint": "eslint --ext .js,.vue packages/admin packages/cli docs/.vuepress"
+    "lint": "eslint --ext .js,.vue packages/admin packages/cli"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "^4.5.6",
