@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Okami101\LaravelAdmin\Http\Middleware\Locale::class,
+        \Okami101\LaravelAdmin\Http\Middleware\ReadOnly::class,
     ];
 
     /**
@@ -44,7 +45,6 @@ class Kernel extends HttpKernel
             \Okami101\LaravelAdmin\Http\Middleware\Impersonate::class,
             'throttle:300,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Okami101\LaravelAdmin\Http\Middleware\ReadOnly::class,
         ],
     ];
 
