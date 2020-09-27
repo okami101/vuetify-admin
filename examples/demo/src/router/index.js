@@ -40,7 +40,7 @@ const routes = [
         },
       },
       {
-        path: "/reset-password",
+        path: "/reset-password/:token",
         name: "reset_password",
         component: ResetPassword,
         props: true,
