@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +21,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -28,19 +35,19 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     /**
      * Tree specific routes
      */
-    Route::get('categories/tree', 'CategoryController@tree');
-    Route::get('categories/nodes/{parentId?}', 'CategoryController@nodes');
-    Route::patch('categories/{category}/move', 'CategoryController@move');
+    Route::get('categories/tree', [CategoryController::class, 'tree']);
+    Route::get('categories/nodes/{parentId?}', [CategoryController::class, 'nodes']);
+    Route::patch('categories/{category}/move', [CategoryController::class, 'move']);
 
     /**
      * API resources controllers
      */
     Route::apiResources([
-        'users' => 'UserController',
-        'authors' => 'AuthorController',
-        'books' => 'BookController',
-        'reviews' => 'ReviewController',
-        'publishers' => 'PublisherController',
-        'categories' => 'CategoryController',
+        'users' => UserController::class,
+        'authors' => AuthorController::class,
+        'books' => BookController::class,
+        'reviews' => ReviewController::class,
+        'publishers' => PublisherController::class,
+        'categories' => CategoryController::class,
     ]);
 });

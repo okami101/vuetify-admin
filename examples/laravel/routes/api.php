@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\MonsterChildController;
+use App\Http\Controllers\MonsterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +26,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
      * API resources controllers
      */
     Route::apiResources([
-        'users' => 'UserController',
-        'monsters' => 'MonsterController',
-        'monster_children' => 'MonsterChildController',
-        'books' => 'BookController',
+        'users' => UserController::class,
+        'monsters' => MonsterController::class,
+        'monster_children' => MonsterChildController::class,
+        'books' => BookController::class,
     ]);
 });
