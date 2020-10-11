@@ -14,7 +14,6 @@ export default (axios, params = {}) => {
       login: "/login",
       logout: "/logout",
       user: "/api/user",
-      csrf: "/sanctum/csrf-cookie",
     },
     getCredentials: ({ username, password, remember }) => {
       return {
@@ -33,11 +32,6 @@ export default (axios, params = {}) => {
 
   return {
     [LOGIN]: async ({ username, password, remember }) => {
-      /**
-       * Get CSRF cookie
-       */
-      await axios.get(routes.csrf);
-
       let response = await axios.post(
         routes.login,
         getCredentials({ username, password, remember })

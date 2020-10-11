@@ -75,7 +75,7 @@ The [Laravel Sanctum Provider](https://github.com/okami101/vuetify-admin/blob/ma
 This is actually the recommended provider for Laravel if your app is on the same main domain (which is 99% use cases), because it's more secure (insensitive to XSS attacks thanks to HttpOnly cookies) and it works seamlessly with impersonation feature as well as the elFinder File manager.
 
 ::: warning CSRF
-As always with all based-cookies authentication system, you'll need a specific `csrf` route in order to get the XSRF token. Default is set to `/sanctum/csrf-cookie` so you have not to do anything if you use Laravel Sanctum with default config.  
+As always with all based-cookies authentication system, you'll need a specific CSRF token. The first required call to `/api/user` will automatically set the CSRF cookie for you.  
 By calling this URL, a local `XSRF-TOKEN` cookies will be stored with HttpOnly set to `false`. This allows axios to fetch it and set it as header request via `X-XSRF-TOKEN` for every next requests.  
 Don't forget to set `withCredentials` axios config to `true` order to include session cookies on ever XHR request.
 :::
