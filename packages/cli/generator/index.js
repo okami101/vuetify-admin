@@ -25,9 +25,9 @@ module.exports = (api, options) => {
     apiURL: options.apiURL,
     data: options.dataProvider,
     auth: options.authProvider,
-    register: options.auth.includes("register"),
-    reset: options.auth.includes("reset"),
-    profile: options.auth.includes("profile"),
+    register: (options.auth || []).includes("register"),
+    reset: (options.auth || []).includes("reset"),
+    profile: (options.auth || []).includes("profile"),
     locales: options.locales,
     users: options.users,
     impersonation: options.impersonation,
@@ -53,27 +53,27 @@ module.exports = (api, options) => {
      */
     api.render("./login", {
       material: options.material,
-      register: options.auth.includes("register"),
-      reset: options.auth.includes("reset"),
+      register: (options.auth || []).includes("register"),
+      reset: (options.auth || []).includes("reset"),
       remember: options.authProvider === "sanctum",
     });
   }
 
-  if (options.auth.includes("register")) {
+  if ((options.auth || []).includes("register")) {
     /**
      * Register page
      */
     api.render("./register");
   }
 
-  if (options.auth.includes("reset")) {
+  if ((options.auth || []).includes("reset")) {
     /**
      * Resets pages
      */
     api.render("./reset");
   }
 
-  if (options.auth.includes("profile")) {
+  if ((options.auth || []).includes("profile")) {
     /**
      * Profile page
      */
