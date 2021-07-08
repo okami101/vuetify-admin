@@ -52,7 +52,7 @@ export default {
   methods: {
     getItemText(item) {
       if (typeof this.itemText === "function") {
-        return this.item(item);
+        return this.itemText(item);
       }
       return item[this.itemText] || item;
     },
