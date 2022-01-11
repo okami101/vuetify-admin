@@ -69,7 +69,7 @@ The default dashboard home page is generated at `src/views/Dashboard.vue` file. 
 
 ## Data Provider
 
-As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vuetify Admin can understand. For that each provider must follow a specific implementation as [explained here](data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/json-server.js)
+As you will see, the JSON Server data provider is a simple JS object that does all the magic behind the scenes. It translates the particular [JSON Server API format](https://github.com/typicode/json-server#routes) into simple methods that Vuetify Admin can understand. For that each provider must follow a specific implementation as [explained here](data-providers.md). You can find the source code of JSON Server data provider [here](https://github.com/okami101/vuetify-admin/blob/master/packages/admin/src/providers/data/jsonServer.js)
 
 Vue CLI plugin comes with default simple CRUD templates pages for users resources. It's a basic functional single CRUD page interface with aside that should already working with actual `users` object of previously downloaded `data.json` database, by using standard `name` and `email` properties.
 
